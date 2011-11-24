@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @charset "utf-8";
-
 /* CSS Document */
 
 * {
@@ -14,8 +13,7 @@ body {
   font-size: 14px;
   color: #666;
   font-family: Arial;
-  background: none scroll 0 0 #fff;
-  min-height: 700px; }
+  background: none scroll 0 0 #fff; }
 
 h1, h2, h3, h4, h5, h6, p, img {
   margin: 0;
@@ -90,7 +88,7 @@ a {
       width: 111px; } } }
 
 .active a, .jobs-holder li a:hover {
-  background: url(asset-path('top-nav-act.png',image)) no-repeat !important;
+  background: url(asset_path('top-nav-act.png',image)) no-repeat !important;
   color: #fff !important; }
 
 .banner-holder {
@@ -100,19 +98,19 @@ a {
 
 .banner-left-holder {
   float: left;
-  background: url(asset-path('banner-left-bg.png',image)) no-repeat;
+  background: url(asset_path('banner-left-bg.png',image)) no-repeat;
   width: 9px;
   min-height: 359px; }
 
 .banner-mid-holder {
   float: left;
-  background: url(asset-path('banner-mid-bg.png',image)) repeat-x;
+  background: url(asset_path('banner-mid-bg.png',image)) repeat-x;
   width: 981px;
   min-height: 359px; }
 
 .banner-right-holder {
   float: left;
-  background: url(asset-path('banner-right-bg.png',image)) no-repeat;
+  background: url(asset_path('banner-right-bg.png',image)) no-repeat;
   width: 9px;
   min-height: 359px; }
 
@@ -154,7 +152,7 @@ a {
   width: 320px; }
 
 .job-search-top-holder {
-  background: url(asset-path('banner-right-top-bg.png',image)) no-repeat scroll 0 0 transparent;
+  background: url(asset_path('banner-right-top-bg.png',image)) no-repeat scroll 0 0 transparent;
   color: #FFFFFF;
   float: left;
   font-size: 20px;
@@ -164,17 +162,17 @@ a {
   width: 300px; }
 
 .job-search-mid-holder {
-  background: url(asset-path('banner-right-mid-bg.png',image)) repeat-y scroll 0 0 transparent;
+  background: url(asset_path('banner-right-mid-bg.png',image)) repeat-y scroll 0 0 transparent;
   float: left;
   height: auto;
-  padding: 0 26px;
+  padding: 0 26px 48px;
   width: 269px; }
 
 .job-search-bot-holder {
   float: left;
   width: 320px;
   height: 16px;
-  background: url(asset-path('banner-right-bot-bg.png',image)) no-repeat; }
+  background: url(asset_path('banner-right-bot-bg.png',image)) no-repeat; }
 
 .input-holder {
   float: left;
@@ -196,7 +194,7 @@ a {
 .select-holder {
   float: left;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
   label {
     float: left;
     width: 100%;
@@ -210,7 +208,7 @@ a {
   margin-top: 6px;
   width: 100%;
   height: 27px;
-  background: url(asset-path('select-bg.png',image)) no-repeat; }
+  background: url(asset_path('select-bg.png',image)) no-repeat; }
 
 .slt-cat-hold {
   display: none;
@@ -228,3 +226,228 @@ a {
     a {
       text-decoration: none;
       color: #404040; } } }
+
+.mtop9 {
+  margin-top: 9px; }
+
+.advanced-search {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #000;
+  font-style: italic;
+  float: left; }
+
+.findjob {
+  float: right;
+  margin-top: 10px;
+  a {
+    background: url(asset_path('findjob-bg.png',image)) repeat-x scroll 0 0 transparent;
+    border: 1px solid #7B0C26;
+    color: #FFFFFF;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 10px;
+    text-decoration: none; } }
+
+.content-holder {
+  float: left;
+  width: 100%;
+  margin-top: 10px; }
+
+.content-left-holder {
+  float: left;
+  width: 633px;
+  margin-left: 10px; }
+
+.content-right-holder {
+  float: right;
+  width: 325px; }
+
+.search-by-name {
+  color: #474747;
+  float: left;
+  font-family: "Myriad Pro";
+  font-size: 20px;
+  margin-right: 39px; }
+
+.w100 {
+  float: left;
+  width: 100%; }
+
+.tab-holder {
+  float: left;
+  width: auto;
+  margin-right: 6px; }
+
+.tab-left-holder {
+  background: url(asset_path('tab-left.png',image)) no-repeat;
+  width: 4px;
+  height: 30px;
+  float: left; }
+
+.tab-mid-holder {
+  background: url(asset_path('tab-mid.png',image)) repeat-x scroll 0 0 transparent;
+  color: #9B9B9B;
+  float: left;
+  font-size: 16px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 12px;
+  width: auto; }
+
+.tab-right-holder {
+  background: url(asset_path('tabs-right.png',image)) no-repeat;
+  width: 4px;
+  height: 30px;
+  float: left; }
+
+.active {
+  .tab-left-holder {
+    background: url(asset_path('tab-left-act.png',image)) no-repeat; }
+  .tab-mid-holder {
+    background: url(asset_path('tab-mid-act.png',image)) repeat-x;
+    color: #fff!important; }
+  .tab-right-holder {
+    background: url(asset_path('tabs-right-act.png',image)) no-repeat; } }
+
+.tabs-line {
+  background: url(asset_path('links-bot.png',image)) no-repeat scroll 0 0 transparent;
+  float: left;
+  height: 8px;
+  margin-top: -1px;
+  width: 100%; }
+
+.job-holder {
+  float: left;
+  width: 100%;
+  list-style: none;
+  li {
+    float: left;
+    width: 97%;
+    a {
+      background: url(asset_path('red-arrow-icon.png',image)) no-repeat scroll left center transparent;
+      border-bottom: 1px solid #DDDDDD;
+      color: #474747;
+      float: left;
+      font-size: 14px;
+      padding-bottom: 6px;
+      padding-left: 3%;
+      padding-top: 6px;
+      text-decoration: none;
+      width: 97%; } }
+  .selected {
+    background: url(asset_path('selected-bg.png',image)) no-repeat scroll 0 0 transparent;
+    margin-left: -8px;
+    padding-left: 11px;
+    a {
+      color: #fff;
+      font-weight: bold; } } }
+
+.popular-vacancies {
+  float: left;
+  width: 100%;
+  h1 {
+    float: left;
+    width: 100%;
+    font-family: "myriad Pro";
+    font-size: 18px;
+    color: #666;
+    font-weight: bold; } }
+
+.red {
+  color: #952323; }
+
+.cloud {
+  float: left;
+  margin-left: 8px;
+  margin-top: 23px;
+  width: 100%;
+  img {
+    float: left; } }
+
+.mto37 {
+  margin-top: 37px !important; }
+
+.featured-link {
+  float: left;
+  width: 100%;
+  margin-top: 20px;
+  list-style: none;
+  li {
+    background: url(asset_path('fetur-project-bg.png',image)) no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 20px;
+    margin-bottom: 4px;
+    width: 294px;
+    a {
+      background: url(asset_path('white-arrow-icon.png',image)) no-repeat scroll left center transparent;
+      color: #FFFFFF;
+      float: left;
+      font-size: 12px;
+      margin-left: 5%;
+      margin-top: 2px;
+      padding-left: 5%;
+      text-decoration: none;
+      width: 89%; } } }
+
+.companies {
+  float: left;
+  width: 100%;
+  margin-top: 20px;
+  img {
+    float: left; } }
+
+.gray-holder {
+  margin-left: 292px;
+  margin-top: 27px;
+  position: absolute;
+  width: 322px; }
+
+.inner-links {
+  float: left;
+  list-style: none;
+  background: none scroll 0 0 #747474;
+  padding: 13px 20px;
+  li {
+    float: left;
+    width: 100%;
+    a {
+      background: none;
+      float: left;
+      width: 100%;
+      font-size: 12px;
+      color: #fff;
+      padding: 5px 0;
+      border-bottom: 1px solid #fff; } } }
+
+.gray-bot-bg {
+  background: url(asset_path('gray-bot-bg.png',image)) no-repeat;
+  float: left;
+  width: 322px;
+  height: 12px; }
+
+.post-left {
+  background: url(asset_path('btn-left.png',image)) no-repeat;
+  width: 14px;
+  height: 47px;
+  float: left; }
+
+.post-mid {
+  background: url(asset_path('btn-mid.png',image)) repeat-x;
+  width: auto;
+  line-height: 47px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  height: 47px;
+  float: left;
+  padding: 0 10px; }
+
+.post-right {
+  background: url(asset_path('btn-right.png',image)) no-repeat;
+  width: 14px;
+  height: 47px;
+  float: left; }

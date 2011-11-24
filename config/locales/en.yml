@@ -14,3 +14,18 @@ en:
   home_job_search: "Job Search"
   home_job_search_title: "Job Title"
   home_job_search_category: "Job Category"
+  home_job_search_location: "Location"
+  home_job_advance_search: "Advance Search"
+  home_browse_jobs_by: "Browse Jobs by"
+  home_browse_company: "Company"
+  home_browse_region: "Region"
+  home_browse_type: "Type"
+  home_popular: "Most Popular"
+  home_vacancies: "Vacancies"
+  home_featured: "Featured"
+  home_groups: "Groups"
+  home_projects: "Projects"
+  home_employers: "Employers"
+  
+  button:
+    find_job: "Find Job"

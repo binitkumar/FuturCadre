@@ -1,0 +1,40 @@
+<div class="content-left-holder">
+	<div class="w100">
+		<div class="search-by-name"><%= t('home_browse_jobs_by') %></div>
+		<div class="tab-holder active">
+			<div class="tab-left-holder"></div>
+			<div class="tab-mid-holder"><%= t('home_browse_type') %></div>
+
+			<div class="tab-right-holder"></div>
+		</div>
+		<div class="tab-holder">
+			<div class="tab-left-holder"></div>
+			<div class="tab-mid-holder"><%= t('home_browse_region') %></div>
+			<div class="tab-right-holder"></div>
+		</div>
+		<div class="tab-holder">
+
+			<div class="tab-left-holder"></div>
+			<div class="tab-mid-holder"><%= t('home_browse_company') %></div>
+			<div class="tab-right-holder"></div>
+		</div>
+		<div class="tabs-line"></div>
+	</div>
+	<ul class="job-holder">
+		<li class="selected">
+			<a href="#">Creative/Design</a>
+			<div class="gray-holder">
+				<ul class="inner-links">
+					<li><a href="#">Creative/Design </a></li>
+					<li><a href="#">Creative/Design </a></li>
+					<li><a href="#">Creative/Design </a></li>
+					<li><a href="#">Creative/Design </a></li>
+				</ul>
+				<div class="gray-bot-bg"></div>
+			</div>
+		</li>
+		<% @categories.each do |category| %>
+			<li><%= link_to category.name %></li>
+		<%end%>
+	</ul>
+</div>
