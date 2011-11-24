@@ -9,8 +9,10 @@ FuturCadre::Application.routes.draw do
     :omniauth => "users/omniauth_callbacks#create"
   }
 
-  devise_scope :user do
+	devise_scope :user do
 		get "sign_in" => "users/sessions#new"
+		get "sign_up" => "users/registrations#new"
+		delete "sign_out" => "users/sessions#destroy"
   end
 
 	resources :home do
