@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
 	def change_laguage
 		session[:locale] = params[:locale]
-		redirect_back_or_default("/")
+		redirect_to :back
 	end
 
 end

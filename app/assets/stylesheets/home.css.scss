@@ -1,3 +1,230 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@charset "utf-8";
+
+/* CSS Document */
+
+* {
+  margin: 0px;
+  padding: 0px;
+  border: none; }
+
+body {
+  font-size: 14px;
+  color: #666;
+  font-family: Arial;
+  background: none scroll 0 0 #fff;
+  min-height: 700px; }
+
+h1, h2, h3, h4, h5, h6, p, img {
+  margin: 0;
+  padding: 0; }
+
+h1 {
+  font-size: 20px;
+  color: #000000; }
+
+h2 {
+  font-size: 18px;
+  color: #666666; }
+
+h4 {}
+
+p {
+  font-size: 14px;
+  color: #848587;
+  line-height: 17px; }
+
+img {
+  border: none; }
+
+a {
+  color: #000000; }
+
+.wrapper {
+  margin: 0 auto;
+  width: 1000px; }
+
+.topline {
+  float: left;
+  width: 100%;
+  background: #991514;
+  height: 6px; }
+
+.logo {
+  float: left;
+  width: 440px;
+  img {
+    float: left; } }
+
+.language {
+  float: left;
+  margin-left: 5px;
+  margin-top: 2px;
+  width: 109px;
+  label {
+    float: left;
+    font-size: 12px;
+    color: #474747;
+    margin-right: 5px; }
+  img {
+    float: left;
+    margin-right: 4px; } }
+
+.jobs-holder {
+  float: left;
+  width: 446px;
+  list-style: none;
+  li {
+    float: left;
+    width: auto;
+    a {
+      color: #991514;
+      float: left;
+      font-size: 16px;
+      height: 65px;
+      line-height: 65px;
+      text-align: center;
+      text-decoration: none;
+      width: 111px; } } }
+
+.active a, .jobs-holder li a:hover {
+  background: url(asset-path('top-nav-act.png',image)) no-repeat !important;
+  color: #fff !important; }
+
+.banner-holder {
+  float: left;
+  width: 100%;
+  margin-top: 37px; }
+
+.banner-left-holder {
+  float: left;
+  background: url(asset-path('banner-left-bg.png',image)) no-repeat;
+  width: 9px;
+  min-height: 359px; }
+
+.banner-mid-holder {
+  float: left;
+  background: url(asset-path('banner-mid-bg.png',image)) repeat-x;
+  width: 981px;
+  min-height: 359px; }
+
+.banner-right-holder {
+  float: left;
+  background: url(asset-path('banner-right-bg.png',image)) no-repeat;
+  width: 9px;
+  min-height: 359px; }
+
+.banner-left {
+  float: left;
+  margin-left: 11px;
+  margin-top: 37px;
+  width: 600px;
+  h1 {
+    float: left;
+    width: 100%;
+    font-size: 33px;
+    color: #000;
+    text-transform: uppercase; }
+  h2 {
+    float: left;
+    width: 100%;
+    font-size: 33px;
+    color: #000; }
+  p {
+    color: #000000;
+    float: left;
+    font-size: 16px;
+    margin-top: 23px;
+    width: 100%; } }
+
+.post-resume {
+  float: left;
+  margin-left: 6px;
+  margin-top: 20px;
+  width: 50%;
+  img {
+    float: left; } }
+
+.banner-right {
+  float: right;
+  margin-right: 7px;
+  margin-top: -20px;
+  width: 320px; }
+
+.job-search-top-holder {
+  background: url(asset-path('banner-right-top-bg.png',image)) no-repeat scroll 0 0 transparent;
+  color: #FFFFFF;
+  float: left;
+  font-size: 20px;
+  height: 53px;
+  line-height: 43px;
+  padding-left: 20px;
+  width: 300px; }
+
+.job-search-mid-holder {
+  background: url(asset-path('banner-right-mid-bg.png',image)) repeat-y scroll 0 0 transparent;
+  float: left;
+  height: auto;
+  padding: 0 26px;
+  width: 269px; }
+
+.job-search-bot-holder {
+  float: left;
+  width: 320px;
+  height: 16px;
+  background: url(asset-path('banner-right-bot-bg.png',image)) no-repeat; }
+
+.input-holder {
+  float: left;
+  width: 100%;
+  label {
+    float: left;
+    width: 100%;
+    font-size: 14px;
+    color: #474747;
+    margin-top: 10px; }
+  input {
+    float: left;
+    margin-top: 6px;
+    width: 100%;
+    height: 26px;
+    background: #f6f6f6;
+    border-top: 1px solid #949494; } }
+
+.select-holder {
+  float: left;
+  width: 100%;
+  margin-top: 20px;
+  label {
+    float: left;
+    width: 100%;
+    font-size: 14px;
+    color: #474747; } }
+
+.slt-div {
+  &:hover .slt-cat-hold {
+    display: block!important; }
+  float: left;
+  margin-top: 6px;
+  width: 100%;
+  height: 27px;
+  background: url(asset-path('select-bg.png',image)) no-repeat; }
+
+.slt-cat-hold {
+  display: none;
+  float: left;
+  width: 100%;
+  list-style: none;
+  li {
+    background: none repeat scroll 0 0 #F6F6F6;
+    border-bottom: 1px solid #949494;
+    color: #404040;
+    float: left;
+    line-height: 28px;
+    padding-left: 8px;
+    width: 97.5%;
+    a {
+      text-decoration: none;
+      color: #404040; } } }

@@ -1,1 +1,18 @@
-<%= link_to "Sign In", sign_in_path  %> | <%= link_to "Sign Up", sign_up_path  %> 
+<div class="topline"></div>
+<div class="wrapper">
+	<div class="logo">
+		<%= link_to image_tag(asset_path 'logo.png'), root_url %>
+	</div>
+	<div class="language">
+		<label><%= t('header.language') %></label>
+		<%= link_to image_tag(asset_path 'flag-1.png'), change_laguage_home_index_path(:locale => "en") %>
+		<%= link_to image_tag(asset_path 'flag-2.png'), change_laguage_home_index_path(:locale => "fr") %>
+	</div>
+
+	<ul class="jobs-holder">
+		<li class="active"><%= link_to t('header.find_jobs') %></li>
+		<li><%= link_to t('header.news') %></li>
+		<li><%= link_to t('header.job_seeker') %></li>
+		<li><%= link_to t('header.employer') %></li>
+	</ul>
+</div>

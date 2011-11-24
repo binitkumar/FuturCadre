@@ -2,4 +2,15 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  header:
+    language: "language"
+    find_jobs: "Find Jobs"
+    news: "News"
+    job_seeker: "Job Seeker"
+    employer: "Employer"
+  home_title: "Lorem ipsum dolor sit amet,"
+  home_sub_title: "consectetur adipisicing elit, sed do eiusmod tempor"
+  home_description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  home_job_search: "Job Search"
+  home_job_search_title: "Job Title"
+  home_job_search_category: "Job Category"

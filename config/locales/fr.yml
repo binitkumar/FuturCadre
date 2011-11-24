@@ -2,4 +2,15 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 fr:
-  hello: "Holla wolla"
+  header:
+    language: "langage"
+    find_jobs: "Trouver des offres"
+    news: "Nouvelles"
+    job_seeker: "Demandeur d'emploi"
+    employer: "Employeur"
+  home_title: "Lorem ipsum dolor sit amet,"
+  home_sub_title: "consectetur adipisicing elit, sed do eiusmod tempor"
+  home_description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  home_job_search: "Recherche d'emploi"
+  home_job_search_title: "Titre de l'emploi"
+  home_job_search_category: "Catégorie d'emploi"
