@@ -3,19 +3,18 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $(".category").hover (->
+  $(".category").click ->
+    $(this).prevAll(".category").each ->
+      $(this).removeClass "selected"
+      $(this).children(".sub-category-holder").hide()
+      $(this).slideUp 'fast'
     $(this).addClass "selected"
-    $(this).children(".gray-holder").show()
+    $(this).children(".sub-category-holder").show()
     $.ajax
       url: $(this).children("a").attr("href")
       type: "GET"
       data: $(this).serialize()
       dataType: "json"
       success: (response) ->
-        $(this).children(".gray-holder").html(response.html)
-  ), ->
-    $(this).children(".gray-holder").hide()
-    $(this).removeClass "selected"
-
-  $(".category").click ->
+        $(this).children(".sub-category-holder").html(response.html)
     false

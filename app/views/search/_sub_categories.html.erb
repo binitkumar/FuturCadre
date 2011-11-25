@@ -1,7 +1,12 @@
-<ul class="inner-links">
-	<% if @sub_categories.present? %>
-		<%  @sub_categories.each do |s_category| %>
-			<li><%= link_to s_category.name %></li>
+<div class="gray-holder">
+	<ul class="inner-links">
+		<% if @sub_categories.present? %>
+			<%  @sub_categories.each do |s_category| %>
+				<li><%= link_to s_category.name %></li>
+			<%end%>
+		<%else%>
+				<li><a>No Sub Category present yet.</a></li>
 		<%end%>
-	<%end%>
-</ul>
+	</ul>
+	<div class="gray-bot-bg"></div>
+</div>
