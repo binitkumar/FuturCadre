@@ -18,6 +18,15 @@ FuturCadre::Application.routes.draw do
 	resources :home do
 		collection do
 			get :change_laguage
+			get :get_sub_categories
+		end
+	end
+
+	resources :search do
+		collection do
+			post :search
+			get :get_sub_categories
+      get :get_browse_by
 		end
 	end
 

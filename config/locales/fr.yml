@@ -30,3 +30,9 @@ fr:
 
   button:
     find_job: "Trouvez d'emploi"
+    post_resume: "Affichez votre CV"
+
+  search:
+    search_results: "Résultats de la recherche"
+    apply: "Appliquer"
+    not_found: "Désolé! Aucune offre d'emploi."

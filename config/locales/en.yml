@@ -29,3 +29,9 @@ en:
   
   button:
     find_job: "Find Job"
+    post_resume: "Post Resume"
+
+  search:
+    search_results: "Search Results"
+    apply: "Apply"
+    not_found: "Sorry! No Job Found."

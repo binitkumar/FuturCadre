@@ -1,0 +1,7 @@
+<ul class="inner-links">
+	<% if @sub_categories.present? %>
+		<%  @sub_categories.each do |s_category| %>
+			<li><%= link_to s_category.name %></li>
+		<%end%>
+	<%end%>
+</ul>

@@ -1,0 +1,250 @@
+// Place all the styles related to the search controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.search-line {
+  background: url(asset_path('links-bot.png',image)) no-repeat scroll 0 0 transparent;
+  float: left;
+  height: 8px;
+  width: 100%; }
+
+.search-results {
+  color: #474747;
+  float: left;
+  font-family: "myriad Pro";
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 7px;
+  padding-bottom: 3px; }
+
+.data-post-div {
+  &:hover .data-post-hold {
+    display: block!important; }
+  background: url(asset_path('small-select.png',image)) no-repeat scroll 0 0 transparent;
+  float: right;
+  height: 27px;
+  width: 149px; }
+
+.data-post-hold {
+  display: none;
+  float: left;
+  width: 100%;
+  list-style: none;
+  li {
+    background: none repeat scroll 0 0 #F6F6F6;
+    border-bottom: 1px solid #949494;
+    color: #404040;
+    float: left;
+    line-height: 28px;
+    padding-left: 8px;
+    width: 97.5%;
+    a {
+      text-decoration: none;
+      color: #404040; } } }
+
+.result-holder {
+  width: 100%;
+  float: left;
+  margin-top: 30px; }
+
+.accountants {
+  float: left;
+  width: 100%;
+  font-family: "myriad Pro";
+  font-size: 14px;
+  font-weight: bold;
+  a {
+    color: #b6545e;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none; } } }
+
+.result-text {
+  float: left;
+  width: 100%;
+  font-family: "myriad Pro";
+  font-size: 14px;
+  color: #000; }
+
+.date-text {
+  float: left;
+  width: 100%;
+  font-family: "myriad Pro";
+  font-size: 14px;
+  color: #000;
+  a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold; } }
+
+.page-links {
+  float: left;
+  width: 100%;
+  list-style: none;
+  li {
+    float: left;
+    width: auto;
+    font-size: 11px;
+    font-style: italic;
+    color: #000;
+    a {
+      text-decoration: underline;
+      color: #000; } } }
+
+.slt a, .page-links li a:hover {
+  font-weight: bold;
+  text-decoration: none;
+  font-style: normal;
+  color: #000; }
+
+.job-details-left {
+  width: 482px;
+  float: left; }
+
+.job-details {
+  float: left;
+  width: 100%;
+  h1 {
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    width: 100%; }
+  p {
+    float: left;
+    font-size: 12px;
+    color: #000;
+    width: 100%; } }
+
+.network-holder {
+  float: left;
+  width: 100%;
+  margin-top: 7px;
+  img {
+    float: left;
+    margin-right: 4px; } }
+
+.job-btn-holder {
+  float: right;
+  width: auto;
+  margin-top: 20px; }
+
+.job-btn-left {
+  background: url(asset_path('apply-left.png',image)) no-repeat;
+  width: 14px;
+  height: 37px;
+  float: left; }
+
+.job-btn-mid {
+  background: url(asset_path('apply-mid.png',image)) repeat-x;
+  width: auto;
+  height: 37px;
+  float: left;
+  font-family: "myriad Pro";
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 37px;
+  padding: 0 10px; }
+
+.job-btn-right {
+  background: url(asset_path('apply-right.png',image)) no-repeat;
+  width: 14px;
+  height: 37px;
+  float: left; }
+
+.description-heading {
+  float: left;
+  width: 100%;
+  font-size: 14px;
+  color: #000;
+  font-weight: bold; }
+
+.description-text {
+  float: left;
+  width: 100%;
+  font-size: 12px;
+  color: #000; }
+
+.mtop30 {
+  margin-top: 30px!important; }
+
+.more-similar-jobs {
+  color: #A1302F;
+  float: right;
+  font-size: 12px;
+  margin-top: 6px;
+  text-align: right;
+  width: 100%;
+  a {
+    text-decoration: underline;
+    color: #a1302f;
+    &:hover {
+      text-decoration: none; } } }
+
+.small-line {
+  background: url(asset_path('small-line.png',image)) no-repeat scroll 0 0 transparent;
+  float: left;
+  height: 8px;
+  width: 100%;
+  margin-top: 11px; }
+
+.industry-holder {
+  float: left;
+  width: 100%;
+  margin-top: 22px;
+  h1 {
+    float: left;
+    width: 100%;
+    font-size: 12px;
+    color: #000;
+    font-weight: bold; }
+  p {
+    float: left;
+    width: 100%;
+    font-size: 12px;
+    color: #000; } }
+
+.blog-red-text {
+  float: left;
+  width: 100%;
+  font-size: 12px;
+  color: #952323;
+  font-weight: bold; }
+
+.blog-heading {
+  float: left;
+  width: 100%;
+  font-size: 16px;
+  color: #000;
+  margin-top: 10px;
+  font-weight: bold; }
+
+.blog-text {
+  float: left;
+  width: 100%;
+  font-size: 12px;
+  color: #000;
+  line-height: 18px; }
+
+.mtop20 {
+  margin-top: 20px; }
+
+.most-recent {
+  float: left;
+  width: 100%;
+  list-style: none;
+  margin-top: 20px;
+  li {
+    float: left;
+    width: 100%;
+    font-size: 12px;
+    color: #000;
+    line-height: 24px;
+    a {
+      text-decoration: none;
+      color: #000;
+      &:hover {
+        text-decoration: underline; } } } }
+
+.mtop40 {
+  margin-top: 40px!important; }

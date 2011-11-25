@@ -1,40 +1,24 @@
-<div class="content-left-holder">
-	<div class="w100">
-		<div class="search-by-name"><%= t('home_browse_jobs_by') %></div>
-		<div class="tab-holder active">
-			<div class="tab-left-holder"></div>
-			<div class="tab-mid-holder"><%= t('home_browse_type') %></div>
-
-			<div class="tab-right-holder"></div>
-		</div>
-		<div class="tab-holder">
-			<div class="tab-left-holder"></div>
-			<div class="tab-mid-holder"><%= t('home_browse_region') %></div>
-			<div class="tab-right-holder"></div>
-		</div>
-		<div class="tab-holder">
-
-			<div class="tab-left-holder"></div>
-			<div class="tab-mid-holder"><%= t('home_browse_company') %></div>
-			<div class="tab-right-holder"></div>
-		</div>
-		<div class="tabs-line"></div>
+<div class="w100">
+	<div class="search-by-name"><%= t('home_browse_jobs_by') %></div>
+	<div class="tab-holder active">
+		<div class="tab-left-holder"></div>
+		<div class="tab-mid-holder"><%= link_to t('home_browse_type'), get_browse_by_search_index_path(:by => "category" ), :class => "tab_link" %></div>
+		<div class="tab-right-holder"></div>
 	</div>
-	<ul class="job-holder">
-		<li class="selected">
-			<a href="#">Creative/Design</a>
-			<div class="gray-holder">
-				<ul class="inner-links">
-					<li><a href="#">Creative/Design </a></li>
-					<li><a href="#">Creative/Design </a></li>
-					<li><a href="#">Creative/Design </a></li>
-					<li><a href="#">Creative/Design </a></li>
-				</ul>
-				<div class="gray-bot-bg"></div>
-			</div>
-		</li>
-		<% @categories.each do |category| %>
-			<li><%= link_to category.name %></li>
-		<%end%>
-	</ul>
+
+	<div class="tab-holder">
+		<div class="tab-left-holder"></div>
+		<div class="tab-mid-holder"><%= link_to t('home_browse_region'), get_browse_by_search_index_path(:by => "region" ), :class => "tab_link" %></div>
+		<div class="tab-right-holder"></div>
+	</div>
+
+	<div class="tab-holder">
+		<div class="tab-left-holder"></div>
+		<div class="tab-mid-holder"><%= link_to t('home_browse_company'), get_browse_by_search_index_path(:by => "company" ), :class => "tab_link" %></div>
+		<div class="tab-right-holder"></div>
+	</div>
+	<div class="tabs-line"></div>
 </div>
+<ul class="job-holder">
+	<%= render :partial => "/search/by_category" %>
+</ul>

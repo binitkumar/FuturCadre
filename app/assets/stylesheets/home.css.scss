@@ -88,8 +88,12 @@ a {
       width: 111px; } } }
 
 .active a, .jobs-holder li a:hover {
-  background: url(asset_path('top-nav-act.png',image)) no-repeat !important;
-  color: #fff !important; }
+    background: none repeat scroll 0 0 #991514;
+    border-radius: 0 0 5px 5px;
+	  -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    color: #FFFFFF !important;
+ }
 
 .banner-holder {
   float: left;
@@ -141,9 +145,31 @@ a {
   float: left;
   margin-left: 6px;
   margin-top: 20px;
-  width: 50%;
-  img {
-    float: left; } }
+  width: auto;
+  .post-left{
+	  background:url(asset_path('btn-left.png',image)) no-repeat;
+	  width:14px;
+	  height:47px;
+	  float:left;
+  }
+  .post-mid{
+	  background:url(asset_path('btn-mid.png',image)) repeat-x;
+		width:auto;
+		line-height:47px;
+		font-size:18px;
+		font-weight:bold;
+		color:#fff;
+		height:47px;
+		float:left;
+		padding:0 10px;
+	}
+	.post-right{
+		background:url(asset_path('btn-right.png',image)) no-repeat;
+		width:14px;
+		height:47px;
+		float:left;
+	}
+ }
 
 .banner-right {
   float: right;
@@ -296,7 +322,12 @@ a {
   height: 30px;
   line-height: 30px;
   padding: 0 12px;
-  width: auto; }
+  width: auto;
+  a{
+    text-decoration :none;
+    color: #9B9B9B !important;
+  }
+ }
 
 .tab-right-holder {
   background: url(asset_path('tabs-right.png',image)) no-repeat;
@@ -309,7 +340,12 @@ a {
     background: url(asset_path('tab-left-act.png',image)) no-repeat; }
   .tab-mid-holder {
     background: url(asset_path('tab-mid-act.png',image)) repeat-x;
-    color: #fff!important; }
+    color: #fff!important;
+    a{
+      text-decoration :none;
+      color: #fff!important;
+    } 
+    }
   .tab-right-holder {
     background: url(asset_path('tabs-right-act.png',image)) no-repeat; } }
 
@@ -411,6 +447,7 @@ a {
   list-style: none;
   background: none scroll 0 0 #747474;
   padding: 13px 20px;
+  width:282px;
   li {
     float: left;
     width: 100%;

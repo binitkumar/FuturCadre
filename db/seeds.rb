@@ -26,3 +26,4 @@ IT/Software_Development Legal Logistics/Transportation Marketing/Product Medical
 Quality_Assurance/Safety R_D/Science Sales/Business_Development Security/Protective_Services Training/Instruction Other).each do |name|
 	Category.create!(:name => name)
 end
+

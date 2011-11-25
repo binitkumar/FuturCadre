@@ -1,0 +1,30 @@
+<script language="JavaScript">
+	$(".category").hover((function() {
+  $(this).addClass("selected");
+  $(this).children(".gray-holder").show();
+  return $.ajax({
+	url: $(this).children("a").attr("href"),
+	type: "GET",
+	data: $(this).serialize(),
+	dataType: "json",
+	success: function(response) {
+	return $(this).children(".gray-holder").html(response.html);
+	}
+  });
+	}), function() {
+  $(this).children(".gray-holder").hide();
+  return $(this).removeClass("selected");
+	});
+	$(".category").click(function() {
+  return false;
+	});
+</script>
+<% @categories.each do |category| %>
+	<li class="category">
+		<%= link_to category.name, get_sub_categories_search_index_path(:id => category.id ) %>
+		<div class="gray-holder" style="display:none;">
+			<%= render :partial => "/search/sub_categories" %>
+			<div class="gray-bot-bg"></div>
+		</div>
+	</li>
+<%end%>
