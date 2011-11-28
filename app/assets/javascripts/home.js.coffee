@@ -20,3 +20,6 @@ jQuery ->
       success: (response) ->
         $(this).next(".sub-category-holder").html response.html
     false
+
+  $("#register-button").click ->
+    $("form#sign-up-form").submit()

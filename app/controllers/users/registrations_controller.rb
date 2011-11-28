@@ -5,4 +5,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 		super
 	end
 
+	def create
+		@role = Role.find_by_id(params[:user][:role_id])
+		super
+	end
+
 end

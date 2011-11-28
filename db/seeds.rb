@@ -11,7 +11,7 @@ roles = Role.all
 roles.each{ |role| role.destroy } if roles.present?
 
 puts "Creating roles..."
-%w(admin webmaster emploer job_seeker).each do |name|
+%w(webmaster employer job_seeker).each do |name|
 	Role.create!(:name => name)
 end
 
