@@ -27,6 +27,13 @@ FuturCadre::Application.routes.draw do
 			post :search
 			get :get_sub_categories
       get :get_browse_by
+			get :jobs_list
+		end
+	end
+
+	resources :jobs do
+		collection do
+			get :details
 		end
 	end
 

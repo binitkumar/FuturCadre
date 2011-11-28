@@ -8,16 +8,8 @@
 	</ul>
 	<div class="search-line"></div>
 </div>
-<% if @jobs.present? %>
-	<% @jobs.each do |job|  %>
-		<div class="result-holder">
-			<div class="accountants"><%= link_to job.title %></div>
-			<div class="result-text"><%= job.employer.company_name %>,<%= job.location %></div>
-			<div class="result-text">-<%= job.description %></div>
-			<div class="date-text"><%= job.created_at.strftime("%d-%m-%Y") %> - <%= link_to t('search.apply') %></div>
-		</div>
-	<%end%>
-<%else%>
-	<%= t('search.not_found') %>
-<%end%>
+<div  id="result-list">
+	<%= render :partial => "jobs/list" %>
+</div>
+
 

@@ -1,11 +1,26 @@
+<script language="JavaScript">
+	$("a.sub-category-link").click(function() {
+  $.ajax({
+	context: this,
+	url: $(this).attr("href"),
+	type: "GET",
+	data: $(this).serialize(),
+	dataType: "json",
+	success: function(response) {
+	 $(".content-left-holder").html(response.html);
+	}
+  });
+  return false;
+	});
+</script>
 <div class="gray-holder">
 	<ul class="inner-links">
 		<% if @sub_categories.present? %>
 			<%  @sub_categories.each do |s_category| %>
-				<li><%= link_to s_category.name %></li>
+				<li><%= link_to s_category.name, jobs_list_search_index_path(:id => s_category.id ), :class => "sub-category-link" %></li>
 			<%end%>
 		<%else%>
-				<li><a>No Sub Category present yet.</a></li>
+			<li><a>No Sub Category present yet.</a></li>
 		<%end%>
 	</ul>
 	<div class="gray-bot-bg"></div>

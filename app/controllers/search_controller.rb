@@ -1,14 +1,23 @@
 class SearchController < ApplicationController
 
 	def search
+		#TO DO implement search logic based on criteria
 		@jobs = Job.all
 		render :json => {:html => render_to_string(:partial => '/search/search_results')}.to_json
 	end
 
 	def get_sub_categories
-		@category = Category.find(params[:id])
-		@sub_categories = @category.children
+		#		@category = Category.find(params[:id])
+		#		@sub_categories = @category.children
+		@sub_categories = Category.all
 		render :json => {:html => render_to_string(:partial => '/search/sub_categories')}.to_json
+	end
+
+	def jobs_list
+		#		@sub_category = Category.find(params[:id])
+		#		@jobs = @sub_category.jobs
+		@jobs = Job.all
+		render :json => {:html => render_to_string(:partial => '/search/search_results')}.to_json
 	end
 
 	def get_browse_by

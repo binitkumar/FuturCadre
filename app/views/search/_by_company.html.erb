@@ -1,19 +1,20 @@
 <script language="JavaScript">
-	$(".category").click(function() {
-  $(this).prevAll(".category").each(function() {
+	$("a.category-link").click(function() {
+  $(this).parent(".category").prevAll(".category").each(function() {
     $(this).removeClass("selected");
     $(this).children(".sub-category-holder").hide();
-    return $(this).slideUp('fast');
+    return $(this).slideUp("fast");
   });
-  $(this).addClass("selected");
-  $(this).children(".sub-category-holder").show();
+  $(this).parent(".category").addClass("selected");
+  $(this).next(".sub-category-holder").show();
   $.ajax({
-    url: $(this).children("a").attr("href"),
+    context: this,
+    url: $(this).attr("href"),
     type: "GET",
     data: $(this).serialize(),
     dataType: "json",
     success: function(response) {
-      return $(this).children(".sub-category-holder").html(response.html);
+      return $(this).next(".sub-category-holder").html(response.html);
     }
   });
   return false;

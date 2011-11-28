@@ -1,7 +1,7 @@
 class CreateJobs < ActiveRecord::Migration
   def change
     create_table :jobs do |t|
-      t.string :title
+      t.string :name
       t.integer :employer_id
 			t.string :employer_type
       t.string :description
