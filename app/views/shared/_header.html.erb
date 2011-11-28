@@ -10,6 +10,6 @@
 <ul class="jobs-holder">
 	<li class="active"><%= link_to t('header.find_jobs') %></li>
 	<li><%= link_to t('header.news') %></li>
-	<li><%= link_to t('header.job_seeker') %></li>
-	<li><%= link_to t('header.employer') %></li>
+	<li><%= link_to t('header.job_seeker'), sign_up_path(:role => "job_seeker") %></li>
+	<li><%= link_to t('header.employer'), sign_up_path(:role => "employer") %></li>
 </ul>

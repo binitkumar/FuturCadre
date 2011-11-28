@@ -1,0 +1,55 @@
+<div class="banner-holder">
+	<div class="reg-banner-left-holder"></div>
+	<div class="reg-banner-mid-holder">
+		<%= form_tag "/search/search", :id => "rg-search-form" do %>
+			<div class="register-holder">
+				<div class="register-top-holder">Job Search</div>
+				<div class="register-mid-holder">
+					<div class="reg-input-holder">
+						<label>Job Title</label>
+						<input type="text" value="">
+					</div>
+
+					<div class="reg-select-holder">
+						<label>Job Category</label>
+						<div class="reg-slt-div"></div>
+						<ul class="reg-slt-cat-hold">
+							<li><a href="#">select job</a></li>
+							<li><a href="#">select job</a></li>
+							<li><a href="#">select job</a></li>
+						</ul>
+					</div>
+					<div class="reg-location-holder">
+						<label>Location</label>
+						<div class="reg-loc-div"></div>
+						<ul class="reg-loc-cat-hold">
+							<li><a href="#">select job</a></li>
+							<li><a href="#">select job</a></li>
+							<li><a href="#">select job</a></li>
+						</ul>
+						<div class="reg-loc-div"></div>
+						<ul class="reg-loc-cat-hold">
+							<li><a href="#">select job</a></li>
+							<li><a href="#">select job</a></li>
+							<li><a href="#">select job</a></li>
+						</ul>
+						<div class="reg-loc-div mRnone"></div>
+						<ul class="reg-loc-cat-hold">
+							<li><a href="#">select job</a></li>
+							<li><a href="#">select job</a></li>
+							<li><a href="#">select job</a></li>
+						</ul>
+					</div>
+					<div class="reg-button-holder">
+						<div class="reg-advanced-search">Advanced Search</div>
+						<div class="reg-findjob"><%= link_to t('button.find_job') ,"javascript:void(0)", :id => "rg_find_job_button" %></div>
+					</div>
+
+
+				</div>
+				<div class="register-bot-holder"></div>
+			</div>
+		<%end%>
+	</div>
+	<div class="reg-banner-right-holder"></div>
+</div>

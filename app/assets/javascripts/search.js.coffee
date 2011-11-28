@@ -21,3 +21,9 @@ jQuery ->
       $(".content-left-holder").html response.html
     ), "json"
     false
+
+  $("#rg_find_job_button").click ->
+    $.post $("form#rg-search-form").attr("action"), $("form#rg-search-form").serialize(), ((response) ->
+      $(".content-holder").html response.html
+    ), "json"
+    false

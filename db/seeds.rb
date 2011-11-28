@@ -15,6 +15,19 @@ puts "Creating roles..."
 	Role.create!(:name => name)
 end
 
+puts "Deleting existing users.."
+users = User.all
+users.each{ |user| user.destroy } if users.present?
+
+puts "Creating default admin user...."
+user = User.new(:email => "admin@futurcadre.com",
+  :password => "123456",
+  :password_confirmation => "123456"
+)
+user.roles << Role.find_by_name("admin")
+user.skip_confirmation!
+user.save!
+
 puts "Deleting existing categorties..."
 categories = Category.all
 categories.each{ |category| category.destroy } if categories.present?
@@ -24,7 +37,7 @@ puts "Creating categories..."
 Customer_Support/Client_Care Editorial/Writing Engineering Food_Services/Hospitality Human_Resources Installation/Maintenance/Repair
 IT/Software_Development Legal Logistics/Transportation Marketing/Product Medical/Health Production/Operations Project/Program_Management
 Quality_Assurance/Safety R_D/Science Sales/Business_Development Security/Protective_Services Training/Instruction Other).each do |name|
-	Category.create!(:name => name)
+	Category.create!(:name => name.humanize.titleize )
 end
 
 ( 0 .. 10).each do |i|
