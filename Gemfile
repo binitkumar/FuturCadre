@@ -9,6 +9,7 @@ gem 'mysql2'
 gem 'devise'
 gem "cancan"
 #gem "carmen"
+gem 'sunspot_solr'
 gem 'sunspot_rails'
 gem 'therubyracer'
 

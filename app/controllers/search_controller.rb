@@ -13,7 +13,7 @@ class SearchController < ApplicationController
 	end
 
 	def search
-		@search = Article.search do
+		@search = Job.search do
 			fulltext params[:name]
 			with(:category_id, params[:category_id]) if params[:category_id].present?
 			with(:country_id, params[:country_id]) if params[:country_id].present?
