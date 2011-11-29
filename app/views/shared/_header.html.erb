@@ -1,8 +1,8 @@
 <div class="logo">
 	<%= link_to image_tag(asset_path 'logo.png'), root_url %>
 </div>
+
 <div class="language">
-	<label><%= t('header.language') %></label>
 	<%= link_to image_tag(asset_path 'flag-1.png'), change_laguage_home_index_path(:locale => "en") %>
 	<%= link_to image_tag(asset_path 'flag-2.png'), change_laguage_home_index_path(:locale => "fr") %>
 </div>
@@ -10,6 +10,31 @@
 <ul class="jobs-holder">
 	<li class="active"><%= link_to t('header.find_jobs') %></li>
 	<li><%= link_to t('header.news') %></li>
-	<li><%= link_to t('header.job_seeker'), sign_up_path(:role => "job_seeker") %></li>
-	<li><%= link_to t('header.employer'), sign_up_path(:role => "employer") %></li>
+	<% unless user_signed_in? %>
+		<li><%= link_to t('header.job_seeker'), sign_up_path(:role => "job_seeker") %></li>
+		<li><%= link_to t('header.employer'), sign_up_path(:role => "employer") %></li>
+	<%end%>
 </ul>
+
+<div class="login-holder">
+	<% if user_signed_in? %>
+		<div class="welcome">welcome,<span class="bold"><%= current_user.name %></span></div>
+		<ul class="setting">
+			<li><%= link_to "Account", sign_out_path %>|</li>
+			<li><%= link_to "Help", sign_out_path %>|</li>
+			<li><%= link_to "Logout", sign_out_path %></li>
+		</ul>
+	<%else%>
+		<% @user = User.new %>
+		<%= form_for(@user, :as => @user, :url => session_path(@user)) do |f| %>
+			<div class="login-input">
+				<%= f.email_field :email %>
+			</div>
+			<div class="login-password">
+				<%= f.password_field :password %>
+				<%= f.submit "Login" %>
+			</div>
+		<%end%>
+	<%end%>
+</div>
+

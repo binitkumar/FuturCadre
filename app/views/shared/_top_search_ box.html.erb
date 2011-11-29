@@ -6,18 +6,13 @@
 				<div class="register-top-holder">Job Search</div>
 				<div class="register-mid-holder">
 					<div class="reg-input-holder">
-						<label>Job Title</label>
-						<input type="text" value="">
+						<label><%= t('home_job_search_title') %></label>
+						<%= text_field_tag "name"%>
 					</div>
 
 					<div class="reg-select-holder">
-						<label>Job Category</label>
-						<div class="reg-slt-div"></div>
-						<ul class="reg-slt-cat-hold">
-							<li><a href="#">select job</a></li>
-							<li><a href="#">select job</a></li>
-							<li><a href="#">select job</a></li>
-						</ul>
+						<label><%= t('home_job_search_category') %></label>
+						<%= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "name"), :class =>"reg-slt-div" %>
 					</div>
 					<div class="reg-location-holder">
 						<label>Location</label>

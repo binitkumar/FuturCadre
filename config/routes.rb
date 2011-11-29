@@ -12,7 +12,7 @@ FuturCadre::Application.routes.draw do
 	devise_scope :user do
 		get "sign_in" => "users/sessions#new"
 		get "sign_up" => "users/registrations#new"
-		delete "sign_out" => "users/sessions#destroy"
+		get "sign_out" => "users/sessions#destroy"
   end
 
 	resources :home do
@@ -36,6 +36,18 @@ FuturCadre::Application.routes.draw do
 	resources :jobs do
 		collection do
 			get :details
+		end
+	end
+
+	resources :job_seeker do
+		collection do
+			get :dashboard
+		end
+	end
+
+	resources :employer do
+		collection do
+			get :dashboard
 		end
 	end
 

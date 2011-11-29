@@ -50,32 +50,12 @@ a {
   background: #991514;
   height: 6px; }
 
-.logo {
-  float: left;
-  width: 440px;
-  img {
-    float: left; } }
-
-.language {
-  float: left;
-  margin-left: 5px;
-  margin-top: 2px;
-  width: 109px;
-  label {
-    float: left;
-    font-size: 12px;
-    color: #474747;
-    margin-right: 5px; }
-  img {
-    float: left;
-    margin-right: 4px; } }
-
 .jobs-holder {
   float: left;
   width: 446px;
   list-style: none;
   li {
-    float: left;
+    float: lef;
     width: auto;
     a {
       color: #991514;
@@ -233,8 +213,9 @@ a {
   float: left;
   margin-top: 6px;
   width: 100%;
-  height: 27px;
-  background: url(asset_path('select-bg.png',image)) no-repeat; }
+  height: 26px;
+   background: none repeat scroll 0 0 #F6F6F6;
+    border-top: 1px solid #949494; }
 
 .slt-cat-hold {
   display: none;
@@ -509,7 +490,7 @@ a {
   background: url(asset_path('reg-mid-bg.png',image)) repeat-y scroll 0 0 transparent;
   float: left;
   height: auto;
-  padding: 0 26px 48px;
+  padding: 0 26px 20px;
   width: 908px; }
 
 .register-bot-holder {
@@ -553,8 +534,9 @@ a {
   float: left;
   margin-top: 6px;
   width: 100%;
-  height: 27px;
-  background: url(asset_path('reg-select-img.png',image)) no-repeat; }
+  height: 26px;
+   background: none repeat scroll 0 0 #F6F6F6;
+    border-top: 1px solid #949494; }
 
 .reg-slt-cat-hold {
   display: none;
@@ -623,7 +605,7 @@ a {
 
 .reg-findjob {
   float: left;
-  margin-top: 10px;
+  margin-top: 6px;
   a {
     background: url(asset_path('findjob-bg.png',image)) repeat-x scroll 0 0 transparent;
     border: 1px solid #7B0C26;
@@ -638,31 +620,31 @@ a {
 
 .reg-button-holder {
   float: right;
-  width: 111px; }
+  width: 115px; }
 
 .reg-banner-left-holder {
   float: left;
   background: url(asset_path('reg-left-banner.png',image)) no-repeat;
   width: 22px;
-  min-height: 253px; }
+  min-height: 218px; }
 
 .reg-banner-mid-holder {
   float: left;
   background: url(asset_path('reg-mid-banner.png',image)) repeat-x;
   width: 956px;
-  min-height: 253px; }
+  min-height: 218px; }
 
 .reg-banner-right-holder {
   float: left;
   background: url(asset_path('reg-right-banner.png',image)) no-repeat;
   width: 22px;
-  min-height: 253px; }
+  min-height: 218px; }
 
 .reg-tab-holder {
   float: left;
   width: 90%;
   margin-left: 20px;
-  margin-top: -75px; }
+  margin-top: -70px; }
 
 .reg-tab-holder-new {
   float: left;
@@ -794,11 +776,14 @@ a {
   margin-top: 37px;
   padding: 0 20px;
   width: auto;
+  cursor: pointer;
   a {
     text-decoration: none;
     color: #fff;
     font-size: 21px;
-    color: #fff; } }
+    color: #fff;
+
+   } }
 
 .accountants-div {
   float: left;
@@ -823,3 +808,149 @@ a {
   text-align: right;
   font-weight: bold;
   width: 29%; }
+
+.logo {
+  float: left;
+  width: 237px;
+  img {
+    float: left; } }
+
+.language {
+  float: left;
+  margin-left: 5px;
+  margin-top: 2px;
+  width: 52px;
+  img {
+    float: left;
+    margin-right: 4px; } }
+
+.login-holder {
+  float: left;
+  margin-left: 11px;
+  margin-right: 11px;
+  margin-top: 7px;
+  width: 237px; }
+
+.login-input {
+  float: left;
+  width: 237px;
+  input {
+    background: url(asset_path('login-text-field.png',image)) no-repeat scroll 0 0 transparent;
+    color: #8C8C8C;
+    float: left;
+    font-size: 14px;
+    height: 23px;
+    padding: 3px;
+    width: 231px; } }
+
+.login-password {
+  float: left;
+  width: 237px;
+  margin-top: 5px;
+  input {
+    &[type="text"], &[type="password"] {
+      background: url(asset_path('password-bg.png',image)) no-repeat scroll 0 0 transparent;
+      color: #8C8C8C;
+      float: left;
+      font-size: 14px;
+      height: 23px;
+      padding: 3px;
+      width: 166px; }
+    &[type="submit"] {
+      background: url(asset_path('login-btn.png',image)) no-repeat scroll 0 0 transparent;
+      color: #FFFFFF;
+      float: left;
+      font-size: 14px;
+      font-weight: bold;
+      height: 29px;
+      cursor: pointer;
+      padding-bottom: 7px;
+      width: 65px; } } }
+
+.mtNone {
+  margin-top: 0!important; }
+
+.featured-employers {
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+  img {
+    float: left;
+    margin-right: 37px; } }
+#error_explanation{
+  background: none repeat scroll 0 0 pink;
+  border: 1px solid #991514;
+  float: left;
+  padding: 5px 10px;
+  width: 96%;
+  h2{
+    float:left;
+    width:100%;
+  }
+  ul{
+    margin-top:10px;
+    list-style: none;
+    float:left;
+    width:100%;
+    li{
+      font-size: 14px;
+    }
+   }
+ }
+.welcome {
+  float: left;
+  width: 100%;
+  font-size: 12px;
+  color: #747474;
+  text-align: right; }
+
+.bold {
+  font-size: 14px;
+  color: #000;
+  font-weight: bold; }
+
+.setting {
+  float: right;
+  width: auto;
+  list-style: none;
+  li {
+    float: left;
+    width: auto;
+    margin-right: 5px;
+    a {
+      font-size: 12px;
+      color: #747474;
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none; } } } }
+.notice{
+float:left;
+width:100%;
+background:light-green;
+padding:5px 10px;
+border:1px solid dark-green;
+
+}
+
+.notice{
+  float:left;
+  width:97%;
+  background:lightGreen;
+  padding:5px 10px;
+  border:1px solid darkGreen;
+  p{
+   float:left;
+   width:100%;
+  }
+}
+.alert{
+  float:left;
+  width:97%;
+  background: lightYellow;
+  padding:5px 10px;
+  border: 1px solid brown;
+  p{
+   float:left;
+   width:100%;
+  }
+}

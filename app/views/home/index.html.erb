@@ -1,5 +1,20 @@
 <%= render :partial => "search_box" %>
-<div class="content-holder">
+<div class="basic-info mtNone">
+	<h1><span class="red"><%= t('home_featured') %></span> <%= t('home_employers') %></h1>
+	<%= image_tag asset_path 'basic-info-bot-bar.png' %>
+</div>
+<div class="featured-employers">
+	<%= image_tag asset_path 'employ-1.png' %>
+	<%= image_tag asset_path 'employ-2.png' %>
+	<%= image_tag asset_path 'employ-3.png' %>
+	<%= image_tag asset_path 'employ-4.png' %>
+	<%= image_tag asset_path 'employ-5.png' %>
+	<%= image_tag asset_path 'employ-6.png' %>
+	<%= image_tag asset_path 'employ-7.png' %>
+	<%= image_tag asset_path 'employ-8.png' %>
+	<%= image_tag asset_path 'employ-9.png' %>
+</div>
+<div class="content-holder mtop40">
 	<div class="content-left-holder">
 		<%= render :partial => "browse_jobs" %>
 	</div>

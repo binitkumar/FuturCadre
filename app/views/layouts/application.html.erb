@@ -10,8 +10,9 @@
 		<div class="topline"></div>
     <div class="wrapper">
 		  <%= render :partial => "/shared/header" %>
-      <p class="notice"><%= notice %></p>
-			<p class="alert"><%= alert %></p>
+			<div id="flash">
+				<%= render :partial => 'layouts/flash', :object => flash  %>
+			</div>
 			<%= yield %>
     </div>
 

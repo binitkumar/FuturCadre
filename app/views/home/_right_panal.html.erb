@@ -27,10 +27,10 @@
 			<li><a href="#">Creative/Design</a></li>
 		</ul>
 	</div>
-
-	<div class="popular-vacancies mto37">
-		<h1><span class="red"><%= t('home_featured') %></span> <%= t('home_employers') %></h1>
-		<div class="companies"><%= image_tag asset_path 'companies.png' %></div>
-	</div>
-
+	<% if !(params[:controller] == "home" && params[:action] == "index") %>
+		<div class="popular-vacancies mto37">
+			<h1><span class="red"><%= t('home_featured') %></span> <%= t('home_employers') %></h1>
+			<div class="companies"><%= image_tag asset_path 'companies.png' %></div>
+		</div>
+	<%end%>
 </div>
