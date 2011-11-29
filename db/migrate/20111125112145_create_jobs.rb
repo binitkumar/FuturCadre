@@ -7,7 +7,7 @@ class CreateJobs < ActiveRecord::Migration
       t.string :description
       t.integer :category_id
       t.integer :country_id
-      t.integer :state_id
+      t.integer :region_id
       t.integer :city_id
 
       t.timestamps
