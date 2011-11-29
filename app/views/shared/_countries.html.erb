@@ -1,0 +1,15 @@
+<script language="JavaScript">
+	function get_regions(){
+	$.ajax({
+	    context: this,
+	    url: "/search/get_regions?country_id="+$("#country_id").val(),
+	    type: "GET",
+	    data: $(this).serialize(),
+	    dataType: "json",
+	    success: function(response) {
+	      $("#regions").html(response.html);
+	    }
+	});
+	}
+</script>
+<%= select_tag "country_id", options_from_collection_for_select(Country.all, "id", "name"), :class =>"slt-div", :onChange => "get_regions()" %>

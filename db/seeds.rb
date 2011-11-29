@@ -19,12 +19,12 @@ puts "Deleting existing users.."
 users = User.all
 users.each{ |user| user.destroy } if users.present?
 
-puts "Creating default admin user...."
-user = User.new(:email => "admin@futurcadre.com",
+puts "Creating default webmaster user...."
+user = User.new(:email => "webmaster@futurcadre.com",
   :password => "123456",
   :password_confirmation => "123456"
 )
-user.roles << Role.find_by_name("admin")
+user.roles << Role.find_by_name("webmaster")
 user.skip_confirmation!
 user.save!
 

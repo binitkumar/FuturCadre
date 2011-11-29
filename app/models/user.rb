@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
 	def set_role
 		#self.roles << Role.find_by_id(self.role_id) if self.new_record?
-		self.roles << Role.find_by_id(4) if self.new_record?
+		#self.roles << Role.find_by_id(4) if self.new_record?
 	end
 
 end

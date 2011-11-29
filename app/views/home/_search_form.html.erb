@@ -4,38 +4,22 @@
 		<%= form_tag "/search/search", :id => "search-form" do %>
 			<div class="input-holder">
 				<label><%= t('home_job_search_title') %></label>
-				<%= text_field_tag "title"%>
+				<%= text_field_tag "name"%>
 			</div>
 			<div class="select-holder">
 				<label><%= t('home_job_search_category') %></label>
-				<div class="slt-div"></div>
-				<ul class="slt-cat-hold">
-					<li><a href="#">select job</a></li>
-					<li><a href="#">select job</a></li>
-					<li><a href="#">select job</a></li>
-				</ul>
+				<%= select_tag "category_id", options_from_collection_for_select(@categories, "id", "name"), :class =>"slt-div" %>
 			</div>
 
 			<div class="select-holder">
 				<label><%= t('home_job_search_location') %></label>
-				<div class="slt-div"></div>
-				<ul class="slt-cat-hold">
-					<li><a href="#">select job</a></li>
-					<li><a href="#">select job</a></li>
-					<li><a href="#">select job</a></li>
-				</ul>
-				<div class="slt-div mtop9"></div>
-				<ul class="slt-cat-hold">
-					<li><a href="#">select job</a></li>
-					<li><a href="#">select job</a></li>
-					<li><a href="#">select job</a></li>
-				</ul>
-				<div class="slt-div mtop9"></div>
-				<ul class="slt-cat-hold">
-					<li><a href="#">select job</a></li>
-					<li><a href="#">select job</a></li>
-					<li><a href="#">select job</a></li>
-				</ul>
+				<%= render :partial => "shared/countries" %>
+				<div id="regions">
+					<%= render :partial => "shared/regions" %>
+				</div>
+				<div id="cities">
+					<%= render :partial => "shared/cities" %>
+				</div>
 			</div>
 			<div class="advanced-search"><%= link_to t('home_job_advance_search') %></div>
 			<div class="findjob"><%= link_to t('button.find_job') ,"javascript:void(0)", :id => "find_job_button" %></div>

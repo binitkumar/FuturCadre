@@ -1,0 +1,16 @@
+<script language="JavaScript">
+	function get_cities(){
+	$.ajax({
+	    context: this,
+	    url: "/search/get_cities?region_id="+$("#region_id").val(),
+	    type: "GET",
+	    data: $(this).serialize(),
+	    dataType: "json",
+	    success: function(response) {
+	      $("#cities").html(response.html);
+	    }
+	});
+	}
+</script>
+<% collection = @regions.present? ? @regions : Country.first.regions %>
+<%= select_tag "region_id", options_from_collection_for_select(collection, "id", "name"), :class =>"slt-div mtop9", :onChange => "get_cities()" %>

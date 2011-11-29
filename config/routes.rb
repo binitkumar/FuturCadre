@@ -28,6 +28,8 @@ FuturCadre::Application.routes.draw do
 			get :get_sub_categories
       get :get_browse_by
 			get :jobs_list
+			get :get_regions
+			get :get_cities
 		end
 	end
 

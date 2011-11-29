@@ -1,0 +1,2 @@
+<% collection = @cities.present? ? @cities : Country.first.regions.first.cities %>
+<%= select_tag "city_id", options_from_collection_for_select(collection, "id", "name"), :class =>"slt-div mtop9" %>
