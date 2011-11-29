@@ -8,11 +8,17 @@
 </div>
 
 <ul class="jobs-holder">
-	<li class="active"><%= link_to t('header.find_jobs') %></li>
-	<li><%= link_to t('header.news') %></li>
+	<li class="<%= params[:controller] == "home" && params[:action] == "index" ? 'active' : '' %>">
+		<%= link_to t('header.find_jobs'), root_url %>
+	</li>
+	<li><%= link_to t('header.news'),"javascript:void(0)" %></li>
 	<% unless user_signed_in? %>
-		<li><%= link_to t('header.job_seeker'), sign_up_path(:role => "job_seeker") %></li>
-		<li><%= link_to t('header.employer'), sign_up_path(:role => "employer") %></li>
+		<li class="<%= params[:role].present? && params[:role] == "job_seeker" ? 'active' : '' %>">
+			<%= link_to t('header.job_seeker'), sign_up_path(:role => "job_seeker") %>
+		</li>
+		<li class="<%= params[:role].present? && params[:role] == "employer" ? 'active' : '' %>">
+			<%= link_to t('header.employer'), sign_up_path(:role => "employer") %>
+		</li>
 	<%end%>
 </ul>
 
