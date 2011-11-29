@@ -8,9 +8,6 @@ gem 'rails', '3.1.1'
 gem 'mysql2'
 gem 'devise'
 gem "cancan"
-#gem "carmen"
-gem 'sunspot_solr'
-gem 'sunspot_rails'
 gem 'therubyracer'
 
 # Gems used only for assets and not required

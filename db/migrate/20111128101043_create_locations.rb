@@ -1,6 +1,5 @@
 class CreateLocations < ActiveRecord::Migration
-  def self.up
-
+	def change
     create_table :countries do |t|
       t.string :name, :limit => 50, :null => false
       t.string :fips104, :limit => 2, :null => false
@@ -42,13 +41,5 @@ class CreateLocations < ActiveRecord::Migration
     execute("LOAD DATA LOCAL INFILE '#{Rails.root}/db/migrate/Countries.txt' INTO TABLE countries FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES")
     execute("LOAD DATA LOCAL INFILE '#{Rails.root}/db/migrate/Regions.txt' INTO TABLE regions FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES")
     execute("LOAD DATA LOCAL INFILE '#{Rails.root}/db/migrate/Cities.txt' INTO TABLE cities FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES")
-
-
-  end
-
-  def self.down
-    drop_table :countries
-    drop_table :regions
-    drop_table :cities
   end
 end

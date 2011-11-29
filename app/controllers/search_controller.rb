@@ -13,14 +13,7 @@ class SearchController < ApplicationController
 	end
 
 	def search
-		@search = Job.search do
-			fulltext params[:name]
-			with(:category_id, params[:category_id]) if params[:category_id].present?
-			with(:country_id, params[:country_id]) if params[:country_id].present?
-			with(:region_id, params[:region_id]) if params[:region_id].present?
-			with(:city_id, params[:city_id]) if params[:city_id].present?
-		end
-		@jobs = @search.results
+		@jobs = Job.search(params)
 		render :json => {:html => render_to_string(:partial => '/search/search_results')}.to_json
 	end
 

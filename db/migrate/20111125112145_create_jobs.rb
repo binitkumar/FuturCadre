@@ -12,5 +12,10 @@ class CreateJobs < ActiveRecord::Migration
 
       t.timestamps
     end
-  end
+		add_index :jobs, :name
+		add_index :jobs, :category_id
+		add_index :jobs, :country_id
+		add_index :jobs, :region_id
+		add_index :jobs, :city_id
+	end
 end
