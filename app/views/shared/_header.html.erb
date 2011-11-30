@@ -8,6 +8,11 @@
 </div>
 
 <ul class="jobs-holder">
+	<% if user_signed_in? %>
+		<li class="<%= params[:action] == "dashboard" ? 'active' : '' %>">
+			<%= link_to "Home", "/#{current_user.role}/dashboard" %>
+		</li>
+	<%end%>
 	<li class="<%= params[:controller] == "home" && params[:action] == "index" ? 'active' : '' %>">
 		<%= link_to t('header.find_jobs'), root_url %>
 	</li>
@@ -24,7 +29,7 @@
 
 <div class="login-holder">
 	<% if user_signed_in? %>
-		<div class="welcome">welcome,<span class="bold"><%= current_user.name %></span></div>
+		<div class="welcome">welcome, <span class="bold"><%= current_user.name %></span></div>
 		<ul class="setting">
 			<li><%= link_to "Account", sign_out_path %>|</li>
 			<li><%= link_to "Help", sign_out_path %>|</li>

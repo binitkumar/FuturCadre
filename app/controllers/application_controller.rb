@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 	before_filter :set_locale
 
 	def after_sign_in_path_for(resource_or_scope)
-    current_user.webmaster? ? dashboard_admin_home_index_path : root_path
+    current_user.webmaster? ? dashboard_admin_home_index_path : "/#{current_user.role}/dashboard"
   end
 
 	def after_sign_out_path_for(resource_or_scope)

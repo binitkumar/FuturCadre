@@ -1,4 +1,5 @@
 class Job < ActiveRecord::Base
+	has_and_belongs_to_many :users
 	belongs_to :employer, :polymorphic => true
 	belongs_to :country
 	belongs_to :region
