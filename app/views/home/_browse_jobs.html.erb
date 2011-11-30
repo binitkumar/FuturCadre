@@ -1,20 +1,20 @@
 <div class="w100">
-	<div class="search-by-name"><%= t('home_browse_jobs_by') %></div>
+	<div class="search-by-name">Browse Jobs By</div>
 	<div class="tab-holder active">
 		<div class="tab-left-holder"></div>
-		<div class="tab-mid-holder"><%= link_to t('home_browse_type'), get_browse_by_search_index_path(:by => "category" ), :class => "tab_link" %></div>
+		<div class="tab-mid-holder"><%= link_to "Type", get_browse_by_search_index_path(:by => "category" ), :class => "tab_link" %></div>
 		<div class="tab-right-holder"></div>
 	</div>
 
 	<div class="tab-holder">
 		<div class="tab-left-holder"></div>
-		<div class="tab-mid-holder"><%= link_to t('home_browse_region'), get_browse_by_search_index_path(:by => "region" ), :class => "tab_link" %></div>
+		<div class="tab-mid-holder"><%= link_to "Region", get_browse_by_search_index_path(:by => "region" ), :class => "tab_link" %></div>
 		<div class="tab-right-holder"></div>
 	</div>
 
 	<div class="tab-holder">
 		<div class="tab-left-holder"></div>
-		<div class="tab-mid-holder"><%= link_to t('home_browse_company'), get_browse_by_search_index_path(:by => "company" ), :class => "tab_link" %></div>
+		<div class="tab-mid-holder"><%= link_to "Company", get_browse_by_search_index_path(:by => "company" ), :class => "tab_link" %></div>
 		<div class="tab-right-holder"></div>
 	</div>
 	<div class="tabs-line"></div>

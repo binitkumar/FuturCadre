@@ -16,4 +16,8 @@ class Job < ActiveRecord::Base
     find(:all, :conditions => conditions)
 	end
 
+	def location
+		"#{city.name}, #{region.name} #{country.name}"
+	end
+
 end

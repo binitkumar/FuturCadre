@@ -41,6 +41,7 @@ FuturCadre::Application.routes.draw do
 			get :jobs_list
 			get :get_regions
 			get :get_cities
+			get :check_user_name
 		end
 	end
 

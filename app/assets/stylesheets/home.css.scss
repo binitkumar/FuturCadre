@@ -735,7 +735,7 @@ a {
 .reg-left-holder {
   float: left;
   width: 502px;
-  margin-top: 70px; }
+  margin-top: 50px; }
 
 .reg-right-holder {
   float: left;
@@ -817,12 +817,13 @@ a {
 
 .language {
   float: left;
-  margin-left: 5px;
+  margin-left: -70px;
   margin-top: 2px;
-  width: 52px;
+  width: 125px;
   img {
-    float: left;
-    margin-right: 4px; } }
+    display: none;
+    }
+  }
 
 .login-holder {
   float: left;

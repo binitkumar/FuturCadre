@@ -1,11 +1,11 @@
 <div class="content-right-holder">
 	<div class="popular-vacancies">
-		<h1><span class="red"><%= t('home_popular') %></span> <%= t('home_vacancies') %></h1>
+		<h1><span class="red">Popular</span>Vacancies</h1>
 		<div class="cloud"><%= image_tag asset_path 'cloud.png' %></div>
 	</div>
 
 	<div class="popular-vacancies mto37">
-		<h1><span class="red"><%= t('home_featured') %></span> <%= t('home_groups') %></h1>
+		<h1><span class="red">Featured</span>Groups</h1>
 		<ul class="featured-link">
 			<li><a href="#">Creative/Design</a></li>
 			<li><a href="#">Creative/Design</a></li>
@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="popular-vacancies mto37">
-		<h1><span class="red"><%= t('home_featured') %></span> <%= t('home_projects') %></h1>
+		<h1><span class="red">Featured</span>Projects</h1>
 		<ul class="featured-link">
 			<li><a href="#">Creative/Design</a></li>
 			<li><a href="#">Creative/Design</a></li>
@@ -29,7 +29,7 @@
 	</div>
 	<% if !(params[:controller] == "home" && params[:action] == "index") %>
 		<div class="popular-vacancies mto37">
-			<h1><span class="red"><%= t('home_featured') %></span> <%= t('home_employers') %></h1>
+			<h1><span class="red">Featured</span>Employers</h1>
 			<div class="companies"><%= image_tag asset_path 'companies.png' %></div>
 		</div>
 	<%end%>

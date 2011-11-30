@@ -6,12 +6,12 @@
 				<div class="register-top-holder">Job Search</div>
 				<div class="register-mid-holder">
 					<div class="reg-input-holder">
-						<label><%= t('home_job_search_title') %></label>
+						<label>Job Title</label>
 						<%= text_field_tag "name"%>
 					</div>
 
 					<div class="reg-select-holder">
-						<label><%= t('home_job_search_category') %></label>
+						<label>Job Category</label>
 						<%= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "name"), :class =>"reg-slt-div" %>
 					</div>
 					<div class="reg-location-holder">
@@ -36,8 +36,8 @@
 						</ul>
 					</div>
 					<div class="reg-button-holder">
-						<div class="reg-advanced-search">Advanced Search</div>
-						<div class="reg-findjob"><%= link_to t('button.find_job') ,"javascript:void(0)", :id => "rg_find_job_button" %></div>
+						<div class="reg-advanced-search"><%= link_to "Advanced Search" %></div>
+						<div class="reg-findjob"><%= link_to "Find Job" ,"javascript:void(0)", :id => "rg_find_job_button" %></div>
 					</div>
 
 

@@ -27,3 +27,19 @@ jQuery ->
       $(".content-holder").html response.html
     ), "json"
     false
+
+  $("#user_name").blur ->
+    unless $(this).val().match(/^\s*$/)
+      $.ajax
+        url: "/search/check_user_name?name="+$(this).val()
+        type: "GET"
+        data: $(this).serialize()
+        dataType: "json"
+        success: (response) ->
+          if response.success == true
+            $("#check_user_name").html("<img src='/assets/active-arrow.png' alt='Active-arrow'><p>Avalable !!</p>")
+          else
+            $("#check_user_name").html("<img src='/assets/deactive-arrow.png' alt='Active-arrow'><p>Not Avalable !!</p>")
+
+   
+    

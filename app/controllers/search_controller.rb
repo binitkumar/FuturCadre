@@ -44,4 +44,13 @@ class SearchController < ApplicationController
 		render :json => {:html => html }.to_json
 	end
 
+	def check_user_name
+		@user = User.find_by_name(params[:name])
+		if @user.present?
+			render :json => {:success => false }.to_json
+		else
+			render :json => {:success => true }.to_json
+		end
+	end
+
 end

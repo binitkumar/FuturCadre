@@ -8,6 +8,7 @@ gem 'rails', '3.1.1'
 gem 'mysql2'
 gem 'devise'
 gem "cancan"
+gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'therubyracer'
 
 # Gems used only for assets and not required

@@ -3,8 +3,16 @@
 </div>
 
 <div class="language">
-	<%= link_to image_tag(asset_path 'flag-1.png'), change_laguage_home_index_path(:locale => "en") %>
-	<%= link_to image_tag(asset_path 'flag-2.png'), change_laguage_home_index_path(:locale => "fr") %>
+	<div id="google_translate_element"></div>
+	<script language="JavaScript">
+		function googleTranslateElementInit() {
+		new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,fr',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+		}, 'google_translate_element');
+		}
+	</script>
 </div>
 
 <ul class="jobs-holder">
@@ -14,15 +22,15 @@
 		</li>
 	<%end%>
 	<li class="<%= params[:controller] == "home" && params[:action] == "index" ? 'active' : '' %>">
-		<%= link_to t('header.find_jobs'), root_url %>
+		<%= link_to "Find Jobs", root_url %>
 	</li>
-	<li><%= link_to t('header.news'),"javascript:void(0)" %></li>
+	<li><%= link_to "News","javascript:void(0)" %></li>
 	<% unless user_signed_in? %>
 		<li class="<%= params[:role].present? && params[:role] == "job_seeker" ? 'active' : '' %>">
-			<%= link_to t('header.job_seeker'), sign_up_path(:role => "job_seeker") %>
+			<%= link_to "Job Seeker", sign_up_path(:role => "job_seeker") %>
 		</li>
 		<li class="<%= params[:role].present? && params[:role] == "employer" ? 'active' : '' %>">
-			<%= link_to t('header.employer'), sign_up_path(:role => "employer") %>
+			<%= link_to "Employer", sign_up_path(:role => "employer") %>
 		</li>
 	<%end%>
 </ul>
