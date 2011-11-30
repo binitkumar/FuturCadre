@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FuturCadre</title>
+		<%= stylesheet_link_tag    "application" %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="flash">
+			<%= link_to "Home", dashboard_admin_home_index_path %> |
+			<%= link_to "Categories",admin_categories_path %> |
+			<%= link_to "Logout", sign_out_path %>
+			<%= render :partial => 'layouts/flash', :object => flash  %>
+		</div>
+		<%= yield %>
+  </body>
+</html>

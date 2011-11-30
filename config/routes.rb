@@ -1,4 +1,15 @@
 FuturCadre::Application.routes.draw do
+	
+	match 'admin' => 'admin/home#login'
+	namespace :admin do
+		resources :categories
+		resources :home do
+			collection do
+				get :login
+				get :dashboard
+			end
+		end
+	end
 
 	devise_for :users, :controllers => {
     :sessions => "users/sessions",
