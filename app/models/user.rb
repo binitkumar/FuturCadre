@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
 	attr_accessor :role_id
 
 	has_and_belongs_to_many :roles
-
 	has_many :created_jobs, :as => :employer, :class_name => "Job"
 	has_and_belongs_to_many :jobs
+	has_one :profile
 
 	def role
 		return "webmaster" if webmaster?

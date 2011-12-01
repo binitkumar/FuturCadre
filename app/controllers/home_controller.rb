@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
 	def index
-		@categories = Category.all
+		@categories = Category.main_categories
 		@projects = Project.all
 	end
 

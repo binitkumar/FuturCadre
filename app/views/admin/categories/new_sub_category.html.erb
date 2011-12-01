@@ -1,0 +1,8 @@
+<h1>New Sub Category</h1>
+<%= form_for @sub_category, :url => {:action => "create_sub_category", :id => @category.id } do |f| %>
+	<%= render :partial => 'sub_category_form', :locals => {:f => f } %>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<%end%>
+<%= link_to 'Back', sub_categories_admin_categories_path(:id => @category.id) %>

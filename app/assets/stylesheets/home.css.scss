@@ -201,21 +201,25 @@ a {
   float: left;
   width: 100%;
   margin-top: 10px;
+  .slt-div {
+    float: left;
+    margin-top: 6px;
+    width: 100%;
+    height: 26px;
+    background: none repeat scroll 0 0 #F6F6F6;
+    border-top: 1px solid #949494; }
+  .slt-sub-div {
+    float: left;
+    margin-top: 15px;
+    width: 100%;
+    height: 26px;
+    background: none repeat scroll 0 0 #F6F6F6;
+    border-top: 1px solid #949494; }
   label {
     float: left;
     width: 100%;
     font-size: 14px;
     color: #474747; } }
-
-.slt-div {
-  &:hover .slt-cat-hold {
-    display: block!important; }
-  float: left;
-  margin-top: 6px;
-  width: 100%;
-  height: 26px;
-   background: none repeat scroll 0 0 #F6F6F6;
-    border-top: 1px solid #949494; }
 
 .slt-cat-hold {
   display: none;
@@ -560,6 +564,13 @@ a {
   width: 290px;
   margin-right: 30px;
   margin-top: 10px;
+  .slt-div, .slt-sub-div {
+    float: left;
+    margin-top: 6px;
+    width: 33%;
+    height: 26px;
+    background: none repeat scroll 0 0 #F6F6F6;
+    border-top: 1px solid #949494; }
   label {
     float: left;
     width: 100%;

@@ -4,7 +4,7 @@ class JobSeekerController < ApplicationController
 	
 	def dashboard
 		@latest_jobs = Job.all
-		@my_job = current_user.jobs
+		@my_jobs = current_user.jobs
 	end
 
 end

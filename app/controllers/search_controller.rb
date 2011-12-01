@@ -18,9 +18,8 @@ class SearchController < ApplicationController
 	end
 
 	def get_sub_categories
-		#		@category = Category.find(params[:id])
-		#		@sub_categories = @category.children
-		@sub_categories = Category.all
+		@category = Category.find(params[:id])
+		@sub_categories = @category.children
 		render :json => {:html => render_to_string(:partial => '/search/sub_categories')}.to_json
 	end
 
@@ -32,7 +31,7 @@ class SearchController < ApplicationController
 	end
 
 	def get_browse_by
-		@categories = Category.all
+		@categories = Category.main_categories
 		case params[:by].to_s
 		when "category"
 			html = render_to_string(:partial => '/search/by_category')

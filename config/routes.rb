@@ -1,8 +1,15 @@
 FuturCadre::Application.routes.draw do
-	
+
 	match 'admin' => 'admin/home#login'
+	
 	namespace :admin do
-		resources :categories
+		resources :categories do
+			collection do
+				get :sub_categories, :new_sub_category, :edit_sub_category
+				post :create_sub_category
+				put :update_sub_category
+			end
+		end
 		resources :home do
 			collection do
 				get :login
@@ -62,6 +69,8 @@ FuturCadre::Application.routes.draw do
 			get :dashboard
 		end
 	end
+
+  resources :profiles
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

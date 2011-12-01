@@ -12,4 +12,4 @@
 	});
 	}
 </script>
-<%= select_tag "country_id", options_from_collection_for_select(Country.all, "id", "name"), :class =>"slt-div", :onChange => "get_regions()" %>
+<%= select_tag "country_id", options_from_collection_for_select(Country.all, "id", "name"), :class => "slt-div",  :onChange => "get_regions()" %>

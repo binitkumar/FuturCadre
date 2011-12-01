@@ -16,24 +16,13 @@
 					</div>
 					<div class="reg-location-holder">
 						<label>Location</label>
-						<div class="reg-loc-div"></div>
-						<ul class="reg-loc-cat-hold">
-							<li><a href="#">select job</a></li>
-							<li><a href="#">select job</a></li>
-							<li><a href="#">select job</a></li>
-						</ul>
-						<div class="reg-loc-div"></div>
-						<ul class="reg-loc-cat-hold">
-							<li><a href="#">select job</a></li>
-							<li><a href="#">select job</a></li>
-							<li><a href="#">select job</a></li>
-						</ul>
-						<div class="reg-loc-div mRnone"></div>
-						<ul class="reg-loc-cat-hold">
-							<li><a href="#">select job</a></li>
-							<li><a href="#">select job</a></li>
-							<li><a href="#">select job</a></li>
-						</ul>
+						<%= render :partial => "shared/countries" %>
+						<div id="regions">
+							<%= render :partial => "shared/regions" %>
+						</div>
+						<div id="cities">
+							<%= render :partial => "shared/cities" %>
+						</div>
 					</div>
 					<div class="reg-button-holder">
 						<div class="reg-advanced-search"><%= link_to "Advanced Search" %></div>

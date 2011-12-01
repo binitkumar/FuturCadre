@@ -1,0 +1,21 @@
+<h1>Listing Sub Categories for <%= @category.name %></h1>
+<%= link_to 'Add New Sub Category', new_sub_category_admin_categories_path(:id => @category.id ) %><br />
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+	<% if @sub_categories.present? %>
+		<% @sub_categories.each do |sub_category| %>
+			<tr>
+				<td><%= sub_category.name %></td>
+				<td>
+					<%= link_to 'Edit', edit_sub_category_admin_categories_path(:id => @category.id, :s_id => sub_category.id) %> |
+					<%= link_to 'Destroy',"#", :confirm => 'Are you sure?', :method => :delete %>
+				</td>
+			</tr>
+		<% end %>
+	<%end%>
+</table>
+
+

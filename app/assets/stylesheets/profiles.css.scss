@@ -1,0 +1,180 @@
+// Place all the styles related to the profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile-left-div {
+  float: left;
+  width: 490px; }
+
+.profile-right-div {
+  float: right;
+  width: 490px; }
+
+.profile-input {
+  float: left;
+  width: 100%;
+  .slt-div, .slt-sub-div {
+    float: left;
+    margin-top: 6px;
+    width: 60%;
+    height: 26px;
+    background: none repeat scroll 0 0 #F6F6F6;
+    border-top: 1px solid #949494; }
+  label {
+    color: #474747;
+    float: left;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-right: 2%;
+    width: 25%;
+    margin-left: 22px; }
+  input {
+    background: none repeat scroll 0 0 #F6F6F6;
+    border-top: 1px solid #949494;
+    float: left;
+    height: 26px;
+    margin-top: 6px;
+    width: 60%; } }
+
+.red-btn-new {
+  border-bottom: 1px solid #CCCCCC;
+  float: right;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  a {
+    background: url("../images/red-btn.png") repeat-x scroll 0 0 transparent;
+    color: #FFFFFF;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 10px;
+    text-decoration: none; } }
+
+/************************** profile details   ****************************/
+
+.p-holder {
+  float: left;
+  width: 100%; }
+
+.profile-left {
+  float: left;
+  margin-right: 50px;
+  width: 142px;
+  img {
+    border: 5px solid #A8A8A8;
+    float: left;
+    width: 138px; } }
+
+.profile-right {
+  float: left;
+  width: 700px;
+  h1 {
+    color: #2A2924;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    width: 100%; }
+  p {
+    color: #2A2924;
+    float: left;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 22px;
+    margin-top: 20px;
+    width: 100%; }
+  h2 {
+    color: #2A2924;
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+    width: 100%; }
+  h3 {
+    color: #2A2924;
+    float: left;
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 15px;
+    width: 100%;
+    a {
+      color: #2A2924;
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none; } } } }
+
+.p-bot {
+  border-bottom: 1px solid #808080;
+  padding-bottom: 5px; }
+
+.profile-holder {
+  float: left;
+  margin-top: 50px;
+  width: 100%; }
+
+.profile-name-heading {
+  color: #2A2924;
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+  width: 140px; }
+
+.profile-name-content {
+  color: #2A2924;
+  float: left;
+  font-size: 14px;
+  width: 760px; }
+
+.profile-edit {
+  color: #2A2924;
+  float: left;
+  font-size: 14px;
+  text-align: right;
+  width: 40px; }
+
+.profile-cont {
+  border-bottom: 1px solid #808080;
+  float: left;
+  padding: 5px 0;
+  width: 100%; }
+
+.red-btn {
+  float: right;
+  margin-top: 30px;
+  width: 100%;
+  a {
+    background: url("../images/red-btn.png") repeat-x scroll 0 0 transparent;
+    color: #FFFFFF;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 10px;
+    text-decoration: none; } }
+
+.slt-div {
+  float: left;
+  margin-top: 6px;
+  width: 269px;
+  height: 27px;
+  background: url(../images/select-bg.png) no-repeat; }
+
+.slt-cat-hold {
+  display: none;
+  float: left;
+  width: 100%;
+  list-style: none;
+  li {
+    background: none repeat scroll 0 0 #F6F6F6;
+    border-bottom: 1px solid #949494;
+    color: #404040;
+    float: left;
+    line-height: 28px;
+    padding-left: 8px;
+    width: 97.5%;
+    a {
+      text-decoration: none;
+      color: #404040; } } }
