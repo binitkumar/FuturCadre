@@ -1,10 +1,11 @@
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
-	<%= form_for(@profile) do |f|  %>
+
+  	<%= form_for @profile, :url =>{:action => 'create_profile', :controller => 'profiles'}, :html =>{:id => 'create_profile_form', :onsubmit =>"return false;"} do |f|  %>
 		<% if current_user.job_seeker? %>
 			<%= render :partial => "job_seeker_form", :locals => { :f => f } %>
 		<% elsif current_user.employer? %>
-			<%= render :partial => "employer_form", :locals => { :f => f } %>
+           	<%= render :partial => "employer_form", :locals => { :f => f } %>
 		<%end%>
 		<div class="findjob"><%= link_to "Update Profile" ,"javascript:void(0)", :id => "update_profile_button" %></div>
 	<%end%>

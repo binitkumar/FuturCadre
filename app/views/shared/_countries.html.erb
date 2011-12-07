@@ -1,15 +1,18 @@
 <script language="JavaScript">
-	function get_regions(){
-	$.ajax({
+	function get_regions(th){
+       var cont = $(th).val();
+       	$.ajax({
 	    context: this,
-	    url: "/search/get_regions?country_id="+$("#country_id").val(),
+	    url: "/search/get_regions?country_id="+cont,
 	    type: "GET",
 	    data: $(this).serialize(),
 	    dataType: "json",
 	    success: function(response) {
 	      $("#regions").html(response.html);
+            $("#regions_search").html(response.html);
+//            $(th).parent().closest("div").html(response.html);
 	    }
 	});
 	}
 </script>
-<%= select_tag "country_id", options_from_collection_for_select(Country.all, "id", "name"), :class => "slt-div",  :onChange => "get_regions()" %>
+<%= select_tag "country_id", options_from_collection_for_select(Country.all, "id", "name"), :class => "slt-div",  :onChange => "get_regions(this)" %>

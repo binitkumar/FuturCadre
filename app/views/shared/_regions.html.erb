@@ -1,8 +1,9 @@
 <script language="JavaScript">
-	function get_cities(){
-	$.ajax({
+	function get_cities(th){
+        var cities = $(th).val();
+       	$.ajax({
 	    context: this,
-	    url: "/search/get_cities?region_id="+$("#region_id").val(),
+	    url: "/search/get_cities?region_id="+cities,
 	    type: "GET",
 	    data: $(this).serialize(),
 	    dataType: "json",
@@ -13,4 +14,4 @@
 	}
 </script>
 <% collection = @regions.present? ? @regions : Country.first.regions %>
-<%= select_tag "region_id", options_from_collection_for_select(collection, "id", "name"), :class => "slt-sub-div", :onChange => "get_cities()" %>
+<%= select_tag "region_id", options_from_collection_for_select(collection, "id", "name"), :class => "slt-sub-div", :onChange => "get_cities(this)" %>
