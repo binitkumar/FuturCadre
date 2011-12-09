@@ -70,7 +70,14 @@ FuturCadre::Application.routes.draw do
 		end
 	end
 
-  resources :profiles
+  resources :profiles do
+    collection do
+     get  :new
+     post :create_job_seeker
+     post :create_employer
+     get  :update
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

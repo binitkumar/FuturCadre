@@ -144,8 +144,8 @@
         </div>
         <div class="profile-input mtop20">
           <label>Upload Your CV</label>
-        <%= f.fields_for :asset do |asset| %>
-          <%= asset.file_field :photo %>
+        <%= f.fields_for :resume do |resume| %>
+          <%= resume.file_field :photo %>
       <% end %>
         </div>
 
