@@ -6,10 +6,13 @@ gem 'rails', '3.1.1'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+#gem 'mysql'
 gem 'devise'
 gem "cancan"
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'therubyracer'
+gem "paperclip", "~> 2.4"
+
 
 # Gems used only for assets and not required
 # in production environments by default.
