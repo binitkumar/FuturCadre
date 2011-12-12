@@ -21,13 +21,18 @@
       <label>Phone</label>
       <%= f.text_field :phone %>
     </div>
-    <div class="profile-input mtop20">
-      <label>Country</label>
+     <div class="profile-input mtop20">
+      <label>Zip Code</label>
+      <%= f.text_field :zip_code %>
+    </div>
+     <div class="profile-input mtop20">
+      <label>State</label>
 
-      <div id="country">
-        <%= render :partial => "shared/countries" %>
+      <div id="regions">
+        <%= render :partial => "shared/regions" %>
       </div>
     </div>
+
     <div class="profile-input mtop20">
       <label>City</label>
 
@@ -46,17 +51,16 @@
       <label>Address</label>
       <%= f.text_field :address %>
     </div>
-    <div class="profile-input mtop20">
-      <label>State</label>
+      <div class="profile-input mtop20">
+      <label>Country</label>
 
-      <div id="regions">
-        <%= render :partial => "shared/regions" %>
+      <div id="country">
+        <%= render :partial => "shared/countries" %>
       </div>
     </div>
-
-    <div class="profile-input mtop20">
+     <div class="profile-input mtop20">
       <label>Your Picture</label>
-      <%= f.fields_for :asset do |asset| %>
+      <%= fields_for :asset do |asset| %>
           <%= asset.file_field :photo %>
       <% end %>
     </div>
@@ -70,39 +74,25 @@
 
 <div class="w100">
 
-  <%= f.fields_for :education_info do |ed| %>
+  <%= fields_for :education_info do |ed| %>
       <div class="profile-left-div">
         <div class="profile-input mtop20">
           <label>Degree Level</label>
-          <!--<input type="text" value="">-->
-          <%= ed.text_field :degree_level %>
+            <%= ed.text_field :degree_level %>
         </div>
         <div class="profile-input mtop20">
           <label>Major Subject</label>
-          <!--<input type="text" value="">-->
-          <%= ed.text_field :major_subject %>
+             <%= ed.text_field :major_subject %>
         </div>
       </div>
       <div class="profile-right-div">
         <div class="profile-input mtop20">
           <label>Institution</label>
-          <%= ed.text_field :institute %>
-          <!--<div class="slt-div"></div>-->
-          <!--<ul class="slt-cat-hold">-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--</ul>-->
-        </div>
+           <%= ed.text_field :institute %>
+          </div>
         <div class="profile-input mtop20">
           <label>Year</label>
           <%= ed.text_field :year %>
-          <!--<div class="slt-div"></div>-->
-          <!--<ul class="slt-cat-hold">-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--</ul>-->
         </div>
       </div>
   <% end %>
@@ -114,37 +104,24 @@
 </div>
 
 <div class="w100">
-  <%= f.fields_for :job_info do |jd| %>
+  <%= fields_for :job_info do |jd| %>
       <div class="profile-left-div">
         <div class="profile-input mtop20">
           <label>Professional Industry</label>
           <%= jd.text_field :profession_industry %>
-          <!--<div class="slt-div"></div>-->
-          <!--<ul class="slt-cat-hold">-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--</ul>-->
-        </div>
+         </div>
         <div class="profile-input mtop20">
           <label>Category </label>
-          <!--<= jd.text_field:category_id  %>-->
-          <%= select_tag :category_id, options_from_collection_for_select(Category.all, "id", "name"), :class =>"reg-slt-div-new" %>
-          <!--<div class="slt-div"></div>-->
-          <!--<ul class="slt-cat-hold">-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--</ul>-->
+                  <%= select_tag :category_id, options_from_collection_for_select(Category.all, "id", "name"), :class =>"reg-slt-div-new" %>
+
         </div>
         <div class="profile-input mtop20">
           <label>Recent Job Title</label>
           <%= jd.text_field :job_title %>
-          <!--<input type="text" value="">-->
-        </div>
+         </div>
         <div class="profile-input mtop20">
           <label>Upload Your CV</label>
-        <%= f.fields_for :resume do |resume| %>
+        <%= fields_for :resume do |resume| %>
           <%= resume.file_field :photo %>
       <% end %>
         </div>
@@ -155,32 +132,15 @@
         <div class="profile-input mtop20">
           <label>Total Professional Experience</label>
           <%= jd.text_field :profession_experience %>
-          <!--<div class="slt-div"></div>-->
-          <!--<ul class="slt-cat-hold">-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--</ul>-->
-        </div>
+         </div>
         <div class="profile-input mtop20">
           <label>Career Level</label>
           <%= jd.text_field :career_level %>
-          <!--<div class="slt-div"></div>-->
-          <!--<ul class="slt-cat-hold">-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--</ul>-->
-        </div>
+         </div>
         <div class="profile-input mtop20">
           <label>Company Name</label>
           <%= jd.text_field :company_name %>
-          <!--<div class="slt-div"></div>-->
-          <!--<ul class="slt-cat-hold">-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--<li><a href="#">select job</a></li>-->
-          <!--</ul>-->
+
         </div>
       </div>
   <% end %>
