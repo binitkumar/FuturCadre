@@ -22,4 +22,13 @@ class Profile < ActiveRecord::Base
     return n
   end
 
+  def full_address
+    ad = address
+    if ad && ad.length > 0
+      ad +=""
+    end
+       ad += "," + self.city.name + "," + self.region.name + ","+ self.country.name
+    return ad
+  end
+
 end

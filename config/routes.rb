@@ -76,6 +76,11 @@ FuturCadre::Application.routes.draw do
      post :create_job_seeker
      post :create_employer
      get  :update
+     get  :show
+     get   :edit
+     put  :update_job_seeker
+     put :update_employer
+
     end
   end
 
