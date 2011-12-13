@@ -25,7 +25,7 @@ class ProfilesController < ApplicationController
     @photo = params[:asset]
     unless @photo.blank?
       @asset            = Asset.new(params[:asset])
-       @image.content_type = "profile_image"
+       @asset.content_type = "profile_image"
       @asset.user_id    = current_user.id
       @asset.profile_id = @profile_new.id
       @asset.save
@@ -46,7 +46,7 @@ class ProfilesController < ApplicationController
       @resume                     = params[:asset]
       unless @resume.blank?
         @cv            = Asset.new(params[:resume])
-        @image.content_type = "cv"
+        @cv.content_type = "cv"
         @cv.user_id    = current_user.id
         @cv.profile_id = @profile_new.id
         @cv.save
@@ -90,8 +90,7 @@ class ProfilesController < ApplicationController
       end
 
     end
-
-  #render :text => "ok"
+    #render :text => "ok"
     redirect_to(@profile_new ,:notice => 'Profile was successfully created.')
   end
 
@@ -119,35 +118,55 @@ class ProfilesController < ApplicationController
   def update_employer
     @profile             = Profile.find_by_id(params[:id])
     @company_information = CompanyInformation.find_by_id(params[:comp_id])
-     @asset = @profile.assets.where("content_type =?", "profile_image")
-
-     #unless params[:asset].blank?
-     #    @profile.assets.each do |img|
-     #      if img.content_type == "profile_image"
-     #         img.photo.update_attributes(params[:asset])
-     #      end
-     #    end
-     #
-     #end
+    #@asset = @profile.assets.where("content_type =?", "profile_image").first
     if @profile.update_attributes(params[:profile])
         @company_information.update_attributes(params[:company_information])
+        unless params[:asset].blank?
+       @profile.assets.each do |img|
+           if img.content_type == "profile_image"
+              img.update_attributes(params[:asset])
+           end
+        end
+    end
+      unless params[:org_photo].blank?
+       @profile.assets.each do |logo|
+           if logo.content_type == "company_logo"
+              logo.update_attributes(params[:org_photo])
+           end
+        end
+     end
       redirect_to @profile, :notice => 'Profile was successfully updated.'
     else
       render :action => "edit"
     end
   end
 
-  #def update_job_seeker
-  #  @profile             = Profile.find_by_id(params[:id])
-  #  @job_info            = ProfessionInformation.find_by_id(params[:job_id])
-  #  @education_info     = EducationInformation.find_by_id(params[:edu_id])
-  #
-  #   if @profile.update_attributes(params[:profile])
-  #      @company_information.update_attributes(params[:company_information])
-  #    redirect_to @profile, :notice => 'Profile was successfully updated.'
-  #  else
-  #    render :action => "edit"
-  #  end
-  #end
+  def update_job_seeker
+    @profile             = Profile.find_by_id(params[:id])
+    @job_info            = ProfessionInformation.find_by_id(params[:job_id])
+    @education_info     = EducationInformation.find_by_id(params[:edu_id])
 
+    if @profile.update_attributes(params[:profile])
+        @education_info.update_attributes(params[:education_info])
+        @job_info.update_attributes(params[:job_info])
+
+       unless @profile.assets.each do |img|
+           if img.content_type == "profile_image"
+              img.update_attributes(params[:asset])
+           end
+        end
+       end
+      unless params[:resume].blank?
+       @profile.assets.each do |cv|
+           if cv.content_type == "cv"
+              cv.update_attributes(params[:resume])
+           end
+        end
+     end
+        redirect_to @profile, :notice => 'Profile was successfully updated.'
+    else
+      render :action => "edit"
+    end
+  end
 end
+

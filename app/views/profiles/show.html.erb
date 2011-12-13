@@ -88,12 +88,16 @@
 
     </div>
     <div class="profile-edit"><%= link_to 'Edit', edit_profile_path(@profile) %> </div>
-    <div class="profile-edit"><%= link_to 'Done',  %> </div>
+    <% if current_user.job_seeker? %>
+        <div class="profile-edit"><%= link_to 'Done', :controller => "job_seeker", :action => "dashboard", :id => current_user.id %> </div>
+    <% elsif current_user.employer? %>
+        <div class="profile-edit"><%= link_to 'Done', :controller => "employer", :action => "dashboard", :id => current_user.id %> </div>
+    <% end %>
   </div>
 
   <div class="red-btn-new"><a href="#">Update Profile</a></div>
- <% end %>
-</div>
+  <% end %>
+  </div>
 
 
 
