@@ -10,7 +10,7 @@
   <h1>Basic <span class="red">Information</span></h1>
   <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 </div>
-<label> Please enter the details for the job you wish to create  </label>
+<label> Please enter the details for the job you wish to create </label>
 <div class="w100">
   <div class="profile-left-div">
     <div class="profile-input mtop20">
@@ -23,17 +23,17 @@
     </div>
 
     <div class="profile-input mtop20">
-      <label>Annual Salary</label>
+      <label>Annual Salary :$</label>
       <%= f.text_field :comp_annual %>
     </div>
 
     <div class="profile-input mtop20">
-      <label>Annual Bonus</label>
+      <label>Annual Bonus :$</label>
       <%= f.text_field :comp_bonus %>
     </div>
 
     <div class="profile-input mtop20">
-      <label>Commission</label>
+      <label>Commission :$</label>
       <%= f.text_field :comp_commission %>
     </div>
     <div class="profile-input mtop20">
@@ -71,6 +71,40 @@
       <%= f.text_field :employer_type %>
     </div>
   </div>
+
+  <div class="basic-info mtop40">
+    <h1>Job <span class="red">Responsibilities</span></h1>
+    <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+  </div>
+  <%= fields_for :responsibility do |ed| %>
+      <div class="profile-left-div-new">
+        <div class="profile-input mtop20">
+          <label>Add a Responsibility</label>
+          <%= ed.text_field :name %>
+          <div class="add-button">
+            <%= image_tag asset_path "plus.png" %>
+            <%= image_tag asset_path "minus.png" %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="basic-info mtop40">
+    <h1>Job <span class="red">Skills</span></h1>
+    <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+  </div>
+  <%= fields_for :skill do |skill| %>
+      <div class="profile-left-div-new">
+        <div class="profile-input mtop20">
+          <label>Add a Skill</label>
+          <%= skill.text_field :name %>
+          <div class="add-button">
+            <%= image_tag asset_path "plus.png" %>
+            <%= image_tag asset_path "minus.png" %>
+          </div>
+        </div>
+      </div>
+  <% end %>
 </div>
 
 

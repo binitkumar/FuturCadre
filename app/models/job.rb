@@ -4,6 +4,7 @@ class Job < ActiveRecord::Base
 	belongs_to :country
 	belongs_to :region
 	belongs_to :city
+  belongs_to :category
   has_and_belongs_to_many :responsibilities
    has_and_belongs_to_many :skills
 

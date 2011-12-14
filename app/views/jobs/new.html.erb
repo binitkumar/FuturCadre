@@ -2,8 +2,10 @@
 <div class="content-holder">
      <%= form_for @job, :url =>{ :action => 'create_job', :controller => 'jobs' }, :html =>{ :id => "create_job_form", :onsubmit =>true, :multipart => true } do |f| %>
           <%= render :partial => "create_job_form", :locals => { :f => f } %>
-          <div class="findjob">
-            <%= f.submit "Save" %>
+          <div class="save-button">
+
+                  <%= f.submit "Save" %>
+
           </div>
         <% end %>
 </div>

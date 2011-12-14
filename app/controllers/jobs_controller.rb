@@ -13,8 +13,8 @@ class JobsController < ApplicationController
 
   def new
     @job= Job.new
-    @skills = Skill.new(params[:skills])
-    @responsibilities = Responsibility.new(params[:responsibilities])
+    @skill = Skill.new(params[:skills])
+    @responsibility = Responsibility.new(params[:responsibilities])
 
   end
 
