@@ -3,6 +3,8 @@ class EmployerController < ApplicationController
 
 	def dashboard
 
-	end
+  end
+
+
 
 end
