@@ -76,11 +76,11 @@
     <h1>Job <span class="red">Responsibilities</span></h1>
     <%= image_tag asset_path 'basic-info-bot-bar.png' %>
   </div>
-  <%= fields_for :responsibility do |ed| %>
+  <%= fields_for :respon do |rp| %>
       <div class="profile-left-div-new">
         <div class="profile-input mtop20">
           <label>Add a Responsibility</label>
-          <%= ed.text_field :name %>
+          <%= rp.text_field :name %>
           <div class="add-button">
             <%= image_tag asset_path "plus.png" %>
             <%= image_tag asset_path "minus.png" %>
@@ -99,6 +99,7 @@
           <label>Add a Skill</label>
           <%= skill.text_field :name %>
           <div class="add-button">
+
             <%= image_tag asset_path "plus.png" %>
             <%= image_tag asset_path "minus.png" %>
           </div>
