@@ -21,10 +21,10 @@
 			<%= link_to "Home", "/#{current_user.role}/dashboard" %>
 		</li>
 	<%end%>
-	<li class="<%= params[:controller] == "home" && params[:action] == "index" ? 'active' : '' %>">
+      	<li class="<%= params[:controller] == "home" && params[:action] == "index" ? 'active' : '' %>">
 		<%= link_to "Find Jobs", root_url %>
 	</li>
-	<li><%= link_to "News","javascript:void(0)" %></li>
+ 	<li><%= link_to "News","javascript:void(0)" %></li>
 	<% unless user_signed_in? %>
 		<li class="<%= params[:role].present? && params[:role] == "job_seeker" ? 'active' : '' %>">
 			<%= link_to "Job Seeker", sign_up_path(:role => "job_seeker") %>
@@ -57,4 +57,6 @@
 		<%end%>
 	<%end%>
 </div>
+
+
 

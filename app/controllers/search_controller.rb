@@ -2,8 +2,8 @@ class SearchController < ApplicationController
 
 	def get_regions
 		@country = Country.find_by_id(params[:country_id])
-		@regions = @country.regions
-		render :json => {:html => render_to_string(:partial => '/shared/regions')}.to_json
+    @regions = @country.regions
+   		render :json => {:html => render_to_string(:partial => '/shared/regions')}.to_json
 	end
 
 	def get_cities

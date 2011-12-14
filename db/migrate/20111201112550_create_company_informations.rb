@@ -2,7 +2,7 @@ class CreateCompanyInformations < ActiveRecord::Migration
   def change
     create_table :company_informations do |t|
       t.integer :profile_id
-			t.string :name
+    	t.string :name
 			t.integer :phone
 			t.integer :fax
 			t.text :email

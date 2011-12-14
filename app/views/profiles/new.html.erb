@@ -1,14 +1,14 @@
-<%= javascript_include_tag "jquery-1.6.2.min", "jquery.form" , "validation/jquery.validate"%>
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
-
-  	<%= form_for @profile, :url =>{:action => 'create_profile', :controller => 'profiles'}, :html =>{:id => "create_profile_form",:onsubmit =>true,  :multipart => true } do |f|  %>
-		<% if current_user.job_seeker? %>
-			<%= render :partial => "job_seeker_form", :locals => { :f => f } %>
-		<% elsif current_user.employer? %>
-           	<%= render :partial => "employer_form", :locals => { :f => f } %>
-		<%end%>
-		<!--<div class="findjob"><= link_to "Update Profile" ,"javascript:void(0)", :id => "update_profile_button" %></div>-->
-     <div class="findjob"> <%= f.submit "Save"%></div>
-	<%end%>
+  <% if current_user.job_seeker? %>
+      <%= form_for @profile, :url =>{ :action => 'create_job_seeker', :controller => 'profiles' }, :html =>{ :id => "create_profile_form", :onsubmit =>true, :multipart => true } do |f| %>
+          <%= render :partial => "job_seeker_form", :locals => { :f => f } %>
+          <div class="findjob"> <%= f.submit "Save" %></div>
+      <% end %>
+  <% elsif current_user.employer? %>
+      <%= form_for @profile, :url =>{ :action => 'create_employer', :controller => 'profiles' }, :html =>{ :id => "create_profile_form", :onsubmit =>true, :multipart => true } do |f| %>
+          <%= render :partial => "employer_form", :locals => { :f => f } %>
+          <div class="findjob"> <%= f.submit "Save" %></div>
+      <% end %>
+  <% end %>
 </div>

@@ -1,16 +1,18 @@
 <script language="JavaScript">
 	function get_regions(th){
        var cont = $(th).val();
-       	$.ajax({
+//       var trigerList = $("div[id^='regions']");
+//       var id = $(this).next("#div").attr("id");
+      	$.ajax({
 	    context: this,
 	    url: "/search/get_regions?country_id="+cont,
 	    type: "GET",
 	    data: $(this).serialize(),
 	    dataType: "json",
 	    success: function(response) {
-	      $("#regions").html(response.html);
-            $("#regions_search").html(response.html);
-//            $(th).parent().closest("div").html(response.html);
+       $("#regions").html(response.html);
+        $("#regions_search").html(response.html);
+        $("#regions_org").html(response.html);
 	    }
 	});
 	}

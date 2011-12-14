@@ -8,7 +8,11 @@
 	    data: $(this).serialize(),
 	    dataType: "json",
 	    success: function(response) {
-	      $("#cities").html(response.html);
+           $("#cities").html(response.html);
+          $("#cities_search").html(response.html);
+          $("#cities_org").html(response.html);
+//             $(th).parent().closest("div").html(response.html);
+//             $(th).parent().closest("div").html(response.html);
 	    }
 	});
 	}
