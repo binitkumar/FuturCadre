@@ -55,6 +55,8 @@ FuturCadre::Application.routes.draw do
 	resources :jobs do
 		collection do
 			get :details
+      get :new
+      post :create_job
 		end
 	end
 

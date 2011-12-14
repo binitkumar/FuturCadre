@@ -1,0 +1,76 @@
+<div class="reg-tab-holder">
+  <div class="reg-tab-holder-new tab-act">
+    <div class="reg-left-tab-holder"></div>
+    <div class="reg-mid-tab-holder">Create Job</div>
+    <div class="reg-right-tab-holder"></div>
+  </div>
+</div>
+
+<div class="basic-info mtop10">
+  <h1>Basic <span class="red">Information</span></h1>
+  <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+</div>
+<label> Please enter the details for the job you wish to create  </label>
+<div class="w100">
+  <div class="profile-left-div">
+    <div class="profile-input mtop20">
+      <label>Job Title</label>
+      <%= f.text_field :name %>
+    </div>
+    <div class="profile-input mtop20">
+      <label>Description</label>
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="profile-input mtop20">
+      <label>Annual Salary</label>
+      <%= f.text_field :comp_annual %>
+    </div>
+
+    <div class="profile-input mtop20">
+      <label>Annual Bonus</label>
+      <%= f.text_field :comp_bonus %>
+    </div>
+
+    <div class="profile-input mtop20">
+      <label>Commission</label>
+      <%= f.text_field :comp_commission %>
+    </div>
+    <div class="profile-input mtop20">
+      <label>Country</label>
+
+      <div id="country">
+        <%= render :partial => "shared/countries" %>
+      </div>
+    </div>
+
+    <div class="profile-input mtop20">
+      <label>State</label>
+
+      <div id="regions">
+        <%= render :partial => "shared/regions" %>
+      </div>
+    </div>
+
+    <div class="profile-input mtop20">
+      <label>City</label>
+
+      <div id="cities">
+        <%= render :partial => "shared/cities" %>
+      </div>
+    </div>
+  </div>
+  <div class="profile-right-div">
+    <div class="profile-input mtop20">
+      <label>Category </label>
+      <%= select_tag :category_id, options_from_collection_for_select(Category.all, "id", "name"), :class =>"reg-slt-div-new" %>
+
+    </div>
+    <div class="profile-input mtop20">
+      <label>Employer Type</label>
+      <%= f.text_field :employer_type %>
+    </div>
+  </div>
+</div>
+
+
