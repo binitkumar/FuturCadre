@@ -5,6 +5,9 @@ class CreateJobs < ActiveRecord::Migration
       t.integer :employer_id
 			t.string :employer_type
       t.string :description
+      t.string :comp_annual
+      t.string :comp_bonus
+      t.string :comp_commission
 			t.references :category, :country, :region, :city
 
       t.timestamps

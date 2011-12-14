@@ -41,6 +41,8 @@ Quality_Assurance/Safety R_D/Science Sales/Business_Development Security/Protect
 	Category.create!(:name => name.humanize.titleize )
 end
 
+
+
 ( 0 .. 10).each do |i|
 	Job.create!(:name => "testJob#{i}",
 		:description => "As we look to expand, JPP is seeking a well-organized, extremely self-motivated individual to help with the office management and day-to-day running of the office. The successful candidate will be someone who takes initiative, identifies problems and provides solutions and is able to work well under pressure. He or she will be able to multi-task and work with a team of investigators and lawyers to drive forward JPP's challenging, but rewarding, mission.",
@@ -51,3 +53,25 @@ end
 	)
 end
 
+puts "Deleting existing skills..."
+skills = Skill.all
+skills.each { |skill| skill.destroy } if skills.present?
+puts "creating Skills"
+skills = Skill.create!([{ name: 'Self Motivated', description: 'Must posses will to exceed' },
+                        { name: 'Well Organized', description: 'Must posses will to exceed' },
+                        { name: 'Social', description: 'Must posses will to exceed' },
+                        { name: 'Excellent Communication Skills', description: 'Must posses will to exceed' },
+                        { name: 'Self Driven', description: 'Must posses will to exceed' },
+                        { name: 'Leadership', description: 'Must posses will to exceed' }])
+
+
+puts "Deleting existing responsibilities..."
+ resps = Responsibility.all
+resps.each { |resps| resps.destroy } if resps.present?
+puts "creating responsibilities"
+resps = Responsibility.create!([{ name: 'Manage', description: 'Must posses will to exceed' },
+                        { name: 'Reception', description: 'Take the lead on ensuring an efficient, friendly and welcoming reception service' },
+                        { name: 'Social', description: 'Must posses will to exceed' },
+                        { name: 'Software Development', description: 'Must posses will to exceed' },
+                        { name: 'Team Management', description: 'Must posses will to exceed' },
+                        { name: 'Leadership', description: 'Must posses will to exceed' }])

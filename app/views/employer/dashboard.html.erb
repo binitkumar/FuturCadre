@@ -1,1 +1,38 @@
 <%= render :partial => "shared/top_search_ box" %>
+<div class="content-holder">
+
+	<div class="reg-tab-holder">
+		<div class="reg-tab-holder-new tab-act">
+			<div class="reg-left-tab-holder"></div>
+			<div class="reg-mid-tab-holder">Profile</div>
+			<div class="reg-right-tab-holder"></div>
+		</div>
+		<div class="reg-tab-holder-new">
+			<div class="reg-left-tab-holder"></div>
+			<div class="reg-mid-tab-holder">Candidates</div>
+			<div class="reg-right-tab-holder"></div>
+		</div>
+		<div class="reg-tab-holder-new">
+			<div class="reg-left-tab-holder"></div>
+			<div class="reg-mid-tab-holder">New Job</div>
+			<div class="reg-right-tab-holder"></div>
+		</div>
+		<div class="reg-tab-holder-new">
+			<div class="reg-left-tab-holder"></div>
+			<div class="reg-mid-tab-holder">Msg box</div>
+			<div class="reg-right-tab-holder"></div>
+		</div>
+
+	</div>
+
+<div class="tittle">
+        Start Hiring:
+            <%= link_to "Create a new job profile", "javascript:",:id=> "job_profile_link", :class=> 'green', :onclick => "return addNewJob();" %>
+      </div>
+
+</div>
+
+<script type="text/javascript">
+  addNewJob = function() {
+             window.location.href = "/jobs/new"; }
+</script>
