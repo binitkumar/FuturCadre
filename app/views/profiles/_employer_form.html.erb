@@ -1,39 +1,39 @@
 <div class="reg-tab-holder">
   <div class="reg-tab-holder-new tab-act">
     <div class="reg-left-tab-holder"></div>
-    <div class="reg-mid-tab-holder">My Account</div>
+    <div class="reg-mid-tab-holder"><%= t('home_my_account') %></div>
     <div class="reg-right-tab-holder"></div>
   </div>
 </div>
 
 <div class="basic-info mtop10">
-  <h1>Basic <span class="red">Information</span></h1>
+  <h1> <%= t('basic') %> <span class="red">Information</span></h1>
   <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 </div>
 
 <div class="w100">
   <div class="profile-left-div">
     <div class="profile-input mtop20">
-      <label>First Name</label>
+      <label><%= t('profiles.first_name') %></label>
       <%= f.text_field :first_name %>
     </div>
     <div class="profile-input mtop20">
-      <label>Phone</label>
+      <label><%=t('profiles.phone') %></label>
       <%= f.text_field :phone %>
     </div>
     <div class="profile-input mtop20">
-      <label>Zip Code</label>
+      <label><%=t('profiles.zip') %></label>
       <%= f.text_field :zip_code %>
     </div>
  <div class="profile-input mtop20">
-      <label>State</label>
+      <label><%=t('profiles.region') %></label>
 
       <div id="regions">
         <%= render :partial => "shared/regions" %>
       </div>
     </div>
     <div class="profile-input mtop20">
-      <label>City</label>
+      <label><%=t('profiles.city') %></label>
 
       <div id="cities">
         <%= render :partial => "shared/cities" %>
@@ -43,16 +43,16 @@
   </div>
   <div class="profile-right-div">
     <div class="profile-input mtop20">
-      <label>Last Name</label>
+      <label><%= t('profiles.last_name') %></label>
       <%= f.text_field :last_name %>
     </div>
     <div class="profile-input mtop20">
-      <label>Address</label>
+      <label><%=t('profiles.address') %></label>
       <%= f.text_field :address %>
     </div>
 
      <div class="profile-input mtop20">
-      <label>Country</label>
+      <label><%=t('profiles.country') %></label>
 
       <div id="country">
         <%= render :partial => "shared/countries" %>
@@ -60,7 +60,7 @@
     </div>
 
     <div class="profile-input mtop20">
-      <label>Your Picture</label>
+      <label><%= t('profiles.profile_picture') %></label>
       <%= fields_for :asset do |asset| %>
           <%= asset.file_field :photo %>
       <% end %>
@@ -69,7 +69,7 @@
 </div>
 
 <div class="basic-info mtop40">
-  <h1>Company<span class="red">Information</span></h1>
+  <h1><%= t('company') %>  <span class="red">Information</span></h1>
   <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 </div>
 
@@ -78,24 +78,24 @@
   <%= fields_for :company_information do |ed| %>
       <div class="profile-left-div">
         <div class="profile-input mtop20">
-          <label>Company Name</label>
+          <label><%= t('profile_company_nam') %></label>
           <%= ed.text_field :name %>
         </div>
 
         <div class="profile-input mtop20">
-          <label>Phone</label>
+          <label><%= t('profiles.phone') %></label>
           <%= ed.text_field :phone %>
         </div>
       </div>
       <div class="profile-right-div">
 
         <div class="profile-input mtop20">
-          <label>Fax</label>
+          <label><%= t('profiles.fax') %></label>
          <%= ed.text_field :fax %>
         </div>
 
         <div class="profile-input mtop20">
-          <label>Website</label>
+          <label><%= t('profiles.website') %></label>
           <%= ed.text_field :web_site %>
         </div>
       </div>
@@ -108,14 +108,14 @@
 
 
         <div class="profile-input mtop20">
-          <label>Country</label>
+          <label><%= t('profiles.country') %></label>
 
           <div id="country_org">
             <%= render :partial => "shared/countries" %>
           </div>
         </div>
         <div class="profile-input mtop20">
-          <label>City</label>
+          <label><%= t('profiles.city') %></label>
 
           <div id="cities_org">
             <%= render :partial => "shared/cities" %>
@@ -125,18 +125,18 @@
       </div>
       <div class="profile-right-div">
         <div class="profile-input mtop20">
-          <label>Address</label>
+          <label><%= t('profiles.address') %></label>
           <%= ed.text_field :address %>
         </div>
 
         <div class="profile-input mtop20">
-          <label>State</label>
+          <label><%= t('profiles.region') %></label>
            <div id="regions_org">
              <%= render :partial => "shared/regions" %>
           </div>
         </div>
         <div class="profile-input mtop20">
-      <label> Picture</label>
+      <label> <%= t('profiles.picture') %></label>
       <%= fields_for :org_photo do |org| %>
           <%= org.file_field :photo %>
       <% end %>

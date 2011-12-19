@@ -23,8 +23,8 @@ class JobsController < ApplicationController
     @job.update_attributes(:employer_id => current_user.id, :country_id=> params[:country_id], :region_id=>params[:region_id],
                            :city_id     =>params[:city_id], :category_id => params[:category_id])
 
-    unless params[:response].blank?
-      @responsibility = Responsibility.create(params[:response])
+    unless params[:respon].blank?
+      @responsibility = Responsibility.create(params[:respon])
     else
       puts "None responsibility added"
     end

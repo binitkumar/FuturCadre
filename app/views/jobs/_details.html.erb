@@ -21,7 +21,7 @@
         <% unless @job.blank? %>
             <h1><%= @job.name %></h1>
             <p><%= @job.location %> </p>
-            <label>Employment Type</label>
+            <label><%= t('jobs.employer_type') %></label>
                 <p><%= @job.employer_type %> </p>
             </div>
             <div class="network-holder">
@@ -39,7 +39,7 @@
             </div>
 
             <div class="result-holder">
-              <div class="description-heading">Job Description:</div>
+              <div class="description-heading"><%= t('job_descripton') %>:</div>
               <div class="description-text"> <%= @job.description %></div>
               <div class="description-text mtop30">The role requires someone able to work full-time, 40-55 hours per
                 week. Please note that while normal office hours are 9.30am - 5.00pm Monday - Friday, sometimes work
@@ -64,7 +64,7 @@
                 1.11 Undertake other operational tasks as and when they arise.
               </div>
 
-              <div class="description-heading mtop30">Skills Required:</div>
+              <div class="description-heading mtop30"><%= t('job_skill_require') %>:</div>
               <div class="description-text">Organized, self-motivated, good written English and Urdu Job Description:
               </div>
               <div class="description-heading mtop30">Job's Compensation</div>
@@ -74,11 +74,11 @@
 
               <div class="job-btn-holder">
                 <div class="job-btn-left"></div>
-                <div class="job-btn-mid">Apply for this job</div>
+                <div class="job-btn-mid"><%= t('job_apply') %></div>
                 <div class="job-btn-right"></div>
               </div>
 
-        <div class="more-similar-jobs"><a href="#">more similar jobs</a></div>
+        <div class="more-similar-jobs"><a href="#"><%= t('job_similar') %></a></div>
         </div>
         </div>
 
@@ -89,22 +89,22 @@
     <div class="small-line"></div>
   </div>
   <div class="industry-holder">
-    <h1>Industry:</h1>
+    <h1><%= t('job_industry') %>:</h1>
 
     <p><%= @job.category.name %></p>
   </div>
   <div class="industry-holder">
-    <h1>Industry:</h1>
+    <h1><%= t('job_industry') %>:</h1>
 
     <p><%= @job.category.name %></p>
   </div>
   <div class="industry-holder">
-    <h1>Industry:</h1>
+    <h1><%= t('job_industry') %>:</h1>
 
     <p><%= @job.category.name %></p>
   </div>
   <div class="industry-holder">
-    <h1>Industry:</h1>
+    <h1><%= t('job_industry') %>:</h1>
 
     <p><%= @job.category.name %></p>
   </div>
@@ -114,37 +114,37 @@
 
   </div>
   <div class="industry-holder">
-    <h1>Industry:</h1>
+    <h1><%= t('job_industry') %>:</h1>
 
     <p><%= @job.category.name %></p>
   </div>
   <div class="industry-holder">
-    <h1>Industry:</h1>
+    <h1><%= t('job_industry') %>:</h1>
 
     <p><%= @job.category.name %></p>
   </div>
   <div class="industry-holder">
-    <h1>Industry:</h1>
+    <h1><%= t('job_industry') %>:</h1>
 
     <p><%= @job.category.name %></p>
   </div>
   <div class="industry-holder">
-    <h1>Industry:</h1>
+    <h1><%= t('job_industry') %>:</h1>
 
     <p><%= @job.category.name %></p>
   </div>
   <div class="industry-holder">
-    <h1>Industry:</h1>
+    <h1><%= t('job_industry') %>:</h1>
 
     <p><%= @job.category.name %></p>
   </div>
   <div class="industry-holder">
-    <h1>Industry:</h1>
+    <h1><%= t('job_industry') %>:</h1>
 
     <p><%= @job.category.name %></p>
   </div>
   <div class="industry-holder">
-    <h1>Industry:</h1>
+    <h1><%= t('job_industry') %>:</h1>
 
     <p><%= @job.category.name %></p>
   </div>

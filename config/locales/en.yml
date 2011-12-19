@@ -8,6 +8,7 @@ en:
     news: "News"
     job_seeker: "Job Seeker"
     employer: "Employer"
+    forgot_password: "Forgot Your Password?"
   home_title: "Lorem ipsum dolor sit amet,"
   home_sub_title: "consectetur adipisicing elit, sed do eiusmod tempor"
   home_description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
@@ -26,12 +27,110 @@ en:
   home_groups: "Groups"
   home_projects: "Projects"
   home_employers: "Employers"
+  home_hiring: "Start Hiring"
+  home_create_job: "Create a new job profile  "
+  home_account: "Account"
+  home_logout: "Logout"
+  home_my_account: "My Account"
+
+
+
+
+  users:
+      user_name: "User Name"
+      password: "Password"
+      conf_password: "Confirm Password"
+  email: "This would be the primaray email used by the application"
+  password_helper: "Password should be at least 6 characters long"
+  conf_password_helper: "Re-enter password for avoiding typo mistakes"
+  privacy_policay: "I have read the privacy policy and agreeing on the terms and conditions"
+  account: "Account"
+  register: "Register Me"
+  user_register_as: "Register as"
+
+
   
   button:
     find_job: "Find Job"
     post_resume: "Post Resume"
+    save: "Save"
+    edit: "Edit"
 
   search:
     search_results: "Search Results"
     apply: "Apply"
     not_found: "Sorry! No Job Found."
+
+  profiles:
+      user_name:  "User Name"
+      password:  "Password"
+      confirm_password: "Confirm Password"
+      first_name:  "First Name"
+      last_name: "Last Name"
+      name: "Name"
+      address: "Address"
+      country: "Country"
+      region: "Region"
+      city: "City"
+      zip: "Zip Code"
+      phone: "Phone"
+      company_name: "Company Name"
+      fax: "Fax"
+      website: "Website"
+      picture: "Picture"
+      profile_picture: "Profile Picture"
+  company: "Company"
+  basic: "Basic"
+  information: "Information"
+  education: "Educational"
+  profession: "Professional"
+  resume: "Upload Your CV"
+  category: "Category"
+  profile_degree_level: "Degree Level"
+  profile_major_subject: "Major Subject"
+  profile_institute: "Institution"
+  profile_year: "Year"
+  profile_industry: "Professional Industry"
+  profile_job_title: "Recent Job Title"
+  profile_experience: "Total Profession Experience"
+  profile_company_nam: "Company Name"
+  profile_carrer_level: "Career Level"
+  profile_upload: "Update Profile"
+  profile_my: "My"
+  profile_profile: "Profile"
+
+  link_to:
+       edit:  "Edit"
+       done:  "Done"
+
+
+
+  jobs:
+      name: "Job Title"
+      description: "Description"
+      comp_annual: "Annual Salary"
+      bonus: "Annual Bonus"
+      commission: "Commission"
+      employer_type: "Employer Type"
+  create_job: "Create Job"
+  job_detail: "Please enter the details for the job you wish to create "
+  job:   "Job"
+  responsibilities: "Responsibilities"
+  skills: "Skills"
+  job_responsibility: "Add a Responsibility"
+  job_skill: "Add a Skill"
+  job_descripton: "Job Description"
+  job_skill_require: "Skills Required"
+  job_apply: "Apply for this job"
+  job_similar: "more similar jobs"
+  job_industry: "Industry "
+
+
+
+# activerecord:
+#    models:
+#      role:
+#    attributes:
+#      user:
+#        name: "Employer"
+#
