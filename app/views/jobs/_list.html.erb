@@ -17,11 +17,11 @@
 	<% @jobs.each do |job|  %>
 		<div class="result-holder">
 			<div class="accountants"><%= link_to job.name, details_jobs_path(:id => job.id), :class => "job-link" %></div>
-			<div class="result-text"><%= job.employer.name %> <%= job.location %></div>
+			<div class="result-text"><%= job.employer.company_name %>,<%= job.location %></div>
 			<div class="result-text"><%= job.description %></div>
-			<div class="date-text"><%= job.created_at.strftime("%d-%m-%Y") %> - <%= link_to "Apply" %></div>
+			<div class="date-text"><%= job.created_at.strftime("%d-%m-%Y") %> - <%= link_to t('search.apply') %></div>
 		</div>
 	<%end%>
 <%else%>
-	Sorry! No JOb Found.
+		Sorry! No JOb Found.
 <%end%>
