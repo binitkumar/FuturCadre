@@ -1,0 +1,19 @@
+<h1>Listing Groups</h1>
+<%= link_to 'New Group', new_admin_group_path %><br />
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+
+	<% @groups.each do |group| %>
+		<tr>
+			<td><%= group.name %></td>
+			<td><%= link_to 'Edit', edit_admin_group_path(group) %> |
+				<%= link_to 'Destroy',"#", :confirm => 'Are you sure?', :method => :delete %>
+			</td>
+		</tr>
+	<% end %>
+</table>
+
+

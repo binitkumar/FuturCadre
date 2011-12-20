@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
+#
 puts "Deleting existing roles..."
 roles = Role.all
 roles.each{ |role| role.destroy } if roles.present?
@@ -66,7 +66,7 @@ skills = Skill.create!([{ :name => 'Self Motivated' },
 
 
 puts "Deleting existing responsibilities..."
- resps = Responsibility.all
+resps = Responsibility.all
 resps.each { |resps| resps.destroy } if resps.present?
 puts "creating responsibilities"
 resps = Responsibility.create!([{ :name => 'Manage' },
@@ -75,3 +75,14 @@ resps = Responsibility.create!([{ :name => 'Manage' },
                         { :name => 'Software Development'},
                         { :name => 'Team Management'},
                         { :name => 'Leadership' }])
+
+puts "Deleting existing schools..."
+schools = School.all
+schools.each { |sch| sch.destroy } if schools.present?
+puts "creating schools"
+schools = School.create!([{ :name => 'KTH' },
+                        { :name => 'Lund'},
+                        { :name => 'Chalmers' },
+                        { :name => 'PUCIT'},
+                        { :name => 'ILM'},
+                        { :name => 'UMTS' }])

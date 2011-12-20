@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 	has_many :created_jobs, :as => :employer, :class_name => "Job"
 	has_and_belongs_to_many :jobs
 	has_one :profile
+  has_and_belongs_to_many :groups
+
 
 	def role
 		return "webmaster" if webmaster?

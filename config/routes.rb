@@ -1,7 +1,10 @@
 FuturCadre::Application.routes.draw do
 
   match 'admin' => 'admin/home#login'
-
+  #match 'sannan' => 'application#check_url'
+  # match 'translate' => 'translate#index', :as => :translate_list
+  #match 'translate/translate' => 'translate#translate', :as => :translate
+  #match 'translate/reload' => 'translate#reload', :as => :translate_reload
 
   namespace :admin do
     resources :categories do
@@ -17,10 +20,18 @@ FuturCadre::Application.routes.draw do
         get :dashboard
       end
     end
-     match 'translate' => 'translate#index', :as => :translate_list
-     match 'translate/translate' => 'translate#translate', :as => :translate
-     match 'translate/reload' => 'translate#reload', :as => :translate_reload
+    match 'translate' => 'translate#index', :as => :translate_list
+    match 'translate/translate' => 'translate#translate', :as => :translate
+    match 'translate/reload' => 'translate#reload', :as => :translate_reload
+    resources :groups do
+      collection do
+        get :index
+        get :new
+        post :create_group
 
+      end
+
+    end
   end
 
 
