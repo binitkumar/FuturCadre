@@ -1,88 +1,94 @@
 FuturCadre::Application.routes.draw do
 
-	match 'admin' => 'admin/home#login'
-	
-	namespace :admin do
-		resources :categories do
-			collection do
-				get :sub_categories, :new_sub_category, :edit_sub_category
-				post :create_sub_category
-				put :update_sub_category
-			end
-		end
-		resources :home do
-			collection do
-				get :login
-				get :dashboard
-			end
-		end
-	end
+  match 'admin' => 'admin/home#login'
 
-	devise_for :users, :controllers => {
-    :sessions => "users/sessions",
-    :confirmation => "users/confirmations",
-    :passwords => "users/passwords",
-    :registrations => "users/registrations",
-    :unlocks => "users/unlocks",
-    :omniauth => "users/omniauth_callbacks#create"
+
+  namespace :admin do
+    resources :categories do
+      collection do
+        get :sub_categories, :new_sub_category, :edit_sub_category
+        post :create_sub_category
+        put :update_sub_category
+      end
+    end
+    resources :home do
+      collection do
+        get :login
+        get :dashboard
+      end
+    end
+     match 'translate' => 'translate#index', :as => :translate_list
+     match 'translate/translate' => 'translate#translate', :as => :translate
+     match 'translate/reload' => 'translate#reload', :as => :translate_reload
+
+  end
+
+
+  devise_for :users, :controllers => {
+      :sessions      => "users/sessions",
+      :confirmation  => "users/confirmations",
+      :passwords     => "users/passwords",
+      :registrations => "users/registrations",
+      :unlocks       => "users/unlocks",
+      :omniauth      => "users/omniauth_callbacks#create"
   }
 
-	devise_scope :user do
-		get "sign_in" => "users/sessions#new"
-		get "sign_up" => "users/registrations#new"
-		get "sign_out" => "users/sessions#destroy"
+  devise_scope :user do
+    get "sign_in" => "users/sessions#new"
+    get "sign_up" => "users/registrations#new"
+    get "sign_out" => "users/sessions#destroy"
     get "password_recovery" => "users/passwords#new"
   end
 
-	resources :home do
-		collection do
-			get :change_laguage
-			get :get_sub_categories
-		end
-	end
+  resources :home do
+    collection do
+      get :change_laguage
+      get :get_sub_categories
+    end
+  end
 
-	resources :search do
-		collection do
-			post :search
-			get :get_sub_categories
+  resources :search do
+    collection do
+      post :search
+      get :get_sub_categories
       get :get_browse_by
-			get :jobs_list
-			get :get_regions
-			get :get_cities
-			get :check_user_name
-		end
-	end
+      get :jobs_list
+      get :get_regions
+      get :get_cities
+      get :check_user_name
+    end
+  end
 
-	resources :jobs do
-		collection do
-			get :details
+  resources :jobs do
+    collection do
+      get :details
       get :new
       post :create_job
-		end
-	end
+    end
+  end
 
-	resources :job_seeker do
-		collection do
-			get :dashboard
-		end
-	end
+  resources :job_seeker do
+    collection do
+      get :dashboard
+    end
+  end
 
-	resources :employer do
-		collection do
-			get :dashboard
-		end
-	end
+  resources :employer do
+    collection do
+      get :dashboard
+    end
+  end
 
   resources :profiles do
     collection do
-     get  :new
-     post :create_job_seeker
-     post :create_employer
-     get  :update
-     get  :show
-     get   :edit
-     put  :update_job_seeker
-     put :update_employer
+      get :new
+      post :create_job_seeker
+      post :create_employer
+      get :update
+      get :show
+      get :edit
+      put :update_job_seeker
+      put :update_employer
 
     end
   end

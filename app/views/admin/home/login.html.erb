@@ -1,5 +1,8 @@
+<% if user_signed_in? %>
 <h2>Webmaster Sign in</h2>
+<% else %>
 <% @user = User.new %>
+    <h2> Sign as a admin</h2>
 <%= form_for(@user, :as => @user, :url => session_path(@user)) do |f| %>
 	<div><%= f.label :email %><br />
 		<%= f.email_field :email %></div>
@@ -9,3 +12,4 @@
 	<div><%= f.submit "Sign in" %></div>
 <% end %>
 
+<% end %>
