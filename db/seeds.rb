@@ -49,7 +49,8 @@ end
 	  :country => Country.first,
 		:region => Region.first,
 		:city => City.first,
-		:employer => User.first
+		:employer => User.first,
+    :category => Category.first
 	)
 end
 

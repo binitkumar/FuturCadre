@@ -9,10 +9,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource
     @role = Role.find_by_id(params[:user][:role_id])
     resource.roles << @role
-        var = verify_recaptcha
 
     if   verify_recaptcha && params[:terms] && resource.save
-      if resource.active_for_authentication?
+         if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
         respond_with resource, :location => redirect_location(resource_name, resource)
