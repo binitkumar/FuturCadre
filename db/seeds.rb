@@ -87,3 +87,28 @@ schools = School.create!([{ :name => 'KTH' },
                         { :name => 'PUCIT'},
                         { :name => 'ILM'},
                         { :name => 'UMTS' }])
+
+puts 'Creating Initial Profile......'
+    Profile.create!(:first_name => "Future",
+                     :last_name => "Cadre",
+                     :country => Country.first,
+                     :region => Region.first,
+                     :city => City.first,
+                     :user => User.first,
+                     :zip_code  => "SW450",
+                     :phone => "0046787343",
+                     :address => "Kungshamra 42, LGH 4"
+
+                   )
+puts 'Creating Initial Company Information......'
+    CompanyInformation.create!(:name => "Future Cadre",
+                        :profile => Profile.first,
+                    :email => "webmaster@futurcadre.com",
+                     :country => Country.first,
+                     :region => Region.first,
+                     :city => City.first,
+                     :phone => "000000000",
+                     :address => "France",
+                     :web_site => "www.futurecadre.com"
+
+                   )

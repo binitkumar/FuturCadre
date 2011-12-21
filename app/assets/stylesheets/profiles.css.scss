@@ -43,7 +43,8 @@
   padding-bottom: 10px;
   width: 100%;
   a {
-    background: url("../images/red-btn.png") repeat-x scroll 0 0 transparent;
+    /*background: url("../images/red-btn.png") repeat-x scroll 0 0 transparent;*/
+    background:  url(asset_path('red-btn.png',image)) repeat-x scroll 0 0 transparent;
     color: #FFFFFF;
     float: right;
     font-size: 14px;
@@ -145,7 +146,8 @@
   margin-top: 30px;
   width: 100%;
   a {
-    background: url("../images/red-btn.png") repeat-x scroll 0 0 transparent;
+    /*background: url("../images/red-btn.png") repeat-x scroll 0 0 transparent;*/
+    background:  url(asset_path('red-btn.png',image)) repeat-x scroll 0 0 transparent;
     color: #FFFFFF;
     float: right;
     font-size: 14px;
@@ -160,7 +162,10 @@
   margin-top: 6px;
   width: 269px;
   height: 27px;
-  background: url(../images/select-bg.png) no-repeat; }
+  /*background: url(../images/select-bg.png) no-repeat;*/
+   background:  url(asset_path('select-bg.png',image)) no-repeat;
+
+   }
 
 .slt-cat-hold {
   display: none;

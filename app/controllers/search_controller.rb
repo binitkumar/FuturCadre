@@ -19,11 +19,15 @@ class SearchController < ApplicationController
 
 	def get_sub_categories
 		@category = Category.find(params[:id])
-		@sub_categories = @category.children
-		render :json => {:html => render_to_string(:partial => '/search/sub_categories')}.to_json
-	end
+    if @category.parent_id == nil
+        @jobs = @category.jobs
+    else
+      @sub_categories = @category.children.jobs
+    end
 
-	def jobs_list
+		render :json => {:html => render_to_string(:partial => '/search/sub_categories')}.to_json
+  end
+	def categories_jobs_list
 		#		@sub_category = Category.find(params[:id])
 		#		@jobs = @sub_category.jobs
 		@jobs = Job.all
@@ -32,6 +36,8 @@ class SearchController < ApplicationController
 
 	def get_browse_by
 		@categories = Category.main_categories
+    @companies = CompanyInformation.all
+
 		case params[:by].to_s
 		when "category"
 			html = render_to_string(:partial => '/search/by_category')
@@ -50,6 +56,19 @@ class SearchController < ApplicationController
 		else
 			render :json => {:success => true }.to_json
 		end
+  end
+
+ def get_jobs_by_company
+      @company = CompanyInformation.find(params[:id])
+       @jobs = @company.profile.user.created_jobs
+      render :json => {:html => render_to_string(:partial => '/search/company_jobs')}.to_json
+ end
+
+def jobs_list
+		#		@sub_category = Category.find(params[:id])
+		#		@jobs = @sub_category.jobs
+		@jobs = Job.all
+		render :json => {:html => render_to_string(:partial => '/search/search_results')}.to_json
 	end
 
 end

@@ -71,7 +71,8 @@
 }
 
    .save-button input[type="submit"] {
-    background: url("/assets/findjob-bg.png") repeat-x scroll 0 0 transparent;
+    background:  url(asset_path('findjob-bg.png',image)) repeat-x scroll 0 0 transparent;
+    /*background: url("/assets/findjob-bg.png") repeat-x scroll 0 0 transparent;*/
     border: 1px solid #7B0C26;
     color: #FFFFFF;
     float: right;
