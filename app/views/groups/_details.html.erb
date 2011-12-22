@@ -1,0 +1,70 @@
+<div class="content-left-holder">
+  <div class="w100">
+    <div class="search-results"></div>
+    <div class="data-post-div"></div>
+
+    <div class="search-line"></div>
+  </div>
+
+
+  <div class="result-holder">
+    <div class="job-details-left">
+      <div class="job-details">
+        <% unless @group.blank? %>
+            <h1><%= @group.name %></h1>
+
+            <label><%= t('jobs.employer_type') %></label>
+
+            </div>
+            <div class="network-holder">
+              <%= image_tag asset_path 'facebook-icon.png' %>
+              <%= image_tag asset_path 'tweeter-icon.png' %>
+              <%= image_tag asset_path 'linkedin-icon.png' %>
+              <%= image_tag asset_path 'mail-icon.png' %>
+            </div>
+            </div>
+            <div class="job-btn-holder">
+              <div class="job-btn-left"></div>
+              <div class="job-btn-mid"> Join </div>
+              <div class="job-btn-right"></div>
+            </div>
+            </div>
+
+            <div class="result-holder">
+              <div class="description-heading"><%= t('job_descripton') %>:</div>
+              <div class="description-text"> <%= @group.description %></div>
+              <div class="description-text mtop30">
+              </div>
+              <div class="description-heading mtop30">Group Jobs:</div>
+              <div class="description-text"><br>
+
+              </div>
+
+              <div class="description-heading mtop30"></div>
+              <div class="description-text">
+              </div>
+              <div class="description-heading mtop30">Job's Compensation</div>
+
+              <div class="description-text"> </div>
+
+
+              <div class="job-btn-holder">
+                <div class="job-btn-left"></div>
+                <div class="job-btn-mid"><</div>
+                <div class="job-btn-right"></div>
+              </div>
+
+        <div class="more-similar-jobs"></div>
+        </div>
+        </div>
+
+<div class="content-right-holder">
+  <div class="popular-vacancies">
+    <h1><span class="red">Job Stats </span>and requirments</h1>
+
+    <div class="small-line"></div>
+  </div>
+
+
+   <% end %>
+</div>

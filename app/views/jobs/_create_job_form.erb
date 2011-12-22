@@ -76,14 +76,15 @@
     <h1><%= t('job') %> <span class="red"> <%= t('responsibilities') %></span></h1>
     <%= image_tag asset_path 'basic-info-bot-bar.png' %>
   </div>
+  <%= hidden_field_tag 'count', '0' %>
   <%= fields_for :respon do |rp| %>
-      <div class="profile-left-div-new">
+      <div id="file_fields" class="profile-left-div-new">
         <div class="profile-input mtop20">
           <label><%= t('job_responsibility') %></label>
           <%= rp.text_field :name %>
           <div class="add-button">
-            <%= image_tag asset_path "plus.png" %>
-            <%= image_tag asset_path "minus.png" %>
+
+
           </div>
         </div>
       </div>
@@ -100,12 +101,8 @@
           <%= skill.text_field :name %>
           <div class="add-button">
 
-            <%= image_tag asset_path "plus.png" %>
-            <%= image_tag asset_path "minus.png" %>
           </div>
         </div>
       </div>
   <% end %>
 </div>
-
-

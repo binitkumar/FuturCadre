@@ -1,46 +1,43 @@
 class Admin::GroupsController < ApplicationController
   layout "admin"
 
-
   def index
     @groups = Group.all
   end
 
   def new
     @group = Group.new
+    @jobs = Job.all
   end
 
-  def create_group
+  def create_job_group
     @group_new = Group.new(params[:group])
-    @group_new.update_attributes(:school_id => params[:school_id], :category_id =>params[:category_id])
-    if @group_new.save
-      redirect_to admin_groups_path, :notice => 'Group was successfully created.'
+    @group_job = Job.find(params[:job_id])
+    @group_new.jobs << Job.find_by_id(@group_job.id)
+      if @group_new.save
+        redirect_to admin_groups_path, :notice => 'Group was successfully created.'
     else
       render :action => "new"
     end
   end
 
   def edit
-    @group = Group.find(params[:id])
-    @category = @group.category
-    @school = @group.school
+    @group      = Group.find(params[:id])
+    @group_jobs = @group.jobs
   end
 
   def update
     @group = Group.find(params[:id])
-
-     #  unless params[:school_id].blank?
-    #        @group.update_attributes(:school_id => params[:school_id])
-    #  end
-    # unless params[:category_id].blank?
-    #  @group.update_attributes(:category_id => params[:category_id])
-    #end
-
-    if @group.update_attributes(params[:group])
-
-      redirect_to admin_groups_path, :notice => 'Group was successfully updated.'
+      if @group.update_attributes(params[:group])
+       redirect_to admin_groups_path, :notice => 'Group was successfully updated.'
     else
       render :action => "edit"
     end
+  end
+
+  def destroy
+     @group = Group.find(params[:id])
+	   @group.destroy
+	   	redirect_to admin_groups_url
   end
 end

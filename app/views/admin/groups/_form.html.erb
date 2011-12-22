@@ -19,13 +19,12 @@
 	<%= f.label :description %><br />
 	<%= f.text_area :description %>
 </div>
-<div class="field">
-	<label>Category</label><br />
-	<%= select_tag :category_id, options_from_collection_for_select(Category.all, "id", "name")%>
-</div>
 <br/><br/>
 <div class="field">
-	<label> School </label><br />
-    <%= select_tag :school_id, options_from_collection_for_select(School.all, "id", "name")%>
+ <%= select_tag :job_id, options_from_collection_for_select(Job.all, "id", "name") %>
 </div>
+<br/><br/>
+
+
+
 

@@ -1,0 +1,12 @@
+<div class="result-holder">
+<h1>Group Index</h1>
+
+ <% if @groups.present? %>
+	<% @groups.each do |group| %>
+	<div class="accountants"><%= link_to group.name,details_groups_path(:id => group.id) ,:class => "job-link" %></div>
+          <div class="result-text"><%= group.description %></div>
+	<% end %>
+ <% else %>
+        Sorry! No Group Found.
+ <% end %>
+</div>

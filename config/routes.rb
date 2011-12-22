@@ -27,7 +27,8 @@ FuturCadre::Application.routes.draw do
       collection do
         get :index
         get :new
-        post :create_group
+        post :create_job_group
+        get :destroy
 
       end
 
@@ -103,6 +104,13 @@ FuturCadre::Application.routes.draw do
       put :update_job_seeker
       put :update_employer
 
+    end
+  end
+
+  resources :groups do
+    collection do
+       get :index
+       get :details
     end
   end
 
