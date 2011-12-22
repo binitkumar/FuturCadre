@@ -21,8 +21,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         respond_with resource, :location => after_inactive_sign_up_path_for(resource)
       end
     else
-      set_flash_message :alert, "Missing Captcha, Please enter the given field again." if verify_recaptcha== false
-      set_flash_message :notice, "Please accept the term." if params[:terms] == nil
+      set_flash_message :notice, :missing_captcha  if verify_recaptcha== false
+      set_flash_message :notice, :missing_privacy if params[:terms] == nil
       respond_with_navigational(resource) { render_with_scope :new }
     end
   end
