@@ -77,16 +77,16 @@ resps = Responsibility.create!([{ :name => 'Manage' },
                         { :name => 'Team Management'},
                         { :name => 'Leadership' }])
 
-puts "Deleting existing schools..."
-schools = School.all
-schools.each { |sch| sch.destroy } if schools.present?
-puts "creating schools"
-schools = School.create!([{ :name => 'KTH' },
-                        { :name => 'Lund'},
-                        { :name => 'Chalmers' },
-                        { :name => 'PUCIT'},
-                        { :name => 'ILM'},
-                        { :name => 'UMTS' }])
+#puts "Deleting existing schools..."
+#schools = School.all
+#schools.each { |sch| sch.destroy } if schools.present?
+#puts "creating schools"
+#schools = School.create!([{ :name => 'KTH' },
+#                        { :name => 'Lund'},
+#                        { :name => 'Chalmers' },
+#                        { :name => 'PUCIT'},
+#                        { :name => 'ILM'},
+#                        { :name => 'UMTS' }])
 
 puts 'Creating Initial Profile......'
     Profile.create!(:first_name => "Future",
@@ -112,3 +112,15 @@ puts 'Creating Initial Company Information......'
                      :web_site => "www.futurecadre.com"
 
                    )
+puts 'Deleting existing groups......'
+groups = Group.all
+
+groups.each { |group| group.destroy } if groups.present?
+puts "creating Skills"
+groups = Group.create!([{ :name => 'Software Developers', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :featured => true },
+                        { :name => 'Electrical Engineers', :description => "Group for EE Engineers e.g. electro, power, hydro, control ", :featured => true },
+                        { :name => 'Social Responsibility', :description => "Discussion place for Social responsibility ", :featured => true },
+                       ])
+groups.each do |group|
+  group.jobs << Job.find_by_name("testJob0")
+end
