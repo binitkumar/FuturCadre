@@ -18,25 +18,25 @@
       <%= f.text_field :first_name %>
     </div>
     <div class="profile-input mtop20">
-      <label><%=t('profiles.phone') %></label>
+      <label><%= t('profiles.phone') %></label>
       <%= f.text_field :phone %>
     </div>
     <div class="profile-input mtop20">
-      <label><%=t('profiles.zip') %></label>
+      <label><%= t('profiles.zip') %></label>
       <%= f.text_field :zip_code %>
     </div>
- <div class="profile-input mtop20">
-      <label><%=t('profiles.region') %></label>
+    <div class="profile-input mtop20">
+      <label><%= t('profiles.region') %></label>
 
       <div id="regions">
-        <%= render :partial => "shared/regions" %>
+        <%= render :partial => "shared/regions", :locals => { :object_collection => "profile" } %>
       </div>
     </div>
     <div class="profile-input mtop20">
-      <label><%=t('profiles.city') %></label>
+      <label><%= t('profiles.city') %></label>
 
       <div id="cities">
-        <%= render :partial => "shared/cities" %>
+        <%= render :partial => "shared/cities", :locals => { :object_collection => "profile" } %>
       </div>
     </div>
 
@@ -47,15 +47,16 @@
       <%= f.text_field :last_name %>
     </div>
     <div class="profile-input mtop20">
-      <label><%=t('profiles.address') %></label>
+      <label><%= t('profiles.address') %></label>
       <%= f.text_field :address %>
     </div>
 
-     <div class="profile-input mtop20">
-      <label><%=t('profiles.country') %></label>
+    <div class="profile-input mtop20">
+      <label><%= t('profiles.country') %></label>
 
       <div id="country">
-        <%= render :partial => "shared/countries" %>
+
+        <%= render :partial => "shared/countries", :locals => { :object_collection => "profile" } %>
       </div>
     </div>
 
@@ -91,7 +92,7 @@
 
         <div class="profile-input mtop20">
           <label><%= t('profiles.fax') %></label>
-         <%= ed.text_field :fax %>
+          <%= ed.text_field :fax %>
         </div>
 
         <div class="profile-input mtop20">
@@ -108,21 +109,22 @@
 
 
         <div class="profile-input mtop20">
-          <label><%= t('profiles.country') %></label>
+          <label><%= t('companyinfo.country') %></label>
 
           <div id="country_org">
-            <%= render :partial => "shared/countries" %>
+            <%= render :partial => "shared/countries", :locals => { :object_collection => "company_information" } %>
           </div>
         </div>
         <div class="profile-input mtop20">
-          <label><%= t('profiles.city') %></label>
+          <label><%= t('companyinfo.city') %></label>
 
           <div id="cities_org">
-            <%= render :partial => "shared/cities" %>
+            <%= render :partial => "shared/cities", :locals => { :object_collection => "company_information" } %>
           </div>
         </div>
 
       </div>
+
       <div class="profile-right-div">
         <div class="profile-input mtop20">
           <label><%= t('profiles.address') %></label>
@@ -130,22 +132,22 @@
         </div>
 
         <div class="profile-input mtop20">
-          <label><%= t('profiles.region') %></label>
-           <div id="regions_org">
-             <%= render :partial => "shared/regions" %>
+          <label><%= t('companyinfo.region') %></label>
+
+          <div id="regions_org">
+            <%= render :partial => "shared/regions", :locals => { :object_collection => "company_information" } %>
           </div>
         </div>
         <div class="profile-input mtop20">
-      <label> <%= t('profiles.picture') %></label>
-      <%= fields_for :org_photo do |org| %>
-          <%= org.file_field :photo %>
-      <% end %>
-    </div>
-  </div>
-
+          <label> <%= t('profiles.picture') %></label>
+          <%= fields_for :org_photo do |org| %>
+              <%= org.file_field :photo %>
+          <% end %>
         </div>
-
-<% end %>
+      </div>
+  <% end %>
 </div>
+
+
 
 

@@ -16,13 +16,13 @@
             </div>
             <div class="reg-location-holder">
               <label>Location</label>
-              <%= render :partial => "shared/countries" %>
+              <%= render :partial => "shared/countries", :locals => { :object_collection => "search" } %>
 
               <div id="regions_search">
-                <%= render :partial => "shared/regions" %>
+                <%= render :partial => "shared/regions", :locals => { :object_collection => "search" } %>
               </div>
               <div id="cities_search">
-                <%= render :partial => "shared/cities" %>
+                <%= render :partial => "shared/cities", :locals => { :object_collection => "search" } %>
               </div>
             </div>
             <div class="reg-button-holder">

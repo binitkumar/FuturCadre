@@ -1,2 +1,6 @@
-<% collection = @cities.present? ? @cities : Country.first.regions.first.cities %>
-<%= select_tag "city_id", options_from_collection_for_select(collection, "id", "name"), :class => "slt-sub-div" %>
+<% collect = @cities.present? ? @cities : Country.first.regions.first.cities %>
+<% if object_collection.blank? %>
+    <%= select_tag "city_id", options_from_collection_for_select(collect, "id", "name"), :class => "slt-sub-div" %>
+<% else %>
+    <%= select_tag "#{object_collection}[city_id]", options_from_collection_for_select(collect, "id", "name"), :class => "slt-sub-div" %>
+<% end %>

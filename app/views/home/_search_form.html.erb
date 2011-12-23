@@ -13,12 +13,12 @@
 
 			<div class="select-holder">
 				<label><%= t('home_job_search_location') %></label>
-				<%= render :partial => "shared/countries" %>
+				<%= render :partial => "shared/countries", :locals => { :object_collection => "" } %>
 				<div id="regions">
-					<%= render :partial => "shared/regions" %>
+					<%= render :partial => "shared/regions", :locals => { :object_collection => "" } %>
 				</div>
 				<div id="cities">
-					<%= render :partial => "shared/cities" %>
+					<%= render :partial => "shared/cities", :locals => { :object_collection => "" } %>
 				</div>
 			</div>
 			<div class="advanced-search"><%= link_to t('home_job_advance_search') %></div>

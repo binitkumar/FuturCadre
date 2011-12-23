@@ -1,20 +1,33 @@
 <script language="JavaScript">
-	function get_regions(th){
-       var cont = $(th).val();
-//       var trigerList = $("div[id^='regions']");
-//       var id = $(this).next("#div").attr("id");
-      	$.ajax({
-	    context: this,
-	    url: "/search/get_regions?country_id="+cont,
-	    type: "GET",
-	    data: $(this).serialize(),
-	    dataType: "json",
-	    success: function(response) {
-       $("#regions").html(response.html);
-        $("#regions_search").html(response.html);
-        $("#regions_org").html(response.html);
-	    }
-	});
-	}
+    function get_regions(th, obj) {
+        var cont = $(th).val();
+        $.ajax({
+            context: this,
+            url: "/search/get_regions?country_id=" + cont + "&obj=" + obj,
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                if (obj == "profile") {
+
+                    $("#regions").html(response.html);
+                }
+                else if (obj == "company_information") {
+                    $("#regions_org").html(response.html);
+                }
+                else if (obj == "job") {
+
+                    $("#regions").html(response.html);
+                }
+                else
+                    $("#regions_search").html(response.html);
+            }
+        });
+    }
 </script>
-<%= select_tag "country_id", options_from_collection_for_select(Country.all, "id", "name"), :class => "slt-div",  :onChange => "get_regions(this)" %>
+
+<% if object_collection.blank? %>
+    <%= select_tag "country_id", options_from_collection_for_select(Country.all, "id", "name"), :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')" %>
+<% else %>
+    <%= select_tag "#{object_collection}[country_id]", options_from_collection_for_select(Country.all, "id", "name"), :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')" %>
+<% end %>

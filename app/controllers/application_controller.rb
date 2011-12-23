@@ -18,10 +18,11 @@ class ApplicationController < ActionController::Base
     @locale = I18n.locale = session[:locale] || I18n.default_locale
   end
 
-  def check_role
-    admin_role = Role.find_all_by_name("webmaster")
-    unless current_user.roles.include?(admin_role)
-      redirect_to "/"
+ def check_role
+    unless current_user.webmaster?
+         redirect_to "/"
+    else
+        redirect_to dashboard_admin_home_index_path
     end
   end
 

@@ -1,4 +1,6 @@
 class Admin::GroupsController < ApplicationController
+  before_filter :check_role
+  before_filter :authenticate_user!
   layout "admin"
 
   def index

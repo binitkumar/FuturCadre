@@ -1,21 +1,34 @@
 <script language="JavaScript">
-	function get_cities(th){
+    function get_cities(th, obj) {
         var cities = $(th).val();
-       	$.ajax({
-	    context: this,
-	    url: "/search/get_cities?region_id="+cities,
-	    type: "GET",
-	    data: $(this).serialize(),
-	    dataType: "json",
-	    success: function(response) {
-           $("#cities").html(response.html);
-          $("#cities_search").html(response.html);
-          $("#cities_org").html(response.html);
-//             $(th).parent().closest("div").html(response.html);
-//             $(th).parent().closest("div").html(response.html);
-	    }
-	});
-	}
+        $.ajax({
+            context: this,
+            url: "/search/get_cities?region_id=" + cities + "&obj=" + obj,
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                if (obj == "profile") {
+
+                    $("#cities").html(response.html);
+                }
+                else if (obj == "company_information") {
+                    $("#cities_org").html(response.html);
+                }
+                else if (obj == "job") {
+
+                    $("#cities").html(response.html);
+                }
+                else
+                    $("#cities_search").html(response.html);
+
+            }
+        });
+    }
 </script>
-<% collection = @regions.present? ? @regions : Country.first.regions %>
-<%= select_tag "region_id", options_from_collection_for_select(collection, "id", "name"), :class => "slt-sub-div", :onChange => "get_cities(this)" %>
+<% collect = @regions.present? ? @regions : Country.first.regions %>
+<% if object_collection.blank? %>
+    <%= select_tag "region_id", options_from_collection_for_select(collect, "id", "name"), :class => "slt-sub-div", :onChange => "get_cities(this,'#{object_collection}')" %>
+<% else %>
+    <%= select_tag "#{object_collection}[region_id]", options_from_collection_for_select(collect, "id", "name"), :class => "slt-sub-div", :onChange => "get_cities(this,'#{object_collection}')" %>
+<% end %>

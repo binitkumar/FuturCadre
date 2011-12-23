@@ -40,7 +40,7 @@
       <label><%= t('profiles.country') %></label>
 
       <div id="country">
-        <%= render :partial => "shared/countries" %>
+        <%= render :partial => "shared/countries", :locals => { :object_collection => "job" } %>
       </div>
     </div>
 
@@ -48,7 +48,7 @@
       <label><%= t('profiles.region') %></label>
 
       <div id="regions">
-        <%= render :partial => "shared/regions" %>
+        <%= render :partial => "shared/regions",:locals => { :object_collection => "job" } %>
       </div>
     </div>
 
@@ -56,7 +56,7 @@
       <label><%= t('profiles.city') %></label>
 
       <div id="cities">
-        <%= render :partial => "shared/cities" %>
+        <%= render :partial => "shared/cities", :locals => { :object_collection => "job" } %>
       </div>
     </div>
   </div>

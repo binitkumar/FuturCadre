@@ -1,17 +1,17 @@
-#class Admin::TranslateController < ActionController::Base
+#class TranslateController < ActionController::Base
 class Admin::TranslateController < ApplicationController
   # It seems users with active_record_store may get a "no :secret given" error if we don't disable csrf protection,
-  skip_before_filter :verify_authenticity_token
+  #skip_before_filter :verify_authenticity_token
 
   prepend_view_path(File.join(File.dirname(__FILE__), "..", "views"))
   layout 'translate'
-
 
   before_filter :init_translations
   before_filter :set_locale
   before_filter :check_role
 
   def index
+
     initialize_keys
     filter_by_key_pattern
     filter_by_text_pattern
@@ -179,7 +179,8 @@ class Admin::TranslateController < ApplicationController
 
   def process_array_parameters(parameter)
     reconstructed_hash = Hash.new
-      parameter.each do |key, value|
+
+    parameter.each do |key, value|
       if value.is_a?(String)
         reconstructed_hash[key] = value
       elsif value.is_a?(Hash)

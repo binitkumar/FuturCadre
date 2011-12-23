@@ -128,4 +128,8 @@ fr:
         default: "Code secret ne correspond pas à l'image"
         user: "L'image et le code secret, étaient différents"
         label: "Tapez le code de l'image"
+  companyinfo:
+      country: "État"
+      region:  "Région"
+      city:    "Ville"
 

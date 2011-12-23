@@ -9,6 +9,9 @@ class Job < ActiveRecord::Base
   has_and_belongs_to_many :skills
   has_and_belongs_to_many :groups
 
+  validates_presence_of :name
+  validates_presence_of :country, :region, :city
+
 
 	def self.search params
 		conditions = []

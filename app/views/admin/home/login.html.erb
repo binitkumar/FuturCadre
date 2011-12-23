@@ -1,15 +1,17 @@
 <% if user_signed_in? %>
-<h2>Webmaster Sign in</h2>
+    <h2>Webmaster Sign in</h2>
 <% else %>
-<% @user = User.new %>
-    <h2> Sign as a admin</h2>
-<%= form_for(@user, :as => @user, :url => session_path(@user)) do |f| %>
-	<div><%= f.label :email %><br />
-		<%= f.email_field :email %></div>
+    <h2> Sign-in with Admin Account</h2>
+    <% @user = User.new %>
+    <%= form_for(@user, :as => @user, :url => session_path(@user)) do |f| %>
+        <div><%= f.label :email %>
+          <br/>
+          <%= f.email_field :email %></div>
 
-	<div><%= f.label :password %><br />
-		<%= f.password_field :password %></div>
-	<div><%= f.submit "Sign in" %></div>
-<% end %>
+        <div><%= f.label :password %>
+          <br/>
+          <%= f.password_field :password %></div>
+        <div><%= f.submit "Sign in" %></div>
+    <% end %>
 
 <% end %>

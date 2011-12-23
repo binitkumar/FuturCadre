@@ -221,4 +221,9 @@ en:
       default: "Secret Code did not match with the Image"
       user: "The secret Image and code were different"
       label: "Type the code from the image"
+  companyinfo:
+      country: "Country"
+      region:  "Region"
+      city:    "City"
+
 

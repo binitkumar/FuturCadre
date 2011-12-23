@@ -1,5 +1,6 @@
 class Admin::CategoriesController < ApplicationController
-
+  before_filter :check_role
+  before_filter :authenticate_user!
 	layout "admin"
   def index
     @categories = Category.main_categories
@@ -67,6 +68,7 @@ class Admin::CategoriesController < ApplicationController
 	end
 
 	def destroy
+
 		@category = Category.find(params[:id])
 		@category.destroy
 		redirect_to admin_categories_url
