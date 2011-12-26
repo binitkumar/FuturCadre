@@ -13,7 +13,7 @@
         <% unless @group.blank? %>
             <h1><%= @group.name %></h1>
 
-            <label><%= t('jobs.employer_type') %></label>
+            <label></label>
 
             </div>
             <div class="network-holder">
@@ -25,17 +25,17 @@
             </div>
             <div class="job-btn-holder">
               <div class="job-btn-left"></div>
-              <div class="job-btn-mid"> Join </div>
+              <div class="job-btn-mid"> Description</div>
               <div class="job-btn-right"></div>
             </div>
             </div>
 
             <div class="result-holder">
-              <div class="description-heading"><%= t('job_descripton') %>:</div>
+              <div class="description-heading"></div>
               <div class="description-text"> <%= @group.description %></div>
               <div class="description-text mtop30">
               </div>
-              <div class="description-heading mtop30">Group Jobs:</div>
+              <div class="description-heading mtop30"></div>
               <div class="description-text"><br>
 
               </div>
@@ -43,28 +43,32 @@
               <div class="description-heading mtop30"></div>
               <div class="description-text">
               </div>
-              <div class="description-heading mtop30">Job's Compensation</div>
+              <div class="description-heading mtop30"></div>
 
-              <div class="description-text"> </div>
+              <div class="description-text"></div>
 
 
               <div class="job-btn-holder">
-                <div class="job-btn-left"></div>
-                <div class="job-btn-mid"><</div>
+                <div class="job-btn-left"> Group Stats</div>
+                <div class="job-btn-mid"></div>
                 <div class="job-btn-right"></div>
               </div>
 
-        <div class="more-similar-jobs"></div>
+              <div class="more-similar-jobs"></div>
+            </div>
+            </div>
+
+            <div class="content-right-holder">
+              <div class="popular-vacancies">
+                <h1><span class="red">Group Jobs </span></h1>
+                <% unless @group_jobs.blank? %>
+                    <% @group_jobs.each do |jgroup| %>
+                        <li><%= link_to jgroup.name, details_jobs_path(:id => jgroup.id), :class => "job-link" %></li>
+
+                    <% end %>
+                    <div class="small-line"></div>
+                    </div>
+
+                <% end %>
+        <% end %>
         </div>
-        </div>
-
-<div class="content-right-holder">
-  <div class="popular-vacancies">
-    <h1><span class="red">Job Stats </span>and requirments</h1>
-
-    <div class="small-line"></div>
-  </div>
-
-
-   <% end %>
-</div>
