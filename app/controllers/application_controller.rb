@@ -21,8 +21,6 @@ class ApplicationController < ActionController::Base
  def check_role
     unless current_user.webmaster?
          redirect_to "/"
-    else
-        redirect_to dashboard_admin_home_index_path
     end
   end
 
