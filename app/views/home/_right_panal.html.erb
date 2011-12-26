@@ -1,27 +1,32 @@
 <div class="content-right-holder">
- 	<div class="popular-vacancies">
-		<h1><span class="red"><%= t('home_popular') %></span> <%= t('home_vacancies') %></h1>
-		<div class="cloud"><%= image_tag asset_path 'cloud.png' %></div>
- 	</div>
+  <div class="popular-vacancies">
+    <h1><span class="red"><%= t('home_popular') %></span> <%= t('home_vacancies') %></h1>
 
- 	<div class="popular-vacancies mto37">
-		<h1><span class="red"><%= t('home_featured') %></span> <%= t('home_groups') %></h1>
-		<ul class="featured-link">
-			<li><a href="#">Creative/Design</a></li>
-			<li><a href="#">Creative/Design</a></li>
-		</ul>
-	</div>
+    <div class="cloud"><%= image_tag asset_path 'cloud.png' %></div>
+  </div>
 
- 	<div class="popular-vacancies mto37">
-		<h1><span class="red"><%= t('home_featured') %></span> <%= t('home_projects') %></h1>
-		<ul class="featured-link">
-			<li><a href="#">Creative/Design</a></li>
-			<li><a href="#">Creative/Design</a></li>
-		</ul>
-	</div>
-	<% if !(params[:controller] == "home" && params[:action] == "index") %>
-		<div class="popular-vacancies mto37">
-			<h1><span class="red"><%= t('home_featured') %></span> <%= t('home_employers') %></h1>
-			<div class="companies"><%= image_tag asset_path 'companies.png' %></div>
-		</div>
-	<%end%>
+  <div class="popular-vacancies mto37">
+    <h1><span class="red"><%= t('home_featured') %></span> <%= t('home_groups') %></h1>
+    <ul class="featured-link">
+      <% unless @groups.blank? %>
+          <% @groups.each do |group| %>
+              <li><%= link_to group.name %></li>
+          <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="popular-vacancies mto37">
+    <h1><span class="red"><%= t('home_featured') %></span> <%= t('home_projects') %></h1>
+    <ul class="featured-link">
+      <li><a href="#">Creative/Design</a></li>
+      <li><a href="#">Creative/Design</a></li>
+    </ul>
+  </div>
+  <% if !(params[:controller] == "home" && params[:action] == "index") %>
+      <div class="popular-vacancies mto37">
+        <h1><span class="red"><%= t('home_featured') %></span> <%= t('home_employers') %></h1>
+
+        <div class="companies"><%= image_tag asset_path 'companies.png' %></div>
+      </div>
+  <% end %>
