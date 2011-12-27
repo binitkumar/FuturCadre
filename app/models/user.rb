@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
 		return "webmaster" if webmaster?
 		return "employer" if employer?
 		return "job_seeker" if job_seeker?
+    return "group_manager" if group_manager?
 	end
 
 	def webmaster?
@@ -32,6 +33,9 @@ class User < ActiveRecord::Base
 
 	def job_seeker?
 		roles.include?(Role.find_by_name("job_seeker"))
-	end
+  end
+  def group_manager
+    roles.include?(Role.find_all_by_name("group_manager"))
+  end
 
 end

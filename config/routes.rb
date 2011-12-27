@@ -18,6 +18,7 @@ FuturCadre::Application.routes.draw do
       collection do
         get :login
         get :dashboard
+
       end
     end
     match 'translate' => 'translate#index', :as => :translate_list
@@ -27,8 +28,12 @@ FuturCadre::Application.routes.draw do
       collection do
         get :index
         get :new
+        post :create
+        get :edit
+        get :new_job_group, :job_groups
         post :create_job_group
         get :destroy
+        get :edit_job_group
 
       end
 
@@ -110,7 +115,9 @@ FuturCadre::Application.routes.draw do
   resources :groups do
     collection do
        get :index
-       get :details
+       get :group_details
+       get :request_join
+       get :join_group
     end
   end
 

@@ -1,3 +1,120 @@
 // Place all the styles related to the Groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.groups-left{
+	float:left;
+	width:254px;
+}
+.groups-right{
+	float:right;
+	width:680px;
+	margin-right:20px;
+	margin-top:10px;
+}
+.groups-link{
+	float:left;
+	width:100%;
+	margin-top:10px;
+	list-style:none;
+}
+.groups-link li{
+    float: left;
+    width: auto;
+}
+.groups-link li a{
+    background:  url(asset_path('groups-links-gray-bg.png',image)) no-repeat scroll 0 0 transparent;
+    color: #000000;
+    float: left;
+    font-size: 12px;
+    height: 16px;
+    margin-bottom: 4px;
+    padding: 2px 10px;
+    text-decoration: none;
+    width: 254px;
+}
+.act-group a, .groups-link li a:hover{
+    background:  url(asset_path('group-act.png',image)) no-repeat scroll 0 0 transparent;
+	color:#fff!important;
+}
+.groups-heading-hold{
+	float:left;
+	width:530px;
+}
+.groups-heading-hold h1{
+	float:left;
+	width:100%;
+	font-size:18px;
+	color:#991514;
+	font-weight:bold;
+}
+.groups-heading-hold p{
+	float:left;
+	width:100%;
+	font-size:14px;
+	color:#747474;
+}
+.join-group-hold{
+	float:right;
+	width:auto;
+}
+.join-group-hold a{
+     background:  url(asset_path('findjob-bg.png',image)) repeat-x scroll 0 0 transparent;
+	border: 1px solid #7B0C26;
+    color: #FFFFFF;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 10px;
+    text-decoration: none;
+}
+.group-details-hold{
+	float:left;
+	width:100%;
+	margin-top:20px;
+}
+.grpup-img-hold{
+	float:left;
+	width:142px;
+	height:92px;
+	border:1px solid #000;
+}
+.grpup-img-details-hold{
+	float:right;
+	width:520px;
+	font-size:12px;
+	color:#333;
+	line-height:18px;
+}
+.groups-line{
+     background:  url(asset_path('groups-line.png',image)) repeat-x scroll 0 0 transparent;
+	float: left;
+    height: 8px;
+    width: 100%;
+}
+.group-cont-hold{
+	float: left;
+    margin-left: 10px;
+    width: 584px;
+}
+.group-result-holder{
+    float: left;
+    margin-top: 20px;
+    width: 100%;
+}
+.group-day {
+    color: #4C4C4C;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: right;
+    width: 10%;
+}
+
+.border{
+    border-bottom: 1px dashed #990000;
+    padding-bottom: 20px;
+    }

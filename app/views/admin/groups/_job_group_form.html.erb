@@ -1,0 +1,17 @@
+<% if @job_group.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@job_group.errors.count, "error") %> prohibited this job group from being saved:</h2>
+
+		<ul>
+			<% @job_group.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<div class="field">
+	<label>List of Available Jobs</label><br/>
+	<%= select_tag :job_id, options_from_collection_for_select(Job.all, "id", "name") %>
+</div>
+

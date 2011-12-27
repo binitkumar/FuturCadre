@@ -1,0 +1,43 @@
+<div class="groups-right">
+  <div class="w100">
+    <div class="groups-heading-hold">
+       <% if group.present? %>
+              <h1><%= group.name %></h1>
+              <p> <%= group.created_at.strftime("%d-%m-%Y") %><span class="red"></span> - Have
+            <span class="red">3698</span> Members -
+            <span class="red"><%= group.jobs.count %></span> open jobs</p>
+          </div>
+          <div class="join-group-hold"><%= link_to "Join Group", request_join_groups_path(:id => group.id),:class => "join-request"  %></div>
+          </div>
+
+          <div class="group-details-hold">
+            <div class="grpup-img-hold"></div>
+            <div class="grpup-img-details-hold"><%= group.description %>
+            </div>
+          </div>
+          <div class="basic-info mtop10">
+            <h1><span class="red"><%= group.jobs.count %></span> open jobs</h1>
+
+            <div class="groups-line"></div>
+          </div>
+          <% unless group.jobs.blank? %>
+              <% group.jobs.each do |gjob| %>
+                  <div class="w100 border">
+                    <div class="group-cont-hold">
+                      <div class="group-result-holder">
+                        <div class="accountants"><%= link_to gjob.name, details_jobs_path(:id => gjob.id), :class => "job-link" %></div>
+                        <div class="result-text"><%= gjob.employer.name %>,<%= gjob.location %></div>
+                        <div class="result-text"><%= gjob.description %>
+                        </div>
+                        <div class="date-text"><%= gjob.created_at.strftime("%d-%m-%Y") %>
+                          <a href="#">Apply</a></div>
+                      </div>
+                    </div>
+                    <div class="group-day">3 days to go</div>
+
+                  </div>
+              <% end %>
+          <% end %>
+
+      <% end %>
+      </div>

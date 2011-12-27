@@ -1,12 +1,38 @@
-<div class="result-holder">
-<h1>Group Index</h1>
+<%= render :partial => "shared/top_search_ box" %>
+<div class="content-holder">
+ <% count = 0 %>
+  <div class="basic-info mtop10">
+    <h1><span class="red">Groups</span></h1>
+    <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+  </div>
+  <div class="w100">
+    <div class="groups-left">
+      <% unless @groups.blank? %>
+          <ul class="groups-link">
+            <% @groups.each do |group| %>
+                <li>
+                  <div class="accountants"><%= link_to group.name, group_details_groups_path(:id => group.id), :class => "group-link" %></div>
+                </li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
 
- <% if @groups.present? %>
-	<% @groups.each do |group| %>
-	<div class="accountants"><%= link_to group.name,details_groups_path(:id => group.id) ,:class => "job-link" %></div>
-          <div class="result-text"><%= group.description %></div>
-	<% end %>
- <% else %>
-        Sorry! No Group Found.
- <% end %>
+    <div class="groups-right">
+       <% if count == 0 %>
+        <%= render :partial => "first_group_details", :locals => {:group => Group.first} %>
+         <% count= count +1 %>
+        <% else %>
+          <%= render :partial => "group_details" %>
+        <% end %>
+    </div>
+
+  </div>
+
+
 </div>
+
+
+
+
+

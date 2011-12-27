@@ -1,0 +1,18 @@
+<h1>Listing Job Group for <%= @group.name %></h1>
+<%= link_to 'Add New Job Group', new_job_group_admin_groups_path(:id => @group.id ) %><br />
+  <table>
+  <tr>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+	<% if @group_jobs.present? %>
+		<% @group_jobs.each do |group_job| %>
+			<tr>
+				<td><%= group_job.name %></td>
+				<td>
+
+				</td>
+			</tr>
+		<% end %>
+	<%end%>
+</table>
