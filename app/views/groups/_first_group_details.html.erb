@@ -1,27 +1,32 @@
 <div class="groups-right">
   <div class="w100">
     <div class="groups-heading-hold">
-       <% if group.present? %>
-              <h1><%= group.name %></h1>
-              <p> <%= group.created_at.strftime("%d-%m-%Y") %><span class="red"></span> - Have
+      <% if @group.present? %>
+          <h1><%= @group.name %></h1>
+
+          <p> <%= @group.created_at.strftime("%d-%m-%Y") %><span class="red"></span> - Have
             <span class="red">3698</span> Members -
-            <span class="red"><%= group.jobs.count %></span> open jobs</p>
+            <span class="red"><%= @group.jobs.count %></span> open jobs</p>
           </div>
-          <div class="join-group-hold"><%= link_to "Join Group", request_join_groups_path(:id => group.id),:class => "join-request"  %></div>
+          <% if !user_signed_in? %>
+              <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
+          <% elsif current_user.is_member(@group.id)== false %>
+              <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
+          <% end %>
           </div>
 
           <div class="group-details-hold">
             <div class="grpup-img-hold"></div>
-            <div class="grpup-img-details-hold"><%= group.description %>
+            <div class="grpup-img-details-hold"><%= @group.description %>
             </div>
           </div>
           <div class="basic-info mtop10">
-            <h1><span class="red"><%= group.jobs.count %></span> open jobs</h1>
+            <h1><span class="red"><%= @group.jobs.count %></span> open jobs</h1>
 
             <div class="groups-line"></div>
           </div>
-          <% unless group.jobs.blank? %>
-              <% group.jobs.each do |gjob| %>
+          <% unless @group.jobs.blank? %>
+              <% @group.jobs.each do |gjob| %>
                   <div class="w100 border">
                     <div class="group-cont-hold">
                       <div class="group-result-holder">
@@ -41,3 +46,23 @@
 
       <% end %>
       </div>
+
+
+<script type="text/javascript">
+    function join_request(gid) {
+        var group_id = gid;
+    <%if user_signed_in?%>
+        $.ajax({
+            url: '/groups/request_join?group_id=' + group_id, type: 'get', dataType: 'html',
+            processData: false,
+            success: function(data) {
+                alert("Your request has been successful!", 'From the Future Cadre Help Center:');
+
+            }});
+
+    <%else%>
+        alert("You need to sign-in before joining a group!", 'From the Future Cadre Help Center:');
+        window.location.href = "/sign_in";
+    <%end%>
+    }
+</script>

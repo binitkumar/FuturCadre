@@ -19,12 +19,7 @@
     </div>
 
     <div class="groups-right">
-       <% if count == 0 %>
-        <%= render :partial => "first_group_details", :locals => {:group => Group.first} %>
-         <% count= count +1 %>
-        <% else %>
-          <%= render :partial => "group_details" %>
-        <% end %>
+        <%= render :partial => "first_group_details", :locals => {:group => @group} %>
     </div>
 
   </div>
