@@ -20,6 +20,18 @@ class GroupsController < ApplicationController
     @group = Group.find_by_id(params[:group_id])
     @user  = User.find_by_id(current_user.id)
     @user.groups << Group.find_by_id(@group.id)
-    render :text => "ok"
+    render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
   end
+
+
+  def group_page
+    @group_page = Group.find(params[:gid])
+    @s_job      = Job.find(params[:id])
+  end
+
+  def group_job
+
+  end
+
+
 end

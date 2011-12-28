@@ -114,10 +114,12 @@ FuturCadre::Application.routes.draw do
 
   resources :groups do
     collection do
-       get :index
-       get :group_details
-       get :request_join
-       get :join_group
+      get :index
+      get :group_details
+      get :request_join
+      get :join_group
+      get :group_job
+      get :group_page
     end
   end
 

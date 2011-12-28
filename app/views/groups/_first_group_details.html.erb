@@ -5,7 +5,7 @@
           <h1><%= @group.name %></h1>
 
           <p> <%= @group.created_at.strftime("%d-%m-%Y") %><span class="red"></span> - Have
-            <span class="red">3698</span> Members -
+            <span class="red"><%= @group.users.count %></span> Members -
             <span class="red"><%= @group.jobs.count %></span> open jobs</p>
           </div>
           <% if !user_signed_in? %>
@@ -30,7 +30,7 @@
                   <div class="w100 border">
                     <div class="group-cont-hold">
                       <div class="group-result-holder">
-                        <div class="accountants"><%= link_to gjob.name, details_jobs_path(:id => gjob.id), :class => "job-link" %></div>
+                        <div class="accountants"><%= link_to gjob.name, group_page_groups_path(:id => gjob.id, :gid => @group.id)%></div>
                         <div class="result-text"><%= gjob.employer.name %>,<%= gjob.location %></div>
                         <div class="result-text"><%= gjob.description %>
                         </div>
@@ -53,12 +53,15 @@
         var group_id = gid;
     <%if user_signed_in?%>
         $.ajax({
-            url: '/groups/request_join?group_id=' + group_id, type: 'get', dataType: 'html',
+            url: '/groups/request_join?group_id=' + group_id, type: 'get',
             processData: false,
+            data: $(this).serialize(),
+            dataType: "json",
             success: function(data) {
                 alert("Your request has been successful!", 'From the Future Cadre Help Center:');
-
+                  $(".groups-right").html(data.html);
             }});
+        return false;
 
     <%else%>
         alert("You need to sign-in before joining a group!", 'From the Future Cadre Help Center:');
