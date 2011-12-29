@@ -7,3 +7,42 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+//
+//
+//function test()
+//{
+//
+//      var id = $("#1")
+//      alert(id);
+//        $.ajax({
+//            context: this,
+//            url: $(this).attr("href"),
+//            type: "GET",
+//            data: $(this).serialize(),
+//            dataType: "json",
+//            success: function(response) {
+//               alert(response);
+//                $(".content-holder").html(response.html);
+//            }
+//        });
+//
+
+    //}
+
+
+$(document).ready(function() {
+  return $("a.group-link").click(function() {
+    $.ajax({
+      context: this,
+      url: $(this).attr("href"),
+      type: "GET",
+      data: $(this).serialize(),
+      dataType: "json",
+      success: function(response) {
+        return $(".groups-right").html(response.html);
+      }
+    });
+    return false;
+  });
+});

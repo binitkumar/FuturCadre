@@ -116,10 +116,10 @@ puts 'Deleting existing groups......'
 groups = Group.all
 
 groups.each { |group| group.destroy } if groups.present?
-puts "creating Skills"
-groups = Group.create!([{ :name => 'Software Developers', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :featured => true },
-                        { :name => 'Electrical Engineers', :description => "Group for EE Engineers e.g. electro, power, hydro, control ", :featured => true },
-                        { :name => 'Social Responsibility', :description => "Discussion place for Social responsibility ", :featured => true },
+puts "creating Groups"
+groups = Group.create!([{ :name => 'Software Developers', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :featured => true, :owner => User.first },
+                        { :name => 'Electrical Engineers', :description => "Group for EE Engineers e.g. electro, power, hydro, control ", :featured => true, :owner => User.first },
+                        { :name => 'Social Responsibility', :description => "Discussion place for Social responsibility ", :featured => true, :owner => User.first },
                        ])
 groups.each do |group|
   group.jobs << Job.find_by_name("testJob0")

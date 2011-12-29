@@ -4,6 +4,7 @@ class CreateGroups < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.boolean :featured
+      t.integer :owner_id
       t.timestamps
     end
   end
