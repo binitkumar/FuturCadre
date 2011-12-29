@@ -58,14 +58,13 @@
             data: $(this).serialize(),
             dataType: "json",
             success: function(data) {
-                alert("Your request has been successful!", 'From the Future Cadre Help Center:');
+
                   $(".groups-right").html(data.html);
             }});
         return false;
 
     <%else%>
-        alert("You need to sign-in before joining a group!", 'From the Future Cadre Help Center:');
-        window.location.href = "/sign_in";
+           window.location.href = "/sign_in";
     <%end%>
     }
 </script>

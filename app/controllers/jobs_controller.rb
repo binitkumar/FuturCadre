@@ -1,19 +1,23 @@
 class JobsController < ApplicationController
 
-	def show
+  def show
     @job = Job.find_by_id(params[:id])
-	end
+  end
 
-	def details
-   @job = Job.find_by_id(params[:id])
-    render :json => {:html => render_to_string(:partial => '/jobs/details')}.to_json
+  def details
+    @job = Job.find_by_id(params[:id])
+
+    if params[:sid]=="job"
+    render :json => { :html => render_to_string(:partial => '/jobs/details') }.to_json
+    else
+    render :json => { :html => render_to_string(:partial => '/groups/group_job') }.to_json
+    end
   end
 
 
-
   def new
-    @job= Job.new
-    @skill = Skill.new(params[:skills])
+    @job            = Job.new
+    @skill          = Skill.new(params[:skills])
     @responsibility = Responsibility.new(params[:respon])
 
   end
@@ -42,6 +46,11 @@ class JobsController < ApplicationController
     else
       redirect_to :action => "new"
     end
+  end
+
+
+  def apply_job
+
   end
 
 end

@@ -1,13 +1,13 @@
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
 
-
-  <div class="basic-info mtop10">
-    <h1><span class="red">Groups</span></h1>
-    <%= image_tag asset_path 'basic-info-bot-bar.png' %>
-
-  </div>
   <% if @group_page.present? %>
+      <div class="basic-info mtop10">
+        <h1><span class="red">Groups</span></h1>
+        <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+
+      </div>
+
       <div class="w100">
         <div class="groups-jobs-left">
           <% if !user_signed_in? %>
@@ -18,98 +18,132 @@
           <div class="admin-hold">
             <div class="admin-top-hold"><h1><%= @group_page.name %> administrator</h1></div>
             <div class="admin-mid-hold">
-              <div class="admin-name"><%= %></div>
-              <div class="admin-link"><a href="#">Contact administrator</a></div>
+
+              <div class="admin-name"><%= @group_page.owner.name %></div>
+              <div class="admin-link"><%= link_to "Contact administrator #{@group_page.owner.email}" %></div>
             </div>
             <div class="admin-bot-hold"></div>
           </div>
-
-          <div class="admin-hold">
-            <div class="admin-top-hold"><h1>featured members </h1></div>
-            <div class="admin-mid-hold">
-              <% unless @group_page.users.blank? %>
-                  <% @group_page.users.each do |group_user| %>
+          <% unless @group_page.users.blank? %>
+              <% @group_page.users.each do |group_user| %>
+                  <div class="admin-hold">
+                    <div class="admin-top-hold"><h1>featured members </h1></div>
+                    <div class="admin-mid-hold">
                       <div class="admin-profile">
                         <div class="admin-profile-left"></div>
                         <div class="admin-profile-right">
-                         <h1><%= group_user.profile.full_name %> </h1>
-                           <p>sit amet, consectetur </p>
+                          <h1><%= group_user.profile.full_name %> </h1>
+
+                          <p>sit amet, consectetur </p>
 
                         </div>
                       </div>
                       <div class="admin-link"><a href="#">View all members</a></div>
-                      </div>
-                      <div class="admin-bot-hold"></div>
-                  <% end %>
+                    </div>
+                    <div class="admin-bot-hold"></div>
+                  </div>
+
               <% end %>
+          <% else %>
+              <div class="admin-hold">
+                <div class="admin-top-hold"><h1>featured members </h1></div>
+                <div class="admin-mid-hold">
+                  <div class="admin-profile">
+                    <div class="admin-profile-right">
+                      <h1> Currently No Registered Users! </h1>
+
+                      <p></p>
+
+                    </div>
+                  </div>
+                  <div class="admin-link"></div>
+                </div>
+                <div class="admin-bot-hold"></div>
+              </div>
               </div>
 
-        </div>
+          <% end %>
+          <div class="groups-right">
+            <ul class="group-links">
+              <li class="group-link-act"><a href="#">The Wall</a></li>
+              <li><%= link_to "Job Description", details_jobs_path(:id => @s_job.id, :sid => "group"), :class => "group-job-link"%></li>
+              <li><a href="#">Members</a></li>
+              <li><a href="#">Offers</a></li>
+              <li><a href="#">Questions</a></li>
+            </ul>
+            <div class="groups-line"></div>
 
-        <div class="groups-right">
-          <ul class="group-links">
-            <li class="group-link-act"><a href="#">The Wall</a></li>
-            <li><%= link_to "Job Description","job-link" %></li>
-            <li><a href="#">Members</a></li>
-            <li><a href="#">Offers</a></li>
-            <li><a href="#">Questions</a></li>
-          </ul>
-          <div class="groups-line"></div>
-
-          <div class="post-hold">
-            <div class="post-left-hold"></div>
-            <div class="post-right-hold">
-              <textarea></textarea>
-              <input type="submit" value="Post"/>
-            </div>
-          </div>
-
-          <div class="w100 mtop20">
-            <div class="post-left-hold"></div>
-            <div class="post-cont-hold">
-              <h1>Username longer</h1>
-
-              <p>Now that's BS! ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore e Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit, sed do eiusmod tempor incididunt ut labore et ... <a href="#">more</a></p>
-
-              <div class="like-hold"><a href="#">Like</a> - <a href="#">Share</a> - 17 minutes ago</div>
+            <div class="post-hold">
+              <div class="post-left-hold"></div>
+              <div class="post-right-hold">
+                <textarea></textarea>
+                <input type="submit" value="Post"/>
+              </div>
             </div>
 
-          </div>
+            <div class="w100 mtop20">
+              <div class="post-left-hold"></div>
+              <div class="post-cont-hold">
+                <h1>Username longer</h1>
 
-          <div class="w100 mtop20">
-            <div class="post-left-hold"></div>
-            <div class="post-cont-hold">
-              <h1>Username longer</h1>
+                <p>Now that's BS! ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                  eiusmod tempor incididunt ut labore e Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit, sed do eiusmod tempor incididunt ut labore et ... <a href="#">more</a></p>
 
-              <p>Now that's BS! ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore e Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit, sed do eiusmod tempor incididunt ut labore et ... <a href="#">more</a></p>
+                <div class="like-hold"><a href="#">Like</a> - <a href="#">Share</a> - 17 minutes ago</div>
+              </div>
 
-              <div class="like-hold"><a href="#">Like</a> - <a href="#">Share</a> - 17 minutes ago</div>
             </div>
 
-          </div>
+            <div class="w100 mtop20">
+              <div class="post-left-hold"></div>
+              <div class="post-cont-hold">
+                <h1>Username longer</h1>
 
-          <div class="w100 mtop20">
-            <div class="post-left-hold"></div>
-            <div class="post-cont-hold">
-              <h1>Username longer</h1>
+                <p>Now that's BS! ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                  eiusmod tempor incididunt ut labore e Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit, sed do eiusmod tempor incididunt ut labore et ... <a href="#">more</a></p>
 
-              <p>Now that's BS! ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore e Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit, sed do eiusmod tempor incididunt ut labore et ... <a href="#">more</a></p>
+                <div class="like-hold"><a href="#">Like</a> - <a href="#">Share</a> - 17 minutes ago</div>
+              </div>
 
-              <div class="like-hold"><a href="#">Like</a> - <a href="#">Share</a> - 17 minutes ago</div>
             </div>
 
+            <div class="w100 mtop20">
+              <div class="post-left-hold"></div>
+              <div class="post-cont-hold">
+                <h1>Username longer</h1>
+
+                <p>Now that's BS! ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                  eiusmod tempor incididunt ut labore e Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit, sed do eiusmod tempor incididunt ut labore et ... <a href="#">more</a></p>
+
+                <div class="like-hold"><a href="#">Like</a> - <a href="#">Share</a> - 17 minutes ago</div>
+              </div>
+
+            </div>
+
+
           </div>
-
-
-        </div>
-      </div>
+          </div>
 
   <% end %>
+  <div id="1"></div>
 </div>
+
+<script language="JavaScript">
+    $("a.group-job-link").click(function() {
+          $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                $(".content-holder").html(response.html);
+            }
+        });
+        return false;
+    });
+ </script>
 

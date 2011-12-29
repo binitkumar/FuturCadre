@@ -71,7 +71,8 @@
 }
 
    .save-button input[type="submit"] {
-    background:  url(asset_path('findjob-bg.png',image)) repeat-x scroll 0 0 transparent;
+    background: url(asset_path('reg-me.png',image)) repeat-x scroll 0 0 transparent;
+    /*background:  url(asset_path('findjob-bg.png',image)) repeat-x scroll 0 0 transparent;*/
     /*background: url("/assets/findjob-bg.png") repeat-x scroll 0 0 transparent;*/
     border: 1px solid #7B0C26;
     color: #FFFFFF;
@@ -82,4 +83,5 @@
     line-height: 24px;
     padding: 0 10px;
     text-decoration: none;
+    padding-bottom: 10px;
     }
