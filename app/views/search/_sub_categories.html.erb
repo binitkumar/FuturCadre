@@ -21,7 +21,7 @@
 			<%end%>
 		<%elsif @jobs.present?%>
            <%= @jobs.each do |cat_job| %>
-			<li><%= link_to cat_job.name, jobs_list_search_index_path(:id => cat_job.id ), :class => "sub-category-link" %></li>
+			<li><%= link_to cat_job.name,  details_jobs_path(:id => cat_job.id ), :class => "sub-category-link" %></li>
            <% end %>
           <%else%>
 			<li><a>No Sub Category present yet.</a></li>

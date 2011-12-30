@@ -17,7 +17,7 @@
 	<ul class="inner-links">
 		<% if @jobs.present? %>
 			<%  @jobs.each do |job| %>
-				<li><%= link_to job.name, jobs_list_search_index_path(:id => job.id ), :class => "sub-category-link" %></li>
+				<li><%= link_to job.name,  details_jobs_path(:id => job.id ), :class => "sub-category-link" %></li>
 			<%end%>
 		<%else%>
 			<li><a>No Sub Category present yet.</a></li>
