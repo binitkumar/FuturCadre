@@ -1,0 +1,39 @@
+<div class="delete_result">
+  <% if params[:action]== "edit" %>
+      <label> Selected Jobs </label><br/>
+
+      <% @group_jobs.each do |g_job| %>
+
+          <div class="field">
+            <%= g_job.name %><%= link_to_function "Delete Job", "remove_job(#{g_job.id},#{@group.id});" %>
+
+          </div>
+      <% end %>
+      <%= select_tag :job_id, options_from_collection_for_select(@jobs, "id", "name"), :multiple => true %>
+  <% else %>
+      <div class="field">
+        <label> Jobs </label><br/>
+        <%= select_tag :job_id, options_from_collection_for_select(Job.all, "id", "name"), :multiple => true %>
+      </div>
+
+  <% end %>
+</div>
+<script type="text/javascript">
+    function remove_job(jobid, gid) {
+        var id = jobid;
+        var gid = gid;
+        $.ajax({
+            url: '/admin/groups/remove_job?group_id=' + gid + '&job_id=' + jobid, type: 'get',
+            processData: false,
+//            data: $(this).serialize(),
+//            dataType: "json",
+            success: function(data) {
+                alert(data);
+
+                $(".delete_result").html(data);
+            }});
+        return false;
+
+
+    }
+</script>

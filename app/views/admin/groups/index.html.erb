@@ -6,17 +6,15 @@
     <th>Actions</th>
   </tr>
 
-	<% @groups.each do |group| %>
-		<tr>
-			<td><%= group.name %></td>
-
-			<td><%= link_to 'Job',  new_job_group_admin_groups_path(:id => group.id) %> |
-              <%= link_to 'School' %> |
-                <%= link_to 'Edit', edit_admin_group_path(group) %> |
-				<%= link_to 'Destroy',admin_group_path(group), :confirm => 'Are you sure?', :method => :delete %>
-			</td>
-		</tr>
-	<% end %>
+  <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_group_path(group) %> |
+          <%= link_to 'Destroy', admin_group_path(group), :confirm => 'Are you sure?', :method => :delete %>
+        </td>
+      </tr>
+  <% end %>
 </table>
 
 

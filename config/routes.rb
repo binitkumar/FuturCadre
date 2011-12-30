@@ -34,6 +34,7 @@ FuturCadre::Application.routes.draw do
         post :create_job_group
         get :destroy
         get :edit_job_group
+        get :remove_job
 
       end
 
