@@ -18,7 +18,7 @@
   <% unless @group.jobs.blank? %>
       <% @group.jobs.each do |group_job| %>
           <div class="w100 mtop20">
-            <div class="post-cont-hold">
+            <div class="job-cont-hold">
               <div class="accountants"><%= link_to group_job.name, details_jobs_path(:id => group_job.id, :sid=> "group"), :class => "group-job-link" %> </div>
               <div class="result-text">  <%= group_job.employer.name %>,<%= group_job.location %></div>
               <div class="result-text"><%= group_job.description %> </div>
