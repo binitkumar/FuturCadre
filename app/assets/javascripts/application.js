@@ -30,9 +30,8 @@
 
     //}
 
-
 $(document).ready(function() {
-  return $("a.group-link").click(function() {
+    $("a.group-link").click(function() {
     $.ajax({
       context: this,
       url: $(this).attr("href"),
@@ -40,9 +39,37 @@ $(document).ready(function() {
       data: $(this).serialize(),
       dataType: "json",
       success: function(response) {
-        return $(".groups-right").html(response.html);
+        return $(".group-result").html(response.html);
       }
     });
     return false;
   });
+//     $("a.members_link").click(function() {
+//
+//    $.ajax({
+//      context: this,
+//      url: $(this).attr("href"),
+//      type: "GET",
+//      data: $(this).serialize(),
+//      dataType: "json",
+//      success: function(response) {
+//        return $(".group-result").html(response.html);
+//      }
+//    });
+//    return false;
+//  });
+//     $("a.offers-link").click(function() {
+//
+//    $.ajax({
+//      context: this,
+//      url: $(this).attr("href"),
+//      type: "GET",
+//      data: $(this).serialize(),
+//      dataType: "json",
+//      success: function(response) {
+//        return $(".group-result").html(response.html);
+//      }
+//    });
+//    return false;
+//  });
 });

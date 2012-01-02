@@ -4,3 +4,21 @@
  width: 47%;
  margin-top:20px;
  }
+
+ .reg-me {
+  background: url(asset_path('reg-me.png',image)) repeat-x scroll 0 0 transparent;
+  border: 1px solid #7B0C26;
+  float: left;
+  height: 38px;
+  line-height: 38px;
+  margin-top: 37px;
+  padding: 0 20px;
+  width: auto;
+  cursor: pointer;
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 21px;
+    color: #fff;
+
+   } }

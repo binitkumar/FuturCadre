@@ -23,14 +23,34 @@ class GroupsController < ApplicationController
     render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
   end
 
+  def group_members
+    member_partial = params[:sid]
+    @group         = Group.find(params[:id])
+    @group_jobs    = @group.jobs
+    render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group, :sid => member_partial }) }.to_json
+
+  end
+
+  def group_jobs
+
+    job_partial = params[:sid]
+    @group      = Group.find(params[:id])
+    @group_jobs = @group.jobs
+    render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group, :sid => job_partial }) }.to_json
+  end
+
 
   def group_page
     @group_page = Group.find(params[:gid])
     @s_job      = Job.find(params[:id])
   end
 
-  def group_job
-
+  def show_group
+    @group = Group.find(params[:id])
+    @groups = Group.all
+    respond_to do |format|
+      format.html # show.html.erb
+    end
   end
 
 

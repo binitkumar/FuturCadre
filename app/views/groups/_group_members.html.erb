@@ -1,0 +1,37 @@
+<div class="mid-cont-holder">
+
+
+  <div class="w100 mtop20">
+       <div class="post-cont-hold">
+      <% unless @group.users.blank? %>
+          <% @group.users.each do |group_user| %>
+              <div class="w100 mtop20">
+                <div class="post-cont-hold">
+                  <% if group_user.profile.blank? %>
+                      <h1><%= group_user.name %> </h1>
+
+                      <p>sit amet, consectetur </p>
+                  <% else %>
+                      <h1><%= group_user.profile.full_name %> </h1>
+
+                      <p>sit amet, consectetur </p>
+                  <% end %>
+                </div>
+              </div>
+          <% end %>
+      <% end %>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+

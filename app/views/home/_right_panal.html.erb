@@ -10,7 +10,7 @@
     <ul class="featured-link">
       <% unless @groups.blank? %>
           <% @groups.each do |group| %>
-              <li><%= link_to group.name, show_group_groups_path(:id => group.id), :class => "group-link" %></li>
+              <li><%= link_to group.name, show_group_groups_path(:id => group.id)%></li>
           <% end %>
       <% end %>
     </ul>
@@ -31,3 +31,4 @@
       </div>
   <% end %>
   </div>
+

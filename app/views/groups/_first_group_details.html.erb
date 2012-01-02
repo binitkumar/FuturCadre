@@ -1,18 +1,76 @@
-<div class="groups-right">
-  <div class="w100">
-    <div class="groups-heading-hold">
-      <% if @group.present? %>
-          <h1><%= @group.name %></h1>
-
-          <p> <%= @group.created_at.strftime("%d-%m-%Y") %><span class="red"></span> - Have
-            <span class="red"><%= @group.users.count %></span> Members -
-            <span class="red"><%= @group.jobs.count %></span> open jobs</p>
+<div class="group-result">
+  <div class="groups-jobs-left">
+    <% if @group.present? %>
+        <div class="admin-hold">
+          <div class="admin-top-hold"><h1><%= @group.name %> Administrator </h1></div>
+          <div class="admin-mid-hold">
+            <div class="admin-name"><%= @group.owner.name %></div>
+            <div class="admin-link"><%= link_to "Contact administrator #{@group.owner.email}" %></div>
           </div>
-          <% if !user_signed_in? %>
-              <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
-          <% elsif current_user.is_member(@group.id)== false %>
-              <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
-          <% end %>
+          <div class="admin-bot-hold"></div>
+        </div>
+
+        <% unless @group.users.blank? %>
+            <% @group.users.each do |group_user| %>
+
+                <div class="admin-hold">
+                  <div class="admin-top-hold"><h1>featured members </h1></div>
+                  <div class="admin-mid-hold">
+                    <div class="admin-profile">
+                      <div class="admin-profile-left"></div>
+                      <div class="admin-profile-right">
+                        <% if group_user.profile.blank? %>
+                            <h1><%= group_user.name %> </h1>
+
+                            <p>sit amet, consectetur </p>
+                        <% else %>
+                            <h1><%= group_user.profile.full_name %> </h1>
+
+                            <p>sit amet, consectetur </p>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="admin-link"><a href="#">View all members</a></div>
+                  </div>
+                  <div class="admin-bot-hold"></div>
+                </div>
+
+            <% end %>
+        <% else %>
+            <div class="admin-hold">
+              <div class="admin-top-hold"><h1>featured members </h1></div>
+              <div class="admin-mid-hold">
+                <div class="admin-profile">
+                  <div class="admin-profile-right">
+                    <h1> Currently No Registered Users! </h1>
+
+                    <p></p>
+
+                  </div>
+                </div>
+                <div class="admin-link"></div>
+              </div>
+              <div class="admin-bot-hold"></div>
+            </div>
+        <% end %>
+        </div>
+
+        <div class="groups-mid-cont">
+
+          <div class="w100">
+            <div class="groups-heading-hold">
+
+              <h1><%= @group.name %></h1>
+
+              <p> <%= @group.created_at.strftime("%d-%m-%Y") %> </span> -
+                <span class="red"> <%= @group.users.count %></span> Members -
+                <span class="red"> <%= @group.jobs.count %> </span> jobs</p>
+            </div>
+            <% if !user_signed_in? %>
+                <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
+            <% elsif current_user.is_member(@group.id)== false %>
+                <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
+            <% end %>
           </div>
 
           <div class="group-details-hold">
@@ -20,33 +78,30 @@
             <div class="grpup-img-details-hold"><%= @group.description %>
             </div>
           </div>
-          <div class="basic-info mtop10">
-            <h1><span class="red"><%= @group.jobs.count %></span> open jobs</h1>
 
-            <div class="groups-line"></div>
-          </div>
-          <% unless @group.jobs.blank? %>
-              <% @group.jobs.each do |gjob| %>
-                  <div class="w100 border">
-                    <div class="group-cont-hold">
-                      <div class="group-result-holder">
-                        <div class="accountants"><%= link_to gjob.name, group_page_groups_path(:id => gjob.id, :gid => @group.id)%></div>
-                        <div class="result-text"><%= gjob.employer.name %>,<%= gjob.location %></div>
-                        <div class="result-text"><%= gjob.description %>
-                        </div>
-                        <div class="date-text"><%= gjob.created_at.strftime("%d-%m-%Y") %>
-                          <a href="#">Apply</a></div>
-                      </div>
-                    </div>
-                    <div class="group-day">3 days to go</div>
-
-                  </div>
-              <% end %>
-          <% end %>
-
-      <% end %>
+          <ul class="group-links mtop20">
+            <li class="group-link-act"><a href="#">Wall</a></li>
+            <li><a href="#">Description</a></li>
+            <li><%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"),:class => "members_link" %></li>
+            <li><%= link_to "Offers",  group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link" %></li>
+            <li><a href="#">Questions</a></li>
+          </ul>
+          <div class="groups-line"></div>
+          <div class="mid-cont-holder">
+            <% puts "pramasssssssssssssssss", params[:sid].inspect %>
+            <%if params[:sid] == "jobs"%>
+              <%= render :partial => "group_jobs", :locals => {:group => @group} %>
+           <% elsif params[:sid] ==  "members" %>
+              <%= render :partial => "group_members", :locals => {:group => @group} %>
+            <% else %>
+             <%= render :partial => "group_wall", :locals => {:group => @group} %>
+             %>
+            <% end %>
       </div>
+  <% end %>
+    </div>
 
+    </div>
 
 <script type="text/javascript">
     function join_request(gid) {
@@ -59,12 +114,46 @@
             dataType: "json",
             success: function(data) {
 
-                  $(".groups-right").html(data.html);
+                $(".groups-mid-cont").html(data.html);
             }});
         return false;
 
     <%else%>
-           window.location.href = "/sign_in";
+        window.location.href = "/sign_in";
     <%end%>
     }
+
+
+   $("a.members_link").click(function() {
+
+    $.ajax({
+      context: this,
+      url: $(this).attr("href"),
+      type: "GET",
+      data: $(this).serialize(),
+      dataType: "json",
+      success: function(response) {
+        return $(".group-result").html(response.html);
+      }
+    });
+    return false;
+  });
+     $("a.offers-link").click(function() {
+
+    $.ajax({
+      context: this,
+      url: $(this).attr("href"),
+      type: "GET",
+      data: $(this).serialize(),
+      dataType: "json",
+      success: function(response) {
+        return $(".group-result").html(response.html);
+      }
+    });
+    return false;
+  });
+
 </script>
+
+
+
