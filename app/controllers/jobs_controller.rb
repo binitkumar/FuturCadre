@@ -7,10 +7,12 @@ class JobsController < ApplicationController
   def details
     @job = Job.find_by_id(params[:id])
 
-    if params[:sid]=="job"
-    render :json => { :html => render_to_string(:partial => '/jobs/details') }.to_json
+    if params[:sid]=="group"
+
+      render :json => { :html => render_to_string(:partial => '/groups/group_job_details') }.to_json
     else
-    render :json => { :html => render_to_string(:partial => '/groups/group_job') }.to_json
+
+      render :json => { :html => render_to_string(:partial => '/jobs/details') }.to_json
     end
   end
 
