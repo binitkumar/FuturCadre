@@ -2,8 +2,9 @@ class GroupsController < ApplicationController
 
   #before_filter :authenticate_user!
   def index
-    @groups = Group.all
-    @group  = Group.first
+    @groups   = Group.all
+    @group    = Group.first
+    @comments = @group.comments.recent.limit(15).all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @groups }
@@ -13,6 +14,7 @@ class GroupsController < ApplicationController
   def group_details
     @group      = Group.find(params[:id])
     @group_jobs = @group.jobs
+    @comments   = @group.comments.recent.limit(15).all
     render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
   end
 
@@ -23,6 +25,14 @@ class GroupsController < ApplicationController
     render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
   end
 
+  def group_wall
+    @group    = Group.find(params[:id])
+    @comment  = @group.comments.build
+    @comments = @group.comments.recent.limit(15).all
+    render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
+  end
+
+
   def group_members
     member_partial = params[:sid]
     @group         = Group.find(params[:id])
@@ -32,7 +42,6 @@ class GroupsController < ApplicationController
   end
 
   def group_jobs
-
     job_partial = params[:sid]
     @group      = Group.find(params[:id])
     @group_jobs = @group.jobs
@@ -46,11 +55,18 @@ class GroupsController < ApplicationController
   end
 
   def show_group
-    @group = Group.find(params[:id])
+    @group  = Group.find(params[:id])
     @groups = Group.all
     respond_to do |format|
       format.html # show.html.erb
     end
+  end
+
+  def add_comment
+    @group = Group.find(params[:group_id])
+    @group.comments.create(params[:comment])
+   @comments = @group.comments.recent.limit(15).all
+    render :json => { :html => render_to_string(:partial => '/groups/group_wall', :locale=>{ :group => @group }) }.to_json
   end
 
 

@@ -80,7 +80,7 @@
             </div>
           </div>
           <ul class="group-links mtop20">
-            <li class="group-link-act"><a href="#">Wall</a></li>
+            <li class="group-link-act"><%= link_to "Wall", group_wall_groups_path(:id => @group.id), :class => "wall_link" %></li>
             <li><a href="#">Description</a></li>
             <li><%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link" %></li>
             <li><%= link_to "Offers", group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link" %></li>
@@ -90,11 +90,11 @@
           <div class="groups-line"></div>
           <div class="mid-cont-holder">
             <% if params[:sid] == "jobs" %>
-                <%= render :partial => "group_jobs", :locals => { :group => @group } %>
+                <%= render :partial => "group_jobs", :locals => { :group => @group, :comments => @comments } %>
             <% elsif params[:sid] == "members" %>
-                <%= render :partial => "group_members", :locals => { :group => @group } %>
+                <%= render :partial => "group_members", :locals => { :group => @group, :comments => @comments } %>
             <% else %>
-                <%= render :partial => "group_wall", :locals => { :group => @group } %>
+                <%= render :partial => "group_wall", :locals => { :group => @group, :comments => @comments } %>
 
             <% end %>
           </div>
@@ -152,7 +152,20 @@
         });
         return false;
     });
+    $("a.wall_link").click(function() {
 
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".group-result").html(response.html);
+            }
+        });
+        return false;
+    });
 </script>
 
 
