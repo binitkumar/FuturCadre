@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   def index
     @groups   = Group.all
     @group    = Group.first
-    @comments = @group.comments.recent.limit(15).all
+    #@comments = @group.comments.recent.limit(15).all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @groups }
@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
   def group_details
     @group      = Group.find(params[:id])
     @group_jobs = @group.jobs
-    @comments   = @group.comments.recent.limit(15).all
+    #@comments   = @group.comments.recent.limit(15).all
     render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
   end
 
@@ -65,7 +65,7 @@ class GroupsController < ApplicationController
   def add_comment
     @group = Group.find(params[:group_id])
     @group.comments.create(params[:comment])
-   @comments = @group.comments.recent.limit(15).all
+   #@comments = @group.comments.recent.limit(15).all
     render :json => { :html => render_to_string(:partial => '/groups/group_wall', :locale=>{ :group => @group }) }.to_json
   end
 

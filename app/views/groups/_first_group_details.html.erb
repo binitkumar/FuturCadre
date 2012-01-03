@@ -90,11 +90,11 @@
           <div class="groups-line"></div>
           <div class="mid-cont-holder">
             <% if params[:sid] == "jobs" %>
-                <%= render :partial => "group_jobs", :locals => { :group => @group, :comments => @comments } %>
+                <%= render :partial => "group_jobs", :locals => { :group => @group } %>
             <% elsif params[:sid] == "members" %>
-                <%= render :partial => "group_members", :locals => { :group => @group, :comments => @comments } %>
+                <%= render :partial => "group_members", :locals => { :group => @group } %>
             <% else %>
-                <%= render :partial => "group_wall", :locals => { :group => @group, :comments => @comments } %>
+                <%= render :partial => "group_wall", :locals => { :group => @group } %>
 
             <% end %>
           </div>
