@@ -2,6 +2,8 @@
    <%= f.text_area :comment %>
     <%= hidden_field_tag :group_id, @group.id %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
-    <div class="findjob"><%= link_to "Post" ,"javascript:void(0)", :id => "add_comment_button" %></div>
+   <%= link_to "Post" ,"javascript:void(0)", :id => "add_comment_button" %>
+
+
 <% end %>
 
