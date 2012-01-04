@@ -3,12 +3,13 @@
     <% if user_signed_in? %>
         <div class="post-right-hold">
           <%= render :partial => "comment_form", :locals => { :comment => @comment, :group => @group } %>
-          </div>
+        </div>
+
     <% end %>
   </div>
-<div class="comment-holder">
-  <% if @comments.present? %>
-      <% @comments.each do |comment| %>
+  <div class="comment-holder">
+    <% if @comments.present? %>
+        <% @comments.each do |comment| %>
 
             <div class="w100 mtop20">
               <div class="post-left-hold"></div>
@@ -21,23 +22,23 @@
               </div>
             </div>
 
-      <% end %>
+        <% end %>
 
-  <% else %>
-      <div class="w100 mtop20">
+    <% else %>
+        <div class="w100 mtop20">
 
-        <div class="post-left-hold"></div>
-        <div class="post-cont-hold">
-          <h1>Currently No comments</h1>
+          <div class="post-left-hold"></div>
+          <div class="post-cont-hold">
+            <h1>Currently No comments</h1>
 
-          <p><a href="#">more</a></p>
+            <p><a href="#">more</a></p>
 
+
+          </div>
 
         </div>
 
-      </div>
-
-  <% end %>
+    <% end %>
   </div>
 
 </div>

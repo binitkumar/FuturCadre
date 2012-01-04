@@ -65,7 +65,7 @@ class GroupsController < ApplicationController
   def add_comment
     @group = Group.find(params[:group_id])
     @group.comments.create(params[:comment])
-   @comments = @group.comments.all
+    @comments = @group.comments.all
     render :json => { :html => render_to_string(:partial => '/groups/group_wall', :locale=>{ :group => @group }) }.to_json
   end
 
