@@ -11,6 +11,7 @@
            <%= render :partial => "first_group_details", :locals => { :group => @group } %>
     </div>
     <div class="post-right-cont-hold">
+      <h3><span class="red">Group Index</span></h3>
       <% unless @groups.blank? %>
           <ul class="groups-link">
             <% @groups.each do |group| %>

@@ -121,8 +121,10 @@ FuturCadre::Application.routes.draw do
       get :join_group
       get :group_page
       get :show_group
+      get :group_wall
       get :group_members
       get :group_jobs
+      post :add_comment
     end
   end
 

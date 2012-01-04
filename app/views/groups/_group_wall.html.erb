@@ -1,54 +1,53 @@
- <div class="mid-cont-holder">
-    <div class="post-hold">
-
-      <div class="post-right-hold">
-        <textarea></textarea>
-        <input type="submit" value="Post"/>
-      </div>
-    </div>
-
-    <div class="w100 mtop20">
-
-      <div class="post-left-hold"></div>
-      <div class="post-cont-hold">
-        <h1>Username longer</h1>
-
-        <p>Now that's BS! ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore e Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit, sed do eiusmod tempor incididunt ut labore et ... <a href="#">more</a></p>
-
-        <div class="like-hold"><a href="#">Like</a> - <a href="#">Share</a> - 17 minutes ago</div>
-      </div>
-
-    </div>
-
-    <div class="w100 mtop20">
-      <div class="post-left-hold"></div>
-      <div class="post-cont-hold">
-        <h1>Username longer</h1>
-
-        <p>Now that's BS! ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore e Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit, sed do eiusmod tempor incididunt ut labore et ... <a href="#">more</a></p>
-
-        <div class="like-hold"><a href="#">Like</a> - <a href="#">Share</a> - 17 minutes ago</div>
-      </div>
-
-    </div>
-
-    <div class="w100 mtop20">
-      <div class="post-left-hold"></div>
-      <div class="post-cont-hold">
-        <h1>Username longer</h1>
-
-        <p>Now that's BS! ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore e Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit, sed do eiusmod tempor incididunt ut labore et ... <a href="#">more</a></p>
-
-        <div class="like-hold"><a href="#">Like</a> - <a href="#">Share</a> - 17 minutes ago</div>
-      </div>
-
-    </div>
-
-
+<div class="mid-cont-holder">
+  <div class="post-hold">
+    <% if user_signed_in? %>
+        <div class="post-right-hold">
+          <%= render :partial => "comment_form", :locals => { :comment => @comment, :group => @group } %>
+          </div>
+    <% end %>
   </div>
+<div class="comment-holder">
+  <% if @comments.present? %>
+      <% @comments.each do |comment| %>
+
+            <div class="w100 mtop20">
+              <div class="post-left-hold"></div>
+              <div class="post-cont-hold">
+                <h1><%= comment.user.name %></h1>
+
+                <p><%= comment.comment %> <a href="#">more</a></p>
+
+                <div class="like-hold"><a href="#">Like</a> - <a href="#">Share</a> - 17 minutes ago</div>
+              </div>
+            </div>
+
+      <% end %>
+
+  <% else %>
+      <div class="w100 mtop20">
+
+        <div class="post-left-hold"></div>
+        <div class="post-cont-hold">
+          <h1>Currently No comments</h1>
+
+          <p><a href="#">more</a></p>
+
+
+        </div>
+
+      </div>
+
+  <% end %>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $("#add_comment_button").click(function() {
+        $.post($("form#add_comment_form").attr("action"), $("form#add_comment_form").serialize(), (function(response) {
+            return $(".mid-cont-holder").html(response.html);
+        }), "json");
+        return false;
+    });
+</script>
