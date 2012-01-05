@@ -7,5 +7,7 @@ class Group < ActiveRecord::Base
   has_many :group_users
   has_many :users, :through => :group_users
   belongs_to :owner, :class_name => "User"
+  belongs_to :group_type
+
   
 end
