@@ -5,6 +5,8 @@ class Admin::GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+
+
   end
 
   def job_groups
@@ -18,16 +20,17 @@ class Admin::GroupsController < ApplicationController
   end
 
   def create
-    @group_new       = Group.new(params[:group])
-    @group_new.owner = User.first
-    jobs             = []
-    jobs             = params[:job_id]
-
-    jobs.each do |job|
-      @group_job = Job.find_by_id(job)
-      @group_new.jobs << Job.find_by_id(@group_job.id)
+    @group_new               = Group.new(params[:group])
+    @group_new.owner         = User.first
+    @group_new.group_type_id = params[:group_type_id]
+    jobs                     = []
+    if params[:job_id].present?
+      jobs = params[:job_id]
+      jobs.each do |job|
+        @group_job = Job.find_by_id(job)
+        @group_new.jobs << Job.find_by_id(@group_job.id)
+      end
     end
-
     if @group_new.save
       redirect_to admin_groups_path, :notice => 'Group was successfully created.'
     else
@@ -83,7 +86,30 @@ class Admin::GroupsController < ApplicationController
         @jobs << job
       end
     end
-   render :partial => "group_job_list", :locals => { :jobs => @jobs, :group => @group }
+    render :partial => "group_job_list", :locals => { :jobs => @jobs, :group => @group }
     #render :json => { :html => render_to_string(:partial => '/admin/groups/group_job_list', :locale=>{ :jobs => @jobs, :group => @group }) }.to_json
+  end
+
+  def create_group_school
+
+    @group_new               = Group.new(params[:group])
+    @group_new.owner         = User.first
+    @group_new.group_type_id = params[:group_type_id]
+    @school_category         = SchoolCategory.find(params[:school_category_id])
+    @group_new.school_categories << SchoolCategory.find_by_id(@school_category.id)
+
+    jobs = []
+    if params[:job_id].present?
+      jobs = params[:job_id]
+      jobs.each do |job|
+        @group_job = Job.find_by_id(job)
+        @group_new.jobs << Job.find_by_id(@group_job.id)
+      end
+    end
+    if @group_new.save
+      redirect_to admin_groups_path, :notice => 'Group was successfully created.'
+    else
+      render :action => "new"
+    end
   end
 end

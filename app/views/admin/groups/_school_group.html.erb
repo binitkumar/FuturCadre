@@ -10,10 +10,14 @@
     </div>
 <% end %>
 <br/><br/>
-
+<div class="field">
+  <label>School Category</label><br/>
+   <%= select_tag :school_category_id, options_from_collection_for_select(SchoolCategory.all, "id", "name") %>
+</div>
+<br/><br/>
 
 <div class="field">
-  <label> Name </label><br/>
+  <label> School Name </label><br/>
   <%= f.text_field :name %>
 </div>
 <br/><br/>
@@ -27,6 +31,7 @@
   <%= f.text_field :mean_salary %>
 </div>
 <br/><br/>
+
 <div class="field">
   <label> Featured </label><br/>
   <%= f.radio_button 'featured', true %> <label> Yes</label><br/>

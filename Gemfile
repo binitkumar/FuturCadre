@@ -30,6 +30,8 @@ gem "galetahub-simple_captcha", :require => "simple_captcha"
 
 gem "rmagick"
 
+gem 'parseexcel'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
