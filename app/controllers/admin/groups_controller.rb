@@ -40,9 +40,10 @@ class Admin::GroupsController < ApplicationController
 
 
   def edit
-    @group      = Group.find(params[:id])
-    @group_jobs = @group.jobs
-    @jobs       =[]
+    @group           = Group.find(params[:id])
+    @school_category = @group.school_categories
+    @group_jobs      = @group.jobs
+    @jobs            =[]
     Job.all.each do |job|
       if  @group_jobs.find_by_id(job)
       else
@@ -110,6 +111,21 @@ class Admin::GroupsController < ApplicationController
       redirect_to admin_groups_path, :notice => 'Group was successfully created.'
     else
       render :action => "new"
+    end
+  end
+
+  def update_school_group
+    @school_group = Group.find(params[:gid])
+    jobs          = []
+    jobs          = params[:job_id]
+    jobs.each do |job|
+      @group_job = Job.find_by_id(job)
+      @school_group.jobs << Job.find_by_id(@group_job.id)
+    end
+    if @school_group.update_attributes(params[:group])
+      redirect_to admin_groups_path, :notice => 'Group was successfully updated.'
+    else
+      render :action => "edit"
     end
   end
 end

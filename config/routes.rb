@@ -32,9 +32,12 @@ FuturCadre::Application.routes.draw do
         get :edit
         get :new_job_group, :job_groups
         post :create_job_group
+        post :create_group_school
         get :destroy
         get :edit_job_group
         get :remove_job
+        put :update
+        put :update_school_group
 
       end
 

@@ -6,6 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
+
+require 'rubygems'
+unless defined? JRUBY_VERSION
+  require 'parseexcel'
+end
+
 puts "Deleting existing roles..."
 roles = Role.all
 roles.each { |role| role.destroy } if roles.present?
@@ -137,3 +143,42 @@ groups.each do |group|
   group.jobs << Job.find_by_name("testJob0")
 end
 
+#
+#def seed_institute
+#  puts 'Deleting existing institute................'
+#  institutes = Institute.all
+#
+#  institutes.each { |ins| ins.destroy } if institutes.present?
+#
+#  workbook = Spreadsheet::ParseExcel.parse("#{Dir.getwd}/db/listschool.xls")
+#
+#  workbook.worksheet(0).each(1) { |row|
+#    next if row == nil;
+#    col = row.at(0);
+#    next if col == nil;
+#    id = col.to_s('latin9').strip;
+#    next if id == "";
+#
+#    slug = row.at(0).to_s('latin9').strip;
+#    name= row.at(1).to_s('latin9').strip;
+#
+#    list = Institute.new(:slug=> slug, :name => name)
+#
+#    unless list.save
+#      list.errors.each { |e| puts "Database Error: ", e }
+#    end
+#  }
+#
+#
+#end
+
+#seed_institute()
+
+puts "Deleting existing school categorties..."
+school_categories = SchoolCategory .all
+school_categories.each { |s_category| s_category.destroy } if school_categories.present?
+
+puts "Creating school categories..."
+%w(Engineering_School Business_School Technical_School Polytechnic University).each do |name|
+  SchoolCategory.create!(:name => name.humanize.titleize)
+end
