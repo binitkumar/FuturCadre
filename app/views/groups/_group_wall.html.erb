@@ -18,7 +18,7 @@
 
                 <p><%= comment.comment %> <a href="#">more</a></p>
 
-                <div class="like-hold"><a href="#">Like</a> - <a href="#">Share</a> - 17 minutes ago</div>
+                <div class="like-hold"><a href="#">Like</a> - <a href="#">Share</a> <%= time_ago_in_words(comment.created_at)%> ago</div>
               </div>
             </div>
 
@@ -27,7 +27,7 @@
     <% else %>
         <div class="w100 mtop20">
 
-          <div class="post-left-hold"></div>
+
           <div class="post-cont-hold">
             <h1>Currently No comments</h1>
 
