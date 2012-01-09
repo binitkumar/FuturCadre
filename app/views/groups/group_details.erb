@@ -1,0 +1,174 @@
+<%= render :partial => "shared/top_search_ box" %>
+<div class="content-holder">
+  <div class="group-result">
+    <div class="groups-jobs-left">
+      <% if @group.present? %>
+          <div class="admin-hold">
+            <div class="admin-top-hold"><h1><%= @group.name %> Administrator </h1></div>
+            <div class="admin-mid-hold">
+              <div class="admin-name"><%= @group.owner.name %></div>
+              <div class="admin-link"><%= link_to "Contact administrator #{@group.owner.email}" %></div>
+            </div>
+            <div class="admin-bot-hold"></div>
+          </div>
+
+          <% unless @group.users.blank? %>
+              <% @group.users.each do |group_user| %>
+
+                  <div class="admin-hold">
+                    <div class="admin-top-hold"><h1>featured members </h1></div>
+                    <div class="admin-mid-hold">
+                      <div class="admin-profile">
+                        <div class="admin-profile-left"></div>
+                        <div class="admin-profile-right">
+                          <% if group_user.profile.blank? %>
+                              <h1><%= group_user.name %> </h1>
+
+                              <p>sit amet, consectetur </p>
+                          <% else %>
+                              <h1><%= group_user.profile.full_name %> </h1>
+
+                              <p>sit amet, consectetur </p>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="admin-link"><a href="#">View all members</a></div>
+                    </div>
+                    <div class="admin-bot-hold"></div>
+                  </div>
+
+              <% end %>
+          <% else %>
+              <div class="admin-hold">
+                <div class="admin-top-hold"><h1>featured members </h1></div>
+                <div class="admin-mid-hold">
+                  <div class="admin-profile">
+                    <div class="admin-profile-right">
+                      <h1> Currently No Registered Users! </h1>
+
+                      <p></p>
+
+                    </div>
+                  </div>
+                  <div class="admin-link"></div>
+                </div>
+                <div class="admin-bot-hold"></div>
+              </div>
+          <% end %>
+          </div>
+
+          <div class="groups-mid-cont">
+            <div class="join-request">
+              <div class="w100">
+                <div class="groups-heading-hold">
+
+                  <h1><%= @group.name %></h1>
+
+                  <p> <%= @group.created_at.strftime("%d-%m-%Y") %> </span> -
+                    <span class="red"> <%= @group.users.count %></span> Members -
+                    <span class="red"> <%= @group.jobs.count %> </span> jobs</p>
+                </div>
+                <% if !user_signed_in? %>
+                    <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
+                <% elsif current_user.is_member(@group.id)== false %>
+                    <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
+                <% end %>
+              </div>
+
+              <div class="group-details-hold">
+                <div class="grpup-img-hold"></div>
+                <div class="grpup-img-details-hold"><%= @group.description %>
+                </div>
+              </div>
+            </div>
+            <ul class="group-links mtop20">
+              <li class="group-link-act"><%= link_to "Wall", group_wall_groups_path(:id => @group.id), :class => "wall_link" %></li>
+              <li><a href="#">Description</a></li>
+              <li><%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link" %></li>
+              <li><%= link_to "Offers", group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link" %></li>
+              <li><a href="#">Questions</a></li>
+            </ul>
+
+            <div class="groups-line"></div>
+            <div class="mid-cont-holder">
+              <% if params[:sid] == "jobs" %>
+                  <%= render :partial => "group_jobs", :locals => { :group => @group } %>
+              <% elsif params[:sid] == "members" %>
+                  <%= render :partial => "group_members", :locals => { :group => @group } %>
+              <% else %>
+                  <%= render :partial => "group_wall", :locals => { :group => @group } %>
+
+              <% end %>
+            </div>
+      <% end %>
+      </div>
+
+      </div>
+</div>
+<script type="text/javascript">
+    function join_request(gid) {
+        var group_id = gid;
+    <%if user_signed_in?%>
+        $.ajax({
+            url: '/groups/request_join?group_id=' + group_id, type: 'get',
+            processData: false,
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(data) {
+
+                $(".group-result").html(data.html);
+            }});
+        return false;
+
+    <%else%>
+        window.location.href = "/sign_in";
+    <%end%>
+    }
+
+
+    $("a.members_link").click(function() {
+
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".group-result").html(response.html);
+            }
+        });
+        return false;
+    });
+    $("a.offers-link").click(function() {
+
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".group-result").html(response.html);
+            }
+        });
+        return false;
+    });
+    $("a.wall_link").click(function() {
+
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".group-result").html(response.html);
+            }
+        });
+        return false;
+    });
+</script>
+
+
+

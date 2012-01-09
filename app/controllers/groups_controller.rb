@@ -1,3 +1,5 @@
+require "acts_as_commentable"
+
 class GroupsController < ApplicationController
 
   #before_filter :authenticate_user!
@@ -15,7 +17,7 @@ class GroupsController < ApplicationController
     @group      = Group.find(params[:id])
     @group_jobs = @group.jobs
     @comments   = @group.comments.all
-    render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
+    #render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
   end
 
   def request_join
