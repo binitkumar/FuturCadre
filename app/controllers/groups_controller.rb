@@ -17,6 +17,7 @@ class GroupsController < ApplicationController
     @group      = Group.find(params[:id])
     @group_jobs = @group.jobs
     @comments   = @group.comments.all
+     @groups   = Group.all
     #render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
   end
 

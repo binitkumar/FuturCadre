@@ -102,6 +102,19 @@
             </div>
       <% end %>
       </div>
+      <div class="post-right-cont-hold">
+        <h3><span class="red">Group Index</span></h3>
+        <% unless @groups.blank? %>
+            <ul class="groups-link">
+              <% @groups.each do |group| %>
+                  <li>
+                    <div class="accountants"><%= link_to group.name, group_details_groups_path(:id => group.id) %></div>
+                  </li>
+              <% end %>
+            </ul>
+
+        <% end %>
+      </div>
 
       </div>
 </div>
