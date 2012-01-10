@@ -27,6 +27,8 @@ FuturCadre::Application.routes.draw do
     resources :groups do
       collection do
         get :index
+        get :index_school
+        get :index_job
         get :new
         post :create
         get :edit
@@ -128,6 +130,7 @@ FuturCadre::Application.routes.draw do
       get :group_members
       get :group_jobs
       post :add_comment
+      post :search_group
     end
   end
 

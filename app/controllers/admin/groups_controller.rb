@@ -22,7 +22,7 @@ class Admin::GroupsController < ApplicationController
   def create
     @group_new               = Group.new(params[:group])
     @group_new.owner         = User.first
-    @group_new.group_type_id = params[:group_type_id]
+    #@group_new.group_type_id = params[:group_type_id]
     jobs                     = []
     if params[:job_id].present?
       jobs = params[:job_id]
@@ -95,7 +95,7 @@ class Admin::GroupsController < ApplicationController
 
     @group_new               = Group.new(params[:group])
     @group_new.owner         = User.first
-    @group_new.group_type_id = params[:group_type_id]
+    #@group_new.group_type_id = params[:group_type_id]
     @school_category         = SchoolCategory.find(params[:school_category_id])
     @group_new.school_categories << SchoolCategory.find_by_id(@school_category.id)
 

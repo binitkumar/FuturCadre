@@ -7,8 +7,9 @@
 <div id="job_group">
   <%= form_for @group, :url => { :action => "create" } do |f| %>
       <%= render :partial => 'form', :locals => { :f => f } %>
+
       <div class="actions">
-        <%= f.submit %>
+       <%= f.submit %>
       </div>
   <% end %>
 </div>
@@ -26,16 +27,24 @@
 
 <script type="text/javascript">
     function change_form(shower, hider) {
+        alert($("#group_type_id").val());
+        $("#job_group_type_id").val($("#group_type_id").val());
+        $("#school_group_type_id").val($("#group_type_id").val());
         $("#" + shower).show();
         $("#" + hider).hide();
-        alert($("#group_type_id").val());
         if ($("#group_type_id").val() == 2) {
             $("#" + hider).show();
             $("#" + shower).hide();
+
 
         }
 
 
     }
+      $(document).ready(function(){
+        $("#job_group_type_id").val($("#group_type_id").val());
+
+      });
+
 
 </script>

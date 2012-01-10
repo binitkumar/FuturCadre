@@ -125,6 +125,11 @@
 
 
     $("a.members_link").click(function() {
+        if ($(this).hasClass('group-link-act')) {
+            $(this).removeClass("group-link-act");
+        } else {
+            $(this).addClass("group-link-act");
+        }
 
         $.ajax({
             context: this,
@@ -166,6 +171,8 @@
         });
         return false;
     });
+
+
 </script>
 
 

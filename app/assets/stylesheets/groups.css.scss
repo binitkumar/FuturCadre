@@ -239,6 +239,7 @@
 	background: none repeat scroll 0 0 #952323 !important;
 	color:#fff !important;
 }
+
 .post-hold{
 	border-bottom: 1px dashed #990000;
     float: left;
@@ -513,3 +514,7 @@
 	margin-right:5px;
 }
 
+.search-field { margin-left:10px;}
+.search-text input { border:1px solid #999; height:24px; width:150px; float:left;}
+.search-btn {background-color:#9c2c2a;  float:left; margin-left:10px;}
+.search-btn a { text-decoration:none; color:#fff; font-size:18px; line-height:25px; text-align:center; float:left; width:89px;}

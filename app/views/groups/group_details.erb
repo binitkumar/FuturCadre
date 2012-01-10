@@ -82,11 +82,11 @@
               </div>
             </div>
             <ul class="group-links mtop20">
-              <li class="group-link-act"><%= link_to "Wall", group_wall_groups_path(:id => @group.id), :class => "wall_link" %></li>
-              <li><a href="#">Description</a></li>
-              <li><%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link" %></li>
-              <li><%= link_to "Offers", group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link" %></li>
-              <li><a href="#">Questions</a></li>
+              <li class="group-link-act listed" id="group-link-act"><%= link_to "Wall", group_wall_groups_path(:id => @group.id), :class => "wall_link" %></li>
+              <li class="listed"><a href="javascript:">Description</a></li>
+              <li class="listed"><%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link" %></li>
+              <li class="listed"><%= link_to "Offers", group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link" %></li>
+              <li class="listed"><a href="javascript:">Questions</a></li>
             </ul>
 
             <div class="groups-line"></div>
@@ -148,6 +148,8 @@
             data: $(this).serialize(),
             dataType: "json",
             success: function(response) {
+                al
+                $("#group-link-act").removeClass("group-link-act");
                 return $(".group-result").html(response.html);
             }
         });
@@ -181,6 +183,13 @@
         });
         return false;
     });
+    $(".listed").click(function() {
+        $(".listed").each(function(){
+          $(this).removeClass("group-link-act");
+        });
+        $(this).addClass("group-link-act");
+    });
+
 </script>
 
 

@@ -1,0 +1,22 @@
+<%= form_tag "/groups/search_group", :id => "group-search-form" do %>
+   <div class="search-text">
+    <%= text_field_tag "search_term" %>
+    <div class="search-btn">
+      <%= link_to "Search", "javascript:void(0)", :id => "rg_group_search_button" %>
+    </div>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+
+    $("#rg_group_search_button").click(function() {
+        $.post($("form#group-search-form").attr("action"), $("form#group-search-form").serialize(), (function(response) {
+            return $(".content-holder").html(response.html);
+        }), "json");
+        return false;
+    });
+</script>
+
+
+
+

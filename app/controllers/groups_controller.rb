@@ -4,12 +4,15 @@ class GroupsController < ApplicationController
 
   #before_filter :authenticate_user!
   def index
-    @groups   = Group.all
-    @group    = Group.first
-    @comments = @group.comments.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @groups }
+    unless params[:locale].blank?
+      @group_type = GroupType.find_by_name(params[:locale])
+      @groups     = @group_type.groups
+      #@group    = Group.first
+      #@comments = @group.comments.all
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render :json => @groups }
+      end
     end
   end
 
@@ -17,7 +20,7 @@ class GroupsController < ApplicationController
     @group      = Group.find(params[:id])
     @group_jobs = @group.jobs
     @comments   = @group.comments.all
-     @groups   = Group.all
+    @groups     = Group.all
     #render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
   end
 
@@ -72,5 +75,8 @@ class GroupsController < ApplicationController
     render :json => { :html => render_to_string(:partial => '/groups/group_wall', :locale=>{ :group => @group }) }.to_json
   end
 
-
+  def search_group
+    @group_result= Group.find_all_by_name(params[:search_term])
+    render :json => { :html => render_to_string(:partial => '/groups/search_result') }.to_json
+  end
 end

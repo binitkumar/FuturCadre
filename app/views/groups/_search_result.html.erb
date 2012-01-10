@@ -1,0 +1,42 @@
+<div class="search_result"></div>
+<div class="dashboard-right">
+
+
+  <div class="w100">
+    <div class="dashboard-heading mtop10">
+      <div class="name">Name</div>
+      <div class="description">Description</div>
+      <div class="salary">Salary</div>
+      <div class="rating">Rating</div>
+    </div>
+    <% unless @group_result.blank? %>
+        <% @group_result.each do |group| %>
+            <div class="dashboard-text">
+              <div class="name">
+                <div class="icon-img"> <%= image_tag asset_path 'icon-img.png' %></div>
+                <div class="icon-text">
+
+                  <%= link_to group.name, group_details_groups_path(:id => group.id) %>
+                  <p> <%= image_tag asset_path 'mem-icon.png' %>  <%= group.users.count %> Members</p>
+                </div>
+              </div>
+              <div class="description-hold"><%= group.description %> </div>
+              <div class="salary-hold"><%= group.mean_salary %> Euro</div>
+              <div class="rating-hold"> <%= image_tag asset_path 'rating.png' %></div>
+
+            </div>
+        <% end %>
+    <% else %>
+
+          <h1>  No Group Found!!</h1>
+
+
+
+    <% end %>
+
+
+
+
+
+</div>
+</div>

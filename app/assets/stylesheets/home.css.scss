@@ -75,10 +75,37 @@ a {
     color: #FFFFFF !important;
  }
 
+
+.jobs-holder {
+  float: left;
+  width: 446px;
+  list-style: none;
+  li {
+    float: lef;
+    width: auto;
+    a {
+      color: #991514;
+      float: left;
+      font-size: 16px;
+      height: 65px;
+      line-height: 65px;
+      text-align: center;
+      text-decoration: none;
+      width: 111px; } } }
+
+.active a, .jobs-holder li a:hover {
+    background: none repeat scroll 0 0 #991514;
+    border-radius: 0 0 5px 5px;
+	  -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    color: #FFFFFF !important;
+ }
+
 .banner-holder {
   float: left;
   width: 100%;
-  margin-top: 37px; }
+  margin-top: 37px;
+   }
 
 .banner-left-holder {
   float: left;
