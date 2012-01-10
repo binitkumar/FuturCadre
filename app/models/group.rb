@@ -1,7 +1,7 @@
 class Group < ActiveRecord::Base
-	
-	acts_as_commentable
-	#has_and_belongs_to_many :members,  :class_name => "User"
+
+  acts_as_commentable
+  #has_and_belongs_to_many :members,  :class_name => "User"
   has_and_belongs_to_many :jobs
   has_one :asset
   has_many :group_users
@@ -9,6 +9,8 @@ class Group < ActiveRecord::Base
   belongs_to :owner, :class_name => "User"
   belongs_to :group_type
   has_and_belongs_to_many :school_categories
+  has_many :group_questions
+  has_many :questions, :through => :group_questions
 
-  
+
 end

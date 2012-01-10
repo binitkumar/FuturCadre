@@ -59,30 +59,10 @@
 
           <div class="groups-mid-cont">
             <div class="join-request">
-              <div class="w100">
-                <div class="groups-heading-hold">
-
-                  <h1><%= @group.name %></h1>
-
-                  <p> <%= @group.created_at.strftime("%d-%m-%Y") %> </span> -
-                    <span class="red"> <%= @group.users.count %></span> Members -
-                    <span class="red"> <%= @group.jobs.count %> </span> jobs</p>
-                </div>
-                <% if !user_signed_in? %>
-                    <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
-                <% elsif current_user.is_member(@group.id)== false %>
-                    <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
-                <% end %>
-              </div>
-
-              <div class="group-details-hold">
-                <div class="grpup-img-hold"></div>
-                <div class="grpup-img-details-hold"><%= @group.description %>
-                </div>
-              </div>
+               <%= render :partial => "group_description", :locals => { :group => @group } %>
             </div>
             <ul class="group-links mtop20">
-              <li class="group-link-act listed" id="group-link-act"><%= link_to "Wall", group_wall_groups_path(:id => @group.id), :class => "wall_link" %></li>
+              <li class="group-link-act listed"><%= link_to "Wall", group_wall_groups_path(:id => @group.id), :class => "wall_link" %></li>
               <li class="listed"><a href="javascript:">Description</a></li>
               <li class="listed"><%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link" %></li>
               <li class="listed"><%= link_to "Offers", group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link" %></li>
@@ -129,7 +109,7 @@
             dataType: "json",
             success: function(data) {
 
-                $(".group-result").html(data.html);
+                $(".join-request").html(data.html);
             }});
         return false;
 
@@ -150,7 +130,7 @@
             success: function(response) {
                 al
                 $("#group-link-act").removeClass("group-link-act");
-                return $(".group-result").html(response.html);
+                return $(".mid-cont-holder").html(response.html);
             }
         });
         return false;
@@ -164,7 +144,7 @@
             data: $(this).serialize(),
             dataType: "json",
             success: function(response) {
-                return $(".group-result").html(response.html);
+                return $(".mid-cont-holder").html(response.html);
             }
         });
         return false;
@@ -178,14 +158,14 @@
             data: $(this).serialize(),
             dataType: "json",
             success: function(response) {
-                return $(".group-result").html(response.html);
+                return $(".mid-cont-holder").html(response.html);
             }
         });
         return false;
     });
     $(".listed").click(function() {
-        $(".listed").each(function(){
-          $(this).removeClass("group-link-act");
+        $(".listed").each(function() {
+            $(this).removeClass("group-link-act");
         });
         $(this).addClass("group-link-act");
     });
