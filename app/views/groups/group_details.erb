@@ -59,7 +59,7 @@
 
           <div class="groups-mid-cont">
             <div class="join-request">
-               <%= render :partial => "group_description", :locals => { :group => @group } %>
+              <%= render :partial => "group_description", :locals => { :group => @group } %>
             </div>
             <ul class="group-links mtop20">
               <li class="group-link-act listed"><%= link_to "Wall", group_wall_groups_path(:id => @group.id), :class => "wall_link" %></li>

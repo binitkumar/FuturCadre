@@ -48,10 +48,10 @@ class GroupsController < ApplicationController
   end
 
   def group_jobs
-    job_partial = params[:sid]
+     job_partial = params[:sid]
     @group      = Group.find(params[:id])
     @group_jobs = @group.jobs
-    render :json => { :html => render_to_string(:partial => '/groups/', :locale=>{ :group => @group, :sid => job_partial }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/group_jobs', :locale=>{ :group => @group, :sid => job_partial }) }.to_json
   end
 
 

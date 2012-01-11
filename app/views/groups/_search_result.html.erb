@@ -1,6 +1,10 @@
 <div class="search_result"></div>
 <div class="dashboard-right">
-
+  <div class="w100 mtop10">
+    <div class="search-field">
+      <%= render :partial=> "search_group" %>
+    </div>
+  </div>
 
   <div class="w100">
     <div class="dashboard-heading mtop10">
@@ -28,15 +32,11 @@
         <% end %>
     <% else %>
 
-          <h1>  No Group Found!!</h1>
-
+        <h1> No Group Found!!</h1>
 
 
     <% end %>
 
 
-
-
-
-</div>
+  </div>
 </div>

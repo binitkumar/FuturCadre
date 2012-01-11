@@ -1,3 +1,29 @@
+<script type="text/javascript">var switchTo5x = false;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher:'de2b3088-ec7d-4450-b709-e82b08551782'});</script>
+<script type="text/javascript"> var $s = jQuery.noConflict();</script>
+
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId  : '<%= Configuration.facebook_app_id %>',
+            status : true, // check login status
+            cookie : true, // enable cookies to allow the server to access the session
+            xfbml  : true  // parse XFBML
+        });
+    };
+
+    (function() {
+        var e = document.createElement('script');
+        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+    }());
+</script>
+<% current_url_without_uri = request.protocol+request.host_with_port %>
+
+
 <div class="content-left-holder">
   <div class="w100">
     <div class="search-results">Search Results</div>
@@ -26,11 +52,16 @@
 
             <p><%= @job.employer_type %> </p>
             </div>
+            <% shorten_url = ("#{current_url_without_uri}/jobs/#{@job.id}") %>
+            <% fb_url = ("http://ilsainteractive.com:3001/jobs/#{@job.id}") %>
+
+            <% fb_image_path = "http://fbrell.com/f8.jpg" %>
             <div class="network-holder">
-              <%= image_tag asset_path 'facebook-icon.png' %>
-              <%= image_tag asset_path 'tweeter-icon.png' %>
-              <%= image_tag asset_path 'linkedin-icon.png' %>
+              <%= link_to image_tag(asset_path 'facebook-icon.png'), "javascript:;", :onclick => "post_job_to_facebook('#{escape_single_quotes(@job.name)}', '#{fb_image_path}', '#{fb_url}')" %>
+              <%= link_to image_tag(asset_path 'tweeter-icon.png'), "javascript:;", :onclick => "post_job_to_twitter('#{escape_single_quotes(@job.name)}','#{shorten_url}')" %>
+              <%= link_to image_tag(asset_path 'linkedin-icon.png'), "javascript:;", :onclick => "post_job_to_linkedin('#{escape_single_quotes(@job.name)}','#{shorten_url}')" %>
               <%= image_tag asset_path 'mail-icon.png' %>
+              <span class='st_twitter'></span><span class='st_facebook'></span><span class='st_email'></span><span class='st_sharethis'></span>
             </div>
             </div>
             <div class="job-btn-holder">
@@ -153,3 +184,46 @@
 
         <% end %>
         </div>
+        <script type="text/javascript">
+
+            function post_job_to_linkedin(job_title, s_url) {
+                var desc = $("#postable_job_description").val();
+                encoded_url = encodeURIComponent(s_url);
+                text = " is hiring a " + job_title + "! Please click here to apply..";
+                var li_url =
+                        "http://www.linkedin.com/shareArticle?mini=true&url=" + encoded_url +
+                                "&title=" + encodeURIComponent(job_title) + "&summary=" + text;
+                window.open(li_url, 'sharer', 'toolbar=0,status=0,width=520,height=570');
+            }
+
+
+            function post_job_to_twitter(job_title, s_url) {
+                text = 'Future Cadre' + " is hiring a " + job_title + "! Please click here to apply..";
+                encoded_url = encodeURIComponent(s_url);
+                li_url = "http://twitter.com/share?url=" + encoded_url + "&text=" + text;
+                window.open(li_url, 'sharer', 'toolbar=0,status=0,width=520,height=570');
+            }
+
+            function post_job_to_facebook(job_title, image_path, s_url) {
+                FB.ui(
+                        {
+                            method: 'feed',
+                            name: job_title,
+                            link: s_url,
+                            picture: image_path,
+                            caption: job_title,
+                            message: 'Future Cadre' + " is hiring a " + job_title + "! Check out the job description and apply if you're interested.." + s_url + "......."
+                        },
+                        function(response) {
+                            if (response && response.post_id) {
+                                alert("IFFFFFFFFFFf");
+//               alert('Post was published.');
+                            } else {
+                                alert("ELSEEEEEEEEEEEEEE");
+//               alert('Post was not published.');
+                            }
+                        });
+            }
+
+
+        </script>
