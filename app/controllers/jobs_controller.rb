@@ -9,7 +9,7 @@ class JobsController < ApplicationController
 
     if params[:sid]=="group"
 
-      render :json => { :html => render_to_string(:partial => '/groups/group_job_details') }.to_json
+      render :json => { :html => render_to_string(:partial => '/jobs/details') }.to_json
     else
 
       render :json => { :html => render_to_string(:partial => '/jobs/details') }.to_json

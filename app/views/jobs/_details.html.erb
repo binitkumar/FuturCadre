@@ -20,15 +20,32 @@
       <div class="job-details">
         <% unless @job.blank? %>
             <h1><%= @job.name %></h1>
+
             <p><%= @job.location %> </p>
             <label><%= t('jobs.employer_type') %></label>
-                <p><%= @job.employer_type %> </p>
+
+            <p><%= @job.employer_type %> </p>
             </div>
+            <% current_url_without_uri = request.protocol+request.host_with_port %>
+            <% shorten_url = ("#{current_url_without_uri}/jobs/#{@job.id}") %>
+
             <div class="network-holder">
-              <%= image_tag asset_path 'facebook-icon.png' %>
-              <%= image_tag asset_path 'tweeter-icon.png' %>
-              <%= image_tag asset_path 'linkedin-icon.png' %>
-              <%= image_tag asset_path 'mail-icon.png' %>
+              <div class="addthis_toolbox addthis_default_style "
+                   addthis:description="<%= @job.employer.profile.company_informations.first.name %> is Hiring for <%= @job.name %>. Please click on the links to apply for this position.."
+                   addthis:title="<%= @job.name %>"
+                   addthis:url="<%= shorten_url %>"
+              >
+
+                <a class="addthis_button_facebook"></a>
+                <a class="addthis_button_twitter"></a>
+                <a class="addthis_button_email"></a>
+                <a class="addthis_button_linkedin"></a>
+                <a class="addthis_button_print"></a>
+                <span class="addthis_separator">|</span>
+                <a href="http://www.addthis.com/bookmark.php?v=250&pubid=ra-4f0dccb34198a7b3" class="addthis_button_compact">Share</a>
+
+              </div>
+
             </div>
             </div>
             <div class="job-btn-holder">
@@ -78,76 +95,80 @@
                 <div class="job-btn-right"></div>
               </div>
 
-        <div class="more-similar-jobs"><a href="#"><%= t('job_similar') %></a></div>
+              <div class="more-similar-jobs"><a href="#"><%= t('job_similar') %></a></div>
+            </div>
+            </div>
+
+            <div class="content-right-holder">
+              <div class="popular-vacancies">
+                <h1><span class="red">Job Stats </span>and requirments</h1>
+
+                <div class="small-line"></div>
+              </div>
+              <div class="industry-holder">
+                <h1><%= t('job_industry') %>:</h1>
+
+                <p><%= @job.category.name %></p>
+              </div>
+              <div class="industry-holder">
+                <h1><%= t('job_industry') %>:</h1>
+
+                <p><%= @job.category.name %></p>
+              </div>
+              <div class="industry-holder">
+                <h1><%= t('job_industry') %>:</h1>
+
+                <p><%= @job.category.name %></p>
+              </div>
+              <div class="industry-holder">
+                <h1><%= t('job_industry') %>:</h1>
+
+                <p><%= @job.category.name %></p>
+              </div>
+              <div class="industry-holder">
+                <p><%= @job.category.name %></p>
+
+
+              </div>
+              <div class="industry-holder">
+                <h1><%= t('job_industry') %>:</h1>
+
+                <p><%= @job.category.name %></p>
+              </div>
+              <div class="industry-holder">
+                <h1><%= t('job_industry') %>:</h1>
+
+                <p><%= @job.category.name %></p>
+              </div>
+              <div class="industry-holder">
+                <h1><%= t('job_industry') %>:</h1>
+
+                <p><%= @job.category.name %></p>
+              </div>
+              <div class="industry-holder">
+                <h1><%= t('job_industry') %>:</h1>
+
+                <p><%= @job.category.name %></p>
+              </div>
+              <div class="industry-holder">
+                <h1><%= t('job_industry') %>:</h1>
+
+                <p><%= @job.category.name %></p>
+              </div>
+              <div class="industry-holder">
+                <h1><%= t('job_industry') %>:</h1>
+
+                <p><%= @job.category.name %></p>
+              </div>
+              <div class="industry-holder">
+                <h1><%= t('job_industry') %>:</h1>
+
+                <p><%= @job.category.name %></p>
+              </div>
+
+        <% end %>
         </div>
-        </div>
 
-<div class="content-right-holder">
-  <div class="popular-vacancies">
-    <h1><span class="red">Job Stats </span>and requirments</h1>
+        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f0dccb34198a7b3">
 
-    <div class="small-line"></div>
-  </div>
-  <div class="industry-holder">
-    <h1><%= t('job_industry') %>:</h1>
-
-    <p><%= @job.category.name %></p>
-  </div>
-  <div class="industry-holder">
-    <h1><%= t('job_industry') %>:</h1>
-
-    <p><%= @job.category.name %></p>
-  </div>
-  <div class="industry-holder">
-    <h1><%= t('job_industry') %>:</h1>
-
-    <p><%= @job.category.name %></p>
-  </div>
-  <div class="industry-holder">
-    <h1><%= t('job_industry') %>:</h1>
-
-    <p><%= @job.category.name %></p>
-  </div>
-  <div class="industry-holder">
-    <p><%= @job.category.name %></p>
-
-
-  </div>
-  <div class="industry-holder">
-    <h1><%= t('job_industry') %>:</h1>
-
-    <p><%= @job.category.name %></p>
-  </div>
-  <div class="industry-holder">
-    <h1><%= t('job_industry') %>:</h1>
-
-    <p><%= @job.category.name %></p>
-  </div>
-  <div class="industry-holder">
-    <h1><%= t('job_industry') %>:</h1>
-
-    <p><%= @job.category.name %></p>
-  </div>
-  <div class="industry-holder">
-    <h1><%= t('job_industry') %>:</h1>
-
-    <p><%= @job.category.name %></p>
-  </div>
-  <div class="industry-holder">
-    <h1><%= t('job_industry') %>:</h1>
-
-    <p><%= @job.category.name %></p>
-  </div>
-  <div class="industry-holder">
-    <h1><%= t('job_industry') %>:</h1>
-
-    <p><%= @job.category.name %></p>
-  </div>
-  <div class="industry-holder">
-    <h1><%= t('job_industry') %>:</h1>
-
-    <p><%= @job.category.name %></p>
-  </div>
-
-   <% end %>
-</div>
+        </script>
