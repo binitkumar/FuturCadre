@@ -11,6 +11,7 @@ class CreateCompanyInformations < ActiveRecord::Migration
 			t.integer :country_id
 			t.integer :region_id
 			t.integer :city_id
+      t.references :sector
 
       t.timestamps
     end

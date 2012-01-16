@@ -9,7 +9,7 @@ class CreateJobs < ActiveRecord::Migration
       t.string :comp_bonus
       t.string :comp_commission
       t.datetime :date_of_expiry
-			t.references :category, :country, :region, :city
+			t.references :category, :country, :region, :city, :contract, :period
 
       t.timestamps
     end

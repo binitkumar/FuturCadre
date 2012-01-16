@@ -1,3 +1,4 @@
+# encoding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -175,10 +176,60 @@ end
 #seed_institute()
 
 puts "Deleting existing school categorties..."
-school_categories = SchoolCategory .all
+school_categories = SchoolCategory.all
 school_categories.each { |s_category| s_category.destroy } if school_categories.present?
 
 puts "Creating school categories..."
 %w(Engineering_School Business_School Technical_School Polytechnic University).each do |name|
   SchoolCategory.create!(:name => name.humanize.titleize)
 end
+
+
+puts "Deleting existing question categorties..."
+question_categories = QuestionCategory.all
+question_categories.each { |q_category| q_category.destroy } if question_categories.present?
+
+puts "Creating question categories..."
+%w(Career Salary Job_Contract University Other).each do |name|
+  QuestionCategory.create!(:name => name.humanize.titleize)
+end
+
+puts "Deleting existing contracts ..."
+contracts = Contract.all
+contracts.each { |contract| contract.destroy } if contracts.present?
+
+puts "Creating contracts..."
+%w(CDD CDI Freelance Interim Stage VIE Job_etudiant).each do |name|
+  Contract.create!(:name => name.humanize.titleize)
+end
+
+puts "Deleting existing durations ..."
+durations = Period.all
+durations.each { |duration| duration.destroy } if durations.present?
+
+puts "Creating durations..."
+%w(3_mois +3_mois 6_mois 12_mois +12_mois).each do |name|
+ Period.create!(:name => name.humanize.titleize)
+end
+
+puts "Deleting existing languages ..."
+languages = Language.all
+languages.each { |languages| languages.destroy } if languages.present?
+
+puts "Creating languages..."
+%w(Anglais Arabe Basque Bengali Bulgare Danois Espagnol Estonien Finnous Français Grec Hindi Hongrois Italien
+Letton Lituanien Mandarin Néerlandais Polonais Portugais Roumain Russe Slovaque Slovène Suedois Tcheque).each do |name|
+  Language.create!(:value => name.humanize.titleize)
+end
+
+
+puts "Deleting existing company sectors ..."
+sectors = Sector.all
+sectors.each { |sectors| sectors.destroy } if sectors.present?
+
+puts "Creating sectors..."
+%w(Banque/Assurance BTP Distribution Immobilier Industries Info/Télécom/Internet Public/Collectivités Services).each do |name|
+  Sector.create!(:value => name.humanize.titleize)
+end
+
+
