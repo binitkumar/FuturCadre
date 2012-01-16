@@ -5,10 +5,9 @@ class CreateJobs < ActiveRecord::Migration
       t.integer :employer_id
 			t.string :employer_type
       t.string :description
-      t.string :comp_annual
-      t.string :comp_bonus
-      t.string :comp_commission
+      t.string :annual_salary,  :default => 'Non'
       t.datetime :date_of_expiry
+      t.datetime :date_of_start
 			t.references :category, :country, :region, :city, :contract, :period
 
       t.timestamps

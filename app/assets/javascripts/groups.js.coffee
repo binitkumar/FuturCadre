@@ -3,17 +3,30 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-#  $(".members_link").click ->
-#    $.ajax
-#      context: this
-#      url: $(this).attr("href")
-#      type: "GET"
-#      data: $(this).serialize()
-#      dataType: "json"
-#      success: (response) ->
-#        $(".mid-cont-holder").html response.html
-##
-#  $("a.offers_link").click ->
+#$("a.members_link").click ->
+#  $(this).removeClass "group-link-act"
+#  $(this).parent(".listed").prevAll(".listed").each ->
+#    $(this).removeClass "group-link-act"
+#
+#  $(this).parent(".listed").addClass "group-link-act"
+#  $.ajax
+#    context: this
+#    url: $(this).attr("href")
+#    type: "GET"
+#    data: $(this).serialize()
+#    dataType: "json"
+#    success: (response) ->
+#      $("#group-link-act").removeClass "group-link-act"
+#      $(".mid-cont-holder").html response.html
+#
+#  false
+#
+#$("a.offers-link").click ->
+#  $(this).removeClass "group-link-act"
+#  $(this).parent(".listed").prevAll(".listed").each ->
+#    $(this).removeClass "group-link-act"
+#
+#  $(this).parent(".listed").addClass "group-link-act"
 #  $.ajax
 #    context: this
 #    url: $(this).attr("href")
@@ -22,17 +35,28 @@ jQuery ->
 #    dataType: "json"
 #    success: (response) ->
 #      $(".mid-cont-holder").html response.html
+#
 #  false
 #
-#  $("a.members-link").click ->
-#   $.ajax
+#$("a.wall_link").click ->
+#  $(this).removeClass "group-link-act"
+#  $(this).parent(".listed").prevAll(".listed").each ->
+#    $(this).removeClass "group-link-act"
+#
+#  $(this).parent(".listed").addClass "group-link-act"
+#  $.ajax
 #    context: this
 #    url: $(this).attr("href")
 #    type: "GET"
 #    data: $(this).serialize()
 #    dataType: "json"
 #    success: (response) ->
-#      alert "abbcccccc"
-#      $(".group-result").html response.html
+#      $(".mid-cont-holder").html response.html
 #
 #  false
+#
+#$(".listed").click ->
+#  $(".listed").each ->
+#    $(this).removeClass "group-link-act"
+#
+#  $(this).addClass "group-link-act"

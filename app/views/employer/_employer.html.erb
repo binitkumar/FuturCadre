@@ -1,0 +1,29 @@
+
+
+  <div class="basic-info mtop10">
+    <h1>Employer<span class="red"> Dashboard</span></h1>
+    <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+
+  </div>
+  <!--9-1-2012 add touseef ahmad-->
+
+    <div class="dashboard-left">
+
+      <div class="dashboard-info-image">
+        <div class="dashboard-image">
+          <%= image_tag asset_path 'dashboard-img.png' %>
+          <% if @employer.profile.present? %>
+
+              <h1> <%= @employer.profile.full_name %></h1>
+          <% else %>
+              <h1>  <%= @employer.name %> </h1>
+
+              <p>Ajouter votre logo pour qu'il soit visible dans vos annonces.</p>
+
+          <% end %>
+          </div>
+    </div>
+    <!--dashboard-info-image ends--></div>
+
+
+
