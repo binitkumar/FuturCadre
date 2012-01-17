@@ -3,6 +3,7 @@ class CreateCompanyInformations < ActiveRecord::Migration
     create_table :company_informations do |t|
       t.integer :profile_id
     	t.string :name
+      t.text   :description
 			t.integer :phone
 			t.integer :fax
 			t.text :email

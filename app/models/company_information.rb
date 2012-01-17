@@ -5,5 +5,5 @@ class CompanyInformation < ActiveRecord::Base
 	belongs_to :city
   belongs_to :sector
 
-  validates_presence_of :profile
+  #validates_presence_of :profile
 end

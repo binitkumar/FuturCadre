@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Job < ActiveRecord::Base
 	has_and_belongs_to_many :users
 	belongs_to :employer, :polymorphic => true
@@ -26,7 +27,9 @@ class Job < ActiveRecord::Base
     conditions << "jobs.city_id = '%#{params[:city_id]}%'"
     conditions = conditions.join(" AND ")
     find(:all, :conditions => conditions)
-	end
+  end
+
+  Education_Levels = ["Ecole d'ingénieur","Ecole de Commerce","Ecoles/Universités Etrangères","IEP","IUT","Lycée","Université","x - Autre"]
 
 	def location
 		"#{city.name}, #{region.name} #{country.name}"

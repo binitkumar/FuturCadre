@@ -313,6 +313,7 @@
  .job-input-country label
   {
       float:left;
+      width: 100%;
   }
  .clear
   {
@@ -320,7 +321,7 @@
   }
  .job-input-add
   {
-       margin-top:20px;
+
   }
  .job-input-add label
   {
@@ -390,5 +391,171 @@
  .job-input-select {
     padding: 5px;
     border: 1px solid #333;
+}
+.job-input-remuneration
+{
+    width:100%;
+    float:left;
+     margin-top:30px;
+}
 
+.remu-input label
+{
+     padding-right:100px;
+      float:left;
+}
+.remu-input input
+ {
+     float:left;
  }
+.remu-input p
+{
+     padding-left:10px;
+     display:inline;
+     padding-right:15px;
+     float:left;
+ }
+.remu-text-box
+{
+    float: right;
+    margin-right:50px;
+}
+.remu-text-box input
+ {
+      background-color:#f6f6f6;
+      border:1px solid #ccc;
+      float:left;
+      height:24px;
+}
+.remu-input-field
+ {
+     float:left;
+     display:inline;
+}
+.remu-input-field input
+ {
+     background:  url(asset_path('remu-text-img.png',image)) no-repeat ;
+     width:132px;
+     height:26px;
+     float:left;
+     margin-left:30px;
+     margin-top: -7px;
+}
+.remu-inputs-two
+ {
+     float:left;
+     display:inline;
+     padding-left:20px;
+}
+.remu-inputs-two input { }
+.remu-inputs-two p
+{
+    padding-left:5px;
+    display:inline;
+    padding-right:5px;
+}
+
+.contract-field label {
+	color: #656;
+	float: left;
+	font-size: 14px;
+	margin-top: 10px;
+}
+.contract-field select {
+	background: none repeat scroll 0 0 #f6f6f6;
+	float: left;
+	font-size: 14px;
+	/*font-weight: bold;*/
+	margin-top: 5px;
+	width:320px;
+	height:27px;
+}
+.publication h1 {
+
+}
+.publication input {
+	float:left;
+	margin: 0 10px;
+}
+.publication p {
+	float:left;
+}
+.publication-line {
+	float: left;
+    margin-top: 20px;
+    width: 100%;
+}
+.publication-line input {
+	float:left;
+}
+.publication-line p {
+	float:left;
+	padding-left:10px;
+}
+.publication-line label {
+	margin-left:40px;
+}
+.pub-left {
+	float:left;
+	width:208px;
+}
+.pub-right {
+	float:left;
+	width:477px;
+}
+.pub-text-field input {
+	background-color:#f6f6f6;
+	height:27px;
+	width:200px;
+}
+.pub-text-field {
+	margin-top:10px;
+	border:1px solid #949494;
+	width:200px;
+}
+.btn-apply-change {
+	margin-top:10px;
+	float: right;
+    margin-right:20px;
+
+}
+.job-input{
+   float:left;
+   width:100%;
+   }
+.country-dv{
+   float: left;
+    height: 27px;
+    margin-top: 6px;
+    width: 90%;
+    }
+    .dashboard-right-content{
+    margin-top:20px;
+    float:left;
+    width:100%;
+    }
+.publication{
+    float:left;
+    width:100%;
+    margin-top:20px;
+    }
+.skils-ful-length{
+    float:left;
+    width:100%;
+    margin-top:20px;
+}
+.skils-ful-length label{
+    color: #474747;
+    float: left;
+    font-size: 14px;
+    margin-top: 10px;
+    width: 100%;
+}
+.skils-ful-length input {
+    background: none repeat scroll 0 0 #F6F6F6;
+    border-top: 1px solid #949494;
+    float: left;
+    height: 26px;
+    margin-top: 6px;
+    width: 100%;
+}

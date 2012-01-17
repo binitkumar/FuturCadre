@@ -8,6 +8,7 @@ class CreateJobs < ActiveRecord::Migration
       t.string :annual_salary,  :default => 'Non'
       t.datetime :date_of_expiry
       t.datetime :date_of_start
+      t.string  :education_level
 			t.references :category, :country, :region, :city, :contract, :period
 
       t.timestamps
