@@ -195,7 +195,7 @@
   </div>
   <div class="contract-field-new">
     <label style="margin-top: 0!important;"> Language Level </label>
-    <%= select_tag 'level', options_for_select([["Niveau", "1"], ["Notions", "2"], ["Courant", "3"], ["Bilingue", "4"]], [1, 4]) %>
+    <%= select_tag 'level[]', options_for_select([["Niveau", "1"], ["Notions", "2"], ["Courant", "3"], ["Bilingue", "4"]], [1, 4]) %>
     <div class="add-button">
       <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
     </div>
@@ -211,7 +211,6 @@
     </div>
   </div>
 </div>
-
 
 
 <div class="left-holder">
@@ -255,15 +254,9 @@
     <div class="apply-mid">Save</div>
     <div class="apply-right"></div>
   </div>
-  <div class="btn-apply-change">
-    <div class="apply-left"></div>
-    <div class="apply-mid">Personalize this offer</div>
-    <div class="apply-right"></div>
-  </div>
-
 </div>
 
- <!--dashboard-right-left-->
+<!--dashboard-right-left-->
 </div>
 <!--dashboard-content-right ends-->
 
