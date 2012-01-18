@@ -559,3 +559,95 @@
     margin-top: 6px;
     width: 100%;
 }
+.contract-label
+{
+  float: left;
+    margin-right: 10px;
+    width: 228px;
+ }
+.contract-label label {
+   float: left;
+    line-height: 26px;
+    width: 122px;
+}
+.contract-label select {
+    background: none repeat scroll 0 0 #F6F6F6;
+    float: left;
+    font-size: 14px;
+    height: 27px;
+    width: 100px;
+}
+.radio-label{
+    float: left;
+    margin-top: 6px;
+    width: 98px;
+}
+.radio-label input{
+ float: left;
+    margin-right: 7px;
+ }
+.radio-label label{
+ float:left;
+ width:78%;
+}
+.date-box{
+         float:left;
+}
+.date-box input {
+    float: left;
+    width: 140px;
+    background: url("/assets/remu-text-img.png") no-repeat scroll 0 0 transparent;
+    height: 26px;
+    margin-left: 30px;
+}
+.job-input-description textarea {
+    background: none repeat scroll 0 0 #F6F6F6;
+    border-top: 1px solid #949494;
+    float: left;
+    height: 129px;
+    margin-bottom: 20px;
+    margin-top: 6px;
+    width: 93%;
+}
+
+.contract-field-new{
+     float:left;
+     width:47%;
+     margin-right:2%;
+     margin-top:20px;
+}
+.contract-field-new label {
+    color: #665566;
+    float: left;
+    font-size: 14px;
+
+}
+.contract-field-new select {
+    background: none repeat scroll 0 0 #F6F6F6;
+    float: left;
+    font-size: 14px;
+    height: 27px;
+    margin-top: 5px;
+    width: 320px;
+}
+
+.contract-field-ed{
+     float:left;
+     width:47%;
+     margin-right:2%;
+     margin-top:20px;
+}
+.contract-field-ed label {
+    color: #665566;
+    float: left;
+    font-size: 14px;
+
+}
+.contract-field-ed select {
+    background: none repeat scroll 0 0 #F6F6F6;
+    float: left;
+    font-size: 14px;
+    height: 27px;
+    margin-top: 5px;
+    width: 320px;
+}

@@ -1,0 +1,39 @@
+<div class="dashboard-content-right">
+  <h1>Job <span class="red"> Information</span></h1>
+  <%= image_tag asset_path 'dashboard-botom-line.png' %>
+  <% unless @job_new.blank? %>
+
+
+      <p><label/>Name:        <%= @job_new.name %> <br/>
+
+      <p><label/>Description: <%= @job_new.description %></p>  <br/>
+      <label/>Contract:     <%= @job_new.contract.name %>  <br/>
+      <label/>Period:        <%= @job_new.period.name %>  <br/>
+      <label/>Date of Start:<%= @job_new.date_of_start %>  <br/>
+      <label/>Job Category:<%= @job_new.category.name %>  <br/>
+      </p>
+
+      <h1>Company <span class="red"> Information</span></h1>
+       <%= image_tag asset_path 'dashboard-botom-line.png' %>
+      <p><label/>Company Name:        <%= @job_new.employer.profile.company_informations.first.name %> <br/>
+       <p><label/>Description:  <%= @job_new.employer.profile.company_informations.first.description %></p>  <br/>
+      <label/>Sector:     <%= @job_new.employer.profile.company_informations.first.sector %>  <br/>
+      </p>
+
+      <h1>Required <span class="red"> Profile</span></h1>
+       <%= image_tag asset_path 'dashboard-botom-line.png' %>
+      <p><label/>Skills:        <%= @job_new.skills %> <br/>
+       <p><label/>Education:  <%= @job_new.education_level %></p>  <br/>
+      <label/>Language:     <%= @job_new.languages %>  <br/>
+      </p>
+     <% end %>
+</div>
+
+<div class="w100">
+  <div class="btn-apply-change">
+    <div class="apply-left"></div>
+    <div class="apply-mid">Publish this offer</div>
+    <div class="apply-right"></div>
+  </div>
+
+</div>

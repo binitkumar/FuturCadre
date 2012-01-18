@@ -5,10 +5,10 @@
     <%= render :partial => "employer/employer", :locals => { :employer => @employer } %>
   </div>
   <div class="dashboard-content-right">
-    <%= form_for @job, :url =>{ :action => 'create_job', :controller => 'jobs' }, :html =>{ :id => "job_form", :onsubmit =>true, :multipart => true } do |f| %>
+    <%= form_for @job, :url =>{ :action => 'create_job', :controller => 'jobs' }, :html =>{ :id => "job_form", :onsubmit =>false, :multipart => true },:remote => true do |f| %>
         <%= render :partial => "job_form", :locals => { :f => f ,:employer => @employer } %>
         <div class="save-button">
-          <%= f.submit "Save" %>
+          <%#= f.submit "Save" %>
         </div>
     <% end %>
   </div>

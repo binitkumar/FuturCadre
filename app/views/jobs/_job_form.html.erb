@@ -1,198 +1,293 @@
 <%= javascript_include_tag "date.js", "jquery.datePicker.js" %>
 <div class="dashboard-right-content">
 
-  <div class="dashboard-content-right">
-    <div class="basic-new-info-writting-img">
-      <a href="#">
-        <%= image_tag asset_path 'basic-new-info-writting-img.png' %>
-      </a>
-    </div>
-    <div class="basic-new-info-publication-img">
-      <a href="#">
-        <%= image_tag asset_path 'basic-new-info-publication-img.png' %>
-      </a>
-    </div>
+<div class="dashboard-content-right">
+  <div class="basic-new-info-writting-img">
+    <a href="#">
+      <%= image_tag asset_path 'basic-new-info-writting-img.png' %>
+    </a>
   </div>
-  <!--dashboard-post-profile-btn ends-->
-  <div class="dashboard-right-content">
-
-    <h1><span>I Publish</span> an offer</h1>
-    <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <div class="dashboard-right-left">
-      <div class="job-input">
-        <label><%= t('jobs.name') %></label>
-        <%= f.text_field :name %>
-      </div>
-
-      <div class="job-input-description">
-        <label><%= t('jobs.description') %></label>
-        <%= f.text_field :description %>
-      </div>
-
-
-      <div class="job-input">
-        <%= f.radio_button 'annual_salary', 'Negotiable' %>Negotiable</label>
-        <%= f.radio_button 'annual_salary', 'Non' %> <label> Non</label>
-        <%= f.radio_button 'annual_salary', '', :class => "checked-radio" %> <label> Oui</label>
-        <%= f.text_field :annual_salary, :disabled => true, :id => "textBox" %>
-
-      </div>
-
-    </div>
-    <!--dashboard-right-left ends-->
-    <div class="dashboard-right-right">
-      <div class="job-input-select">
-        <label>Contract</label>
-        <%= select_tag :contract_id, options_from_collection_for_select(Contract.all, "id", "name") %>
-      </div>
-      <div class="job-input">
-        <label>Contract</label>
-        <%= select_tag :period_id, options_from_collection_for_select(Period.all, "id", "name") %>
-      </div>
-    </div>
-    <div class="job-input">
-      <label>Start Date</label>
-      <%= f.text_field :date_of_start, :class =>"date-pick" %>
-
-    </div>
-    <div class="job-input-country">
-      <label>Country</label>
-
-      <input type="text" value=""/>
-    </div>
-    <div class="job-input">
-      <label> Job Category</label>
-      <%= select_tag :category_id, options_from_collection_for_select(Category.all, "id", "name") %>
-    </div>
-    <div class="job-input">
-      <label>Employer Type</label>
-
-      <input type="text" value=""/>
-    </div>
+  <div class="basic-new-info-publication-img">
+    <a href="#">
+      <%= image_tag asset_path 'basic-new-info-publication-img.png' %>
+    </a>
   </div>
-  <!--dashboard-right-right-->
-  <div class="clear"></div>
-
-  <div class="job-resp">
-    <h1><span>Company</span> Information </h1>
-    <%= image_tag asset_path 'dashboard-botom-line.png' %>
-  </div>
-  <% if @employer.profile.present? %>
-      <div class="dashboard-right-left">
-        <div class="job-input-add">
-          <label>Add a Responsibility</label>
-          <input type="text" value=""/>
-        </div>
-      </div>
-      <div class="dashboard-right-right">
-        <div class="skill-content">
-          <div class="job-input-country">
-
-            <label>Country</label>
-            <input type="text" value=""/>
-          </div>
-          <div class="job-input-country">
-            <label>Country</label>
-            <input type="text" value=""/>
-          </div>
-          <div class="job-input-city">
-
-            <label>City</label>
-            <input type="text" value=""/>
-          </div>
-        </div>
-      </div>
-  <% else %>
-      <div class="dashboard-right-left">
-        <div class="job-input-add">
-          <label>Company Name</label>
-
-        </div>
-      </div>
-      <div class="dashboard-right-right">
-        <div class="skill-content">
-          <div class="job-input-country">
-
-            <label>Country</label>
-            <input type="text" value=""/>
-          </div>
-          <div class="job-input-country">
-            <label>Country</label>
-            <input type="text" value=""/>
-          </div>
-          <div class="job-input-city">
-
-            <label>City</label>
-            <input type="text" value=""/>
-          </div>
-        </div>
-      </div>
-  <% end %>
-  <div class="clear"></div>
+</div>
 
 
-  <div class="job-skill">
+<!--dashboard-post-profile-btn ends-->
+<div class="dashboard-right-content">
 
-    <h1><span>Job</span> Skills</h1>
-    <%= image_tag asset_path 'dashboard-botom-line.png' %>
-  </div>
-
+  <h1><span>I Publish</span> an offer</h1>
+  <%= image_tag asset_path 'dashboard-botom-line.png' %>
   <div class="dashboard-right-left">
 
     <div class="job-input">
-      <label>Add a Skills</label>
-      <input type="text" value=""/>
+      <label><%= t('jobs.name') %></label>
+      <%= f.text_field :name %>
     </div>
 
+    <div class="contract-field">
+      <label> Job Category</label>
+      <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name") %>
+    </div>
+
+    <div class="contract-field">
+      <label>Contract</label>
+      <%= f.select :contract_id, options_from_collection_for_select(Contract.all, "id", "name") %>
+    </div>
+
+    <div class="reg-location-holder" style="margin-top: 0!important;">
+      <label>Location</label>
+      <%= render :partial => "shared/countries", :locals => { :object_collection => "job" } %>
+      <div id="regions">
+        <%= render :partial => "shared/regions", :locals => { :object_collection => "job" } %>
+      </div>
+      <div id="cities">
+        <%= render :partial => "shared/cities", :locals => { :object_collection => "job" } %>
+      </div>
+    </div>
+
+  </div>
+
+  <!--dashboard-right-left ends-->
+  <div class="dashboard-right-right">
     <div class="job-input-description">
       <label>Description</label>
-      <input type="text" value=""/>
-    </div>
-
-  </div>
-  <!--dashboard-right-left-->
-  <div class="dashboard-right-right">
-    <div class="skill-content">
-      <div class="job-input-country">
-
-        <label>Country</label>
-        <input type="text" value=""/>
-      </div>
-      <div class="job-input-country">
-        <label>Country</label>
-        <input type="text" value=""/>
-      </div>
-      <div class="job-input-city">
-
-        <label>City</label>
-        <input type="text" value=""/>
-      </div>
+      <%= f.text_area :description %>
     </div>
   </div>
+
+  <div class="w100 mtop20">
+    <div class="contract-label">
+      <label>Contract Duration</label>
+      <%= f.select :period_id, options_from_collection_for_select(Period.all, "id", "name") %>
+    </div>
+    <div class="radio-label">
+
+      <%= f.radio_button 'date_of_start', 'yes', :class => "contract-radio" %>
+      <label>Immediate</label>
+    </div>
+    <div class="radio-label">
+
+      <%= f.radio_button 'date_of_start', 'no', :class => "contract-radio", :id =>"enable_datextbox" %>
+      <label> From Date</label>
+    </div>
+    <div class="date-box">
+      <%= f.text_field :date_of_start, :class =>"date-pick", :disabled => true, :id => "Date-Box" %>
+    </div>
+  </div>
+
 
   <!--dashboard-right-right-->
+  <div class="job-input-remuneration">
 
-  <div class="clear"></div>
+    <div class="remu-input">
+      <label>Annual Salary</label>
+
+      <%= f.radio_button 'annual_salary', 'Negotiable', :class => "checked-radio" %>
+
+      <label>Negotiable</label>
+    </div>
+    <div class="remu-inputs-two">
+      <%= f.radio_button 'annual_salary', 'Non', :class => "checked-radio" %>
+
+      <label> Non</label>
+    </div>
+    <div class="remu-inputs-two">
+
+      <%= f.radio_button 'annual_salary', 'Oui', :class => "checked-radio", :id =>"enable_textbox" %>
+
+      <label> Oui</label>
+    </div>
+    <div class="remu-input-field">
+      <%= f.text_field :annual_salary, :disabled => true, :id => "textBox" %>
+    </div>
+  </div>
+</div>
+
+<div class="job-skill">
+  <h1><span>Company</span> information</h1>
+  <%= image_tag asset_path 'dashboard-botom-line.png' %>
+</div>
+<% if @company_informationn.present? %>
+    <div class="dashboard-right-left">
+
+      <div class="job-input">
+
+        <label>Add a Skills</label>
+        <input type="text" value=""/>
+      </div>
+      <div class="job-input-description">
+        <label>Description</label>
+        <input type="text" value=""/>
+      </div>
+
+    </div>
+    <!--dashboard-right-left-->
+
+    <div class="dashboard-right-right">
+      <div class="skill-content">
+
+        <div class="contract-field">
+          <label> Industry Sector</label>
+          <%= select_tag :sector_id, options_from_collection_for_select(Sector.all, "id", "value") %>
+        </div>
+
+        <div class="job-input-country">
+          <label>Country</label>
+
+          <input type="text" value=""/>
+        </div>
+        <div class="job-input-city">
+          <label>City</label>
+          <input type="text" value=""/>
+        </div>
+      </div>
+    </div>
+    <!--dashboard-right-right-->
+<% else %>
+    <%= fields_for :company_information do |ed| %>
+        <div class="dashboard-right-left">
+
+          <div class="job-input-add">
+            <label>Company Name</label>
+            <%= ed.text_field :name %>
+          </div>
+          <div class="job-input-description">
+            <label>Description</label>
+            <%= ed.text_area :description %>
+          </div>
+
+        </div>
+        <!--dashboard-right-left-->
+
+        <div class="dashboard-right-right">
+          <div class="skill-content">
+
+            <div class="contract-field">
+              <label style="margin-top: 0!important;"> Industry Sector</label>
+              <%= ed.select :sector_id, options_from_collection_for_select(Sector.all, "id", "value") %>
+            </div>
+          </div>
+        </div>
+        <!--dashboard-right-right-->
+    <% end %>
+<% end %>
+<div class="clear"></div>
+<div class="clear"></div>
+<%= hidden_field_tag 'count', '0' %>
+<div class="job-skill">
+  <h1><span>Required</span> Profile </h1>
+  <%= image_tag asset_path 'dashboard-botom-line.png' %>
+</div>
+<%= fields_for :skill do |skill| %>
+    <div class="skils-ful-length">
+      <label style="margin-top: 0!important;">Skill</label>
+      <%= skill.text_field :name %>
+    </div>
+<% end %>
+<div id="language-div" class="language-bar">
+
+  <div class="contract-field-new">
+    <label style="margin-top: 0!important;"> Language </label>
+    <%= select_tag :language_id, options_from_collection_for_select(Language.all, "id", "value") %>
+  </div>
+  <div class="contract-field-new">
+    <label style="margin-top: 0!important;"> Language Level </label>
+    <%= select_tag 'level', options_for_select([["Niveau", "1"], ["Notions", "2"], ["Courant", "3"], ["Bilingue", "4"]], [1, 4]) %>
+    <div class="add-button">
+      <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
+    </div>
+  </div>
+
+</div>
+<div id="education-div">
+  <div class="contract-field-ed">
+    <label> Education Level </label>
+    <%= f.select(:education_level, Job::Education_Levels) %>
+    <div class="add-button">
+      <div class="add-education"> <%= image_tag asset_path 'plus.png' %></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="left-holder">
+  <div class="publication">
+    <h1>Publication</h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <div class="w100 mtop20">
+      <div class="pub-left">
+        <p>Postuler sur (au moins un choix):</p>
+      </div>
+
+      <div class="pub-right">
+        <div class="inputs-publication">
+          <input type="checkbox" value=""/>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="publication-line">
+
+    <div class="publication-line">
+      <input type="checkbox" value=""/>
+
+      <p>Recevoir les candidatures sur mon adresse e mail</p>
+
+      <div class="pub-text-field">
+        <input type="text" placeholder="gracetouseef@yahoo.com" value=""/>
+      </div>
+    </div>
+    <div class="clear"></div>
+
+
+  </div>
+</div>
+
+<div class="w100">
   <div class="btn-save">
     <div class="apply-left"></div>
     <div class="apply-mid">Save</div>
-
+    <div class="apply-right"></div>
+  </div>
+  <div class="btn-apply-change">
+    <div class="apply-left"></div>
+    <div class="apply-mid">Personalize this offer</div>
     <div class="apply-right"></div>
   </div>
 
+</div>
 
+ <!--dashboard-right-left-->
 </div>
 <!--dashboard-content-right ends-->
 
 
-</div>
-
 <script type="text/javascript">
 
     $('.checked-radio').click(function() {
-        document.getElementById("textBox").value = null;
-        document.getElementById('textBox').disabled = false;
 
+        $("#textBox").attr("disabled", "disabled");
+        document.getElementById("textBox").value = null;
+        if ($(this).attr('id') == 'enable_textbox') {
+            $("#textBox").attr("disabled", "");
+            document.getElementById("textBox").value = null;
+        }
+
+    });
+
+    $('.contract-radio').click(function() {
+        $("#Date-Box").attr("disabled", "disabled");
+        document.getElementById("Date-Box").value = null;
+        if ($(this).attr('id') == 'enable_datextbox') {
+            $("#Date-Box").attr("disabled", "");
+            document.getElementById("Date-Box").value = null;
+        }
 
     });
     $(document).ready(function() {
@@ -200,5 +295,48 @@
             $('.date-pick').datePicker();
         });
     });
+
+    $('.btn-save').click(function() {
+        $.post($("form#job_form").attr("action"), $("form#job_form").serialize(), (function(response) {
+            return $(".dashboard-right-content").html(response.html);
+        }), "json");
+        return false;
+    });
+    var count = 1;
+    $('.add-language').click(function() {
+        var scntDiv = $('#language-div');
+        var count = parseInt($('#count').attr('value'));
+        count = count + 1;
+        $('#count').attr('value', count);
+        var txt_field = '<div id="main_div_' + count + '"><div class="contract-field-new">' + <%= select_tag :language_id, options_from_collection_for_select(Language.all, "id", "value") %> + '</div><div class="contract-field-new">' + <%= select_tag 'level[]', options_for_select([["Niveau", "1"], ["Notions", "2"], ["Courant", 3], ["Bilingue", 4]], [1, 4]) %> + '</div><div class="add-button" style="margin-top: 30px;><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_location_field(' + count + ')" /></a> <div> </div>';
+        scntDiv.append(txt_field);
+
+    });
+    function remove_location_field(obj) {
+        var field = $('#main_div_' + obj)
+        var count = parseInt($('#count').attr('value'));
+        var count_toatl = parseInt($('#count').attr('value'));
+        count = count - 1;
+        $('#count').attr('value', count);
+        field.remove();
+    }
+
+    $('.add-education').click(function() {
+        var scntDiv = $('.contract-field-ed');
+        var count = parseInt($('#count').attr('value'));
+        count = count + 1;
+        $('#count').attr('value', count);
+        var txt_field = '<div id="new_div_' + count + '"><div class="contract-field-ed">' + <%= f.select(:education_level, Job::Education_Levels) %> + '</div><div class="add-button" style="margin-top: 30px;"><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_education_field(' + count + ')" /></a> <div> </div>';
+        scntDiv.append(txt_field);
+
+    });
+    function remove_education_field(obj) {
+        var field = $('#new_div_' + obj)
+        var count = parseInt($('#count').attr('value'));
+        var count_toatl = parseInt($('#count').attr('value'));
+        count = count - 1;
+        $('#count').attr('value', count);
+        field.remove();
+    }
 
 </script>

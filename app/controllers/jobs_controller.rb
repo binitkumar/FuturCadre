@@ -27,65 +27,41 @@ class JobsController < ApplicationController
     else
       @company_information = CompanyInformation.new[:company_information]
     end
-
-
   end
 
-  #def create_job
-  #
-  #  @job_new = Job.new(params[:job])
-  #  @job_new.update_attributes(:employer_id => current_user.id, :category_id => params[:category_id])
-  #
-  #  unless params[:respon].blank?
-  #    @responsibility = Responsibility.create(params[:respon])
-  #  else
-  #    puts "None responsibility added"
-  #  end
-  #  unless params[:skill].blank?
-  #    @skill_new = Skill.create(params[:skill])
-  #  else
-  #    puts "None skill added"
-  #  end
-  #  #  #  currently we have one skill and Repsonsibility so we ll not user loop for inserting into
-  #  ##intermediate table
-  #  @job_new.skills << Skill.find_by_id(@skill_new.id)
-  #  @job_new.responsibilities << Responsibility.find_by_id(@responsibility.id)
-  #  if @job_new.save
-  #    redirect_to(@job_new, :notice => 'Profile was successfully created.')
-  #  else
-  #    redirect_to :action => "new"
-  #  end
-  #end
-
   def create_job
+
     @job_new = Job.new(params[:job])
-    puts "abbccccccc", @job_new.inspect
     @job_new.update_attributes(:employer_id => current_user.id)
-    #
-    #unless params[:company_information].blank?
-    #  @comp = CompanyInformation.new(params[:company_information])
-    #  @comp.profile_id = current_user.id
-    #  @comp.update_attributes(:country_id => params[:job][:country_id],
-    #                          :region_id  => params[:job][:region_id], :city_id => params[:job][:city_id])
-    #   @comp.save!
-    #else
-    #  puts "None company info added"
-    #end
-    #
-    #unless params[:skill].blank?
-    #  @skill_new = Skill.create(params[:skill])
-    #else
-    #  puts "None skill added"
-    #end
-    ###  #  currently we have one skill and Repsonsibility so we ll not user loop for inserting into
-    ####intermediate table
-    #@job_new.skills << Skill.find_by_id(@skill_new.id)
-    #
-   if @job_new.save
-     redirect_to(@job_new, :notice => 'Job was successfully created.')
-   else
-     redirect_to :action => "new"
-   end
+
+    unless params[:company_information].blank?
+      @comp            = CompanyInformation.new(params[:company_information])
+      @comp.profile_id = current_user.id
+      @comp.update_attributes(:country_id => params[:job][:country_id],
+                              :region_id  => params[:job][:region_id], :city_id => params[:job][:city_id])
+      @comp.save!
+    else
+      puts "None company info added"
+    end
+
+    skills = []
+    unless params[:skill].present?
+      skills = params[:skill].split(',')
+      skills.each do |skill|
+        @skill_new = Skill.create(skill)
+        @job_new.skills << Skill.find_by_id(@skill_new.id)
+      end
+
+    else
+      puts "None skill added"
+    end
+
+
+    if @job_new.save
+      render :json => { :html => render_to_string(:partial => 'job_show', :locale=>{ :job_new => @job_new }) }.to_json
+    else
+      redirect_to :action => "new"
+    end
 
   end
 

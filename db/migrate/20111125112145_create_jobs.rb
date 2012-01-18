@@ -4,7 +4,7 @@ class CreateJobs < ActiveRecord::Migration
       t.string :name
       t.integer :employer_id
 			t.string :employer_type
-      t.string :description
+      t.text :description
       t.string :annual_salary,  :default => 'Non'
       t.datetime :date_of_expiry
       t.datetime :date_of_start
