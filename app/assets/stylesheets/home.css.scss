@@ -688,11 +688,17 @@ a {
   width: 22px;
   min-height: 218px; }
 
-.reg-tab-holder {
-  float: left;
-  width: 90%;
-  margin-left: 20px;
-  margin-top: -70px; }
+/*.reg-tab-holder {*/
+  /*float: left;*/
+  /*width: 90%;*/
+  /*margin-left: 20px;*/
+  /*margin-top: -70px; }*/
+  .reg-tab-holder {
+    float: left;
+    margin-left: 66px;
+    margin-top: -40px;
+    width: 90%;
+}
 
 .reg-tab-holder-new {
   float: left;

@@ -93,10 +93,11 @@ FuturCadre::Application.routes.draw do
       put :update
       get :remove_language
       get :show
+      get :job_employer
     end
   end
 
-  resources :job_seekers do
+  resources :job_seeker do
     collection do
       get :dashboard
     end
@@ -105,8 +106,9 @@ FuturCadre::Application.routes.draw do
   resources :employer do
     collection do
       get :dashboard
-      #post:create_job
-      get :employer_job
+      get :employer_jobs
+      get :show
+
     end
   end
 
