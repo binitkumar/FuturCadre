@@ -7,8 +7,8 @@
       <%= render :partial => "employer/employer", :locals => { :employer => @employer } %>
     </div>
     <div class="dashboard-content-right">
-      <%= form_for @job, :url =>{ :action => 'create_job', :controller => 'jobs' }, :html =>{ :id => "job_form", :onsubmit =>false, :multipart => true }, :remote => true do |f| %>
-          <%= render :partial => "job_form", :locals => { :f => f, :employer => @employer } %>
+      <%= form_for @job_edit, :url =>{ :action => 'update', :controller => 'jobs' ,:id => @job_edit.id, :cid => @company_information.id}, :html =>{ :id => "update_job", :onsubmit =>false, :multipart => true }, :remote => true do |f| %>
+          <%= render :partial => "update_job", :locals => { :f => f, :employer => @employer } %>
           <div class="save-button">
             <%#= f.submit "Save" %>
           </div>
@@ -16,9 +16,13 @@
     </div>
   </div>
 </div>
+
+
+
+
 <script type="text/javascript">
     $(document).ready(function() {
-          $('.date-pick').datepicker();
+        $('.date-pick').datepicker();
     });
 
     $('.checked-radio').click(function() {
@@ -32,20 +36,18 @@
     });
 
     $('.contract-radio').click(function() {
-          $("#Date-Box").attr("disabled", "disabled");
+        $("#Date-Box").attr("disabled", "disabled");
         document.getElementById("Date-Box").value = null;
         if ($(this).attr('id') == 'enable_datextbox') {
             $("#Date-Box").attr("disabled", "");
             document.getElementById("Date-Box").value = null;
         }
-    });
 
+    });
     $('.btn-save').click(function() {
-        $.post($("form#job_form").attr("action"), $("form#job_form").serialize(), (function(response) {
+        $.post($("form#update_job").attr("action"), $("form#update_job").serialize(), (function(response) {
             return $(".dashboard-right-content").html(response.html);
         }), "json");
         return false;
     });
-
 </script>
-

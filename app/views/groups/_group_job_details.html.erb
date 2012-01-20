@@ -57,11 +57,17 @@
 
             <% fb_image_path = "http://fbrell.com/f8.jpg" %>
             <div class="network-holder">
-              <%= link_to image_tag(asset_path 'facebook-icon.png'), "javascript:;", :onclick => "post_job_to_facebook('#{escape_single_quotes(@job.name)}', '#{fb_image_path}', '#{fb_url}')" %>
-              <%= link_to image_tag(asset_path 'tweeter-icon.png'), "javascript:;", :onclick => "post_job_to_twitter('#{escape_single_quotes(@job.name)}','#{shorten_url}')" %>
-              <%= link_to image_tag(asset_path 'linkedin-icon.png'), "javascript:;", :onclick => "post_job_to_linkedin('#{escape_single_quotes(@job.name)}','#{shorten_url}')" %>
-              <%= image_tag asset_path 'mail-icon.png' %>
-              <span class='st_twitter'></span><span class='st_facebook'></span><span class='st_email'></span><span class='st_sharethis'></span>
+              <!-- AddThis Button BEGIN -->
+              <div class="addthis_toolbox addthis_default_style">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+              </div>
+              <script type="text/javascript" src="http://s6.addthis.com/js/154/addthis_widget.js#pubid=rd-39e8r89e9er8er989"></script>
+              <!-- AddThis Button END -->
             </div>
             </div>
             <div class="job-btn-holder">
@@ -216,10 +222,10 @@
                         },
                         function(response) {
                             if (response && response.post_id) {
-                                alert("IFFFFFFFFFFf");
+
 //               alert('Post was published.');
                             } else {
-                                alert("ELSEEEEEEEEEEEEEE");
+
 //               alert('Post was not published.');
                             }
                         });

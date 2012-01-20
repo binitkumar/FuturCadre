@@ -1,4 +1,3 @@
-
 <div class="dashboard-right-content">
 
 <div class="dashboard-content-right">
@@ -29,12 +28,13 @@
 
     <div class="contract-field">
       <label> Job Category</label>
-      <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name") %>
+      <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", @job_edit.category_id) %>
+      <!-- <%#= options_for_select([['Lisbon', 1], ['Madrid', 2]], 2) %> -->
     </div>
 
     <div class="contract-field">
       <label>Contract</label>
-      <%= f.select :contract_id, options_from_collection_for_select(Contract.all, "id", "name") %>
+      <%= f.select :contract_id, options_from_collection_for_select(Contract.all, "id", "name", @job_edit.contract_id) %>
     </div>
 
     <div class="reg-location-holder" style="margin-top: 0!important;">
@@ -61,7 +61,7 @@
   <div class="w100 mtop20">
     <div class="contract-label">
       <label>Contract Duration</label>
-      <%= f.select :period_id, options_from_collection_for_select(Period.all, "id", "name") %>
+      <%= f.select :period_id, options_from_collection_for_select(Period.all, "id", "name", @job_edit.period_id) %>
     </div>
     <div class="radio-label">
 
@@ -158,7 +158,7 @@
 
             <div class="contract-field">
               <label style="margin-top: 0!important;"> Industry Sector</label>
-              <%= ed.select :sector_id, options_from_collection_for_select(Sector.all, "id", "value") %>
+              <%= ed.select :sector_id, options_from_collection_for_select(Sector.all, "id", "value", @company_information.sector_id) %>
             </div>
           </div>
         </div>
@@ -172,33 +172,47 @@
   <h1><span>Required</span> Profile </h1>
   <%= image_tag asset_path 'dashboard-botom-line.png' %>
 </div>
-<%= fields_for :skill do |skill| %>
+<%= fields_for :skills do |skill| %>
     <div class="skils-ful-length">
       <label style="margin-top: 0!important;">Skill</label>
+
       <%= skill.text_field :name %>
+
     </div>
 <% end %>
 <div id="language-div" class="language-bar">
+  <% @job_languages.each_with_index do |job_lang, i| %>
+      <div id="remove_lang_<%= i %>">
+        <div class="contract-field-new">
+          <label style="margin-top: 0!important;"> Language </label>
+          <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value", job_lang.id) %>
+        </div>
+        <div class="contract-field-new">
+          <label style="margin-top: 0!important;"> Language Level </label>
+          <%= select_tag 'level[]', options_for_select([["Niveau", "1"], ["Notions", "2"], ["Courant", "3"], ["Bilingue", "4"]]) %>
 
-  <div class="contract-field-new">
-    <label style="margin-top: 0!important;"> Language </label>
-    <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value") %>
-  </div>
-  <div class="contract-field-new">
-    <label style="margin-top: 0!important;"> Language Level </label>
-    <%= select_tag 'level[]', options_for_select([["Niveau", "1"], ["Notions", "2"], ["Courant", "3"], ["Bilingue", "4"]], [1, 4]) %>
-    <div class="add-button">
-      <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
-    </div>
-  </div>
+          <div class="add-button">
+            <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
+            <% if i > 0 %>
+                <a href="javascript:;">
+                  <%= link_to_function image_tag(asset_path 'minus.png'), "remove_language(#{i},#{job_lang.id},#{@job_edit.id} );" %>
+                  <!--<img src="/assets/minus.png" alt="Remove" onclick="remove_location_field_new(<%= i %>)"/>-->
+                </a>
+            <% end %>
+          </div>
 
+        </div>
+      </div>
+  <% end %>
 </div>
+
 <div id="education-div">
   <div class="contract-field-ed">
     <label> Education Level </label>
     <%= f.select(:education_level, Job::Education_Levels) %>
     <div class="add-button">
       <div class="add-education"> <%= image_tag asset_path 'plus.png' %></div>
+
     </div>
   </div>
 </div>
@@ -232,7 +246,7 @@
 <div class="w100">
   <div class="btn-save">
     <div class="apply-left"></div>
-    <div class="apply-mid">Save</div>
+    <div class="apply-mid">Update</div>
     <div class="apply-right"></div>
   </div>
 </div>
@@ -262,6 +276,24 @@
         count = count - 1;
         $('#count').attr('value', count);
         field.remove();
+    }
+    function remove_language(obj, lang_id, job_id) {
+        var lang = lang_id;
+        var job = job_id;
+        $.ajax({
+            url: '/jobs/remove_language?job_id=' + job + '&lang_id=' + lang, type: 'get',
+            processData: false,
+            success: function(data) {
+                var field = $('#remove_lang_' + obj)
+                var count = parseInt($('#count').attr('value'));
+                var count_toatl = parseInt($('#count').attr('value'));
+                count = count - 1;
+                $('#count').attr('value', count);
+                field.remove();
+//                $(".language-bar").html(data);
+            }});
+        return false;
+
     }
 
     $('.add-education').click(function() {

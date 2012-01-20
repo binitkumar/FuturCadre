@@ -2,34 +2,36 @@
   <h1>Job <span class="red"> Information</span></h1>
   <%= image_tag asset_path 'dashboard-botom-line.png' %>
   <% unless @job_new.blank? %>
+      <p><label>Name:</label>        <%= @job_new.name %> <br/>
 
-
-      <p><label/>Name:        <%= @job_new.name %> <br/>
-
-      <p><label/>Description: <%= @job_new.description %></p>  <br/>
-      <label/>Contract:     <%= @job_new.contract.name %>  <br/>
-      <label/>Period:        <%= @job_new.period.name %>  <br/>
-      <label/>Date of Start:<%= @job_new.date_of_start %>  <br/>
-      <label/>Job Category:<%= @job_new.category.name %>  <br/>
+      <p><label>Description:</label> <%= @job_new.description %></p>  <br/>
+      <label>Contract:</label>     <%= @job_new.contract.name %>  <br/>
+      <label>Period:</label>        <%= @job_new.period.name %>  <br/>
+      <label>Date of Start:</label><%= @job_new.date_of_start %>  <br/>
+      <label>Job Category:</label><%= @job_new.category.name %>  <br/>
       </p>
-
       <h1>Company <span class="red"> Information</span></h1>
       <%= image_tag asset_path 'dashboard-botom-line.png' %>
-      <p><label/>Company Name:        <%= @job_new.employer.profile.company_informations.first.name %> <br/>
+      <p><label>Company Name:</label>        <%= @job_new.employer.profile.company_informations.first.name %> <br/>
 
-      <p><label/>Description:  <%= @job_new.employer.profile.company_informations.first.description %></p>  <br/>
-      <label/>Sector:     <%= @job_new.employer.profile.company_informations.first.sector %>  <br/>
+      <p><label>Description:</label>  <%= @job_new.employer.profile.company_informations.first.description %></p>  <br/>
+      <label>Sector:</label>     <%= @job_new.employer.profile.company_informations.first.sector %>  <br/>
       </p>
-
       <h1>Required <span class="red"> Profile</span></h1>
       <%= image_tag asset_path 'dashboard-botom-line.png' %>
       <% unless @job_new.skills.blank? %>
           <% @job_new.skills.each do |skill| %>
-              <p><label/>Skills:        <%= skill.name %> <br/>
+              <label>Skills:</label><%= skill.name %>,
           <% end %>
       <% end %>
-      <p><label/>Education:  <%= @job_new.education_level %></p>  <br/>
+      <br/>
 
+      <p><label>Education:</label>  <%= @job_new.education_level %></p>  <br/>
+      <% unless @job_new.languages.blank? %>
+          <% @job_new.languages.each do |job_lang| %>
+              <label>Language:</label><%= job_lang.value %>,
+          <% end %>
+      <% end %>
       </p>
   <% end %>
 </div>
@@ -37,16 +39,31 @@
 <div class="w100">
   <div class="btn-publish">
     <div class="apply-left"></div>
-    <div class="apply-mid"><%= link_to "Publish This Job", details_jobs_path(:id => @job_new.id)%></div>
+    <div class="apply-mid" style="color: #FFFFFF;text-decoration: none;"><%= link_to "Publish This Job", details_jobs_path(:id => @job_new.id), :class => "job-link" %></div>
     <div class="apply-right"></div>
   </div>
   <div class="btn-apply-change">
     <div class="apply-left"></div>
-    <div class="apply-mid">Personalize this offer</div>
+    <div class="apply-mid" style="color: #FFFFFF;text-decoration: none;"><%= link_to "Personalize this offer", edit_jobs_path(:id =>@job_new.id) %></div>
     <div class="apply-right"></div>
   </div>
 
 
 </div>
 
+<script language="JavaScript">
+    $("a.job-link").click(function() {
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                $(".content-holder").html(response.html);
+            }
+        });
+        return false;
+    });
+</script>
 

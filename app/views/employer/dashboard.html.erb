@@ -1,6 +1,4 @@
 <div class="content-holder">
-
-
   <div class="basic-info mtop10">
     <h1>Employer<span class="red"> Dashboard</span></h1>
     <%= image_tag asset_path 'basic-info-bot-bar.png' %>
@@ -8,26 +6,24 @@
   </div>
   <!--9-1-2012 add touseef ahmad-->
   <% unless @employer.blank? %>
-      <div class="dashboard-info-image">
-        <div class="dashboard-image">
-          <%= image_tag asset_path 'dashboard-img.png' %>
-          <% if @employer.profile.present? %>
-
+      <% if @employer.profile.present? %>
+          <div class="dashboard-info-image">
+            <div class="dashboard-image">
+              <%= image_tag profile_image.photo.url  %>
               <h1> <%= @employer.profile.full_name %></h1>
-          <% else %>
-              <h1>  <%= @employer.name %> </h1>
-
+      <% else %>
+          <h1>  <%= @employer.name %> </h1>
           <p>Ajouter votre logo pour qu'il soit visible dans vos annonces.</p>
-        </div>
-          <% end %>
+          </div>
+      <% end %>
       </div>
       <!--dashboard-info-image ends-->
       <div class="dashboard-content-right">
         <div class="w100">
           <div class="dashboard-post-profile-btn">
 
-            <a href="#"> <%= image_tag asset_path 'Post-An-Ad.png' %>
-            </a>
+            <%= link_to image_tag(asset_path 'Post-An-Ad.png'), new_job_path() %>
+
             <a href="#"> <%= image_tag asset_path 'search-profile.png' %>
             </a>
           </div>
