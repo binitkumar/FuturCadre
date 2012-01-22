@@ -1,0 +1,30 @@
+<div class="shadow"></div>
+<div class="popup-hold">
+  <div class="popup-top-holder">Question</div>
+  <div class="popup-mid-holder ">
+  <%= form_for :question, :url =>{ :action => 'create_question' }, :remote => true do |f| %>
+    <div class="select-holder">
+      <label>Question Type</label>
+
+      <div class="slt-div"></div>
+      <ul class="slt-cat-hold">
+        <% f.sleect:question_category_id  %>
+      </ul>
+    </div>
+    <div class="input-holder">
+      <label>Title</label>
+      <input type="text" value="">
+    </div>
+    <div class="input-holder">
+      <label>Message</label>
+
+      <textarea></textarea>
+    </div>
+
+
+    <div class="findjob"><a href="#">Submit</a></div>
+   <% end  %>
+
+  </div>
+  <div class="popup-bot-holder"></div>
+</div>

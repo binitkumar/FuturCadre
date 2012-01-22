@@ -138,6 +138,8 @@ FuturCadre::Application.routes.draw do
       get :group_jobs
       post :add_comment
       post :search_group
+      get :group_question
+      get :create_question
     end
   end
 
