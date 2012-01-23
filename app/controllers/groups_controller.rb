@@ -79,4 +79,13 @@ class GroupsController < ApplicationController
     @group_result= Group.find_all_by_name(params[:search_term])
     render :json => { :html => render_to_string(:partial => '/groups/search_result') }.to_json
   end
+
+  def group_question
+     @group = Group.find(params[:id])
+     render :json => { :html => render_to_string(:partial => '/groups/group_question', :locale=>{ :group => @group }) }.to_json
+  end
+  def create_question
+
+  end
+
 end
