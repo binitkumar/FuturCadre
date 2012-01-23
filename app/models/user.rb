@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
   has_many :created_groups, :as => :owner, :class_name => "Group"
   has_many :comments
   has_many :questions
+  has_many :event_users
+  has_many :events, :through => :event_users
+  has_many :created_events, :as => :owner, :class_name => "Event"
 
 
 

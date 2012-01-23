@@ -18,24 +18,27 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-          $('.date-pick').datepicker();
+        $('.date-pick').datepicker({dateFormat: 'yy-mm-dd'});
     });
 
     $('.checked-radio').click(function() {
-        $("#textBox").attr("disabled", "disabled");
+//        $("#textBox").attr("disabled", "disabled");
         document.getElementById("textBox").value = null;
+
         if ($(this).attr('id') == 'enable_textbox') {
-            $("#textBox").attr("disabled", "");
+            $("#textBox").removeAttr("disabled");
+
             document.getElementById("textBox").value = null;
         }
 
     });
 
     $('.contract-radio').click(function() {
-          $("#Date-Box").attr("disabled", "disabled");
+//          $("#Date-Box").attr("disabled", "disabled");
         document.getElementById("Date-Box").value = null;
         if ($(this).attr('id') == 'enable_datextbox') {
-            $("#Date-Box").attr("disabled", "");
+            $("#textBox").removeAttr("disabled");
+
             document.getElementById("Date-Box").value = null;
         }
     });

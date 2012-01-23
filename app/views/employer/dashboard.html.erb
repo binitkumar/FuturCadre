@@ -1,4 +1,4 @@
-<div class="content-holder">
+    <div class="content-holder">
   <div class="basic-info mtop10">
     <div class="reg-tab-holder">
                   <div class="reg-tab-holder-new tab-act">
@@ -79,11 +79,11 @@
 
           <a href="#">see all</a>
 
-          <h1>My<span class="red"> last hunt</span></h1>
+          <h1>My<span class="red"> Statistics</span></h1>
 
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
-          <p>"IT" - Find the 04/01/2012<br/>
-            Criteria: CDI Starting: 25/01/12, 6 months, Master's Degree 5, Ense3 - Grenoble INP,</p>
+          <p><label>Total Jobs Posted</label> <%= @employer.jobs.count  %><br/>
+            <label>last Created Job</label> </p>
 
           <div class="buttons w100">
 

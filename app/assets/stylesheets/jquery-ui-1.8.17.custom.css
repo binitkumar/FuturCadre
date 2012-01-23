@@ -122,8 +122,10 @@
 }
 
 .ui-widget-header {
-    border: 1px solid #e78f08;
-    background: #f6a828 url(/assets/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x;
+    /*border: 1px solid #e78f08;*/
+     border: 1px solid  #952323;
+    /*background:  #952323 url(/assets/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x;*/
+    background:  #952323;
     color: #ffffff;
     font-weight: bold;
 }

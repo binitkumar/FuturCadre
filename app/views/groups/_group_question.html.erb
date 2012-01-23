@@ -1,67 +1,67 @@
 <script language="JavaScript">
- 	$( "#question-form" ).dialog({
-			autoOpen: false,
-			height: 300,
-			width: 350,
-			modal: true,
-			buttons: {
+    $("#question-form").dialog({
+        autoOpen: false,
+        height: 300,
+        width: 350,
+        modal: true,
+        buttons: {
 
-				Cancel: function() {
-					$( this ).dialog( "close" );
-				},
-               "Create a Question": function() {
-					$( this ).dialog( "close" );
-			}}
+            Cancel: function() {
+                $(this).dialog("close");
+            },
+            "Create a Question": function() {
+                $.post($("form#add_question_form").attr("action"), $("form#add_question_form").serialize(), (function(response) {
+                    return $(".mid-cont-holder").html(response.html);
+                     }), "json");
+                return false;
 
-		});
+            }}
+    });
 
     $("#question-popup").click(function() {
 
-       $( "#question-form" ).dialog( "open" );
+        $("#question-form").dialog("open");
     });
 
 
 </script>
 <div class="mid-cont-holder">
-  <button id="question-popup">Ask a Question</button>
+  <button id="question-popup" class="question-button">Ask a Question</button>
   <% unless @group.questions.blank? %>
       <% @group.questions.each do |group_quest| %>
           <div class="w100 mtop20">
             <div class="job-cont-hold">
-              <div class="accountants"><%= link_to group_job.name, details_jobs_path(:id => group_job.id, :sid=> "group"), :class => "group-job-link" %> </div>
-              <div class="result-text">  <%= group_job.employer.name %>,<%= group_job.location %></div>
-              <div class="result-text"><%= group_job.description %> </div>
-              <div class="date-text"> <%= group_job.created_at.strftime("%d-%m-%Y") %>
-                </div>
+              <div class="accountants"><label> Title:</label><%= link_to group_quest.name %> </div>
+              <div class="result-text"> <label> Category:</label> <%= group_quest.question_category.name %></div>
+              <div class="result-text"><label>Descripton:</label><%= group_quest.body %> </div>
+              <div class="date-text"> <%= group_quest.created_at.strftime("%d-%m-%Y") %>
               </div>
+            </div>
 
           </div>
       <% end %>
 
   <% end %>
 
-  <div id="question-form" >
+  <div id="question-form">
 
-    <%= form_for :question, :url =>{ :action => 'create_question' }, :remote => true do |f| %>
-       <div class="select-holder">
-         <label>Question Type</label>
-         <%= select_tag :question_category_id, options_from_collection_for_select(QuestionCategory.all, "id", "name") %>
-         <div class="slt-div"></div>
-         <ul class="slt-cat-hold">
+    <%= form_for :question, :url =>{ :action => 'create_question' },:html =>{ :id => 'add_question_form'}, :remote => true do |f| %>
+        <div class="select-holder">
+          <%= hidden_field_tag :group_id, @group.id %>
+          <label>Question Type</label>
+          <%= f.select :question_category_id, options_from_collection_for_select(QuestionCategory.all, "id", "name") %>
+        </div>
+        <div class="input-holder">
+          <label>Title</label>
+          <%= f.text_field :name %>
+        </div>
+        <div class="input-holder">
+          <label>Message</label>
+          <%= f.text_area :body %>
 
-         </ul>
-       </div>
-       <div class="input-holder">
-         <label>Title</label>
-         <%= f.tex_field:name %>
-       </div>
-       <div class="input-holder">
-         <label>Message</label>
-          <%= f.text_area:body %>
+        </div>
 
-       </div>
-
-      <% end  %>
+    <% end %>
 
 
   </div>
@@ -69,20 +69,9 @@
 
 <script type="text/javascript">
 
-	$(function() {
-		// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
-		$( "#dialog:ui-dialog" ).dialog( "destroy" );
-
-
-
-
-
-
-
-
-
-
-
-	});
+    $(function() {
+        // a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+        $("#dialog:ui-dialog").dialog("destroy");
+    });
 
 </script>

@@ -107,7 +107,7 @@ FuturCadre::Application.routes.draw do
     collection do
       get :dashboard
       get :employer_jobs
-      get :show
+      get :employer_statistics
 
     end
   end
@@ -141,7 +141,7 @@ FuturCadre::Application.routes.draw do
       post :add_comment
       post :search_group
       get :group_question
-      get :create_question
+      post :create_question
     end
   end
 

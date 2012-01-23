@@ -85,7 +85,9 @@ class GroupsController < ApplicationController
      render :json => { :html => render_to_string(:partial => '/groups/group_question', :locale=>{ :group => @group }) }.to_json
   end
   def create_question
-
+      @group = Group.find(params[:group_id])
+      @group.questions.create(params[:question])
+    render :json => { :html => render_to_string(:partial => '/groups/group_question', :locale=>{ :group => @group }) }.to_json
   end
 
 end
