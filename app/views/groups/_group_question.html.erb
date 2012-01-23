@@ -43,7 +43,7 @@
 
   <% end %>
 
-  <div id="question-form">
+  <div id="question-form" title="Create a New Question">
 
     <%= form_for :question, :url =>{ :action => 'create_question' },:html =>{ :id => 'add_question_form'}, :remote => true do |f| %>
         <div class="select-holder">

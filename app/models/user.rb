@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_many :event_users
   has_many :events, :through => :event_users
   has_many :created_events, :as => :owner, :class_name => "Event"
+  has_many :sent_invitations, :class_name => 'EventUser', :foreign_key => 'sender_id'
+  #belongs_to :event_user
 
 
 
