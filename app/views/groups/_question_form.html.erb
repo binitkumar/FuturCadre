@@ -1,30 +1,29 @@
-<div class="shadow"></div>
+ <div class="shadow"></div>
 <div class="popup-hold">
   <div class="popup-top-holder">Question</div>
   <div class="popup-mid-holder ">
-  <%= form_for :question, :url =>{ :action => 'create_question' }, :remote => true do |f| %>
-    <div class="select-holder">
-      <label>Question Type</label>
+   <%= form_for :question, :url =>{ :action => 'create_question' }, :remote => true do |f| %>
+       <div class="select-holder">
+         <label>Question Type</label>
+         <%= select_tag :question_category_id, options_from_collection_for_select(QuestionCategory.all, "id", "name") %>
+         <div class="slt-div"></div>
+         <ul class="slt-cat-hold">
 
-      <div class="slt-div"></div>
-      <ul class="slt-cat-hold">
-        <% f.sleect:question_category_id  %>
-      </ul>
-    </div>
-    <div class="input-holder">
-      <label>Title</label>
-      <input type="text" value="">
-    </div>
-    <div class="input-holder">
-      <label>Message</label>
+         </ul>
+       </div>
+       <div class="input-holder">
+         <label>Title</label>
+         <%= f.text_field:name %>
+       </div>
+       <div class="input-holder">
+         <label>Message</label>
+          <%= f.text_area:body %>
 
-      <textarea></textarea>
-    </div>
+       </div>
 
-
-    <div class="findjob"><a href="#">Submit</a></div>
-   <% end  %>
+      <% end  %>
 
   </div>
+
   <div class="popup-bot-holder"></div>
 </div>

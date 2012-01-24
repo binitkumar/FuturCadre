@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
   acts_as_commentable
   #has_and_belongs_to_many :members,  :class_name => "User"
   has_and_belongs_to_many :jobs
-  has_one :asset
+  has_one :photo , :as => :imageable
   has_many :group_users
   has_many :users, :through => :group_users
   belongs_to :owner, :class_name => "User"
