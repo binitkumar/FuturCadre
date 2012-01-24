@@ -1,4 +1,3 @@
-
 <div class="content-holder">
   <div class="basic-info mtop10">
     <div class="reg-tab-holder">
@@ -35,21 +34,22 @@
   <% unless @employer.blank? %>
 
       <div class="dashboard-left">
-        <% if @employer.profile.present? %>
-            <div class="dashboard-info-image">
-              <div class="dashboard-image">
+        <div class="dashboard-info-image">
+          <div class="dashboard-image">
+            <% if @employer.profile.present? %>
+
                 <%= image_tag profile_image.photo.url %>
                 <h1> <%= @employer.profile.full_name %></h1>
-        <% else %>
-            <h1>  <%= @employer.name %> </h1>
+            <% else %>
+                <h1>  <%= @employer.name %> </h1>
 
-            <p>Ajouter votre logo pour qu'il soit visible dans vos annonces.</p>
+                <p>Ajouter votre logo pour qu'il soit visible dans vos annonces.</p>
 
-        <% end %>
-        </div>
+            <% end %>
+          </div>
         </div>
         <!--dashboard-info-image ends-->
-        <div class="btn-mid-holder" ><%= link_to "Events", event_employer_index_path(:eid => @employer.id), :class => "event-holder", :style =>" color: #FFFFFF;text-decoration: none;" %></div>
+        <div class="btn-mid-holder"><%= link_to "Events", event_employer_index_path(:eid => @employer.id), :class => "event-holder", :style =>" color: #FFFFFF;text-decoration: none;" %></div>
       </div>
 
       <!--dashboard-info-image ends-->
