@@ -7,7 +7,7 @@
 	data: $(this).serialize(),
 	dataType: "json",
 	success: function(response) {
-	 $(".content-left-holder").html(response.html);
+	 $(".content-holder").html(response.html);
 	}
   });
   return false;

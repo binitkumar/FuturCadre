@@ -278,6 +278,7 @@
   	width:320px;
  	height:137px;
  }
+
  .dashboard-right-right
   {
  	 float: left;
@@ -651,4 +652,83 @@
     height: 27px;
     margin-top: 5px;
     width: 320px;
+}
+
+
+
+ .form-inputs{
+    float:left;
+    width:200px;
+    }
+
+
+.form-input label
+  {
+ 	color: #474747;
+ 	float: left;
+ 	font-size: 14px;
+ 	margin-top: 10px;
+ 	width: 348px;
+  }
+ .form-input input
+  {
+    background:  url(asset_path('job-title-field.png',image)) no-repeat ;
+ 	width:320px;
+ 	height:27px;
+ 	margin-top:5px;
+  }
+  .form-input-date input
+  {
+    background:  url(asset_path('job-title-field.png',image)) no-repeat ;
+ 	width:232px;
+ 	height:27px;
+ 	margin-top:5px;
+  }
+ .form-input-description
+  {
+ 	margin-top:10px;
+ 	float:left;
+ }
+.form-input-description label {
+    color: #666666;
+    float: left;
+    font-size: 14px;
+}
+ .form-input-description textarea {
+
+   background-color: #F6F6F6;
+    border-top: 1px solid #333333;
+    float: left;
+    height: 100px;
+    margin-top: 5px;
+    width: 490px;
+    }
+   element.style {
+    margin-right: 20px;
+    margin-top: 12px;
+}
+.btn-mid-holder-two {
+    background: url("/assets/mid-holder-btn.png") repeat-x scroll 0 0 transparent;
+    color: #FFFFFF;
+    float: left;
+    font-weight: bold;
+    height: 36px;
+    line-height: 37px;
+    margin-left: 39px;
+    padding: 0 10px;
+}
+
+.event-image {
+    background-color: #F1F1F1;
+    float: left;
+    height: 117px;
+    margin-top: 15px;
+    overflow: auto;
+    width: 682px;
+}
+
+.event-image img {
+   border: 2px solid #A8A8A8;
+    float: left;
+    width: 72px;
 }

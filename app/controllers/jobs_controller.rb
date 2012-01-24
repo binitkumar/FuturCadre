@@ -27,6 +27,7 @@ class JobsController < ApplicationController
   end
 
   def create_job
+    params[:job].inspect
     @job_new = Job.new(params[:job])
     @job_new.update_attributes(:employer_id => current_user.id, :employer_type => "User")
 
@@ -121,6 +122,12 @@ class JobsController < ApplicationController
     @language = Language.find_by_id(params[:lang_id])
     @job.languages.destroy(@language.id)
     render :nothing => true
+  end
+
+  def job_employer
+    @employer = User.find_by_id(params[:id])
+    @jobs_emp = Job.find_all_by_employer_id(@employer.id)
+
   end
 
 end

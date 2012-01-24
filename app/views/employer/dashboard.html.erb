@@ -1,30 +1,31 @@
-    <div class="content-holder">
+
+<div class="content-holder">
   <div class="basic-info mtop10">
     <div class="reg-tab-holder">
-                  <div class="reg-tab-holder-new tab-act">
-                      <div class="reg-left-tab-holder"></div>
-                      <div class="reg-mid-tab-holder"><%= link_to "Home"  %></div>
-                      <div class="reg-right-tab-holder"></div>
-                  </div>
+      <div class="reg-tab-holder-new tab-act">
+        <div class="reg-left-tab-holder"></div>
+        <div class="reg-mid-tab-holder"><%= link_to "Home" %></div>
+        <div class="reg-right-tab-holder"></div>
+      </div>
 
-                  <div class="reg-tab-holder-new">
-                      <div class="reg-left-tab-holder"></div>
-                      <div class="reg-mid-tab-holder"><%= link_to "My Account" %></div>
-                      <div class="reg-right-tab-holder"></div>
-                  </div>
-                  <div class="reg-tab-holder-new">
-                      <div class="reg-left-tab-holder"></div>
-                      <div class="reg-mid-tab-holder"><%= link_to "My Jobs",employer_jobs_employer_index_path  %></div>
+      <div class="reg-tab-holder-new">
+        <div class="reg-left-tab-holder"></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Account" %></div>
+        <div class="reg-right-tab-holder"></div>
+      </div>
+      <div class="reg-tab-holder-new">
+        <div class="reg-left-tab-holder"></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Jobs", employer_jobs_employer_index_path %></div>
 
-                      <div class="reg-right-tab-holder"></div>
-                  </div>
-                  <div class="reg-tab-holder-new">
-                      <div class="reg-left-tab-holder"></div>
-                      <div class="reg-mid-tab-holder">Msg box</div>
-                      <div class="reg-right-tab-holder"></div>
-                  </div>
+        <div class="reg-right-tab-holder"></div>
+      </div>
+      <div class="reg-tab-holder-new">
+        <div class="reg-left-tab-holder"></div>
+        <div class="reg-mid-tab-holder">Msg box</div>
+        <div class="reg-right-tab-holder"></div>
+      </div>
 
-              </div>
+    </div>
 
     <h1>Employer<span class="red"> Dashboard</span></h1>
     <%= image_tag asset_path 'basic-info-bot-bar.png' %>
@@ -32,17 +33,25 @@
   </div>
   <!--9-1-2012 add touseef ahmad-->
   <% unless @employer.blank? %>
-      <% if @employer.profile.present? %>
-          <div class="dashboard-info-image">
-            <div class="dashboard-image">
-              <%= image_tag profile_image.photo.url  %>
-              <h1> <%= @employer.profile.full_name %></h1>
-      <% else %>
-          <h1>  <%= @employer.name %> </h1>
-          <p>Ajouter votre logo pour qu'il soit visible dans vos annonces.</p>
-          </div>
-      <% end %>
+
+      <div class="dashboard-left">
+        <% if @employer.profile.present? %>
+            <div class="dashboard-info-image">
+              <div class="dashboard-image">
+                <%= image_tag profile_image.photo.url %>
+                <h1> <%= @employer.profile.full_name %></h1>
+        <% else %>
+            <h1>  <%= @employer.name %> </h1>
+
+            <p>Ajouter votre logo pour qu'il soit visible dans vos annonces.</p>
+
+        <% end %>
+        </div>
+        </div>
+        <!--dashboard-info-image ends-->
+        <div class="btn-mid-holder" ><%= link_to "Events", event_employer_index_path(:eid => @employer.id), :class => "event-holder", :style =>" color: #FFFFFF;text-decoration: none;" %></div>
       </div>
+
       <!--dashboard-info-image ends-->
       <div class="dashboard-content-right">
         <div class="w100">
@@ -64,7 +73,8 @@
           <p>Start now your recruitment: <br/>
 
             - Post an ad<br/>
-            Fill in the details of your position and the type of profile you are looking for. Your ad will be routed to
+            Fill in the details of your position and the type of profile you are looking for. Your ad will be routed
+            to
             the
             right profiles.<br/>
             - Chasing a Profile<br/>
@@ -82,8 +92,8 @@
           <h1>My<span class="red"> Statistics</span></h1>
 
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
-          <p><label>Total Jobs Posted</label> <%= @employer.jobs.count  %><br/>
-            <label>last Created Job</label> </p>
+          <p><label>Total Jobs Posted</label> <%= @employer.jobs.count %><br/>
+            <label>last Created Job</label></p>
 
           <div class="buttons w100">
 
@@ -108,6 +118,24 @@
   <% end %>
 </div>
 
+<script type="text/javascript">
+    $("a.event-holder").click(function() {
 
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
+        });
+        return false;
+
+    });
+
+
+</script>
 
 

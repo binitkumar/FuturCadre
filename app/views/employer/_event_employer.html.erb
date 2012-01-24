@@ -7,10 +7,10 @@
   </div>
   <!--dashboard-post-profile-btn ends-->
   <div class="dashboard-content">
-    <h1>Dashboard</h1>
+    <h1>Events</h1>
 
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <div class="btn-mid-holder" id="create-event">Create a New Event</div>
+    <div class="btn-mid-holder"><%= link_to " Create New Event", new_event_employer_index_path(:eid => @employer), :class => "create-event", :style=>" color: #FFFFFF;text-decoration: none;" %></div>
 
 
     <p><br/>
@@ -21,101 +21,44 @@
     <h1>My<span class="red"> Events</span></h1>
 
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <p>0 advert (s) active (s) 0 ad (s).</p>
-
-    <a href="#">see all</a>
-
-    <h1>My<span class="red"> Statistics</span></h1>
-
-    <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <p><label>Total Jobs Posted</label> <%= @employer.jobs.count %><br/>
-      <label>last Created Job</label></p>
-
-    <div class="buttons w100">
-
-      <div class="btn-left-holder"></div>
-      <div class="btn-mid-holder">0 profile (s) (s) selected</div>
-      <div class="btn-right-holder"></div>
-      <div class="btn-left-holder"></div>
-      <div class="btn-mid-holder">0 profile (s) contacted (s)</div>
-      <div class="btn-right-holder"></div>
-
-    </div>
-    <a href="#">see all</a>
-
-    <h1>My<span class="red"> Subscription</span></h1>
-    <%= image_tag asset_path 'dashboard-botom-line.png' %>
-
+    <% unless @employer.events.blank? %>
+        <p>Total Number of Events <%= @employer.events.count %></p>
+        <% @employer.events.each do |event| %>
+            <div class="event-image">
+                <%= image_tag profile_image.photo.url %>
+              <label>Event Name</label> <%= event.name %>
+              <br/>
+              <label>Event Description</label> <%= event.description %>
+              <br/>
+              <label>Start Time</label> <%= event.time_of_start.strftime("%d-%m-%Y at %I:%M%p") %>
+              <br/>
+              <label>End Time</label><%= event.time_of_end.strftime("%d-%m-%Y at %I:%M%p") %>
+              <br/><br/>
+            </div>
+        <% end %>
+        <a href="#">see all</a>
+    <% end %>
 
   </div>
 </div>
 
 
-<div id="event-form" title="Create an Event">
-
-  <%= form_for :event, :url =>{ :action => 'create_event' }, :html =>{ :id => 'add_event_form' }, :remote => true do |f| %>
-      <div class="job-input">
-        <%= hidden_field_tag :employer_id, @employer.id %>
-        <label>Title</label>
-        <%= f.text_field :name %>
-      </div>
-      <div class="job-input">
-        <label>Venue</label>
-        <%= f.text_field :place %>
-      </div>
-      <div class="job-input">
-        <label>Event Picture</label>
-        <%= fields_for :asset do |asset| %>
-            <%= asset.file_field :photo %>
-        <% end %>
-      </div>
-      <div class="job-input">
-        <label>Start Time</label>
-        <%= f.text_field :time_of_start, :class =>"date-pick" %>
-      </div>
-      <div class="job-input">
-        <label>End Time</label>
-        <%= f.text_field :time_of_end, :class =>"date-pick" %>
-
-      </div>
-      <div class="job-input-description">
-        <label>Description</label>
-        <%= f.text_area :description %>
-      </div>
-
-  <% end %>
-
-
-</div>
-
-
 <script type="text/javascript">
 
-    $(document).ready(function() {
-        $('.date-pick').datepicker({dateFormat: 'yy-mm-dd'});
+
+    $("a.create-event").click(function() {
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
+        });
+        return false;
     });
 
-    $("#create-event").click(function() {
-        $("#event-form").dialog("open");
-    });
-
-    $("#event-form").dialog({
-        autoOpen: false,
-        height: 300,
-        width: 350,
-        modal: true,
-        buttons: {
-
-            Cancel: function() {
-                $(this).dialog("close");
-            },
-            "Create an Event": function() {
-                $.post($("form#add_event_form").attr("action"), $("form#add_event_form").serialize(), (function(response) {
-                    return $(".dashboard-content-right").html(response.html);
-                }), "json");
-                return false;
-
-            }}
-    });
 
 </script>

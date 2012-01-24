@@ -109,6 +109,7 @@ FuturCadre::Application.routes.draw do
       get :employer_jobs
       get :employer_statistics
       get :event
+      get :new_event
       post :create_event
 
     end
