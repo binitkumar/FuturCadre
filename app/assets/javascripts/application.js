@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require_tree .
 
+
 //
 //
 //function test()
@@ -44,32 +45,8 @@ $(document).ready(function() {
     });
     return false;
   });
-//     $("a.members_link").click(function() {
-//
-//    $.ajax({
-//      context: this,
-//      url: $(this).attr("href"),
-//      type: "GET",
-//      data: $(this).serialize(),
-//      dataType: "json",
-//      success: function(response) {
-//        return $(".group-result").html(response.html);
-//      }
-//    });
-//    return false;
-//  });
-//     $("a.offers-link").click(function() {
-//
-//    $.ajax({
-//      context: this,
-//      url: $(this).attr("href"),
-//      type: "GET",
-//      data: $(this).serialize(),
-//      dataType: "json",
-//      success: function(response) {
-//        return $(".group-result").html(response.html);
-//      }
-//    });
-//    return false;
-//  });
+
 });
+
+//this message is for fading alert message
+setTimeout("$('#flash').html(' ');",10000);
