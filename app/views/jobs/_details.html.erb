@@ -29,23 +29,7 @@
             <% current_url_without_uri = request.protocol+request.host_with_port %>
             <% shorten_url = ("#{current_url_without_uri}/jobs/#{@job.id}") %>
 
-            <div class="network-holder">
-              <div class="addthis_toolbox addthis_default_style "
-                   addthis:description="<%= @job.employer.profile.company_informations.first.name %> is Hiring for <%= @job.name %>. Please click on the links to apply for this position.."
-                   addthis:title="<%= @job.name %>"
-                   addthis:url="<%= shorten_url %>"
-              >
-
-                <a class="addthis_button_facebook"></a>
-                <a class="addthis_button_twitter"></a>
-                <a class="addthis_button_email"></a>
-                <a class="addthis_button_linkedin"></a>
-                <a class="addthis_button_print"></a>
-                <span class="addthis_separator">|</span>
-                <a href="http://www.addthis.com/bookmark.php?v=250&pubid=ra-4f0dccb34198a7b3" class="addthis_button_compact">Share</a>
-
-              </div>
-
+            <div class="network-holder" id="network-holder">
             </div>
             </div>
             <div class="job-btn-holder">
@@ -64,29 +48,31 @@
               <div class="description-text"><br>
               </div>
 
-              <div class="description-heading mtop30"><%= t('jobs.languages') %>:</div><% @job.languages.each_with_index do |lang,i| %>
-              <div class="description-text"><%= lang.value %>,
-              </div>
-<% end %>
+              <div class="description-heading mtop30"><%= t('jobs.languages') %>:</div>
+              <% @job.job_languages.each_with_index do |lang, i| %>
+                  <div class="description-text"><%= lang.language.value %>, <%= lang.level %>
+                  </div>
+              <% end %>
               <div class="description-heading mtop30"><%= t('jobs.education') %>:</div>
               <div class="description-text"><%= @job.education_level %>
               </div>
 
-               <div class="description-heading mtop30"><%= t('job_skill_require') %>:</div><% @job.skills.each do |skill| %>
-              <div class="description-text"> <%= skill.name %>
-              </div>
-             <% end %>
+              <div class="description-heading mtop30"><%= t('job_skill_require') %>:</div>
+              <% @job.skills.each do |skill| %>
+                  <div class="description-text"> <%= skill.name %>
+                  </div>
+              <% end %>
               <div class="description-heading mtop30"><%= t('jobs.comp_annual') %></div>
-               <div class="description-text"><%= @job.annual_salary %></div>
+              <div class="description-text"><%= @job.annual_salary %></div>
 
-               <div class="description-heading mtop30"><%= t('jobs.contract') %></div>
-               <div class="description-text"><%= @job.contract.name %></div>
+              <div class="description-heading mtop30"><%= t('jobs.contract') %></div>
+              <div class="description-text"><%= @job.contract.name %></div>
 
               <div class="description-heading mtop30"><%= t('jobs.duration') %></div>
-               <div class="description-text"><%= @job.period.name %></div>
+              <div class="description-text"><%= @job.period.name %></div>
 
               <div class="description-heading mtop30"><%= t('jobs.date_of_start') %></div>
-               <div class="description-text"><%= @job.date_of_start.strftime("%d-%m-%Y") %></div>
+              <div class="description-text"><%= @job.date_of_start.strftime("%d-%m-%Y") %></div>
 
               <div class="job-btn-holder">
                 <div class="job-btn-left"></div>
@@ -168,6 +154,19 @@
         <% end %>
         </div>
 
-        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f0dccb34198a7b3">
 
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var menuPlaceholder = document.getElementById('network-holder');
+                newNode = document.createElement('div');
+                newNode.id = 'social_media_toolbox';
+                newNode.innerHTML = ' <div class="addthis_toolbox addthis_default_style " addthis:description="<%= @job.employer.profile.company_informations.first.name %> is Hiring for <%= @job.name %>. Please click on the links to apply for this position.." addthis:title="<%= @job.name %>" addthis:url="<%= shorten_url %>"> <a class="addthis_button_facebook"></a> <a class="addthis_button_twitter"></a><a class="addthis_button_email"></a><a class="addthis_button_linkedin"></a><a class="addthis_button_print"></a><span class="addthis_separator">|</span><a href="http://www.addthis.com/bookmark.php?v=250&pubid=ra-4f0dccb34198a7b3" class="addthis_button_compact">Share</a><div>';
+
+                menuPlaceholder.parentNode.insertBefore(newNode, menuPlaceholder.nextSibling);
+
+                addthisScript = document.createElement('script');
+                addthisScript.src = 'http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f0dccb34198a7b3&domready=1';
+                document.body.appendChild(addthisScript);
+
+            });
         </script>
