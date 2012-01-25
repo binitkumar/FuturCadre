@@ -95,6 +95,9 @@ en:
   job_similar: "more similar jobs"
   job_skill: "Add a Skill"
   job_skill_require: "Skills Required"
+
+
+
   jobs: 
     bonus: "Annual Bonus"
     commission: Commission
@@ -102,6 +105,12 @@ en:
     description: Description
     employer_type: "Employer Type"
     name: "Job Title"
+    profile: "Required Profile"
+    languages: "Languages"
+    education: "Education"
+    contract: "Contract Period"
+    Duration: "Duration of Job"
+    Date_of_start: "Contract Start Date"
   link_to: 
     done: Done
     edit: Edit

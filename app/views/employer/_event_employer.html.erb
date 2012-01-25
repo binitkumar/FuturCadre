@@ -25,7 +25,7 @@
         <p>Total Number of Events <%= @employer.events.count %></p>
         <% @employer.events.each do |event| %>
             <div class="event-image">
-                <%= image_tag profile_image.photo.url %>
+                <%#= image_tag  %>
               <label>Event Name</label> <%= event.name %>
               <br/>
               <label>Event Description</label> <%= event.description %>

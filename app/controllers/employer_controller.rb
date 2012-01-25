@@ -31,13 +31,22 @@ class EmployerController < ApplicationController
 
 
   def create_event
-    hhhh
+
      @employer = User.find_by_id(params[:employer_id])
    unless params[:event].blank?
       @new_event = Event.create!(params[:event])
       @new_event.update_attributes(:owner_id => @employer)
       @employer.events << @new_event
    end
+
+   unless params[:picture].blank?
+     @picture = Photo.new(params[:picture])
+     @picture.content_type = "event_image"
+     @picture.imageable_id = @new_event
+     @picture.save
+   end
+
+
     #if @new_event.save
        render :json => { :html => render_to_string(:partial => '/employer/event_employer', :locale=>{ :employer => @employer }) }.to_json
     #else

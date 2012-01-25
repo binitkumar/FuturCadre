@@ -58,36 +58,35 @@
             <div class="result-holder">
               <div class="description-heading"><%= t('job_descripton') %>:</div>
               <div class="description-text"> <%= @job.description %></div>
-              <div class="description-text mtop30">The role requires someone able to work full-time, 40-55 hours per
-                week. Please note that while normal office hours are 9.30am - 5.00pm Monday - Friday, sometimes work
-                outside of these hours - including the weekends - will be required.
+              <div class="description-text mtop30">
               </div>
-              <div class="description-heading mtop30">Main duties:</div>
-              <div class="description-text">1. Operations<br>
-                1.1 Reception: Take the lead on ensuring an efficient, friendly and welcoming reception service,
-                answering the main office phone and door buzzer.<br>
-                1.2 Work with the staff to develop and maintain office systems to increase the efficient functioning of
-                the organization.<br>
-                1.3 Open, stamp and deliver post daily.<br>
-                1.4 Field and distribute email inquiries.<br>
-                1.5 Manage the forward planning and diary of the founder and Director, Sarah Belal.<br>
-                1.6 Take minutes of staff meetings.<br>
-                1.7 Deal with stationery orders and assist staff with other operational tasks such as arrangement of
-                couriers, travel, training and conference bookings.<br>
-                1.8 Help to ensure a safe, pleasant, tidy and clutter-free office environment for JPP's staff and
-                volunteers.<br>
-                1.9 Create and maintain filing systems for the office of both casework and operational files.<br>
-                1.10 Remain organized to ensure smooth management of the office.<br>
-                1.11 Undertake other operational tasks as and when they arise.
+              <div class="description-heading mtop30"><%= t('job_profile') %>:</div>
+              <div class="description-text"><br>
               </div>
 
-              <div class="description-heading mtop30"><%= t('job_skill_require') %>:</div>
-              <div class="description-text">Organized, self-motivated, good written English and Urdu Job Description:
+              <div class="description-heading mtop30"><%= t('jobs.languages') %>:</div><% @job.languages.each_with_index do |lang,i| %>
+              <div class="description-text"><%= lang.value %>,
               </div>
-              <div class="description-heading mtop30">Job's Compensation</div>
+<% end %>
+              <div class="description-heading mtop30"><%= t('jobs.education') %>:</div>
+              <div class="description-text"><%= @job.education_level %>
+              </div>
 
+               <div class="description-heading mtop30"><%= t('job_skill_require') %>:</div><% @job.skills.each do |skill| %>
+              <div class="description-text"> <%= skill.name %>
+              </div>
+             <% end %>
+              <div class="description-heading mtop30"><%= t('jobs.comp_annual') %></div>
+               <div class="description-text"><%= @job.annual_salary %></div>
 
+               <div class="description-heading mtop30"><%= t('jobs.contract') %></div>
+               <div class="description-text"><%= @job.contract.name %></div>
 
+              <div class="description-heading mtop30"><%= t('jobs.duration') %></div>
+               <div class="description-text"><%= @job.period.name %></div>
+
+              <div class="description-heading mtop30"><%= t('jobs.date_of_start') %></div>
+               <div class="description-text"><%= @job.date_of_start.strftime("%d-%m-%Y") %></div>
 
               <div class="job-btn-holder">
                 <div class="job-btn-left"></div>
