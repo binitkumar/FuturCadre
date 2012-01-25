@@ -65,16 +65,16 @@
     </div>
     <div class="radio-label">
 
-      <%= f.radio_button 'date_of_start', 'yes', :class => "contract-radio" %>
+      <%= f.radio_button 'date_of_start', true , :class => "contract-radio" %>
       <label>Immediate</label>
     </div>
     <div class="radio-label">
 
-      <%= f.radio_button 'date_of_start', 'no', :class => "contract-radio", :id =>"enable_datextbox" %>
+      <%= f.radio_button 'date_of_start', false, :class => "contract-radio", :id =>"enable_datextbox" %>
       <label> From Date</label>
     </div>
     <div class="date-box">
-      <%= f.text_field :date_of_start, :class =>"date-pick", :disabled => false, :id => "Date-Box" %>
+      <%=text_field_tag "date_of_start_text",nil, :class =>"date-pick", :disabled => false, :id => "Date-Box" %>
     </div>
   </div>
 

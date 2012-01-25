@@ -1,3 +1,5 @@
+<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery.pagination" %>
+<%= stylesheet_link_tag "pagination", "jquery.ui.datepicker" %>
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
 
@@ -9,6 +11,15 @@
 
   <div class="w100">
     <div class="dashboard-left mtop10">
+      <div class="adds-holder">
+        <%= image_tag asset_path 'adds-holder-img.png' %>
+
+      </div>
+      <div class="adds-holder">
+        <%= image_tag asset_path 'adds-holder-img.png' %>
+
+      </div>
+
 
     </div>
 
@@ -16,69 +27,61 @@
 
       <div class="w100 mtop10">
         <div class="search-field">
-        <%= render :partial=> "search_group" %>
-      </div>
+          <%= render :partial=> "search_group" %>
+        </div>
         <div class="btn_holder">
-          <div class="btn_left_holder"> </div>
+
           <div class="btn_mid_holder">
-            <div class="pre_btn"><a href="#">Prev</a></div>
-            <ul class="btn_list">
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li class="btn_act"><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">6</a></li>
-              <li><a href="#">7</a></li>
-            </ul>
-            <div class="next_btn"><a href="#">Next</a></div>
           </div>
-          <div class="btn_right_holder"></div>
+
         </div>
       </div>
 
       <div class="w100">
-        <div class="dashboard-heading mtop10">
-          <div class="name">Name</div>
-          <div class="description">Description</div>
-          <div class="salary">Salary</div>
-          <div class="rating">Rating</div>
-        </div>
-        <% unless @groups.blank? %>
-            <% @groups.each do |group| %>
-                <div class="dashboard-text">
-                  <div class="name">
-                    <div class="icon-img"> <%= image_tag asset_path 'icon-img.png' %></div>
-                    <div class="icon-text">
+        <div id="container">
+          <div class="dashboard-heading mtop10">
+            <div class="name">Name</div>
+            <div class="description">Description</div>
+            <div class="salary">Salary</div>
+            <div class="rating">Rating</div>
+          </div>
+          <div id="Pagination" class="pagaination-holder"></div>
+          <br style="clear:both;"/>
 
-                      <%=link_to group.name,group_details_groups_path(:id => group.id)  %>
-                       <p> <%= image_tag asset_path 'mem-icon.png' %>  <%= group.users.count %> Members</p>
+          <div id="Searchresult">
+          </div>
+          <div id="hiddenresult" style="display:none;">
+
+            <% unless @groups.blank? %>
+
+                <% @groups.each do |group| %>
+                    <div class="result">
+                      <div class="dashboard-text">
+                        <div class="name">
+                          <div class="icon-img"> <%= image_tag asset_path 'icon-img.png' %></div>
+                          <div class="icon-text">
+
+                            <%= link_to group.name, group_details_groups_path(:id => group.id) %>
+                            <p> <%= image_tag asset_path 'mem-icon.png' %>  <%= group.users.count %> Members</p>
+                          </div>
+                        </div>
+                        <div class="description-hold"><%= group.description %> </div>
+                        <div class="salary-hold"><%= group.mean_salary %> Euro</div>
+                        <div class="rating-hold"> <%= image_tag asset_path 'rating.png' %></div>
+
+                      </div>
                     </div>
-                  </div>
-                  <div class="description-hold"><%= group.description %> </div>
-                  <div class="salary-hold"><%= group.mean_salary %> Euro</div>
-                  <div class="rating-hold"> <%= image_tag asset_path 'rating.png' %></div>
-
-                </div>
+                <% end %>
             <% end %>
-        <% end %>
-
+          </div>
+        </div>
 
         <div class="w100 mtop10">
           <div class="btn_holder">
-            <div class="btn_left_holder"></div>
             <div class="btn_mid_holder">
-              <div class="pre_btn"><a href="#">Prev</a></div>
-              <ul class="btn_list">
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li class="btn_act"><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">6</a></li>
-                <li><a href="#">7</a></li>
-              </ul>
-              <div class="next_btn"><a href="#">Next</a></div>
+
             </div>
-            <div class="btn_right_holder"></div>
+
           </div>
         </div>
 
@@ -91,7 +94,47 @@
 
   </div>
 
-
 </div>
 
 
+<script type="text/javascript">
+    var pagination_options = {
+        num_edge_entries: 0,
+        num_display_entries: 0,
+        callback: pageselectCallback,
+        items_per_page:2
+    }
+    function pageselectCallback(page_index, jq) {
+        var items_per_page = pagination_options.items_per_page;
+        var offset = page_index * items_per_page;
+        var new_content = $('#hiddenresult div.result').slice(offset, offset + items_per_page).clone();
+        $('#Searchresult').empty().append(new_content);
+        return false;
+    }
+
+    // When document is ready, initialize pagination and buttons
+    $(document).ready(function() {
+        var num_entries = $('#hiddenresult div.result').length;
+
+        // Create pagination element, if more than 50 candidates
+        if (num_entries > 2) {
+            var $pager = $("#Pagination");
+            $pager.fadeIn(400);
+            $pager.pagination(num_entries, pagination_options);
+            $("#select_all").click(function() {
+                $("#Searchresult").find('div').find('input[type=checkbox]').each(function() {
+                    this.checked = true;
+                });
+            });
+
+        }
+        else {
+            $("#hiddenresult").fadeIn(200);
+            $("#select_all").click(function() {
+                $("input[type=checkbox]").each(function() {
+                    this.checked = true;
+                });
+            });
+        }
+    });
+</script>

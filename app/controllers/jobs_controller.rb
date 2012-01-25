@@ -27,9 +27,17 @@ class JobsController < ApplicationController
   end
 
   def create_job
-    params[:job].inspect
+
+    #@profile         = Profile.new
+    #@profile.user_id = current_user
+    #@profile.save!
     @job_new = Job.new(params[:job])
-    @job_new.update_attributes(:employer_id => current_user.id, :employer_type => "User")
+    if params[:job][:date_of_start]=="true"
+      date= Time.now
+    else
+      date= params[:date_of_start_text]
+    end
+    @job_new.update_attributes(:employer_id => current_user.id, :employer_type => "User", :date_of_start => date)
 
     unless params[:company_information].blank?
       @comp            = CompanyInformation.new(params[:company_information])

@@ -145,6 +145,7 @@ FuturCadre::Application.routes.draw do
       post :search_group
       get :group_question
       post :create_question
+      get  :group_body
     end
   end
 
