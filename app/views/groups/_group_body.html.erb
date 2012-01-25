@@ -1,0 +1,14 @@
+<div class="mid-cont-holder">
+  <% unless @group.blank? %>
+
+      <div class="w100 mtop20">
+        <div class="job-cont-hold">
+          <div class="accountants"><%= @group.name %> </div>
+          <div class="result-text">  <%= @group.description %></div>
+          <div class="date-text"> <%= @group.created_at.strftime("%d-%m-%Y") %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+</div>

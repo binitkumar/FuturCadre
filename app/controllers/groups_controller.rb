@@ -17,10 +17,15 @@ class GroupsController < ApplicationController
   end
 
   def group_details
-    @group      = Group.find(params[:id])
-    @group_jobs = @group.jobs
+    @group = Group.find(params[:id])
+    if @group.group_type.name == "Job"
+     @groups     = Group.find_all_by_group_type_id(1)
+    elsif @group.group_type.name == "School"
+      @groups     = Group.find_all_by_group_type_id(2)
+    end
+     @group_jobs = @group.jobs
     @comments   = @group.comments.all
-    @groups     = Group.all
+    #@groups     = Group.all
     #render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
   end
 
@@ -48,12 +53,11 @@ class GroupsController < ApplicationController
   end
 
   def group_jobs
-     job_partial = params[:sid]
+    job_partial = params[:sid]
     @group      = Group.find(params[:id])
     @group_jobs = @group.jobs
-    render :json => { :html => render_to_string(:partial => '/groups/group_jobs', :locale=>{ :group => @group, :sid => job_partial }) }.to_json
+   render :json => { :html => render_to_string(:partial => '/groups/group_jobs', :locale=>{ :group => @group, :sid => job_partial }) }.to_json
   end
-
 
   def group_page
     @group_page = Group.find(params[:gid])
@@ -81,13 +85,19 @@ class GroupsController < ApplicationController
   end
 
   def group_question
-     @group = Group.find(params[:id])
-     render :json => { :html => render_to_string(:partial => '/groups/group_question', :locale=>{ :group => @group }) }.to_json
-  end
-  def create_question
-      @group = Group.find(params[:group_id])
-      @group.questions.create(params[:question])
+    @group = Group.find(params[:id])
     render :json => { :html => render_to_string(:partial => '/groups/group_question', :locale=>{ :group => @group }) }.to_json
   end
+
+  def create_question
+    @group = Group.find(params[:group_id])
+    @group.questions.create(params[:question])
+    render :json => { :html => render_to_string(:partial => '/groups/group_question', :locale=>{ :group => @group }) }.to_json
+  end
+
+ def group_body
+   @group = Group.find(params[:id])
+    render :json => { :html => render_to_string(:partial => '/groups/group_body', :locale=>{ :group => @group }) }.to_json
+ end
 
 end

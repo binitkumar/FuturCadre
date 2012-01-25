@@ -64,7 +64,7 @@
             </div>
             <ul class="group-links mtop20">
               <li class="group-link-act listed"><%= link_to "Wall", group_wall_groups_path(:id => @group.id), :class => "wall_link" %></li>
-              <li class="listed"><a href="javascript:">Description</a></li>
+              <li class="listed"><%= link_to "Description", group_body_groups_path(:id => @group.id), :class => "body-link" %></li>
               <li class="listed"><%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link" %></li>
               <li class="listed"><%= link_to "Offers", group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link" %></li>
               <li class="listed"><%= link_to "Questions", group_question_groups_path(:id =>@group.id, :sid => "questions"), :class =>"questions-link" %></li>
@@ -86,6 +86,7 @@
       <div class="post-right-cont-hold">
         <h3><span class="red">Group Index</span></h3>
         <% unless @groups.blank? %>
+            <% puts "BVVVVVVVVVVV", @groups.inspect %>
             <ul class="groups-link">
               <% @groups.each do |group| %>
                   <li>
@@ -183,14 +184,34 @@
         });
         return false;
     });
-    $(".listed").click(function() {
-        $(".listed").each(function() {
-            $(this).removeClass("group-link-act");
-        });
-        $(this).addClass("group-link-act");
-    });
+//    $(".listed").click(function() {
+//        $(".listed").each(function() {
+//            $(this).removeClass("group-link-act");
+//        });
+//        $(this).addClass("group-link-act");
+//    });
 
     $("a.questions-link").click(function() {
+        $(this).removeClass("group-link-act");
+        $(this).parent(".listed").prevAll(".listed").each(function() {
+            $(this).removeClass("group-link-act");
+
+        });
+        $(this).parent(".listed").addClass("group-link-act");
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".mid-cont-holder").html(response.html);
+            }
+        });
+        return false;
+    });
+
+        $("a.body-link").click(function() {
         $(this).removeClass("group-link-act");
         $(this).parent(".listed").prevAll(".listed").each(function() {
             $(this).removeClass("group-link-act");
