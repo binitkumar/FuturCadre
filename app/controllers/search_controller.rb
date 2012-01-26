@@ -76,7 +76,7 @@ class SearchController < ApplicationController
 
   def get_jobs_by_region
     @region = Region.find(params[:id])
-    @jobs = Job.find_by_region_id(@region.id )
+    @jobs = Job.find_all_by_region_id(@region.id )
     render :json => { :html => render_to_string(:partial => '/search/region_jobs') }.to_json
   end
 

@@ -50,13 +50,16 @@ end
 
 
 (0 .. 10).each do |i|
-  Job.create!(:name        => "testJob#{i}",
-              :description => "As we look to expand, JPP is seeking a well-organized, extremely self-motivated individual to help with the office management and day-to-day running of the office. The successful candidate will be someone who takes initiative, identifies problems and provides solutions and is able to work well under pressure. He or she will be able to multi-task and work with a team of investigators and lawyers to drive forward JPP's challenging, but rewarding, mission.",
-              :country     => Country.first,
-              :region      => Region.first,
-              :city        => City.first,
-              :employer    => User.first,
-              :category    => Category.first
+  Job.create!(:name          => "testJob#{i}",
+              :description   => "As we look to expand, JPP is seeking a well-organized, extremely self-motivated individual to help with the office management and day-to-day running of the office. The successful candidate will be someone who takes initiative, identifies problems and provides solutions and is able to work well under pressure. He or she will be able to multi-task and work with a team of investigators and lawyers to drive forward JPP's challenging, but rewarding, mission.",
+              :country       => Country.find(24),
+              :region        => Region.find_by_country_id(24),
+              :city          => City.first,
+              :employer      => User.first,
+              :category      => Category.first,
+              :date_of_start => Time.now,
+              :annual_salary => 1345
+
   )
 end
 
@@ -209,7 +212,7 @@ durations.each { |duration| duration.destroy } if durations.present?
 
 puts "Creating durations..."
 %w(3_mois +3_mois 6_mois 12_mois +12_mois).each do |name|
- Period.create!(:name => name.humanize.titleize)
+  Period.create!(:name => name.humanize.titleize)
 end
 
 puts "Deleting existing languages ..."
@@ -233,3 +236,11 @@ puts "Creating sectors..."
 end
 
 
+puts "updating Job contact and Period"
+
+jobs = Job.all
+@contract = Contract.first
+@period = Period.first
+jobs.each do |job|
+  job.update_attributes(:contract_id => @contract, :period_id => @period)
+end
