@@ -7,9 +7,9 @@ class JobsController < ApplicationController
   def details
     @job = Job.find_by_id(params[:id])
     if params[:sid]=="group"
-      render :json => { :html => render_to_string(:partial => '/jobs/details') }.to_json
+      render :json => {:html => render_to_string(:partial => '/jobs/details')}.to_json
     else
-      render :json => { :html => render_to_string(:partial => '/jobs/details') }.to_json
+      render :json => {:html => render_to_string(:partial => '/jobs/details')}.to_json
     end
   end
 
@@ -17,17 +17,17 @@ class JobsController < ApplicationController
   def new
 
     if current_user.profile!=nil
-    @job            = Job.new
-    @skill          = Skill.new(params[:skills])
-    @responsibility = Responsibility.new(params[:respon])
-    @employer       = current_user
-    unless @employer.profile.blank?
-      @company_information = @employer.profile.company_informations.first
+      @job = Job.new
+      @skill = Skill.new(params[:skills])
+      @responsibility = Responsibility.new(params[:respon])
+      @employer = current_user
+      unless @employer.profile.blank?
+        @company_information = @employer.profile.company_informations.first
+      else
+        @company_information = CompanyInformation.new[:company_information]
+      end
     else
-      @company_information = CompanyInformation.new[:company_information]
-    end
-    else
-         redirect_to profiles_path(), :notice => "Please creater a profile"
+      redirect_to profiles_path(), :notice => "Please creater a profile"
     end
   end
 
@@ -54,10 +54,10 @@ class JobsController < ApplicationController
     @job_new.update_attributes(:employer_id => current_user.id, :employer_type => "User", :date_of_start => date, :annual_salary => salary)
 
     unless params[:company_information].blank?
-      @comp            = CompanyInformation.new(params[:company_information])
+      @comp = CompanyInformation.new(params[:company_information])
       @comp.profile_id = current_user.id
       @comp.update_attributes(:country_id => params[:job][:country_id],
-                              :region_id  => params[:job][:region_id], :city_id => params[:job][:city_id])
+                              :region_id => params[:job][:region_id], :city_id => params[:job][:city_id])
       @comp.save!
     else
       puts "None company info added"
@@ -83,7 +83,7 @@ class JobsController < ApplicationController
       @job_languages.each_with_index do |job_lang, j|
         job_lang.update_attributes(:level=> params[:level][j])
       end
-      render :json => { :html => render_to_string(:partial => 'job_show', :locale=>{ :job_new => @job_new }) }.to_json
+      render :json => {:html => render_to_string(:partial => 'job_show', :locale=>{:job_new => @job_new})}.to_json
     else
       redirect_to :action => "new"
     end
@@ -96,20 +96,34 @@ class JobsController < ApplicationController
 
 
   def edit
-    @job_edit            = Job.find_by_id(params[:id])
+    @job_edit = Job.find_by_id(params[:id])
     @company_information = @job_edit.employer.profile.company_informations.first
-    @skills              = @job_edit.skills
-    @job_languages       = @job_edit.languages
+    @skills = @job_edit.skills
+    @job_languages = @job_edit.languages
 
   end
 
   def update
     @job_new = Job.find(params[:id])
-    @job_comp   = CompanyInformation.find(params[:cid])
+    @job_comp = CompanyInformation.find(params[:cid])
 
     unless params[:job].blank?
       @job_new.update_attributes(params[:job])
     end
+    if params[:job][:date_of_start]=="true"
+      date= Time.now
+    else
+      date= params[:date_of_start_text]
+    end
+    if params[:job][:annual_salary] == "Negotiable"
+      salary = "Negotiable"
+    elsif  params[:job][:annual_salary] == "Oui"
+      salary = params[:annual_salary_text]
+    else
+      salary = "Non"
+    end
+    @job_new.update_attributes(:date_of_start => date, :annual_salary => salary)
+
     unless params[:company_information].blank?
       @job_comp.update_attributes(params[:company_information])
     end
@@ -135,12 +149,12 @@ class JobsController < ApplicationController
     @job_languages.each_with_index do |job_lang, j|
       job_lang.update_attributes(:level_id => params[:level][j])
     end
-    render :json => { :html => render_to_string(:partial => 'job_show', :locale=>{ :job_new => @job_new }) }.to_json
+    render :json => {:html => render_to_string(:partial => 'job_show', :locale=>{:job_new => @job_new})}.to_json
 
   end
 
   def remove_language
-    @job      = Job.find_by_id(params[:job_id])
+    @job = Job.find_by_id(params[:job_id])
     @language = Language.find_by_id(params[:lang_id])
     @job.languages.destroy(@language.id)
     render :nothing => true
