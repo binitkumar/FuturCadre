@@ -6,6 +6,7 @@
     <div class="dashboard-content-left">
       <%= render :partial => "employer/employer", :locals => { :employer => @employer } %>
     </div>
+
     <div class="dashboard-content-right">
       <%= form_for @job, :url =>{ :action => 'create_job', :controller => 'jobs' }, :html =>{ :id => "job_form", :onsubmit =>false, :multipart => true }, :remote => true do |f| %>
           <%= render :partial => "job_form", :locals => { :f => f, :employer => @employer } %>
@@ -25,16 +26,16 @@
 //        $("#textBox").attr("disabled", "disabled");
         if ($(this).attr('id') == 'enable_textbox') {
             $("#textBox").removeAttr("disabled");
-                 document.getElementById("textBox").value = null;
+            document.getElementById("textBox").value = null;
         }
 
     });
 
     $('.contract-radio').click(function() {
 //          $("#Date-Box").attr("disabled", "disabled");
-             if ($(this).attr('id') == 'enable_datextbox') {
+        if ($(this).attr('id') == 'enable_datextbox') {
             $("#textBox").removeAttr("disabled");
-                 document.getElementById("Date-Box").value = null;
+            document.getElementById("Date-Box").value = null;
         }
     });
 

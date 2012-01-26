@@ -1,0 +1,31 @@
+<div class="dashboard-content-right">
+  <div class="w100">
+    <div class="dashboard-post-profile-btn">
+    </div>
+  </div>
+  <!--dashboard-post-profile-btn ends-->
+  <div class="dashboard-content">
+    <h1>Jobs</h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <div class="btn-mid-holder"><%= link_to "Create New Job", new_job_path(:eid => @employer), :class => "create-event", :style=>" color: #FFFFFF;text-decoration: none;" %></div>
+    <p><br/>
+    </p>
+    <h1>My<span class="red"> Jobs</span></h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <% unless @jobs.blank? %>
+        <p>Total Number of Jobs <%= @jobs.count %></p>
+        <% @jobs.each do |job| %>
+            <div class="event-image">
+              <%#= image_tag  %>
+              <label>Job Name</label> <%= job.name %>
+              <br/>
+              <label>Job Edit</label> <%= link_to "Job Edit", edit_jobs_path(:id =>job.id),  %>
+              <br/>
+              <label>Job Delete</label> <%= link_to "Delet" %>
+              <br/>
+              <br/><br/>
+            </div>
+        <% end %>
+    <% end %>
+   </div>
+</div>

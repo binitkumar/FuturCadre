@@ -104,11 +104,11 @@ class JobsController < ApplicationController
   end
 
   def update
-    @job_update = Job.find(params[:id])
+    @job_new = Job.find(params[:id])
     @job_comp   = CompanyInformation.find(params[:cid])
 
     unless params[:job].blank?
-      @job_update.update_attributes(params[:job])
+      @job_new.update_attributes(params[:job])
     end
     unless params[:company_information].blank?
       @job_comp.update_attributes(params[:company_information])
@@ -118,7 +118,7 @@ class JobsController < ApplicationController
       skills = params[:skills][:name].split(',')
       skills.each do |skill|
         @skill_new = Skill.create(:name => skill)
-        @job_update.skills << Skill.find_by_id(@skill_new.id)
+        @job_new.skills << Skill.find_by_id(@skill_new.id)
       end
     else
       puts "None skill added"
@@ -127,15 +127,15 @@ class JobsController < ApplicationController
     unless params[:language_ids].blank?
       params[:language_ids].each_with_index do |language, i|
         @language = Language.find_by_id(language)
-        @job_update.languages << Language.find_by_id(@language.id)
+        @job_new.languages << Language.find_by_id(@language.id)
       end
     end
 
-    @job_languages = JobLanguage.find_all_by_job_id(@job_update.id)
+    @job_languages = JobLanguage.find_all_by_job_id(@job_new.id)
     @job_languages.each_with_index do |job_lang, j|
       job_lang.update_attributes(:level_id => params[:level][j])
     end
-
+    render :json => { :html => render_to_string(:partial => 'job_show', :locale=>{ :job_new => @job_new }) }.to_json
 
   end
 

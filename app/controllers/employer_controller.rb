@@ -8,7 +8,9 @@ class EmployerController < ApplicationController
 
 
   def employer_jobs
-    @Jobs = Job.find_all_by_employer_id(current_user.id)
+    @employer = User.find_by_id()
+    @jobs = Job.find_all_by_employer_id(current_user.id)
+     render :json => { :html => render_to_string(:partial => '/employer/employer_job', :locale=>{ :employer => @employer }) }.to_json
   end
 
   def employer_statistics

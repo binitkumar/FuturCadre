@@ -14,7 +14,8 @@
       </div>
       <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder"><%= link_to "My Jobs", employer_jobs_employer_index_path %></div>
+
+        <div class="reg-mid-tab-holder"><%= link_to "My Jobs", employer_jobs_employer_index_path(:edi => @employer), :class =>"employer-jobs" %></div>
 
         <div class="reg-right-tab-holder"></div>
       </div>
@@ -57,7 +58,7 @@
         <div class="w100">
           <div class="dashboard-post-profile-btn">
 
-            <%= link_to image_tag(asset_path 'Post-An-Ad.png'), new_job_path() %>
+            <%= link_to image_tag(asset_path 'Post-An-Ad.png'), new_job_path(), :class =>"profile-check" %>
 
             <a href="#"> <%= image_tag asset_path 'search-profile.png' %>
             </a>
@@ -120,6 +121,21 @@
 
 <script type="text/javascript">
     $("a.event-holder").click(function() {
+
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
+        });
+        return false;
+
+    });
+    $("a.employer-jobs").click(function() {
 
         $.ajax({
             context: this,

@@ -10,6 +10,7 @@ class CreateJobs < ActiveRecord::Migration
       t.datetime :date_of_start
       t.string  :education_level
 			t.references :category, :country, :region, :city, :contract, :period
+      t.string :is_deleted, :default => false
 
       t.timestamps
     end
