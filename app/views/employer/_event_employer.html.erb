@@ -30,9 +30,9 @@
               <br/>
               <label>Event Description</label> <%= event.description %>
               <br/>
-              <label>Start Time</label> <%= event.time_of_start.strftime("%d-%m-%Y at %I:%M%p") %>
+              <label>Start Time</label> <%= event.time_of_start %>
               <br/>
-              <label>End Time</label><%= event.time_of_end.strftime("%d-%m-%Y at %I:%M%p") %>
+              <label>End Time</label><%= event.time_of_end %>
               <br/><br/>
             </div>
         <% end %>
