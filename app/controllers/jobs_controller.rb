@@ -15,6 +15,8 @@ class JobsController < ApplicationController
 
 
   def new
+
+    if current_user.profile!=nil
     @job            = Job.new
     @skill          = Skill.new(params[:skills])
     @responsibility = Responsibility.new(params[:respon])
@@ -23,6 +25,9 @@ class JobsController < ApplicationController
       @company_information = @employer.profile.company_informations.first
     else
       @company_information = CompanyInformation.new[:company_information]
+    end
+    else
+         redirect_to profiles_path(), :notice => "Please creater a profile"
     end
   end
 

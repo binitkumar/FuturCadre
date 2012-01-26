@@ -55,7 +55,7 @@ class ProfilesController < ApplicationController
      if @profile_job.save
       redirect_to(@profile_job, :notice => 'Profile was successfully created.')
     else
-      redirect_to :action => "new"
+      redirect_to(:action => "new", :notice => "Profile was not created")
     end
   end
 
@@ -93,7 +93,8 @@ class ProfilesController < ApplicationController
     if @profile_new.save
       redirect_to(@profile_new, :notice => 'Profile was successfully created.')
     else
-      redirect_to :action => "new"
+      redirect_to(:action => "new", :notice => "Profile was not created")
+
     end
   end
 
@@ -171,5 +172,7 @@ class ProfilesController < ApplicationController
       render :action => "edit"
     end
   end
+
+
 end
 
