@@ -19,8 +19,13 @@
 
                     $("#cities").html(response.html);
                 }
-                else
+                 else if (obj == "main") {
+
+                    $("#cities_main").html(response.html);
+                }
+                else {
                     $("#cities_search").html(response.html);
+                }
 
             }
         });
