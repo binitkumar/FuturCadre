@@ -159,7 +159,7 @@
 
             <div class="contract-field">
               <label style="margin-top: 0!important;"> Industry Sector</label>
-              <%= ed.select :sector_id, options_from_collection_for_select(Sector.all, "id", "value") %>
+              <%= ed.select :sector_id, options_from_collection_for_select(Sector.all, "id", "value", @company_information.sector_id) %>
             </div>
           </div>
         </div>
@@ -266,11 +266,12 @@
     }
 
     $('.add-education').click(function() {
+
         var scntDiv = $('.contract-field-ed');
         var count = parseInt($('#count').attr('value'));
         count = count + 1;
         $('#count').attr('value', count);
-        var txt_field = '<div id="new_div_' + count + '"><div class="contract-field-ed">' + <%= f.select(:education_level, Job::Education_Levels) %> + '</div><div class="add-button" style="margin-top: 30px;"><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_education_field(' + count + ')" /></a> <div> </div>';
+        var txt_field = '<div id="new_div_'+count+ '"><div class="contract-field-ed">' + <%= f.select(:education_level, Job::Education_Levels) %> + '</div><div class="add-button" style="margin-top: 30px;"><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_education_field(' + count + ')" /></a> <div> </div>';
         scntDiv.append(txt_field);
 
     });
