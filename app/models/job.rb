@@ -26,7 +26,7 @@ class Job < ActiveRecord::Base
     conditions << "jobs.country_id = '%#{params[:country_id]}%'"
     conditions << "jobs.region_id = '%#{params[:region_id]}%'"
     conditions << "jobs.city_id = '%#{params[:city_id]}%'"
-    conditions = conditions.join(" AND ")
+    conditions = conditions.join(" OR ")
     find(:all, :conditions => conditions)
   end
 

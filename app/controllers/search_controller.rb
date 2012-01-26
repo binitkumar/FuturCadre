@@ -15,8 +15,8 @@ class SearchController < ApplicationController
   end
 
   def search
-    @jobs = Job.search(params)
-    render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
+      @jobs = Job.search(params)
+      render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
   end
 
   def get_sub_categories
