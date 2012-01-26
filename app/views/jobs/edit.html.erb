@@ -1,4 +1,4 @@
-<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery.ui.datepicker" %>
+<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery-ui-timepicker-addon" %>
 <%= stylesheet_link_tag "jquery-ui-1.8.17.custom", "jquery.ui.datepicker" %>
 <div class="content-holder">
   <div class="w100">
@@ -7,7 +7,7 @@
       <%= render :partial => "employer/employer", :locals => { :employer => @employer } %>
     </div>
     <div class="dashboard-content-right">
-      <%= form_for @job_edit, :url =>{ :action => 'update', :controller => 'jobs' ,:id => @job_edit.id, :cid => @company_information.id}, :html =>{ :id => "update_job", :onsubmit =>false, :multipart => true }, :remote => true do |f| %>
+      <%= form_for @job_edit, :url =>{ :action => 'update', :controller => 'jobs', :id => @job_edit.id, :cid => @company_information.id }, :html =>{ :id => "update_job", :onsubmit =>false, :multipart => true }, :remote => true do |f| %>
           <%= render :partial => "update_job", :locals => { :f => f, :employer => @employer } %>
           <div class="save-button">
             <%#= f.submit "Save" %>
@@ -26,24 +26,30 @@
     });
 
     $('.checked-radio').click(function() {
-        $("#textBox").attr("disabled", "disabled");
-        document.getElementById("textBox").value = null;
+//        $("#textBox").attr("disabled", "disabled");
         if ($(this).attr('id') == 'enable_textbox') {
-            $("#textBox").attr("disabled", "");
+            $("#textBox").removeAttr("disabled");
             document.getElementById("textBox").value = null;
+        }
+        else
+        {
+          document.getElementById("textBox").value = null;
+
         }
 
     });
 
     $('.contract-radio').click(function() {
-        $("#Date-Box").attr("disabled", "disabled");
-        document.getElementById("Date-Box").value = null;
+        //          $("#Date-Box").attr("disabled", "disabled");
         if ($(this).attr('id') == 'enable_datextbox') {
-            $("#Date-Box").attr("disabled", "");
+            $("#textBox").removeAttr("disabled");
             document.getElementById("Date-Box").value = null;
         }
-
+        else {
+            document.getElementById("Date-Box").value = null;
+        }
     });
+
     $('.btn-save').click(function() {
         $.post($("form#update_job").attr("action"), $("form#update_job").serialize(), (function(response) {
             return $(".dashboard-right-content").html(response.html);

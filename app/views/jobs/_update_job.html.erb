@@ -63,19 +63,21 @@
       <label>Contract Duration</label>
       <%= f.select :period_id, options_from_collection_for_select(Period.all, "id", "name", @job_edit.period_id) %>
     </div>
-    <div class="radio-label">
 
-      <%= f.radio_button 'date_of_start', 'yes', :class => "contract-radio" %>
+    <div class="radio-label">
+      <%= f.radio_button 'date_of_start', true,:checked => @job_edit.date_of_start ==Time.now ? true : false, :class => "contract-radio" %>
       <label>Immediate</label>
     </div>
-    <div class="radio-label">
 
-      <%= f.radio_button 'date_of_start', 'no', :class => "contract-radio", :id =>"enable_datextbox" %>
+    <div class="radio-label">
+      <%= f.radio_button 'date_of_start', false,:checked => @job_edit.date_of_start ==Time.now ? false : true   , :class => "contract-radio", :id =>"enable_datextbox"%>
       <label> From Date</label>
     </div>
+
     <div class="date-box">
-      <%= f.text_field :date_of_start, :class =>"date-pick", :disabled => true, :id => "Date-Box" %>
+      <%= text_field_tag "date_of_start_text" , @job_edit.date_of_start.strftime("%d-%m-%Y") , :class =>"date-pick", :disabled => false, :id => "Date-Box"%>
     </div>
+
   </div>
 
 
@@ -84,25 +86,24 @@
 
     <div class="remu-input">
       <label>Annual Salary</label>
-
-      <%= f.radio_button 'annual_salary', 'Negotiable', :class => "checked-radio" %>
-
+      <%= f.radio_button 'annual_salary', 'Negotiable',:checked => @job_edit.annual_salary == "Negotiable"? true : false, :class => "checked-radio" %>
       <label>Negotiable</label>
     </div>
-    <div class="remu-inputs-two">
-      <%= f.radio_button 'annual_salary', 'Non', :class => "checked-radio" %>
 
+    <div class="remu-inputs-two">
+      <%= f.radio_button 'annual_salary', 'Non', :checked => @job_edit.annual_salary == "Non"? true : false, :class => "checked-radio" %>
       <label> Non</label>
     </div>
+
     <div class="remu-inputs-two">
-
-      <%= f.radio_button 'annual_salary', 'Oui', :class => "checked-radio", :id =>"enable_textbox" %>
-
+      <%= f.radio_button 'annual_salary', 'Oui', :class => "checked-radio",:checked => @job_edit.annual_salary == "Oui"? false : true, :id =>"enable_textbox" %>
       <label> Oui</label>
     </div>
+
     <div class="remu-input-field">
-      <%= f.text_field :annual_salary, :disabled => true, :id => "textBox" %>
+      <%= text_field_tag "annual_salary_text",@job_edit.annual_salary, :disabled => false, :id => "textBox" %>
     </div>
+
   </div>
 </div>
 
@@ -189,7 +190,7 @@
         </div>
         <div class="contract-field-new">
           <label style="margin-top: 0!important;"> Language Level </label>
-          <%= select_tag 'level[]', options_for_select([["Niveau", "1"], ["Notions", "2"], ["Courant", "3"], ["Bilingue", "4"]]) %>
+          <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]]) %>
 
           <div class="add-button">
             <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
@@ -265,7 +266,7 @@
         var count = parseInt($('#count').attr('value'));
         count = count + 1;
         $('#count').attr('value', count);
-        var txt_field = '<div id="main_div_' + count + '"><div class="contract-field-new">' + <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value") %> + '</div><div class="contract-field-new">' + <%= select_tag 'level[]', options_for_select([["Niveau", "1"], ["Notions", "2"], ["Courant", 3], ["Bilingue", 4]], [1, 4]) %> + '</div><div class="add-button" style="margin-top: 30px;><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_location_field(' + count + ')" /></a> <div> </div>';
+        var txt_field = '<div id="main_div_' + count + '"><div class="contract-field-new">' + <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value") %> + '</div><div class="contract-field-new">' + <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]]) %> + '</div><div class="add-button" style="margin-top: 30px;><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_location_field(' + count + ')" /></a> <div> </div>';
         scntDiv.append(txt_field);
 
     });

@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-
+  #before_filter :authenticate_user!,:except=>[:show]
   def show
     @job = Job.find_by_id(params[:id])
   end
@@ -31,13 +31,22 @@ class JobsController < ApplicationController
     #@profile         = Profile.new
     #@profile.user_id = current_user
     #@profile.save!
+
     @job_new = Job.new(params[:job])
     if params[:job][:date_of_start]=="true"
       date= Time.now
     else
       date= params[:date_of_start_text]
     end
-    @job_new.update_attributes(:employer_id => current_user.id, :employer_type => "User", :date_of_start => date)
+    if params[:job][:annual_salary] == "Negotiable"
+      salary = "Negotiable"
+    elsif  params[:job][:annual_salary] == "Oui"
+      salary = params[:annual_salary_text]
+    else
+      salary = "Non"
+    end
+
+    @job_new.update_attributes(:employer_id => current_user.id, :employer_type => "User", :date_of_start => date, :annual_salary => salary)
 
     unless params[:company_information].blank?
       @comp            = CompanyInformation.new(params[:company_information])
@@ -67,7 +76,7 @@ class JobsController < ApplicationController
     if @job_new.save!
       @job_languages = JobLanguage.find_all_by_job_id(@job_new.id)
       @job_languages.each_with_index do |job_lang, j|
-        job_lang.update_attributes(:level_id => params[:level][j])
+        job_lang.update_attributes(:level=> params[:level][j])
       end
       render :json => { :html => render_to_string(:partial => 'job_show', :locale=>{ :job_new => @job_new }) }.to_json
     else

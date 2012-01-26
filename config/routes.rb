@@ -81,6 +81,7 @@ FuturCadre::Application.routes.draw do
       get :check_user_name
       get :get_jobs_by_company
       get :categories_jobs_list
+      get :get_jobs_by_region
     end
   end
 

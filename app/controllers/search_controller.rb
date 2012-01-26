@@ -2,16 +2,16 @@ class SearchController < ApplicationController
 
   def get_regions
     obj_region= params[:obj]
-    @country = Country.find_by_id(params[:country_id])
-    @regions = @country.regions
-    render :json => { :html => render_to_string(:partial => '/shared/regions', :locals => {:object_collection => obj_region}) }.to_json
+    @country  = Country.find_by_id(params[:country_id])
+    @regions  = @country.regions
+    render :json => { :html => render_to_string(:partial => '/shared/regions', :locals => { :object_collection => obj_region }) }.to_json
   end
 
   def get_cities
     obj_city = params[:obj]
-    @region = Region.find_by_id(params[:region_id])
-    @cities = @region.cities
-    render :json => { :html => render_to_string(:partial => '/shared/cities', :locals => {:object_collection => obj_city}) }.to_json
+    @region  = Region.find_by_id(params[:region_id])
+    @cities  = @region.cities
+    render :json => { :html => render_to_string(:partial => '/shared/cities', :locals => { :object_collection => obj_city }) }.to_json
   end
 
   def search
@@ -26,7 +26,6 @@ class SearchController < ApplicationController
     else
       @sub_categories = @category.children.jobs
     end
-
     render :json => { :html => render_to_string(:partial => '/search/sub_categories') }.to_json
   end
 
@@ -40,6 +39,7 @@ class SearchController < ApplicationController
   def get_browse_by
     @categories = Category.main_categories
     @companies  = CompanyInformation.all
+    @regions = Region.find_all_by_country_id([24,82])
 
     case params[:by].to_s
       when "category"
@@ -72,6 +72,12 @@ class SearchController < ApplicationController
     #		@jobs = @sub_category.jobs
     @jobs = Job.all
     render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
+  end
+
+  def get_jobs_by_region
+    @region = Region.find(params[:id])
+    @jobs = Job.find_by_region_id(@region.id )
+    render :json => { :html => render_to_string(:partial => '/search/region_jobs') }.to_json
   end
 
 end

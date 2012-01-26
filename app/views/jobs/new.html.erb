@@ -1,4 +1,4 @@
-<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery.ui.datepicker" %>
+<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery-ui-timepicker-addon" %>
 <%= stylesheet_link_tag "jquery-ui-1.8.17.custom", "jquery.ui.datepicker" %>
 <div class="content-holder">
   <div class="w100">
@@ -23,23 +23,18 @@
 
     $('.checked-radio').click(function() {
 //        $("#textBox").attr("disabled", "disabled");
-        document.getElementById("textBox").value = null;
-
         if ($(this).attr('id') == 'enable_textbox') {
             $("#textBox").removeAttr("disabled");
-
-            document.getElementById("textBox").value = null;
+                 document.getElementById("textBox").value = null;
         }
 
     });
 
     $('.contract-radio').click(function() {
 //          $("#Date-Box").attr("disabled", "disabled");
-        document.getElementById("Date-Box").value = null;
-        if ($(this).attr('id') == 'enable_datextbox') {
+             if ($(this).attr('id') == 'enable_datextbox') {
             $("#textBox").removeAttr("disabled");
-
-            document.getElementById("Date-Box").value = null;
+                 document.getElementById("Date-Box").value = null;
         }
     });
 

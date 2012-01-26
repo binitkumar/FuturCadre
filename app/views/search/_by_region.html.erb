@@ -1,0 +1,29 @@
+<script language="JavaScript">
+    $("a.category-link").click(function() {
+        $(this).parent(".category").prevAll(".category").each(function() {
+            $(this).removeClass("selected");
+            $(this).children(".sub-category-holder").hide();
+            return $(this).slideUp("fast");
+        });
+        $(this).parent(".category").addClass("selected");
+        $(this).next(".sub-category-holder").show();
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                $(".sub-category-holder").html(response.html);
+            }
+        });
+        return false;
+    });
+</script>
+<% @regions.each do |region| %>
+    <li class="category">
+      <%= link_to region.name, get_jobs_by_region_search_index_path(:id => region.id), :class => "category-link" %>
+      <div class="sub-category-holder" style="display:none;">
+      </div>
+    </li>
+<% end %>

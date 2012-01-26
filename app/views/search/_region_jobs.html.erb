@@ -1,0 +1,27 @@
+<script language="JavaScript">
+	$("a.sub-category-link").click(function() {
+  $.ajax({
+	context: this,
+	url: $(this).attr("href"),
+	type: "GET",
+	data: $(this).serialize(),
+	dataType: "json",
+	success: function(response) {
+	 $(".content-holder").html(response.html);
+	}
+  });
+  return false;
+	});
+</script>
+<div class="gray-holder">
+	<ul class="inner-links">
+		<% if @jobs.present? %>
+			<%  @jobs.each do |job| %>
+				<li><%= link_to job.name,  details_jobs_path(:id => job.id ), :class => "sub-category-link" %></li>
+			<%end%>
+		<%else%>
+			<li><a>No Jobs in this region present yet.</a></li>
+		<%end%>
+	</ul>
+	<div class="gray-bot-bg"></div>
+</div>
