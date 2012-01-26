@@ -1,29 +1,7 @@
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
 
-	<div class="reg-tab-holder">
-		<div class="reg-tab-holder-new tab-act">
-			<div class="reg-left-tab-holder"></div>
-			<div class="reg-mid-tab-holder">My Applications</div>
-			<div class="reg-right-tab-holder"></div>
-		</div>
-		<div class="reg-tab-holder-new">
-			<div class="reg-left-tab-holder"></div>
-			<div class="reg-mid-tab-holder">My Projects</div>
-			<div class="reg-right-tab-holder"></div>
-		</div>
-		<div class="reg-tab-holder-new">
-			<div class="reg-left-tab-holder"></div>
-			<div class="reg-mid-tab-holder">My Groups</div>
-			<div class="reg-right-tab-holder"></div>
-		</div>
-		<div class="reg-tab-holder-new">
-			<div class="reg-left-tab-holder"></div>
-			<div class="reg-mid-tab-holder">Msg box</div>
-			<div class="reg-right-tab-holder"></div>
-		</div>
 
-	</div>
 
 	<div class="content-left-holder">
 		<div class="w100">
@@ -68,3 +46,20 @@
 
 	</div>
 </div>
+
+<script language="JavaScript">
+    $("a.job-link").click(function() {
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                $(".content-holder").html(response.html);
+            }
+        });
+        return false;
+    });
+</script>
+
