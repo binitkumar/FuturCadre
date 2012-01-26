@@ -45,10 +45,10 @@
             <%= f.text_area :description %>
           </div>
         </div>
-        <div class="save-button"> <%= f.submit "Save" %></div>
+
     <% end %>
     <div class="clear"></div>
-    <div class="btn-mid-holder" id="invite-people" style="margin-top: 12px;">Invite People</div>
+
     <div class="btn-mid-holder-two" id="create-event" style="margin-top: 12px;margin-right: 20px;">Create an Event</div>
 
 
@@ -56,41 +56,7 @@
 </div>
 
 
-<div id="event-form" title="Create an Event">
 
-  <%= form_for :event, :url =>{ :action => 'create_event' }, :html =>{ :id => 'invite_people_form' }, :remote => true do |f| %>
-      <div class="job-input">
-        <%= hidden_field_tag :employer_id, @employer.id %>
-        <label>Title</label>
-        <%= f.text_field :name %>
-      </div>
-      <div class="job-input">
-        <label>Venue</label>
-        <%= f.text_field :place %>
-      </div>
-      <div class="job-input">
-        <label>Event Picture</label>
-
-      </div>
-      <div class="job-input">
-        <label>Start Time</label>
-        <%= f.text_field :time_of_start, :class =>"date-picker" %>
-      </div>
-
-      <div class="job-input">
-        <label>End Time</label>
-        <%= f.text_field :time_of_end, :class =>"date-picker" %>
-
-      </div>
-      <div class="job-input-description">
-        <label>Description</label>
-        <%= f.text_area :description %>
-      </div>
-
-  <% end %>
-
-
-</div>
 
 
 <script type="text/javascript">
