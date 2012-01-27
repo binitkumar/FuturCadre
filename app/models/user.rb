@@ -23,8 +23,8 @@ class User < ActiveRecord::Base
   has_many :events, :through => :event_users
   has_many :created_events, :as => :owner, :class_name => "Event"
   has_many :sent_invitations, :class_name => 'EventUser', :foreign_key => 'sender_id'
+  has_many :applied_jobs
   #belongs_to :event_user
-
 
 
   def role

@@ -1,7 +1,7 @@
 <div class="content-left-holder">
   <div class="w100">
     <div class="search-results">Search Results</div>
-<!--    <div class="data-post-div"></div>-->
+    <!--    <div class="data-post-div"></div>-->
 
     <div class="search-line"></div>
   </div>
@@ -30,7 +30,7 @@
             </div>
             <div class="job-btn-holder">
               <div class="job-btn-left"></div>
-              <div class="job-btn-mid">Apply</div>
+              <div class="job-btn-mid"><%= link_to "Apply", apply_job_jobs_path(:j_id => @job), :class => "job-application", :style => "color: #fff; text-decoration: none;" %></div>
               <div class="job-btn-right"></div>
             </div>
             </div>
@@ -76,7 +76,7 @@
                 <div class="job-btn-right"></div>
               </div>
 
-            <!--  <div class="more-similar-jobs"><a href="#"><%#= t('job_similar') %></a></div>-->
+              <!--  <div class="more-similar-jobs"><a href="#"><%#= t('job_similar') %></a></div>-->
             </div>
             </div>
 
@@ -125,8 +125,32 @@
         <% end %>
         </div>
 
+  <div id="application-form" title="Apply for a Job">
 
+    <%= form_for :job, :url =>{ :action => 'apply_job' },:html =>{ :id => 'apply_job_form'}, :remote => true do |f| %>
+        <div class="select-holder">
+          <%= hidden_field_tag :job_id, @job.id %>
+          <label>Job Name</label>
+          <%= f.text_field :name%>
+        </div>
+        <div class="input-holder">
+          <label>CV</label>
+          <% fields_for :current_user %>
+        </div>
+
+
+    <% end %>
+
+
+  </div>
         <script type="text/javascript">
+
+            $(".job-application").click(function() {
+
+                alert("abnbcnbxnc");
+            });
+
+
             $(document).ready(function() {
                 var menuPlaceholder = document.getElementById('network-holder');
                 newNode = document.createElement('div');

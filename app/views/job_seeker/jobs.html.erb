@@ -1,0 +1,61 @@
+<%= render :partial => "shared/top_search_ box" %>
+<div class="content-holder">
+
+
+
+	<div class="content-left-holder">
+		<div class="w100">
+			<div class="search-results">Latest Jobs <span class="red">Matching your skills</span></div>
+
+
+			<div class="search-line"></div>
+		</div>
+		<% if @latest_jobs.present? %>
+			<% @latest_jobs.each do |job|  %>
+				<div class="result-holder">
+					<div class="accountants"><%= link_to job.name, details_jobs_path(:id => job.id), :class => "job-link" %></div>
+					<div class="result-text"><%= job.employer.name %> <%= job.location %></div>
+					<div class="result-text"><%= job.description %></div>
+					<div class="date-text"><%= job.created_at.strftime("%d-%m-%Y") %> - <%= link_to t('search.apply') %></div>
+				</div>
+			<%end%>
+		<%end%>
+
+	</div>
+	<div class="content-right-holder">
+		<div class="popular-vacancies">
+			<h1><span class="red">My Applications </span>Status</h1>
+			<div class="small-line"><img src="images/small-line.png" alt=""></div>
+		</div>
+
+		<% if @my_jobs.present? %>
+			<% @my_jobs.each do |job|  %>
+				<div class="w100 mtop20">
+					<div class="accountants-div">
+						<h1>Accountants</h1>
+						<p>Fintax Chartered Accountants, Faisalabad</p>
+					</div>
+					<div class="day">3 days to go</div>
+				</div>
+			<%end%>
+		<%end%>
+
+	</div>
+</div>
+
+<script language="JavaScript">
+    $("a.job-link").click(function() {
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                $(".content-holder").html(response.html);
+            }
+        });
+        return false;
+    });
+</script>
+

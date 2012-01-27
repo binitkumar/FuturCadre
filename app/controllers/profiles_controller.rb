@@ -31,18 +31,18 @@ class ProfilesController < ApplicationController
     end
 
     #educational information
-    unless @profile_new.blank?
+    unless @profile_job.blank?
       @education_info            = EducationInformation.new(params[:education_info])
       @education_info.profile_id = @profile_job.id
       @education_info.save
     end
     #professional information
-    unless @profile_new.blank?
+    unless @profile_job.blank?
       @job_information            = ProfessionInformation.new(params[:job_info])
       @job_information.profile_id =@profile_job.id
       @job_information.save
 
-      @resume = params[:asset]
+      @resume = params[:resume]
       unless @resume.blank?
         @cv              = Asset.new(params[:resume])
         @cv.content_type = "cv"
@@ -52,7 +52,7 @@ class ProfilesController < ApplicationController
       end
 
     end
-     if @profile_job.save
+    if @profile_job.save
       redirect_to(@profile_job, :notice => 'Profile was successfully created.')
     else
       redirect_to(:action => "new", :notice => "Profile was not created")

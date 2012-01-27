@@ -95,6 +95,7 @@ FuturCadre::Application.routes.draw do
       get :remove_language
       get :show
       get :job_employer
+      get :apply_job
     end
   end
 

@@ -1,54 +1,121 @@
-<%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
+  <div class="basic-info mtop10">
+    <div class="reg-tab-holder">
+      <div class="reg-tab-holder-new tab-act">
+        <div class="reg-left-tab-holder"></div>
+        <div class="reg-mid-tab-holder"><%= link_to "Home" %></div>
+        <div class="reg-right-tab-holder"></div>
+      </div>
+
+      <div class="reg-tab-holder-new">
+        <div class="reg-left-tab-holder"></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Resumes" ,:class =>"employer-jobs" %></div>
+        <div class="reg-right-tab-holder"></div>
+      </div>
+       <div class="reg-tab-holder-new">
+        <div class="reg-left-tab-holder"></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Jobs",  :class =>"employer-jobs" %></div>
+        <div class="reg-right-tab-holder"></div>
+      </div>
+
+
+    </div>
+
+    <h1>JobSeeker<span class="red"> Dashboard</span></h1>
+    <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+
+  </div>
+  <!--9-1-2012 add touseef ahmad-->
+  <% unless @job_seeker.blank? %>
+
+      <div class="dashboard-left">
+        <div class="dashboard-info-image">
+          <div class="dashboard-image">
+            <% if @job_seeker.profile.present? %>
+
+                <%= image_tag profile_image.photo.url %>
+                <h1> <%= @job_seeker.profile.full_name %></h1>
+            <% else %>
+                <h1>  <%= @job_seeker.name %> </h1>
+
+                <p>Ajouter votre logo pour qu'il soit visible dans vos annonces.</p>
+
+            <% end %>
+          </div>
+        </div>
+        <!--dashboard-info-image ends-->
+        <div class="btn-mid-holder"><%= link_to "Events", event_employer_index_path(:jid => @job_seeker.id), :class => "event-holder", :style =>" color: #FFFFFF;text-decoration: none;" %></div>
+      </div>
+
+      <!--dashboard-info-image ends-->
+      <div class="dashboard-content-right">
+        <div class="w100">
+          <div class="dashboard-post-profile-btn">
 
 
 
-	<div class="content-left-holder">
-		<div class="w100">
-			<div class="search-results">Latest Jobs <span class="red">Matching your skills</span></div>
-			<div class="data-post-div"></div>
-			<ul class="data-post-hold">
-				<li><a href="#">select job</a></li>
-				<li><a href="#">select job</a></li>
-				<li><a href="#">select job</a></li>
-			</ul>
-			<div class="search-line"></div>
-		</div>
-		<% if @latest_jobs.present? %>
-			<% @latest_jobs.each do |job|  %>
-				<div class="result-holder">
-					<div class="accountants"><%= link_to job.name, details_jobs_path(:id => job.id), :class => "job-link" %></div>
-					<div class="result-text"><%= job.employer.name %> <%= job.location %></div>
-					<div class="result-text"><%= job.description %></div>
-					<div class="date-text"><%= job.created_at.strftime("%d-%m-%Y") %> - <%= link_to t('search.apply') %></div>
-				</div>
-			<%end%>
-		<%end%>
+            <!-- <a href="#"> <%#= image_tag asset_path 'search-profile.png' %>
+            </a>-->
+          </div>
+        </div>
+        <!--dashboard-post-profile-btn ends-->
+        <div class="dashboard-content">
+          <h1>Dashboard</h1>
 
-	</div>
-	<div class="content-right-holder">
-		<div class="popular-vacancies">
-			<h1><span class="red">My Applications </span>Status</h1>
-			<div class="small-line"><img src="images/small-line.png" alt=""></div>
-		</div>
+          <%= image_tag asset_path 'dashboard-botom-line.png' %>
+          <p><b>Welcome <%= @job_seeker.name  %></b></p>
 
-		<% if @my_jobs.present? %>
-			<% @my_jobs.each do |job|  %>
-				<div class="w100 mtop20">
-					<div class="accountants-div">
-						<h1>Accountants</h1>
-						<p>Fintax Chartered Accountants, Faisalabad</p>
-					</div>
-					<div class="day">3 days to go</div>
-				</div>
-			<%end%>
-		<%end%>
+          <p>Start now your recruitment: <br/>
 
-	</div>
+            - Post an ad<br/>
+            Fill in the details of your position and the type of profile you are looking for. Your ad will be routed
+            to
+            the
+            right profiles.<br/>
+            - Chasing a Profile<br/>
+            Tell us what your ideal candidate and we will offer you the profiles that most closely match your
+            requirements.
+          </p>
+
+          <h1>My<span class="red"> Jobs</span></h1>
+
+          <%= image_tag asset_path 'dashboard-botom-line.png' %>
+          <p>0 advert (s) active (s) 0 ad (s).</p>
+
+          <!--  <a href="#">see all</a>  -->
+
+          <h1>My<span class="red"> Statistics</span></h1>
+
+          <%= image_tag asset_path 'dashboard-botom-line.png' %>
+          <p><label>Total Jobs Posted</label> <%= @job_seeker.jobs.count %><br/>
+            <label>last Created Job</label></p>
+
+          <div class="buttons w100">
+
+            <!--   <div class="btn-left-holder"></div>
+           <div class="btn-mid-holder">0 profile (s) (s) selected</div>
+           <div class="btn-right-holder"></div>
+           <div class="btn-left-holder"></div>
+           <div class="btn-mid-holder">0 profile (s) contacted (s)</div>
+           <div class="btn-right-holder"></div>-->
+
+          </div>
+          <!--  <a href="#">see all</a> -->
+
+          <h1>My<span class="red"> Subscription</span></h1>
+          <%= image_tag asset_path 'dashboard-botom-line.png' %>
+
+          <p>Future Cadre is free and without obligation until January 31, 2012. Enjoy!<br/>
+        </div>
+      </div>
+      <!--dashboard-content-right ends-->
+
+  <% end %>
 </div>
 
-<script language="JavaScript">
-    $("a.job-link").click(function() {
+<script type="text/javascript">
+    $("a.event-holder").click(function() {
+
         $.ajax({
             context: this,
             url: $(this).attr("href"),
@@ -56,10 +123,29 @@
             data: $(this).serialize(),
             dataType: "json",
             success: function(response) {
-                $(".content-holder").html(response.html);
+                return $(".dashboard-content-right").html(response.html);
             }
         });
         return false;
+
     });
+    $("a.employer-jobs").click(function() {
+
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
+        });
+        return false;
+
+    });
+
+
 </script>
+
 
