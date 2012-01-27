@@ -112,6 +112,7 @@ FuturCadre::Application.routes.draw do
       get :event
       get :new_event
       post :create_event
+      get :delete_job
 
     end
   end
@@ -146,7 +147,7 @@ FuturCadre::Application.routes.draw do
       post :search_group
       get :group_question
       post :create_question
-      get  :group_body
+      get :group_body
     end
   end
 

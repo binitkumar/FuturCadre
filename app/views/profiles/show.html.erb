@@ -69,23 +69,9 @@
     <div class="profile-name-content"><%= @profile.phone %></div>
 
   </div>
-  <div class="profile-cont">
-
-    <div class="profile-name-heading"><%= t('profiles.password') %></div>
-    <div class="profile-name-content"><%=@profile.user.password %></div>
-
-  </div>
 
   <div class="profile-cont">
-    <div class="profile-name-heading"><%= t('profiles.picture') %></div>
-    <div class="profile-name-content">
-
-
-      <div class="upload-holder">
-        <input type="file">
-
-      </div>
-
+     <div class="profile-name-content">
     </div>
     <div class="profile-edit"><%= link_to t('link_to.edit'), edit_profile_path(@profile) %> </div>
     <% if current_user.job_seeker? %>
