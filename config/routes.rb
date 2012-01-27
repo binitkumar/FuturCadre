@@ -95,13 +95,14 @@ FuturCadre::Application.routes.draw do
       get :remove_language
       get :show
       get :job_employer
-      get :apply_job
+      post :apply_job
     end
   end
 
   resources :job_seeker do
     collection do
       get :dashboard
+      get :resume_index
     end
   end
 

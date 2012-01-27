@@ -30,7 +30,7 @@
             </div>
             <div class="job-btn-holder">
               <div class="job-btn-left"></div>
-              <div class="job-btn-mid"><%= link_to "Apply", apply_job_jobs_path(:j_id => @job), :class => "job-application", :style => "color: #fff; text-decoration: none;" %></div>
+              <div class="job-btn-mid"><%= link_to "Apply", "javascript:",:class => "job-application", :style => "color: #fff; text-decoration: none;" %></div>
               <div class="job-btn-right"></div>
             </div>
             </div>
@@ -125,17 +125,25 @@
         <% end %>
         </div>
 
-  <div id="application-form" title="Apply for a Job">
+  <div id="application-form"  title="Apply for a Job">
 
-    <%= form_for :job, :url =>{ :action => 'apply_job' },:html =>{ :id => 'apply_job_form'}, :remote => true do |f| %>
+    <%= form_for :job_application, :url =>{ :action => 'apply_job' },:html =>{ :id => 'apply_job_form'}, :remote => true do |f| %>
         <div class="select-holder">
           <%= hidden_field_tag :job_id, @job.id %>
           <label>Job Name</label>
           <%= f.text_field :name%>
         </div>
+
+
+        <label>CV's</label>
+        <% current_user.profile.assets(:conditions => ['content_type =?', 'cv']).each do |cv| %>
+
         <div class="input-holder">
-          <label>CV</label>
-          <% fields_for :current_user %>
+                    <div style="">
+                   <%= radio_button_tag :"cv_ids[]", cv.id%>
+                 </div>
+                 <div> <%= cv.photo_file_name %></div>
+          <% end %>
         </div>
 
 
@@ -147,8 +155,27 @@
 
             $(".job-application").click(function() {
 
-                alert("abnbcnbxnc");
+               $("#application-form").dialog("open")
             });
+
+            $("#application-form").dialog({
+                   autoOpen: false,
+                   height: 300,
+                   width: 350,
+                   modal: true,
+                   buttons: {
+
+                       Cancel: function() {
+                           $(this).dialog("close");
+                       },
+                       "Apply for a Job": function() {
+                           $.post($("form#apply_job_form").attr("action"), $("form#add_question_for").serialize(), (function(response) {
+                               return $(".mid-cont-holder").html(response.html);
+                                }), "json");
+                           return false;
+
+                       }}
+               });
 
 
             $(document).ready(function() {
@@ -164,4 +191,6 @@
                 document.body.appendChild(addthisScript);
 
             });
+
+
         </script>

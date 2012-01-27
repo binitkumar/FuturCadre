@@ -1,0 +1,32 @@
+<div class="dashboard-content-right">
+  <div class="w100">
+    <div class="dashboard-post-profile-btn">
+    </div>
+  </div>
+  <!--dashboard-post-profile-btn ends-->
+  <div class="dashboard-content">
+    <h1>Resumes</h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <div class="btn-mid-holder">></div>
+    <p><br/>
+    </p>
+
+    <h1>My<span class="red"> Jobs</span></h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <% unless @resumes.blank? %>
+        <p>Total Number of resumes <%= @resumes.count %></p>
+        <% @resumes.each do |resume| %>
+            <div class="event-image">
+              <%#= image_tag  %>
+              <label>Resume Name</label> <%= resume.photo_file_name %>
+
+            </div>
+            <div class="event-image">
+              <%#= image_tag  %>
+              <label>Resume File Type</label> <%= resume.photo_content_type %>
+
+            </div>
+        <% end %>
+    <% end %>
+  </div>
+</div>

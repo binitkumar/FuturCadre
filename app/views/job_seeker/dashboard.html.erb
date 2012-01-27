@@ -9,7 +9,7 @@
 
       <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder"><%= link_to "My Resumes" ,:class =>"employer-jobs" %></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Resumes" , resume_index_job_seeker_index_path(:id => @job_seeker),:class =>"resume-index" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
        <div class="reg-tab-holder-new">
@@ -129,7 +129,7 @@
         return false;
 
     });
-    $("a.employer-jobs").click(function() {
+    $("a.resume-index").click(function() {
 
         $.ajax({
             context: this,
