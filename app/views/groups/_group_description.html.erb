@@ -5,8 +5,8 @@
       <h1><%= @group.name %></h1>
 
       <p> <%= @group.created_at.strftime("%d-%m-%Y") %> </span> -
-        <span class="red"> <%= @group.users.count %></span> Members -
-        <span class="red"> <%= @group.jobs.count %> </span> jobs</p>
+        <span class="red"> <%= @group.users.count %></span> <%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link" ,:style =>"text-decoration: none;" %> -
+        <span class="red"> <%= @group.jobs.count %> </span> <%= link_to "Jobs", group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link",:style =>"text-decoration: none;" %></p>
     </div>
     <% if !user_signed_in? %>
         <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>

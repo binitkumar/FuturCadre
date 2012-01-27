@@ -60,7 +60,7 @@
 
           <div class="groups-mid-cont">
             <div class="join-request">
-              <%= render :partial => "group_description", :locals => {:group => @group} %>
+              <%= render :partial => "group_description", :locals => { :group => @group } %>
             </div>
             <ul class="group-links mtop20">
               <li class="group-link-act listed"><%= link_to "Wall", group_wall_groups_path(:id => @group.id), :class => "wall_link" %></li>
@@ -73,11 +73,11 @@
             <div class="groups-line"></div>
             <div class="mid-cont-holder">
               <% if params[:sid] == "jobs" %>
-                  <%= render :partial => "group_jobs", :locals => {:group => @group} %>
+                  <%= render :partial => "group_jobs", :locals => { :group => @group } %>
               <% elsif params[:sid] == "members" %>
-                  <%= render :partial => "group_members", :locals => {:group => @group} %>
+                  <%= render :partial => "group_members", :locals => { :group => @group } %>
               <% else %>
-                  <%= render :partial => "group_wall", :locals => {:group => @group} %>
+                  <%= render :partial => "group_wall", :locals => { :group => @group } %>
 
               <% end %>
             </div>
@@ -86,7 +86,6 @@
       <div class="post-right-cont-hold">
         <h3><span class="red">Group Index</span></h3>
         <% unless @groups.blank? %>
-            <% puts "BVVVVVVVVVVV", @groups.inspect %>
             <ul class="groups-link">
               <% @groups.each do |group| %>
                   <li>
@@ -119,14 +118,14 @@
         window.location.href = "/sign_in";
     <%end%>
     }
-
-
     $("a.members_link").click(function() {
+
         $(this).removeClass("group-link-act");
         $(this).parent(".listed").prevAll(".listed").each(function() {
             $(this).removeClass("group-link-act");
 
         });
+        $('.content-holder').find('.group-link-act').removeClass('group-link-act');
         $(this).parent(".listed").addClass("group-link-act");
 
         $.ajax({
@@ -148,6 +147,7 @@
             $(this).removeClass("group-link-act");
 
         });
+        $('.content-holder').find('.group-link-act').removeClass('group-link-act');
         $(this).parent(".listed").addClass("group-link-act");
 
 
@@ -169,6 +169,7 @@
             $(this).removeClass("group-link-act");
 
         });
+        $('.content-holder').find('.group-link-act').removeClass('group-link-act');
         $(this).parent(".listed").addClass("group-link-act");
 
 
@@ -184,19 +185,13 @@
         });
         return false;
     });
-//    $(".listed").click(function() {
-//        $(".listed").each(function() {
-//            $(this).removeClass("group-link-act");
-//        });
-//        $(this).addClass("group-link-act");
-//    });
-
     $("a.questions-link").click(function() {
         $(this).removeClass("group-link-act");
         $(this).parent(".listed").prevAll(".listed").each(function() {
             $(this).removeClass("group-link-act");
 
         });
+        $('.content-holder').find('.group-link-act').removeClass('group-link-act');
         $(this).parent(".listed").addClass("group-link-act");
         $.ajax({
             context: this,
@@ -211,12 +206,13 @@
         return false;
     });
 
-        $("a.body-link").click(function() {
+    $("a.body-link").click(function() {
         $(this).removeClass("group-link-act");
         $(this).parent(".listed").prevAll(".listed").each(function() {
             $(this).removeClass("group-link-act");
 
         });
+        $('.content-holder').find('.group-link-act').removeClass('group-link-act');
         $(this).parent(".listed").addClass("group-link-act");
         $.ajax({
             context: this,

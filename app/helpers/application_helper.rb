@@ -12,4 +12,15 @@ module ApplicationHelper
       end
     end
   end
+
+  def comment_image(comment)
+    unless comment.user.profile.blank?
+      comment.user.profile.assets.each do |asset|
+         if asset.content_type == "profile_image"
+           return asset
+         end
+      end
+    end
+  end
+
 end

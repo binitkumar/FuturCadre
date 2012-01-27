@@ -12,14 +12,15 @@
         <% @comments.each do |comment| %>
 
             <div class="w100 mtop20">
-              <div class="post-left-hold"></div>
+              <div class="post-left-hold" style="width: 84px;"> <%= image_tag comment_image(comment).photo.url,:style =>"border: medium solid !important;
+    height: 96px;" %></div>
               <div class="post-cont-hold">
                 <h1><%= comment.user.name %></h1>
 
-                <p><%= comment.comment %> <a href="#">more</a></p>
+                <p><%= comment.comment %> </p>
 
-                <div class="like-hold"><a href="#">Like</a> -
-                  <a href="#">Share</a> <%= time_ago_in_words(comment.created_at) %> ago
+                <div class="like-hold"><!--<a href="#">Like</a> -->
+                   <%= time_ago_in_words(comment.created_at) %> ago
                 </div>
               </div>
             </div>
