@@ -125,37 +125,21 @@
         <% end %>
         </div>
 
-  <div id="application-form"  title="Apply for a Job">
-
-    <%= form_for :job_application, :url =>{ :action => 'apply_job' },:html =>{ :id => 'apply_job_form'}, :remote => true do |f| %>
-        <div class="select-holder">
-          <%= hidden_field_tag :job_id, @job.id %>
-          <label>Job Name</label>
-          <%= f.text_field :name%>
-        </div>
 
 
-        <label>CV's</label>
-        <% current_user.profile.assets(:conditions => ['content_type =?', 'cv']).each do |cv| %>
-
-        <div class="input-holder">
-                    <div style="">
-                   <%= radio_button_tag :"cv_ids[]", cv.id%>
-                 </div>
-                 <div> <%= cv.photo_file_name %></div>
-          <% end %>
-        </div>
 
 
-    <% end %>
-
-
-  </div>
         <script type="text/javascript">
 
             $(".job-application").click(function() {
 
+            <%if user_signed_in?%>
+                {
                $("#application-form").dialog("open")
+                }
+             <%else%>
+                window.location.href = "/sign_in";
+            <%end%>
             });
 
             $("#application-form").dialog({
