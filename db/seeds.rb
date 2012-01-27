@@ -139,14 +139,21 @@ groups = Group.all
 
 groups.each { |group| group.destroy } if groups.present?
 puts "creating Groups"
-groups = Group.create!([{ :name => 'Software Developers', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :featured => true, :owner => User.first, :group_type => GroupType.first },
-                        { :name => 'Electrical Engineers', :description => "Group for EE Engineers e.g. electro, power, hydro, control ", :featured => true, :owner => User.first, :group_type => GroupType.first },
-                        { :name => 'Social Responsibility', :description => "Discussion place for Social responsibility ", :featured => true, :owner => User.first, :group_type => GroupType.first },
+groups = Group.create!([{ :name => 'Software Developers', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :featured => true, :owner => User.first, :group_type => GroupType.first, :mean_salary =>24000 },
+                        { :name => 'Electrical Engineers', :description => "Group for EE Engineers e.g. electro, power, hydro, control ", :featured => true, :owner => User.first, :group_type => GroupType.first, :mean_salary =>22000 },
+                        { :name => 'Social Responsibility', :description => "Discussion place for Social responsibility ", :featured => true, :owner => User.first, :group_type => GroupType.first,:mean_salary =>32000 },
                        ])
 groups.each do |group|
   group.jobs << Job.find_by_name("testJob0")
 end
-
+ puts "updating photo of group"
+groups.each do |group|
+       group_photo = Photo.new
+       group_photo.image = File.open(Rails.root.join('app/assets/images/logo.png'))
+       group_photo.imageable = group
+       group_photo.content_type = "group_image"
+       group_photo.save
+end
 #
 #def seed_institute
 #  puts 'Deleting existing institute................'

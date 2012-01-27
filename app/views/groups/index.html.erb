@@ -58,7 +58,7 @@
                     <div class="result">
                       <div class="dashboard-text">
                         <div class="name">
-                          <div class="icon-img"> <%= image_tag asset_path 'icon-img.png' %></div>
+                          <div class="icon-img"> <%= image_tag group.photo.image.url,:style =>"border: medium solid !important;height: 48px; width: 46px;" %></div>
                           <div class="icon-text">
 
                             <%= link_to group.name, group_details_groups_path(:id => group.id) %>
@@ -67,7 +67,7 @@
                         </div>
                         <div class="description-hold"><%= group.description %> </div>
                         <div class="salary-hold"><%= group.mean_salary %> Euro</div>
-                        <div class="rating-hold"> <%= image_tag asset_path 'rating.png' %></div>
+                       <!-- <div class="rating-hold"> <%#= image_tag asset_path 'rating.png' %></div> -->
 
                       </div>
                     </div>
