@@ -21,7 +21,7 @@
 					<%= render :partial => "shared/cities", :locals => { :object_collection => "main" } %>
 				</div>
 			</div>
-			<div class="advanced-search"><%= link_to t('home_job_advance_search') %></div>
+			<div class="advanced-search"><%# removed for refactoring %></div>
 			<div class="findjob"><%= link_to t('button.find_job') ,"javascript:void(0)", :id => "find_job_button" %></div>
 		<%end%>
  	</div>

@@ -2,7 +2,7 @@
   <div class="popular-vacancies">
     <h1><span class="red"><%= t('home_popular') %></span> <%= t('home_vacancies') %></h1>
 
-    <div class="cloud"><%= image_tag asset_path 'cloud.png' %></div>
+    <div class="cloud"><%# removed for refactoring %></div>
   </div>
 
   <div class="popular-vacancies mto37">
@@ -19,8 +19,7 @@
   <div class="popular-vacancies mto37">
     <h1><span class="red"><%= t('home_featured') %></span> <%= t('home_projects') %></h1>
     <ul class="featured-link">
-      <li><a href="#">Creative/Design</a></li>
-      <li><a href="#">Creative/Design</a></li>
+    <%# removed for refactoring %>
     </ul>
   </div>
   <% if !(params[:controller] == "home" && params[:action] == "index") %>

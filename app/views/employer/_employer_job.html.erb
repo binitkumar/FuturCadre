@@ -10,6 +10,7 @@
     <div class="btn-mid-holder"><%= link_to "Create New Job", new_job_path(:eid => @employer), :class => "create-event", :style=>" color: #FFFFFF;text-decoration: none;" %></div>
     <p><br/>
     </p>
+
     <h1>My<span class="red"> Jobs</span></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @jobs.blank? %>
@@ -19,44 +20,42 @@
               <%#= image_tag  %>
               <label>Job Name</label> <%= job.name %>
               <br/>
-              <label>Job Edit</label> <%= link_to "Job Edit", edit_jobs_path(:id =>job.id),  %>
+              <label>Job Edit</label> <%= link_to "Job Edit", edit_jobs_path(:id =>job.id), %>
               <br/>
-              <label>Job Delete</label> <%= link_to "Delete", delete_job_employer_index_path(:id => job.id, :em_id => @employer),:class =>"delete-job" %>
+              <label>Job
+                Delete</label> <%= link_to "Delete", delete_job_employer_index_path(:id => job.id, :em_id => @employer), :class =>"delete-job" %>
               <br/>
               <br/><br/>
             </div>
         <% end %>
     <% end %>
-   </div>
+  </div>
 </div>
 
 <script type="text/javascript">
 
 
-
     $("a.delete-job").click(function() {
-     var x=window.confirm("Are you sure You want to Delete this Job?")
+        var x = window.confirm("Are you sure You want to Delete this Job?")
 
-      if(x==true)
-      {
-       $.ajax({
-            context: this,
-            url: $(this).attr("href"),
-            type: "GET",
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function(response) {
-                return $(".dashboard-content-right").html(response.html);
-            }
+        if (x == true) {
+            $.ajax({
+                context: this,
+                url: $(this).attr("href"),
+                type: "GET",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(response) {
+                    return $(".dashboard-content-right").html(response.html);
+                }
 
-        });
+            });
 
-          return false;
-      }
-      else
-      {
-      return false;
-      }
+            return false;
+        }
+        else {
+            return false;
+        }
     });
 
 
