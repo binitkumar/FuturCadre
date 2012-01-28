@@ -106,6 +106,7 @@ FuturCadre::Application.routes.draw do
       get :event
       get :new_event
       post :create_event
+      get :job_seeker_jobs
     end
   end
 

@@ -5,30 +5,30 @@
   </div>
   <!--dashboard-post-profile-btn ends-->
   <div class="dashboard-content">
-    <h1>Resumes</h1>
-    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <h1>Job</h1>
+
     <div class="btn-mid-holder">></div>
     <p><br/>
     </p>
 
-    <h1>My<span class="red"> Resumes</span></h1>
+    <h1>My<span class="red"> Jobs</span></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <% unless @resumes.blank? %>
-        <p>Total Number of resumes <%= @resumes.count %></p>
-        <% @resumes.each do |resume| %>
+    <% unless @applied_jobs.blank? %>
+        <p>Total Number of jobs applied <%= @applied_jobs.count %></p>
+        <% @applied_jobs.each do |app_job| %>
             <div class="event-image">
               <%#= image_tag  %>
-              <label>Resume Name</label> <%= resume.photo_file_name %>
+              <label>Job Name</label> <%= app_job.job.name %>
 
             </div>
             <div class="event-image">
               <%#= image_tag  %>
-              <label>Resume File Type</label> <%= resume.photo_content_type %>
+              <label>Job Applied </label> <%= app_job.created_at%>
 
             </div>
         <% end %>
         <%else%>
-           <p><span>Currently No Resume Present!</span></p>
+           <p><span>Currently No Applied Jobs!</span></p>
     <% end %>
   </div>
 </div>

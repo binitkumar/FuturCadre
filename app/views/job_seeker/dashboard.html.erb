@@ -14,7 +14,7 @@
       </div>
        <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder"><%= link_to "My Jobs",  :class =>"employer-jobs" %></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Jobs",  job_seeker_jobs_job_seeker_index_path(:id => @job_seeker),:class =>"job-seeker-job" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
 
@@ -114,7 +114,7 @@
 </div>
 
 <script type="text/javascript">
-    $("a.event-holder").click(function() {
+    $("a.job-seeker-job").click(function() {
 
         $.ajax({
             context: this,

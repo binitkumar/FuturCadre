@@ -29,14 +29,12 @@ class JobSeekerController < ApplicationController
 
 
   def create_event
-
     @job_seeker = User.find_by_id(params[:job_seeker_id])
     unless params[:event].blank?
       @new_event = Event.create!(params[:event])
       @new_event.update_attributes(:owner_id => @job_seeker)
       @job_seeker.events << @new_event
     end
-
     unless params[:picture].blank?
       @picture = Photo.new(params[:picture])
       @picture.content_type = "event_image"
@@ -44,13 +42,18 @@ class JobSeekerController < ApplicationController
       @picture.save
     end
 
-
     #if @new_event.save
     render :json => {:html => render_to_string(:partial => '/job_seeker/event_job_seeker', :locale=>{:job_seeker => @job_seeker})}.to_json
     #else
     #   render :json => { :html => render_to_string(:partial => '/employer/event_form', :locale=>{ :employer => @employer }) }.to_json
     #end
   end
+
+  def job_seeker_jobs
+      @job_seeker = User.find(params[:id])
+      @applied_jobs = @job_seeker.applied_jobs
+     render :json => {:html => render_to_string(:partial => '/job_seeker/job_list', :locale=>{:job_seeker => @job_seeker})}.to_json
+end
 
 
 end
