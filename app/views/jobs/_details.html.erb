@@ -30,7 +30,8 @@
             </div>
             <div class="job-btn-holder">
               <div class="job-btn-left"></div>
-              <div class="job-btn-mid"><%= link_to "Apply", "javascript:",:class => "job-application", :style => "color: #fff; text-decoration: none;" %></div>
+              <!-- <div class="job-btn-mid"><%#= link_to "Apply", "javascript:", :class => "job-application", :style => "color: #fff; text-decoration: none;" %></div>-->
+              <div class="job-btn-mid"><%= link_to "Apply", new_application_jobs_path(:jid => @job), :class => "job-application", :style => "color: #fff; text-decoration: none;" %></div>
               <div class="job-btn-right"></div>
             </div>
             </div>
@@ -128,38 +129,62 @@
 
 
 
-
         <script type="text/javascript">
 
             $(".job-application").click(function() {
 
-            <%if user_signed_in?%>
-                {
-               $("#application-form").dialog("open")
-                }
-             <%else%>
-                window.location.href = "/sign_in";
-            <%end%>
-            });
+                        <%if user_signed_in?%>
+                        {
+
+                        <%if current_user.profile !=nil%>
+                            {
+                                $.ajax({
+                                    context: this,
+                                    url: $(this).attr("href"),
+                                    type: "GET",
+                                    data: $(this).serialize(),
+                                    dataType: "json",
+                                    success: function(response) {
+                                        $(".content-holder").html(response.html);
+                                    }
+                                });
+                                return false;
+                            }
+                        <%else%>
+                            {
+                                window.location.href = "/profiles/new"
+
+                            }
+                        <%end%>
+
+                        }
+                        <%else%>
+                        window.location.href = "/sign_in";
+                        return false;
+                        <%end%>
+                    }
+            )
+                    ;
 
             $("#application-form").dialog({
-                   autoOpen: false,
-                   height: 300,
-                   width: 350,
-                   modal: true,
-                   buttons: {
+                autoOpen: false,
+                height: 300,
+                width: 350,
+                modal: true,
+                buttons: {
 
-                       Cancel: function() {
-                           $(this).dialog("close");
-                       },
-                       "Apply for a Job": function() {
-                           $.post($("form#apply_job_form").attr("action"), $("form#add_question_for").serialize(), (function(response) {
-                               return $(".mid-cont-holder").html(response.html);
-                                }), "json");
-                           return false;
+                    Cancel: function() {
+                        $(this).dialog("close");
+                    },
+                    "Apply for a Job": function() {
 
-                       }}
-               });
+                        $.post($("form#apply_job_form").attr("action"), $("form#add_question_for").serialize(), (function(response) {
+                            return $(".mid-cont-holder").html(response.html);
+                        }), "json");
+                        return false;
+
+                    }}
+            });
 
 
             $(document).ready(function() {

@@ -12,6 +12,7 @@ class JobSeekerController < ApplicationController
     unless current_user.profile.blank?
       @resumes = current_user.profile.assets.where(:content_type => 'cv')
     end
+    @cv = Asset.new(params[:cv])
     render :json => {:html => render_to_string(:partial => 'resume_list')}.to_json
   end
 
@@ -50,10 +51,25 @@ class JobSeekerController < ApplicationController
   end
 
   def job_seeker_jobs
-      @job_seeker = User.find(params[:id])
-      @applied_jobs = @job_seeker.applied_jobs
-     render :json => {:html => render_to_string(:partial => '/job_seeker/job_list', :locale=>{:job_seeker => @job_seeker})}.to_json
-end
+    @job_seeker = User.find(params[:id])
+    @applied_jobs = @job_seeker.applied_jobs
+    render :json => {:html => render_to_string(:partial => '/job_seeker/job_list', :locale=>{:job_seeker => @job_seeker})}.to_json
+  end
+
+  def new_resume
+
+    unless params[:cv].blank?
+      @cv = Asset.new(params[:cv])
+      @cv.content_type = "cv"
+      @cv.user_id = current_user.id
+      @cv.profile_id = current_user.profile.id
+    end
+     @resumes = current_user.profile.assets.where(:content_type => 'cv')
+    if @cv.save!
+      render :json => {:html => render_to_string(:partial => 'resume_list')}.to_json
+    end
+
+  end
 
 
 end

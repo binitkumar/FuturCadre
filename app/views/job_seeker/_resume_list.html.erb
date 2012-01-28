@@ -7,7 +7,7 @@
   <div class="dashboard-content">
     <h1>Resumes</h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <div class="btn-mid-holder">></div>
+    <button id="upload-popup" class="question-button">Upload a New CV</button>
     <p><br/>
     </p>
 
@@ -27,8 +27,52 @@
 
             </div>
         <% end %>
-        <%else%>
-           <p><span>Currently No Resume Present!</span></p>
+    <% else %>
+        <p><span>Currently No Resume Present!</span></p>
+    <% end %>
+  </div>
+  <div id="upload-form" title="Upload a New Question">
+
+    <%= form_for :cv, :url =>{:action => 'new_resume'}, :html =>{:id => 'add_cv_form'}, :remote => true do |f| %>
+        <div class="select-holder">
+          <%= f.file_field :photo %>
+
+        </div>
     <% end %>
   </div>
 </div>
+
+
+
+<script language="JavaScript">
+    $("#upload-form").dialog({
+        autoOpen: false,
+        height: 300,
+        width: 350,
+        modal: true,
+        buttons: {
+
+            Cancel: function() {
+                $(this).dialog("close");
+            },
+            "Upload a New Cv": function() {
+                $('#add_cv_form').ajaxSubmit({
+                    beforeSubmit: function(a, f, o) {
+                        o.dataType = 'json';
+                    },
+                    success: function(data) {
+
+                        $(".dashboard-content-right").html(data.html);
+                    }
+                });
+
+                $("#upload-form").dialog("close");
+
+            }}
+    });
+
+    $("#upload-popup").click(function() {
+
+        $("#upload-form").dialog("open");
+    });
+</script>

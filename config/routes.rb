@@ -95,6 +95,7 @@ FuturCadre::Application.routes.draw do
       get :remove_language
       get :show
       get :job_employer
+      get :new_application
       post :apply_job
     end
   end
@@ -107,6 +108,7 @@ FuturCadre::Application.routes.draw do
       get :new_event
       post :create_event
       get :job_seeker_jobs
+      post :new_resume
     end
   end
 
