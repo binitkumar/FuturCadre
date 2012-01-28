@@ -103,6 +103,9 @@ FuturCadre::Application.routes.draw do
     collection do
       get :dashboard
       get :resume_index
+      get :event
+      get :new_event
+      post :create_event
     end
   end
 

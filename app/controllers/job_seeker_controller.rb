@@ -1,18 +1,56 @@
 class JobSeekerController < ApplicationController
 
-	before_filter :authenticate_user!
-	
-	def dashboard
+  before_filter :authenticate_user!
+
+  def dashboard
     @job_seeker = current_user
-		@latest_jobs = Job.all
-		@my_jobs = current_user.jobs
+    @latest_jobs = Job.all
+    @my_jobs = current_user.jobs
   end
 
- def resume_index
+  def resume_index
+    unless current_user.profile.blank?
+      @resumes = current_user.profile.assets.where(:content_type => 'cv')
+    end
+    render :json => {:html => render_to_string(:partial => 'resume_list')}.to_json
+  end
 
-   @resumes = current_user.profile.assets.where(:content_type => 'cv')
-   render :json => { :html => render_to_string(:partial => 'resume_list') }.to_json
+  def event
+    @job_seeker = User.find_by_id(params[:jid])
+    render :json => {:html => render_to_string(:partial => '/job_seeker/event_job_seeker', :locale=>{:job_seeker => @job_seeker})}.to_json
+  end
 
- end
+  def new_event
+    @job_seeker = User.find_by_id(params[:jid])
+    @event = Event.new
+    @picture = Photo.new(params[:picture])
+    render :json => {:html => render_to_string(:partial => '/job_seeker/event_form', :locale=>{:job_seeker => @job_seeker})}.to_json
+  end
+
+
+  def create_event
+
+    @job_seeker = User.find_by_id(params[:job_seeker_id])
+    unless params[:event].blank?
+      @new_event = Event.create!(params[:event])
+      @new_event.update_attributes(:owner_id => @job_seeker)
+      @job_seeker.events << @new_event
+    end
+
+    unless params[:picture].blank?
+      @picture = Photo.new(params[:picture])
+      @picture.content_type = "event_image"
+      @picture.imageable_id = @new_event
+      @picture.save
+    end
+
+
+    #if @new_event.save
+    render :json => {:html => render_to_string(:partial => '/job_seeker/event_job_seeker', :locale=>{:job_seeker => @job_seeker})}.to_json
+    #else
+    #   render :json => { :html => render_to_string(:partial => '/employer/event_form', :locale=>{ :employer => @employer }) }.to_json
+    #end
+  end
+
 
 end

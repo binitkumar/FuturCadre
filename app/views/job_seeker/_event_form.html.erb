@@ -1,0 +1,114 @@
+<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery.form", "jquery-ui-timepicker-addon" %>
+
+<div class="dashboard-content-right">
+  <div class="w100">
+    <div class="dashboard-post-profile-btn">
+
+
+    </div>
+  </div>
+  <!--dashboard-post-profile-btn ends-->
+  <div class="dashboard-content">
+    <h1>Create an Event</h1>
+
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <%= form_for :event, :url =>{ :action => 'create_event' }, :html =>{ :id => 'add_event_form' }, :remote => true do |f| %>
+        <div class="form-inputs">
+          <div class="form-input">
+            <%= hidden_field_tag :job_seeker_id, @job_seeker.id %>
+            <label>Title</label>
+            <%= f.text_field :name %>
+          </div>
+          <div class="form-input">
+            <label>Venue</label>
+            <%= f.text_field :place %>
+          </div>
+          <div class="form-input">
+            <label>Event Picture</label>
+
+            <%=fields_for :picture do |image| %>
+                <%= image.file_field :image %>
+            <% end %>
+          </div>
+          <div class="form-input-date">
+            <label>Start Time</label>
+            <%= f.text_field :time_of_start, :class =>"date-pick" %>
+          </div>
+
+          <div class="form-input-date">
+            <label>End Time</label>
+            <%= f.text_field :time_of_end, :class =>"date-pick" %>
+
+          </div>
+          <div class="form-input-description">
+            <label>Description</label>
+            <%= f.text_area :description %>
+          </div>
+        </div>
+
+    <% end %>
+    <div class="clear"></div>
+
+    <div class="btn-mid-holder-two" id="create-event" style="margin-top: 12px;margin-right: 20px;">Create an Event</div>
+
+
+  </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $('.date-pick').datetimepicker({dateFormat: 'yy-mm-dd',timeFormat: "hh:mm tt"});
+//        ampm: true
+    });
+
+    $("#invite-people").click(function() {
+        $("#event-form").dialog("open");
+    });
+
+    $("#event-form").dialog({
+        autoOpen: false,
+        height: 300,
+        width: 350,
+        modal: true,
+        buttons: {
+
+            Cancel: function() {
+                $(this).dialog("close");
+            },
+            "Create an Event": function() {
+                $.post($("form#invite_people_form").attr("action"), $("form#invite_people_form").serialize(), (function(response) {
+                    return $(".dashboard-content-right").html(response.html);
+                }), "json");
+                return false;
+
+            }}
+    });
+    //       $("#create-event").click(function() {
+    //             $.post($("form#add_event_form").attr("action"),$("form#add_event_form").serialize(), (function(response) {
+    //            return $(".dashboard-content-right").html(response.html);
+    //        }), "json");
+    //        return false;
+    //    });
+
+    //
+    $("#create-event").click(function() {
+        $('#add_event_form').ajaxSubmit({
+            beforeSubmit: function(a, f, o) {
+                o.dataType = 'json';
+            },
+            success: function(data) {
+
+                $(".dashboard-content-right").html(data.html);
+
+
+            }
+        });
+    });
+
+
+</script>
