@@ -15,7 +15,11 @@
 </script>
 <div class="gray-holder">
 	<ul class="inner-links">
-		<% if @jobs.present? %>
+       <% if @sub_categories.present? %>
+			<%  @sub_categories.each do |sub| %>
+				<li><%= link_to sub.name,   :class => "sub-category-link" %></li>
+			<%end%>
+		<% elsif @jobs.present? %>
 			<%  @jobs.each do |job| %>
 				<li><%= link_to job.name,  details_jobs_path(:id => job.id ), :class => "sub-category-link" %></li>
 			<%end%>
