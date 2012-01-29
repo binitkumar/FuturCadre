@@ -17,7 +17,7 @@
 	<ul class="inner-links">
        <% if @sub_categories.present? %>
 			<%  @sub_categories.each do |sub| %>
-				<li><%= link_to sub.name,   :class => "sub-category-link" %></li>
+				<li><%= link_to sub.name,jobs_list_search_index_path(:id =>sub.id),   :class => "sub-category-link" %></li>
 			<%end%>
 		<% elsif @jobs.present? %>
 			<%  @jobs.each do |job| %>
