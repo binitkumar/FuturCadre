@@ -42,7 +42,6 @@ class JobSeekerController < ApplicationController
       @picture.imageable_id = @new_event
       @picture.save
     end
-
     #if @new_event.save
     render :json => {:html => render_to_string(:partial => '/job_seeker/event_job_seeker', :locale=>{:job_seeker => @job_seeker})}.to_json
     #else
@@ -57,14 +56,13 @@ class JobSeekerController < ApplicationController
   end
 
   def new_resume
-
     unless params[:cv].blank?
       @cv = Asset.new(params[:cv])
       @cv.content_type = "cv"
       @cv.user_id = current_user.id
       @cv.profile_id = current_user.profile.id
     end
-     @resumes = current_user.profile.assets.where(:content_type => 'cv')
+    @resumes = current_user.profile.assets.where(:content_type => 'cv')
     if @cv.save!
       render :json => {:html => render_to_string(:partial => 'resume_list')}.to_json
     end
