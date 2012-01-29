@@ -72,9 +72,9 @@ class SearchController < ApplicationController
   end
 
   def jobs_list
-    #		@sub_category = Category.find(params[:id])
-    #		@jobs = @sub_category.jobs
-    @jobs = Job.all
+    		@sub_category = Category.find(params[:id])
+    		@jobs = @sub_category.jobs
+   # @jobs = Job.all      (closed during debugginh)
     render :json => {:html => render_to_string(:partial => '/search/search_results')}.to_json
   end
 
