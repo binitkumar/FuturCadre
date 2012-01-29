@@ -9,27 +9,32 @@
 
   <div class="result-holder">
 
-      <%= form_for :job, :url =>{:action => 'apply_job'}, :html =>{:id => 'apply_job_form'}, :remote => true do |f| %>
+    <%= form_for :job, :url =>{:action => 'apply_job'}, :html =>{:id => 'apply_job_form'}, :remote => true do |f| %>
 
-          <%= hidden_field_tag :job_id, @job.id %>
-
-          <% unless @cvs.blank? %>
+        <%= hidden_field_tag :job_id, @job.id %>
+        <div class="input-holder">
+          <label> Job Name</label>
+          <%= f.text_field :name, :disabled => true %>
+        </div>
+        <% unless @cvs.blank? %>
             <label>CV</label>
-              <% @cvs.each do |cv| %>
+            <% @cvs.each do |cv| %>
 
-                  <div class="input-holder">
-                      <div style="">
-                      <%= radio_button_tag :"cv_id", cv.id %>
-                    </div>
-                    <div> <%= cv.photo_file_name %></div>
-              <% end %>
-              </div>
-          <% end %>
-           <%= f.submit %>
-      <% end %>
-    </div>
-
+                <div class="input-holder">
+                  <div style="">
+                    <%= radio_button_tag :"cv_id", cv.id %>
+                  </div>
+                  <div> <%= cv.photo_file_name %></div>
+            <% end %>
+            </div>
+            <% else %>
+            <p> Please upload a CV to apply for this position</p>
+        <% end %>
+        <%= f.submit %>
+    <% end %>
   </div>
+
+</div>
 
 
 
@@ -38,7 +43,7 @@
 <script type="text/javascript">
 
     $('a.application').click(function() {
-          $('#apply_job_form').ajaxSubmit({
+        $('#apply_job_form').ajaxSubmit({
             beforeSubmit: function(a, f, o) {
                 o.dataType = 'json';
             },
@@ -49,7 +54,7 @@
 
             }
         });
-          return false;
-      });
+        return false;
+    });
 
 </script>

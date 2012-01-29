@@ -11,15 +11,10 @@
 
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <div class="btn-mid-holder"><%= link_to " Create New Event", new_event_job_seeker_index_path(:jid => @job_seeker), :class => "create-event", :style=>" color: #FFFFFF;text-decoration: none;" %></div>
-
-
     <p><br/>
-
-
     </p>
 
     <h1>My<span class="red"> Events</span></h1>
-
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @job_seeker.events.blank? %>
         <p>Total Number of Events <%= @job_seeker.events.count %></p>
@@ -36,9 +31,7 @@
               <br/><br/>
             </div>
         <% end %>
-
     <% end %>
-
   </div>
 </div>
 
