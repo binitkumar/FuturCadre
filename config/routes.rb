@@ -124,6 +124,7 @@ FuturCadre::Application.routes.draw do
       get :my_job_detail
       get :contact_information
       post :contact_job_seeker
+      get  :download
 
     end
   end

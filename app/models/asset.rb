@@ -2,6 +2,7 @@ class Asset < ActiveRecord::Base
 	belongs_to :profile
   #belongs_to :group
   #belongs_to :event
+  has_many :applied_jobs
 
  has_attached_file :photo, :path => ":rails_root/public/system/:attachment/:id/:style/:basename.:extension",
   :url => "/system/:attachment/:id/:style/:basename.:extension"

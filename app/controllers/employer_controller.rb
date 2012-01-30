@@ -10,6 +10,7 @@ class EmployerController < ApplicationController
   def employer_jobs
     @employer = User.find_by_id(params[:edi])
     @jobs     = Job.find_all_by_employer_id(@employer.id, :conditions => { :is_deleted => false })
+
     render :json => { :html => render_to_string(:partial => '/employer/employer_job', :locale=>{ :employer => @employer }) }.to_json
   end
 
@@ -62,6 +63,37 @@ class EmployerController < ApplicationController
     @job.update_attributes(:is_deleted => true)
     @jobs = Job.find_all_by_employer_id(@employer.id, :conditions => { :is_deleted => false })
     render :json => { :html => render_to_string(:partial => '/employer/employer_job', :locale=>{ :employer => @employer }) }.to_json
+  end
+
+
+  def my_job_detail
+    @job          = Job.find(params[:id])
+    @applied_jobs = @job.applied_jobs
+    render :json => { :html => render_to_string(:partial => '/employer/my_job_details', :locale=>{ :employer => @employer }) }.to_json
+  end
+
+  def contact_information
+    @job_application = AppliedJob.find(params[:id])
+    render :json => { :html => render_to_string(:partial => '/employer/contact_form_popup', :locale=>{ :job_application => @job_application }) }.to_json
+
+  end
+
+  def contact_job_seeker
+    @job_application = AppliedJob.find(params[:job_application])
+    @user            = @job_application.user
+    @job             = @job_application.job
+    @employer        = @job_application.job.employer
+    @title           = params[:title]
+    @body            = params[:body]
+    ContactMailer.interview_email(@user, @employer, @job, @title, @body).deliver
+    render :text => 'ok'
+  end
+
+  def download
+    @asset = Asset.find(params[:id])
+    @cv = @asset.photo
+    send_file @cv.path
+
   end
 
 end

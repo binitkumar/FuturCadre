@@ -1,0 +1,71 @@
+<div class="dashboard-content-right">
+  <div class="w100">
+    <div class="dashboard-post-profile-btn">
+    </div>
+  </div>
+  <!--dashboard-post-profile-btn ends-->
+  <div class="dashboard-content">
+    <h1>My Job Details </h1>
+
+    <p><%= @job.description %> </p>
+
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+
+    <p><br/>
+    </p>
+
+    <h1>My<span class="red"> Jobs</span></h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <% unless @applied_jobs.blank? %>
+        <p>Total Number of Job Applications <%= @applied_jobs.count %></p>
+
+        <table>
+          <tr>
+            <th>Applicant Name</th>
+            <th>Applicant Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Application</th>
+            <th>Contact</th>
+            <th>Download</th>
+          </tr>
+          <% @applied_jobs.each do |job_app| %>
+              <tr>
+                <td><%= job_app.user.profile.full_name %></td>
+                <td><%= job_app.user.email %></td>
+                <td><%= job_app.user.profile.first_name %></td>
+                <td><%= job_app.user.profile.last_name %></td>
+                <td><%= job_app.created_at.strftime('%Y-%m-%d') %></td>
+                <td id="contact" onclick="contact_user('<%=job_app.id %>')">Contact</td>
+                <td id="Download"><%= link_to "Download", download_employer_index_path(:id => job_app.cv_id) %></td>
+              </tr>
+          <% end %>
+        </table>
+
+
+    <% end %>
+  </div>
+</div>
+
+
+<script language="JavaScript">
+
+    function contact_user(job_application) {
+
+        url = "/employer/contact_information?id=" + job_application;
+        $.ajax({
+            context: this,
+            url: url,
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                $(".dashboard-content-right").html(response.html);
+            }
+        });
+        return false;
+
+
+    }
+
+</script>
