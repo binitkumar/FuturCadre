@@ -187,10 +187,10 @@ class JobsController < ApplicationController
     @job = Job.find(params[:job_id])
     @cv = Asset.find(params[:cv_id])
     @job_application = AppliedJob.new
-    @job_application.update_attributes(:user_id => @job_seeker, :job_id => @job, :cv_id => @cv.id)
+    @job_application.update_attributes(:user_id => @job_seeker, :job_id => @job.id, :cv_id => @cv.id)
     if @job_application.save
       #render :json => {:html => render_to_string(:partial => '/job_seeker/job_list', :locale=>{:job_seeker => @job_seeker})}.to_json
-      redirect_to "/#{current_user.role}/dashboard" , :notice => "You have successfully applied for this job!!"
+      render :json => {:html => render_to_string(:partial => '/job_seeker/job_list', :locale=>{:job_seeker => @job_seeker})}.to_json
 
     else
       redirect_to profiles_path(), :notice => "Please creater a profile"

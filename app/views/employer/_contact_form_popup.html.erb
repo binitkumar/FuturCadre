@@ -1,0 +1,63 @@
+<%= javascript_include_tag "jquery.form" %>
+<div class="dashboard-content-right">
+  <div class="shadow"></div>
+  <div class="popup-hold">
+
+    <div class="popup-top-holder">Question</div>
+    <div class="popup-mid-holder ">
+      <%= form_tag('contact_job_seeker', :id => 'contact_form') %>
+      <div class="input-holder">
+        <label>Applicant Name</label>
+        <%= text_field_tag 'name', @job_application.user.name %>
+      </div>
+      <%= hidden_field_tag :job_application, @job_application.id %>
+      <div class="input-holder">
+        <label>Applicant Email</label>
+        <%= text_field_tag 'email', @job_application.user.email %>
+      </div>
+
+      <div class="input-holder">
+        <label>Title</label>
+        <%= text_field_tag 'title', nil %>
+      </div>
+      <div class="input-holder">
+        <label>Message</label>
+        <%= text_area_tag 'body' %>
+      </div>
+      <div class="find_job">Send</div>
+      <div class="exit_job" onclick="close_popup()">exit</div>
+
+
+    </div>
+
+    <div class="popup-bot-holder"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+
+    $(".find_job").click(function() {
+        $('#contact_form').ajaxSubmit({
+            success: function(data) {
+                alert("Your Mail has been sent");
+                $(".dashboard-content-right").html(data.html);
+                close_popup();
+            }
+        });
+    });
+    function close_popup() {
+        $(".popup-hold").hide();
+        $(".shadow").hide();
+        $.ajax({
+            url: '/employer/my_job_detail?id=' + '<%= @job_application.job.id%>' ,type: 'get', dataType: 'json',
+            processData: false,
+            success: function(data) {
+
+                $(".dashboard-content-right").html(data.html);
+            }
+
+        })
+
+    }
+</script>

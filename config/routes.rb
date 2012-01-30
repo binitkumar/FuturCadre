@@ -121,6 +121,9 @@ FuturCadre::Application.routes.draw do
       get :new_event
       post :create_event
       get :delete_job
+      get :my_job_detail
+      get :contact_information
+      post :contact_job_seeker
 
     end
   end
