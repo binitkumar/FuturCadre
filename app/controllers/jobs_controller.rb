@@ -170,7 +170,7 @@ class JobsController < ApplicationController
   end
 
   def new_application
-    @job = Job.find(params[:jid])
+    @job = Job.find(params[:id])
     @applied_job = AppliedJob.new
     if user_signed_in?
       if current_user.profile !nil
