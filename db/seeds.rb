@@ -252,13 +252,6 @@ jobs.each do |job|
   job.update_attributes(:contract_id => @contract, :period_id => @period)
 end
 
-puts "Creating a subcategory"
-0..3.each do |i|
-  Category.create!(:name => "Scripting/ShortHand",
-                   :parent_id => 2
-                      )
-
-end
 
 puts "Creating a subcategory"
 (0 .. 2).each do |i|
