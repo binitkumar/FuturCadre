@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authorize_user
 
   #def show
   #	@profile = Profile.find(params[:id])
