@@ -1,10 +1,11 @@
 <div class="mid-cont-holder">
   <div class="post-hold">
     <% if user_signed_in? %>
+        <%if current_user.is_member(@group.id)== true  %>
         <div class="post-right-hold">
           <%= render :partial => "comment_form", :locals => { :comment => @comment, :group => @group } %>
         </div>
-
+         <% end %>
     <% end %>
   </div>
   <div class="comment-holder">

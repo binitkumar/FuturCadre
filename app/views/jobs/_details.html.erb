@@ -136,7 +136,7 @@
 
                         <%if user_signed_in?%>
                         {
-                            <%if current_user.role !="employer"%>
+                            <%if current_user.role !="employer" && current_user.has_applied(@job.id)!= true%>
                             {
                         <%unless current_user.profile.blank?%>
                             {

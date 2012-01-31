@@ -53,5 +53,11 @@ class User < ActiveRecord::Base
   def is_member(group_id)
     self.groups.include?(Group.find_by_id(group_id))
   end
+
+  def has_applied(job_id)
+    puts "abcccccc", job_id.inspect
+    self.applied_jobs.include?(AppliedJob.find_by_job_id(job_id))
+
+  end
 end
 
