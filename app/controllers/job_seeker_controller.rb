@@ -1,6 +1,7 @@
 class JobSeekerController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authorize_user
+  before_filter :check_job_seeker
 
   def dashboard
     @job_seeker = current_user

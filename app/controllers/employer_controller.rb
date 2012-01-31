@@ -1,5 +1,7 @@
 class EmployerController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authorize_user
+  before_filter :check_employer
+
 
   def dashboard
     @employer = current_user
@@ -91,7 +93,7 @@ class EmployerController < ApplicationController
 
   def download
     @asset = Asset.find(params[:id])
-    @cv = @asset.photo
+    @cv    = @asset.photo
     send_file @cv.path
 
   end
