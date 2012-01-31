@@ -5,7 +5,7 @@
     <div class="popup-top-holder">Question</div>
     <div class="popup-mid-holder ">
       <%= form_tag('jobs/apply_job', :id => 'apply_job_form') %>
-      <div class="input-holder">
+      <div class="input-holder" style="width:59%;">
         <label>Job Name</label>
         <%= text_field_tag 'name', @job.name, :disabled => true %>
       </div>
@@ -15,13 +15,16 @@
             <label>CV</label>
             <% @cvs.each do |cv| %>
                 <%= radio_button_tag :"cv_id", cv.id %>
+               <%= cv.photo_file_name %>
             <% end %>
         <% end %>
 
       </div>
 
-      <div class="application_job">Send</div>
-      <div class="exit_job" onclick="close_popup()">exit</div>
+      <div class="pop-up-btn-new">
+        <div id="application_job" class="pop-up-btn">Send</div>
+        <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
+      </div>
 
 
     </div>
@@ -37,10 +40,10 @@
 
 <script type="text/javascript">
 
-    $(".application_job").click(function() {
+    $("#application_job").click(function() {
         $('#apply_job_form').ajaxSubmit({
             success: function(data) {
-                alert("Your Mail has been sent");
+                alert("Your application has been successfully submitted");
                 $(".content-holder").html(data.html);
                 close_popup();
             }

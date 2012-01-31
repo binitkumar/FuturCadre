@@ -24,9 +24,10 @@
         <label>Message</label>
         <%= text_area_tag 'body' %>
       </div>
-      <div class="find_job">Send</div>
-      <div class="exit_job" onclick="close_popup()">exit</div>
-
+      <div class="pop-up-btn-new" >
+        <div id="find_job" class="pop-up-btn">Send</div>
+          <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
+      </div>
 
     </div>
 
@@ -37,7 +38,7 @@
 <script type="text/javascript">
 
 
-    $(".find_job").click(function() {
+    $("#find_job").click(function() {
         $('#contact_form').ajaxSubmit({
             success: function(data) {
                 alert("Your Mail has been sent");
