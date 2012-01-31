@@ -178,12 +178,12 @@ li.sfHover > a > .sf-sub-indicator {
     background: #ffffff;
 }
 
-.sf-menu li:hover, .sf-menu li.sfHover,
-.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
-    background: #991514;
-    color: #ffffff;
-    outline: 0;
-}
+/*.sf-menu li:hover, .sf-menu li.sfHover,*/
+/*.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {*/
+/*background: #991514;*/
+/*color: #ffffff;*/
+/*outline: 0;*/
+/*}*/
 
 /*** arrows **/
 .sf-menu a.sf-with-ul {
@@ -193,4 +193,34 @@ li.sfHover > a > .sf-sub-indicator {
 
 .sfHover .sf-with-ul {
     color: #ffffff !important;
+}
+
+.sf-menu li:hover {
+    background: #991514;
+    color: #ffffff;
+    outline: 0;
+}
+
+.sf-menu li.sfHover {
+    background: #c02827;
+    color: #ffffff;
+    outline: 0;
+}
+
+.sf-menu a:focus {
+    background:#c02827;
+    color: #ffffff;
+    outline: 0;
+}
+
+.sf-menu a:hover {
+    background: #c02827;
+    color: #ffffff;
+    outline: 0;
+}
+
+.sf-menu a:active {
+    background: #991514;
+    color: #ffffff;
+    outline: 0;
 }
