@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
   has_many :applied_jobs
   #belongs_to :event_user
 
+  has_many :thesis_users
+  has_many :thesises, :through => :thesis_users
+  has_many :created_thesis, :as => :owner, :class_name => "Thesis"
+
 
   def role
     return "webmaster" if webmaster?

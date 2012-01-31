@@ -3,5 +3,7 @@ class Photo < ActiveRecord::Base
 
   has_attached_file :image, :styles => { :small => "100x100>" }, :path => ":rails_root/public/system/:attachment/:id/:style/:basename.:extension",
                     :url            => "/system/:attachment/:id/:style/:basename.:extension"
-  validates_attachment_content_type :image, :content_type=>['image/jpeg', 'image/png', 'image/gif']
+  #validates_attachment_content_type :image, :content_type=>['image/jpeg', 'image/png', 'image/gif']
+  validates_attachment_content_type :photo, :content_type=>['image/jpeg', 'image/png', 'image/gif','application/msword','application/pdf','docx']
+
 end
