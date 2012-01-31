@@ -15,20 +15,20 @@
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @applied_jobs.blank? %>
         <p>Total Number of jobs applied <%= @applied_jobs.count %></p>
-        <% @applied_jobs.each do |app_job| %>
-            <div class="event-image">
-              <%#= image_tag  %>
-              <label>Job Name</label> <%= app_job.job.name %>
-
-            </div>
-            <div class="event-image">
-              <%#= image_tag  %>
-              <label>Job Applied </label> <%= app_job.created_at%>
-
-            </div>
-        <% end %>
-        <%else%>
-           <p><span>Currently No Applied Jobs!</span></p>
+        <table>
+          <tr>
+            <th> Job Name</th>
+            <th> Applied at</th>
+          </tr>
+          <% @applied_jobs.each do |app_job| %>
+              <tr>
+                <td><%= app_job.job.name %></td>
+                <td><%= app_job.created_at.strftime('%Y-%m-%d') %></td>
+              </tr>
+          <% end %>
+        </table>
+    <% else %>
+        <p><span>Currently No Applied Jobs!</span></p>
     <% end %>
   </div>
 </div>

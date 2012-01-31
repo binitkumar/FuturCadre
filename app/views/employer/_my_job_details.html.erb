@@ -36,7 +36,7 @@
                 <td><%= job_app.user.profile.first_name %></td>
                 <td><%= job_app.user.profile.last_name %></td>
                 <td><%= job_app.created_at.strftime('%Y-%m-%d') %></td>
-                <td id="contact" onclick="contact_user('<%=job_app.id %>')">Contact</td>
+                <td id="contact" onclick="contact_user('<%=job_app.id %>')" style="color: blue;">Contact</td>
                 <td id="Download"><%= link_to "Download", download_employer_index_path(:id => job_app.cv_id) %></td>
               </tr>
           <% end %>

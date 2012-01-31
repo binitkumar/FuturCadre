@@ -15,25 +15,27 @@
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @resumes.blank? %>
         <p>Total Number of resumes <%= @resumes.count %></p>
-        <% @resumes.each do |resume| %>
-            <div class="event-image">
-              <%#= image_tag  %>
-              <label>Resume Name</label> <%= resume.photo_file_name %>
+        <table>
+          <tr>
+            <th>Resume Name</th>
+            <th>File Type</th>
+            <!--<th>Download</th>-->
+          </tr>
 
-            </div>
-            <div class="event-image">
-              <%#= image_tag  %>
-              <label>Resume File Type</label> <%= resume.photo_content_type %>
-
-            </div>
-        <% end %>
+          <% @resumes.each do |resume| %>
+              <tr>
+                <td><%= resume.photo_file_name %></td>
+                <td><%= resume.photo_content_type %></td>
+              </tr>
+          <% end %>
+        </table>
     <% else %>
         <p><span>Currently No Resume Present!</span></p>
     <% end %>
   </div>
   <div id="upload-form" title="Upload a New Question">
 
-    <%= form_for :cv, :url =>{:action => 'new_resume'}, :html =>{:id => 'add_cv_form'}, :remote => true do |f| %>
+    <%= form_for :cv, :url =>{ :action => 'new_resume' }, :html =>{ :id => 'add_cv_form' }, :remote => true do |f| %>
         <div class="select-holder">
           <%= f.file_field :photo %>
 
