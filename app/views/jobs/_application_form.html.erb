@@ -1,37 +1,32 @@
 <div class="content-left-holder">
-  <div class="w100">
-    <div class="search-results">Job Form</div>
-    <!--    <div class="data-post-div"></div>-->
+  <div class="shadow"></div>
+  <div class="popup-hold">
 
-    <div class="search-line"></div>
-  </div>
-
-
-  <div class="result-holder">
-
-    <%= form_for :job, :url =>{:action => 'apply_job'}, :html =>{:id => 'apply_job_form'}, :remote => true do |f| %>
-
-        <%= hidden_field_tag :job_id, @job.id %>
-        <div class="input-holder">
-          <label> Job Name</label>
-          <%= f.text_field :name, :disabled => true %>
-        </div>
+    <div class="popup-top-holder">Question</div>
+    <div class="popup-mid-holder ">
+      <%= form_tag('jobs/apply_job', :id => 'apply_job_form') %>
+      <div class="input-holder">
+        <label>Job Name</label>
+        <%= text_field_tag 'name', @job.name, :disabled => true %>
+      </div>
+      <%= hidden_field_tag :job_id, @job.id %>
+      <div class="input-holder">
         <% unless @cvs.blank? %>
             <label>CV</label>
             <% @cvs.each do |cv| %>
-
-                <div class="input-holder">
-                  <div style="">
-                    <%= radio_button_tag :"cv_id", cv.id %>
-                  </div>
-                  <div> <%= cv.photo_file_name %></div>
+                <%= radio_button_tag :"cv_id", cv.id %>
             <% end %>
-            </div>
-            <% else %>
-            <p> Please upload a CV to apply for this position</p>
         <% end %>
-     <div class="save-button"> <%= f.submit "Save" %></div>
-    <% end %>
+
+      </div>
+
+      <div class="application_job">Send</div>
+      <div class="exit_job" onclick="close_popup()">exit</div>
+
+
+    </div>
+
+    <div class="popup-bot-holder"></div>
   </div>
 
 </div>
@@ -42,19 +37,29 @@
 
 <script type="text/javascript">
 
-    $('a.application').click(function() {
+    $(".application_job").click(function() {
         $('#apply_job_form').ajaxSubmit({
-            beforeSubmit: function(a, f, o) {
-                o.dataType = 'json';
-            },
             success: function(data) {
-
-                $(".dashboard-content-right").html(data.html);
-
-
+                alert("Your Mail has been sent");
+                $(".content-holder").html(data.html);
+                close_popup();
             }
         });
         return false;
     });
+
+
+    function close_popup() {
+        $(".popup-hold").hide();
+        $(".shadow").hide();
+        $.ajax({
+            url: '/jobs/details?id=' + '<%= @job.id%>' ,type: 'get', dataType: 'json',
+            processData: false,
+            success: function(data) {
+
+                $(".content-holder").html(data.html);
+            }
+        })
+    }
 
 </script>

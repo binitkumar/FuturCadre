@@ -136,6 +136,8 @@
 
                         <%if user_signed_in?%>
                         {
+                            <%if current_user.role !="employer"%>
+                            {
                         <%unless current_user.profile.blank?%>
                             {
                                 url = "jobs/new_application?id=" + '<%=@job.id %>';
@@ -158,7 +160,12 @@
 
                             }
                         <%end%>
-
+                            }
+                            <%else%>
+                            {
+                                alert("You are not allowed to apply for a job");
+                            }
+                           <%end%>
                         }
                         <%else%>
                         window.location.href = "/sign_in";
