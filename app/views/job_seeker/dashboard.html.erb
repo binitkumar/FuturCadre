@@ -17,6 +17,11 @@
         <div class="reg-mid-tab-holder"><%= link_to "My Jobs", job_seeker_jobs_job_seeker_index_path(:id => @job_seeker), :class =>"job-seeker-job" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
+      <div class="reg-tab-holder-new">
+        <div class="reg-left-tab-holder"></div>
+        <div class="reg-mid-tab-holder" id="thesis" onclick="my_thesis('<%= @job_seeker.id %>')"> My Theses</div>
+        <div class="reg-right-tab-holder"></div>
+      </div>
 
 
     </div>
@@ -159,6 +164,24 @@
         return false;
 
     });
+
+
+    function my_thesis(job_id) {
+        url = "/job_seeker/my_theses?id=" + job_id;
+        $.ajax({
+            context: this,
+            url: url,
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                $(".dashboard-content-right").html(response.html);
+            }
+        });
+        return false;
+
+
+    }
 
 
 </script>

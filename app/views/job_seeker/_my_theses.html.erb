@@ -1,0 +1,34 @@
+<div class="dashboard-content-right">
+  <div class="w100">
+    <div class="dashboard-post-profile-btn">
+    </div>
+  </div>
+  <!--dashboard-post-profile-btn ends-->
+  <div class="dashboard-content">
+    <h1>Theses</h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <div class="btn-mid-holder"><%= link_to "Create New Theses",new_thesis_path(), :class => "create-event", :style=>" color: #FFFFFF;text-decoration: none;" %></div>
+    <p><br/>
+    </p>
+
+    <h1>My<span class="red"> Theses</span></h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <% unless @my_theses.blank? %>
+        <p>Total Number of thesis <%= @my_theses.count %></p>
+        <table>
+          <tr>
+            <th> Job Name</th>
+            <th> Created at</th>
+          </tr>
+          <% @my_theses.each do |thesis| %>
+              <tr>
+                <td><%= thesis.name %></td>
+                <td><%= thesis.created_at.strftime('%Y-%m-%d') %></td>
+              </tr>
+          <% end %>
+        </table>
+    <% else %>
+        <p><span>Currently No Applied Jobs!</span></p>
+    <% end %>
+  </div>
+</div>

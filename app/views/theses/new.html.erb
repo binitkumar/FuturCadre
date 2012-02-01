@@ -1,0 +1,50 @@
+<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery-ui-timepicker-addon" %>
+<%= stylesheet_link_tag "jquery-ui-1.8.17.custom", "jquery.ui.datepicker" %>
+<div class="content-holder">
+  <div class="w100">
+    <% if current_user.job_seeker? %>
+        <% @job_seeker = current_user %>
+        <div class="dashboard-content-left">
+          <%= render :partial => "job_seeker/job_seeker", :locals => { :job_seeker => @job_seeker } %>
+        </div>
+    <% else %>
+        <% @employer = current_user %>
+        <div class="dashboard-content-left">
+          <%= render :partial => "employer/employer", :locals => { :employer => @employer } %>
+        </div>
+    <% end %>
+    <div class="dashboard-content-right">
+      <%= form_for(:thesis, :url =>{ :controller => 'theses', :action =>'create_thesis' }, :html =>{ :id => "theses_form", :onsubmit =>false, :multipart => true }) do |f| %>
+
+          <%= render :partial => "theses/form", :locals => { :f => f } %>
+          <div class="save-button">
+
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    function open_datepicker() {
+        $('.date-pick').datepicker({dateFormat: 'yy-mm-dd'});
+    }
+
+
+
+    $(".btn-save").click(function() {
+        $('#theses_form').ajaxSubmit({
+            beforeSubmit: function(a, f, o) {
+                o.dataType = 'json';
+            },
+            success: function(data) {
+
+                $(".dashboard-content-right").html(data.html);
+
+
+            }
+        });
+        return false;
+    });
+
+</script>

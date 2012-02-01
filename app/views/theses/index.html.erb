@@ -1,0 +1,140 @@
+<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery.pagination" %>
+<%= stylesheet_link_tag "pagination", "jquery.ui.datepicker" %>
+<%= render :partial => "shared/top_search_ box" %>
+<div class="content-holder">
+
+  <div class="basic-info mtop10">
+    <h1><span class="red">Groups</span></h1>
+    <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+
+  </div>
+
+  <div class="w100">
+    <div class="dashboard-left mtop10">
+      <div class="adds-holder">
+        <%= image_tag asset_path 'adds-holder-img.png' %>
+
+      </div>
+      <div class="adds-holder">
+        <%= image_tag asset_path 'adds-holder-img.png' %>
+
+      </div>
+
+
+    </div>
+
+    <div class="dashboard-right">
+
+      <div class="w100 mtop10">
+        <div class="search-field">
+
+        </div>
+        <div class="btn_holder">
+
+          <div class="btn_mid_holder">
+          </div>
+
+        </div>
+      </div>
+
+      <div class="w100">
+        <div id="container">
+          <div class="dashboard-heading mtop10">
+            <div class="name">Name</div>
+            <div class="description">Description</div>
+            <div class="salary">No of Pages</div>
+            <div class="rating">Published</div>
+          </div>
+          <div id="Pagination" class="pagaination-holder"></div>
+          <br style="clear:both;"/>
+
+          <div id="Searchresult">
+          </div>
+          <div id="hiddenresult" style="display:none;">
+
+            <% unless  @theses.blank? %>
+
+                <%  @theses.each do | thes| %>
+                    <div class="result">
+                      <div class="dashboard-text">
+                        <div class="name">
+
+                          <div class="icon-text">
+
+                            <%= link_to thes.name, %>
+                            <p> <%= image_tag asset_path 'mem-icon.png' %>  <%= thes.theses_users.count %> Members</p>
+                          </div>
+                        </div>
+                        <div class="description-hold"><%= thes.description %> </div>
+                        <div class="salary-hold"><%= thes.no_of_pages %></div>
+
+
+                      </div>
+                    </div>
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="w100 mtop10">
+          <div class="btn_holder">
+            <div class="btn_mid_holder">
+
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+    var pagination_options = {
+        num_edge_entries: 0,
+        num_display_entries: 0,
+        callback: pageselectCallback,
+        items_per_page:2
+    }
+    function pageselectCallback(page_index, jq) {
+        var items_per_page = pagination_options.items_per_page;
+        var offset = page_index * items_per_page;
+        var new_content = $('#hiddenresult div.result').slice(offset, offset + items_per_page).clone();
+        $('#Searchresult').empty().append(new_content);
+        return false;
+    }
+
+    // When document is ready, initialize pagination and buttons
+    $(document).ready(function() {
+        var num_entries = $('#hiddenresult div.result').length;
+
+        // Create pagination element, if more than 50 candidates
+        if (num_entries > 2) {
+            var $pager = $("#Pagination");
+            $pager.fadeIn(400);
+            $pager.pagination(num_entries, pagination_options);
+            $("#select_all").click(function() {
+                $("#Searchresult").find('div').find('input[type=checkbox]').each(function() {
+                    this.checked = true;
+                });
+            });
+
+        }
+        else {
+            $("#hiddenresult").fadeIn(200);
+            $("#select_all").click(function() {
+                $("input[type=checkbox]").each(function() {
+                    this.checked = true;
+                });
+            });
+        }
+    });
+</script>

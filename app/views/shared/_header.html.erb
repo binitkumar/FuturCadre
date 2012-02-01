@@ -18,14 +18,20 @@
   <li class="<%= params[:controller] == "home" && params[:action] == "index" ? 'active' : '' %>">
     <%= link_to t('header.find_jobs'), root_url %>
   </li>
-  <li class="<%= params[:controller] == "groups"  ? 'active' : '' %>">
+  <li class="<%= params[:controller] == "groups" ? 'active' : '' %>">
     <%= link_to t('header.group'), nil, :id=>'b' %>
     <ul>
       <li id="a">  <%= link_to "School Group", groups_path(:locale => "school") %> </li>
       <li>  <%= link_to "Job Group", groups_path(:locale => "job") %> </li>
     </ul>
-
-  </li>
+   </li>
+    <li class="<%=    %>">
+    <%= link_to "Project", nil,  %>
+    <ul>
+      <li >  <%= link_to "Thesis", theses_path() %> </li>
+      <li>  <%= link_to "Job Group", groups_path(:locale => "job") %> </li>
+    </ul>
+   </li>
 
   <% unless user_signed_in? %>
       <li class="<%= params[:role].present? && params[:role] == "job_seeker" ? 'active' : '' %>">

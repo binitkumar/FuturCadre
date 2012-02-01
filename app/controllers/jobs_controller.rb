@@ -40,11 +40,6 @@ class JobsController < ApplicationController
   end
 
   def create_job
-
-    #@profile         = Profile.new
-    #@profile.user_id = current_user
-    #@profile.save!
-
     @job_new = Job.new(params[:job])
     if params[:job][:date_of_start]=="true"
       date= Time.now

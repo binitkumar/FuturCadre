@@ -1,5 +1,7 @@
 FuturCadre::Application.routes.draw do
 
+  resources :theses
+
   match 'admin' => 'admin/home#login'
   #match 'sannan' => 'application#check_url'
   # match 'translate' => 'translate#index', :as => :translate_list
@@ -109,6 +111,7 @@ FuturCadre::Application.routes.draw do
       post :create_event
       get :job_seeker_jobs
       post :new_resume
+      get :my_theses
     end
   end
 
@@ -124,7 +127,7 @@ FuturCadre::Application.routes.draw do
       get :my_job_detail
       get :contact_information
       post :contact_job_seeker
-      get  :download
+      get :download
 
     end
   end
@@ -160,6 +163,15 @@ FuturCadre::Application.routes.draw do
       get :group_question
       post :create_question
       get :group_body
+    end
+  end
+
+
+  resources :theses do
+    collection do
+     get :my_theses
+     post :create_thesis
+      get :download_thesis
     end
   end
 

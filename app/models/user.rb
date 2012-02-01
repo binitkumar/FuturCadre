@@ -26,9 +26,9 @@ class User < ActiveRecord::Base
   has_many :applied_jobs
   #belongs_to :event_user
 
-  has_many :thesis_users
-  has_many :thesises, :through => :thesis_users
-  has_many :created_thesis, :as => :owner, :class_name => "Thesis"
+  has_many :theses_users
+  has_many :theses, :through => :theses_users
+  has_many :created_theses, :as => :owner, :class_name => "Thesis"
 
 
   def role
@@ -59,9 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def has_applied(job_id)
-    puts "abcccccc", job_id.inspect
     self.applied_jobs.include?(AppliedJob.find_by_job_id(job_id))
-
-  end
+   end
 end
 

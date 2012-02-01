@@ -1,0 +1,24 @@
+<div class="basic-info mtop10">
+  <h1>Job Seeker<span class="red"> Dashboard</span></h1>
+  <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+
+</div>
+
+<div class="dashboard-left">
+  <div class="dashboard-info-image">
+    <div class="dashboard-image">
+      <% if @job_seeker.profile.present? %>
+
+          <%= image_tag profile_image.photo.url %>
+          <h1> <%= @job_seeker.profile.full_name %></h1>
+      <% else %>
+          <h1>  <%= @job_seeker.name %> </h1>
+
+          <p>Ajouter votre logo pour qu'il soit visible dans vos annonces.</p>
+
+      <% end %>
+    </div>
+  </div>
+  <!--dashboard-info-image ends-->
+  <div class="btn-mid-holder"><%= link_to "Events", event_job_seeker_index_path(:jid => @job_seeker), :class => "event-holder", :style =>" color: #FFFFFF;text-decoration: none;" %></div>
+</div>
