@@ -1,0 +1,97 @@
+<%#= javascript_include_tag "jquery-ui-1.8.17.custom.min"%>
+<%= render :partial => "shared/top_search_ box" %>
+<div class="content-holder">
+  <div class="group-result">
+    <div class="groups-jobs-left">
+      <% if @thesis.present? %>
+          <div class="admin-hold">
+            <div class="admin-top-hold"><h1><%= @thesis.name %> Administrator </h1></div>
+            <div class="admin-mid-hold">
+              <div class="admin-name"><%= @thesis.owner.name %></div>
+              <div class="admin-link"><%= link_to "Contact administrator #{@thesis.owner.email}" %></div>
+            </div>
+            <div class="admin-bot-hold"></div>
+          </div>
+
+          </div>
+
+          <div class="groups-mid-cont">
+            <div class="join-request">
+              <%= render :partial => "thesis_description", :locals => { :thesis => @thesis } %>
+            </div>
+            <ul class="group-links mtop20">
+              <li class="group-link-act listed"><%= link_to "Wall", thesis_wall_theses_path(:id => @thesis.id), :class => "thesis_wall_link" %></li>
+              <li class="listed"><%= link_to "Description", thesis_body_theses_path(:id => @thesis.id), :class => "thesis_body-link" %></li>
+
+            </ul>
+
+            <div class="groups-line"></div>
+            <div class="mid-cont-holder">
+
+            </div>
+      <% end %>
+      </div>
+      <div class="post-right-cont-hold">
+        <h3><span class="red">Thesis Index</span></h3>
+        <% unless @categories.blank? %>
+            <ul class="groups-link">
+              <% @categories.each do |category| %>
+                  <li>
+                    <div class="accountants"><%= link_to category.name %></div>
+                  </li>
+              <% end %>
+            </ul>
+
+        <% end %>
+      </div>
+
+      </div>
+</div>
+<script type="text/javascript">
+
+    $("a.thesis_wall_link").click(function() {
+        $(this).removeClass("group-link-act");
+        $(this).parent(".listed").prevAll(".listed").each(function() {
+            $(this).removeClass("group-link-act");
+
+        });
+        $('.content-holder').find('.group-link-act').removeClass('group-link-act');
+        $(this).parent(".listed").addClass("group-link-act");
+
+
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".mid-cont-holder").html(response.html);
+            }
+        });
+        return false;
+    });
+    $("a.thesis_body-link").click(function() {
+        $(this).removeClass("group-link-act");
+        $(this).parent(".listed").prevAll(".listed").each(function() {
+            $(this).removeClass("group-link-act");
+
+        });
+        $('.content-holder').find('.group-link-act').removeClass('group-link-act');
+        $(this).parent(".listed").addClass("group-link-act");
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".mid-cont-holder").html(response.html);
+            }
+        });
+        return false;
+    });
+</script>
+
+
+

@@ -4,7 +4,7 @@
 <div class="content-holder">
 
   <div class="basic-info mtop10">
-    <h1><span class="red">Groups</span></h1>
+    <h1><span class="red">Theses Categories</span></h1>
     <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 
   </div>
@@ -12,11 +12,16 @@
   <div class="w100">
     <div class="dashboard-left mtop10">
       <div class="adds-holder">
-        <%= image_tag asset_path 'adds-holder-img.png' %>
+        <% unless @categories.blank? %>
+            <ul class="groups-link">
+              <% @categories.each do |category| %>
+                  <li>
+                    <div class="accountants"><%= link_to category.name + "[#{category.theses.count}]" %></div>
+                  </li>
+              <% end %>
+            </ul>
 
-      </div>
-      <div class="adds-holder">
-        <%= image_tag asset_path 'adds-holder-img.png' %>
+        <% end %>
 
       </div>
 
@@ -54,21 +59,19 @@
 
             <% unless  @theses.blank? %>
 
-                <%  @theses.each do | thes| %>
+                <% @theses.each do |thes| %>
                     <div class="result">
                       <div class="dashboard-text">
                         <div class="name">
 
                           <div class="icon-text">
 
-                            <%= link_to thes.name, %>
+                            <%= link_to thes.name, thesis_details_theses_path(:id => thes.id) %>
                             <p> <%= image_tag asset_path 'mem-icon.png' %>  <%= thes.theses_users.count %> Members</p>
                           </div>
                         </div>
                         <div class="description-hold"><%= thes.description %> </div>
                         <div class="salary-hold"><%= thes.no_of_pages %></div>
-
-
                       </div>
                     </div>
                 <% end %>
@@ -137,4 +140,19 @@
             });
         }
     });
+
+    $("a.category_link").click(function() {
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".dashboard-right").html(response.html);
+            }
+        });
+        return false;
+    });
+
 </script>

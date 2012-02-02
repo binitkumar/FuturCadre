@@ -24,13 +24,10 @@
       <li id="a">  <%= link_to "School Group", groups_path(:locale => "school") %> </li>
       <li>  <%= link_to "Job Group", groups_path(:locale => "job") %> </li>
     </ul>
-   </li>
-    <li class="<%=    %>">
-    <%= link_to "Project", nil,  %>
-    <ul>
-      <li >  <%= link_to "Thesis", theses_path() %> </li>
-      <li>  <%= link_to "Job Group", groups_path(:locale => "job") %> </li>
-    </ul>
+  </li>
+  <li class="<%= %>">
+  <li class="<%= params[:controller] == "theses" ? 'active' : '' %>">
+    <%= link_to "Thesis", theses_path() %>
    </li>
 
   <% unless user_signed_in? %>

@@ -1,0 +1,66 @@
+<div class="dashboard-right">
+
+  <div class="w100 mtop10">
+    <div class="search-field">
+
+    </div>
+    <div class="btn_holder">
+
+      <div class="btn_mid_holder">
+      </div>
+
+    </div>
+  </div>
+
+  <div class="w100">
+    <div id="container">
+      <div class="dashboard-heading mtop10">
+        <div class="name">Name</div>
+        <div class="description">Description</div>
+        <div class="salary">No of Pages</div>
+        <div class="rating">Published</div>
+      </div>
+      <div id="Pagination" class="pagaination-holder"></div>
+      <br style="clear:both;"/>
+
+      <div id="Searchresult">
+      </div>
+      <div id="hiddenresult" style="display:none;">
+         <% puts "THEEEEEEEEEEEEEEEEEEE", @theses.inspect %>
+        <% unless @theses.blank? %>
+            <% @theses.each do |thes| %>
+               <% puts "AAAAAAAAAAAAAAAAAAAAAAA", thes.inspect %>
+                <div class="result">
+                  <div class="dashboard-text">
+                    <div class="name">
+                     <div class="icon-text">
+                           <%= link_to thes.name, thesis_details_theses_path(:id => thes.id) %>
+                        <p> <%= image_tag asset_path 'mem-icon.png' %>  <%= thes.theses_users.count %> Members</p>
+                      </div>
+                    </div>
+                    <div class="description-hold"><%= thes.description %> </div>
+                    <div class="salary-hold"><%= thes.no_of_pages %></div>
+                  </div>
+                </div>
+            <% end %>
+            <% else %>
+                    <h1> Currently No thesis</h1>
+
+        <% end %>
+      </div>
+    </div>
+
+    <div class="w100 mtop10">
+      <div class="btn_holder">
+        <div class="btn_mid_holder">
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+</div>

@@ -1,6 +1,5 @@
 FuturCadre::Application.routes.draw do
 
-  resources :theses
 
   match 'admin' => 'admin/home#login'
   #match 'sannan' => 'application#check_url'
@@ -169,9 +168,14 @@ FuturCadre::Application.routes.draw do
 
   resources :theses do
     collection do
-     get :my_theses
-     post :create_thesis
+      get :my_theses
+      post :create_thesis
       get :download_thesis
+      get :thesis_details
+      get :thesis_wall
+      post :add_comment
+      get :thesis_body
+      get :thesis_category
     end
   end
 

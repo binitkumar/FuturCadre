@@ -1,0 +1,55 @@
+<div class="mid-cont-holder">
+  <div class="post-hold">
+    <% if user_signed_in? %>
+
+        <div class="post-right-hold">
+          <%= render :partial => "comment_form", :locals => { :comment => @comment, :thesis => @thesis } %>
+        </div>
+
+    <% end %>
+  </div>
+  <div class="comment-holder">
+    <% if @comments.present? %>
+        <% @comments.each do |comment| %>
+
+            <div class="w100 mtop20">
+              <div class="post-left-hold" style="width: 84px;"> <%= image_tag comment_image(comment).photo.url, :style =>"border: medium solid !important;height: 96px;" %></div>
+              <div class="post-cont-hold">
+                <h1><%= comment.user.name %></h1>
+
+                <p><%= comment.comment %> </p>
+
+                <div class="like-hold"><!--<a href="#">Like</a> -->
+                  <%= time_ago_in_words(comment.created_at) %> ago
+                </div>
+              </div>
+            </div>
+
+        <% end %>
+
+    <% else %>
+        <div class="w100 mtop20">
+
+
+          <div class="post-cont-hold">
+            <h1>Currently No comments</h1>
+
+
+          </div>
+
+        </div>
+
+    <% end %>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $("#add_comment_button").click(function() {
+        $.post($("form#add_comment_form").attr("action"), $("form#add_comment_form").serialize(), (function(response) {
+            return $(".mid-cont-holder").html(response.html);
+        }), "json");
+        return false;
+    });
+</script>

@@ -269,10 +269,10 @@ theses = Thesis.create!([{ :name => 'Software Development Life Cycle', :descript
                         ])
 
 puts "updating document of thesis"
-theses.each do |thesis|
+theses.each do |thes|
   thesis              = Photo.new
   thesis.image        = File.open(Rails.root.join('app/assets/images/test.pdf'))
-  thesis.imageable    = thesis
+  thesis.imageable    = thes
   thesis.content_type = "thesis_publication"
   thesis.save
 end
