@@ -127,6 +127,7 @@ FuturCadre::Application.routes.draw do
       get :contact_information
       post :contact_job_seeker
       get :download
+      get :my_theses
 
     end
   end
@@ -177,6 +178,7 @@ FuturCadre::Application.routes.draw do
       get :thesis_body
       get :thesis_category
       post :search_thesis
+      get  :my_thesis
 
     end
   end

@@ -7,11 +7,14 @@
         <div class="reg-right-tab-holder"></div>
       </div>
 
-          <div class="reg-tab-holder-new">
+      <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-
         <div class="reg-mid-tab-holder"><%= link_to "My Jobs", employer_jobs_employer_index_path(:edi => @employer), :class =>"employer-jobs" %></div>
-
+        <div class="reg-right-tab-holder"></div>
+      </div>
+      <div class="reg-tab-holder-new">
+        <div class="reg-left-tab-holder"></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Thesis ", my_theses_employer_index_path(:id => @employer), :class =>"thesis_link" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
 
@@ -51,7 +54,7 @@
 
             <%= link_to image_tag(asset_path 'Post-An-Ad.png'), new_job_path(), :class =>"profile-check" %>
 
-           <!-- <a href="#"> <%#= image_tag asset_path 'search-profile.png' %>
+            <!-- <a href="#"> <%#= image_tag asset_path 'search-profile.png' %>
             </a>-->
           </div>
         </div>
@@ -79,7 +82,7 @@
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
           <p>0 advert (s) active (s) 0 ad (s).</p>
 
-        <!--  <a href="#">see all</a>  -->
+          <!--  <a href="#">see all</a>  -->
 
           <h1>My<span class="red"> Statistics</span></h1>
 
@@ -89,15 +92,15 @@
 
           <div class="buttons w100">
 
-         <!--   <div class="btn-left-holder"></div>
-            <div class="btn-mid-holder">0 profile (s) (s) selected</div>
-            <div class="btn-right-holder"></div>
-            <div class="btn-left-holder"></div>
-            <div class="btn-mid-holder">0 profile (s) contacted (s)</div>
-            <div class="btn-right-holder"></div>-->
+            <!--   <div class="btn-left-holder"></div>
+           <div class="btn-mid-holder">0 profile (s) (s) selected</div>
+           <div class="btn-right-holder"></div>
+           <div class="btn-left-holder"></div>
+           <div class="btn-mid-holder">0 profile (s) contacted (s)</div>
+           <div class="btn-right-holder"></div>-->
 
           </div>
-        <!--  <a href="#">see all</a> -->
+          <!--  <a href="#">see all</a> -->
 
           <h1>My<span class="red"> Subscription</span></h1>
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
@@ -142,6 +145,21 @@
 
     });
 
+         $("a.thesis_link").click(function() {
+
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
+        });
+        return false;
+
+    });
 
 
 </script>
