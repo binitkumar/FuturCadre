@@ -57,10 +57,10 @@ class ThesesController < ApplicationController
 
     respond_to do |format|
       if @thesis.save
-        format.html { redirect_to @thesis, notice: 'Thesis was successfully created.' }
+
 
       else
-        format.html { render action: "new" }
+
 
       end
     end
@@ -73,10 +73,10 @@ class ThesesController < ApplicationController
 
     respond_to do |format|
       if @thesis.update_attributes(params[:thesis])
-        format.html { redirect_to @thesis, notice: 'Thesis was successfully updated.' }
+
 
       else
-        format.html { render action: "edit" }
+
 
       end
     end
