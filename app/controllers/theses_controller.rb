@@ -2,12 +2,11 @@ class ThesesController < ApplicationController
   # GET /theses
   # GET /theses.json
   def index
-    @category = Category.first
-    @theses = Thesis.all
+    @category   = Category.first
+    @theses     = Thesis.all
     @categories = Category.all
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @theses }
     end
   end
 
@@ -36,7 +35,6 @@ class ThesesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @thesis }
     end
   end
 
@@ -60,10 +58,10 @@ class ThesesController < ApplicationController
     respond_to do |format|
       if @thesis.save
         format.html { redirect_to @thesis, notice: 'Thesis was successfully created.' }
-        format.json { render json: @thesis, status: :created, location: @thesis }
+
       else
         format.html { render action: "new" }
-        format.json { render json: @thesis.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -76,10 +74,10 @@ class ThesesController < ApplicationController
     respond_to do |format|
       if @thesis.update_attributes(params[:thesis])
         format.html { redirect_to @thesis, notice: 'Thesis was successfully updated.' }
-        format.json { head :ok }
+
       else
         format.html { render action: "edit" }
-        format.json { render json: @thesis.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -104,9 +102,9 @@ class ThesesController < ApplicationController
 
   def thesis_details
 
-    @thesis   = Thesis.find(params[:id])
-    @categories  = Category.all
-    @comments = @thesis.comments.all
+    @thesis     = Thesis.find(params[:id])
+    @categories = Category.all
+    @comments   = @thesis.comments.all
   end
 
   def thesis_wall
@@ -124,13 +122,13 @@ class ThesesController < ApplicationController
   end
 
   def thesis_body
-   @thesis = Thesis.find(params[:id])
+    @thesis = Thesis.find(params[:id])
     render :json => { :html => render_to_string(:partial => '/theses/thesis_path', :locale=>{ :thesis => @thesis }) }.to_json
   end
 
   def thesis_category
     @category = Category.find_by_id(params[:id])
-    @theses  = @category.theses
+    @theses   = @category.theses
     render :json => { :html => render_to_string(:partial => '/theses/thesis_categories', :locale=>{ :theses => @theses }) }.to_json
   end
 
