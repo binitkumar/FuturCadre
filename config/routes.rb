@@ -176,6 +176,8 @@ FuturCadre::Application.routes.draw do
       post :add_comment
       get :thesis_body
       get :thesis_category
+      post :search_thesis
+
     end
   end
 

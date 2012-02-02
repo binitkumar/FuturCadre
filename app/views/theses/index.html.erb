@@ -16,7 +16,7 @@
             <ul class="groups-link">
               <% @categories.each do |category| %>
                   <li>
-                    <div class="accountants"><%= link_to category.name + "[#{category.theses.count}]" %></div>
+                    <div class="accountants"><%= link_to category.name + "[#{category.theses.count}]", thesis_category_theses_path(:id => category.id), :class =>"category_link" %></div>
                   </li>
               <% end %>
             </ul>
@@ -29,7 +29,7 @@
     </div>
 
     <div class="dashboard-right">
-
+      <%= render :partial=> "search_theses" %>
       <div class="w100 mtop10">
         <div class="search-field">
 
@@ -44,39 +44,9 @@
 
       <div class="w100">
         <div id="container">
-          <div class="dashboard-heading mtop10">
-            <div class="name">Name</div>
-            <div class="description">Description</div>
-            <div class="salary">No of Pages</div>
-            <div class="rating">Published</div>
-          </div>
-          <div id="Pagination" class="pagaination-holder"></div>
-          <br style="clear:both;"/>
+          <%= render :partial => "theses/thesis_categories", :locals => { :theses =>@theses } %>
 
-          <div id="Searchresult">
-          </div>
-          <div id="hiddenresult" style="display:none;">
 
-            <% unless  @theses.blank? %>
-
-                <% @theses.each do |thes| %>
-                    <div class="result">
-                      <div class="dashboard-text">
-                        <div class="name">
-
-                          <div class="icon-text">
-
-                            <%= link_to thes.name, thesis_details_theses_path(:id => thes.id) %>
-                            <p> <%= image_tag asset_path 'mem-icon.png' %>  <%= thes.theses_users.count %> Members</p>
-                          </div>
-                        </div>
-                        <div class="description-hold"><%= thes.description %> </div>
-                        <div class="salary-hold"><%= thes.no_of_pages %></div>
-                      </div>
-                    </div>
-                <% end %>
-            <% end %>
-          </div>
         </div>
 
         <div class="w100 mtop10">
@@ -149,7 +119,7 @@
             data: $(this).serialize(),
             dataType: "json",
             success: function(response) {
-                return $(".dashboard-right").html(response.html);
+                return $(".container").html(response.html);
             }
         });
         return false;

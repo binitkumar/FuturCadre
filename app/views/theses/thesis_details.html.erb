@@ -20,8 +20,8 @@
               <%= render :partial => "thesis_description", :locals => { :thesis => @thesis } %>
             </div>
             <ul class="group-links mtop20">
-              <li class="group-link-act listed"><%= link_to "Wall", thesis_wall_theses_path(:id => @thesis.id), :class => "thesis_wall_link" %></li>
-              <li class="listed"><%= link_to "Description", thesis_body_theses_path(:id => @thesis.id), :class => "thesis_body-link" %></li>
+              <li class="group-link-act listed"><%= link_to "Description", thesis_body_theses_path(:id => @thesis.id), :class => "thesis_body-link" %></li>
+              <li class="listed"> <%= link_to "Wall", thesis_wall_theses_path(:id => @thesis.id), :class => "thesis_wall_link" %></li>
 
             </ul>
 

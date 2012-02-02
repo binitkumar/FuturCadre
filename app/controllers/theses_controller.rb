@@ -2,8 +2,13 @@ class ThesesController < ApplicationController
   # GET /theses
   # GET /theses.json
   def index
+    unless params[:id]!=nil
     @category   = Category.first
     @theses     = Thesis.all
+    else
+      @category = Category.find_by_id(params[:id])
+      @theses  = @category.theses
+   end
     @categories = Category.all
     respond_to do |format|
       format.html # index.html.erb
@@ -132,5 +137,12 @@ class ThesesController < ApplicationController
     render :json => { :html => render_to_string(:partial => '/theses/thesis_categories', :locale=>{ :theses => @theses }) }.to_json
   end
 
+
+  def search_thesis
+     @thesis_result= Thesis.find_all_by_name(params[:search_term])
+    render :json => { :html => render_to_string(:partial => '/theses/search_result') }.to_json
+
+
+  end
 
 end
