@@ -14,8 +14,8 @@
         </div>
     <% end %>
     <div class="dashboard-content-right">
-      <%= form_for(:thesis, :url =>{ :controller => 'theses', :action =>'create_thesis' }, :html =>{ :id => "theses_form", :onsubmit =>false, :multipart => true }) do |f| %>
-
+      <%#= form_for(:thesis, :url =>{ :controller => 'theses', :action =>'create_thesis' }, :html =>{ :id => "theses_form", :onsubmit =>false, :multipart => true }) do |f| %>
+        <%= form_for :thesis, :url =>{ :action => 'create_thesis', :controller =>"theses" }, :html =>{ :id => 'theses_form' }, :remote => true do |f| %>
           <%= render :partial => "theses/form", :locals => { :f => f } %>
           <div class="save-button">
 
@@ -26,25 +26,25 @@
 </div>
 
 <script type="text/javascript">
-    function open_datepicker() {
+    $(document).ready(function() {
         $('.date-pick').datepicker({dateFormat: 'yy-mm-dd'});
-    }
-
-
-
-    $(".btn-save").click(function() {
-        $('#theses_form').ajaxSubmit({
-            beforeSubmit: function(a, f, o) {
-                o.dataType = 'json';
-            },
-            success: function(data) {
-
-                $(".dashboard-content-right").html(data.html);
-
-
-            }
-        });
-        return false;
     });
+
+
+        $(".btn-save").click(function() {
+            $('#theses_form').ajaxSubmit({
+                beforeSubmit: function(a, f, o) {
+                    o.dataType = 'json';
+                },
+                success: function(data) {
+
+                    $(".dashboard-content-right").html(data.html);
+
+
+                }
+            });
+            return false;
+        });
+
 
 </script>

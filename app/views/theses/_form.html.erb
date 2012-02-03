@@ -13,10 +13,10 @@
 
       <div class="contract-field">
         <label> Thesis Category</label>
-        <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name") %>
+        <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", @thesis.category_id) %>
       </div>
 
-      <div class="job-input" id="date-picker" onclick="open_datepicker()">
+      <div class="job-input" id="date-picker">
         <label> Published Date</label>
         <%= f.text_field :date_of_publish, :class =>"date-pick" %>
       </div>

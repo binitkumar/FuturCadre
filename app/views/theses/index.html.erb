@@ -10,10 +10,10 @@
   </div>
 
   <div class="w100">
-    <div class="dashboard-left mtop10">
+    <div class="dashboard-left_new mtop10">
       <div class="adds-holder">
         <% unless @categories.blank? %>
-            <ul class="groups-link">
+            <ul class="theses-link">
               <% @categories.each do |category| %>
                   <li>
                     <div class="accountants"><%= link_to category.name + "[#{category.theses.count}]", thesis_category_theses_path(:id => category.id), :class =>"category_link" %></div>
@@ -28,7 +28,7 @@
 
     </div>
 
-    <div class="dashboard-right">
+    <div class="dashboard-right_new">
       <%= render :partial=> "search_theses" %>
       <div class="w100 mtop10">
         <div class="search-field">
@@ -44,7 +44,7 @@
 
       <div class="w100">
         <div id="container">
-          <%= render :partial => "theses/thesis_categories", :locals => { :theses =>@theses } %>
+          <%= render :partial => "theses/thesis_categories" %>
 
 
         </div>

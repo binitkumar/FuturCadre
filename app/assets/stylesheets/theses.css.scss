@@ -1,0 +1,35 @@
+.theses-link{
+	float:left;
+	width:100%;
+	margin-top:10px;
+	list-style:none;
+}
+.theses-link li{
+    float: left;
+    width: auto;
+}
+.theses-link li a{
+    background:  url(asset_path('groups-links-gray-bg-240.png',image)) no-repeat scroll 0 0 transparent;
+    color: #000000;
+    float: left;
+    font-size: 12px;
+    height: 16px;
+    margin-bottom: 4px;
+    padding: 2px 10px;
+    text-decoration: none;
+    width: 254px;
+}
+.act-group a, .theses-link li a:hover{
+    background:  url(asset_path('group-act.png',image)) no-repeat scroll 0 0 transparent!important;
+	color:#fff!important;
+}
+
+.dashboard-left_new{
+	width:240px;
+	float:left;
+}
+.dashboard-right_new{
+float: left;
+    margin-left: 10px;
+    width: 750px;
+    }

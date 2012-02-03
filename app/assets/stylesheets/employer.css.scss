@@ -750,3 +750,15 @@
     width: 60px;
       margin-left: 10px;
     }
+
+    .btn-mid-holder_new
+{
+    background:  url(asset_path('mid-holder-btn.png',image)) repeat-x scroll 0 0 transparent;
+    color: #FFFFFF;
+    float: left;
+    height: 40px;
+    line-height: 37px;
+    padding: 0 10px;
+    font-weight:bold;
+    margin-right: 20px;
+    }
