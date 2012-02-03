@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
-  #before_filter :authenticate_user!,:except=>[:show]
-  load_and_authorize_resource :except => [:show,:details, :new_application, :apply_job]
+  #before_filter :authenticate_user!,:except=>[:show,:details]
+ load_and_authorize_resource :except => [:show,:details, :new_application, :apply_job]
   def show
     @job = Job.find_by_id(params[:id])
 
@@ -192,6 +192,8 @@ class JobsController < ApplicationController
       redirect_to profiles_path(), :notice => "Please creater a profile"
     end
   end
+
+
 end
 
 

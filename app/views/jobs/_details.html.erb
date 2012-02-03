@@ -134,46 +134,44 @@
 
             $(".job-application").click(function() {
 
-                        <%if user_signed_in?%>
+                <%if user_signed_in?%>
+                {
+                <%if current_user.role !="employer" && current_user.has_applied(@job.id)!= true%>
+                    {
+                    <%unless current_user.profile.blank?%>
                         {
-                            <%if current_user.role !="employer" && current_user.has_applied(@job.id)!= true%>
-                            {
-                        <%unless current_user.profile.blank?%>
-                            {
-                                url = "jobs/new_application?id=" + '<%=@job.id %>';
-                                $.ajax({
-                                    context: this,
-                                    url: url,
-                                    type: "GET",
-                                    data: $(this).serialize(),
-                                    dataType: "json",
-                                    success: function(response) {
-                                        $(".content-holder").html(response.html);
-                                    }
-                                });
-                                return false;
-                            }
-                        <%else%>
-                            {
-                              alert("Please first create your profile!");
-                                window.location.href = "/profiles/new"
-
-                            }
-                        <%end%>
-                            }
-                            <%else%>
-                            {
-                                alert("You are not allowed to apply for a job");
-                            }
-                           <%end%>
+                            url = "jobs/new_application?id=" + '<%=@job.id %>';
+                            $.ajax({
+                                context: this,
+                                url: url,
+                                type: "GET",
+                                data: $(this).serialize(),
+                                dataType: "json",
+                                success: function(response) {
+                                    $(".content-holder").html(response.html);
+                                }
+                            });
+                            return false;
                         }
-                        <%else%>
-                        window.location.href = "/sign_in";
-                        return false;
-                        <%end%>
+                    <%else%>
+                        {
+                            alert("Please first create your profile!");
+                            window.location.href = "/profiles/new"
+
+                        }
+                    <%end%>
                     }
-            )
-                    ;
+                <%else%>
+                    {
+                        alert("You are not allowed to apply for a job");
+                    }
+                <%end%>
+                }
+                <%else%>
+                window.location.href = "/sign_in";
+                return false;
+                <%end%>
+            });
 
             $("#application-form").dialog({
                 autoOpen: false,

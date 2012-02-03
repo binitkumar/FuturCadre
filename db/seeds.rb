@@ -262,7 +262,7 @@ puts 'Deleting existing Thesis......'
 theses = Thesis.all
 
 theses.each { |thesis| thesis.destroy } if theses.present?
-puts "creating Groups"
+puts "creating Thesis"
 theses = Thesis.create!([{ :name => 'Software Development Life Cycle', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category=> Category.find_by_id(32), :no_of_pages =>150, :date_of_publish =>Time.now },
                          { :name => 'Software Development Life Cycle', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category=> Category.find_by_id(32), :no_of_pages =>150, :date_of_publish =>Time.now },
                          { :name => 'Software Development Life Cycle', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category=> Category.find_by_id(32), :no_of_pages =>150, :date_of_publish =>Time.now },

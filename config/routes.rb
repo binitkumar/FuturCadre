@@ -41,7 +41,6 @@ FuturCadre::Application.routes.draw do
         get :remove_job
         put :update
         put :update_school_group
-
       end
 
     end
@@ -163,6 +162,7 @@ FuturCadre::Application.routes.draw do
       get :group_question
       post :create_question
       get :group_body
+      get :faker_join
     end
   end
 
@@ -178,7 +178,9 @@ FuturCadre::Application.routes.draw do
       get :thesis_body
       get :thesis_category
       post :search_thesis
-      get  :my_thesis
+      get :my_thesis
+      get :delete_thesis
+      get :faker_download
 
     end
   end

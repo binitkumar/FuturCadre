@@ -1,13 +1,10 @@
 class ThesesController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :thesis_body, :thesis_category, :thesis_details, :thesis_wall, :search_thesis]
 
   def index
-    unless params[:id]!=nil
-      @category = Category.first
-      @theses   = Thesis.all
-    else
-      @category = Category.find_by_id(params[:id])
-      @theses   = @category.theses
-    end
+
+    @category   = Category.first
+    @theses     = @category.theses
     @categories = Category.all
 
   end
@@ -64,13 +61,10 @@ class ThesesController < ApplicationController
     end
 
     if @thesis.update_attributes(params[:thesis])
-
       redirect_to :action => "index"
     else
-      render :json => { :html => render_to_string(:partial => 'show_theses', :locale=>{ :thesis => @thesis  }) }.to_json
-
+      render :json => { :html => render_to_string(:partial => 'show_theses', :locale=>{ :thesis => @thesis }) }.to_json
     end
-
   end
 
 
@@ -118,4 +112,22 @@ class ThesesController < ApplicationController
     render :json => { :html => render_to_string(:partial => '/theses/search_result') }.to_json
   end
 
+  def delete_thesis
+    @owner  = User.find(params[:own_id])
+    @thesis = Thesis.find(params[:id])
+    @thesis.update_attributes(:is_deleted => true)
+    @theses = Thesis.find_by_owner_id(@owner.id, :conditions => { :is_deleted => false })
+    if current_user.job_seeker?
+      render :json => { :html => render_to_string(:partial => '/job_seeker/my_theses', :locale=>{ :employer => @owner }) }.to_json
+    else
+      render :json => { :html => render_to_string(:partial => '/employer/my_theses', :locale=>{ :job_seeker => @owner }) }.to_json
+    end
+  end
+
+  def faker_download
+    @thesis     = Thesis.find_by_id(params[:id])
+    @thesis_doc = @thesis.photo.image
+    send_file @thesis_doc.path
+    render :action => "thesis_details"
+  end
 end

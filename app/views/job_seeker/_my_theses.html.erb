@@ -18,13 +18,18 @@
         <p>Total Number of thesis <%= @my_theses.count %></p>
         <table>
           <tr>
-            <th> Job Name</th>
+            <th> Thesis Name</th>
             <th> Created at</th>
+            <th> Actions</th>
+
+
           </tr>
           <% @my_theses.each do |thesis| %>
               <tr>
-                <td><%= thesis.name %></td>
+                <td><%= link_to thesis.name, thesis_details_theses_path(:id => thesis.id) %></td>
                 <td><%= thesis.created_at.strftime('%Y-%m-%d') %></td>
+                <td><%= link_to "Edit", edit_thesis_path(:id =>thesis.id) %></td>
+                <td><%= link_to "Delete", delete_thesis_theses_path(:id => thesis.id, :own_id => @job_seeker), :class =>"delete_thesis" %>
               </tr>
           <% end %>
         </table>
@@ -33,3 +38,28 @@
     <% end %>
   </div>
 </div>
+<script type="text/javascript">
+    $("a.delete_thesis").click(function() {
+        var x = window.confirm("Are you sure You want to Delete this Thesis?")
+
+        if (x == true) {
+            $.ajax({
+                context: this,
+                url: $(this).attr("href"),
+                type: "GET",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(response) {
+                    return $(".dashboard-content-right").html(response.html);
+                }
+
+            });
+
+            return false;
+        }
+        else {
+            return false;
+        }
+    });
+
+</script>

@@ -5,18 +5,20 @@
       <h1><%= @group.name %></h1>
 
       <p> <%= @group.created_at.strftime("%d-%m-%Y") %>  -
-        <span class="red"><%= @group.users.count %></span><%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link" ,:style =>"text-decoration: none;" %> -
-        <span class="red"> <%= @group.jobs.count %> </span> <%= link_to "Offers", group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link",:style =>"text-decoration: none;" %></p>
+        <span class="red"><%= @group.users.count %></span><%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link", :style =>"text-decoration: none;" %>
+        -
+        <span class="red"> <%= @group.jobs.count %> </span> <%= link_to "Offers", group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link", :style =>"text-decoration: none;" %>
+      </p>
     </div>
     <% if !user_signed_in? %>
         <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
-    <% elsif current_user.is_member(@group.id)== false %>
+    <% elsif current_user.is_member(@group.id)== false && current_user %>
         <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
     <% end %>
   </div>
 
   <div class="group-details-hold">
-    <div class="grpup-img-hold"><%= image_tag @group.photo.image.url,:style =>"border: medium solid !important;height: 96px; width: 99px;" %></div>
+    <div class="grpup-img-hold"><%= image_tag @group.photo.image.url, :style =>"border: medium solid !important;height: 96px; width: 99px;" %></div>
     <div class="grpup-img-details-hold"><%= @group.description %>
     </div>
   </div>

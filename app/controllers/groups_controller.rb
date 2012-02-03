@@ -2,7 +2,9 @@ require "acts_as_commentable"
 
 class GroupsController < ApplicationController
 
-  #before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index, :group_details,:group_body, :group_members, :group_wall, :group_question,:create_question,
+  :search_group,:show_group]
+
   def index
     unless params[:locale].blank?
       @group_type = GroupType.find_by_name(params[:locale])
@@ -19,11 +21,11 @@ class GroupsController < ApplicationController
   def group_details
     @group = Group.find(params[:id])
     if @group.group_type.name == "Job"
-     @groups     = Group.find_all_by_group_type_id(1)
+      @groups = Group.find_all_by_group_type_id(1)
     elsif @group.group_type.name == "School"
-      @groups     = Group.find_all_by_group_type_id(2)
+      @groups = Group.find_all_by_group_type_id(2)
     end
-     @group_jobs = @group.jobs
+    @group_jobs = @group.jobs
     @comments   = @group.comments.all
     #@groups     = Group.all
     #render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
@@ -56,7 +58,7 @@ class GroupsController < ApplicationController
     job_partial = params[:sid]
     @group      = Group.find(params[:id])
     @group_jobs = @group.jobs
-   render :json => { :html => render_to_string(:partial => '/groups/group_jobs', :locale=>{ :group => @group, :sid => job_partial }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/group_jobs', :locale=>{ :group => @group, :sid => job_partial }) }.to_json
   end
 
   def group_page
@@ -95,9 +97,20 @@ class GroupsController < ApplicationController
     render :json => { :html => render_to_string(:partial => '/groups/group_question', :locale=>{ :group => @group }) }.to_json
   end
 
- def group_body
-   @group = Group.find(params[:id])
+  def group_body
+    @group = Group.find(params[:id])
     render :json => { :html => render_to_string(:partial => '/groups/group_body', :locale=>{ :group => @group }) }.to_json
- end
+  end
 
+  def faker_join
+    @group = Group.find(params[:id])
+    if @group.group_type.name == "Job"
+      @groups = Group.find_all_by_group_type_id(1)
+    elsif @group.group_type.name == "School"
+      @groups = Group.find_all_by_group_type_id(2)
+    end
+    @group_jobs = @group.jobs
+    @comments   = @group.comments.all
+    render :action => "group_details"
+  end
 end

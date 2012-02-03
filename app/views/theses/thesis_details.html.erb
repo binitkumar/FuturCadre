@@ -91,6 +91,29 @@
         });
         return false;
     });
+    $("a.download_link").click(function() {
+        <% if user_signed_in? %>
+        {
+            $.ajax({
+                context: this,
+                url: $(this).attr("href"),
+                type: "GET",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(response) {
+                    return $(".mid-cont-holder").html(response.html);
+                }
+            });
+            return false;
+
+        }
+        <%else%>
+        {
+            window.location.href = "/sign_in";
+            return false;
+        }
+        <%end%>
+    });
 </script>
 
 

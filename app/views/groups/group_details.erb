@@ -115,7 +115,7 @@
         return false;
 
     <%else%>
-        window.location.href = "/sign_in";
+        window.location.href = "/groups/faker_join?id=" + group_id;
     <%end%>
     }
     $("a.members_link").click(function() {

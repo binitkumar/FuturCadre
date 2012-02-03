@@ -1,35 +1,112 @@
-.theses-link{
-	float:left;
-	width:100%;
-	margin-top:10px;
-	list-style:none;
+.groups-left-theses {
+    float: left;
+    width: 245px;
 }
-.theses-link li{
+.groups-link-theses {
+    float: left;
+    list-style: none outside none;
+    margin-top: 10px;
+    width: 100%;
+}
+.groups-link-theses li {
     float: left;
     width: auto;
 }
-.theses-link li a{
-    background:  url(asset_path('groups-links-gray-bg-240.png',image)) no-repeat scroll 0 0 transparent;
-    color: #000000;
+.groups-link-theses li a {
+    background: url(asset_path('groups-links-gray-bg-240.png',image)) no-repeat scroll 0 0 transparent;
+     color: #000000;
     float: left;
     font-size: 12px;
     height: 16px;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     padding: 2px 10px;
     text-decoration: none;
-    width: 254px;
+    width: 240px;
 }
-.act-group a, .theses-link li a:hover{
-    background:  url(asset_path('group-act.png',image)) no-repeat scroll 0 0 transparent!important;
+.act-group a, .groups-link-theses li a:hover {
+      background: url(asset_path('group-act-theses.png',image)) no-repeat scroll 0 0 transparent!important;
+
 	color:#fff!important;
 }
-
-.dashboard-left_new{
-	width:240px;
-	float:left;
+.dashboard-heading-theses {
+    background: none repeat scroll 0 0 #D4D4D4;
+    color: #A0302F;
+    float: left;
+    font-family: myriad Pro;
+    font-size: 14px;
+    font-weight: bold;
+    height: 33px;
+    line-height: 33px;
+    width: 100%;
 }
-.dashboard-right_new{
-float: left;
+.name-theses {
+    float: left;
     margin-left: 10px;
-    width: 750px;
-    }
+    width: 150px;
+
+}
+.description-theses {
+    float: left;
+    width: 385px;
+
+}
+.salary-theses {
+    float: left;
+    width: 83px;
+	padding: 1 10px;
+}
+.rating-theses {
+    float: left;
+    width: 80px;
+    padding-left: 15px;
+}
+.dashboard-text-theses {
+      background: url(asset_path('boder-gray-theses.png',image)) repeat-y scroll 0 0 transparent;
+      border-bottom: 1px solid #D4D4D4;
+	border-right:1px solid #d4d4d4;
+    color: #474747;
+    float: left;
+    font-size: 12px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 99.8%;
+}
+.icon-text-two {
+    float: right;
+    margin-right: 6px;
+    width: 150px;
+}
+.icon-text-two h1 {
+    color: #474747;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+}
+.icon-text-two p {
+    color: #474747;
+    float: left;
+    font-size: 12px;
+    margin-top: 5px;
+    width: 100%;
+}
+.description-hold-two {
+    float: left;
+    width: 380px;
+
+}
+.salary-hold-two {
+    float: left;
+    padding: 0 15px;
+    width: 80px;
+}
+rating-hold-two
+ {
+	}
+
+.dashboard-right_new{
+    float: left;
+    margin-left: 10px;
+    width: 740px;
+	margin-top:10px;
+}

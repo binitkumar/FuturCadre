@@ -73,7 +73,7 @@ class JobSeekerController < ApplicationController
   def my_theses
 
     @job_seeker  = User.find_by_id(params[:id])
-    @my_theses = Thesis.find_all_by_owner_id(@job_seeker)
+    @my_theses = Thesis.find_all_by_owner_id(@job_seeker, :conditions => { :is_deleted => false })
     render :json => { :html => render_to_string(:partial => '/job_seeker/my_theses') }.to_json
   end
 

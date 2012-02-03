@@ -7,6 +7,7 @@ class CreateTheses < ActiveRecord::Migration
       t.datetime :date_of_publish
       t.integer :no_of_pages
       t.references :category
+      t.string :is_deleted, :default => 'false'
       t.timestamps
     end
   end

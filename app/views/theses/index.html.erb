@@ -10,20 +10,18 @@
   </div>
 
   <div class="w100">
-    <div class="dashboard-left_new mtop10">
-      <div class="adds-holder">
-        <% unless @categories.blank? %>
-            <ul class="theses-link">
-              <% @categories.each do |category| %>
-                  <li>
-                    <div class="accountants"><%= link_to category.name + "[#{category.theses.count}]", thesis_category_theses_path(:id => category.id), :class =>"category_link" %></div>
-                  </li>
-              <% end %>
-            </ul>
+    <div class="groups-left-theses mtop10">
 
-        <% end %>
+      <% unless @categories.blank? %>
+          <ul class="groups-link-theses">
+            <% @categories.each do |category| %>
+                <li>
+                  <div class="accountants"><%= link_to category.name + "[#{category.theses.count}]", thesis_category_theses_path(:id => category.id), :class =>"category_link" %></div>
+                </li>
+            <% end %>
+          </ul>
 
-      </div>
+      <% end %>
 
 
     </div>
@@ -43,10 +41,8 @@
       </div>
 
       <div class="w100">
-        <div id="container">
-          <%= render :partial => "theses/thesis_categories" %>
-
-
+        <div id="container_new">
+          <%= render :partial => "theses/thesis_categories", :locals => { :theses => @theses } %>
         </div>
 
         <div class="w100 mtop10">
@@ -71,45 +67,7 @@
 
 
 <script type="text/javascript">
-    var pagination_options = {
-        num_edge_entries: 0,
-        num_display_entries: 0,
-        callback: pageselectCallback,
-        items_per_page:2
-    }
-    function pageselectCallback(page_index, jq) {
-        var items_per_page = pagination_options.items_per_page;
-        var offset = page_index * items_per_page;
-        var new_content = $('#hiddenresult div.result').slice(offset, offset + items_per_page).clone();
-        $('#Searchresult').empty().append(new_content);
-        return false;
-    }
 
-    // When document is ready, initialize pagination and buttons
-    $(document).ready(function() {
-        var num_entries = $('#hiddenresult div.result').length;
-
-        // Create pagination element, if more than 50 candidates
-        if (num_entries > 2) {
-            var $pager = $("#Pagination");
-            $pager.fadeIn(400);
-            $pager.pagination(num_entries, pagination_options);
-            $("#select_all").click(function() {
-                $("#Searchresult").find('div').find('input[type=checkbox]').each(function() {
-                    this.checked = true;
-                });
-            });
-
-        }
-        else {
-            $("#hiddenresult").fadeIn(200);
-            $("#select_all").click(function() {
-                $("input[type=checkbox]").each(function() {
-                    this.checked = true;
-                });
-            });
-        }
-    });
 
     $("a.category_link").click(function() {
         $.ajax({
@@ -119,7 +77,7 @@
             data: $(this).serialize(),
             dataType: "json",
             success: function(response) {
-                return $(".container").html(response.html);
+                return $("#container_new").html(response.html);
             }
         });
         return false;
