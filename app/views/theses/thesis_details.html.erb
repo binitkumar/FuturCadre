@@ -31,19 +31,6 @@
             </div>
       <% end %>
       </div>
-      <div class="post-right-cont-hold">
-        <h3><span class="red">Thesis Index</span></h3>
-        <% unless @categories.blank? %>
-            <ul class="groups-link">
-              <% @categories.each do |category| %>
-                  <li>
-                    <div class="accountants"><%= link_to category.name %></div>
-                  </li>
-              <% end %>
-            </ul>
-
-        <% end %>
-      </div>
 
       </div>
 </div>
@@ -114,6 +101,8 @@
         }
         <%end%>
     });
+
+
 </script>
 
 
