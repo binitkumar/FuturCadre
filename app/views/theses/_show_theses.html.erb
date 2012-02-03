@@ -1,0 +1,27 @@
+<div class="dashboard-content-right">
+  <h1>Job <span class="red"> Information</span></h1>
+  <%= image_tag asset_path 'dashboard-botom-line.png' %>
+  <% unless @thesis.blank? %>
+      <p><label>Name:</label>        <%= @thesis.name %> <br/>
+
+      <p><label>Description:</label> <%= @thesis.description %></p>  <br/>
+      <label>Date of Publication:</label>     <%= @thesis.date_of_publish.strftime("%d-%m-%Y") %>  <br/>
+      <label>No of Pages:</label>        <%= @thesis.no_of_pages %>  <br/>
+      <label>Thesis File Name:</label>        <%= @thesis.photo.image_file_name %>  <br/>
+  <% end %>
+</div>
+
+<div class="w100">
+  <div class="btn-publish">
+    <div class="apply-left"></div>
+    <div class="apply-mid"><%= link_to "Done", theses_path(), :class => "job-link", :style=>" color: #FFFFFF;text-decoration: none;" %></div>
+    <div class="apply-right"></div>
+  </div>
+  <div class="btn-apply-change">
+    <div class="apply-left"></div>
+    <div class="apply-mid"><%= link_to "Personalize this Thesis", edit_thesis_path(:id =>@thesis.id), :style=>" color: #FFFFFF;text-decoration: none;" %></div>
+    <div class="apply-right"></div>
+  </div>
+
+
+</div>
