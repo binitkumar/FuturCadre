@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>FuturCadre</title>
-		<%= stylesheet_link_tag    "application" %>
-		<%= javascript_include_tag "application" %>
-		<%= csrf_meta_tags %>
-  </head>
-  <body>
-		<div class="topline"></div>
-    <div class="wrapper">
-		  <%= render :partial => "/shared/header" %>
-			<div id="flash">
-				<%= render :partial => 'layouts/flash', :object => flash  %>
-			</div>
-			<%= yield %>
-    </div>
+<head>
+  <title>FuturCadre</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="topline"></div>
+<div class="wrapper">
+  <%= render :partial => "/shared/header" %>
+  <div id="flash">
+    <%= render :partial => 'layouts/flash', :object => flash %>
+  </div>
+  <div id="back_link" class="back_link"><%= link_to 'Back', :back %></div>
+  <%= yield %>
+  <div id="back_link" class="back_link"><%= link_to 'Back', :back %></div>
+</div>
 
-		<%= render :partial => "/shared/footer" %>
-  </body>
+<%= render :partial => "/shared/footer" %>
+</body>
 </html>
