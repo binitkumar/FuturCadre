@@ -12,21 +12,12 @@
       </div>
       <%= hidden_field_tag :job_application, @job_application.id %>
       <div class="input-holder">
-        <label>Applicant Email</label>
-        <%= text_field_tag 'email', @job_application.user.email %>
-      </div>
-
-      <div class="input-holder">
-        <label>Title</label>
-        <%= text_field_tag 'title', nil %>
-      </div>
-      <div class="input-holder">
         <label>Message</label>
         <%= text_area_tag 'body' %>
       </div>
-      <div class="pop-up-btn-new" >
+      <div class="pop-up-btn-new">
         <div id="find_job" class="pop-up-btn">Send</div>
-          <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
+        <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
       </div>
 
     </div>
