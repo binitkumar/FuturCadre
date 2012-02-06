@@ -53,9 +53,8 @@
           <div class="dashboard-post-profile-btn">
 
             <%= link_to image_tag(asset_path 'Post-An-Ad.png'), new_job_path(), :class =>"profile-check" %>
+            <%= link_to image_tag(asset_path 'search-profile.png'), search_job_seeker_employer_index_path(:id => @employer ), :class=>"job_seeker_search" %>
 
-            <!-- <a href="#"> <%#= image_tag asset_path 'search-profile.png' %>
-            </a>-->
           </div>
         </div>
         <!--dashboard-post-profile-btn ends-->
@@ -145,7 +144,7 @@
 
     });
 
-         $("a.thesis_link").click(function() {
+    $("a.thesis_link").click(function() {
 
         $.ajax({
             context: this,
@@ -159,6 +158,21 @@
         });
         return false;
 
+    });
+
+    $("a.job_seeker_search").click(function() {
+
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
+        });
+        return false;
     });
 
 

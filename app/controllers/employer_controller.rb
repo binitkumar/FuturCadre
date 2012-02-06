@@ -98,7 +98,14 @@ class EmployerController < ApplicationController
   def my_theses
     @employer  = User.find_by_id(params[:id])
     @my_theses = Thesis.find_all_by_owner_id(@employer,  :conditions => { :is_deleted => false })
-    render :json => { :html => render_to_string(:partial => '/job_seeker/my_theses') }.to_json
+    render :json => { :html => render_to_string(:partial => '/employer/my_theses') }.to_json
+  end
+
+  def search_job_seeker
+    @contracts = Contract.all
+    @categories = Category.all
+
+      render :json => { :html => render_to_string(:partial => '/employer/search_job_seeker_form') }.to_json
   end
 
 end

@@ -84,4 +84,17 @@ class SearchController < ApplicationController
     render :json => {:html => render_to_string(:partial => '/search/region_jobs')}.to_json
   end
 
+  def job_seeker_search
+
+    case params
+      when params[:name]
+
+        puts "aasasasa"
+      when params[:controller_id]
+       puts "aaaaa"
+    end
+     render :text => "ok"
+
+  end
+
 end
