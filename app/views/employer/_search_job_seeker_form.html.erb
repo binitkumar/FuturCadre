@@ -1,107 +1,99 @@
 <div class="dashboard-content-right">
-  <div class="w100">
 
-    <div class="tabs_wrapper">
-      <div class="tabs active" id="tabs_1">
-        <div class="tabs_left"></div>
-        <div class="tabs_center"><p>Profile</p></div>
-        <div class="tabs_right"></div>
-      </div>
-      <div class="tabs" id="tabs_2">
-        <div class="tabs_left"></div>
-        <div class="tabs_center"><p>Profile Results</p></div>
-        <div class="tabs_right"></div>
-      </div>
-      <div class="tabs" id="tabs_3">
-        <div class="tabs_left"></div>
-        <div class="tabs_center"><p>Final</p></div>
-        <div class="tabs_right"></div>
-      </div>
+
+  <div class="tabs_wrapper">
+    <div class="tabs active" id="tabs_1">
+      <div class="tabs_left"></div>
+      <div class="tabs_center"><p>Profile</p></div>
+      <div class="tabs_right"></div>
+    </div>
+    <div class="tabs" id="tabs_2">
+      <div class="tabs_left"></div>
+      <div class="tabs_center"><p>Profile Results</p></div>
+      <div class="tabs_right"></div>
+    </div>
+    <div class="tabs" id="tabs_3">
+      <div class="tabs_left"></div>
+      <div class="tabs_center"><p>Final</p></div>
+      <div class="tabs_right"></div>
     </div>
   </div>
 
-  <%= image_tag asset_path 'dashboard-botom-line.png' %>
-  <%= form_tag "/search/job_seeker_search", :id => "search-form" do %>
-      <div class="dashboard-right-left">
+  <div id="dashboard-mid">
 
-        <div class="job-input">
-          <label>First Name</label>
-          <%= text_field_tag "name" %>
-        </div>
-        <div class="job-input">
-          <label>Last Name</label>
-          <%= text_field_tag "name" %>
-        </div>
-        <div class="select-holder">
-          <label> Country</label>
-          <%= render :partial => "shared/countries", :locals => { :object_collection => "job_seeker" } %>
-          <div id="regions_main">
-            <%= render :partial => "shared/regions", :locals => { :object_collection => "job_seeker" } %>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <%= form_tag "/search/job_seeker_search", :id => "search-form" do %>
+        <div class="dashboard-right-left">
+
+          <div class="job-input">
+            <label>First Name</label>
+            <%= text_field_tag "first_name" %>
           </div>
-          <div id="cities_main">
-            <%= render :partial => "shared/cities", :locals => { :object_collection => "job_seeker" } %>
+          <div class="job-input">
+            <label>Last Name</label>
+            <%= text_field_tag "last_name" %>
           </div>
-        </div>
-        <div class="clear"></div>
-        <h3>Education Information</h3>
-        <%= image_tag asset_path 'dashboard-botom-line.png' %>
-        <div class="skils-ful-length">
-          <label style="margin-top: 0!important;">Degree Level</label>
-          <%= text_field_tag "degree_level" %>
-        </div>
-        <div class="skils-ful-length">
-          <label style="margin-top: 0!important;">Major Subject</label>
-          <%= text_field_tag "major_subject" %>
-        </div>
+          <div class="select-holder">
+            <label> Country</label>
+            <%= render :partial => "shared/countries", :locals => { :object_collection => "job_seeker" } %>
+            <div id="regions_main">
+              <%= render :partial => "shared/regions", :locals => { :object_collection => "job_seeker" } %>
+            </div>
+            <div id="cities_main">
+              <%= render :partial => "shared/cities", :locals => { :object_collection => "job_seeker" } %>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <h3>Education Information</h3>
+          <%= image_tag asset_path 'dashboard-botom-line.png' %>
+          <div class="skils-ful-length">
+            <label style="margin-top: 0!important;">Degree Level</label>
+            <%= text_field_tag "degree_level" %>
+          </div>
+          <div class="skils-ful-length">
+            <label style="margin-top: 0!important;">Major Subject</label>
+            <%= text_field_tag "major_subject" %>
+          </div>
 
-        <div class="job-input">
-          <label>Year</label>
-          <%= text_field_tag "year" %>
-        </div>
+          <div class="job-input">
+            <label>Year</label>
+            <%= text_field_tag "year" %>
+          </div>
 
-        <div class="job-input">
-          <label>Institute</label>
-          <%= text_field_tag "institute" %>
-        </div>
-        <div class="clear"></div>
-        <h3>Professional Information</h3>
-        <%= image_tag asset_path 'dashboard-botom-line.png' %>
-        <div class="skils-ful-length">
-          <label style="margin-top: 0!important;">Total Professional Experience</label>
-          <%= text_field_tag "profession_experience" %>
-        </div>
-        <div class="skils-ful-length">
-          <label style="margin-top: 0!important;">Recent Job Title</label>
-          <%= text_field_tag "job_title" %>
-        </div>
+          <div class="job-input">
+            <label>Institute</label>
+            <%= text_field_tag "institute" %>
+          </div>
+          <div class="clear"></div>
+          <h3>Professional Information</h3>
+          <%= image_tag asset_path 'dashboard-botom-line.png' %>
+          <div class="skils-ful-length">
+            <label style="margin-top: 0!important;">Total Professional Experience</label>
+            <%= text_field_tag "profession_experience" %>
+          </div>
+          <div class="skils-ful-length">
+            <label style="margin-top: 0!important;">Recent Job Title</label>
+            <%= text_field_tag "job_title" %>
+          </div>
 
-        <div class="job-input">
-          <label>Year</label>
-          <%= text_field_tag "year" %>
-        </div>
-
-        <div class="job-input">
-          <label>Institute</label>
-          <%= text_field_tag "institute" %>
-        </div>
-
-        <div class="job-input">
-          <label>Category</label>
-          <%= select_tag"category_id",options_from_collection_for_select(@categories,"id", "name") %>
-        </div>
+          <div class="job-input">
+            <label>Category</label>
+            <%= select_tag "category_id", options_from_collection_for_select(@categories, "id", "name") %>
+          </div>
 
 
-        <div class="findjob"><%= link_to 'Search a Profile', "javascript:void(0)", :id => "search_a_profile" %></div>
+          <div class="findjob"><%= link_to 'Search a Profile', "javascript:void(0)", :id => "search_a_profile" %></div>
 
-  <% end %>
+    <% end %>
+    </div>
+
   </div>
 
 </div>
-
 <script type="text/javascript">
     $("#search_a_profile").click(function () {
         $.post($("form#search-form").attr("action"), $("form#search-form").serialize(), (function (response) {
-            return $(".content-holder").html(response.html);
+            return $("#dashboard-mid").html(response.html);
         }), "json");
         return false;
     });
