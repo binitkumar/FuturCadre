@@ -22,7 +22,7 @@
   <div id="dashboard-mid">
 
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <%= form_tag "/search/job_seeker_search", :id => "search-form" do %>
+    <%= form_tag "/search/profile_search", :id => "search-form" do %>
         <div class="dashboard-right-left">
 
           <div class="job-input">
@@ -92,7 +92,7 @@
 </div>
 <script type="text/javascript">
     $("#search_a_profile").click(function () {
-        $.post($("form#search-form").attr("action"), $("form#search-form").serialize(), (function (response) {
+        $.get($("form#search-form").attr("action"), $("form#search-form").serialize(), (function (response) {
             return $("#dashboard-mid").html(response.html);
         }), "json");
         return false;
