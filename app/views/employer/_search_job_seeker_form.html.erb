@@ -78,7 +78,7 @@
 
           <div class="job-input">
             <label>Category</label>
-            <%= select_tag "category_id", options_from_collection_for_select(@categories, "id", "name") %>
+            <%= select_tag "category_id", options_for_select(["Select from list"] + @categories.map{ |obj| [obj.name , obj.id ]}) %>
           </div>
 
 

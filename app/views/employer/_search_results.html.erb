@@ -1,20 +1,21 @@
-<div class="dashboard-mid">
-  <h1>Results Information</h1>
-  <!--Button styles start-->
-  <% unless @collections.blank? %>
-      <div class="result-contents">
-        <h1><%= @collections.count %></h1>
+<div class="dashboard-right-content">
+  <div class="dashboard-mid">
+    <h1>Results Information</h1>
+    <% unless @collections.blank? %>
+        <div class="result-contents">
+          <h1>RESULTS: <%= @collections.count %> PROFILE(S)</h1>
 
-        <p>Select one of them for complete infomation. if you want to search more jobs just hit results btn and lorem
-          ipsum
-          doler sit amet</p>
-      </div>
-      <!--result contents ends-->
-      <% unless @ref_profiles.blank? %>
-          <% @ref_profiles.each do |profile| %>
+          <p>Select one of them for complete infomation. if you want to search more jobs just hit results btn and lorem
+            ipsum doler sit amet</p>
+        </div>
+        <!--result contents ends-->
+        <div class="result-detail">
+          <% @collections.each do |profile| %>
               <div class="detail">
-                <div class="left-image"><img src="images/feed-img.png"/></div>
-                <p style="font-weight:bold;"></p>
+
+                <div class="left-image"> <%= image_tag asset_path 'feed-img.png' %>
+                </div>
+                <p style="font-weight:bold;"><%= profile.full_name %> </p>
 
                 <div class="select-button">
                   <div class="left-holder"></div>
@@ -24,113 +25,65 @@
                 <!--select button ends-->
                 <h3>Rating:</h3>
                 <ul>
-                  <li><img src="images/rating-stars.png"/></li>
-                  <li><img src="images/rating-stars.png"/></li>
-                  <li><img src="images/rating-stars.png"/></li>
-                  <li><img src="images/rating-stars.png"/></li>
-                  <li><img src="images/rating-stars-img.png"/></li>
+                  <li> <%= image_tag asset_path 'rating-stars.png' %></li>
+                  <li> <%= image_tag asset_path 'rating-stars.png' %></li>
+                  <li> <%= image_tag asset_path 'rating-stars.png' %></li>
+                  <li> <%= image_tag asset_path 'rating-stars.png' %></li>
+                  <li> <%= image_tag asset_path 'rating-stars.png' %></li>
                 </ul>
-                <p>lorem ipsum doler sit amet</p>
+                <% profile.education_informations.each do |ed| %>
+                    <label>Education Information</label>
 
-                <p>Consdiences: lorem ipsum doler site amet and agian amet</p>
-
+                    <p> <%= ed.institute %>, <%= ed.major_subject %></p>
+                <% end %>
                 <p style="font-weight:bold;">Podrestress</p>
 
                 <p>Monotones:if you want further info check this.</p>
               </div>
           <% end %>
-      <% end %>
-      <% unless @education_infos.blank? %>
-          <% @education_infos.each do |edu_info| %>
-              <div class="detail">
-                <div class="left-image"><img src="images/feed-img.png"/></div>
-                <p style="font-weight:bold;"></p>
 
-                <div class="select-button">
-                  <div class="left-holder"></div>
-                  <div class="mid-holder"><a href="#">Select one of them</a></div>
-                  <div class="right-holder"></div>
-                </div>
-                <!--select button ends-->
-                <h3>Rating:</h3>
-                <ul>
-                  <li><img src="images/rating-stars.png"/></li>
-                  <li><img src="images/rating-stars.png"/></li>
-                  <li><img src="images/rating-stars.png"/></li>
-                  <li><img src="images/rating-stars.png"/></li>
-                  <li><img src="images/rating-stars-img.png"/></li>
-                </ul>
-                <p>lorem ipsum doler sit amet</p>
+        </div>
+        <!--results ends-->
+        </div>
+        <!--dashboard mid ends-->
 
-                <p>Consdiences: lorem ipsum doler site amet and agian amet</p>
+        <div class="dashboard-right-info">
+          <h1>Numbers of the Results</h1>
 
-                <p style="font-weight:bold;">Podrestress</p>
+          <div class="number-status">
+            <p>Number of Results</p>
 
-                <p>Monotones:if you want further info check this.</p>
-              </div>
-          <% end %>
-      <% end %>
-      <% unless @profession_infos.blank? %>
-          <% @profession_infos.each do |pro_info    | %>
-              <div class="detail">
-                <div class="left-image"><img src="images/feed-img.png"/></div>
-                <p style="font-weight:bold;"></p>
-
-                <div class="select-button">
-                  <div class="left-holder"></div>
-                  <div class="mid-holder"><a href="#">Select one of them</a></div>
-                  <div class="right-holder"></div>
-                </div>
-                <!--select button ends-->
-                <h3>Rating:</h3>
-                <ul>
-                  <li><img src="images/rating-stars.png"/></li>
-                  <li><img src="images/rating-stars.png"/></li>
-                  <li><img src="images/rating-stars.png"/></li>
-                  <li><img src="images/rating-stars.png"/></li>
-                  <li><img src="images/rating-stars-img.png"/></li>
-                </ul>
-                <p>lorem ipsum doler sit amet</p>
-
-                <p>Consdiences: lorem ipsum doler site amet and agian amet</p>
-
-                <p style="font-weight:bold;">Podrestress</p>
-
-                <p>Monotones:if you want further info check this.</p>
-              </div>
-          <% end %>
-      <% end %>
-      <div class="right-portion-of-dashboard">
-        <h1>Numbers of the Results</h1>
-
-        <div class="number-status">
-          <p>Number of Results</p>
-
-          <div class="status">
-            <div class="status-left"></div>
-            <div class="status-mid">908</div>
-            <div class="status-right"></div>
-          </div>
-          <div class="number-status" style="margin-left:-5px;">
-            <p>Number of profiles</p>
-
-            <div class="status2">
+            <div class="status">
               <div class="status-left"></div>
-              <div class="status-mid">0</div>
+              <div class="status-mid"><%= @collections.count %></div>
               <div class="status-right"></div>
             </div>
-            <div class="clear"></div>
-            <div class="select-button" style="margin-top:10px;">
-              <div class="left-holder"></div>
-              <div class="mid-holder"><a href="#">Select one of them</a></div>
-              <div class="right-holder"></div>
-            </div>
-            <!--select button ends-->
-            <p style="width:200px;">Domployer Eash ot noten kalaan </p>
-          </div>
-        </div>
-        <!--dashboard right info ends-->
+            <div class="number-status" style="margin-left:-5px;">
+              <p>Number of profiles</p>
 
-      </div>
-  <% end %>
-</div>
+              <div class="status2">
+                <div class="status-left"></div>
+                <div class="status-mid">0</div>
+                <div class="status-right"></div>
+              </div>
+              <div class="clear"></div>
+              <div class="select-button" style="margin-top:10px;">
+                <div class="left-holder"></div>
+                <div class="mid-holder"><a href="#">Select one of them</a></div>
+                <div class="right-holder"></div>
+              </div>
+              <!--select button ends-->
+              <p style="width:200px;">Domployer Eash ot noten kalaan </p>
+            </div>
+
+          </div>
+          <!--Dashboard right content ends-->
+        </div>
+    <% else %>
+        <div class="result-contents">
+          <h1>RESULTS: 0 PROFILE(S)</h1>
+
+          <p> None Profile found!</p>
+        </div>
+    <% end %>
+    </div>
