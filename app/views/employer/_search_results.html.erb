@@ -11,34 +11,27 @@
         <!--result contents ends-->
         <div class="result-detail">
           <% @collections.each do |profile| %>
+              <% puts "avbvccccccccccccc ", profile.inspect %>
               <div class="detail">
-
                 <div class="left-image"> <%= image_tag asset_path 'feed-img.png' %>
                 </div>
-                <p style="font-weight:bold;"><%= profile.full_name %> </p>
+                <p style="font-weight:bold;"><%= profile.full_name %>
+                  |<%= link_to "View CV", view_cv_employer_index_path(:id => profile.user_id), :class=>"view_cv" %> </p>
 
                 <div class="select-button">
                   <div class="left-holder"></div>
-                  <div class="mid-holder"><a href="#">Select one of them</a></div>
+                  <div class="mid-holder" id="select_cv" onclick="select_cv('<%=profile.user_id%>','<%= @collections.count%>')">
+                    <label style="color:#ffffff;  line-height: 34px;">Select</label>
+                  </div>
                   <div class="right-holder"></div>
                 </div>
                 <!--select button ends-->
-                <h3>Rating:</h3>
-                <ul>
-                  <li> <%= image_tag asset_path 'rating-stars.png' %></li>
-                  <li> <%= image_tag asset_path 'rating-stars.png' %></li>
-                  <li> <%= image_tag asset_path 'rating-stars.png' %></li>
-                  <li> <%= image_tag asset_path 'rating-stars.png' %></li>
-                  <li> <%= image_tag asset_path 'rating-stars.png' %></li>
-                </ul>
                 <% profile.education_informations.each do |ed| %>
                     <label>Education Information</label>
 
                     <p> <%= ed.institute %>, <%= ed.major_subject %></p>
                 <% end %>
-                <p style="font-weight:bold;">Podrestress</p>
 
-                <p>Monotones:if you want further info check this.</p>
               </div>
           <% end %>
 
@@ -46,38 +39,10 @@
         <!--results ends-->
         </div>
         <!--dashboard mid ends-->
-
-        <div class="dashboard-right-info">
-          <h1>Numbers of the Results</h1>
-
-          <div class="number-status">
-            <p>Number of Results</p>
-
-            <div class="status">
-              <div class="status-left"></div>
-              <div class="status-mid"><%= @collections.count %></div>
-              <div class="status-right"></div>
-            </div>
-            <div class="number-status" style="margin-left:-5px;">
-              <p>Number of profiles</p>
-
-              <div class="status2">
-                <div class="status-left"></div>
-                <div class="status-mid">0</div>
-                <div class="status-right"></div>
-              </div>
-              <div class="clear"></div>
-              <div class="select-button" style="margin-top:10px;">
-                <div class="left-holder"></div>
-                <div class="mid-holder"><a href="#">Select one of them</a></div>
-                <div class="right-holder"></div>
-              </div>
-              <!--select button ends-->
-              <p style="width:200px;">Domployer Eash ot noten kalaan </p>
-            </div>
-
-          </div>
-          <!--Dashboard right content ends-->
+        <div class="dashboard-right-info" id="right_panel">
+        </div>
+        <div class="dashboard-right-info" id="check_panel">
+          <%= render :partial => "employer/right_panel", :locals => { :collections => @collections } %>
         </div>
     <% else %>
         <div class="result-contents">
@@ -87,3 +52,39 @@
         </div>
     <% end %>
     </div>
+
+<script type="text/javascript">
+    $('a.view_cv').click(function () {
+        $.ajax({
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
+
+        });
+
+        return false;
+
+
+    });
+    function select_cv(profile_id, col) {
+        url = "/employer/select_profile?id=" + profile_id + "&col=" + col;
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                $("#check_panel").hide();
+                $("#right_panel").html(response.html);
+            }
+        });
+        return false;
+    }
+
+</script>

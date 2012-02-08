@@ -1,0 +1,41 @@
+<div class="dashboard-right-info">
+  <h1>Numbers of the Results</h1>
+
+  <div class="number-status">
+    <p>Number of Results</p>
+
+    <div class="status">
+      <div class="status-left"></div>
+      <div class="status-mid">
+        <% unless @collections.blank? %>
+            <% if params[:action]== "select_profile" %>
+                <%= @collections %>
+            <% else %>
+                <%= @collections.count %>
+            <% end %>
+        <% else %>
+            <%= @collections.count %>
+        <% end %> </div>
+      <div class="status-right"></div>
+    </div>
+    <div class="number-status" style="margin-left:-5px;">
+      <p>Number of profiles</p>
+
+      <div class="status2">
+        <div class="status-left"></div>
+
+        <% unless @selected_profiles.blank? %>
+            <div class="status-mid"><%= @selected_profiles.count %></div>
+        <% else %>
+            <div class="status-mid">0</div>
+        <% end %>
+        <div class="status-right"></div>
+      </div>
+      <div class="clear"></div>
+
+    </div>
+
+  </div>
+  <!--Dashboard right content ends-->
+
+</div>

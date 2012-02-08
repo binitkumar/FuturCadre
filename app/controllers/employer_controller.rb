@@ -97,15 +97,36 @@ class EmployerController < ApplicationController
 
   def my_theses
     @employer  = User.find_by_id(params[:id])
-    @my_theses = Thesis.find_all_by_owner_id(@employer,  :conditions => { :is_deleted => false })
+    @my_theses = Thesis.find_all_by_owner_id(@employer, :conditions => { :is_deleted => false })
     render :json => { :html => render_to_string(:partial => '/employer/my_theses') }.to_json
   end
 
   def search_job_seeker
-    @contracts = Contract.all
-    @categories = Category.all
+    @contracts        = Contract.all
+    @categories       = Category.all
+    @employer         = current_user
+    @deleted_profiles = EmployerProfile.find_all_by_employer_id(@employer.id)
+    @deleted_profiles.each do |del|
+      del.update_attributes(:is_deleted => true)
+    end
+    render :json => { :html => render_to_string(:partial => '/employer/search_job_seeker_form') }.to_json
+  end
 
-      render :json => { :html => render_to_string(:partial => '/employer/search_job_seeker_form') }.to_json
+  def view_cv
+    puts "paramssssss", params[:id].inspect
+    @profile = Profile.find_by_user_id(params[:id])
+    puts "aaaaaaaaaaaaaa", @profile.inspect
+    render :json => { :html => render_to_string(:partial => '/employer/show_profile', :locals => { :profile =>@profile }) }.to_json
+  end
+
+  def select_profile
+    @collections      = params[:col]
+    @profile          = Profile.find_by_user_id(params[:id])
+    @employer         = current_user
+    @selected_profile = EmployerProfile.new
+    @selected_profile.update_attributes(:profile_id => @profile.id, :employer_id => @employer.id, :employer_type => "User")
+    @selected_profiles = EmployerProfile.find_all_by_employer_id(@employer.id, :conditions =>{ :is_deleted => false })
+    render :json => { :html => render_to_string(:partial => '/employer/right_panel', :locals => { :collections =>@collections, :selected_profiles => @selected_profiles }) }.to_json
   end
 
 end

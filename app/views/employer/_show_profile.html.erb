@@ -1,0 +1,59 @@
+<div class="dashboard-mid_new">
+  <div class="mid-top-info">
+    <h1>
+      <% @profile.full_name %>
+    </h1>
+
+
+      <%= @profile.country.name %>
+
+  </div>
+  <!--mid top info ends-->
+  <h2>RESUME</h2>
+
+  <p><%= @profile.full_name %> CV</p>
+
+  <div class="exp-detail">
+    <% unless @profile.profession_informations.blank? %>
+        <h2>EXPERIENCES</h2>
+        <% @profile.profession_informations.each do |pr| %>
+            <div class="mid-content-detail">
+              <div class="left-2"></div>
+              <div class="mid-2">
+                <%= pr.job_title %>
+                <%= pr.profession_experience %>
+              </div>
+              <div class="right-2"></div>
+            </div>
+        <% end %>
+    <% end %>
+  </div>
+  <!--mid content detail ends-->
+</div><!--dashboard mid ends-->
+<div class="dashboard-right-info_new">
+  <h1>Result</h1>
+
+  <div class="clear"></div>
+  <div class="select-button" style="margin-top:10px;">
+    <div class="left-holder"></div>
+    <div class="mid-holder"><a href="#">Select</a></div>
+    <div class="right-holder"></div>
+  </div>
+  <!--select button ends-->
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

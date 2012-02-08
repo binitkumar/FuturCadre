@@ -88,11 +88,7 @@ class SearchController < ApplicationController
 
     flag   = false
     count  = 0
-    @query = "SELECT * FROM profiles p
-         INNER JOIN education_informations ei
-         ON p.id = ei.profile_id
-         INNER JOIN profession_informations
-         ON p.id = profession_informations.profile_id where"
+    @query = "SELECT * FROM profiles p INNER JOIN education_informations ei ON p.id = ei.profile_id INNER JOIN profession_informations ON p.id = profession_informations.profile_id where"
     unless params[:first_name].blank?
       flag   = true
       count  = count + 1
@@ -212,7 +208,6 @@ class SearchController < ApplicationController
     end
 
     if flag == true
-      puts "abccccc", @query.inspect
       @collections = Profile.find_by_sql(@query)
     else
       @collections = nil

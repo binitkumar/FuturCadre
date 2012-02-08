@@ -130,6 +130,8 @@ FuturCadre::Application.routes.draw do
       get :download
       get :my_theses
       get :search_job_seeker
+      get :view_cv
+      get :select_profile
 
     end
   end

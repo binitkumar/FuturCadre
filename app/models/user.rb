@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
   has_many :theses_users
   has_many :theses, :through => :theses_users
   has_many :created_theses, :as => :owner, :class_name => "Thesis"
+  has_many :selected_profiles, :as => :employer, :class_name => "EmployerProfile"
+
 
 
   def role
