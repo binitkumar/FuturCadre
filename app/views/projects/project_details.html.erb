@@ -1,0 +1,109 @@
+<%#= javascript_include_tag "jquery-ui-1.8.17.custom.min"%>
+<%= render :partial => "shared/top_search_ box" %>
+<div class="content-holder">
+  <div class="group-result">
+    <div class="groups-jobs-left">
+      <% if @project.present? %>
+          <div class="admin-hold">
+            <div class="admin-top-hold"><h1><%= @project.name %> Administrator </h1></div>
+            <div class="admin-mid-hold">
+              <div class="admin-name"><%= @project.owner.name %></div>
+              <div class="admin-link"><%= link_to "Contact administrator #{@project.owner.email}" %></div>
+            </div>
+            <div class="admin-bot-hold"></div>
+          </div>
+
+          </div>
+
+          <div class="groups-mid-cont">
+            <div class="join-request">
+              <%= render :partial => "project_description", :locals => { :project => @project } %>
+            </div>
+            <ul class="group-links mtop20">
+              <li class="group-link-act listed"><%= link_to "Description", project_body_projects_path(:id => @project.id), :class => "thesis_body-link" %></li>
+              <li class="listed"> <%= link_to "Wall", project_wall_projects_path(:id => @project.id), :class => "thesis_wall_link" %></li>
+
+            </ul>
+
+            <div class="groups-line"></div>
+            <div class="mid-cont-holder">
+
+            </div>
+      <% end %>
+      </div>
+
+      </div>
+</div>
+<script type="text/javascript">
+
+    $("a.thesis_wall_link").click(function() {
+        $(this).removeClass("group-link-act");
+        $(this).parent(".listed").prevAll(".listed").each(function() {
+            $(this).removeClass("group-link-act");
+
+        });
+        $('.content-holder').find('.group-link-act').removeClass('group-link-act');
+        $(this).parent(".listed").addClass("group-link-act");
+
+
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".mid-cont-holder").html(response.html);
+            }
+        });
+        return false;
+    });
+    $("a.thesis_body-link").click(function() {
+        $(this).removeClass("group-link-act");
+        $(this).parent(".listed").prevAll(".listed").each(function() {
+            $(this).removeClass("group-link-act");
+
+        });
+        $('.content-holder').find('.group-link-act').removeClass('group-link-act');
+        $(this).parent(".listed").addClass("group-link-act");
+        $.ajax({
+            context: this,
+            url: $(this).attr("href"),
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                return $(".mid-cont-holder").html(response.html);
+            }
+        });
+        return false;
+    });
+    $("a.download_link").click(function() {
+        <% if user_signed_in? %>
+        {
+            $.ajax({
+                context: this,
+                url: $(this).attr("href"),
+                type: "GET",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(response) {
+                    return $(".mid-cont-holder").html(response.html);
+                }
+            });
+            return false;
+
+        }
+        <%else%>
+        {
+            window.location.href = "/sign_in";
+            return false;
+        }
+        <%end%>
+    });
+
+
+</script>
+
+
+

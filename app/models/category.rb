@@ -3,6 +3,7 @@ class Category < ActiveRecord::Base
   belongs_to :parent, :class_name => "Category"
   has_many :jobs
   has_many :theses
+  has_many :projects
 
   def self.main_categories
     where("parent_id IS NULL")

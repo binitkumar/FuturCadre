@@ -14,10 +14,9 @@
         </div>
     <% end %>
     <div class="dashboard-content-right">
-      <%#= form_for(:thesis, :url =>{ :controller => 'theses', :action =>'create_thesis' }, :html =>{ :id => "theses_form", :onsubmit =>false, :multipart => true }) do |f| %>
-      <%#= form_for :thesis, :url =>{ :action => 'update', :controller =>"theses" }, :html =>{ :id => 'theses_form' }, :remote => true do |f| %>
-          <%= form_for :thesis, :url =>{ :action => 'update_thesis', :controller => 'theses', :id => @thesis.id}, :html =>{ :id => "theses_form", :onsubmit =>true, :multipart => true } do |f| %>
-          <%= render :partial => "theses/form", :locals => { :f => f } %>
+      <%= form_for :project, :url =>{ :action => 'update_project', :controller => 'projects', :id => @project.id}, :html =>{ :id => "project_form", :onsubmit =>true, :multipart => true } do |f| %>
+      <%#= form_for :thesis, :url =>{ :action => 'update', :controller =>"projects" }, :html =>{ :id => 'project_form' }, :remote => true do |f| %>
+          <%= render :partial => "projects/form", :locals => { :f => f } %>
           <div class="save-button">
 
           </div>
@@ -33,7 +32,7 @@
 
 
     $(".btn-save").click(function () {
-        $('#theses_form').ajaxSubmit({
+        $('#project_form').ajaxSubmit({
             beforeSubmit:function (a, f, o) {
                 o.dataType = 'json';
             },

@@ -1,0 +1,14 @@
+<div class="mid-cont-holder">
+  <% unless @project.blank? %>
+
+      <div class="w100 mtop20">
+        <div class="job-cont-hold">
+          <div class="accountants"><%= @project.name %> </div>
+          <div class="result-text">  <%= @project.description %></div>
+          <div class="date-text"> <%= @project.created_at.strftime("%d-%m-%Y") %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+</div>

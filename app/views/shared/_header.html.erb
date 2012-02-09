@@ -25,10 +25,12 @@
       <li>  <%= link_to "Job Group", groups_path(:locale => "job") %> </li>
     </ul>
   </li>
-  <li class="<%= %>">
   <li class="<%= params[:controller] == "theses" ? 'active' : '' %>">
     <%= link_to "Thesis", theses_path() %>
-   </li>
+  </li>
+  <li class="<%= params[:controller] == "projects" ? 'active' : '' %>">
+    <%= link_to "Projects", projects_path() %>
+  </li>
 
   <% unless user_signed_in? %>
       <li class="<%= params[:role].present? && params[:role] == "job_seeker" ? 'active' : '' %>">
@@ -68,7 +70,7 @@
 
 <script type="text/javascript">
 
-    jQuery(function() {
+    jQuery(function () {
         jQuery('ul.sf-menu').superfish();
     });
 </script>

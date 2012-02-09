@@ -1,0 +1,20 @@
+<div class="join-request">
+  <div class="w100">
+    <div class="groups-heading-hold">
+
+      <h1><%= @project.name %></h1>
+
+      <p> <%= @project.created_at.strftime("%d-%m-%Y") %>  -
+
+      </p>
+    </div>
+
+    <div class="join-group-hold"><%= link_to "Download Thesis", download_thesis_theses_path(:id => @project), :class => "download_link" %></div>
+
+  </div>
+
+  <div class="group-details-hold">
+    <div class="grpup-img-details-hold"><%= @project.description %>
+    </div>
+  </div>
+</div>

@@ -31,7 +31,9 @@ class User < ActiveRecord::Base
   has_many :created_theses, :as => :owner, :class_name => "Thesis"
   has_many :selected_profiles, :as => :employer, :class_name => "EmployerProfile"
 
-
+ has_many :project_users
+ has_many :projects, :through => :project_users
+ has_many :created_projects,:as => :owner,:class_name => "Project"
 
   def role
     return "webmaster" if webmaster?

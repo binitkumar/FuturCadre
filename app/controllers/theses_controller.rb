@@ -51,7 +51,7 @@ class ThesesController < ApplicationController
   end
 
 
-  def update
+  def update_thesis
     @thesis = Thesis.find(params[:id])
     unless params[:thesis_doc].blank?
       @thesis_pub              = Photo.new(params[:thesis_doc])
@@ -75,7 +75,6 @@ class ThesesController < ApplicationController
   end
 
   def thesis_details
-
     @thesis     = Thesis.find(params[:id])
     @categories = Category.all
     @comments   = @thesis.comments.all
