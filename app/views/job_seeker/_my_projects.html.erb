@@ -21,6 +21,7 @@
             <th> Project Name</th>
             <th> Created at</th>
             <th> Actions</th>
+            <th> Invite</th>
 
 
           </tr>
@@ -30,6 +31,7 @@
                 <td><%= project.created_at.strftime('%Y-%m-%d') %></td>
                 <td><%= link_to "Edit", edit_project_path(:id =>project.id) %></td>
                 <td><%= link_to "Delete", delete_project_projects_path(:id => project.id, :own_id => @job_seeker), :class =>"delete_project" %>
+                <td><%= link_to "invite Friends",  :class =>"invite_project" %>
               </tr>
           <% end %>
         </table>
