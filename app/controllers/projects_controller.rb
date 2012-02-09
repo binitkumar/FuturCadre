@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
-  # GET /projects
-  # GET /projects.json
+
   def index
     #@projects = Project.all
     @category   = Category.first
@@ -9,32 +8,25 @@ class ProjectsController < ApplicationController
 
   end
 
-  # GET /projects/1
-  # GET /projects/1.json
+
   def show
     @project = Project.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @project }
-    end
+
   end
 
-  # GET /projects/new
-  # GET /projects/new.json
+
   def new
     @project     = Project.new
     @project_doc = Photo.new(params[:project_doc])
 
   end
 
-  # GET /projects/1/edit
+
   def edit
     @project = Project.find(params[:id])
   end
 
-  # POST /projects
-  # POST /projects.json
   def create_project
     @project = Project.new(params[:project])
     @project.update_attributes(:owner => current_user)
@@ -52,8 +44,7 @@ class ProjectsController < ApplicationController
   end
 
 
-  # PUT /projects/1
-  # PUT /projects/1.json
+
   def update_project
     @project = Project.find(params[:id])
     unless params[:project_doc].blank?
@@ -70,17 +61,13 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # DELETE /projects/1
-  # DELETE /projects/1.json
-  def destroy
-    @project = Project.find(params[:id])
-    @project.destroy
 
-    respond_to do |format|
-      format.html { redirect_to projects_url }
-      format.json { head :ok }
-    end
-  end
+  #def destroy
+  #  @project = Project.find(params[:id])
+  #  @project.destroy
+  #
+  #
+  #end
 
   def my_projects
     @owner    = User.find(params[:id])
@@ -121,6 +108,6 @@ class ProjectsController < ApplicationController
 
   def project_body
     @project= Project.find(params[:id])
-    render :json => { :html => render_to_string(:partial => '/projects/project_path', :locale=>{ :thesis => @thesis }) }.to_json
+    render :json => { :html =>  render_to_string(:partial => '/projects/project_path', :locale=>{ :thesis => @thesis }) }.to_json
   end
 end
