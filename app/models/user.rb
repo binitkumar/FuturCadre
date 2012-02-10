@@ -31,9 +31,10 @@ class User < ActiveRecord::Base
   has_many :created_theses, :as => :owner, :class_name => "Thesis"
   has_many :selected_profiles, :as => :employer, :class_name => "EmployerProfile"
 
- has_many :project_users
- has_many :projects, :through => :project_users
- has_many :created_projects,:as => :owner,:class_name => "Project"
+  has_many :project_users
+  has_many :projects, :through => :project_users
+  has_many :created_projects, :as => :owner, :class_name => "Project"
+  has_many :sent_invitations, :class_name => 'ProjectUser', :foreign_key => 'sender_id'
 
   def role
     return "webmaster" if webmaster?
@@ -64,6 +65,6 @@ class User < ActiveRecord::Base
 
   def has_applied(job_id)
     self.applied_jobs.include?(AppliedJob.find_by_job_id(job_id))
-   end
+  end
 end
 

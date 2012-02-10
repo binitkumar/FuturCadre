@@ -1,0 +1,52 @@
+<%= javascript_include_tag "jquery.form" %>
+<div class="dashboard-content-right">
+  <div class="shadow"></div>
+  <div class="popup-hold">
+
+    <div class="popup-top-holder">Question</div>
+    <div class="popup-mid-holder ">
+      <%= form_for :project_invitation, :url =>{ :action => 'send_invitation' }, :html =>{ :id => 'project_invitation_form', :onsubmit =>"return false;" } do |f| %>
+      <%#= form_for('contact_job_seeker', :id => 'contact_form') %>
+      <div class="input-holder">
+        <label>Email</label>
+        <%= f.text_field :invitee_email %>
+      </div>
+          <%= hidden_field_tag :project_id, @project.id %>
+      <div class="pop-up-btn-new">
+        <div id="find_job" class="pop-up-btn">Invite</div>
+        <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="popup-bot-holder"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+
+    $("#find_job").click(function() {
+        $('#project_invitation_form').ajaxSubmit({
+            success: function(data) {
+                alert("Your Mail has been sent");
+                $(".dashboard-content-right").html(data.html);
+                close_popup();
+            }
+        });
+    });
+    function close_popup() {
+        $(".popup-hold").hide();
+        $(".shadow").hide();
+        $.ajax({
+            url: '/employer/my_job_detail?id=' + '<%#= @job_application.job.id%>' ,type: 'get', dataType: 'json',
+            processData: false,
+            success: function(data) {
+
+                $(".dashboard-content-right").html(data.html);
+            }
+
+        })
+
+    }
+</script>

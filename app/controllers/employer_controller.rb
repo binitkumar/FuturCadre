@@ -113,9 +113,8 @@ class EmployerController < ApplicationController
   end
 
   def view_cv
-    puts "paramssssss", params[:id].inspect
+
     @profile = Profile.find_by_user_id(params[:id])
-    puts "aaaaaaaaaaaaaa", @profile.inspect
     render :json => { :html => render_to_string(:partial => '/employer/show_profile', :locals => { :profile =>@profile }) }.to_json
   end
 

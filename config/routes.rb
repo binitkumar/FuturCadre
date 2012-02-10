@@ -193,16 +193,25 @@ FuturCadre::Application.routes.draw do
 
   resources :projects do
     collection do
-      get  :my_projects
+      get :my_projects
       post :create_project
-      get  :project_details
-      get  :project_wall
+      get :project_details
+      get :project_wall
       post :add_comment
-      get  :project_body
-      get  :project_category
+      get :project_body
+      get :project_category
       post :search_project
-      get  :delete_project
+      get :delete_project
       post :update_project
+
+    end
+  end
+
+
+  resources :invitations do
+    collection do
+           get :project_invitation
+           post :send_invitation
     end
   end
 

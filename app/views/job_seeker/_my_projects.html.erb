@@ -31,7 +31,7 @@
                 <td><%= project.created_at.strftime('%Y-%m-%d') %></td>
                 <td><%= link_to "Edit", edit_project_path(:id =>project.id) %></td>
                 <td><%= link_to "Delete", delete_project_projects_path(:id => project.id, :own_id => @job_seeker), :class =>"delete_project" %>
-                <td><%= link_to "invite Friends",  :class =>"invite_project" %>
+                <td><%= link_to "invite Friends", project_invitation_invitations_path(:id => project.id), :class =>"invite_project" %>
               </tr>
           <% end %>
         </table>
@@ -62,6 +62,21 @@
         else {
             return false;
         }
+    });
+    $("a.invite_project").click(function () {
+        $.ajax({
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
+
+        });
+
+        return false;
     });
 
 </script>
