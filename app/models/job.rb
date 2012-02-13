@@ -24,17 +24,17 @@ class Job < ActiveRecord::Base
 
     conditions = []
     conditions << "jobs.name LIKE '%#{params[:name]}%'"
-    conditions << "jobs.category_id = '%#{params[:category_id]}%'"
+    conditions << "jobs.category_id LIKE  '%#{params[:category_id]}%'"
     if params[:main]
-      conditions << "jobs.country_id = '%#{params[:main][:country_id]}%'"
-      conditions << "jobs.region_id = '%#{params[:main][:region_id]}%'"
-      conditions << "jobs.city_id = '%#{params[:main][:city_id]}%'"
+      conditions << "jobs.country_id LIKE  '%#{params[:main][:country_id]}%'"
+      conditions << "jobs.region_id LIKE  '%#{params[:main][:region_id]}%'"
+      conditions << "jobs.city_id LIKE  '%#{params[:main][:city_id]}%'"
     elsif params[:search]
-      conditions << "jobs.country_id = '%#{params[:search][:country_id]}%'"
-      conditions << "jobs.region_id = '%#{params[:search][:region_id]}%'"
-      conditions << "jobs.city_id = '%#{params[:search][:city_id]}%'"
+      conditions << "jobs.country_id LIKE '%#{params[:search][:country_id]}%'"
+      conditions << "jobs.region_id LIKE '%#{params[:search][:region_id]}%'"
+      conditions << "jobs.city_id LIKE '%#{params[:search][:city_id]}%'"
     end
-    conditions = conditions.join(" OR ")
+    conditions = conditions.join(" AND ")
     find(:all, :conditions => conditions)
   end
 
