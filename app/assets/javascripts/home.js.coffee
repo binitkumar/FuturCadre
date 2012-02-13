@@ -4,10 +4,13 @@
 
 jQuery ->
   $("a.category-link").click ->
+	   $('.category').removeClass 'selected'
+	   $(".sub-category-holder").hide()
+
     $(this).parent(".category").prevAll(".category").each ->
       $(this).removeClass "selected"
       $(this).children(".sub-category-holder").hide()
-      $(this).slideUp "fast"
+#      $(this).slideUp "fast"
 
     $(this).parent(".category").addClass "selected"
     $(this).next(".sub-category-holder").show()
