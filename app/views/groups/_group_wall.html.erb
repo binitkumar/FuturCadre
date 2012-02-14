@@ -54,9 +54,18 @@
 <script type="text/javascript">
 
     $("#add_comment_button").click(function () {
+        <% if current_user.is_member(@group.id) == true %>
+        {
         $.post($("form#add_comment_form").attr("action"), $("form#add_comment_form").serialize(), (function (response) {
             return $(".mid-cont-holder").html(response.html);
         }), "json");
         return false;
+        }
+       <%else%>
+        {
+           alert("You need to be a member first to post");
+           return false;
+        }
+       <%end%>
     });
 </script>
