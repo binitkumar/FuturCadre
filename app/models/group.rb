@@ -11,6 +11,7 @@ class Group < ActiveRecord::Base
   has_and_belongs_to_many :school_categories
   has_many :group_questions
   has_many :questions, :through => :group_questions
+  has_one :rating, :as => :rateable
 
 
 end
