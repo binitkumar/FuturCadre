@@ -18,7 +18,7 @@
           </tr>
           <% @applied_jobs.each do |app_job| %>
               <tr>
-                <td><%= app_job.job.name %></td>
+                <td><%= link_to app_job.job.name, details_jobs_path(:id => app_job.id), :class => "job_description" %></td>
                 <td><%= app_job.created_at.strftime('%Y-%m-%d') %></td>
               </tr>
           <% end %>
@@ -28,3 +28,19 @@
     <% end %>
   </div>
 </div>
+
+<script language="JavaScript">
+    $("a.job_description").click(function () {
+        $.ajax({
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                $(".content-holder").html(response.html);
+            }
+        });
+        return false;
+    });
+</script>
