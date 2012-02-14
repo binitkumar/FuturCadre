@@ -14,6 +14,7 @@ class Profile < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name, :zip_code, :address
   validates_presence_of :country_id, :city_id, :region_id
+  validates_format_of :phone,:message => "must be a valid telephone number.", :with => /^[\(\)0-9\- \+\.]{10,20}$/
 
 
   def full_name

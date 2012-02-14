@@ -18,28 +18,28 @@ class ProfilesController < ApplicationController
   end
 
   def create_job_seeker
-    @profile_job = Profile.new(params[:profile])
-    @profile_job.update_attributes(:user_id => current_user.id, :country_id => params[:profile][:country_id], :city_id => params[:profile][:city_id], :region_id => params[:profile][:region_id])
+    @profile = Profile.new(params[:profile])
+    @profile.update_attributes(:user_id => current_user.id, :country_id => params[:profile][:country_id], :city_id => params[:profile][:city_id], :region_id => params[:profile][:region_id])
 
     @photo = params[:asset]
     unless @photo.blank?
       @asset              = Asset.new(params[:asset])
       @asset.content_type = "profile_image"
       @asset.user_id      = current_user.id
-      @asset.profile_id   = @profile_job.id
+      @asset.profile_id   = @profile.id
       @asset.save
     end
 
     #educational information
-    unless @profile_job.blank?
+    unless @profile.blank?
       @education_info            = EducationInformation.new(params[:education_info])
-      @education_info.profile_id = @profile_job.id
+      @education_info.profile_id = @profile.id
       @education_info.save
     end
     #professional information
-    unless @profile_job.blank?
+    unless @profile.blank?
       @job_information            = ProfessionInformation.new(params[:job_info])
-      @job_information.profile_id =@profile_job.id
+      @job_information.profile_id =@profile.id
       @job_information.save
 
       @resume = params[:resume]
@@ -47,21 +47,21 @@ class ProfilesController < ApplicationController
         @cv              = Asset.new(params[:resume])
         @cv.content_type = "cv"
         @cv.user_id      = current_user.id
-        @cv.profile_id   = @profile_job.id
+        @cv.profile_id   = @profile.id
         @cv.save
       end
 
     end
     if @profile_job.save
-      redirect_to(@profile_job, :notice => 'Profile was successfully created.')
+      redirect_to(@profile, :notice => 'Profile was successfully created.')
     else
-      redirect_to(:action => "new", :notice => "Profile was not created")
+      render :action => "new"
     end
   end
 
   def create_employer
-    @profile_new = Profile.new(params[:profile])
-    @profile_new.update_attributes(:user_id => current_user.id, :country_id => params[:profile][:country_id], :city_id => params[:profile][:city_id], :region_id => params[:profile][:region_id])
+    @profile = Profile.new(params[:profile])
+    @profile.update_attributes(:user_id => current_user.id, :country_id => params[:profile][:country_id], :city_id => params[:profile][:city_id], :region_id => params[:profile][:region_id])
 
     @photo = params[:asset]
     unless @photo.blank?
@@ -72,9 +72,9 @@ class ProfilesController < ApplicationController
       @asset.save
     end
 
-    unless @profile_new.blank?
+    unless @profile.blank?
       @company_information            = CompanyInformation.new(params[:company_information])
-      @company_information.profile_id = @profile_new.id
+      @company_information.profile_id = @profile.id
       @company_information.country_id = params[:company_information][:country_id]
       @company_information.region_id  = params[:company_information][:region_id]
       @company_information.city_id    = params[:company_information][:city_id]
@@ -85,15 +85,15 @@ class ProfilesController < ApplicationController
         @image              = Asset.new(params[:org_photo])
         @image.content_type = "company_logo"
         @image.user_id      = current_user.id
-        @image.profile_id   = @profile_new.id
+        @image.profile_id   = @profile.id
         @image.save
       end
 
     end
-    if @profile_new.save
-      redirect_to(@profile_new, :notice => 'Profile was successfully created.')
+    if @profile.save
+      redirect_to(@profile, :notice => 'Profile was successfully created.')
     else
-      redirect_to(:action => "new", :notice => "Profile was not created")
+      render :action =>"new"
 
     end
   end

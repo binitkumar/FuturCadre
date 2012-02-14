@@ -4,13 +4,17 @@
 <div class="content-holder">
   <% if current_user.job_seeker? %>
       <%= form_for @profile, :url =>{ :action => 'create_job_seeker', :controller => 'profiles' }, :html =>{ :id => "create_profile_form", :onsubmit =>true, :multipart => true } do |f| %>
+          <%= render "shared/error_messages", :target => @profile %>
           <%= render :partial => "job_seeker_form", :locals => { :f => f } %>
           <div class="save-button"> <%= f.submit "Save" %></div>
       <% end %>
   <% elsif current_user.employer? %>
       <%= form_for @profile, :url =>{ :action => 'create_employer', :controller => 'profiles' }, :html =>{ :id => "create_profile_form", :onsubmit =>true, :multipart => true } do |f| %>
+          <%= render "shared/error_messages", :target => @profile %>
           <%= render :partial => "employer_form", :locals => { :f => f } %>
-          <div class="save-button-new" > <%= f.submit "Save" %></div>
+          <div class="save-button-new"> <%= f.submit "Save" %></div>
       <% end %>
   <% end %>
 </div>
+
+
