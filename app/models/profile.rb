@@ -6,16 +6,16 @@ class Profile < ActiveRecord::Base
   belongs_to :city
   has_many :education_informations
   has_many :profession_informations
-  has_many :company_informations
+  #has_many :company_informations
   has_many :assets
   has_many :employer_profiles
-
+  has_one :company_information
 
 
   validates_presence_of :first_name, :last_name, :zip_code, :address
   validates_presence_of :country_id, :city_id, :region_id
-  validates_format_of :phone,:message => "must be a valid telephone number.", :with => /^[\(\)0-9\- \+\.]{10,20}$/
-
+  #validates_format_of :phone,:message => "must be a valid telephone number.", :with => /^[\(\)0-9\- \+\.]{10,20}$/
+  validates_format_of :phone,:message => "must be a valid telephone number.", :with => /^[a-zA-Z0-9]{3}-?[a-zA-Z0-9]{7}$/
 
   def full_name
     n = first_name

@@ -168,6 +168,8 @@ FuturCadre::Application.routes.draw do
       post :create_question
       get :group_body
       get :faker_join
+      get :set_rating
+      get :set_salary
     end
   end
 
@@ -203,6 +205,7 @@ FuturCadre::Application.routes.draw do
       post :search_project
       get :delete_project
       post :update_project
+      get :join_project
 
     end
   end

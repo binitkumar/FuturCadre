@@ -1,5 +1,6 @@
-<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery.pagination" %>
-<%= stylesheet_link_tag "pagination", "jquery.ui.datepicker" %>
+<%= javascript_include_tag "jquery-1.4.4.min", "jquery-ui-1.8.17.custom.min", "jquery.pagination", "jquery.rating" %>
+<%= javascript_include_tag "hoverIntent.js", "superfish.js" %>
+<%= stylesheet_link_tag "pagination", "jquery.ui.datepicker", "jquery.rating" %>
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
 
@@ -58,7 +59,7 @@
                     <div class="result">
                       <div class="dashboard-text">
                         <div class="name">
-                          <div class="icon-img"> <%= image_tag group.photo.image.url,:style =>"border: medium solid !important;height: 48px; width: 46px;" %></div>
+                          <div class="icon-img"> <%= image_tag group.photo.image.url, :style =>"border: medium solid !important;height: 48px; width: 46px;" %></div>
                           <div class="icon-text">
 
                             <%= link_to group.name, group_details_groups_path(:id => group.id) %>
@@ -66,8 +67,50 @@
                           </div>
                         </div>
                         <div class="description-hold"><%= group.description %> </div>
-                        <div class="salary-hold"><%= group.mean_salary %> Euro</div>
-                       <!-- <div class="rating-hold"> <%#= image_tag asset_path 'rating.png' %></div> -->
+                        <div class="salary-hold" onclick="open_salary()"><%= group.mean_salary %> Euro
+
+                        </div>
+
+                        <div class="rating-hold">
+
+                          <p style="margin:5px 0px 0px 5px; color:#656565;">
+                            <select name="myRating" class="active_rating" id="serialStar_group_<%= group.id %>">
+                              <option value="1" <%= group.rating.rate == 1 ? "selected='selected'" :"" %>>very
+                                weak
+                              </option>
+                              <option value="2" <%= group.rating.rate == 2 ? "selected='selected'" :"" %>>weak</option>
+                              <option value="3" <%= group.rating.rate == 3 ? "selected='selected'" :"" %>>average</option>
+                              <option value="4" <%= group.rating.rate == 4 ? "selected='selected'" :"" %>>strong</option>
+                              <option value="5" <%= group.rating.rate == 5 ? "selected='selected'" :"" %>>very
+                                strong
+                              </option>
+                            </select>
+                          </p>
+
+
+                          <script type="text/javascript">
+                              $("#serialStar_group_<%= group.id %>").bind("change", function () {
+                                  var rate = $('#serialStar_group_<%= group.id %>').serialize().split("=");
+                                  var i = 1;
+                                  for (i; i <= 5; i++) {
+                                      if (i <= parseInt(rate[1])) {
+                                          $("#changer_group_<%= group.id %>_" + i).attr("src", "/assets/star_icon_golden.png");
+                                      }
+                                      else {
+                                          $("#changer_group_<%= group.id %>_" + i).attr("src", "/assets/star_icon_black.png");
+                                      }
+                                  }
+                                  $.ajax({
+                                      url:'/groups/set_rating?group_id=<%= group.id %>&rate=' + rate[1], type:'get', dataType:'html',
+                                      processData:false,
+                                      success:function (data) {
+
+                                      }
+                                  });
+                              });
+                          </script>
+
+                        </div>
 
                       </div>
                     </div>
@@ -99,9 +142,9 @@
 
 <script type="text/javascript">
     var pagination_options = {
-        num_edge_entries: 0,
-        num_display_entries: 0,
-        callback: pageselectCallback,
+        num_edge_entries:0,
+        num_display_entries:0,
+        callback:pageselectCallback,
         items_per_page:2
     }
     function pageselectCallback(page_index, jq) {
@@ -109,11 +152,12 @@
         var offset = page_index * items_per_page;
         var new_content = $('#hiddenresult div.result').slice(offset, offset + items_per_page).clone();
         $('#Searchresult').empty().append(new_content);
+        $(".active_rating").rating();
         return false;
     }
 
     // When document is ready, initialize pagination and buttons
-    $(document).ready(function() {
+    $(document).ready(function () {
         var num_entries = $('#hiddenresult div.result').length;
 
         // Create pagination element, if more than 50 candidates
@@ -121,20 +165,30 @@
             var $pager = $("#Pagination");
             $pager.fadeIn(400);
             $pager.pagination(num_entries, pagination_options);
-            $("#select_all").click(function() {
-                $("#Searchresult").find('div').find('input[type=checkbox]').each(function() {
+            $("#select_all").click(function () {
+                $("#Searchresult").find('div').find('input[type=checkbox]').each(function () {
                     this.checked = true;
                 });
             });
-
-        }
+         }
         else {
+
             $("#hiddenresult").fadeIn(200);
-            $("#select_all").click(function() {
-                $("input[type=checkbox]").each(function() {
+            $("#select_all").click(function () {
+                $("input[type=checkbox]").each(function () {
                     this.checked = true;
                 });
             });
-        }
+            $(".active_rating").rating();
+       }
+
     });
+
+
+    function open_salary() {
+//        alert("aghagshagsh");
+
+
+    }
+
 </script>

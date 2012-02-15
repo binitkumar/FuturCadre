@@ -12,10 +12,10 @@
       </p>
       <h1>Company <span class="red"> Information</span></h1>
       <%= image_tag asset_path 'dashboard-botom-line.png' %>
-      <p><label>Company Name:</label>        <%= @job_new.employer.profile.company_informations.first.name %> <br/>
+      <p><label>Company Name:</label>        <%= @job_new.employer.profile.company_information.name %> <br/>
 
-      <p><label>Description:</label>  <%= @job_new.employer.profile.company_informations.first.description %></p>  <br/>
-      <label>Sector:</label>     <%= @job_new.employer.profile.company_informations.first.sector.value %>  <br/>
+      <p><label>Description:</label>  <%= @job_new.employer.profile.company_information.description %></p>  <br/>
+      <label>Sector:</label>     <%= @job_new.employer.profile.company_information.sector.value %>  <br/>
       </p>
 
       <h1>Required <span class="red"> Profile</span></h1>

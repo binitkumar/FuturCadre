@@ -1,4 +1,4 @@
-# encoding: utf-8
+  # encoding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -95,7 +95,7 @@ Profile.create!(:first_name => "Future",
                 :city       => City.first,
                 :user       => User.first,
                 :zip_code   => "SW450",
-                :phone      => "0046787343",
+                :phone      => "046-5673",
                 :address    => "Kungshamra 42, LGH 4"
 
 )
@@ -106,7 +106,7 @@ CompanyInformation.create!(:name     => "Future Cadre",
                            :country  => Country.first,
                            :region   => Region.first,
                            :city     => City.first,
-                           :phone    => "000000000",
+                           :phone    => "0456782144",
                            :address  => "France",
                            :web_site => "www.futurecadre.com"
 

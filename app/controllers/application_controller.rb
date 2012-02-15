@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   #include SessionsHelper
   protect_from_forgery
   before_filter :set_locale
+  #before_filter :authenticate_user!
 
   def after_sign_in_path_for(resource_or_scope)
     stored_location_for(resource_or_scope) || signed_in_root_path(resource_or_scope)
@@ -32,6 +33,7 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end
+
 
   private
 

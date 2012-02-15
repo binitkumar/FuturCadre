@@ -43,7 +43,11 @@
           <div class="dashboard-image">
             <% if @job_seeker.profile.present? %>
 
-                <%= image_tag profile_image.photo.url %>
+                <% if profile_image != false %>
+                    <%= image_tag profile_image.photo.url %>
+                <% else %>
+                    <%= image_tag asset_path "dashboard-img.png" %>
+                <% end %>
                 <h1> <%= @job_seeker.profile.full_name %></h1>
             <% else %>
                 <h1>  <%= @job_seeker.name %> </h1>

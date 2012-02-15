@@ -32,9 +32,9 @@
       <!-- <%#= options_for_select([['Lisbon', 1], ['Madrid', 2]], 2) %> -->
     </div>
 
-    <div class="contract-field">
+    <div class="contract-label" id="contract_period">
       <label>Contract</label>
-      <%= f.select :contract_id, options_from_collection_for_select(Contract.all, "id", "name", @job_edit.contract_id) %>
+      <%= f.select :contract_id, options_from_collection_for_select(Contract.all, "id", "name", @job_edit.contract_id), { }, :onchange => "hide_field()" %>
     </div>
 
     <div class="reg-location-holder" style="margin-top: 0!important;">
@@ -64,19 +64,20 @@
       <%= f.select :period_id, options_from_collection_for_select(Period.all, "id", "name", @job_edit.period_id) %>
     </div>
 
-    <div class="radio-label">
-      <%= f.radio_button 'date_of_start', true,:checked => @job_edit.date_of_start ==Time.now ? true : false, :class => "contract-radio" %>
+    <div class="radio-label"id="disable">
+      <%= f.radio_button 'date_of_start', true, :checked => @job_edit.date_of_start ==Time.now ? true : false, :class => "contract-radio", :onclick =>"disable('disable')"%>
       <label>Immediate</label>
     </div>
 
-    <div class="radio-label">
-      <%= f.radio_button 'date_of_start', false,:checked => @job_edit.date_of_start ==Time.now ? false : true   , :class => "contract-radio", :id =>"enable_datextbox"%>
+    <div class="radio-label" id="enable">
+      <%= f.radio_button 'date_of_start', false, :checked => @job_edit.date_of_start ==Time.now ? false : true, :class => "contract-radio", :id =>"enable_datextbox", :onclick =>"disable('enable')" %>
       <label> From Date</label>
     </div>
 
-    <div class="date-box">
-      <%= text_field_tag "date_of_start_text" , @job_edit.date_of_start, :class =>"date-pick", :disabled => false, :id => "Date-Box"%>
+    <div class="date-box"id="date-box">
+      <%= text_field_tag "date_of_start_text", @job_edit.date_of_start, :class =>"date-pick", :disabled => false, :id => "Date-Box" %>
     </div>
+
 
   </div>
 
@@ -86,22 +87,22 @@
 
     <div class="remu-input">
       <label>Annual Salary</label>
-      <%= f.radio_button 'annual_salary', 'Negotiable',:checked => @job_edit.annual_salary == "Negotiable"? true : false, :class => "checked-radio" %>
+      <%= f.radio_button 'annual_salary', 'Negotiable', :checked => @job_edit.annual_salary == "Negotiable" ? true : false, :class => "checked-radio" %>
       <label>Negotiable</label>
     </div>
 
     <div class="remu-inputs-two">
-      <%= f.radio_button 'annual_salary', 'Non', :checked => @job_edit.annual_salary == "Non"? true : false, :class => "checked-radio" %>
+      <%= f.radio_button 'annual_salary', 'Non', :checked => @job_edit.annual_salary == "Non" ? true : false, :class => "checked-radio" %>
       <label> Non</label>
     </div>
 
     <div class="remu-inputs-two">
-      <%= f.radio_button 'annual_salary', 'Oui', :class => "checked-radio",:checked => @job_edit.annual_salary == "Oui"? false : true, :id =>"enable_textbox" %>
+      <%= f.radio_button 'annual_salary', 'Oui', :class => "checked-radio", :checked => @job_edit.annual_salary == "Oui" ? false : true, :id =>"enable_textbox" %>
       <label> Oui</label>
     </div>
 
     <div class="remu-input-field">
-      <%= text_field_tag "annual_salary_text",@job_edit.annual_salary, :disabled => false, :id => "textBox" %>
+      <%= text_field_tag "annual_salary_text", @job_edit.annual_salary, :disabled => false, :id => "textBox" %>
     </div>
 
   </div>
@@ -261,12 +262,12 @@
 
 
     var count = 1;
-    $('.add-language').click(function() {
+    $('.add-language').click(function () {
         var scntDiv = $('#language-div');
         var count = parseInt($('#count').attr('value'));
         count = count + 1;
         $('#count').attr('value', count);
-        var txt_field = '<div id="main_div_' + count + '"><div class="contract-field-new">' + <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value") %> + '</div><div class="contract-field-new">' + <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]]) %> + '</div><div class="add-button" style="margin-top: 30px;><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_location_field(' + count + ')" /></a> <div> </div>';
+        var txt_field = '<div id="main_div_' + count + '"><div class="contract-field-new">' + <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value") %> +'</div><div class="contract-field-new">' + <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]]) %> +'</div><div class="add-button" style="margin-top: 30px;><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_location_field(' + count + ')" /></a> <div> </div>';
         scntDiv.append(txt_field);
 
     });
@@ -282,9 +283,9 @@
         var lang = lang_id;
         var job = job_id;
         $.ajax({
-            url: '/jobs/remove_language?job_id=' + job + '&lang_id=' + lang, type: 'get',
-            processData: false,
-            success: function(data) {
+            url:'/jobs/remove_language?job_id=' + job + '&lang_id=' + lang, type:'get',
+            processData:false,
+            success:function (data) {
                 var field = $('#remove_lang_' + obj)
                 var count = parseInt($('#count').attr('value'));
                 var count_toatl = parseInt($('#count').attr('value'));
@@ -297,12 +298,12 @@
 
     }
 
-    $('.add-education').click(function() {
+    $('.add-education').click(function () {
         var scntDiv = $('.contract-field-ed');
         var count = parseInt($('#count').attr('value'));
         count = count + 1;
         $('#count').attr('value', count);
-        var txt_field = '<div id="new_div_' + count + '"><div class="contract-field-ed">' + <%= f.select(:education_level, Job::Education_Levels) %> + '</div><div class="add-button" style="margin-top: 30px;"><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_education_field(' + count + ')" /></a> <div> </div>';
+        var txt_field = '<div id="new_div_' + count + '"><div class="contract-field-ed">' + <%= f.select(:education_level, Job::Education_Levels) %> +'</div><div class="add-button" style="margin-top: 30px;"><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_education_field(' + count + ')" /></a> <div> </div>';
         scntDiv.append(txt_field);
 
     });
@@ -314,5 +315,28 @@
         $('#count').attr('value', count);
         field.remove();
     }
+
+    function hide_field() {
+        if ($("#job_contract_id option:selected").text() == "Cdi") {
+            $("#contract_period").hide();
+        }
+        else {
+            $("#contract_period").show();
+        }
+
+    }
+    function disable(type) {
+
+        if (type == 'disable') {
+
+            $("#date-box").hide();
+        }
+        else if (type == 'enable') {
+
+            $("#date-box").show();
+        }
+
+    }
+
 
 </script>

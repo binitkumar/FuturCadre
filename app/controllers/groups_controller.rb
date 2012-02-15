@@ -115,4 +115,15 @@ class GroupsController < ApplicationController
     @comments   = @group.comments.all
     render :action => "group_details"
   end
+  def set_rating
+    @group = Group.find(params[:group_id])
+     @group.rating.update_attributes(:rate => params[:rate])
+    render :text => "Ok"
+  end
+  def set_salary
+    @group = Group.find(params[:group_id])
+    @group.new_salary(params)
+
+
+  end
 end

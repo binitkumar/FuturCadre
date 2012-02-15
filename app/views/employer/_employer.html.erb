@@ -9,7 +9,11 @@
   <% if @employer.profile.present? %>
       <div class="dashboard-info-image">
         <div class="dashboard-image">
-          <%= image_tag profile_image.photo.url %>
+          <% if profile_image != false %>
+              <%= image_tag profile_image.photo.url %>
+          <% else %>
+              <%= image_tag asset_path "dashboard-img.png" %>
+          <% end %>
           <h1> <%= @employer.profile.full_name %></h1>
   <% else %>
       <h1>  <%= @employer.name %> </h1>

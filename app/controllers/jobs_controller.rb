@@ -30,7 +30,7 @@ class JobsController < ApplicationController
       @responsibility = Responsibility.new(params[:respon])
       @employer = current_user
       unless @employer.profile.blank?
-        @company_information = @employer.profile.company_informations.first
+        @company_information = @employer.profile.company_information
       else
         @company_information = CompanyInformation.new[:company_information]
       end
@@ -56,15 +56,20 @@ class JobsController < ApplicationController
 
     @job_new.update_attributes(:employer_id => current_user.id, :employer_type => "User", :date_of_start => date, :annual_salary => salary)
 
+    #unless params[:company_information].blank?
+    #  @comp = CompanyInformation.new(params[:company_information])
+    #  @comp.profile_id = current_user.id
+    #  @comp.update_attributes(:country_id => params[:job][:country_id],
+    #                          :region_id => params[:job][:region_id], :city_id => params[:job][:city_id])
+    #  @comp.save!
+    #else
+    #  puts "None company info added"
+    #end
     unless params[:company_information].blank?
-      @comp = CompanyInformation.new(params[:company_information])
-      @comp.profile_id = current_user.id
-      @comp.update_attributes(:country_id => params[:job][:country_id],
-                              :region_id => params[:job][:region_id], :city_id => params[:job][:city_id])
-      @comp.save!
-    else
-      puts "None company info added"
+      @comp = current_user.profile.company_information
+      @comp.update_attributes(params[:company_information])
     end
+
     unless params[:skill][:name].blank?
       skills = params[:skill][:name].split(',')
       skills.each do |skill|

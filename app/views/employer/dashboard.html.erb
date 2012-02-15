@@ -33,7 +33,11 @@
           <div class="dashboard-image">
             <% if @employer.profile.present? %>
 
-                <%= image_tag profile_image.photo.url %>
+                <% if profile_image != false %>
+                    <%= image_tag profile_image.photo.url %>
+                  <% else %>
+                    <%= image_tag asset_path "dashboard-img.png" %>
+                <% end %>
                 <h1> <%= @employer.profile.full_name %></h1>
             <% else %>
                 <h1>  <%= @employer.name %> </h1>
@@ -53,7 +57,7 @@
           <div class="dashboard-post-profile-btn">
 
             <%= link_to image_tag(asset_path 'Post-An-Ad.png'), new_job_path(), :class =>"profile-check" %>
-            <%= link_to image_tag(asset_path 'search-profile.png'), search_job_seeker_employer_index_path(:id => @employer ), :class=>"job_seeker_search" %>
+            <%= link_to image_tag(asset_path 'search-profile.png'), search_job_seeker_employer_index_path(:id => @employer), :class=>"job_seeker_search" %>
 
           </div>
         </div>
@@ -113,46 +117,30 @@
 </div>
 
 <script type="text/javascript">
-    $("a.event-holder").click(function() {
+    $("a.event-holder").click(function () {
 
         $.ajax({
-            context: this,
-            url: $(this).attr("href"),
-            type: "GET",
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function(response) {
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
                 return $(".dashboard-content-right").html(response.html);
             }
         });
         return false;
 
     });
-    $("a.employer-jobs").click(function() {
+    $("a.employer-jobs").click(function () {
 
         $.ajax({
-            context: this,
-            url: $(this).attr("href"),
-            type: "GET",
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function(response) {
-                return $(".dashboard-content-right").html(response.html);
-            }
-        });
-        return false;
-
-    });
-
-    $("a.thesis_link").click(function() {
-
-        $.ajax({
-            context: this,
-            url: $(this).attr("href"),
-            type: "GET",
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function(response) {
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
                 return $(".dashboard-content-right").html(response.html);
             }
         });
@@ -160,15 +148,31 @@
 
     });
 
-    $("a.job_seeker_search").click(function() {
+    $("a.thesis_link").click(function () {
 
         $.ajax({
-            context: this,
-            url: $(this).attr("href"),
-            type: "GET",
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function(response) {
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
+        });
+        return false;
+
+    });
+
+    $("a.job_seeker_search").click(function () {
+
+        $.ajax({
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
                 return $(".dashboard-content-right").html(response.html);
             }
         });

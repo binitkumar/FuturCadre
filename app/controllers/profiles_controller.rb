@@ -68,13 +68,12 @@ class ProfilesController < ApplicationController
       @asset              = Asset.new(params[:asset])
       @asset.content_type = "profile_image"
       @asset.user_id      = current_user.id
-      @asset.profile_id   = @profile_new.id
+      @asset.profile_id   = @profile.id
       @asset.save
     end
 
     unless @profile.blank?
       @company_information            = CompanyInformation.new(params[:company_information])
-      @company_information.profile_id = @profile.id
       @company_information.country_id = params[:company_information][:country_id]
       @company_information.region_id  = params[:company_information][:region_id]
       @company_information.city_id    = params[:company_information][:city_id]
@@ -91,6 +90,7 @@ class ProfilesController < ApplicationController
 
     end
     if @profile.save
+      @company_information.update_attributes(:profile_id => @profile.id)
       redirect_to(@profile, :notice => 'Profile was successfully created.')
     else
       render :action =>"new"

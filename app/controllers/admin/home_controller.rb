@@ -1,13 +1,16 @@
 class Admin::HomeController < ApplicationController
 
-	layout "admin"
+  layout "admin"
 
-	def login
+  def login
 
-	end
+  end
 
-	def dashboard
+  def dashboard
+    unless current_user.webmaster?
+      redirect_to "/"
+    end
 
-	end
+  end
 
 end

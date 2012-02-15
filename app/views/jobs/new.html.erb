@@ -31,13 +31,15 @@
 
     });
 
-    $('.contract-radio').click(function() {
-//          $("#Date-Box").attr("disabled", "disabled");
-        if ($(this).attr('id') == 'enable_datextbox') {
-            $("#textBox").removeAttr("disabled");
-            document.getElementById("Date-Box").value = null;
-        }
-    });
+//    $('.contract-radio').click(function() {
+////          $("#Date-Box").attr("disabled", "disabled");
+//        if ($(this).attr('id') == 'enable_datextbox') {
+//            $("#textBox").removeAttr("disabled");
+//            document.getElementById("Date-Box").value = null;
+//        }
+//    });
+
+
 
     $('.btn-save').click(function() {
         $.post($("form#job_form").attr("action"), $("form#job_form").serialize(), (function(response) {

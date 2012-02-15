@@ -12,7 +12,7 @@ class Ability
 
     end
     if user.employer?
-      can :manage, Job
+     can :manage, Job
       can :manage, EmployerController
     end
     if user.job_seeker?
