@@ -84,6 +84,13 @@ class JobsController < ApplicationController
       end
     end
 
+    unless params[:publication].blank?
+      @job_new.update_attributes(:publish => true)
+    end
+    unless params[:employer_email].blank?
+      @job_new.update_attributes(:publisher_email => params[:employer_email])
+    end
+
     if @job_new.save!
       @job_languages = JobLanguage.find_all_by_job_id(@job_new.id)
       @job_languages.each_with_index do |job_lang, j|
