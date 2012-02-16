@@ -63,33 +63,34 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(params[:profile])
     @profile.update_attributes(:user_id => current_user.id, :country_id => params[:profile][:country_id], :city_id => params[:profile][:city_id], :region_id => params[:profile][:region_id])
 
-    @photo = params[:asset]
-    unless @photo.blank?
-      @asset              = Asset.new(params[:asset])
-      @asset.content_type = "profile_image"
-      @asset.user_id      = current_user.id
-      @asset.profile_id   = @profile.id
-      @asset.save
-    end
-
-    unless @profile.blank?
-      @company_information            = CompanyInformation.new(params[:company_information])
-      @company_information.country_id = params[:company_information][:country_id]
-      @company_information.region_id  = params[:company_information][:region_id]
-      @company_information.city_id    = params[:company_information][:city_id]
-      @company_information.save
-
-      @photo = params[:org_photo]
+    if @profile.save
+      @photo = params[:asset]
       unless @photo.blank?
-        @image              = Asset.new(params[:org_photo])
-        @image.content_type = "company_logo"
-        @image.user_id      = current_user.id
-        @image.profile_id   = @profile.id
-        @image.save
+        @asset              = Asset.new(params[:asset])
+        @asset.content_type = "profile_image"
+        @asset.user_id      = current_user.id
+        @asset.profile_id   = @profile.id
+        @asset.save
       end
 
-    end
-    if @profile.save
+      unless @profile.blank?
+        @company_information            = CompanyInformation.new(params[:company_information])
+        @company_information.country_id = params[:company_information][:country_id]
+        @company_information.region_id  = params[:company_information][:region_id]
+        @company_information.city_id    = params[:company_information][:city_id]
+        @company_information.save
+
+        @photo = params[:org_photo]
+        unless @photo.blank?
+          @image              = Asset.new(params[:org_photo])
+          @image.content_type = "company_logo"
+          @image.user_id      = current_user.id
+          @image.profile_id   = @profile.id
+          @image.save
+        end
+
+      end
+
       @company_information.update_attributes(:profile_id => @profile.id)
       redirect_to(@profile, :notice => 'Profile was successfully created.')
     else

@@ -14,6 +14,7 @@ class Job < ActiveRecord::Base
   has_many :job_languages
   has_many :languages, :through => :job_languages
   has_many :applied_jobs
+  has_and_belongs_to_many :education_levels
 
 
   validates_presence_of :name
@@ -38,7 +39,7 @@ class Job < ActiveRecord::Base
     find(:all, :conditions => conditions)
   end
 
-  Education_Levels = ["Ecole d'ingénieur", "Ecole de Commerce", "Ecoles/Universités Etrangères", "IEP", "IUT", "Lycée", "Université", "x - Autre"]
+  #Education_Levels = ["Ecole d'ingénieur", "Ecole de Commerce", "Ecoles/Universités Etrangères", "IEP", "IUT", "Lycée", "Université", "x - Autre"]
 
   def location
     "#{city.name}, #{region.name} #{country.name}"
