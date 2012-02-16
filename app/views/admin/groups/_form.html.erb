@@ -12,7 +12,7 @@
 <br/><br/>
 <div class="field">
   <label> Group Type </label><br/>
-    <%= f.text_field :group_type_id, :id => "job_group_type_id" %>
+  <%= f.text_field :group_type_id, :id => "job_group_type_id" %>
 </div>
 <br/><br/>
 
@@ -25,6 +25,10 @@
   <label>Description</label><br/>
   <%= f.text_area :description %>
 </div>
+<br/><br/>
+<%= fields_for :photo do |image| %>
+    <%= image.file_field :image %>
+<% end %>
 <br/><br/>
 <div class="field">
   <label> Mean Salary </label><br/>

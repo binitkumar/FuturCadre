@@ -18,7 +18,13 @@
   </div>
 
   <div class="group-details-hold">
-    <div class="grpup-img-hold"><%= image_tag @group.photo.image.url, :style =>"border: medium solid !important;height: 96px; width: 99px;" %></div>
+    <div class="grpup-img-hold">
+      <% unless @group.photo.blank? %>
+          <%= image_tag @group.photo.image.url, :style =>"border: medium solid !important;height: 96px; width: 99px;" %>
+      <% else %>
+          <% image_tag asset_path "dashboard-img.png" %>
+      <% end %>
+    </div>
     <div class="grpup-img-details-hold"><%= @group.description %>
     </div>
   </div>

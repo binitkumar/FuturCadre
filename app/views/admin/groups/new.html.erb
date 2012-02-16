@@ -5,7 +5,7 @@
 </div>
 
 <div id="job_group">
-  <%= form_for @group, :url => { :action => "create" } do |f| %>
+  <%= form_for(@group, :url => { :action => "create" } , :html => {:multipart => true}) do |f| %>
       <%= render :partial => 'form', :locals => { :f => f } %>
 
       <div class="actions">
@@ -14,7 +14,7 @@
   <% end %>
 </div>
 <div id="school_group" style="display: none">
-  <%= form_for @group, :url => { :action => "create_group_school" } do |f| %>
+  <%= form_for(@group, :url => { :action => "create_group_school" }, :html => {:multipart => true}) do |f| %>
       <%= render :partial => 'school_group', :locals => { :f => f } %>
       <div class="actions">
         <%= f.submit %>

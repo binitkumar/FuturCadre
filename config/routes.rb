@@ -99,6 +99,7 @@ FuturCadre::Application.routes.draw do
       get :job_employer
       get :new_application
       post :apply_job
+      get :remove_education
     end
   end
 

@@ -1,4 +1,4 @@
-  # encoding: utf-8
+# encoding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -12,7 +12,7 @@ require 'rubygems'
 unless defined? JRUBY_VERSION
   require 'parseexcel'
 end
-#
+
 puts "Deleting existing roles..."
 roles = Role.all
 roles.each { |role| role.destroy } if roles.present?
@@ -95,7 +95,7 @@ Profile.create!(:first_name => "Future",
                 :city       => City.first,
                 :user       => User.first,
                 :zip_code   => "SW450",
-                :phone      => "046-5673",
+                :phone      => "046-5673542",
                 :address    => "Kungshamra 42, LGH 4"
 
 )
@@ -143,6 +143,11 @@ groups.each do |group|
   group_photo.imageable    = group
   group_photo.content_type = "group_image"
   group_photo.save
+end
+
+puts "updating group ratings"
+groups.each do |group|
+  group.rating = 2
 end
 #
 #def seed_institute
@@ -276,3 +281,28 @@ theses.each do |thes|
   thesis.content_type = "thesis_publication"
   thesis.save
 end
+
+puts "Delete existing education level"
+education_levels = EducationLevel.all
+education_levels.each { |ed| ed.destroy } if education_levels.present?
+puts "Creating education level "
+%w(Ecole_d_ingénieur Ecole_de_Commerce Ecoles/Universités Etrangères IEP IUT Lycée Université x-Autre).each do |name|
+  EducationLevel.create!(:name => name.humanize.titleize)
+end
+
+puts "updating group ratings"
+groups = Group.all
+groups.each do |group|
+  rating          = Rating.new
+  rating.rate     = 2
+  rating.rateable = group
+  rating.save!
+end
+
+
+
+
+
+
+
+

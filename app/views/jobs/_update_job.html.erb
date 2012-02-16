@@ -28,13 +28,13 @@
 
     <div class="contract-field">
       <label> Job Category</label>
-      <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", @job_edit.category_id) %>
+      <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", @job.category_id) %>
       <!-- <%#= options_for_select([['Lisbon', 1], ['Madrid', 2]], 2) %> -->
     </div>
 
     <div class="contract-label" id="contract_period">
       <label>Contract</label>
-      <%= f.select :contract_id, options_from_collection_for_select(Contract.all, "id", "name", @job_edit.contract_id), { }, :onchange => "hide_field()" %>
+      <%= f.select :contract_id, options_from_collection_for_select(Contract.all, "id", "name", @job.contract_id), { }, :onchange => "hide_field()" %>
     </div>
 
     <div class="reg-location-holder" style="margin-top: 0!important;">
@@ -61,21 +61,21 @@
   <div class="w100 mtop20">
     <div class="contract-label">
       <label>Contract Duration</label>
-      <%= f.select :period_id, options_from_collection_for_select(Period.all, "id", "name", @job_edit.period_id) %>
+      <%= f.select :period_id, options_from_collection_for_select(Period.all, "id", "name", @job.period_id) %>
     </div>
 
-    <div class="radio-label"id="disable">
-      <%= f.radio_button 'date_of_start', true, :checked => @job_edit.date_of_start ==Time.now ? true : false, :class => "contract-radio", :onclick =>"disable('disable')"%>
+    <div class="radio-label" id="disable">
+      <%= f.radio_button 'date_of_start', true, :checked => @job.date_of_start ==Time.now ? true : false, :class => "contract-radio", :onclick =>"disable('disable')" %>
       <label>Immediate</label>
     </div>
 
     <div class="radio-label" id="enable">
-      <%= f.radio_button 'date_of_start', false, :checked => @job_edit.date_of_start ==Time.now ? false : true, :class => "contract-radio", :id =>"enable_datextbox", :onclick =>"disable('enable')" %>
+      <%= f.radio_button 'date_of_start', false, :checked => @job.date_of_start ==Time.now ? false : true, :class => "contract-radio", :id =>"enable_datextbox", :onclick =>"disable('enable')" %>
       <label> From Date</label>
     </div>
 
-    <div class="date-box"id="date-box">
-      <%= text_field_tag "date_of_start_text", @job_edit.date_of_start, :class =>"date-pick", :disabled => false, :id => "Date-Box" %>
+    <div class="date-box" id="date-box">
+      <%= text_field_tag "date_of_start_text", @job.date_of_start, :class =>"date-pick", :disabled => false, :id => "Date-Box" %>
     </div>
 
 
@@ -87,22 +87,22 @@
 
     <div class="remu-input">
       <label>Annual Salary</label>
-      <%= f.radio_button 'annual_salary', 'Negotiable', :checked => @job_edit.annual_salary == "Negotiable" ? true : false, :class => "checked-radio" %>
+      <%= f.radio_button 'annual_salary', 'Negotiable', :checked => @job.annual_salary == "Negotiable" ? true : false, :class => "checked-radio" %>
       <label>Negotiable</label>
     </div>
 
     <div class="remu-inputs-two">
-      <%= f.radio_button 'annual_salary', 'Non', :checked => @job_edit.annual_salary == "Non" ? true : false, :class => "checked-radio" %>
+      <%= f.radio_button 'annual_salary', 'Non', :checked => @job.annual_salary == "Non" ? true : false, :class => "checked-radio" %>
       <label> Non</label>
     </div>
 
     <div class="remu-inputs-two">
-      <%= f.radio_button 'annual_salary', 'Oui', :class => "checked-radio", :checked => @job_edit.annual_salary == "Oui" ? false : true, :id =>"enable_textbox" %>
+      <%= f.radio_button 'annual_salary', 'Oui', :class => "checked-radio", :checked => @job.annual_salary == "Oui" ? false : true, :id =>"enable_textbox" %>
       <label> Oui</label>
     </div>
 
     <div class="remu-input-field">
-      <%= text_field_tag "annual_salary_text", @job_edit.annual_salary, :disabled => false, :id => "textBox" %>
+      <%= text_field_tag "annual_salary_text", @job.annual_salary, :disabled => false, :id => "textBox" %>
     </div>
 
   </div>
@@ -170,6 +170,7 @@
 <div class="clear"></div>
 <div class="clear"></div>
 <%= hidden_field_tag 'count', '0' %>
+<%= hidden_field_tag 'counter', '0' %>
 <div class="job-skill">
   <h1><span>Required</span> Profile </h1>
   <%= image_tag asset_path 'dashboard-botom-line.png' %>
@@ -197,7 +198,7 @@
             <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
             <% if i > 0 %>
                 <a href="javascript:;">
-                  <%= link_to_function image_tag(asset_path 'minus.png'), "remove_language(#{i},#{job_lang.id},#{@job_edit.id} );" %>
+                  <%= link_to_function image_tag(asset_path 'minus.png'), "remove_language(#{i},#{job_lang.id},#{@job.id} );" %>
                   <!--<img src="/assets/minus.png" alt="Remove" onclick="remove_location_field_new(<%= i %>)"/>-->
                 </a>
             <% end %>
@@ -208,42 +209,73 @@
   <% end %>
 </div>
 
-<div id="education-div">
-  <div class="contract-field-ed">
-    <label> Education Level </label>
-    <%= f.select(:education_level, Job::Education_Levels) %>
-    <div class="add-button">
-      <div class="add-education"> <%= image_tag asset_path 'plus.png' %></div>
-
-    </div>
-  </div>
-</div>
-
-
-<div class="left-holder">
-  <div class="publication">
-    <h1>Publication</h1>
-    <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <div class="w100 mtop20">
-      <p>Postuler sur (au moins un choix):</p>
-
-      <div class="inputs-publication">
-        <input type="checkbox" value=""/>
+<div id="education-div" class="education_bar">
+  <% unless @job_educations.blank? %>
+      <% @job_educations.each_with_index do |job_ed, i| %>
+          <div id="remove_edu_<%= i %>">
+            <div class="contract-field-ed" id="contract-field-ed">
+              <label> Education Level </label>
+              <%= select_tag "education_ids[]", options_from_collection_for_select(EducationLevel.all, "id", "name", job_ed.id) %>
+            </div>
+            <div class="add-button">
+              <div class="add-education"> <%= image_tag asset_path 'plus.png' %></div>
+              <% if i > 0 %>
+                  <a href="javascript:;">
+                    <%= link_to_function image_tag(asset_path 'minus.png'), "remove_education(#{i},#{job_ed.id},#{@job.id} );" %>
+                    <!--<img src="/assets/minus.png" alt="Remove" onclick="remove_location_field_new(<%= i %>)"/>-->
+                  </a>
+              <% end %>
+            </div>
+          </div>
+      <% end %>
+  <% else %>
+      <div class="contract-field-ed" id="contract-field-ed">
+        <label> Education Level </label>
+        <%= select_tag "education_ids[]", options_from_collection_for_select(EducationLevel.all, "id", "name") %>
+        <div class="add-button">
+          <div class="add-education"> <%= image_tag asset_path 'plus.png' %></div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="publication-line">
-    <div class="publication-line">
+  <% end %>
+</div>
+
+
+<div class="publication">
+  <h1>Publication</h1>
+  <%= image_tag asset_path 'dashboard-botom-line.png' %>
+  <div class="w100 mtop20">
+    <p>Postuler sur (au moins un choix):</p>
+
+    <div class="inputs-publication">
       <input type="checkbox" value=""/>
-
-      <p>Recevoir les candidatures sur mon adresse e mail</p>
-
     </div>
-    <div class="clear"></div>
-
-
   </div>
 </div>
+<div class="publication">
+  <h1>Publication</h1>
+  <%= image_tag asset_path 'dashboard-botom-line.png' %>
+  <div class="w100 mtop20">
+    <p>Publish this job on Future Cadre</p>
+
+    <div class="inputs-publication">
+      <%= check_box_tag 'publication' %>
+    </div>
+  </div>
+</div>
+<div class="publication-line">
+  <div class="publication-line">
+    <%= check_box_tag 'email' %>
+    <p>Receive an email on this address</p>
+
+    <div class="date-box" id="email-box" style="display: none;">
+      <%= text_field_tag "employer_email", nil, :id => "email_box" %>
+    </div>
+  </div>
+  <div class="clear"></div>
+
+
+</div>
+
 
 <div class="w100">
   <div class="btn-save">
@@ -299,20 +331,21 @@
     }
 
     $('.add-education').click(function () {
-        var scntDiv = $('.contract-field-ed');
-        var count = parseInt($('#count').attr('value'));
-        count = count + 1;
-        $('#count').attr('value', count);
-        var txt_field = '<div id="new_div_' + count + '"><div class="contract-field-ed">' + <%= f.select(:education_level, Job::Education_Levels) %> +'</div><div class="add-button" style="margin-top: 30px;"><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_education_field(' + count + ')" /></a> <div> </div>';
+        var scntDiv = $('#contract-field-ed');
+        var counter = parseInt($('#counter').attr('value'));
+        counter = counter + 1;
+
+        $('#counter').attr('value', counter);
+        var txt_field = '<div id="new_div_' + counter + '"><div class="contract-field-ed">' + <%= select_tag "education_ids[]", options_from_collection_for_select(EducationLevel.all, "id", "name") %> +'</div><div class="add-button" style="margin-top: 30px;"><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_education_field(' + counter + ')" /></a> <div> </div>';
         scntDiv.append(txt_field);
 
     });
     function remove_education_field(obj) {
         var field = $('#new_div_' + obj)
-        var count = parseInt($('#count').attr('value'));
-        var count_toatl = parseInt($('#count').attr('value'));
-        count = count - 1;
-        $('#count').attr('value', count);
+        var counter = parseInt($('#counter').attr('value'));
+        var count_toatl = parseInt($('#counter').attr('value'));
+        counter = counter - 1;
+        $('#counter').attr('value', counter);
         field.remove();
     }
 
@@ -338,5 +371,38 @@
 
     }
 
+    function remove_education(obj, ed_id, job_id) {
+        var ed = ed_id;
+        var job = job_id;
+        $.ajax({
+            url:'/jobs/remove_education?job_id=' + job + '&ed_id=' + ed, type:'get',
+            processData:false,
+            success:function (data) {
+                var field = $('#remove_edu_' + obj)
+                var counter = parseInt($('#counter').attr('value'));
+                var count_toatl = parseInt($('#counter').attr('value'));
+                counter = counter - 1;
+                $('#counter').attr('value', counter);
+                field.remove();
+                //                $(".language-bar").html(data);
+            }});
+        return false;
+
+    }
+
+
+
+    $('#email').click(function(){
+
+        if($('#email').is(':checked')==true)
+        {
+
+           $('#email-box').show();
+        }
+        else
+        {
+            $('#email-box').hide();
+        }
+    });
 
 </script>

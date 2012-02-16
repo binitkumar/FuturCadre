@@ -198,7 +198,7 @@
                 var menuPlaceholder = document.getElementById('network-holder');
                 newNode = document.createElement('div');
                 newNode.id = 'social_media_toolbox';
-                newNode.innerHTML = ' <div class="addthis_toolbox addthis_default_style " addthis:description="<%= @job.employer.profile.company_informations.first.name %> is Hiring for <%= @job.name %>. Please click on the links to apply for this position.." addthis:title="<%= @job.name %>" addthis:url="<%= shorten_url %>"> <a class="addthis_button_facebook"></a> <a class="addthis_button_twitter"></a><a class="addthis_button_email"></a><a class="addthis_button_linkedin"></a><a class="addthis_button_print"></a><span class="addthis_separator">|</span><a href="http://www.addthis.com/bookmark.php?v=250&pubid=ra-4f0dccb34198a7b3" class="addthis_button_compact">Share</a><div>';
+                newNode.innerHTML = ' <div class="addthis_toolbox addthis_default_style " addthis:description="<%= @job.employer.profile.company_information.name %> is Hiring for <%= @job.name %>. Please click on the links to apply for this position.." addthis:title="<%= @job.name %>" addthis:url="<%= shorten_url %>"> <a class="addthis_button_facebook"></a> <a class="addthis_button_twitter"></a><a class="addthis_button_email"></a><a class="addthis_button_linkedin"></a><a class="addthis_button_print"></a><span class="addthis_separator">|</span><a href="http://www.addthis.com/bookmark.php?v=250&pubid=ra-4f0dccb34198a7b3" class="addthis_button_compact">Share</a><div>';
 
                 menuPlaceholder.parentNode.insertBefore(newNode, menuPlaceholder.nextSibling);
 

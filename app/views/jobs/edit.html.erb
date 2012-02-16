@@ -7,7 +7,7 @@
       <%= render :partial => "employer/employer", :locals => { :employer => @employer } %>
     </div>
     <div class="dashboard-content-right">
-      <%= form_for @job_edit, :url =>{ :action => 'update', :controller => 'jobs', :id => @job_edit.id, :cid => @company_information.id }, :html =>{ :id => "update_job", :onsubmit =>false, :multipart => true }, :remote => true do |f| %>
+      <%= form_for @job, :url =>{ :action => 'update', :controller => 'jobs', :id => @job.id, :cid => @company_information.id }, :html =>{ :id => "update_job", :onsubmit =>false, :multipart => true }, :remote => true do |f| %>
           <%= render :partial => "update_job", :locals => { :f => f, :employer => @employer } %>
           <div class="save-button">
             <%#= f.submit "Save" %>

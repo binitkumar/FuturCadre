@@ -1,14 +1,14 @@
 <h1>Edit Group</h1>
 
 <% if @group.school_categories.blank? %>
-    <%= form_for @group, :url => { :action => "update", :id => @group.id } do |f| %>
+    <%= form_for(@group, :url => { :action => "update", :id => @group.id },  :html => {:multipart => true}) do |f| %>
         <%= render :partial => 'form', :locals => { :f => f } %>
         <div class="actions">
           <%= f.submit %>
         </div>
     <% end %>
 <% else %>
-    <%= form_for @group, :url => { :action => "update_school_group", :gid => @group.id } do |f| %>
+    <%= form_for(@group, :url => { :action => "update_school_group", :gid => @group.id },  :html => {:multipart => true}) do |f| %>
         <%= render :partial => 'school_group', :locals => { :f => f } %>
         <div class="actions">
           <%= f.submit %>

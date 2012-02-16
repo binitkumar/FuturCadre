@@ -17,11 +17,13 @@ class Admin::GroupsController < ApplicationController
   def new
     @group = Group.new
     #@jobs  = Job.all
+    @photo = Photo.new(params[:photo])
   end
 
   def create
     @group_new       = Group.new(params[:group])
     @group_new.owner = User.first
+    @picture         =""
     #@group_new.group_type_id = params[:group_type_id]
     jobs             = []
     if params[:job_id].present?
@@ -31,7 +33,15 @@ class Admin::GroupsController < ApplicationController
         @group_new.jobs << Job.find_by_id(@group_job.id)
       end
     end
+    unless params[:photo].blank?
+      @picture              = Photo.new(params[:photo])
+      @picture.content_type = "group_image"
+      @picture.save
+    end
+
+
     if @group_new.save
+      @picture.update_attributes(:imageable_id => @group_new.id, :imageable_type => "Group")
       redirect_to admin_groups_path, :notice => 'Group was successfully created.'
     else
       render :action => "new"
@@ -54,13 +64,20 @@ class Admin::GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-
-    jobs = []
-    jobs = params[:job_id]
-    jobs.each do |job|
-      @group_job = Job.find_by_id(job)
-      @group.jobs << Job.find_by_id(@group_job.id)
+    jobs   = []
+    unless params[:job_id].blank?
+      jobs = params[:job_id]
+      jobs.each do |job|
+        @group_job = Job.find_by_id(job)
+        @group.jobs << Job.find_by_id(@group_job.id)
+      end
     end
+    unless params[:photo].blank?
+      @photo = @group.photo
+      @photo.update_attributes(params[:photo])
+    end
+
+
     if @group.update_attributes(params[:group])
       redirect_to admin_groups_path, :notice => 'Group was successfully updated.'
     else
@@ -95,7 +112,7 @@ class Admin::GroupsController < ApplicationController
 
     @group_new       = Group.new(params[:group])
     @group_new.owner = User.first
-    #@group_new.group_type_id = params[:group_type_id]
+    @picture         =""
     @school_category = SchoolCategory.find(params[:school_category_id])
     @group_new.school_categories << SchoolCategory.find_by_id(@school_category.id)
 
@@ -107,7 +124,15 @@ class Admin::GroupsController < ApplicationController
         @group_new.jobs << Job.find_by_id(@group_job.id)
       end
     end
+
+
+    unless params[:photo].blank?
+      @picture              = Photo.new(params[:photo])
+      @picture.content_type = "group_image"
+      @picture.save
+    end
     if @group_new.save
+      @picture.update_attributes(:imageable_id => @group_new.id, :imageable_type => "Group")
       redirect_to admin_groups_path, :notice => 'Group was successfully created.'
     else
       render :action => "new"
@@ -117,11 +142,17 @@ class Admin::GroupsController < ApplicationController
   def update_school_group
     @school_group = Group.find(params[:gid])
     jobs          = []
-    jobs          = params[:job_id]
-    jobs.each do |job|
-      @group_job = Job.find_by_id(job)
-      @school_group.jobs << Job.find_by_id(@group_job.id)
+    unless  params[:job_id].blank?
+      jobs = params[:job_id]
+      jobs.each do |job|
+        @group_job = Job.find_by_id(job)
+        @school_group.jobs << Job.find_by_id(@group_job.id)
+      end
     end
+    unless params[:photo].blank?
+      @school_group.photo.update_attributes(params[:photo])
+    end
+
     if @school_group.update_attributes(params[:group])
       redirect_to admin_groups_path, :notice => 'Group was successfully updated.'
     else

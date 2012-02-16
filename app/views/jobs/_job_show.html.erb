@@ -22,17 +22,22 @@
       <%= image_tag asset_path 'dashboard-botom-line.png' %>
       <label>Skills:</label>
       <% unless @job_new.skills.blank? %>
-                <% @job_new.skills.each do |skill| %>
+          <% @job_new.skills.each do |skill| %>
               <%= skill.name %>,
           <% end %>
       <% end %>
       <br/>
 
-      <p><label>Education:</label>  <%= @job_new.education_level %></p>  <br/>
-       <label>Language:</label>
+      <p><label>Education:</label>
+        <% unless @job_new.education_levels.blank? %>
+            <% @job_new.education_levels.each do |job_edu| %>
+                <%= job_edu.name %>,
+            <% end %>
+        <% end %></p>  <br/>
+      <label>Language:</label>
       <% unless @job_new.languages.blank? %>
           <% @job_new.languages.each do |job_lang| %>
-             <%= job_lang.value %>,
+              <%= job_lang.value %>,
           <% end %>
       <% end %>
       </p>
@@ -42,12 +47,12 @@
 <div class="w100">
   <div class="btn-publish">
     <div class="apply-left"></div>
-    <div class="apply-mid" ><%= link_to "Publish This Job", details_jobs_path(:id => @job_new.id), :class => "job-link",:style=>" color: #FFFFFF;text-decoration: none;" %></div>
+    <div class="apply-mid"><%= link_to "Publish This Job", details_jobs_path(:id => @job_new.id), :class => "job-link", :style=>" color: #FFFFFF;text-decoration: none;" %></div>
     <div class="apply-right"></div>
   </div>
   <div class="btn-apply-change">
     <div class="apply-left"></div>
-    <div class="apply-mid"><%= link_to "Personalize this offer", edit_jobs_path(:id =>@job_new.id),:style=>" color: #FFFFFF;text-decoration: none;" %></div>
+    <div class="apply-mid"><%= link_to "Personalize this offer", edit_jobs_path(:id =>@job_new.id), :style=>" color: #FFFFFF;text-decoration: none;" %></div>
     <div class="apply-right"></div>
   </div>
 
@@ -55,14 +60,14 @@
 </div>
 
 <script language="JavaScript">
-    $("a.job-link").click(function() {
+    $("a.job-link").click(function () {
         $.ajax({
-            context: this,
-            url: $(this).attr("href"),
-            type: "GET",
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function(response) {
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
                 $(".content-holder").html(response.html);
             }
         });

@@ -31,6 +31,11 @@
   <%= f.text_area :description %>
 </div>
 <br/><br/>
+
+<%= fields_for :photo do |image| %>
+    <%= image.file_field :image %>
+<% end %>
+<br/><br/>
 <div class="field">
   <label> Mean Salary </label><br/>
   <%= f.text_field :mean_salary %>

@@ -169,6 +169,7 @@
 <div class="clear"></div>
 <div class="clear"></div>
 <%= hidden_field_tag 'count', '0' %>
+<%= hidden_field_tag 'counter', '0' %>
 <div class="job-skill">
   <h1><span>Required</span> Profile </h1>
   <%= image_tag asset_path 'dashboard-botom-line.png' %>
@@ -195,9 +196,9 @@
 
 </div>
 <div id="education-div">
-  <div class="contract-field-ed">
+  <div class="contract-field-ed" id="contract-field-ed">
     <label> Education Level </label>
-    <%= f.select(:education_level, Job::Education_Levels) %>
+    <%= select_tag "education_ids[]", options_from_collection_for_select(EducationLevel.all, "id", "name") %>
     <div class="add-button">
       <div class="add-education"> <%= image_tag asset_path 'plus.png' %></div>
     </div>
@@ -205,30 +206,31 @@
 </div>
 
 
-<div class="left-holder">
-  <div class="publication">
-    <h1>Publication</h1>
-    <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <div class="w100 mtop20">
-      <p>Postuler sur (au moins un choix):</p>
+<div class="publication">
+  <h1>Publication</h1>
+  <%= image_tag asset_path 'dashboard-botom-line.png' %>
+  <div class="w100 mtop20">
+    <p>Publish this job on Future Cadre</p>
 
-      <div class="inputs-publication">
-        <input type="checkbox" value=""/>
-      </div>
+    <div class="inputs-publication">
+      <%= check_box_tag 'publication' %>
     </div>
-  </div>
-  <div class="publication-line">
-    <div class="publication-line">
-      <input type="checkbox" value=""/>
-
-      <p>Recevoir les candidatures sur mon adresse e mail</p>
-
-    </div>
-    <div class="clear"></div>
-
-
   </div>
 </div>
+<div class="publication-line">
+  <div class="publication-line">
+    <%= check_box_tag 'email'  %>
+    <p>Receive an email on this address</p>
+
+    <div class="date-box" id="email-box" style="display: none;">
+      <%= text_field_tag "employer_email", nil, :id => "email_box" %>
+    </div>
+  </div>
+  <div class="clear"></div>
+
+
+</div>
+
 
 <div class="w100">
   <div class="btn-save">
@@ -267,20 +269,22 @@
 
     $('.add-education').click(function () {
 
-        var scntDiv = $('.contract-field-ed');
-        var count = parseInt($('#count').attr('value'));
-        count = count + 1;
-        $('#count').attr('value', count);
-        var txt_field = '<div id="new_div_' + count + '"><div class="contract-field-ed">' + <%= f.select(:education_level, Job::Education_Levels) %> +'</div><div class="add-button" style="margin-top: 30px;"><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_education_field(' + count + ')" /></a> <div> </div>';
+        alert($('#counter').val());
+        var scntDiv = $('#contract-field-ed');
+        var counter = parseInt($('#counter').attr('value'));
+        counter = counter + 1;
+
+        $('#counter').attr('value', counter);
+        var txt_field = '<div id="new_div_' + counter + '"><div class="contract-field-ed">' + <%= select_tag "education_ids[]", options_from_collection_for_select(EducationLevel.all, "id", "name") %> +'</div><div class="add-button" style="margin-top: 30px;"><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_education_field(' + counter + ')" /></a> <div> </div>';
         scntDiv.append(txt_field);
 
     });
     function remove_education_field(obj) {
         var field = $('#new_div_' + obj)
-        var count = parseInt($('#count').attr('value'));
-        var count_toatl = parseInt($('#count').attr('value'));
-        count = count - 1;
-        $('#count').attr('value', count);
+        var counter = parseInt($('#counter').attr('value'));
+        var count_toatl = parseInt($('#counter').attr('value'));
+        counter = counter - 1;
+        $('#counter').attr('value', counter);
         field.remove();
     }
 
@@ -307,5 +311,17 @@
 
     }
 
+    $('#email').click(function(){
+
+        if($('#email').is(':checked')==true)
+        {
+
+           $('#email-box').show();
+        }
+        else
+        {
+            $('#email-box').hide();
+        }
+    });
 
 </script>
