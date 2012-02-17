@@ -1,56 +1,68 @@
 <div class="reg-tab-holder">
-	<div class="reg-tab-holder-new tab-act">
-		<div class="reg-left-tab-holder"></div>
+  <div class="reg-tab-holder-new tab-act">
+    <div class="reg-left-tab-holder"></div>
+    <% if @role.name == "job_seeker" %>
+        <div class="reg-mid-tab-holder"><%= t('user_register_as') %> <%= t('header.job_seeker') %></div>
+    <% elsif @role.name == "employer" %>
+        <div class="reg-mid-tab-holder"><%= t('user_register_as') %> <%= t('header.employer') %></div>
+    <% end %>
+    <div class="reg-right-tab-holder"></div>
+  </div>
+
+  <div class="reg-tab-holder-new tab-act">
+      <div class="reg-left-tab-holder"></div>
       <% if @role.name == "job_seeker" %>
-		<div class="reg-mid-tab-holder"><%= t('user_register_as')%> <%= t('header.job_seeker') %></div>
-	<%elsif @role.name == "employer" %>
-        <div class="reg-mid-tab-holder"><%= t('user_register_as')%> <%= t('header.employer') %></div>
+          <div class="reg-mid-tab-holder"><%= t('user_register_as') %> <%= t('header.job_seeker') %></div>
+      <% elsif @role.name == "employer" %>
+          <div class="reg-mid-tab-holder"><%= t('user_register_as') %> <%= t('header.employer') %></div>
       <% end %>
-          <div class="reg-right-tab-holder"></div>
-	</div>
+      <div class="reg-right-tab-holder"></div>
+    </div>
 </div>
 
+
+
 <div class="basic-info">
-	<h1><span class="red"> <%= t('account')  %></span> <%= t('information')  %> </h1>
-	<%= image_tag asset_path 'basic-info-bot-bar.png' %>
+  <h1><span class="red"> <%= t('account') %></span> <%= t('information') %> </h1>
+  <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 </div>
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html => {:id => "sign-up-form"} ) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :id => "sign-up-form" }) do |f| %>
 
     <%= devise_error_messages! %>
 
-	<div class="sign-in-input-holder mtop60">
-		<label><%= t('users.user_name') %> </label>
-		<%= f.text_field :name %>
-		<!--<div id="check_user_name"></div>-->
+    <div class="sign-in-input-holder mtop60">
+      <label><%= t('users.user_name') %> </label>
+      <%= f.text_field :name %>
+      <!--<div id="check_user_name"></div>-->
 
-	</div>
-	<div class="sign-in-input-holder">
-		<label>Email</label>
-		<%= f.email_field :email %>
-		<p><%= t('email') %></p>
-	</div>
-	<div class="sign-in-input-holder">
-		<label><%= t('users.password') %></label>
-		<%= f.password_field :password %>
-		<p><%= t('password_helper') %></p>
-	</div>
-	<div class="sign-in-input-holder">
-		<label><%= t('users.conf_password') %></label>
-		<%= f.password_field :password_confirmation %>
-		<p><%= t('conf_password_helper') %></p>
-	</div>
+    </div>
+    <div class="sign-in-input-holder">
+      <label>Email</label>
+      <%= f.email_field :email %>
+      <p><%= t('email') %></p>
+    </div>
+    <div class="sign-in-input-holder">
+      <label><%= t('users.password') %></label>
+      <%= f.password_field :password %>
+      <p><%= t('password_helper') %></p>
+    </div>
+    <div class="sign-in-input-holder">
+      <label><%= t('users.conf_password') %></label>
+      <%= f.password_field :password_confirmation %>
+      <p><%= t('conf_password_helper') %></p>
+    </div>
 
-	<div class="reg-left-holder">
-		<%= show_simple_captcha %>
-	</div>
+    <div class="reg-left-holder">
+      <%= show_simple_captcha %>
+    </div>
 
-	<div class="reg-right-holder">
-		<div class="checkbox">
-			<%= check_box_tag 'terms', 'yes' %>
-			<label><%= t('privacy_policay') %></label>
-		</div>
-		<%= f.hidden_field :role_id,:value => @role.id  %>
-		<div class="reg-me"><a id="register-button"><%= t('user_register_as') %></a></div>
+    <div class="reg-right-holder">
+      <div class="checkbox">
+        <%= check_box_tag 'terms', 'yes' %>
+        <label><%= t('privacy_policay') %></label>
+      </div>
+      <%= f.hidden_field :role_id, :value => @role.id %>
+      <div class="reg-me"><a id="register-button"><%= t('user_register_as') %></a></div>
 
-	</div>
+    </div>
 <% end %>

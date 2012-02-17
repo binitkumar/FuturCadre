@@ -7,7 +7,9 @@
   <div class="dashboard-content">
     <h1>Resumes</h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <button id="upload-popup" class="question-button">Upload a New CV</button>
+
+        <button id="upload-popup" class="question-button">Upload a New CV</button>
+
     <p><br/>
     </p>
 
@@ -48,21 +50,21 @@
 
 <script language="JavaScript">
     $("#upload-form").dialog({
-        autoOpen: false,
-        height: 300,
-        width: 350,
-        modal: true,
-        buttons: {
+        autoOpen:false,
+        height:300,
+        width:350,
+        modal:true,
+        buttons:{
 
-            Cancel: function() {
+            Cancel:function () {
                 $(this).dialog("close");
             },
-            "Upload a New Cv": function() {
+            "Upload a New Cv":function () {
                 $('#add_cv_form').ajaxSubmit({
-                    beforeSubmit: function(a, f, o) {
+                    beforeSubmit:function (a, f, o) {
                         o.dataType = 'json';
                     },
-                    success: function(data) {
+                    success:function (data) {
 
                         $(".dashboard-content-right").html(data.html);
                     }
@@ -73,8 +75,25 @@
             }}
     });
 
-    $("#upload-popup").click(function() {
+    $("#upload-popup").click(function () {
+        <%unless current_user.profile.blank?%>
+        {
+        <%if @resumes.count != 3%>
+            {
+                $("#upload-form").dialog("open");
+            }
+        <%else%>
+            {
+                alert("You are allowed to upload three resumes");
+            }
+        <%end%>
+        }
+        <%else%>
+        {
+            alert("Please first create a profile!");
 
-        $("#upload-form").dialog("open");
+        }
+
+        <%end%>
     });
 </script>

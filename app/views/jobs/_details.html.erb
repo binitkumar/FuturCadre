@@ -54,9 +54,12 @@
                   </div>
               <% end %>
               <div class="description-heading mtop30"><%= t('jobs.education') %>:</div>
-              <div class="description-text"><%= @job.education_level %>
-              </div>
-
+              <% unless @job.education_levels.blank? %>
+                  <% @job.education_levels.each do |education| %>
+                      <div class="description-text"><%= education.name %>
+                      </div>
+                  <% end %>
+              <% end %>
               <div class="description-heading mtop30"><%= t('job_skill_require') %>:</div>
               <% @job.skills.each do |skill| %>
                   <div class="description-text"> <%= skill.name %>
@@ -64,13 +67,14 @@
               <% end %>
               <div class="description-heading mtop30"><%= t('jobs.comp_annual') %></div>
               <div class="description-text"><%= @job.annual_salary %></div>
-
-              <div class="description-heading mtop30"><%= t('jobs.contract') %></div>
-              <div class="description-text"><%= @job.contract.name %></div>
-
-              <div class="description-heading mtop30"><%= t('jobs.duration') %></div>
-              <div class="description-text"><%= @job.period.name %></div>
-
+              <% unless @job.contract.blank? %>
+                  <div class="description-heading mtop30"><%= t('jobs.contract') %></div>
+                  <div class="description-text"><%= @job.contract.name %></div>
+              <% end %>
+              <% unless @job.period.blank? %>
+                  <div class="description-heading mtop30"><%= t('jobs.duration') %></div>
+                  <div class="description-text"><%= @job.period.name %></div>
+              <% end %>
               <div class="description-heading mtop30"><%= t('jobs.date_of_start') %></div>
               <div class="description-text"><%= @job.date_of_start.strftime("%d-%m-%Y") %></div>
 
@@ -132,7 +136,7 @@
 
         <script type="text/javascript">
 
-            $(".job-application").click(function() {
+            $(".job-application").click(function () {
 
                 <%if user_signed_in?%>
                 {
@@ -142,12 +146,12 @@
                         {
                             url = "jobs/new_application?id=" + '<%=@job.id %>';
                             $.ajax({
-                                context: this,
-                                url: url,
-                                type: "GET",
-                                data: $(this).serialize(),
-                                dataType: "json",
-                                success: function(response) {
+                                context:this,
+                                url:url,
+                                type:"GET",
+                                data:$(this).serialize(),
+                                dataType:"json",
+                                success:function (response) {
                                     $(".content-holder").html(response.html);
                                 }
                             });
@@ -174,18 +178,18 @@
             });
 
             $("#application-form").dialog({
-                autoOpen: false,
-                height: 300,
-                width: 350,
-                modal: true,
-                buttons: {
+                autoOpen:false,
+                height:300,
+                width:350,
+                modal:true,
+                buttons:{
 
-                    Cancel: function() {
+                    Cancel:function () {
                         $(this).dialog("close");
                     },
-                    "Apply for a Job": function() {
+                    "Apply for a Job":function () {
 
-                        $.post($("form#apply_job_form").attr("action"), $("form#add_question_for").serialize(), (function(response) {
+                        $.post($("form#apply_job_form").attr("action"), $("form#add_question_for").serialize(), (function (response) {
                             return $(".mid-cont-holder").html(response.html);
                         }), "json");
                         return false;
@@ -194,7 +198,7 @@
             });
 
 
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var menuPlaceholder = document.getElementById('network-holder');
                 newNode = document.createElement('div');
                 newNode.id = 'social_media_toolbox';

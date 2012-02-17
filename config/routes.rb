@@ -83,6 +83,9 @@ FuturCadre::Application.routes.draw do
       get :categories_jobs_list
       get :get_jobs_by_region
       get :profile_search
+      get :sort_result
+      get :sort_result_asc
+      get :sorting_box
 
     end
   end
@@ -100,6 +103,7 @@ FuturCadre::Application.routes.draw do
       get :new_application
       post :apply_job
       get :remove_education
+      get :sort_result
     end
   end
 

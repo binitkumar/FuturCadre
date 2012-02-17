@@ -14,6 +14,10 @@ class ProfilesController < ApplicationController
     @resume              = Asset.new(params[:resume]) #created this for creating a resume object in the same table
     @org_photo           = Asset.new(params[:org_photo])
     @company_information = CompanyInformation.new(params[:company_information])
+    #@error_arr = []
+    #@error_arr <<  @profile
+    #@error_arr <<  @asset
+
 
   end
 
@@ -27,7 +31,11 @@ class ProfilesController < ApplicationController
       @asset.content_type = "profile_image"
       @asset.user_id      = current_user.id
       @asset.profile_id   = @profile.id
-      @asset.save
+
+      unless @asset.save
+        render :action => "new"
+        return
+      end
     end
 
     #educational information
@@ -48,11 +56,14 @@ class ProfilesController < ApplicationController
         @cv.content_type = "cv"
         @cv.user_id      = current_user.id
         @cv.profile_id   = @profile.id
-        @cv.save
+        unless @cv.save
+          render :action => "new"
+          return
+        end
       end
 
     end
-    if @profile_job.save
+    if @profile.save
       redirect_to(@profile, :notice => 'Profile was successfully created.')
     else
       render :action => "new"
@@ -70,7 +81,10 @@ class ProfilesController < ApplicationController
         @asset.content_type = "profile_image"
         @asset.user_id      = current_user.id
         @asset.profile_id   = @profile.id
-        @asset.save
+        unless @asset.save
+          render :action => "new"
+          return
+        end
       end
 
       unless @profile.blank?
@@ -86,7 +100,10 @@ class ProfilesController < ApplicationController
           @image.content_type = "company_logo"
           @image.user_id      = current_user.id
           @image.profile_id   = @profile.id
-          @image.save
+          unless @image.save
+            render :action => "new"
+            return
+          end
         end
 
       end

@@ -1,4 +1,4 @@
-<%  [:alert, :notice].select{|type| !flash[type].blank?}.each do |type|   %>
+<%  [:alert, :notice, :error].select{|type| !flash[type].blank?}.each do |type|   %>
 	<div class = "<%= type %>" >
 		<p>
 			<%= flash[type] %>

@@ -15,7 +15,13 @@ class SearchController < ApplicationController
   end
 
   def search
-    @jobs = Job.search(params)
+
+    array_new = ""
+    @jobs     = Job.search(params)
+    @jobs.each do |job|
+      array_new << job.id.to_s + ","
+    end
+    session[:job] = array_new
     render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
   end
 
@@ -230,4 +236,39 @@ class SearchController < ApplicationController
     render :json => { :html => render_to_string(:partial => '/employer/search_results'), :locals => { :collections => @collections } }.to_json
   end
 
+  def sort_result
+    session[:value_sort]="Desc"
+    jobs    = []
+    new_job = session[:job].split(",")
+    new_job.each do |job|
+      unless job.blank?
+        jobs << Job.find_by_id(job.gsub(",", ""))
+      end
+    end
+
+      @jobs = jobs.sort_by { |e| e[:created_at] }.reverse!
+
+    render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
+  end
+
+
+  def sort_result_asc
+    session[:value_sort]="Asc"
+    jobs    = []
+        new_job = session[:job].split(",")
+        new_job.each do |job|
+          unless job.blank?
+            jobs << Job.find_by_id(job.gsub(",", ""))
+          end
+        end
+
+          @jobs = jobs.sort_by { |e| e[:created_at] }
+
+        render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
+      end
+
+  def sorting_box
+    render :partial => '/search/sorting_box'
+  end
 end
+

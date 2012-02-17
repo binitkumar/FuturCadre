@@ -1,10 +1,54 @@
-<% if target.errors.any? %>
-    <div id="errorExplanation" class="ErrorExplanation">
-      <h2><%= pluralize(target.errors.count, "error") %> prohibited this record from being saved:</h2>
+<% if @profile %>
+    <% if @profile.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+          <ul>
+            <% @profile.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+<% end %>
+<% if @asset %>
+    <% if @asset.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@asset.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+          <ul>
+            <% @asset.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+<% end %>
+
+<% if @cv %>
+    <% if @cv.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@cv.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+          <ul>
+            <% @cv.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+<% end %>
+
+<% if object.errors.any? %>
+    <div id="error_explanation">
+      <h2>Oops, looks like  <%= pluralize(object.errors.count, "error") %>
+        occured:</h2>
+      <br/>
       <ul>
-        <% target.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+        <% object.errors.each do |key, msg| %>
+            <li><%= key %><%= msg %></li>
         <% end %>
       </ul>
     </div>
 <% end %>
+

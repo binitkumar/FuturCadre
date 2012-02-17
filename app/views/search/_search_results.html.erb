@@ -1,15 +1,50 @@
 <div class="w100">
-	<div class="search-results"><%= t('search.search_results') %></div>
-	<div class="data-post-div"></div>
-	<ul class="data-post-hold">
-		<li><a href="#">select job</a></li>
-		<li><a href="#">select job</a></li>
-		<li><a href="#">select job</a></li>
-	</ul>
-	<div class="search-line"></div>
+  <div class="search-results"><%= t('search.search_results') %></div>
+
+  <div class="data-post-div">  <%= select_tag "classification_result", options_for_select([["Asc"], ["Desc"]]), :onchange => "change_order()" %></div>
+
+  <div class="search-line"></div>
 </div>
-<div  id="result-list">
-	<%= render :partial => "jobs/list" %>
+<div id="result-list">
+
+  <%= render :partial => "jobs/list" %>
+
 </div>
 
 
+<script type="text/javascript">
+    function change_order() {
+        alert($("#classification_result option:selected").text());
+
+        if ($("#classification_result option:selected").text() == "Asc") {
+
+            url = "/search/sort_result_asc?sort=" + 'Asc';
+            $.ajax({
+                context:this,
+                url:url,
+                type:"GET",
+                data:$(this).serialize(),
+                dataType:"json",
+                success:function (response) {
+                    $(".content-left-holder").html(response.html);
+                }
+            });
+            return false;
+        }
+        else {
+            url = "/search/sort_result?sort=" + 'Desc';
+            $.ajax({
+                context:this,
+                url:url,
+                type:"GET",
+                data:$(this).serialize(),
+                dataType:"json",
+                success:function (response) {
+                    $(".content-left-holder").html(response.html);
+                }
+            });
+            return false;
+
+        }
+    }
+</script>
