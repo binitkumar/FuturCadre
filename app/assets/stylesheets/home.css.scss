@@ -1295,5 +1295,68 @@ a {
   p {
     float: left;
     width: 100%;
+    color: #ffffff;
+  }
+
+/*Messages*/
+  #error {
+    background-color: #F0A8A8;
+    border: 1px solid #900;
+  }
+   #error {
+    width: 90%;
+    margin: 0 auto 10px auto;
+    padding: 5px;
+  }
+   #error p {
+    margin-left: 20px;
+    padding: 0;
+    font-size: .75em;
+    color: #000;
+  }
+   #error a {
+    text-decoration: none;
+    padding: 0 3px;
+  }
+
+  #error a {
+    border: 1px solid #900;
+    color: #900;
+  }
+  #error a:hover {
+    color: #333;
+    border: 1px solid #333;
   }
 }
+
+
+/*.error {*/
+  /*width: 400px;*/
+  /*border: 2px solid #c00;*/
+  /*padding: 18px;*/
+  /*padding-bottom: 12px;*/
+  /*margin-bottom: 59px;*/
+  /*background-color: #f0f0f0;*/
+/*}*/
+
+/*.error h2 {*/
+  /*text-align: left;*/
+  /*font-weight: bold;*/
+  /*padding: 5px 5px 5px 15px;*/
+  /*font-size: 14px;*/
+/*margin: -7px;*/
+  /*margin: -16px 10px 4px;*/
+  /*background-color: #c00;*/
+  /*color: #fff;*/
+/*}*/
+
+/*.error p {*/
+  /*color: #333;*/
+  /*margin-bottom: 0;*/
+  /*padding: 5px;*/
+/*}*/
+
+/*.error ul li {*/
+  /*font-size: 12px;*/
+  /*list-style: square;*/
+/*}*/

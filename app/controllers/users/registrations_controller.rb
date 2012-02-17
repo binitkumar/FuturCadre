@@ -21,10 +21,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
         respond_with resource, :location => after_inactive_sign_up_path_for(resource)
       end
     else
-      if simple_captcha_valid?
-        set_flash_message :notice, :missing_captcha
+
+      if !simple_captcha_valid?
+        set_flash_message :error, :missing_captcha
+      elsif params[:terms]==nil
+        set_flash_message :error, :missing_privacy
       end
-      set_flash_message :notice, :missing_privacy if params[:terms] == nil
       respond_with_navigational(resource) { render_with_scope :new }
     end
   end
