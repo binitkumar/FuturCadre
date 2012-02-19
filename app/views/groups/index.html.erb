@@ -60,10 +60,10 @@
                       <div class="dashboard-text">
                         <div class="name">
                           <div class="icon-img">
-                           <%unless group.photo.blank?%>
-                            <%= image_tag group.photo.image.url, :style =>"border: medium solid !important;height: 48px; width: 46px;" %>
+                            <% unless group.photo.blank? %>
+                                <%= image_tag group.photo.image.url, :style =>"border: medium solid !important;height: 48px; width: 46px;" %>
                             <% else %>
-                              <% image_tag asset_path "dashboard-img.png" %>
+                                <% image_tag asset_path "dashboard-img.png" %>
                             <% end %>
                           </div>
                           <div class="icon-text">
@@ -73,7 +73,7 @@
                           </div>
                         </div>
                         <div class="description-hold"><%= group.description %> </div>
-                        <div class="salary-hold" onclick="open_salary()"><%= group.mean_salary %> Euro
+                        <div class="salary-hold" onclick="open_salary('<%= group.id%>')"><%= group.mean_salary %> Euro
 
                         </div>
 
@@ -176,7 +176,7 @@
                     this.checked = true;
                 });
             });
-         }
+        }
         else {
 
             $("#hiddenresult").fadeIn(200);
@@ -186,13 +186,25 @@
                 });
             });
             $(".active_rating").rating();
-       }
+        }
 
     });
 
 
-    function open_salary() {
-//        alert("aghagshagsh");
+    function open_salary(group_id) {
+        alert(group_id);
+        url = "groups/set_salary?id=" + group_id;
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                $(".content-holder").html(response.html);
+            }
+        });
+        return false;
 
 
     }

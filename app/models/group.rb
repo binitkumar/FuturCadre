@@ -14,4 +14,12 @@ class Group < ActiveRecord::Base
   has_one :rating, :as => :rateable
 
 
+  def new_salary(params)
+    puts "ajhasjhajhsajhsja",params.inspect
+    sal = (self.mean_salary + params)/2
+    puts "salaaaaaaaaaaaaaaaaaaaaa", sal.inspect
+    return sal
+
+  end
+
 end

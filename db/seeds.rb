@@ -294,7 +294,7 @@ puts "updating group ratings"
 groups = Group.all
 groups.each do |group|
   rating          = Rating.new
-  rating.rate     = 2
+  #rating.rate     = '2'
   rating.rateable = group
   rating.save!
 end

@@ -175,6 +175,7 @@ FuturCadre::Application.routes.draw do
       get :faker_join
       get :set_rating
       get :set_salary
+      post :update_salary
     end
   end
 
