@@ -17,9 +17,10 @@ jQuery ->
     false
 
   $("#find_job_button").click ->
+    $(".data-post-div").show()
     $.post $("form#search-form").attr("action"), $("form#search-form").serialize(), ((response) ->
       $(".content-left-holder").html response.html
-    ), "html"
+    ), "json"
     false
 
   $("#rg_find_job_button").click ->

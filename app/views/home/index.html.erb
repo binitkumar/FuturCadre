@@ -1,16 +1,23 @@
 <%= render :partial => "search_box" %>
 <div class="basic-info mtNone">
-	<h1><span class="red"><%= t('home_featured') %></span> <%= t('home_employers') %></h1>
-	<%= image_tag asset_path 'basic-info-bot-bar.png' %>
+  <h1><span class="red"><%= t('home_featured') %></span> <%= t('home_employers') %></h1>
+  <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 </div>
 <div class="featured-employers">
-	<%# removed for refactoring %>
+
+
 </div>
+
+    <div class="data-post-div" style="display: none;">
+      <%= render :partial => "search/sorting_box" %>
+    </div>
+
 <div class="content-holder mtop40">
-	<div class="content-left-holder">
-		<%= render :partial => "browse_jobs" %>
-	</div>
+
+  <div class="content-left-holder">
+    <%= render :partial => "browse_jobs" %>
+  </div>
   <div class="content-right-holder">
-		<%= render :partial => "right_panal" %>
-	</div>
+    <%= render :partial => "right_panal" %>
+  </div>
 </div>
