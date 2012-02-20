@@ -1,4 +1,32 @@
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
-	<%= render :partial => "form" %>
+
+  <div class="reg-tab-holder">
+    <div class="reg-tab-holder-new tab-act">
+      <div class="reg-left-tab-holder"></div>
+
+      <div class="reg-mid-tab-holder" id="job_seeker" onclick="user_login('<%= Role.find_by_name("job_seeker").id %>')"><%= t('user_register_as') %> <%= t('header.job_seeker') %></div>
+
+      <div class="reg-mid-tab-holder" id="employer" onclick="user_login('<%= Role.find_by_name("employer").id %>')"><%= t('user_register_as') %> <%= t('header.employer') %></div>
+      <div class="reg-right-tab-holder"></div>
+    </div>
+
+
+  </div>
+  <div id="reg_div">
+
+
+    <%= render :partial => "form" %>
+
+
+  </div>
 </div>
+
+
+<script type="text/javascript ">
+    function user_login(type) {
+
+        $("#role_id").val(type);
+    }
+
+</script>

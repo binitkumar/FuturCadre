@@ -22,7 +22,7 @@ class SearchController < ApplicationController
       array_new << job.id.to_s + ","
     end
     session[:job] = array_new
-   render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
+    render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
   end
 
   def get_sub_categories
@@ -223,21 +223,21 @@ class SearchController < ApplicationController
     #ON p.id = ei.profile_id
     #INNER JOIN profession_informations
     #ON p.id = profession_informations.profile_id
-    #WHERE p.first_name like '%#{params[:first_name]}%' OR p.last_name = '#{params[:last_name]}'
-    # OR p.country_id = '#{params[:country_id]}' OR p.region_id = '#{params[:region_id]}'
-    #OR p.city_id = '#{params[:city_id]}' OR ei.degree_level = '#{params[:degree_level]}'
-    #OR ei.major_subject = '#{params[:major_subject]}'  OR ei.institute = '#{params[:institute]}'
-    #OR ei.year = '#{params[:year]}' OR profession_informations.category_id = '#{params[:category_id]}'
-    #OR profession_informations.job_title = ''#{params[:job_title]}''
-    #OR profession_informations.profession_experience = '#{params[:profession_experience]}'
-    #OR profession_informations.profession_industry = '#{params[:profession_industry]}'"
+    #WHERE p.first_name like '%#{params[:first_name]}%' AND p.last_name like '%#{params[:last_name]}%'
+    # AND p.country_id like '%#{params[:country_id]}%' AND p.region_id like '%#{params[:region_id]}%'
+    #AND p.city_id like '%#{params[:city_id]}%' AND ei.degree_level like '%#{params[:degree_level]}%'
+    #AND ei.major_subject like '%#{params[:major_subject]}%'  AND ei.institute like '%#{params[:institute]}%'
+    #AND ei.year like '%#{params[:year]}%' AND profession_informations.category_id like '%#{params[:category_id]}%'
+    #AND profession_informations.job_title like '%#{params[:job_title]}'
+    #AND profession_informations.profession_experience like '%#{params[:profession_experience]}%'
+    #AND profession_informations.profession_industry like  '%#{params[:profession_industry]}%'"
     #)
 
     render :json => { :html => render_to_string(:partial => '/employer/search_results'), :locals => { :collections => @collections } }.to_json
   end
 
   def sort_result
-    session[:value_sort]="Desc"
+
     jobs    = []
     new_job = session[:job].split(",")
     new_job.each do |job|
@@ -245,27 +245,13 @@ class SearchController < ApplicationController
         jobs << Job.find_by_id(job.gsub(",", ""))
       end
     end
-
+    if params[:sort] =="Desc"
       @jobs = jobs.sort_by { |e| e[:created_at] }.reverse!
-
+    else
+      @jobs = jobs.sort_by { |e| e[:created_at] }
+    end
     render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
   end
-
-
-  def sort_result_asc
-    session[:value_sort]="Asc"
-    jobs    = []
-        new_job = session[:job].split(",")
-        new_job.each do |job|
-          unless job.blank?
-            jobs << Job.find_by_id(job.gsub(",", ""))
-          end
-        end
-
-          @jobs = jobs.sort_by { |e| e[:created_at] }
-
-        render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
-      end
 
   def sorting_box
     render :partial => '/search/sorting_box'

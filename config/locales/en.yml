@@ -78,6 +78,7 @@ en:
   home_job_search_category: "Job Category"
   home_job_search_location: Location
   home_job_search_title: "Job Title"
+  home_job_search_company: "Company Name"
   home_logout: Logout
   home_my_account: "My Account"
   home_popular: "Most Popular"

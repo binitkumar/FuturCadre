@@ -1,32 +1,8 @@
-<div class="reg-tab-holder">
-  <div class="reg-tab-holder-new tab-act">
-    <div class="reg-left-tab-holder"></div>
-    <% if @role.name == "job_seeker" %>
-        <div class="reg-mid-tab-holder"><%= t('user_register_as') %> <%= t('header.job_seeker') %></div>
-    <% elsif @role.name == "employer" %>
-        <div class="reg-mid-tab-holder"><%= t('user_register_as') %> <%= t('header.employer') %></div>
-    <% end %>
-    <div class="reg-right-tab-holder"></div>
-  </div>
-
-  <div class="reg-tab-holder-new tab-act">
-      <div class="reg-left-tab-holder"></div>
-      <% if @role.name == "job_seeker" %>
-          <div class="reg-mid-tab-holder"><%= t('user_register_as') %> <%= t('header.job_seeker') %></div>
-      <% elsif @role.name == "employer" %>
-          <div class="reg-mid-tab-holder"><%= t('user_register_as') %> <%= t('header.employer') %></div>
-      <% end %>
-      <div class="reg-right-tab-holder"></div>
-    </div>
-</div>
-
-
-
 <div class="basic-info">
   <h1><span class="red"> <%= t('account') %></span> <%= t('information') %> </h1>
   <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 </div>
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :id => "sign-up-form" }) do |f| %>
+<%= form_for(@resource,:url => registration_path(@resource), :html => { :id => "sign-up-form" }) do |f| %>
 
     <%= devise_error_messages! %>
 
@@ -61,8 +37,9 @@
         <%= check_box_tag 'terms', 'yes' %>
         <label><%= t('privacy_policay') %></label>
       </div>
-      <%= f.hidden_field :role_id, :value => @role.id %>
+      <%= hidden_field_tag :role_id, @role.id %>
       <div class="reg-me"><a id="register-button"><%= t('user_register_as') %></a></div>
 
     </div>
 <% end %>
+

@@ -1,5 +1,5 @@
 <%  [:alert, :notice, :error].select{|type| !flash[type].blank?}.each do |type|   %>
-	<% if type == [:alert]%>
+	<% if type == [:error]%>
         <div class = "<%= type %>" style="padding-top: 50px;position: absolute;top: 312px;width: 74%;" >
 		<p>
 			<%= flash[type] %>

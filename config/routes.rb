@@ -61,6 +61,7 @@ FuturCadre::Application.routes.draw do
     get "sign_up" => "users/registrations#new"
     get "sign_out" => "users/sessions#destroy"
     get "password_recovery" => "users/passwords#new"
+    get "new_user" => "users/registrations#new_user"
   end
 
   resources :home do

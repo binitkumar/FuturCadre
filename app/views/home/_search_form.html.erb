@@ -1,29 +1,47 @@
 <div class="banner-right">
-	<div class="job-search-top-holder"><%= t('home_job_search') %></div>
- 	<div class="job-search-mid-holder">
-		<%= form_tag "/search/search", :id => "search-form" do %>
-			<div class="input-holder">
-				<label><%= t('home_job_search_title') %></label>
-				<%= text_field_tag "name"%>
-			</div>
-			<div class="select-holder">
-				<label><%= t('home_job_search_category') %></label>
-				<%= select_tag "category_id", options_from_collection_for_select(@categories, "id", "name"), :class =>"slt-div" %>
-			</div>
+  <div class="job-search-top-holder"><%= t('home_job_search') %></div>
+  <div class="job-search-mid-holder">
+    <%= form_tag "/search/search", :id => "search-form" do %>
+        <div class="input-holder">
+          <label><%= t('home_job_search_title') %></label>
+          <%= text_field_tag "name" %>
+        </div>
+        <div class="select-holder">
+          <label><%= t('home_job_search_category') %></label>
+          <%= select_tag "category_id", options_from_collection_for_select(@categories, "id", "name"), :class =>"slt-div" %>
+        </div>
 
-			<div class="select-holder">
-				<label><%= t('home_job_search_location') %></label>
-				<%= render :partial => "shared/countries", :locals => { :object_collection => "main" } %>
-				<div id="regions_main">
-					<%= render :partial => "shared/regions", :locals => { :object_collection => "main" } %>
-				</div>
-				<div id="cities_main">
-					<%= render :partial => "shared/cities", :locals => { :object_collection => "main" } %>
-				</div>
-			</div>
-			<div class="advanced-search"><%# removed for refactoring %></div>
-			<div class="findjob"><%= link_to t('button.find_job') ,"javascript:void(0)", :id => "find_job_button" %></div>
-		<%end%>
- 	</div>
- 	<div class="job-search-bot-holder"></div>
+        <div class="select-holder">
+          <label><%= t('home_job_search_location') %></label>
+          <%= render :partial => "shared/countries", :locals => { :object_collection => "main" } %>
+          <div id="regions_main">
+            <%= render :partial => "shared/regions", :locals => { :object_collection => "main" } %>
+          </div>
+          <div id="cities_main">
+            <%= render :partial => "shared/cities", :locals => { :object_collection => "main" } %>
+          </div>
+        </div>
+
+        <div id="advance_criteria" style="display: none">
+          <div class="select-holder">
+            <label><%= t('home_job_search_company') %></label>
+            <%= select_tag "company_id",  options_for_select(["Select from list"] + @companies.map{ |obj| [obj.name , obj.id ]}), :class => "slt-div" %>
+          </div>
+
+
+        </div>
+        <div class="advanced-search" id="advance_search"><%= link_to t('home_job_advance_search'), "javascript:void(0)", :id => "advance_search_button" %></div>
+        <div class="findjob"><%= link_to t('button.find_job'), "javascript:void(0)", :id => "find_job_button" %></div>
+    <% end %>
+  </div>
+  <div class="job-search-bot-holder"></div>
 </div>
+
+<script type="text/javascript">
+       $('#advance_search_button').click(function(){
+              $('#advance_criteria').show();
+              $('#advance_search').hide();
+
+       });
+
+</script>

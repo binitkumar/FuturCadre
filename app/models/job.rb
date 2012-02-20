@@ -24,7 +24,21 @@ class Job < ActiveRecord::Base
   def self.search params
 
     conditions = []
-    conditions << "jobs.name LIKE '%#{params[:name]}%'"
+    #abc << "SELECT jobs.name FROM jobs where"
+
+    if params[:company_id] == "Select from list"
+      puts "a"
+      conditions << "SELECT jobs.name , jobs.id FROM jobs where jobs.name LIKE '%#{params[:name]}%'"
+    else
+      puts "bcc"
+      conditions << "SELECT jobs.name , jobs.id FROM jobs"
+      abc = []
+      abc << "LEFT OUTER JOIN company_informations co ON jobs.employer_id = co.profile_id
+              where jobs.name LIKE"
+      conditions << abc
+
+    end
+
     conditions << "jobs.category_id LIKE  '%#{params[:category_id]}%'"
     if params[:main]
       conditions << "jobs.country_id LIKE  '%#{params[:main][:country_id]}%'"
@@ -35,11 +49,29 @@ class Job < ActiveRecord::Base
       conditions << "jobs.region_id LIKE '%#{params[:search][:region_id]}%'"
       conditions << "jobs.city_id LIKE '%#{params[:search][:city_id]}%'"
     end
-    conditions = conditions.join(" AND ")
-    find(:all, :conditions => conditions)
+
+    #conditions = conditions.join(" AND ")
+   if params[:company_id] == "Select from list"
+      conditions = conditions.join(" AND ")
+      @job       = find_by_sql(conditions)
+    else
+      @job = find_by_sql(conditions)
+    end
+    @jobs = []
+    @job.each do |j|
+      @jobs << Job.find_by_id(j.id)
+    end
+    return @jobs
+
   end
 
   #Education_Levels = ["Ecole d'ingénieur", "Ecole de Commerce", "Ecoles/Universités Etrangères", "IEP", "IUT", "Lycée", "Université", "x - Autre"]
+
+  def find_company(com_id)
+    company = CompanyInformation.find(com_id)
+    jobs    = company.profile.user.created_jobs
+
+  end
 
   def location
     "#{city.name}, #{region.name} #{country.name}"
