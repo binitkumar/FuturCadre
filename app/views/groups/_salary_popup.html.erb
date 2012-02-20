@@ -32,25 +32,17 @@
 <script type="text/javascript">
 
     $("#application_job").click(function() {
-         $.post($("form#set_salary_form").attr("action"), $("form#set_salary_form").serialize(), (function(response) {
-            return $(".content-holder").html(response.html);
+        $.post($("form#set_salary_form").attr("action"), $("form#set_salary_form").serialize(), (function(response) {
              close_popup();
+            return $(".salary-hold").html(response.html);
+
         }), "json");
         return false;
     });
 
 
     function close_popup() {
-        $(".popup-hold").hide();
-        $(".shadow").hide();
-        $.ajax({
-            url: '/groups/index' ,type: 'get', dataType: 'html',
-            processData: false,
-            success: function(data) {
-
-                $(".content-holder").html(data.html);
-            }
-        })
+        $(".content-left-holder").hide();
     }
 
 </script>

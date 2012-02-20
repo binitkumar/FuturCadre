@@ -145,7 +145,7 @@
 
 </div>
 
-
+<div id="salary_result_holder"></div>
 <script type="text/javascript">
     var pagination_options = {
         num_edge_entries:0,
@@ -201,7 +201,7 @@
             data:$(this).serialize(),
             dataType:"json",
             success:function (response) {
-                $(".content-holder").html(response.html);
+                $("#salary_result_holder").html(response.html);
             }
         });
         return false;
