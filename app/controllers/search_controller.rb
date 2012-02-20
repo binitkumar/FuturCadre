@@ -22,7 +22,7 @@ class SearchController < ApplicationController
       array_new << job.id.to_s + ","
     end
     session[:job] = array_new
-    render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
+    #render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
   end
 
   def get_sub_categories

@@ -1,0 +1,56 @@
+<div class="content-left-holder">
+  <div class="shadow"></div>
+  <div class="popup-hold">
+
+    <div class="popup-top-holder">Update Salary</div>
+    <div class="popup-mid-holder ">
+      <%= form_tag('groups/update_salary', :id => 'set_salary_form') %>
+      <div class="input-holder" style="width:59%;">
+        <label>Enter the salary</label>
+        <%= text_field_tag 'group_salary' %>
+      </div>
+      <%= hidden_field_tag :group_id, @group.id %>
+
+
+      <div class="pop-up-btn-new">
+        <div id="application_job" class="pop-up-btn">Update</div>
+        <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
+      </div>
+
+
+    </div>
+
+    <div class="popup-bot-holder"></div>
+  </div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+    $("#application_job").click(function() {
+         $.post($("form#set_salary_form").attr("action"), $("form#set_salary_form").serialize(), (function(response) {
+            return $(".content-holder").html(response.html);
+             close_popup();
+        }), "json");
+        return false;
+    });
+
+
+    function close_popup() {
+        $(".popup-hold").hide();
+        $(".shadow").hide();
+        $.ajax({
+            url: '/groups/index' ,type: 'get', dataType: 'html',
+            processData: false,
+            success: function(data) {
+
+                $(".content-holder").html(data.html);
+            }
+        })
+    }
+
+</script>

@@ -6,7 +6,7 @@ class Photo < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type=>['image/jpeg', 'image/png', 'image/gif', 'application/msword', 'application/pdf', 'docx']
 
 
-  validates_attachment_size :photo, :less_than => 2.megabytes,
-                            :unless            => Proc.new { |model| model.photo }
+  validates_attachment_size :image, :less_than => 2.megabytes,
+                            :unless            => Proc.new { |model| model.image }
 
 end
