@@ -145,10 +145,7 @@ groups.each do |group|
   group_photo.save
 end
 
-puts "updating group ratings"
-groups.each do |group|
-  group.rating = 2
-end
+
 #
 #def seed_institute
 ##  puts 'Deleting existing institute................'
@@ -294,7 +291,7 @@ puts "updating group ratings"
 groups = Group.all
 groups.each do |group|
   rating          = Rating.new
-  #rating.rate     = '2'
+  rating.rate     = '2'
   rating.rateable = group
   rating.save!
 end
