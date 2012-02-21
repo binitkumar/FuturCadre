@@ -12,7 +12,7 @@
             "Create a Question": function() {
                 $.post($("form#add_question_form").attr("action"), $("form#add_question_form").serialize(), (function(response) {
                     return $(".mid-cont-holder").html(response.html);
-                     }), "json");
+                }), "json");
                 $("#question-form").dialog("close");
                 return false;
 
@@ -27,45 +27,50 @@
 
 </script>
 <div class="mid-cont-holder">
-  <button id="question-popup" class="question-button">Ask a Question</button>
-  <% unless @group.questions.blank? %>
-      <% @group.questions.each do |group_quest| %>
-          <div class="w100 mtop20">
-            <div class="job-cont-hold">
-              <div class="accountants"><label> Title:</label><%= link_to group_quest.name %> </div>
-              <div class="result-text"> <label> Category:</label> <%= group_quest.question_category.name %></div>
-              <div class="result-text"><label>Descripton:</label><%= group_quest.body %> </div>
-              <div class="date-text"> <%= group_quest.created_at.strftime("%d-%m-%Y") %>
+  <div id="question_answer">
+    <button id="question-popup" class="question-button">Ask a Question</button>
+    <% unless @group.questions.blank? %>
+        <% @group.questions.each do |group_quest| %>
+            <div class="w100 mtop20">
+              <div class="job-cont-hold">
+                <div class="accountants" id="answer_button" onclick="post_answer('<%= group_quest.id%>')">
+                  <label> Title:</label><%= link_to group_quest.name, "javascript:void(0)", :id => "answer_button" %>
+                </div>
+                <div class="result-text"><label> Category:</label> <%= group_quest.question_category.name %></div>
+                <div class="result-text"><label>Descripton:</label><%= group_quest.body %> </div>
+                <div class="date-text"> <%= group_quest.created_at.strftime("%d-%m-%Y") %>
+                </div>
               </div>
+
             </div>
-
-          </div>
-      <% end %>
-
-  <% end %>
-
-  <div id="question-form" title="Create a New Question">
-
-    <%= form_for :question, :url =>{ :action => 'create_question' },:html =>{ :id => 'add_question_form'}, :remote => true do |f| %>
-        <div class="select-holder">
-          <%= hidden_field_tag :group_id, @group.id %>
-          <label>Question Type</label>
-          <%= f.select :question_category_id, options_from_collection_for_select(QuestionCategory.all, "id", "name") %>
-        </div>
-        <div class="input-holder">
-          <label>Title</label>
-          <%= f.text_field :name %>
-        </div>
-        <div class="input-holder">
-          <label>Message</label>
-          <%= f.text_area :body %>
-
-        </div>
+        <% end %>
 
     <% end %>
 
+    <div id="question-form" title="Create a New Question">
 
+      <%= form_for :question, :url =>{ :action => 'create_question' }, :html =>{ :id => 'add_question_form' }, :remote => true do |f| %>
+          <div class="select-holder">
+            <%= hidden_field_tag :group_id, @group.id %>
+            <label>Question Type</label>
+            <%= f.select :question_category_id, options_from_collection_for_select(QuestionCategory.all, "id", "name") %>
+          </div>
+          <div class="input-holder">
+            <label>Title</label>
+            <%= f.text_field :name %>
+          </div>
+          <div class="input-holder">
+            <label>Message</label>
+            <%= f.text_area :body %>
+
+          </div>
+
+      <% end %>
+
+
+    </div>
   </div>
+
 </div>
 
 <script type="text/javascript">
@@ -74,5 +79,23 @@
         // a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
         $("#dialog:ui-dialog").dialog("destroy");
     });
+
+    function post_answer(group_id) {
+
+        url = "/groups/answer_question?id=" + group_id;
+        $.ajax({
+            context: this,
+            url: url,
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                $("#question_answer").html(response.html);
+            }
+        });
+        return false;
+
+
+    }
 
 </script>

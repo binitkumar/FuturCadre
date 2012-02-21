@@ -1,0 +1,41 @@
+<h1>News</h1>
+<%#= link_to 'New Category', new_admin_category_path %><br />
+<table>
+  <tr>
+    <th>Title</th>
+    <th> Body</th>
+    <th> Status</th>
+    <th>Actions</th>
+  </tr>
+
+  <% unless @new.blank? %>
+      <tr>
+        <th> <%= text_area_tag "body", @new.body %></th>
+        <th><%= @new.is_approved %></th>
+        <td id="approve" onclick="change_status('<%= @new.id%>')"><%= link_to 'Approve', "javascript:void(0)" %> |
+          <%= link_to 'Reject', "#", :confirm => 'Are you sure?', :method => :delete %>
+          <%= link_to 'Back', admin_news_index_path %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+
+
+<script type="text/javascript">
+    function change_status(news_id) {
+        url = "/admin/news/approve_news?id=" + news_id;
+        $.ajax({
+            context: this,
+            url: url,
+            type: "GET",
+            data: $(this).serialize(),
+            dataType: "html",
+            success: function(response) {
+                $("#approve").html(response.html);
+            }
+        });
+        return false;
+
+
+    }
+</script>

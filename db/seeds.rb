@@ -297,6 +297,29 @@ groups.each do |group|
 end
 
 
+puts "deleting existing news"
+news = News.all
+news.each { |new| new.destroy } if news.present?
+puts "creating news "
+(0 .. 4).each do |i|
+  News.create!(:title       => "Big Bang#{i}",
+               :body        => "As we look to expand, JPP is seeking a well-organized, extremely self-motivated individual to help with the office management and day-to-day running of the office. The successful candidate will be someone who takes initiative, identifies problems and provides solutions and is able to work well under pressure. He or she will be able to multi-task and work with a team of investigators and lawyers to drive forward JPP's challenging, but rewarding, mission.",
+               :is_approved => false
+  )
+end
+
+puts "updating picture of the news"
+ news = News.all
+news.each do |n_news|
+  n_news              = Photo.new
+  n_news.image        = File.open(Rails.root.join('app/assets/images/logo.png'))
+  n_news.imageable    = n_news
+  n_news.content_type = "news_picture"
+  n_news.save
+end
+
+
+
 
 
 

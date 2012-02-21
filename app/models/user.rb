@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   has_many :projects, :through => :project_users
   has_many :created_projects, :as => :owner, :class_name => "Project"
   has_many :sent_invitations, :class_name => 'ProjectUser', :foreign_key => 'sender_id'
+   has_many :created_news, :as => :owner, :class_name => "News"
 
   def role
     return "webmaster" if webmaster?

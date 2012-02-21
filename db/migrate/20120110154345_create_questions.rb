@@ -3,7 +3,7 @@ class CreateQuestions < ActiveRecord::Migration
     create_table :questions do |t|
       t.string :name
       t.text  :body
-      t.references :question_category, :user
+      t.references :question_category, :user , :group
       t.timestamps
     end
   end

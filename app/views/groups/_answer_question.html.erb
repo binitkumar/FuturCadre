@@ -1,0 +1,80 @@
+<script language="JavaScript">
+    $("#answer_form").dialog({
+        autoOpen: false,
+        height: 300,
+        width: 350,
+        modal: true,
+        buttons: {
+
+            Cancel: function() {
+                $(this).dialog("close");
+            },
+            "Post an Answer": function() {
+                $.post($("form#answer_form").attr("action"), $("form#answer_form").serialize(), (function(response) {
+                    return $(".mid-cont-holder").html(response.html);
+                }), "json");
+                $("#answer_form").dialog("close");
+                return false;
+
+            }}
+    });
+
+    $("#answer-popup").click(function() {
+
+        $("#answer_form").dialog("open");
+    });
+</script>
+
+<div class="mid-cont-holder">
+
+  <% unless @question.blank? %>
+
+      <div class="w100 mtop20">
+        <div class="job-cont-hold">
+          <div class="accountants"><label>
+            Title:</label><%= @question.name %>
+          </div>
+          <div class="result-text"><label> Category:</label> <%= @question.question_category.name %></div>
+          <div class="result-text"><label>Descripton:</label><%= @question.body %> </div>
+          <div class="date-text"> <%= @question.created_at.strftime("%d-%m-%Y") %>
+
+          </div>
+        </div>
+
+      </div>
+  <% end %>
+  <% unless @question.answers.blank? %>
+      <% @question.answers.each do |qa| %>
+
+          <div class="w100 mtop20">
+            <div class="job-cont-hold">
+              <div class="accountants"><label>
+                Title:</label><%= qa.body %>
+              </div>
+
+              <div class="date-text"> <%= qa.created_at.strftime("%d-%m-%Y") %>
+
+              </div>
+            </div>
+
+          </div>
+      <% end %>
+  <% end %>
+  <button id="answer-popup" class="question-button">Post an Answer</button>
+  <div id="answer_form" title="Post an Answer">
+
+    <%= form_for :answer, :url =>{ :action => 'create_answer' }, :html =>{ :id => 'answer_form' }, :remote => true do |f| %>
+        <div class="select-holder">
+          <%= hidden_field_tag :quest_id, @question.id %>
+          <div class="input-holder">
+            <label>Message</label>
+            <%= f.text_area :body %>
+
+          </div>
+        </div>
+    <% end %>
+
+
+  </div>
+
+</div>

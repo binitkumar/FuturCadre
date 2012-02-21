@@ -1,6 +1,5 @@
 FuturCadre::Application.routes.draw do
 
-
   match 'admin' => 'admin/home#login'
   #match 'sannan' => 'application#check_url'
   # match 'translate' => 'translate#index', :as => :translate_list
@@ -43,6 +42,13 @@ FuturCadre::Application.routes.draw do
         put :update_school_group
       end
 
+    end
+
+    resources :news do
+      collection do
+         get :approve_news
+
+      end
     end
   end
 
@@ -177,6 +183,8 @@ FuturCadre::Application.routes.draw do
       get :set_rating
       get :set_salary
       post :update_salary
+      get :answer_question
+      post :create_answer
     end
   end
 
@@ -217,13 +225,19 @@ FuturCadre::Application.routes.draw do
     end
   end
 
+  resources :news do
+    collection do
+
+    end
+  end
 
   resources :invitations do
     collection do
-           get :project_invitation
-           post :send_invitation
+      get :project_invitation
+      post :send_invitation
     end
   end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

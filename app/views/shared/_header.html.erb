@@ -38,6 +38,10 @@
       </li>
 
   <% end %>
+
+  <li class="<%= params[:controller] == "news" && params[:action] == "index" ? 'active' : '' %>">
+    <%= link_to "News", news_index_path() %>
+  </li>
 </ul>
 
 <div class="login-holder">
