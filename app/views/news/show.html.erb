@@ -1,0 +1,30 @@
+<%= render :partial => "shared/top_search_ box" %>
+<div class="content-holder">
+
+
+  <div class="left-content">
+    <div class="left-detail"> <%= image_tag asset_path "dashboard-img.png" %></div>
+    <p>Register Here</p>
+  </div>
+  <!--left-content ends-->
+
+  <div class="right-content">
+    <div class="right-content-detail">
+      <div class="content-detail-two">
+       <%= image_tag asset_path "1582.jpg" %>
+
+        <h1><%=@news.title  %> </h1>
+
+        <p><%=@news.created_at  %></p>
+
+        <p><%=@news.body  %></p>
+
+
+      </div>
+
+    </div>
+    <!--right-content ends-->
+
+
+  </div>
+</div>

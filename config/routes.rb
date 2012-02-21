@@ -227,6 +227,8 @@ FuturCadre::Application.routes.draw do
 
   resources :news do
     collection do
+      get :suggest_news
+      post :submit_news
 
     end
   end

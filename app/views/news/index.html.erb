@@ -1,0 +1,65 @@
+<%= render :partial => "shared/top_search_ box" %>
+<div class="content-holder">
+  <div class="left-content">
+    <div class="left-detail">
+      <%= image_tag asset_path "dashboard-img.png" %>
+    </div>
+    <p>Register Here</p>
+  </div>
+
+  <div class="right-content">
+    <div class="basic-info mtop10">
+      <h1><span class="red">News</span></h1>
+    </div>
+    <% unless @news.blank? %>
+        <% @news.each do |new| %>
+            <div class="right-content-detail">
+              <div class="suggest-a-news" onclick="suggest_news()">Suggest a news</div>
+
+              <div class="content-detail">
+                <%= image_tag asset_path "1582.jpg" %>
+                <h1><%= new.title %> </h1>
+
+                <p><%= new.created_at %></p>
+
+                <div class="rating-style">
+
+
+                </div>
+                <p style="width:550px; margin-top:5px; margin-bottom:30px;"><%= new.body %>.</p>
+                <%= link_to "See the news", news_path(:id => new.id) %>
+
+
+              </div>
+        <% end %>
+        </div>
+        <!--right-content ends-->
+    <% end %>
+
+  </div>
+
+
+</div>
+<div id="popup_holder"></div>
+
+<script language="JavaScript">
+
+    function suggest_news() {
+        url = "news/suggest_news";
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                $("#popup_holder").html(response.html);
+            }
+        });
+        return false;
+
+
+    }
+
+
+</script>

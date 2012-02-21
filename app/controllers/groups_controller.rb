@@ -95,14 +95,12 @@ class GroupsController < ApplicationController
 
   def create_question
     @group = Group.find(params[:group_id])
-    puts "aaaaaaaaaaaaa", params[:question].inspect
+
     @question = Question.new(params[:question])
     @question.update_attributes(:group_id => @group.id)
     if user_signed_in?
-      puts "ifffffff"
       @question.update_attributes(:user_id => current_user.id)
     else
-      puts "elseeeeeee"
       @question.update_attributes(:user_id => nil)
     end
     if @question.save!
@@ -151,7 +149,7 @@ class GroupsController < ApplicationController
 
   def answer_question
     @question = Question.find_by_id(params[:id])
-     @answer   = Answer.new(params[:answer])
+    @answer   = Answer.new(params[:answer])
     render :json => { :html => render_to_string(:partial => '/groups/answer_question', :locale=>{ :question => @question }) }.to_json
 
   end
@@ -161,13 +159,11 @@ class GroupsController < ApplicationController
     @answer   = Answer.new(params[:answer])
     @answer.update_attributes(:question_id => @question.id)
     if user_signed_in?
-      puts "ifffffff"
       @answer.update_attributes(:user_id => current_user.id)
     else
-      puts "elseeeeeee"
       @answer.update_attributes(:user_id => nil)
     end
-      render :json => { :html => render_to_string(:partial => '/groups/answer_question', :locale=>{ :question => @question }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/answer_question', :locale=>{ :question => @question }) }.to_json
   end
 
 end
