@@ -1,0 +1,146 @@
+// Place all the styles related to the news controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.left-content {
+    width: 250px;
+    height: auto;
+    float: left;
+}
+
+.left-detail {
+    float: left;
+    padding-left: 75px;
+    padding-top: 10px;
+}
+
+.left-content p {
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+
+.right-content {
+    float: left;
+    width: 720px;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.right-content-detail {
+    float: left;
+    width: 720px;
+    border: 1px solid #991514;
+}
+
+/*.suggest-a-news {*/
+    /*border: 1px solid #ccc;*/
+    /*height: 40px;*/
+    /*width: 150px;*/
+    /*float: right;*/
+    /*background-color: #991514;*/
+    /*margin-top: 5px;*/
+    /*margin-right: 5px;*/
+/*}*/
+ .suggest-a-news {
+  background-color: #991514;
+    border: 1px solid #CCCCCC;
+    color: #FFFFFF;
+    float: right;
+    font-size: 16px;
+    height: 40px;
+    line-height: 35px;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding-left: 8px;
+    width: 126px;
+ }
+.suggest-a-news a {
+    text-align: center;
+    font-weight: bold;
+    line-height: 40px;
+    text-decoration: none;
+    color: #fff;
+    padding-left: 20px;
+}
+
+.content-detail {
+    width: 100%;
+    float: left;
+    border-bottom: 3px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.content-detail img {
+    float: left;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.content-detail p {
+    float: left;
+    width: 75%;
+    margin-top: 5px;
+}
+
+.rating-style img {
+    margin: 0;
+}
+
+.rating-style h3 {
+    float: left;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.content-detail h1 {
+    color: #991514;
+}
+
+.content-detail a {
+    float: right;
+    margin-right: 10px;
+    color: #991514;
+}
+
+.content-detail ul li {
+    float: left;
+    list-style-type: none;
+    margin-top: 5px;
+}
+
+.content-detail-two {
+    float: left;
+}
+
+.content-detail-two img {
+    float: left;
+    margin: 10px;
+}
+
+.content-detail-two h1 {
+    margin-top: 10px;
+}
+ .input-holder-new {
+    float: left;
+    width: 100%;
+}
+
+.input-holder-new label {
+    color: #474747;
+    float: left;
+    font-size: 14px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.input-holder-new textarea {
+    background: none repeat scroll 0 0 #F6F6F6;
+    border-top: 1px solid #949494;
+    float: left;
+    margin-top: 6px;
+    min-height: 250px;
+    width: 150%;
+}
