@@ -1,18 +1,21 @@
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
 
-  <div class="reg-tab-holder">
-    <div class="reg-tab-holder-new tab-act">
-      <div class="reg-left-tab-holder"></div>
 
-      <div class="reg-mid-tab-holder" id="job_seeker" onclick="user_login('<%= Role.find_by_name("job_seeker").id %>')"><%= t('user_register_as') %> <%= t('header.job_seeker') %></div>
+  <div class="reg-tab-holder-new-two tab-act-two">
+    <div class="reg-left-tab-holder-two"></div>
 
-      <div class="reg-mid-tab-holder" id="employer" onclick="user_login('<%= Role.find_by_name("employer").id %>')"><%= t('user_register_as') %> <%= t('header.employer') %></div>
-      <div class="reg-right-tab-holder"></div>
-    </div>
-
-
+    <div class="reg-mid-tab-holder-two" id="job_seeker" onclick="user_login('<%= Role.find_by_name("job_seeker").id %>')"><%= t('user_register_as') %> <%= t('header.job_seeker') %></div>
+    <div class="reg-right-tab-holder-two"></div>
   </div>
+  <div class="reg-tab-holder-new-two">
+    <div class="reg-left-tab-holder-two"></div>
+
+    <div class="reg-mid-tab-holder-two" id="employer" onclick="user_login('<%= Role.find_by_name("employer").id %>')"><%= t('user_register_as') %> <%= t('header.employer') %></div>
+    <div class="reg-right-tab-holder-two"></div>
+  </div>
+
+
   <div id="reg_div">
 
 

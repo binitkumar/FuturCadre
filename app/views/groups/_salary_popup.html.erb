@@ -2,25 +2,20 @@
   <div class="shadow"></div>
   <div class="popup-hold">
 
-    <div class="popup-top-holder">Update Salary</div>
-    <div class="popup-mid-holder ">
+    <div class="job-search-top-holder-two">Update Salary</div>
+    <div class="job-search-mid-holder-two ">
       <%= form_tag('groups/update_salary', :id => 'set_salary_form') %>
       <div class="input-holder" style="width:59%;">
         <label>Enter the salary</label>
         <%= text_field_tag 'group_salary' %>
       </div>
       <%= hidden_field_tag :group_id, @group.id %>
-
-
-      <div class="pop-up-btn-new">
-        <div id="application_job" class="pop-up-btn">Update</div>
-        <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
+      <div class="buttons_pop">
+        <div id="application_job" class="update">Update</div>
+        <div id="exit_job" class="exit" onclick="close_popup()">Exit</div>
       </div>
-
-
     </div>
-
-    <div class="popup-bot-holder"></div>
+    <div class="job-search-bot-holder-two"></div>
   </div>
 
 </div>
@@ -33,7 +28,7 @@
 
     $("#application_job").click(function() {
         $.post($("form#set_salary_form").attr("action"), $("form#set_salary_form").serialize(), (function(response) {
-             close_popup();
+            close_popup();
             return $(".salary-hold").html(response.html);
 
         }), "json");

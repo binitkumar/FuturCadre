@@ -3,7 +3,7 @@ require "acts_as_commentable"
 class GroupsController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:index, :group_details, :group_body, :group_members, :group_wall, :group_question, :create_question,
-                                                 :search_group, :show_group, :set_salary, :update_salary, :answer_question, :create_answer]
+                                                 :search_group, :show_group, :set_salary, :update_salary, :answer_question, :create_answer,:set_rating]
 
   def index
     unless params[:locale].blank?

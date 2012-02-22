@@ -53,6 +53,11 @@
           </div>
           <div id="hiddenresult" style="display:none;">
 
+            <script type="text/javascript">
+                $(document).ready(function () {
+
+                });
+            </script>
             <% unless @groups.blank? %>
 
                 <% @groups.each do |group| %>
@@ -77,17 +82,17 @@
 
                         </div>
 
-                        <div class="rating-hold">
+                        <div class="rating-hold" id="rating_hold">
 
                           <p style="margin:5px 0px 0px 5px; color:#656565;">
+
                             <select name="myRating" class="active_rating" id="serialStar_group_<%= group.id %>">
-                              <option value="1" <%= group.rating.rate == 1 ? "selected='selected'" :"" %>>very
-                                weak
+                              <option value="1" <%= group.rating.rate.to_i == 1 ? "selected='yes'" :"" %>>very weak
                               </option>
-                              <option value="2" <%= group.rating.rate == 2 ? "selected='selected'" :"" %>>weak</option>
-                              <option value="3" <%= group.rating.rate == 3 ? "selected='selected'" :"" %>>average</option>
-                              <option value="4" <%= group.rating.rate == 4 ? "selected='selected'" :"" %>>strong</option>
-                              <option value="5" <%= group.rating.rate == 5 ? "selected='selected'" :"" %>>very
+                              <option value="2" <%= group.rating.rate.to_i == 2 ? "selected='yes'" :"" %>>weak</option>
+                              <option value="3" <%= group.rating.rate.to_i == 3 ? "selected='yes'" :"" %>>average</option>
+                              <option value="4" <%= group.rating.rate.to_i == 4 ? "selected='yes'" :"" %>>strong</option>
+                              <option value="5" <%= group.rating.rate.to_i == 5 ? "selected='yes'" :"" %>>very
                                 strong
                               </option>
                             </select>
@@ -95,8 +100,17 @@
 
 
                           <script type="text/javascript">
+                              $("#serialStar_group_<%= group.id %>").rating();
+                              var counter = 0;
+                              $("#serialStar_group_<%= group.id %>").siblings(".ui-rating").each(function() {
+                                  if (counter != 0) {
+                                      $(this).remove();
+                                  }
+                                  counter = counter + 1;
+                              });
                               $("#serialStar_group_<%= group.id %>").bind("change", function () {
                                   var rate = $('#serialStar_group_<%= group.id %>').serialize().split("=");
+
                                   var i = 1;
                                   for (i; i <= 5; i++) {
                                       if (i <= parseInt(rate[1])) {
@@ -158,7 +172,6 @@
         var offset = page_index * items_per_page;
         var new_content = $('#hiddenresult div.result').slice(offset, offset + items_per_page).clone();
         $('#Searchresult').empty().append(new_content);
-        $(".active_rating").rating();
         return false;
     }
 
@@ -185,14 +198,14 @@
                     this.checked = true;
                 });
             });
-            $(".active_rating").rating();
+
         }
 
     });
 
 
     function open_salary(group_id) {
-        alert(group_id);
+
         url = "groups/set_salary?id=" + group_id;
         $.ajax({
             context:this,
