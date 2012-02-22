@@ -14,7 +14,7 @@ class Group < ActiveRecord::Base
 
 
   def new_salary(params)
-    sal = (self.mean_salary + params)/2
+    sal = (self.mean_salary.to_i + params)/2
     return sal
 
   end
