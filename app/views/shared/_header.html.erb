@@ -19,7 +19,7 @@
     <%= link_to t('header.find_jobs'), root_url %>
   </li>
   <li class="<%= params[:controller] == "groups" ? 'active' : '' %>">
-    <%= link_to t('header.group'), nil, :id=>'b' %>
+    <%= link_to t('header.group'),  "javascript:void(0)" %>
     <ul>
       <li id="a">  <%= link_to "School Group", groups_path(:locale => "school") %> </li>
       <li>  <%= link_to "Job Group", groups_path(:locale => "job") %> </li>
