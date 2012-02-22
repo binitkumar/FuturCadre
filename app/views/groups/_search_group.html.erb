@@ -11,7 +11,7 @@
 
     $("#rg_group_search_button").click(function() {
         $.post($("form#group-search-form").attr("action"), $("form#group-search-form").serialize(), (function(response) {
-            return $(".content-holder").html(response.html);
+            return $(".dashboard-right").html(response.html);
         }), "json");
         return false;
     });
