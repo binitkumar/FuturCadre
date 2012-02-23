@@ -1,0 +1,22 @@
+<%= form_tag '/profiles/create_job_seeker_additional_information', :id =>"profile-form" do |f| %>
+	<div class="basic-info mtop10">
+		<h1><span class="red">Make your Resume Searchable!</span></h1>
+		<%= image_tag asset_path 'basic-info-bot-bar.png' %>
+	</div>
+	<div id="form-errors"></div>
+	<%= hidden_field_tag :profile_id, @profile.id %>
+
+	<div class="save-button-new"><%= button_to "Skip It" %></div>
+	<div class="save-button-new"><%= button_to "Save","javascript:void(0);", :id => "next-link" %></div>
+
+<%end%>
+
+<script type="text/javascript">
+
+	  $(".tabs").each(function(){
+	    $(this).removeClass("active");
+		});
+
+		$("#additional_information").addClass("active");
+
+</script>

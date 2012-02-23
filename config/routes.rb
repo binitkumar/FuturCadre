@@ -152,14 +152,13 @@ FuturCadre::Application.routes.draw do
   resources :profiles do
     collection do
       get :new
-      post :create_job_seeker
-      post :create_employer
+      post :create_job_seeker_basic_information, :create_job_seeker_education_details, :create_job_seeker_professional_experience, :create_job_seeker_additional_information
+      post :create_employer, :upload_photo
       get :update
       get :show
       get :edit
       put :update_job_seeker
       put :update_employer
-
     end
   end
 
