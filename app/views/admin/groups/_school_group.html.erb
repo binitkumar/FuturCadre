@@ -43,6 +43,13 @@
 <br/><br/>
 
 <div class="field">
+  <label> Rating </label><br/>
+  <%= text_field_tag "rate",:rate %>
+</div>
+<br/><br/>
+
+
+<div class="field">
   <label> Featured </label><br/>
   <%= f.radio_button 'featured', true %> <label> Yes</label><br/>
   <%= f.radio_button 'featured', false %> <label> No </label> <br/>

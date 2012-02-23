@@ -1,62 +1,86 @@
-<div class="dashboard-right-content">
+<div class="w100">
+  <%= form_for(@project) do |f| %>
+      <% if @project.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
-  <div class="dashboard-right-content">
+            <ul>
+              <% @project.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="w100">
+        <div class="profile-left-div">
+          <div class="profile-input mtop20">
+            <label>Name of project</label>
+            <%= f.text_field :name %>
+          </div>
+          <div class="profile-input mtop20">
+            <label>Tagline</label>
+            <%= f.text_field :tag_line %>
+          </div>
+
+          <div class="contract-field">
+               <label>Industry</label>
+               <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name") %>
+             </div>
+
+          <div class="profile-input mtop20">
+            <label>Twitter link</label>
+            <%= f.text_field :twitter_link %>
+          </div>
+          <div class="profile-input mtop20">
+            <label>Dig Link</label>
+            <%= f.text_field :dig_link %>
+          </div>
+          <div class="profile-input mtop20">
+            <label>Aol Link</label>
+            <%= f.text_field :dig_link %>
+          </div>
+          <div class="profile-input mtop20">
+            <label><%= t('profiles.region') %></label>
+
+            <div id="regions_project">
+              <%= render :partial => "shared/regions", :locals => { :object_collection => "project" } %>
+            </div>
+          </div>
+        </div>
+        <div class="profile-right-div">
+          <div class="profile-input mtop20">
+            <label>Presentation</label>
+            <%= f.text_area :description %>
+          </div>
+          <div class="profile-input mtop20">
+            <label>Fields Of Research</label>
+            <%= f.text_area :research %>
+          </div>
+
+          <div class="profile-input mtop20">
+            <label><%= t('profiles.country') %></label>
+
+            <div id="country_proejct">
+
+              <%= render :partial => "shared/countries", :locals => { :object_collection => "project" } %>
+            </div>
+          </div>
 
 
-    <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <div class="dashboard-right-left">
+          <div class="profile-input mtop20">
+            <label><%= t('profiles.city') %></label>
 
-      <div class="job-input">
-        <label>Title</label>
-        <%= f.text_field :name %>
+            <div id="cities_project">
+              <%= render :partial => "shared/cities", :locals => { :object_collection => "project" } %>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="contract-field">
-        <label> Thesis Category</label>
-        <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", @project.category_id) %>
-      </div>
-
-      <div class="job-input" id="date-picker">
-        <label> Published Date</label>
-        <%= f.text_field :date_of_publish, :class =>"date-pick" %>
-      </div>
-      <div class="job-input">
-        <label> No of Pages</label>
-        <%= f.text_field :no_of_pages %>
-      </div>
-
-    </div>
-
-    <!--dashboard-right-left ends-->
-    <div class="dashboard-right-right">
-      <div class="job-input-description">
-        <label>Description</label>
-        <%= f.text_area :description %>
-      </div>
+   </div>
+        <%= f.submit "save"%>
+  <% end %>
 
 
-      <div class="job-input">
-        <label>Thesis Document</label>
-        <%= fields_for :project_doc do |project| %>
-            <%= project.file_field :image %>
-        <% end %>
-      </div>
-    </div>
-
-  </div>
 
 
-  <div class="clear"></div>
-  <div class="clear"></div>
 
-
-  <div class="w100">
-    <div class="btn-save">
-      <div class="apply-left"></div>
-      <div class="apply-mid">Save</div>
-      <div class="apply-right"></div>
-    </div>
-  </div>
-
-  <!--dashboard-right-left-->
-</div>

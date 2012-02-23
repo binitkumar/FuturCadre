@@ -8,7 +8,7 @@
 
   <% @groups.each do |group| %>
       <tr>
-        <td><%= group.name %></td>
+        <td><%= link_to group.name, admin_group_path(:id => group.id) %></td>
         <td>
           <%= link_to 'Edit', edit_admin_group_path(group) %> |
           <%= link_to 'Destroy', admin_group_path(group), :confirm => 'Are you sure?', :method => :delete %>

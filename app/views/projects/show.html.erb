@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @project.name %>
+</p>
+
+<p>
+  <b>Tag line:</b>
+  <%= @project.tag_line %>
+</p>
+
+
+
+<p>
+  <b>Industry:</b>
+  <%= @project.industry %>
+</p>
+
+<p>
+  <b>Twitter link:</b>
+  <%= @project.twitter_link %>
+</p>
+
+<p>
+  <b>Dig link:</b>
+  <%= @project.dig_link %>
+</p>
+
+
+<p>
+  <b>Description:</b>
+  <%= @project.description %>
+</p>
+
+<p>
+  <b>Research:</b>
+  <%= @project.research %>
+</p>
+
+<p>
+  <b>Skill:</b>
+  <%= @project.skill_id %>
+</p>
+
+
+<p>
+  <b>Skill:</b>
+  <%= @project.country.name %>
+</p>
+
+
+<p>
+  <b>Skill:</b>
+  <%= @project.region.name %>
+</p>
+
+
+<p>
+  <b>Skill:</b>
+  <%= @project.city.name %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

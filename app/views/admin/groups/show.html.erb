@@ -1,0 +1,29 @@
+<h1><%= @group.name %></h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Members</th>
+    <th>User</th>
+    <th>Manager</th>
+
+  </tr>
+
+
+  <tr>
+    <td><%= @group.name %></td>
+    <% unless @members.blank? %>
+        <% @members.each do |mem| %>
+            <td>
+              <%= mem.name %>
+            </td>
+
+            <td><%= radio_button_tag "manager", false, @group.manager_id == ''? true:false %></td>
+            <td><%= radio_button_tag "manager", false,@group.manager_id == ''?  true:false %> </td>
+
+
+        <% end %>
+    <% end %>
+  </tr>
+
+</table>

@@ -35,7 +35,9 @@ class User < ActiveRecord::Base
   has_many :projects, :through => :project_users
   has_many :created_projects, :as => :owner, :class_name => "Project"
   has_many :sent_invitations, :class_name => 'ProjectUser', :foreign_key => 'sender_id'
-   has_many :created_news, :as => :owner, :class_name => "News"
+  has_many :created_news, :as => :owner, :class_name => "News"
+
+  has_many :manage_projects, :as => :manager, :class_name => "Group"
 
   def role
     return "webmaster" if webmaster?
@@ -56,7 +58,7 @@ class User < ActiveRecord::Base
     roles.include?(Role.find_by_name("job_seeker"))
   end
 
-  def group_manager
+  def group_manager?
     roles.include?(Role.find_all_by_name("group_manager"))
   end
 
