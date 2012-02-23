@@ -4,32 +4,58 @@
 
   <div class="reg-tab-holder-new-two tab-act-two">
     <div class="reg-left-tab-holder-two"></div>
+    <div class="reg-mid-tab-holder-two" id="job_seeker" onclick="user_login('job_seeker', '<%=role=Role.find_by_name('job_seeker').id%>')"><%= t('user_register_as') %> <%= t('header.job_seeker') %></div>
 
-    <div class="reg-mid-tab-holder-two" id="job_seeker" onclick="user_login('<%= Role.find_by_name("job_seeker").id %>')"><%= t('user_register_as') %> <%= t('header.job_seeker') %></div>
     <div class="reg-right-tab-holder-two"></div>
   </div>
   <div class="reg-tab-holder-new-two">
     <div class="reg-left-tab-holder-two"></div>
 
-    <div class="reg-mid-tab-holder-two" id="employer" onclick="user_login('<%= Role.find_by_name("employer").id %>')"><%= t('user_register_as') %> <%= t('header.employer') %></div>
+    <div class="reg-mid-tab-holder-two" id="employer" onclick="user_login('employer', '<%=Role.find_by_name('employer').id%>')"><%= t('user_register_as') %> <%= t('header.employer') %></div>
+
     <div class="reg-right-tab-holder-two"></div>
   </div>
 
 
   <div id="reg_div">
-
-
     <%= render :partial => "form" %>
-
-
   </div>
+  <div class="reg-me"><a id="register-button"><%= t('user_register_as') %></a></div>
+
 </div>
 
 
 <script type="text/javascript ">
-    function user_login(type) {
-
+    function user_login(type_name, type) {
+        //change the value of hidden field
         $("#role_id").val(type);
+
+        if (type_name == "job_seeker") {
+            url = "<%= new_user_path(:role_name => 'job_seeker')%>";
+            $.ajax({
+                context:this,
+                url:url,
+                type:"GET",
+                data:$(this).serialize(),
+                dataType:"json",
+                success:function (response) {
+                    $("#reg_div").html(response.html);
+                }
+            });
+            return false;
+        }
+        else {
+            $.ajax({
+                url: '<%= new_user_path(:role_name => 'employer')%>' ,type: 'get', dataType: 'json',
+                processData: false,
+                success: function(data) {
+
+                    $("#reg_div").html(data.html);
+                }
+            })
+        }
+
+
     }
 
 </script>
