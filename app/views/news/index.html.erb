@@ -16,10 +16,11 @@
     <div class="basic-info mtop10">
       <h1><span class="red">News</span></h1>
     </div>
+      <div class="suggest-a-news" onclick="suggest_news()">Suggest a news</div>
     <% unless @news.blank? %>
         <% @news.each do |new| %>
             <div class="right-content-detail">
-              <div class="suggest-a-news" onclick="suggest_news()">Suggest a news</div>
+
 
               <div class="content-detail">
                 <%= image_tag asset_path "1582.jpg" %>
