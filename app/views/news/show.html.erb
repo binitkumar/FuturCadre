@@ -1,30 +1,53 @@
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
+  <div class="basic-info mtop10">
+    <h1><span class="red">News</span></h1>
+    <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 
-
-  <div class="left-content">
-    <div class="left-detail"> <%= image_tag asset_path "dashboard-img.png" %></div>
-    <p>Register Here</p>
   </div>
+  <div class="left-content">
+    <div class="left-detail">
+      <%= image_tag asset_path 'adds-holder-img.png' %>
+    </div>
+    <p></p>
+  </div>
+
+
   <!--left-content ends-->
 
   <div class="right-content">
+    <div class="basic-info mtop10">
+      <h1><span class="red">News</span></h1>
+    </div>
+
     <div class="right-content-detail">
-      <div class="content-detail-two">
-       <%= image_tag asset_path "1582.jpg" %>
 
-        <h1><%=@news.title  %> </h1>
+      <% unless @news.blank? %>
 
-        <p><%=@news.created_at  %></p>
+          <div class="content-detail">
+              <div class="img_detail">
+            <% unless @news.photo.blank? %>
+                <%= image_tag @news.photo.image.url %>
+            <% else %>
+                <%= image_tag "/assets/dashboard-img.png" %>
+            <% end %>
 
-        <p><%=@news.body  %></p>
+          </div>
+          <h1><%= @news.title %> </h1>
+
+          <p><%= @news.created_at %></p>
+
+          <div class="p-style-detail">
+            <%= @news.body %>
+          </div>
+
+
+          </div>
+
+
+          </div><!--right-content ends-->
+      <% end %>
 
 
       </div>
-
-    </div>
-    <!--right-content ends-->
-
-
-  </div>
 </div>

@@ -19,7 +19,6 @@ class NewsController < ApplicationController
   end
 
 
-
   #def update
   #  @news = News.find(params[:id])
   #  if @news.update_attributes(params[:news])
@@ -53,13 +52,17 @@ class NewsController < ApplicationController
       unless params[:picture].blank?
         @picture              = Photo.new(params[:picture])
         @picture.content_type = "news_image"
-        @picture.imageable_id = @news
+        @picture.imageable_id = @news.id
         if  @picture.save
 
         end
       end
-     render :json => { :html => render_to_string(:partial => '/news/form', :locale=>{ :news => @news }) }.to_json
+
+
+      render :json => { :html => render_to_string(:partial => '/news/form', :locale=>{ :news => @news }) }.to_json
     end
+
+
   end
 
 end

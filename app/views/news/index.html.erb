@@ -12,39 +12,44 @@
     <p></p>
   </div>
 
+
+
+  <!--left-content ends-->
+
   <div class="right-content">
     <div class="basic-info mtop10">
       <h1><span class="red">News</span></h1>
     </div>
-      <div class="suggest-a-news" onclick="suggest_news()">Suggest a news</div>
-    <% unless @news.blank? %>
-        <% @news.each do |new| %>
-            <div class="right-content-detail">
+    <div class="suggest-a-news" onclick="suggest_news()">Suggest a news</div>
+    <div class="right-content-detail">
 
-
+      <% unless @news.blank? %>
+          <% @news.each do |new| %>
               <div class="content-detail">
-                <%= image_tag asset_path "1582.jpg" %>
+                <div class="img_detail">
+                  <% unless new.photo.blank? %>
+                      <%= image_tag new.photo.image.url %>
+                  <% else %>
+                   <%= image_tag "/assets/dashboard-img.png" %>
+                  <% end %>
+                </div>
                 <h1><%= new.title %> </h1>
 
                 <p><%= new.created_at %></p>
 
-                <div class="rating-style">
-
-
+                <div class="p-style-detail">
+                  <%= new.body %>
                 </div>
-                <p style="width:550px; margin-top:5px; margin-bottom:30px;"><%= new.body %>.</p>
                 <%= link_to "See the news", news_path(:id => new.id) %>
 
-
               </div>
-        <% end %>
-        </div>
-        <!--right-content ends-->
-    <% end %>
+          <% end %>
 
-  </div>
+          </div><!--right-content ends-->
+      <% end %>
 
 
+      </div>
 </div>
 <div id="popup_holder"></div>
 
