@@ -16,8 +16,11 @@
           <div class="admin-hold">
             <div class="admin-top-hold"><h1>featured members </h1></div>
             <div class="admin-mid-hold">
+
               <% unless @group.users.blank? %>
-                  <% @group.users.each do |group_user| %>
+                  <% @group.users.each_with_index do |group_user,i| %>
+                    <% if i <= 2 %>
+
                       <div class="admin-profile">
                         <div class="admin-profile-left">
                           <% unless user_image(group_user).blank?  %>
@@ -25,6 +28,7 @@
                               <%= image_tag user_image(group_user).photo.url %>
                           <% else %>
                               <%= image_tag asset_path "dashboard-img.png" %>
+                          <% end %>
                           <% end %>
                         </div>
                         <div class="admin-profile-right">
@@ -85,7 +89,7 @@
               <%# elsif params[:sid] == "members" %>
                   <%#= render :partial => "group_members", :locals => { :group => @group } %>
               <%# else %>
-                  <%#= render :partial => "group_wall", :locals => { :group => @group } %>
+                  <%= render :partial => "group_wall", :locals => { :group => @group } %>
 
               <%# end %>
             </div>

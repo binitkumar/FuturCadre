@@ -39,16 +39,4 @@
     <% end %>
 <% end %>
 
-<% if object.errors.any? %>
-    <div id="error_explanation">
-      <h2>Oops, looks like  <%= pluralize(object.errors.count, "error") %>
-        occured:</h2>
-      <br/>
-      <ul>
-        <% object.errors.each do |key, msg| %>
-            <li><%= key %><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-<% end %>
 
