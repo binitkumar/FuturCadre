@@ -6,6 +6,7 @@ class Profile < ActiveRecord::Base
   belongs_to :city
   has_many :education_informations
   has_many :profession_informations
+	
   #has_many :company_informations
   has_many :assets
   has_many :employer_profiles

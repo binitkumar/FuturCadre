@@ -1,0 +1,147 @@
+<div class="reg-tab-holder">
+  <div class="reg-tab-holder-new tab-act">
+    <div class="reg-left-tab-holder"></div>
+    <div class="reg-mid-tab-holder">My Account</div>
+    <div class="reg-right-tab-holder"></div>
+  </div>
+</div>
+
+<div class="basic-info mtop10">
+  <h1> <%= t('basic') %> <span class="red"> <%= t('information') %></span></h1>
+  <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+</div>
+
+<div class="w100">
+  <div class="profile-left-div">
+    <div class="profile-input mtop20">
+      <label><%= t('profiles.first_name') %></label>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="profile-input mtop20">
+      <label> <%= t('profiles.phone') %> </label>
+      <%= f.text_field :phone %>
+    </div>
+    <div class="profile-input mtop20">
+      <label><%= t('profiles.zip') %></label>
+      <%= f.text_field :zip_code %>
+    </div>
+    <div class="profile-input mtop20">
+      <label><%= t('profiles.region') %></label>
+
+      <div id="regions">
+        <%= render :partial => "shared/regions", :locals => { :object_collection => "profile" } %>
+      </div>
+    </div>
+
+    <div class="profile-input mtop20">
+      <label><%= t('profiles.city') %></label>
+
+      <div id="cities">
+        <%= render :partial => "shared/cities", :locals => { :object_collection => "profile" } %>
+      </div>
+    </div>
+
+  </div>
+  <div class="profile-right-div">
+    <div class="profile-input mtop20">
+      <label><%= t('profiles.last_name') %></label>
+      <%= f.text_field :last_name %>
+    </div>
+    <div class="profile-input mtop20">
+      <label><%= t('profiles.address') %></label>
+      <%= f.text_field :address %>
+    </div>
+    <div class="profile-input mtop20">
+      <label><%= t('profiles.country') %></label>
+
+      <div id="country">
+        <%= render :partial => "shared/countries", :locals => { :object_collection => "profile" } %>
+      </div>
+    </div>
+    <div class="profile-input mtop20">
+      <label><%= t('profiles.profile_picture') %></label>
+      <%= fields_for :asset do |asset| %>
+          <%= asset.file_field :photo %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="basic-info mtop40">
+  <h1><%= t('education') %> <span class="red"> <%= t('information') %></span></h1>
+  <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+</div>
+
+<div class="w100">
+
+  <%= fields_for :education_info do |ed| %>
+      <div class="profile-left-div">
+        <div class="profile-input mtop20">
+          <label><%= t('profile_degree_level') %></label>
+          <%= ed.text_field :degree_level %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profile_major_subject') %></label>
+          <%= ed.text_field :major_subject %>
+        </div>
+      </div>
+      <div class="profile-right-div">
+        <div class="profile-input mtop20">
+          <label><%= t('profile_institute') %></label>
+          <%= ed.text_field :institute %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profile_year') %></label>
+          <%= ed.text_field :year %>
+        </div>
+      </div>
+  <% end %>
+</div>
+<div class="basic-info mtop40">
+  <h1><%= t('profession') %> <span class="red"> <%= t('information') %></span></h1>
+  <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+
+</div>
+
+<div class="w100">
+  <%= fields_for :job_info do |jd| %>
+      <div class="profile-left-div">
+        <div class="profile-input mtop20">
+          <label><%= t('profile_industry') %></label>
+          <%= jd.text_field :profession_industry %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('category') %> </label>
+          <%= select_tag :category_id, options_from_collection_for_select(Category.all, "id", "name"), :class =>"reg-slt-div-new" %>
+
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profile_job_title') %></label>
+          <%= jd.text_field :job_title %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('resume') %></label>
+          <%= fields_for :resume do |resume| %>
+              <%= resume.file_field :photo %>
+          <% end %>
+        </div>
+
+
+      </div>
+      <div class="profile-right-div">
+        <div class="profile-input mtop20">
+          <label><%= t('profile_experience') %></label>
+          <%= jd.text_field :profession_experience %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profile_carrer_level') %></label>
+          <%= jd.text_field :career_level %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profile_company_nam') %></label>
+          <%= jd.text_field :company_name %>
+
+        </div>
+      </div>
+  <% end %>
+</div>
