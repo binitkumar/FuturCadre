@@ -128,7 +128,7 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile             = Profile.find(params[:id])
-    @company_information = @profile.company_informations.first
+    @company_information = @profile.company_information
     @asset               = @profile.assets.where("content_type =?", "profile_image")
     @job_info            =@profile.profession_informations.first
     @resume              = @profile.assets.where("content_type =?", "cv")
