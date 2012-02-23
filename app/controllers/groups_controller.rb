@@ -35,14 +35,14 @@ class GroupsController < ApplicationController
     @group = Group.find_by_id(params[:group_id])
     @user  = User.find_by_id(current_user.id)
     @user.groups << Group.find_by_id(@group.id)
-    render :json => { :html => render_to_string(:partial => '/groups/group_description', :locale=>{ :group => @group }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/group_description', :locale => { :group => @group }) }.to_json
   end
 
   def group_wall
     @group    = Group.find(params[:id])
     @comment  = @group.comments.build
     @comments = @group.comments.all
-    render :json => { :html => render_to_string(:partial => '/groups/group_wall', :locale=>{ :group => @group }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/group_wall', :locale => { :group => @group }) }.to_json
   end
 
 
@@ -50,7 +50,7 @@ class GroupsController < ApplicationController
     member_partial = params[:sid]
     @group         = Group.find(params[:id])
     @group_jobs    = @group.jobs
-    render :json => { :html => render_to_string(:partial => '/groups/group_members', :locale=>{ :group => @group, :sid => member_partial }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/group_members', :locale => { :group => @group, :sid => member_partial }) }.to_json
 
   end
 
@@ -58,7 +58,7 @@ class GroupsController < ApplicationController
     job_partial = params[:sid]
     @group      = Group.find(params[:id])
     @group_jobs = @group.jobs
-    render :json => { :html => render_to_string(:partial => '/groups/group_jobs', :locale=>{ :group => @group, :sid => job_partial }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/group_jobs', :locale => { :group => @group, :sid => job_partial }) }.to_json
   end
 
   def group_page
@@ -80,7 +80,7 @@ class GroupsController < ApplicationController
     @new_comment= @group.comments.create(params[:comment])
     @new_comment.update_attributes(:user_id => @user.id)
     @comments = @group.comments.all
-    render :json => { :html => render_to_string(:partial => '/groups/group_wall', :locale=>{ :group => @group }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/group_wall', :locale => { :group => @group }) }.to_json
   end
 
   def search_group
@@ -90,7 +90,7 @@ class GroupsController < ApplicationController
 
   def group_question
     @group = Group.find(params[:id])
-    render :json => { :html => render_to_string(:partial => '/groups/group_question', :locale=>{ :group => @group }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/group_question', :locale => { :group => @group }) }.to_json
   end
 
   def create_question
@@ -104,13 +104,13 @@ class GroupsController < ApplicationController
       @question.update_attributes(:user_id => nil)
     end
     if @question.save!
-      render :json => { :html => render_to_string(:partial => '/groups/group_question', :locale=>{ :group => @group }) }.to_json
+      render :json => { :html => render_to_string(:partial => '/groups/group_question', :locale => { :group => @group }) }.to_json
     end
   end
 
   def group_body
     @group = Group.find(params[:id])
-    render :json => { :html => render_to_string(:partial => '/groups/group_body', :locale=>{ :group => @group }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/group_body', :locale => { :group => @group }) }.to_json
   end
 
   def faker_join
@@ -133,7 +133,7 @@ class GroupsController < ApplicationController
 
   def set_salary
     @group = Group.find(params[:id])
-    render :json => { :html => render_to_string(:partial => '/groups/salary_popup', :locale=>{ :group => @group }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/salary_popup', :locale => { :group => @group }) }.to_json
 
   end
 
@@ -146,13 +146,13 @@ class GroupsController < ApplicationController
     end
     @group.update_attributes(:mean_salary => @group_salary)
     @groups = Group.find_all_by_group_type_id(@group_type.id)
-    render :json => { :html => render_to_string(:partial => '/groups/group_holder', :locale=>{ :groups => @groups, }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/group_holder', :locale => { :groups => @groups }) }.to_json
   end
 
   def answer_question
     @question = Question.find_by_id(params[:id])
     @answer   = Answer.new(params[:answer])
-    render :json => { :html => render_to_string(:partial => '/groups/answer_question', :locale=>{ :question => @question }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/answer_question', :locale => { :question => @question }) }.to_json
 
   end
 
@@ -165,7 +165,13 @@ class GroupsController < ApplicationController
     else
       @answer.update_attributes(:user_id => nil)
     end
-    render :json => { :html => render_to_string(:partial => '/groups/answer_question', :locale=>{ :question => @question }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/answer_question', :locale => { :question => @question }) }.to_json
+  end
+
+  def render_group_details
+    @group      = Group.find(params[:group_id])
+    @user       = current_user
+    render :json => { :html => render_to_string(:partial => '/groups/group_wall', :locale => { :group => @group }) }.to_json
   end
 
 end

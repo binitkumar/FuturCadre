@@ -185,6 +185,8 @@ FuturCadre::Application.routes.draw do
       post :update_salary
       get :answer_question
       post :create_answer
+      get :render_group_details
+
     end
   end
 
