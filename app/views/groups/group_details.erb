@@ -24,7 +24,7 @@
                       <div class="admin-profile">
                         <div class="admin-profile-left">
                           <% unless user_image(group_user).blank?  %>
-                              <% puts "ajahjahjshajshja" %>
+
                               <%= image_tag user_image(group_user).photo.url %>
                           <% else %>
                               <%= image_tag asset_path "dashboard-img.png" %>

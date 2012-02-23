@@ -3,7 +3,7 @@ require "acts_as_commentable"
 class GroupsController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:index, :group_details, :group_body, :group_members, :group_wall, :group_question, :create_question,
-                                                 :search_group, :show_group, :set_salary, :update_salary, :answer_question, :create_answer,:set_rating]
+                                                 :search_group, :show_group, :set_salary, :update_salary, :answer_question, :create_answer, :set_rating]
 
   def index
     unless params[:locale].blank?
@@ -138,13 +138,15 @@ class GroupsController < ApplicationController
   end
 
   def update_salary
+    @group_type   = GroupType.find_by_id(params[:group_type])
     @group        = Group.find(params[:group_id])
     @group_salary = ""
     unless params[:group_salary].blank?
       @group_salary = @group.new_salary(params[:group_salary].to_i)
     end
     @group.update_attributes(:mean_salary => @group_salary)
-    render :json => { :html => render_to_string(:partial => '/groups/salary_popup', :locale=>{ :group => @group }) }.to_json
+    @groups = Group.find_all_by_group_type_id(@group_type.id)
+    render :json => { :html => render_to_string(:partial => '/groups/group_holder', :locale=>{ :groups => @groups, }) }.to_json
   end
 
   def answer_question

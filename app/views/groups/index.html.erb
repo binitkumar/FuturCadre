@@ -51,92 +51,19 @@
 
           <div id="Searchresult">
           </div>
-          <div id="hiddenresult" style="display:none;">
+          <div id="group_div">
+
 
             <script type="text/javascript">
                 $(document).ready(function () {
 
                 });
+
             </script>
-            <% unless @groups.blank? %>
 
-                <% @groups.each do |group| %>
-                    <div class="result">
-                      <div class="dashboard-text">
-                        <div class="name">
-                          <div class="icon-img">
-                            <% unless group.photo.blank? %>
-                                <%= image_tag group.photo.image.url, :style =>"border: medium solid !important;height: 48px; width: 46px;" %>
-                            <% else %>
-                                <% image_tag asset_path "dashboard-img.png" %>
-                            <% end %>
-                          </div>
-                          <div class="icon-text">
+                  <%= render :partial => "group_holder", :locals => {:groups => @groups} %>
+            </div>
 
-                            <%= link_to group.name, group_details_groups_path(:id => group.id) %>
-                            <p> <%= image_tag asset_path 'mem-icon.png' %>  <%= group.users.count %> Members</p>
-                          </div>
-                        </div>
-                        <div class="description-hold"><%= group.description %> </div>
-                        <div class="salary-hold" onclick="open_salary('<%= group.id%>')"><%= group.mean_salary %> Euro
-
-                        </div>
-
-                        <div class="rating-hold" id="rating_hold">
-
-                          <p style="margin:5px 0px 0px 5px; color:#656565;">
-
-                            <select name="myRating" class="active_rating" id="serialStar_group_<%= group.id %>">
-                              <option value="1" <%= group.rating.rate.to_i == 1 ? "selected='yes'" :"" %>>very weak
-                              </option>
-                              <option value="2" <%= group.rating.rate.to_i == 2 ? "selected='yes'" :"" %>>weak</option>
-                              <option value="3" <%= group.rating.rate.to_i == 3 ? "selected='yes'" :"" %>>average</option>
-                              <option value="4" <%= group.rating.rate.to_i == 4 ? "selected='yes'" :"" %>>strong</option>
-                              <option value="5" <%= group.rating.rate.to_i == 5 ? "selected='yes'" :"" %>>very
-                                strong
-                              </option>
-                            </select>
-                          </p>
-
-
-                          <script type="text/javascript">
-                              $("#serialStar_group_<%= group.id %>").rating();
-                              var counter = 0;
-                              $("#serialStar_group_<%= group.id %>").siblings(".ui-rating").each(function() {
-                                  if (counter != 0) {
-                                      $(this).remove();
-                                  }
-                                  counter = counter + 1;
-                              });
-                              $("#serialStar_group_<%= group.id %>").bind("change", function () {
-                                  var rate = $('#serialStar_group_<%= group.id %>').serialize().split("=");
-
-                                  var i = 1;
-                                  for (i; i <= 5; i++) {
-                                      if (i <= parseInt(rate[1])) {
-                                          $("#changer_group_<%= group.id %>_" + i).attr("src", "/assets/star_icon_golden.png");
-                                      }
-                                      else {
-                                          $("#changer_group_<%= group.id %>_" + i).attr("src", "/assets/star_icon_black.png");
-                                      }
-                                  }
-                                  $.ajax({
-                                      url:'/groups/set_rating?group_id=<%= group.id %>&rate=' + rate[1], type:'get', dataType:'html',
-                                      processData:false,
-                                      success:function (data) {
-
-                                      }
-                                  });
-                              });
-                          </script>
-
-                        </div>
-
-                      </div>
-                    </div>
-                <% end %>
-            <% end %>
-          </div>
         </div>
 
         <div class="w100 mtop10">
@@ -160,66 +87,3 @@
 </div>
 
 <div id="salary_result_holder"></div>
-<script type="text/javascript">
-    var pagination_options = {
-        num_edge_entries:0,
-        num_display_entries:0,
-        callback:pageselectCallback,
-        items_per_page:2
-    }
-    function pageselectCallback(page_index, jq) {
-        var items_per_page = pagination_options.items_per_page;
-        var offset = page_index * items_per_page;
-        var new_content = $('#hiddenresult div.result').slice(offset, offset + items_per_page).clone();
-        $('#Searchresult').empty().append(new_content);
-        return false;
-    }
-
-    // When document is ready, initialize pagination and buttons
-    $(document).ready(function () {
-        var num_entries = $('#hiddenresult div.result').length;
-
-        // Create pagination element, if more than 50 candidates
-        if (num_entries > 2) {
-            var $pager = $("#Pagination");
-            $pager.fadeIn(400);
-            $pager.pagination(num_entries, pagination_options);
-            $("#select_all").click(function () {
-                $("#Searchresult").find('div').find('input[type=checkbox]').each(function () {
-                    this.checked = true;
-                });
-            });
-        }
-        else {
-
-            $("#hiddenresult").fadeIn(200);
-            $("#select_all").click(function () {
-                $("input[type=checkbox]").each(function () {
-                    this.checked = true;
-                });
-            });
-
-        }
-
-    });
-
-
-    function open_salary(group_id) {
-
-        url = "groups/set_salary?id=" + group_id;
-        $.ajax({
-            context:this,
-            url:url,
-            type:"GET",
-            data:$(this).serialize(),
-            dataType:"json",
-            success:function (response) {
-                $("#salary_result_holder").html(response.html);
-            }
-        });
-        return false;
-
-
-    }
-
-</script>

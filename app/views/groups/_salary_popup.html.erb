@@ -10,6 +10,7 @@
         <%= text_field_tag 'group_salary' %>
       </div>
       <%= hidden_field_tag :group_id, @group.id %>
+      <%= hidden_field_tag :group_type, @group.group_type_id %>
       <div class="buttons_pop">
         <div id="application_job" class="update">Update</div>
         <div id="exit_job" class="exit" onclick="close_popup()">Exit</div>
@@ -29,7 +30,7 @@
     $("#application_job").click(function() {
         $.post($("form#set_salary_form").attr("action"), $("form#set_salary_form").serialize(), (function(response) {
             close_popup();
-            return $(".salary-hold").html(response.html);
+           $("#group_div").html(response.html);
 
         }), "json");
         return false;
