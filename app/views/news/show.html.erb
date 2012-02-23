@@ -26,7 +26,7 @@
 
           <div class="content-detail">
               <div class="img_detail">
-            <% unless @news.photo.blank? %>
+            <%if @news.photo != nil %>
                 <%= image_tag @news.photo.image.url %>
             <% else %>
                 <%= image_tag "/assets/dashboard-img.png" %>

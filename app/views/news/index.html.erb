@@ -13,7 +13,6 @@
   </div>
 
 
-
   <!--left-content ends-->
 
   <div class="right-content">
@@ -25,12 +24,14 @@
 
       <% unless @news.blank? %>
           <% @news.each do |new| %>
+
               <div class="content-detail">
                 <div class="img_detail">
-                  <% unless new.photo.blank? %>
+                  <% if new.photo != nil %>
+
                       <%= image_tag new.photo.image.url %>
                   <% else %>
-                   <%= image_tag "/assets/dashboard-img.png" %>
+                      <%= image_tag "/assets/dashboard-img.png" %>
                   <% end %>
                 </div>
                 <h1><%= new.title %> </h1>
