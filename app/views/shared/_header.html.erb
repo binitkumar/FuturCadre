@@ -34,7 +34,7 @@
 
   <% unless user_signed_in? %>
       <li class="<%= params[:role].present? && params[:role] == "job_seeker" ? 'active' : '' %>">
-        <%= link_to t('Register'), sign_up_path(:role => "job_seeker") %>
+        <%= link_to t('Register'), sign_up_path() %>
       </li>
 
   <% end %>
