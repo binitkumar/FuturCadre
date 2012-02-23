@@ -9,10 +9,6 @@ class Asset < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type=>['image/jpeg', 'image/png', 'image/gif', 'application/msword', 'application/pdf', 'docx']
 
 
-  validates_attachment_size :photo, :less_than => 1.megabytes,
-                            :message => "must be less than 2 Mb.",
-
-
-
+  validates_attachment_size :photo, :less_than => 1.megabytes, :message => "must be less than 2 Mb."
 
 end
