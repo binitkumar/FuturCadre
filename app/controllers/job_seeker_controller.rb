@@ -32,8 +32,8 @@ class JobSeekerController < ApplicationController
 
   def create_event
     @job_seeker = User.find_by_id(params[:job_seeker_id])
-    unless params[:event].blank?
-      @new_event = Event.create!(params[:event])
+    unless params[:event_mailer].blank?
+      @new_event = Event.create!(params[:event_mailer])
       @new_event.update_attributes(:owner_id => @job_seeker)
       @job_seeker.events << @new_event
     end

@@ -12,7 +12,7 @@
     <h1>Create an Event</h1>
 
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <%= form_for :event, :url =>{ :action => 'create_event' }, :html =>{ :id => 'add_event_form' }, :remote => true do |f| %>
+    <%= form_for :event_mailer, :url =>{ :action => 'create_event' }, :html =>{ :id => 'add_event_form' }, :remote => true do |f| %>
         <div class="form-inputs">
           <div class="form-input">
             <%= hidden_field_tag :job_seeker_id, @job_seeker.id %>

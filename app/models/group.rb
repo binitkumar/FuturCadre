@@ -7,11 +7,12 @@ class Group < ActiveRecord::Base
   has_many :group_users
   has_many :users, :through => :group_users
   belongs_to :owner, :class_name => "User"
-    belongs_to :group_type
+  belongs_to :group_type
   has_and_belongs_to_many :school_categories
   has_many :questions
   has_one :rating, :as => :rateable
   belongs_to :manager, :class_name => "User"
+  has_many :events
 
 
   def new_salary(params)
@@ -22,7 +23,7 @@ class Group < ActiveRecord::Base
   def is_manager(member)
     puts "aaaaaa", member.inspect
     if self.manager_id == member.id
-       return true
+      return true
     end
   end
 end
