@@ -18,35 +18,35 @@
             <div class="admin-mid-hold">
 
               <% unless @group.users.blank? %>
-                  <% @group.users.each_with_index do |group_user,i| %>
-                    <% if i <= 2 %>
+                  <% @group.users.each_with_index do |group_user, i| %>
+                      <% if i <= 2 %>
 
-                      <div class="admin-profile">
-                        <div class="admin-profile-left">
-                          <% unless user_image(group_user).blank?  %>
+                          <div class="admin-profile">
+                            <div class="admin-profile-left">
+                              <% unless user_image(group_user).blank? %>
 
-                              <%= image_tag user_image(group_user).photo.url %>
-                          <% else %>
-                              <%= image_tag asset_path "dashboard-img.png" %>
-                          <% end %>
-                          <% end %>
-                        </div>
-                        <div class="admin-profile-right">
-                          <% if group_user.profile.blank? %>
-                              <h1><%= group_user.name %> </h1>
-
-
-                          <% else %>
-                              <h1><%= group_user.profile.full_name %> </h1>
+                                  <%= image_tag user_image(group_user).photo.url %>
+                              <% else %>
+                                  <%= image_tag asset_path "dashboard-img.png" %>
+                              <% end %>
+                      <% end %>
+                      </div>
+                      <div class="admin-profile-right">
+                        <% if group_user.profile.blank? %>
+                            <h1><%= group_user.name %> </h1>
 
 
-                          <% end %>
+                        <% else %>
+                            <h1><%= group_user.profile.full_name %> </h1>
 
 
-                        </div>
+                        <% end %>
+
+
+                      </div>
                       </div>
                   <% end %>
-                  <div class="admin-link"><%= link_to "View All Members",  group_members_groups_path(:id => @group.id), :class => "members_link"%></div>
+                  <div class="admin-link"><%= link_to "View All Members", group_members_groups_path(:id => @group.id), :class => "members_link" %></div>
               <% else %>
                   <div class="admin-profile">
                     <div class="admin-profile-left"></div>
@@ -59,8 +59,6 @@
                     </div>
                   </div>
               <% end %>
-
-
 
 
             </div>
@@ -80,16 +78,17 @@
               <li class="listed"><%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link" %></li>
               <li class="listed"><%= link_to "Offers", group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link" %></li>
               <li class="listed"><%= link_to "Questions", group_question_groups_path(:id =>@group.id, :sid => "questions"), :class =>"questions-link" %></li>
+              <li class="listed"><%= link_to "Events", group_event_groups_path(:id =>@group.id), :class =>"questions-link" %></li>
             </ul>
 
             <div class="groups-line"></div>
             <div class="mid-cont-holder">
               <%# if params[:sid] == "jobs" %>
-                  <%#= render :partial => "group_jobs", :locals => { :group => @group } %>
+              <%#= render :partial => "group_jobs", :locals => { :group => @group } %>
               <%# elsif params[:sid] == "members" %>
-                  <%#= render :partial => "group_members", :locals => { :group => @group } %>
+              <%#= render :partial => "group_members", :locals => { :group => @group } %>
               <%# else %>
-                  <%= render :partial => "group_wall", :locals => { :group => @group } %>
+              <%= render :partial => "group_wall", :locals => { :group => @group } %>
 
               <%# end %>
             </div>
@@ -239,16 +238,16 @@
         return false;
     });
 
-        function render_group_details(id){
-            $.ajax({
-                url:'/groups/render_group_details?group_id='+id,
-                type: "GET",
-                dataType:"json",
-                success: function(response) {
-                    return $(".mid-cont-holder").html(response.html);
-                }
-            })
-        }
+    function render_group_details(id) {
+        $.ajax({
+            url:'/groups/render_group_details?group_id=' + id,
+            type: "GET",
+            dataType:"json",
+            success: function(response) {
+                return $(".mid-cont-holder").html(response.html);
+            }
+        })
+    }
 </script>
 
 

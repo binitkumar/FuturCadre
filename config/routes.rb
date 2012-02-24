@@ -46,7 +46,7 @@ FuturCadre::Application.routes.draw do
 
     resources :news do
       collection do
-         get :approve_news
+        get :approve_news
 
       end
     end
@@ -124,6 +124,7 @@ FuturCadre::Application.routes.draw do
       get :job_seeker_jobs
       post :new_resume
       get :my_theses
+      get :event_mailer
     end
   end
 
@@ -144,6 +145,7 @@ FuturCadre::Application.routes.draw do
       get :search_job_seeker
       get :view_cv
       get :select_profile
+      get :event_mailer
 
     end
   end
@@ -185,6 +187,8 @@ FuturCadre::Application.routes.draw do
       get :answer_question
       post :create_answer
       get :render_group_details
+      get :group_event
+      post :create_event
 
     end
   end

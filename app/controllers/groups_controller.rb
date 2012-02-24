@@ -27,6 +27,12 @@ class GroupsController < ApplicationController
     end
     @group_jobs = @group.jobs
     @comments   = @group.comments.all
+    unless params[:event_id].blank?
+      @event            = Event.find_by_id(params[:event_id])
+      @event.is_approve = true
+      @event.save
+      EventMailer.event_notification(current_user.email, @group.users, @event, request.protocol, request.host_with_port).deliver
+    end
     #@groups     = Group.all
     #render :json => { :html => render_to_string(:partial => '/groups/first_group_details', :locale=>{ :group => @group }) }.to_json
   end
@@ -169,9 +175,32 @@ class GroupsController < ApplicationController
   end
 
   def render_group_details
-    @group      = Group.find(params[:group_id])
-    @user       = current_user
+    @group = Group.find(params[:group_id])
+    @user  = current_user
     render :json => { :html => render_to_string(:partial => '/groups/group_wall', :locale => { :group => @group }) }.to_json
+  end
+
+  def group_event
+    @group = Group.find(params[:id])
+    render :json => { :html => render_to_string(:partial => '/groups/group_events', :locale=>{ :group => @group }) }.to_json
+  end
+
+  def create_event
+    @group            = Group.find(params[:group_id])
+    @event            = Event.new(params[:event_mailer])
+    @event.group_id   = @group.id
+    @event.is_approve = false
+    unless current_user.blank?
+      @event.user_id = current_user.id
+    end
+    if @event.save!
+      render :json => { :html => render_to_string(:partial => '/groups/group_events', :locale=>{ :group => @group }) }.to_json
+      unless current_user.blank?
+        @manager = @group.owner
+        EventMailer.event_approval(current_user.email, @manager.email, @event, request.protocol, request.host_with_port, @group).deliver
+        #EventMailer.event_notification(current_user, @manager, @event).deliver
+      end
+    end
   end
 
 end

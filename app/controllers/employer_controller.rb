@@ -35,8 +35,8 @@ class EmployerController < ApplicationController
   def create_event
 
     @employer = User.find_by_id(params[:employer_id])
-    unless params[:event].blank?
-      @new_event = Event.create!(params[:event])
+    unless params[:event_mailer].blank?
+      @new_event = Event.create!(params[:event_mailer])
       @new_event.update_attributes(:owner_id => @employer)
       @employer.events << @new_event
     end

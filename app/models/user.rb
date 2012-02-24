@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   has_many :created_news, :as => :owner, :class_name => "News"
 
   has_many :manage_projects, :as => :manager, :class_name => "Group"
+  has_many :events
 
   def role
     return "webmaster" if webmaster?
