@@ -1,7 +1,7 @@
 <script language="JavaScript">
     $(document).ready(function() {
         $('.date-pick').datetimepicker({dateFormat: 'yy-mm-dd',timeFormat: "hh:mm tt"});
-//        ampm: true
+
     });
 
     $("#event-form").dialog({
@@ -34,25 +34,34 @@
     <% unless current_user.blank? %>
         <button id="event-popup" class="question-button">Create Events</button>
     <% end %>
-    <% unless @group.events.blank? %>
-        <% @group.events.each do |group_event| %>
-            <div class="w100 mtop20">
-              <div class="job-cont-hold">
-                <div class="accountants" id="answer_button" onclick="post_event('<%= group_event.id%>')">
-                  <label> Title:</label><%= group_event.title %>
+
+
+    <div class="right-content-detail">
+
+      <% unless @group.events.blank? %>
+          <% @group.events.each do |group_event| %>
+
+                <div class="content-detail">
+
+                  <h1>
+                    <div id="group_event" onclick="event_page('<%= group_event.id%>','<%=@group.id %>')"><%= group_event.title %></div>
+                  </h1>
+
+                  <div><%= group_event.created_at.strftime("%d-%m-%Y") %></div>
+                  <div><label> Time:</label> <%= group_event.time_of_start %></div>
+                  <div><label> Time:</label> <%= group_event.time_of_end %></div>
+                  <div class="p-style-detail">
+                    <label>Descripton:</label><%= group_event.description %>
+                  </div>
+
+
                 </div>
-                <div class="result-text"><label> Time:</label> <%= group_event.time_of_start %></div>
-                <div class="result-text"><label> Time:</label> <%= group_event.time_of_end %></div>
-                <div class="result-text"><label>Descripton:</label><%= group_event.description %> </div>
-                <div class="date-text"> <%= group_event.created_at.strftime("%d-%m-%Y") %>
-                </div>
-              </div>
+                <div id="answer_button" onclick="post_event('<%= group_event.id%>')"> </div>
+          <% end %>
 
-            </div>
-        <% end %>
-
-    <% end %>
-
+          </div><!--right-content ends-->
+      <% end %>
+    </div>
     <div id="event-form" title="Create a New Event">
 
       <%= form_for :event, :url =>{ :action => 'create_event' }, :html =>{ :id => 'add_event_form' }, :remote => true do |f| %>
@@ -81,4 +90,25 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+
+    function event_page(event_id, group_id) {
+
+        url = "/groups/event_page?id=" + event_id + '&group_id=' + group_id;
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                $(".mid-cont-holder").html(response.html);
+            }
+        });
+        return false;
+
+    }
+
+</script>
 

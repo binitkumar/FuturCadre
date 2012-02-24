@@ -189,6 +189,7 @@ FuturCadre::Application.routes.draw do
       get :render_group_details
       get :group_event
       post :create_event
+      get :event_page
 
     end
   end
