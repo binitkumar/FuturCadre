@@ -1,25 +1,20 @@
 class ProjectsController < ApplicationController
 
   def index
-    #@projects = Project.all
-    @category   = Category.first
-    @projects   = @category.projects
-    @categories = Category.all
+    @projects = Project.all
+
 
   end
 
 
   def show
     @project = Project.find(params[:id])
-
-
   end
 
 
   def new
-    @project     = Project.new
-    @project_doc = Photo.new(params[:project_doc])
-
+    @project = Project.new(params[:project])
+    @photo   = Photo.new
   end
 
 
@@ -27,87 +22,55 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
-  def create_project
+
+  def create
     @project = Project.new(params[:project])
-    @project.update_attributes(:owner => current_user)
-    unless params[:project_doc].blank?
-      @project_pub              = Photo.new(params[:project_doc])
-      @project_pub.content_type = "project_publication"
-      @project_pub.imageable    = @project
-      @project_pub.save
-    end
-    if @project.save
-      render :json => { :html => render_to_string(:partial => 'show_project', :locale=>{ :project => @project }) }.to_json
+   if @project.save
+      unless params[:photo].blank?
+        @picture              = Photo.new(params[:photo])
+        @picture.content_type = "project_image"
+        @picture.imageable    = @project
+        unless @picture.save
+          render :action => "new"
+        end
+      end
+      redirect_to @project, notice: 'Project was successfully created.'
     else
-      redirect_to(:action => "new", :notice => "Project was not created")
+      render action: "new"
     end
   end
 
-
-
-  def update_project
+  def update
     @project = Project.find(params[:id])
-    unless params[:project_doc].blank?
-      @project_pub              = Photo.new(params[:project_doc])
-      @project_pub.content_type = "project_publication"
-      @project_pub.imageable    = @project
-      @project.save
-    end
-
     if @project.update_attributes(params[:project])
-      redirect_to :action => "index"
+      redirect_to @project, notice: 'Project was successfully updated.'
     else
-      render :json => { :html => render_to_string(:partial => 'show_project', :locale=>{ :project => @project }) }.to_json
+      render action: "edit"
     end
   end
 
 
-  #def destroy
-  #  @project = Project.find(params[:id])
-  #  @project.destroy
-  #
-  #
-  #end
-
-  def my_projects
-    @owner    = User.find(params[:id])
-    @projects = Project.find_all_by_owner_id(@owner.id)
-    if current_user.job_seeker?
-      render :json => { :html => render_to_string(:partial => '/job_seeker/my_projects', :locale=>{ :employer => @owner, :projects => @projects }) }.to_json
-    else
-      render :json => { :html => render_to_string(:partial => '/employer/my_projects', :locale=>{ :job_seeker => @owner, :projects => @projects }) }.to_json
-    end
+  def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+    redirect_to projects_url
   end
 
-  def project_category
-    @category = Category.find_by_id(params[:id])
-    @projects = @category.projects
-    render :json => { :html => render_to_string(:partial => '/projects/project_categories', :locale=>{ :theses => @theses }) }.to_json
+  def invite_users
+    @project = Project.find_by_id(params[:id])
+    @users = User.all
+    @project_users = @project.users
+    render :json => { :html => render_to_string(:partial => '/projects/invitation_form', :locale=>{ :project => @project }) }.to_json
   end
+  def project_invitation
+    @project = Project.find_by_id(params[:id])
+    @user = User.find_by_id(params[:user_id])
+     @project_user = ProjectUser.new
+     @project_user.user_id = @user.id
+    @project_user.project_id = @project.id
+    @project_user.is_approved = true
+    @project_user.save
+    render :nothing => true
 
-  def project_details
-
-    @project    = Project.find(params[:id])
-    @categories = Category.all
-    @comments   = @project.comments.all
-  end
-
-  def project_wall
-    @project  = Project.find(params[:id])
-    @comment  = @project.comments.build
-    @comments = @project.comments.all
-    render :json => { :html => render_to_string(:partial => '/projects/project_wall', :locale=>{ :project => @project }) }.to_json
-  end
-
-  def add_comment
-    @project = Project.find(params[:thesis_id])
-    @project.comments.create(params[:comment])
-    @comments = @project.comments.all
-    render :json => { :html => render_to_string(:partial => '/projects/project_wall', :locale=>{ :project => @project }) }.to_json
-  end
-
-  def project_body
-    @project= Project.find(params[:id])
-    render :json => { :html =>  render_to_string(:partial => '/projects/project_path', :locale=>{ :thesis => @thesis }) }.to_json
   end
 end

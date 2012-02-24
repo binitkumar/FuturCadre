@@ -1,0 +1,64 @@
+<div class="content-left-holder">
+  <div class="shadow"></div>
+  <div class="popup-hold">
+
+    <div class="popup-top-holder">Invite User</div>
+    <div class="popup-mid-holder ">
+      <% unless @users.blank? %>
+          <% @users.each do |user| %>
+              <div id="main_div" style="width: 100px;float: left;">
+                <div id="inivite" onclick="send_invitation('<%=user.id %>','<%=@project.id %>')" style="float: left;">
+                  <%= check_box_tag "invitation", :checked => false %>
+                  <br/>
+                </div>
+                <div class="invitee">
+                  <% if user_image(user) %>
+                      <%= image_tag user_image(user).photo.url %>
+                  <% else %>
+                      <%= image_tag asset_path "dashboard-img.png" %>
+                  <% end %>
+                </div>
+                <div><%= user.name %>
+                  <br/></div>
+
+              </div>
+          <% end %>
+      <% end %>
+      <div class="pop-up-btn-new">
+
+        <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
+      </div>
+
+
+    </div>
+
+    <div class="popup-bot-holder"></div>
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+    function send_invitation(user_id, proj_id) {
+        url = "/projects/project_invitation?id=" + proj_id + '&user_id=' + user_id;
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                $("#popup_holder").html(response.html);
+            }
+        });
+        return false;
+
+    }
+
+
+    function close_popup() {
+        $(".content-left-holder").hide();
+    }
+
+</script>

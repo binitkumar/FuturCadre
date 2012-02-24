@@ -1,9 +1,8 @@
 <div class="w100">
-  <%= form_for(@project) do |f| %>
+  <%= form_for(@project, :html =>{ :multipart => true }) do |f| %>
       <% if @project.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
-
             <ul>
               <% @project.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -21,11 +20,16 @@
             <label>Tagline</label>
             <%= f.text_field :tag_line %>
           </div>
-
-          <div class="contract-field">
-               <label>Industry</label>
-               <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name") %>
-             </div>
+          <div class="profile-input mtop20">
+            <label>Event Picture</label>
+            <%= fields_for :photo do |image| %>
+                <%= image.file_field :image %>
+            <% end %>
+          </div>
+          <div class="profile-input mtop20">
+            <label>Industry</label>
+            <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name") %>
+          </div>
 
           <div class="profile-input mtop20">
             <label>Twitter link</label>
@@ -56,7 +60,12 @@
             <label>Fields Of Research</label>
             <%= f.text_area :research %>
           </div>
-
+          <div id class="skill_div">
+            <div class="profile-input mtop20">
+              <label>Skill</label>
+              <%= f.text_field :skill %>
+            </div>
+          </div>
           <div class="profile-input mtop20">
             <label><%= t('profiles.country') %></label>
 
@@ -76,11 +85,128 @@
           </div>
         </div>
       </div>
-   </div>
-        <%= f.submit "save"%>
+      </div>
+      <%= f.submit "save" %>
   <% end %>
 
 
+
+  <div class="content-holder">
+
+
+    <div class="basic-info mtop10">
+      <h1>Project<span class="red"> page</span></h1>
+      <img src="images/basic-info-bot-bar.png" alt=""/>
+
+    </div>
+    <!--9-1-2012 add touseef ahmad-->
+    <div class="dashboard-info-image">
+      <div class="dashboard-image">
+        <img src="images/dashboard-img.png" alt=""/>
+
+        <h1>RANAC</h1>
+
+        <p>Ajouter votre logo pour qu'il soit visible dans vos annonces.</p>
+      </div>
+    </div>
+    <!--dashboard-info-image ends-->
+    <div class="dashboard-content-right">
+      <div class="head-text">CREATE YOUR PROJECT</div>
+      <div class="project-inputs">
+        <label>Name of the Project</label>
+        <input type="text" value=""/>
+      </div>
+      <!--projects input ends-->
+      <div class="project-inputs">
+        <label>Small Descrition</label>
+        <input type="text" value=""/>
+      </div>
+      <!--projects input ends-->
+      <div class="project-inputs">
+        <label>City</label>
+        <input type="text" value=""/>
+      </div>
+      <!--projects input ends-->
+      <div class="project-select">
+        <label>Choice Industry</label>
+
+        <div class="big-select"></div>
+      </div>
+      <!--project-select ends-->
+      <div class="project-select">
+        <label>Administration</label>
+
+        <div class="big-select"></div>
+      </div>
+      <!--project-select ends-->
+      <div class="project-select">
+        <label>Choice Industry</label>
+
+        <div class="big-select"></div>
+      </div>
+      <!--project-select ends-->
+      <div class="project-select">
+        <label>Social Links</label>
+
+        <div class="socialz">
+          <img src="images/twitter.png"/>
+          <span>twitter/</span>
+          <input type="text" value=""/>
+        </div>
+        <div class="socialz">
+          <img src="images/blog.png"/>
+          <span>http://</span>
+          <input type="text" value=""/>
+        </div>
+        <div class="socialz">
+          <img src="images/world.png"/>
+          <span>http://</span>
+          <input type="text" value=""/>
+        </div>
+      </div>
+      <!--project-select ends-->
+      <div class="presentation">
+        <div class="present-detail">
+          <label>Presentation</label>
+
+          <div class="present-box">
+            <div class="box-left"></div>
+            <div class="box-mid">
+              <p>Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's
+                standard dummy text ever since ambled it to make a type specimen book.</p></div>
+            <div class="box-right"></div>
+          </div>
+          <!--present-box ends-->
+        </div>
+        <!--present-detail ends-->
+      </div>
+      <!--presentation ends-->
+      <div class="presentation">
+        <div class="present-detail">
+          <label>Field of Search</label>
+
+          <div class="present-box">
+            <div class="box-left"></div>
+            <div class="box-mid">
+              <p>Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                to make a type specimen book.</p></div>
+            <div class="box-right"></div>
+          </div>
+          <!--present-box ends-->
+        </div>
+        <!--present-detail ends-->
+      </div>
+      <!--presentation ends-->
+
+
+    </div>
+    <!--dashboard-content-right ends-->
+
+  </div>
+  <!--content holder ends-->
 
 
 

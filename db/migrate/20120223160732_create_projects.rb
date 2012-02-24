@@ -9,7 +9,8 @@ class CreateProjects < ActiveRecord::Migration
       t.string :aol_link
       t.text :description
       t.text :research
-      t.integer :skill_id
+      t.text :skill
+      t.integer :owner_id
       t.references :country, :city, :region, :category
 
       t.timestamps

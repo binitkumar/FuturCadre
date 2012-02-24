@@ -1,41 +1,58 @@
-<h1>Listing projects</h1>
+<%= render :partial => "shared/top_search_ box" %>
+<div class="content-holder">
+  <div class="basic-info mtop10">
+    <h1><span class="red">News</span></h1>
+    <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Tag line</th>
-    <th>City</th>
-    <th>Industry</th>
-    <th>Twitter link</th>
-    <th>Dig link</th>
-    <th>Dig link</th>
-    <th>Description</th>
-    <th>Research</th>
-    <th>Skill</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  </div>
+  <div class="left-content">
+    <div class="left-detail">
+      <%= image_tag asset_path 'adds-holder-img.png' %>
+    </div>
+    <p></p>
+  </div>
 
-<% @projects.each do |project| %>
-  <tr>
-    <td><%= project.name %></td>
-    <td><%= project.tag_line %></td>
-    <td><%= project.city %></td>
-    <td><%= project.industry %></td>
-    <td><%= project.twitter_link %></td>
-    <td><%= project.dig_link %></td>
-    <td><%= project.dig_link %></td>
-    <td><%= project.description %></td>
-    <td><%= project.research %></td>
-    <td><%= project.skill_id %></td>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
+  <!--left-content ends-->
 
-<%= link_to 'New Project', new_project_path %>
+  <div class="right-content">
+    <div class="basic-info mtop10">
+      <h1><span class="red">News</span></h1>
+    </div>
+    <div class="suggest-a-news"><%= link_to "Create New", new_project_path() %></div>
+    <div class="right-content-detail">
+
+      <% unless @projects.blank? %>
+          <% @projects.each do |project| %>
+
+              <div class="content-detail">
+                <div class="img_detail">
+                  <% if project.photo != nil %>
+
+                      <%= image_tag project.photo.image.url %>
+                  <% else %>
+                      <%= image_tag "/assets/dashboard-img.png" %>
+                  <% end %>
+                </div>
+                <h1><%= link_to project.name, project_path(:id => project.id) %> </h1>
+
+                <p><%= project.created_at.strftime("%d %b. %Y") %></p>
+
+                <div class="p-style-detail">
+                  <%= project.tag_line %>
+                  <%= project.description %>
+
+                </div>
+
+
+              </div>
+          <% end %>
+
+          </div><!--right-content ends-->
+      <% end %>
+
+
+      </div>
+</div>
+<div id="popup_holder"></div>
+

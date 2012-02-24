@@ -226,6 +226,8 @@ FuturCadre::Application.routes.draw do
       get :delete_project
       post :update_project
       get :join_project
+      get :project_invitation
+      get :invite_users
 
     end
   end
@@ -240,7 +242,7 @@ FuturCadre::Application.routes.draw do
 
   resources :invitations do
     collection do
-      get :project_invitation
+      #get :project_invitation
       post :send_invitation
     end
   end

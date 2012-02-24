@@ -1,65 +1,149 @@
-<p id="notice"><%= notice %></p>
+<%= render :partial => "shared/top_search_ box" %>
+<div class="content-holder">
+  <div class="basic-info mtop10">
+    <h1>Project<span class="red"> </span></h1>
+    <%= image_tag asset_path "basic-info-bot-bar.png" %>
+  </div>
+  <!--9-1-2012 add touseef ahmad-->
+  <div class="dashboard-info-image ">
 
-<p>
-  <b>Name:</b>
-  <%= @project.name %>
-</p>
+    <div class="pic-project">
+      <div class="img_detail">
+        <% if @project.photo != nil %>
+            <%= image_tag @project.photo.image.url %>
+        <% else %>
+            <%= image_tag "/assets/dashboard-img.png" %>
+        <% end %>
 
-<p>
-  <b>Tag line:</b>
-  <%= @project.tag_line %>
-</p>
+      </div>
+    </div>
+    <!--pic-project ends-->
+    <div class="due-projects">
+      <div class="h1" style="margin-top:10px; margin-left:5px; width:300px; "><%= @project.users.count %> Members(s) du
+        Projects
+      </div>
+      <div class="images-detail">
+        <div class="images">   <%= image_tag asset_path "people-1.png" %></div>
+        <div class="images">  <%= image_tag asset_path "people-1.png" %></div>
+        <div class="images">  <%= image_tag asset_path "people-1.png" %></div>
+        <div class="images">  <%= image_tag asset_path "people-1.png" %></div>
+      </div>
+    </div>
+    <div class="suggest-a-news" onclick="invite_user('<%= @project.id%>')">Invite User(s)</div>
+  </div>
+
+  <!--dashboard-info-image ends--><!--Left image portion ends-->
+
+  <div class="dashboard-mid">
+    <div class="result-contents-info">
+      <h1><%= @project.name %></h1>
+
+      <h3 style="margin-top:5px;">  <%= @project.tag_line %> </h3>
+      <h4> <%= @project.city.name %> |<%= @project.created_at.strftime("%d %b. %Y") %>
+        |<%= @project.category.name %></h4>
+    </div>
+    <!--result contents ends-->
+    <div class="detail-info">
+      <h1 style="margin-top:10px;">Presentation</h1>
+
+      <div class="detail-bg">
+        <div class="detail-left"></div>
+        <div class="detail-mid">
+          <p><%= @project.description %>.</p>
+        </div>
+        <div class="detail-right"></div>
+      </div>
+      <div class="detail-bg-img">
+        <div class="detail-left-img"></div>
+        <div class="detail-mid-img">
+          <h3>Research</h3>
+
+          <p> <%= @project.research %> </p>
+        </div>
+        <div class="detail-right-img"></div>
+
+      </div>
+    </div>
+    <!--detail info ends-->
+
+  </div>
+  <!--dashboard mid ends-->
+
+  <div class="dashboard-right-info">
+    <h1 style="float:right; margin-right:20px;">Request to Join</h1>
+
+    <div class="select-button">
+      <div class="left-holder"></div>
+      <div class="mid-holder"><a href="#">Request</a></div>
+      <div class="right-holder"></div>
+    </div>
+    <!--select button ends-->
+
+
+  </div>
+  <!--dashboard right info ends-->
+</div>
+
+<div id="popup_holder"></div>
+
+<script type="text/javascript">
+
+    function invite_user(proj_id) {
+        url = "/projects/invite_users?id="+proj_id;
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                $("#popup_holder").html(response.html);
+            }
+        });
+        return false;
+
+
+    }
+</script>
 
 
 
-<p>
-  <b>Industry:</b>
-  <%= @project.industry %>
-</p>
-
-<p>
-  <b>Twitter link:</b>
-  <%= @project.twitter_link %>
-</p>
-
-<p>
-  <b>Dig link:</b>
-  <%= @project.dig_link %>
-</p>
 
 
-<p>
-  <b>Description:</b>
-  <%= @project.description %>
-</p>
-
-<p>
-  <b>Research:</b>
-  <%= @project.research %>
-</p>
-
-<p>
-  <b>Skill:</b>
-  <%= @project.skill_id %>
-</p>
 
 
-<p>
-  <b>Skill:</b>
-  <%= @project.country.name %>
-</p>
 
 
-<p>
-  <b>Skill:</b>
-  <%= @project.region.name %>
-</p>
 
 
-<p>
-  <b>Skill:</b>
-  <%= @project.city.name %>
-</p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

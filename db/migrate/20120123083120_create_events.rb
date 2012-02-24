@@ -2,8 +2,8 @@ class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
       t.string :title
-      t.string :time_of_start
-      t.string :time_of_end
+      t.datetime :time_of_start
+      t.datetime :time_of_end
       t.text :description
       t.string :place
       t.integer  :group_id

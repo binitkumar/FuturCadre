@@ -54,8 +54,8 @@ class NewsController < ApplicationController
         @picture.content_type = "news_image"
         @picture.imageable_id = @news.id
         @picture.imageable_type ="News"
-        if  @picture.save
-
+        unless  @picture.save
+              render :action => "new"
         end
       end
 
