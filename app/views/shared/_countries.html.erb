@@ -34,10 +34,11 @@
     }
 </script>
  <%  @countries = Country.find([24, 82])%>
+<% selected = @country ? @country.id : nil %>
 <% if object_collection.blank? %>
     <!--<%#= select_tag "country_id", options_from_collection_for_select(Country.find([24, 82]), "id", "name",:prompt => 'Select'), :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')" %>-->
     <%= select_tag 'country_id' , options_for_select(["Select from list"] + @countries.map{ |obj| [obj.name , obj.id ]}) , :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')"  %>
 <% else %>
     <%#= select_tag "#{object_collection}[country_id]", options_from_collection_for_select(Country.find([24, 82]), "id", "name",:prompt => 'Select'), :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')" %>
-    <%= select_tag "#{object_collection}[country_id]" , options_for_select(["Select from list"] + @countries.map{ |obj| [obj.name , obj.id ]}) , :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')"  %>
+    <%= select_tag "#{object_collection}[country_id]" , options_for_select(["Select from list"] + @countries.map{ |obj| [obj.name , obj.id ]}, selected ) , :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')"  %>
 <% end %>

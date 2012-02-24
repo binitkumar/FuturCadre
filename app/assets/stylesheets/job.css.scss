@@ -126,3 +126,19 @@ input.dp-applied {
     padding-bottom: 10px;
     margin-top :28px;
     }
+
+.save-button-new a{
+    background: url(asset_path('reg-me.png',image)) repeat-x scroll 0 0 transparent;
+    /*background:  url(asset_path('findjob-bg.png',image)) repeat-x scroll 0 0 transparent;*/
+    /*background: url("/assets/findjob-bg.png") repeat-x scroll 0 0 transparent;*/
+    border: 1px solid #7B0C26;
+    color: #FFFFFF;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 10px;
+    text-decoration: none;
+    margin-top :20px;
+    }

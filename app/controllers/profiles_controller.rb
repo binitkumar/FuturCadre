@@ -7,12 +7,12 @@ class ProfilesController < ApplicationController
   #end
 
   def new
-    @profile             = Profile.new
+		@profile             = Profile.new
 		#    @education_info      = EducationInformation.new
 		#    @job_info            = ProfessionInformation.new
 		#    @resume              = Asset.new(params[:resume]) #created this for creating a resume object in the same table
-		#    @org_photo           = Asset.new(params[:org_photo])
-		#    @company_information = CompanyInformation.new(params[:company_information])
+		@org_photo           = Asset.new(params[:org_photo])
+		@company_information = CompanyInformation.new(params[:company_information])
     #@error_arr = []
     #@error_arr <<  @profile
     #@error_arr <<  @asset
@@ -30,45 +30,104 @@ class ProfilesController < ApplicationController
 	end
 
 	def create_job_seeker_basic_information
-		@profile = Profile.new(params[:profile])
-		@profile.user = current_user
-		if @profile.save
+		if current_user.profile.present?
+			@profile = current_user.profile
+			success = @profile.update_attributes(params[:profile])
+		else
+      @profile = Profile.new(params[:profile])
+			@profile.user = current_user
+			success = @profile.save
+		end
+		if success
 			if session[:photo_id].present?
+				@profile.photo.destroy if @profile.photo.present?
 				photo = Asset.find_by_id(session[:photo_id])
 				photo.update_attributes(:profile_id => @profile.id) if photo.present?
 				session[:photo_id] = nil
 			end
+			@education_informations = @profile.education_informations
 			render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/education_details') }.to_json
 		else
 			render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @profile}) }.to_json
 		end
+	end
+
+	def remove_edu_info
+		@profile = Profile.find_by_id(params[:profile_id])
+		@edu_info = EducationInformation.find_by_id(params[:id])
+		@edu_info.destroy
+		@education_informations = @profile.education_informations
+		render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/education_informations') }.to_json
 	end
 
 	def create_job_seeker_education_details
-		
-		if
-			render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/profesional_experience') }.to_json
-		else
-			render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @profile}) }.to_json
-		end
-	end
-
-	def create_job_seeker_profesional_experience
-		if
-			render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/additional_information') }.to_json
-		else
-			render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @profile}) }.to_json
-		end
-	end
-
-	def create_job_seeker_additional_information
-		
-		if
+		@profile = Profile.find_by_id(params[:profile_id])
+		@edu_info = EducationInformation.new(params[:education_info])
+		@edu_info.profile = @profile
+		success = @edu_info.save
+		@education_informations = @profile.education_informations
+		if success
 			render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/education_details') }.to_json
 		else
-			render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @profile}) }.to_json
+			render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @edu_info}) }.to_json
 		end
 	end
+
+	def create_job_seeker_education_details_next
+		@profile = Profile.find_by_id(params[:profile_id])
+		unless params[:skip].present?
+			@edu_info = EducationInformation.new(params[:education_info])
+			@edu_info.profile = @profile
+			success = @edu_info.save
+		else
+			success = true
+		end
+		if success
+			@professional_informations = @profile.profession_informations
+			render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_experience') }.to_json
+		else
+			render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @edu_info}) }.to_json
+		end
+	end
+
+	def remove_prof_info
+		@profile = Profile.find_by_id(params[:profile_id])
+		@prof_info = ProfessionInformation.find_by_id(params[:id])
+		@prof_info.destroy
+		@professional_informations = @profile.profession_informations
+		render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_informations') }.to_json
+	end
+	
+	def create_job_seeker_professional_experience
+		@profile = Profile.find_by_id(params[:profile_id])
+		@prof_info = ProfessionInformation.new(params[:prof_info])
+		@prof_info.profile = @profile
+		success = @prof_info.save
+		@professional_informations = @profile.profession_informations
+		if success
+			render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_experience') }.to_json
+		else
+			render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @prof_info}) }.to_json
+		end
+	end
+
+	def create_job_seeker_professional_experience_next
+		@profile = Profile.find_by_id(params[:profile_id])
+		unless params[:skip].present?
+			@prof_info = ProfessionInformation.new(params[:prof_info])
+			@prof_info.profile = @profile
+			success = @prof_info.save
+		else
+			success = true
+		end
+		if success
+			render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/additional_information') }.to_json
+		else
+			render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @prof_info}) }.to_json
+		end
+	end
+
+	
 
 	def create_job_seeker
 		@profile = Profile.new(params[:profile])
@@ -179,11 +238,15 @@ class ProfilesController < ApplicationController
 		@profile             = Profile.find(params[:id])
 		@company_information = @profile.company_information
 		@asset               = @profile.assets.where("content_type =?", "profile_image")
-		@job_info            =@profile.profession_informations.first
+		@profession_informations = @profile.profession_informations
 		@resume              = @profile.assets.where("content_type =?", "cv")
 		@org_photo           = @profile.assets.where("content_type =?", "logo")
-		@education_info      = @profile.education_informations.first
-
+		@education_informations      = @profile.education_informations
+		@city = @profile.city
+		@regions = @city.country.regions
+		@region = @profile.region
+		@cities = @region.cities
+		@country = @city.country
 	end
 
 	def update_employer

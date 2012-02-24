@@ -1,6 +1,7 @@
 <% collect = @cities.present? ? @cities : Country.first.regions.first.cities %>
+<% selected = @city ? @city.id : nil %>
 <% if object_collection.blank? %>
     <%= select_tag "city_id", options_from_collection_for_select(collect, "id", "name"), :class => "slt-sub-div" %>
 <% else %>
-    <%= select_tag "#{object_collection}[city_id]", options_from_collection_for_select(collect, "id", "name"), :class => "slt-sub-div" %>
+    <%= select_tag "#{object_collection}[city_id]", options_from_collection_for_select(collect, "id", "name", selected), :class => "slt-sub-div" %>
 <% end %>

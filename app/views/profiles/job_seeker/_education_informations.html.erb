@@ -1,0 +1,47 @@
+<% if @education_informations.present? %>
+	<div class="info-container">
+		<% @education_informations.each do |info| %>
+			<div class="info-box">
+				<div class="info-detail">
+					<label>Degree Level</label>
+					<div class="value"><%= info.degree_level %></div>
+				</div>
+
+				<div class="info-detail">
+					<label>Major Subject </label>
+					<div class="value"><%= info.major_subject %></div>
+				</div>
+
+				<div class="info-detail">
+					<label>Institute</label>
+					<div class="value"><%= info.institute %></div>
+				</div>
+
+				<div class="info-detail">
+					<label>Passing Year</label>
+					<div class="value"><%= info.year %></div>
+				</div>
+				<div class="save-button-new">
+					<%= link_to "Remove",remove_edu_info_profiles_path(:profile_id => @profile.id, :id => info.id), :class => "remove-edu"  %>
+				</div>
+
+			</div>
+		<%end%>
+	</div>
+<%end%>
+<script type="text/javascript">
+
+	 $(".remove-edu").click(function(){
+	   $.ajax({
+		   context: $(this),
+	     url: $(this).attr('href'),
+	     type: 'GET',
+	     dataType: 'json',
+	     success: function(response){
+			   $("#education_informations").html(response.html);
+	     }
+	   });
+	   return false;
+	 });
+
+</script>

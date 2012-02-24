@@ -2,7 +2,6 @@ class EducationInformation < ActiveRecord::Base
   belongs_to :profile
   validates_presence_of :profile
 
-
   def self.search params
 
     conditions = []

@@ -195,7 +195,39 @@
       color: #404040; } } }
 
 #job-seeker-profile{
-
+ .info-container{
+   float:left;
+   height: auto;
+   width:100%;
+   .info-box{
+    border-bottom: 2px solid #666666;
+    float: left;
+    margin: auto;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    width: 100%;
+    .info-detail{
+      float:left;
+      width:100%;
+      margin-left:50px;
+      label{
+        color: #991514;
+        float: left;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 25px;
+        padding: 5px;
+        width: 20%;
+      }
+      .value{
+        float:left;
+        line-height: 25px;
+        padding: 5px;
+        width: 70%;
+      }
+    }
+   }
+  }
 
 .tabs_wrapper{
     width:100%;
@@ -224,7 +256,7 @@
     margin-top:12px;
     width:auto;
     position:relative;
-    cursor:default !important;
+    cursor:pointer !important;
 }
 
 .tabs_left{
@@ -279,4 +311,25 @@
 .basic-save{
  margin-right: 25px !important;
  }
+}
+
+.add-button-new{
+float:left;
+width:100%;
+a{
+    background: url(asset_path('reg-me.png',image)) repeat-x scroll 0 0 transparent;
+    /*background:  url(asset_path('findjob-bg.png',image)) repeat-x scroll 0 0 transparent;*/
+    /*background: url("/assets/findjob-bg.png") repeat-x scroll 0 0 transparent;*/
+    border: 1px solid #7B0C26;
+    color: #FFFFFF;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 10px;
+    text-decoration: none;
+    margin-top :20px;
+    margin-bottom :20px;
+    }
 }

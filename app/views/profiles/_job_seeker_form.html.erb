@@ -16,18 +16,3 @@
 		<%= render :partial => "/profiles/job_seeker/basic_information" %>
 	</div>
 </div>
-
-<script type="text/javascript">
-
-		$("#next-link").click(function(){
-			$.post($("form#profile-form").attr("action"), $("form#profile-form").serialize(), function(response){
-			  if(response.seccess == true){
-				  $("#profile-contents").html(response.html);
-	      }
-			  else{
-			    $("#form-errors").html(response.html);
-			  }
-	    }, "json");
-			return false;
-		});
-</script>

@@ -1,14 +1,11 @@
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
-  <% if current_user.job_seeker? %>
-      <%= form_for @profile, :url =>{ :action => 'update_job_seeker', :controller => 'profiles', :id => @profile.id, :a_id => @asset, :job_id =>@job_info.id,:res_id => @resume, :org_pid => @org_photo,:edu_id => @education_info.id }, :html =>{ :id => "create_profile_form", :onsubmit =>true, :multipart => true } do |f| %>
-          <%= render :partial => "job_seeker_form", :locals => { :f => f } %>
-          <div class="findjob"> <%= f.submit "Save" %></div>
-      <% end %>
-  <% elsif current_user.employer? %>
-      <%= form_for @profile, :url =>{ :action => 'update_employer', :controller => 'profiles', :id => @profile.id, :a_id => @asset, :comp_id =>@company_information.id, :org_id => @org_photo}, :html =>{ :id => "create_profile_form", :onsubmit =>true, :multipart => true } do |f| %>
-          <%= render :partial => "employer_form", :locals => { :f => f } %>
-          <div class="findjob"> <%= f.submit "Save" %></div>
-      <% end %>
-  <% end %>
+	<% if current_user.job_seeker? %>
+		<%= render :partial => "job_seeker_form" %>
+	<% elsif current_user.employer? %>
+		<%= form_for @profile, :url =>{ :action => 'update_employer', :controller => 'profiles', :id => @profile.id, :a_id => @asset, :comp_id =>@company_information.id, :org_id => @org_photo}, :html =>{ :id => "create_profile_form", :onsubmit =>true, :multipart => true } do |f| %>
+			<%= render :partial => "employer_form", :locals => { :f => f } %>
+			<div class="findjob"> <%= f.submit "Save" %></div>
+		<% end %>
+	<% end %>
 </div>

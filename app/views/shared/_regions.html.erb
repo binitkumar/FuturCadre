@@ -35,10 +35,11 @@
     }
 </script>
 <% collect = @regions.present? ? @regions : Country.find(24).regions %>
+<% selected = @region ? @region.id : nil %>
 <% if object_collection.blank? %>
     <%#= select_tag "region_id", options_from_collection_for_select(collect, "id", "name"), :class => "slt-sub-div", :onChange => "get_cities(this,'#{object_collection}')" %>
     <%= select_tag 'region_id' , options_for_select(["Select from list"] + collect.map{ |obj| [obj.name , obj.id ]}) , :class => "slt-div", :onChange => "get_cities(this, '#{object_collection}')"  %>
 <% else %>
-    <%= select_tag "#{object_collection}[region_id]" , options_for_select(["Select from list"] + collect.map{ |obj| [obj.name , obj.id ]}) , :class => "slt-div", :onChange => "get_cities(this, '#{object_collection}')"  %>
+    <%= select_tag "#{object_collection}[region_id]" , options_for_select(["Select from list"] + collect.map{ |obj| [obj.name , obj.id ]}, selected ) , :class => "slt-div", :onChange => "get_cities(this, '#{object_collection}')"  %>
     <%#= select_tag "#{object_collection}[region_id]", options_from_collection_for_select(collect, "id", "name"), :class => "slt-sub-div", :onChange => "get_cities(this,'#{object_collection}')" %>
 <% end %>

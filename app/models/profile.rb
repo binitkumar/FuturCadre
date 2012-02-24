@@ -28,7 +28,6 @@ class Profile < ActiveRecord::Base
   end
 
   def full_address
-
     ad = address
     if ad && ad.length > 0
       ad +=""
@@ -52,7 +51,10 @@ class Profile < ActiveRecord::Base
     conditions << "profiles.city_id = '%#{params[:city_id]}%'"
     conditions = conditions.join(" OR ")
     find(:all, :conditions => conditions)
-
-
   end
+
+	def photo
+		assets.detect{ |a| a.content_type == "profile_image" } if assets.present?
+	end
+
 end
