@@ -10,36 +10,41 @@
 </div>
 
 <ul class="sf-menu">
+
   <% if user_signed_in? %>
-      <li class="<%= params[:action] == "dashboard" ? 'active' : '' %>">
+      <li id="find" class="<%= params[:action] == "dashboard" ? 'active' : '' %>">
+
+
         <%= link_to "Home", "/#{current_user.role}/dashboard" %>
       </li>
   <% end %>
-  <li class="<%= params[:controller] == "home" && params[:action] == "index" ? 'active' : '' %>">
+  <li id="home"  class="<%= params[:controller] == "home" && params[:action] == "index" ? 'active' : '' %>">
+
+
     <%= link_to t('header.find_jobs'), root_url %>
   </li>
-  <li class="<%= params[:controller] == "groups" ? 'active' : '' %>">
-    <%= link_to t('header.group'),  "javascript:void(0)" %>
+  <li id="group"  class="<%= params[:controller] == "groups" ? 'active' : '' %>">
+    <%= link_to t('header.group'), "javascript:void(0)" %>
     <ul>
-      <li id="a">  <%= link_to "School Group", groups_path(:locale => "school") %> </li>
+      <li>  <%= link_to "School Group", groups_path(:locale => "school") %> </li>
       <li>  <%= link_to "Job Group", groups_path(:locale => "job") %> </li>
     </ul>
   </li>
-  <li class="<%= params[:controller] == "theses" ? 'active' : '' %>">
+  <li id="theses"  class="<%= params[:controller] == "theses" ? 'active' : '' %>">
     <%= link_to "Thesis", theses_path() %>
   </li>
-  <li class="<%= params[:controller] == "projects" ? 'active' : '' %>">
+  <li id="project"  class="<%= params[:controller] == "projects" ? 'active' : '' %>">
     <%= link_to "Projects", projects_path() %>
   </li>
 
   <% unless user_signed_in? %>
-      <li class="<%= params[:role].present? && params[:role] == "job_seeker" ? 'active' : '' %>">
+      <li id="register" class="<%= params[:controller] =="users/registrations"   ? 'active' : '' %>">
         <%= link_to t('Register'), sign_up_path() %>
       </li>
 
   <% end %>
 
-  <li class="<%= params[:controller] == "news" && params[:action] == "index" ? 'active' : '' %>">
+  <li id="news"  class="<%= params[:controller] == "news" && params[:action] == "index" ? 'active' : '' %>">
     <%= link_to "News", news_index_path() %>
   </li>
 </ul>
@@ -69,11 +74,56 @@
       </div>
   <% end %>
 </div>
-
+<%= hidden_field_tag "active_tab", nil %>
 <script type="text/javascript">
+
+  var selected_tab = $(".active").attr("id");
 
     jQuery(function () {
         jQuery('ul.sf-menu').superfish();
     });
+
+
+    var active;
+    $(".sf-menu li").hover(
+
+            function () {
+
+                $(".active").each(function(){
+                         $(this).removeClass("active");
+            });
+            $(this).addClass("active");
+//                var ab = $("#active_tab").val();
+//
+//
+//
+//
+//                //alert("------"+ab);
+//                if (ab == null  || ab == "") {
+//                  //  alert(1);
+//                    $("#home").removeClass("active");
+//                }
+//                else
+//                {
+//                    $("#" + ab).removeClass("active");
+//                }
+            },
+            function () {
+                $(".active").each(function(){
+                                         $(this).removeClass("active");
+                            });
+                   $("#"+selected_tab).addClass("active");
+////
+//                var abc = $("#active_tab").val();
+//                if (abc == null || abc == "") {
+//                    $("#home").addClass("active");
+//                }
+//                else{
+//                    $("#" + abc).addClass("active");
+//                }
+
+            }
+    );
+
 </script>
 
