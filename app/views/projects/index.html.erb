@@ -12,47 +12,45 @@
     <p></p>
   </div>
 
+  <div class="dashboard-content-right">
+    <div class="dashboard-content" style="border-bottom:1px solid #ccc; min-height:50px;">
 
-  <!--left-content ends-->
+      <div class="btn" style="float:right;">
+        <div class="btn-left-holder"></div>
+        <div class="btn-mid-holder"><%= link_to "Create New", new_project_path(), :style => "color:#fff; font-weight:bold; text-decoration:none;" %></div>
+        <div class="btn-right-holder"></div>
+      </div>
 
-  <div class="right-content">
-    <div class="basic-info mtop10">
-      <h1><span class="red">Project</span></h1>
     </div>
-    <div class="suggest-a-news"><%= link_to "Create New", new_project_path() %></div>
-    <div class="right-content-detail">
+    <!--dashboard content ends-->
 
+    <div class="buttons w100">
+      <h1>List of projects</h1>
       <% unless @projects.blank? %>
           <% @projects.each do |project| %>
-
-              <div class="content-detail">
+              <div class="left-holder-img"></div>
+              <div class="mid-holder-img">
                 <div class="img_detail">
                   <% if project.photo != nil %>
-
                       <%= image_tag project.photo.image.url %>
                   <% else %>
                       <%= image_tag "/assets/dashboard-img.png" %>
                   <% end %>
                 </div>
-                <h1><%= link_to project.name, project_path(:id => project.id) %> </h1>
-
-                <p><%= project.created_at.strftime("%d %b. %Y") %></p>
-
-                <div class="p-style-detail">
-                  <%= project.tag_line %>
-                  <%= project.description %>
-
-                </div>
-
-
+                <!--img info ends-->
+                <h2><%= link_to project.name, project_path(:id => project.id) %></h2>
+                <div class="link"><%= project.category.name %></div>
+                <p style="width:550px;">  <%= project.description %></p>
+                <p style="margin-left:130px; line-height:60px; float:left; margin-right:20px;"><%= project.users.count %>
+                 Member(s)</p>
               </div>
+              <!--mid holder img ends-->
+              <div class="right-holder-img"></div>
+             <div class="clear"></div>
           <% end %>
-
-          </div><!--right-content ends-->
       <% end %>
-
-
-      </div>
+    </div>
+  </div>
 </div>
-<div id="popup_holder"></div>
 
+<div id="popup_holder"></div>

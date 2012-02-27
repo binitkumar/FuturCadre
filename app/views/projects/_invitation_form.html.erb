@@ -5,7 +5,8 @@
     <div class="popup-top-holder">Invite User</div>
     <div class="popup-mid-holder ">
       <% unless @users.blank? %>
-          <% @users.each do |user| %>
+          <%  @users.each do |user| %>
+            <%# if @project.is_member(user.id)%>
               <div id="main_div" style="width: 100px;float: left;">
                 <div id="inivite" onclick="send_invitation('<%=user.id %>','<%=@project.id %>')" style="float: left;">
                   <%= check_box_tag "invitation", :checked => false %>
@@ -22,11 +23,11 @@
                   <br/></div>
 
               </div>
-          <% end %>
+          <%# end %>
+      <% end %>
       <% end %>
       <div class="pop-up-btn-new">
-
-        <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
+              <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
       </div>
 
 

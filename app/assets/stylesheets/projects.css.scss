@@ -2,249 +2,175 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 .pic-project {
-    text-align: center;
-    padding-top: 10px;
-    width: 200px;
+  text-align: center;
+  padding-top: 10px;
+  width: 200px;
+}
+
+.pic-project img{
+  height: 100px;
+    margin: 0;
+    width: 100px;
 }
 
 .text-of-pic-project {
-    color: #600;
-    margin-top: 5px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 3px;
+  color: #600;
+  margin-top: 5px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 3px;
 }
 
 .images {
-    border: 1px solid #ccc;
-    height: 40px;
-    width: 50px;
-    float: left;
-    margin: 5px;
+  border: 1px solid #ccc;
+  height: 40px;
+  width: 50px;
+  float: left;
+  margin: 5px;
 }
 
 .images img {
-    padding-left: 10px;
+    float: left;
+    height: 34px;
+    padding-left: 6px;
+    padding-top: 2px;
+    width: 40px;
 }
 
 .result-contents-info {
-    border-bottom: 1px solid #ccc;
-    margin-top: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-top: 10px;
 }
 
 .detail-bg {
-    margin-top: 10px;
-    float: left;
+  margin-top: 10px;
+  float: left;
 }
 
 .detail-left {
-     background:  url(asset_path('left-detail.png',image))no-repeat;
-     width: 15px;
-    height: 83px;
-    float: left;
+  background: url(../assets/left-detail.png) no-repeat;
+  width: 15px;
+  height: 83px;
+  float: left;
 }
 
 .detail-mid {
-   background:  url(asset_path('mid-detail.png',image)) repeat-x ;
-   height: 83px;
-   float: left;
+  background: url(../assets/mid-detail.png) repeat-x;
+  height: 83px;
+  float: left;
 }
 
 .detail-mid p {
-    width: 415px;
-    float: left;
+  width: 415px;
+  float: left;
 }
 
 .detail-mid h3 {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .detail-right {
-    background:  url(asset_path('right-detail.png',image)) no-repeat;
-    width: 15px;
-    height: 83px;
-    float: left;
+  background: url(../assets/right-detail.png) no-repeat;
+  width: 15px;
+  height: 83px;
+  float: left;
 }
 
 .detail-bg-img {
-    margin-top: 10px;
-    float: left;
+  margin-top: 10px;
+  float: left;
 }
 
 .detail-left-img {
-     background:  url(asset_path('left-holder-img.png',image)) no-repeat;
-      width: 15px;
-    height: 173px;
-    float: left;
+  background: url(../assets/left-holder-img.png) no-repeat;
+  width: 15px;
+  height: 173px;
+  float: left;
 }
 
 .detail-mid-img {
-     background:  url(asset_path('mid-holder-img.png',image)) repeat-x;
-    height: 173px;
-    float: left;
+  background: url(../assets/mid-holder-img.png) repeat-x;
+  height: 173px;
+  float: left;
 }
 
 .detail-mid-img p {
-    width: 418px;
-    float: left;
+  width: 418px;
+  float: left;
 }
 
 .detail-mid-img h3 {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .detail-right-img {
-     background:  url(asset_path('right-holder-img.png',image)) no-repeat;
-     width: 15px;
-    height: 173px;
-    float: left;
+  background: url(../assets/right-holder-img.png) no-repeat;
+  width: 15px;
+  height: 173px;
+  float: left;
 }
+
+.left-holder-img {
+  background: url(../assets/left-holder-img.png) no-repeat;
+  width: 15px;
+  height: 173px;
+  float: left;
+}
+
+.mid-holder-img {
+  background: url(../assets/mid-holder-img.png) repeat-x;
+  height: 173px;
+  float: left;
+  padding-top: 15px;
+  width: 650px;
+}
+
+.mid-holder-img h2 {
+  font-weight: normal;
+  color: #990000;
+}
+
+.right-holder-img {
+  background: url(../assets/right-holder-img.png) no-repeat;
+  width: 15px;
+  height: 173px;
+  float: left;
+}
+
+.img-info {
+  border: 1px solid #CCCCCC;
+   float: left;
+   margin-right: 10px;
+   padding: 5px;
+   width: 101px;
+}
+
+
+ /*************************CREATE PROJECT PAGE STYLING START*************************/
+ .head-text { margin-top:10px; float:left;color: #991514; font-size: 20px; font-weight: bold; width:100%; text-align:center; }
+ .project-inputs { float:left; width:100%; margin-top:20px;}
+ .project-inputs label {color: #474747; float: left; font-size: 14px; margin-left: 22px; margin-right: 2%; width: 22%; margin-top:10px; }
+ .project-inputs input {background: none repeat scroll 0 0 #F6F6F6; border-top: 1px solid #949494; float: left; height: 26px; margin-top: 6px; padding-left: 5px; width:425px; }
+
+ .project-select {float:left; width:100%; margin-top:20px;}
+ .project-select label { color: #474747; float: left; font-size: 14px; margin-left: 22px; margin-right: 2%; width: 22%; margin-top:10px; }
+ .socialz {  float:right; width:500px; margin-bottom:10px; }
+ .socialz img { margin-right:10px; float:left;}
+ .socialz span { float:left; margin-top:15px; font-size:14px; font-weight:bold; margin-right:10px; width:50px;}
+ .socialz input { background: none repeat scroll 0 0 #F6F6F6; border-top: 1px solid #949494; float: left; height: 26px; margin-top: 10px; padding-left: 5px; width:296px;;}
+ .presentation { width:100%; float:left;  }
+ .present-detail { float:left; margin-top:20px; width:100%;}
+ .present-detail label { color: #474747; float: left; font-size: 14px; margin-left: 22px; margin-right: 2%; width: 22%; margin-top:10px; }
+
+ .present-box { float:left; width:425px; margin-left:4px;}
+ .box-left { background:url(../assets/present-top.png) no-repeat; width:426px; height:11px; float:left;}
+ .box-mid { background:url(../assets/present-mid.png) repeat-y; width:426px; float:left; padding:10px;}
+ .box-mid p { width:395px; float:left;}
+ .box-right { background:url(../assets/present-bot.png) no-repeat; width:426px; height:11px; float:left;}
+
 
 .dashboard-info-image {
 	float: left;
 	width: 278px;
 	margin-right:10px;
 }
-
-.head-text {
-    margin-top: 10px;
-    float: left;
-    color: #991514;
-    font-size: 20px;
-    font-weight: bold;
-    width: 100%;
-    text-align: center;
-}
-
-.project-inputs {
-    float: left;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.project-inputs label {
-    color: #474747;
-    float: left;
-    font-size: 14px;
-    margin-left: 22px;
-    margin-right: 2%;
-    width: 22%;
-    margin-top: 10px;
-}
-
-.project-inputs input {
-    background: none repeat scroll 0 0 #F6F6F6;
-    border-top: 1px solid #949494;
-    float: left;
-    height: 26px;
-    margin-top: 6px;
-    padding-left: 5px;
-    width: 425px;
-}
-
-.project-select {
-    float: left;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.project-select label {
-    color: #474747;
-    float: left;
-    font-size: 14px;
-    margin-left: 22px;
-    margin-right: 2%;
-    width: 22%;
-    margin-top: 10px;
-}
-
-.socialz {
-    float: right;
-    width: 500px;
-    margin-bottom: 10px;
-}
-
-.socialz img {
-    margin-right: 10px;
-    float: left;
-}
-
-.socialz span {
-    float: left;
-    margin-top: 15px;
-    font-size: 14px;
-    font-weight: bold;
-    margin-right: 10px;
-    width: 50px;
-}
-
-.socialz input {
-    background: none repeat scroll 0 0 #F6F6F6;
-    border-top: 1px solid #949494;
-    float: left;
-    height: 26px;
-    margin-top: 10px;
-    padding-left: 5px;
-    width: 296px;;
-}
-
-.presentation {
-    width: 100%;
-    float: left;
-}
-
-.present-detail {
-    float: left;
-    margin-top: 20px;
-    width: 100%;
-}
-
-.present-detail label {
-    color: #474747;
-    float: left;
-    font-size: 14px;
-    margin-left: 22px;
-    margin-right: 2%;
-    width: 22%;
-    margin-top: 10px;
-}
-
-.present-box {
-    float: left;
-    width: 425px;
-    margin-left: 4px;
-}
-
-.box-left {
-    background:  url(asset_path('present-top.png',image)) no-repeat;
-    width: 426px;
-    height: 11px;
-    float: left;
-}
-
-.box-mid {
-     background:  url(asset_path('present-mid.png',image))repeat-y;
-
-    width: 426px;
-    float: left;
-    padding: 10px;
-}
-
-.box-mid p {
-    width: 395px;
-    float: left;
-}
-
-.box-right {
-    background:  url(asset_path('present-bot.png',image)) no-repeat;
-
-    width: 426px;
-    height: 11px;
-    float: left;
-}
-
-
-
-
-
