@@ -13,6 +13,10 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'therubyracer'
 gem "paperclip", "~> 2.4"
 gem 'acts_as_commentable'
+#gem 'thinking-sphinx', '2.0.10'
+#gem 'dynamic_form'
+
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,6 +35,8 @@ gem "galetahub-simple_captcha", :require => "simple_captcha"
 gem "rmagick"
 
 gem 'parseexcel'
+
+gem "has_mailbox"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

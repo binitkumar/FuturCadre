@@ -1,0 +1,13 @@
+<%= render :partial => "employer/employer.html" %>
+
+<div class="dashboard-content-right">
+
+  <% unless @messages.blank? %>
+      <% @messages.each do |msg| %>
+      <%=link_to msg.subject, message_path(:id => msg.id) %>
+          <%= User.find_by_id(msg.sender_id).name %>
+          <%= msg.created_at.strftime("%d-%m-%Y") %>
+          <br/><br/>
+      <% end %>
+  <% end %>
+</div>

@@ -5,7 +5,7 @@ class CreateGroups < ActiveRecord::Migration
       t.text :description
       t.boolean :featured
       t.integer :owner_id
-      t.integer :manger_id
+      t.integer :manager_id
       t.integer :mean_salary
       t.references :group_type
       t.timestamps

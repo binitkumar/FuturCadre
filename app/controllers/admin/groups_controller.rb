@@ -18,6 +18,7 @@ class Admin::GroupsController < ApplicationController
     @group = Group.new
     #@jobs  = Job.all
     @photo = Photo.new(params[:photo])
+    @rate  = Rating.new
   end
 
   def create
@@ -46,6 +47,10 @@ class Admin::GroupsController < ApplicationController
     else
       render :action => "new"
     end
+  end
+
+  def show
+    @group = Group.find_by_id(params[:id])
   end
 
 
@@ -159,4 +164,22 @@ class Admin::GroupsController < ApplicationController
       render :action => "edit"
     end
   end
+
+  def new_manager
+    @group       = Group.find_by_id(params[:id])
+    @group_users = @group.users
+  end
+
+  def set_manager
+    @group = Group.find_by_id(params[:group_id])
+
+    if @group.manager_id != params[:id]
+      @group.update_attributes(:manager_id => params[:id])
+     # redirect_to "admin/groups/'#{@group.id}'", notice: 'Admin was successfully changed.'
+      render :nothing => true
+    end
+
+  end
+
+
 end

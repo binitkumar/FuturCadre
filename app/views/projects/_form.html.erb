@@ -1,101 +1,116 @@
-
-
-      <div class="dashboard-content-right" style="float: left;">
-        <%= form_for(@project, :html => { :multipart => true }) do |f| %>
-            <% if @project.errors.any? %>
-                <div id="error_explanation">
-                  <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
-                  <ul>
-                    <% @project.errors.full_messages.each do |msg| %>
-                        <li><%= msg %></li>
-                    <% end %>
-                  </ul>
-                </div>
-            <% end %>
-            <div class="head-text">CREATE YOUR PROJECT</div>
-            <div class="project-inputs">
-              <label>Name of the Project</label>
-              <%= f.text_field :name %>
-            </div>
-            <!--projects input ends-->
-            <div class="project-inputs">
-              <label>Small Descrition</label>
-              <%= f.text_field :tag_line %>
-            </div>
-            <!--projects input ends-->
-            <div class="project-inputs">
-              <label>Country</label>
-              <%= render :partial => "shared/countries", :locals => { :object_collection => "project" } %>
-            </div>
-            <!--projects input ends-->
-            <div class="project-inputs">
-              <label>Region</label>
-              <%= render :partial => "shared/regions", :locals => { :object_collection => "project" } %>
-            </div>
-            <!--projects input ends-->
-            <div class="project-inputs">
-              <label>City</label>
-              <%= render :partial => "shared/cities", :locals => { :object_collection => "project" } %>
-            </div>
-            <!--projects input ends-->
-            <div class="project-select">
-              <label>Choice Industry</label>
-
-              <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name") %>
-            </div>
-            <!--project-select ends-->
-
-            <div class="project-select">
-              <label>Social Links</label>
-
-              <div class="socialz">
-                <img src="/assets/twitter.png"/>
-                <span>twitter/</span>
-                <%= f.text_field :twitter_link %>
-              </div>
-              <div class="socialz">
-                <img src="/assets/blog.png"/>
-                <span>http://</span>
-                <%= f.text_field :dig_link %>
-              </div>
-              <div class="socialz">
-                <img src="/assets/world.png"/>
-                <span>http://</span>
-                <%= f.text_field :aol_link %>
-              </div>
-            </div>
-            <!--project-select ends-->
-            <div class="presentation">
-              <div class="present-detail">
-                <label>Presentation</label>
-
-                <div class="present-box">
-                  <div class="box-left"></div>
-                  <div class="box-mid">
-                    <p><%= f.text_area :description %></p></div>
-                  <div class="box-right"></div>
-                </div>
-                <!--present-box ends-->
-              </div>
-              <!--present-detail ends-->
-            </div>
-            <!--presentation ends-->
-            <div class="presentation">
-              <div class="present-detail">
-                <label>Field of Search</label>
-
-                <div class="present-box">
-                  <div class="box-left"></div>
-                  <div class="box-mid">
-                    <p><%= f.text_area :research %></p></div>
-                  <div class="box-right"></div>
-                </div>
-                <!--present-box ends-->
-              </div>
-              <!--present-detail ends-->
-            </div>
-            <!--presentation ends-->
-            <div class="save-button-new"><%= f.submit "Create Project"  %></div>
+<div class="dashboard-content-right" style="float: left;">
+  <%= form_for(@project, :html => { :multipart => true }) do |f| %>
+      <% if @project.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+            <ul>
+              <% @project.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="head-text">CREATE YOUR PROJECT</div>
+      <div class="project-inputs">
+        <label>Name of the Project</label>
+        <%= f.text_field :name %>
+      </div>
+      <!--projects input ends-->
+      <div class="project-inputs">
+        <label>Small Descrition</label>
+        <%= f.text_field :tag_line %>
+      </div>
+      <!--projects input ends-->
+      <div class="project-inputs">
+        <label>Project Picture</label>
+        <%= fields_for :photo do |image| %>
+            <%= image.file_field :image %>
         <% end %>
       </div>
-      <!--dashboard-content-right ends-->
+
+      <div class="project-inputs">
+
+        <label>Country</label>
+
+        <div id="country_project">
+          <%= render :partial => "shared/countries", :locals => { :object_collection => "project" } %>
+        </div>
+      </div>
+      <!--projects input ends-->
+      <div class="project-inputs">
+        <label>Region</label>
+
+        <div id="regions_project">
+          <%= render :partial => "shared/regions", :locals => { :object_collection => "project" } %>
+        </div>
+      </div>
+      <!--projects input ends-->
+      <div class="project-inputs">
+        <label>City</label>
+
+        <div id="cities_project">
+          <%= render :partial => "shared/cities", :locals => { :object_collection => "project" } %>
+        </div>
+      </div>
+      <!--projects input ends-->
+      <div class="project-select">
+        <label>Choice Industry</label>
+
+        <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name") %>
+      </div>
+      <!--project-select ends-->
+
+      <div class="project-select">
+        <label>Social Links</label>
+
+        <div class="socialz">
+          <img src="/assets/twitter.png"/>
+          <span>twitter/</span>
+          <%= f.text_field :twitter_link %>
+        </div>
+        <div class="socialz">
+          <img src="/assets/blog.png"/>
+          <span>http://</span>
+          <%= f.text_field :dig_link %>
+        </div>
+        <div class="socialz">
+          <img src="/assets/world.png"/>
+          <span>http://</span>
+          <%= f.text_field :aol_link %>
+        </div>
+      </div>
+      <!--project-select ends-->
+      <div class="presentation">
+        <div class="present-detail">
+          <label>Presentation</label>
+
+          <div class="present-box">
+            <div class="box-left"></div>
+            <div class="box-mid">
+              <p><%= f.text_area :description %></p></div>
+            <div class="box-right"></div>
+          </div>
+          <!--present-box ends-->
+        </div>
+        <!--present-detail ends-->
+      </div>
+      <!--presentation ends-->
+      <div class="presentation">
+        <div class="present-detail">
+          <label>Field of Search</label>
+
+          <div class="present-box">
+            <div class="box-left"></div>
+            <div class="box-mid">
+              <p><%= f.text_area :research %></p></div>
+            <div class="box-right"></div>
+          </div>
+          <!--present-box ends-->
+        </div>
+        <!--present-detail ends-->
+      </div>
+      <!--presentation ends-->
+      <div class="save-button-new"><%= f.submit "Create Project" %></div>
+  <% end %>
+</div>
+<!--dashboard-content-right ends-->

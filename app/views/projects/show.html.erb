@@ -29,11 +29,11 @@
       </div>
       <div class="images-detail">
 
-        <% unless @project.users.blank? %>
-            <% @project.users.each do |pr_user| %>
+        <% unless @project_users.blank? %>
+            <% @project_users.each do |pr_user| %>
                 <div class="images">
-                  <% if user_image(pr_user) %>
-                      <%= image_tag user_image(pr_user).photo.url %>
+                  <% if user_image(pr_user.user) %>
+                      <%= image_tag user_image(pr_user.user).photo.url %>
                   <% else %>
                       <%= image_tag asset_path "dashboard-img.png" %>
                       </div>
@@ -44,9 +44,12 @@
 
     </div>
     <!--due projects ends-->
-    <div class="suggest-a-news" style="float: left; margin-top: 75px;" onclick="invite_user('<%= @project.id%>')">Invite
-      User(s)
-    </div>
+    <% unless current_user.id == @project.owner_id %>
+        <div class="suggest-a-news" style="float: left; margin-top: 75px; width: 102px;  margin-left: -76px; cursor: pointer;" onclick="invite_user('<%= @project.id%>')">Invite
+          User(s)
+
+        </div>
+    <% end %>
   </div>
 
   <!--dashboard-info-image ends--><!--Left image portion ends-->
@@ -98,21 +101,21 @@
     function invite_user(proj_id) {
     <%if user_signed_in?%>
         {
-        url = "/projects/invite_users?id=" + proj_id;
-        $.ajax({
-            context:this,
-            url:url,
-            type:"GET",
-            data:$(this).serialize(),
-            dataType:"json",
-            success:function (response) {
-                $("#popup_holder").html(response.html);
-            }
-        });
+            url = "/projects/invite_users?id=" + proj_id;
+            $.ajax({
+                context:this,
+                url:url,
+                type:"GET",
+                data:$(this).serialize(),
+                dataType:"json",
+                success:function (response) {
+                    $("#popup_holder").html(response.html);
+                }
+            });
 
-        return false;
+            return false;
         }
-      <%else%>
+    <%else%>
         {
             alert("You need to sign-in");
         }

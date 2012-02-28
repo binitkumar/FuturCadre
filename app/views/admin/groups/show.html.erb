@@ -4,26 +4,20 @@
   <tr>
     <th>Name</th>
     <th>Members</th>
-    <th>User</th>
-    <th>Manager</th>
+    <th>Created At</th>
+    <th> Set Manager</th>
+
 
   </tr>
 
 
   <tr>
     <td><%= @group.name %></td>
-    <% unless @members.blank? %>
-        <% @members.each do |mem| %>
-            <td>
-              <%= mem.name %>
-            </td>
-
-            <td><%= radio_button_tag "manager", false, @group.manager_id == ''? true:false %></td>
-            <td><%= radio_button_tag "manager", false,@group.manager_id == ''?  true:false %> </td>
-
-
-        <% end %>
-    <% end %>
+    <td><%= @group.users.count %></td>
+    <td><%= @group.created_at.strftime("%d-%m-%Y") %></td>
+    <%# if @group.users.count.nil? %>
+    <td><%= link_to "Create Manager", new_manager_admin_groups_path(:id => @group) %></td>
+    <%# end %>
   </tr>
 
 </table>

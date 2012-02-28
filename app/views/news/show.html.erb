@@ -35,7 +35,7 @@
           </div>
           <h1><%= @news.title %> </h1>
 
-          <p><%= @news.created_at %></p>
+          <p><%= @news.created_at.strftime("%d-%m-%Y") %></p>
 
           <div class="p-style-detail">
             <%= @news.body %>

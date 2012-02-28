@@ -5,11 +5,11 @@
     <div class="popup-top-holder">Invite User</div>
     <div class="popup-mid-holder ">
       <% unless @users.blank? %>
-          <%  @users.each do |user| %>
-            <%# if @project.is_member(user.id)%>
+          <% @users.each do |user| %>
+              <%# if @project.is_member(user.id)%>
               <div id="main_div" style="width: 100px;float: left;">
-                <div id="inivite" onclick="send_invitation('<%=user.id %>','<%=@project.id %>')" style="float: left;">
-                  <%= check_box_tag "invitation", :checked => false %>
+                <div id="inivite" style="float: left;">
+                  <%= check_box_tag "invitation",user.id , false,:user_id =>user.id, :project_id => @project.id, :class => "check_users" %>
                   <br/>
                 </div>
                 <div class="invitee">
@@ -23,11 +23,11 @@
                   <br/></div>
 
               </div>
-          <%# end %>
-      <% end %>
+              <%# end %>
+          <% end %>
       <% end %>
       <div class="pop-up-btn-new">
-              <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
+        <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
       </div>
 
 
@@ -41,22 +41,36 @@
 
 <script type="text/javascript">
 
-    function send_invitation(user_id, proj_id) {
-        url = "/projects/project_invitation?id=" + proj_id + '&user_id=' + user_id;
-        $.ajax({
-            context:this,
-            url:url,
-            type:"GET",
-            data:$(this).serialize(),
-            dataType:"json",
-            success:function (response) {
-                $("#popup_holder").html(response.html);
-            }
-        });
-        return false;
 
-    }
 
+    $(".check_users").click(function () {
+        if ($(this).attr('checked')) {
+            url = "/projects/project_invitation?id=" +$(this).attr("project_id") + '&user_id='+ $(this).attr("user_id")+'&add='+1;
+                    $.ajax({
+                        context:this,
+                        url:url,
+                        type:"GET",
+                        data:$(this).serialize(),
+                        dataType:"json",
+                        success:function (response) {
+                            $("#popup_holder").html(response.html);
+                        }
+                    });
+        }
+        else {
+            url = "/projects/project_invitation?id=" +$(this).attr("project_id") + '&user_id='+ $(this).attr("user_id")+'&add='+0;
+                                $.ajax({
+                                    context:this,
+                                    url:url,
+                                    type:"GET",
+                                    data:$(this).serialize(),
+                                    dataType:"json",
+                                    success:function (response) {
+                                        $("#popup_holder").html(response.html);
+                                    }
+                                });
+        }
+    });
 
     function close_popup() {
         $(".content-left-holder").hide();

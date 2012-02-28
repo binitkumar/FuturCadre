@@ -3,7 +3,7 @@ require "acts_as_commentable"
 class GroupsController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:index, :group_details, :group_body, :group_members, :group_wall, :group_question, :create_question,
-                                                 :search_group, :show_group, :set_salary, :update_salary, :answer_question, :create_answer, :set_rating]
+                                                 :search_group, :show_group, :set_salary, :update_salary, :answer_question, :create_answer, :set_rating, :group_event, :create_event]
 
   def index
     unless params[:locale].blank?
@@ -182,25 +182,32 @@ class GroupsController < ApplicationController
 
   def group_event
     @group = Group.find(params[:id])
-    render :json => { :html => render_to_string(:partial => '/groups/group_events', :locale=>{ :group => @group }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/groups/group_events', :locale => { :group => @group }) }.to_json
   end
 
   def create_event
     @group            = Group.find(params[:group_id])
-    @event            = Event.new(params[:event_mailer])
+    @event            = Event.new(params[:event])
     @event.group_id   = @group.id
     @event.is_approve = false
     unless current_user.blank?
       @event.user_id = current_user.id
     end
     if @event.save!
-      render :json => { :html => render_to_string(:partial => '/groups/group_events', :locale=>{ :group => @group }) }.to_json
+      render :json => { :html => render_to_string(:partial => '/groups/group_events', :locale => { :group => @group }) }.to_json
       unless current_user.blank?
         @manager = @group.owner
         EventMailer.event_approval(current_user.email, @manager.email, @event, request.protocol, request.host_with_port, @group).deliver
+         approve = group_details_groups_url(:id => @group.id, :event_id => @event.id)
+       current_user.send_message("Request for Approval", "I have created this event '#{@event.title}'. Kindly '<a href='#{approve}'> approve</a>  ",@manager)
+
         #EventMailer.event_notification(current_user, @manager, @event).deliver
       end
     end
+  end
+
+  def event_page
+
   end
 
 end

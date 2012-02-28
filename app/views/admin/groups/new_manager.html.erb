@@ -1,0 +1,38 @@
+<h1><%= @group.name %></h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Members</th>
+
+
+  </tr>
+
+
+  <tr>
+    <td><%= @group.name %></td>
+    <td>   <%= select_tag :user_id, options_from_collection_for_select(@group_users, "id", "name", @group.manager_id), :group_id => @group.id, :onchange => "set_manager()" %></td>
+    <%# end %>
+  </tr>
+
+</table>
+<script type="text/javascript">
+    function set_manager() {
+
+        var user_id = $('#user_id').val();
+        url = "/admin/groups/set_manager/?id=" + user_id + "&group_id=" + $('#user_id').attr("group_id");
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                $("#popup_holder").html(response.html);
+            }
+        });
+        return false;
+
+    }
+
+</script>

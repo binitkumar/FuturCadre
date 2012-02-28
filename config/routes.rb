@@ -40,6 +40,8 @@ FuturCadre::Application.routes.draw do
         get :remove_job
         put :update
         put :update_school_group
+        get :new_manager
+        get :set_manager
       end
 
     end
@@ -229,6 +231,7 @@ FuturCadre::Application.routes.draw do
       get :join_project
       get :project_invitation
       get :invite_users
+      get :invitation_response
 
     end
   end
@@ -245,6 +248,12 @@ FuturCadre::Application.routes.draw do
     collection do
       #get :project_invitation
       post :send_invitation
+    end
+  end
+
+  resources :messages do
+    collection do
+      get :user_inbox
     end
   end
 

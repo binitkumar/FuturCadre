@@ -6,13 +6,14 @@ class EmployerController < ApplicationController
   def dashboard
     @employer = current_user
 
+
   end
 
 
   def employer_jobs
     @employer = User.find_by_id(params[:edi])
     @jobs     = Job.find_all_by_employer_id(@employer.id, :conditions => { :is_deleted => false })
-    render :json => { :html => render_to_string(:partial => '/employer/employer_job', :locale=>{ :employer => @employer }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/employer/employer_job', :locale => { :employer => @employer }) }.to_json
   end
 
   def employer_statistics
@@ -21,14 +22,14 @@ class EmployerController < ApplicationController
 
   def event
     @employer = User.find_by_id(params[:eid])
-    render :json => { :html => render_to_string(:partial => '/employer/event_employer', :locale=>{ :employer => @employer }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/employer/event_employer', :locale => { :employer => @employer }) }.to_json
   end
 
   def new_event
     @employer = User.find_by_id(params[:eid])
     @event    = Event.new
     @picture  = Photo.new(params[:picture])
-    render :json => { :html => render_to_string(:partial => '/employer/event_form', :locale=>{ :employer => @employer }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/employer/event_form', :locale => { :employer => @employer }) }.to_json
   end
 
 
@@ -50,7 +51,7 @@ class EmployerController < ApplicationController
 
 
     #if @new_event.save
-    render :json => { :html => render_to_string(:partial => '/employer/event_employer', :locale=>{ :employer => @employer }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/employer/event_employer', :locale => { :employer => @employer }) }.to_json
     #else
     #   render :json => { :html => render_to_string(:partial => '/employer/event_form', :locale=>{ :employer => @employer }) }.to_json
     #end
@@ -61,19 +62,19 @@ class EmployerController < ApplicationController
     @job      = Job.find(params[:id])
     @job.update_attributes(:is_deleted => true)
     @jobs = Job.find_all_by_employer_id(@employer.id, :conditions => { :is_deleted => false })
-    render :json => { :html => render_to_string(:partial => '/employer/employer_job', :locale=>{ :employer => @employer }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/employer/employer_job', :locale => { :employer => @employer }) }.to_json
   end
 
 
   def my_job_detail
     @job          = Job.find(params[:id])
     @applied_jobs = @job.applied_jobs
-    render :json => { :html => render_to_string(:partial => '/employer/my_job_details', :locale=>{ :employer => @employer }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/employer/my_job_details', :locale => { :employer => @employer }) }.to_json
   end
 
   def contact_information
     @job_application = AppliedJob.find(params[:id])
-    render :json => { :html => render_to_string(:partial => '/employer/contact_form_popup', :locale=>{ :job_application => @job_application }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/employer/contact_form_popup', :locale => { :job_application => @job_application }) }.to_json
 
   end
 
@@ -85,6 +86,7 @@ class EmployerController < ApplicationController
     @title           = params[:title]
     @body            = params[:body]
     ContactMailer.interview_email(@user, @employer, @job, @title, @body).deliver
+    current_user.send_message("Interview Call", "You have been selected for the interview of '#{@job.name}' applied at '#{@job_application.created_at.strftime("%d-%m-%Y")}'", @user)
     render :text => 'ok'
   end
 
@@ -115,7 +117,7 @@ class EmployerController < ApplicationController
   def view_cv
 
     @profile = Profile.find_by_user_id(params[:id])
-    render :json => { :html => render_to_string(:partial => '/employer/show_profile', :locals => { :profile =>@profile }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/employer/show_profile', :locals => { :profile => @profile }) }.to_json
   end
 
   def select_profile
@@ -124,8 +126,8 @@ class EmployerController < ApplicationController
     @employer         = current_user
     @selected_profile = EmployerProfile.new
     @selected_profile.update_attributes(:profile_id => @profile.id, :employer_id => @employer.id, :employer_type => "User")
-    @selected_profiles = EmployerProfile.find_all_by_employer_id(@employer.id, :conditions =>{ :is_deleted => false })
-    render :json => { :html => render_to_string(:partial => '/employer/right_panel', :locals => { :collections =>@collections, :selected_profiles => @selected_profiles }) }.to_json
+    @selected_profiles = EmployerProfile.find_all_by_employer_id(@employer.id, :conditions => { :is_deleted => false })
+    render :json => { :html => render_to_string(:partial => '/employer/right_panel', :locals => { :collections => @collections, :selected_profiles => @selected_profiles }) }.to_json
   end
 
 end
