@@ -1,4 +1,4 @@
-<% if user_signed_in? %>
+<% if user_signed_in? && current_user.webmaster?%>
     <h2>Webmaster Sign in</h2>
 <% else %>
     <h2> Sign-in with Admin Account</h2>

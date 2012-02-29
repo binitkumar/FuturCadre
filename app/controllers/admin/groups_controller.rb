@@ -37,12 +37,22 @@ class Admin::GroupsController < ApplicationController
     unless params[:photo].blank?
       @picture              = Photo.new(params[:photo])
       @picture.content_type = "group_image"
-      @picture.save
+      #@picture.save
     end
 
+    unless params[:rate].blank?
+      @rating      = Rating.new
+      @rating.rate = params[:rate]
+      #@rating.rateable_id = @group_new.id
+      #@rating.rateable_type = "Group"
+    end
 
     if @group_new.save
-      @picture.update_attributes(:imageable_id => @group_new.id, :imageable_type => "Group")
+      #@picture.update_attributes(:imageable_id => @group_new.id, :imageable_type => "Group")
+      @picture.imageable = @group_new
+      @picture.save
+      @rating.rateable = @group_new
+      @rating.save
       redirect_to admin_groups_path, :notice => 'Group was successfully created.'
     else
       render :action => "new"
@@ -134,10 +144,18 @@ class Admin::GroupsController < ApplicationController
     unless params[:photo].blank?
       @picture              = Photo.new(params[:photo])
       @picture.content_type = "group_image"
-      @picture.save
+      #@picture.save
+    end
+    unless params[:rate].blank?
+      @rating      = Rating.new
+      @rating.rate = params[:rate]
     end
     if @group_new.save
-      @picture.update_attributes(:imageable_id => @group_new.id, :imageable_type => "Group")
+      #@picture.update_attributes(:imageable_id => @group_new.id, :imageable_type => "Group")
+      @picture.imageable = @group_new
+      @picture.save
+      @rating.rateable = @group_new
+      @rating.save
       redirect_to admin_groups_path, :notice => 'Group was successfully created.'
     else
       render :action => "new"
@@ -175,7 +193,7 @@ class Admin::GroupsController < ApplicationController
 
     if @group.manager_id != params[:id]
       @group.update_attributes(:manager_id => params[:id])
-     # redirect_to "admin/groups/'#{@group.id}'", notice: 'Admin was successfully changed.'
+      # redirect_to "admin/groups/'#{@group.id}'", notice: 'Admin was successfully changed.'
       render :nothing => true
     end
 

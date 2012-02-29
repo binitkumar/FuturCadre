@@ -19,7 +19,7 @@
 
               <% unless @group.users.blank? %>
                   <% @group.users.each_with_index do |group_user, i| %>
-                      <% if i <= 2 %>
+                      <% if i <= 1 %>
 
                           <div class="admin-profile">
                             <div class="admin-profile-left">
@@ -29,22 +29,23 @@
                               <% else %>
                                   <%= image_tag asset_path "dashboard-img.png" %>
                               <% end %>
+
+                            </div>
+                            <div class="admin-profile-right">
+                              <% if group_user.profile.blank? %>
+                                  <h1><%= group_user.name %> </h1>
+
+
+                              <% else %>
+                                  <h1><%= group_user.profile.full_name %> </h1>
+
+
+                              <% end %>
+
+
+                            </div>
+                          </div>
                       <% end %>
-                      </div>
-                      <div class="admin-profile-right">
-                        <% if group_user.profile.blank? %>
-                            <h1><%= group_user.name %> </h1>
-
-
-                        <% else %>
-                            <h1><%= group_user.profile.full_name %> </h1>
-
-
-                        <% end %>
-
-
-                      </div>
-                      </div>
                   <% end %>
                   <div class="admin-link"><%= link_to "View All Members", group_members_groups_path(:id => @group.id), :class => "members_link" %></div>
               <% else %>
@@ -77,8 +78,8 @@
               <li class="listed"><%= link_to "Description", group_body_groups_path(:id => @group.id), :class => "body-link" %></li>
               <li class="listed"><%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link" %></li>
               <li class="listed"><%= link_to "Offers", group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link" %></li>
-              <li class="listed"><%= link_to "Questions", group_question_groups_path(:id =>@group.id, :sid => "questions"), :class =>"questions-link" %></li>
-              <li class="listed"><%= link_to "Events", group_event_groups_path(:id =>@group.id), :class =>"questions-link" %></li>
+              <li class="listed"><%= link_to "Questions", group_question_groups_path(:id => @group.id, :sid => "questions"), :class => "questions-link" %></li>
+              <li class="listed"><%= link_to "Events", group_event_groups_path(:id => @group.id), :class => "questions-link" %></li>
             </ul>
 
             <div class="groups-line"></div>
@@ -241,9 +242,9 @@
     function render_group_details(id) {
         $.ajax({
             url:'/groups/render_group_details?group_id=' + id,
-            type: "GET",
+            type:"GET",
             dataType:"json",
-            success: function(response) {
+            success:function (response) {
                 return $(".mid-cont-holder").html(response.html);
             }
         })

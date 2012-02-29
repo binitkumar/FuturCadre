@@ -45,6 +45,12 @@ class ApplicationController < ActionController::Base
     unless current_user.webmaster?
       redirect_to "/"
     end
+
+    #if !user_signed_in?
+    #      redirect_to :action=> "login", :controller => "admin/home"
+    #    elsif !current_user.webmaster?
+    #      redirect_to "/"
+    #    end
   end
 
   def authorize_user
