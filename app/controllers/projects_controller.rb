@@ -104,4 +104,25 @@ class ProjectsController < ApplicationController
     end
 
   end
+
+  def my_projects
+    @projects = Project.find_all_by_owner_id(current_user.id, :conditions => { :is_deleted => false })
+    if current_user.job_seeker?
+      render :json => { :html => render_to_string(:partial => '/projects/my_projects', :locale => { :employer => current_user }) }.to_json
+    else
+      render :json => { :html => render_to_string(:partial => '/projects/my_projects', :locale => { :job_seeker => current_user }) }.to_json
+    end
+  end
+
+  def delete_project
+    @project = Project.find(params[:id])
+    @project.update_attributes(:is_deleted => true)
+    @projects = Project.find_all_by_owner_id(current_user.id, :conditions => { :is_deleted => false })
+    if current_user.job_seeker?
+      render :json => { :html => render_to_string(:partial => '/projects/my_projects', :locale => { :employer => current_user }) }.to_json
+    else
+      render :json => { :html => render_to_string(:partial => '/projects/my_projects', :locale => { :job_seeker => current_user }) }.to_json
+    end
+  end
+
 end

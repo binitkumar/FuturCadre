@@ -19,14 +19,14 @@ class JobSeekerController < ApplicationController
 
   def event
     @job_seeker = User.find_by_id(params[:jid])
-    render :json => { :html => render_to_string(:partial => '/job_seeker/event_job_seeker', :locale=>{ :job_seeker => @job_seeker }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/job_seeker/event_job_seeker', :locale => { :job_seeker => @job_seeker }) }.to_json
   end
 
   def new_event
     @job_seeker = User.find_by_id(params[:jid])
     @event      = Event.new
     @picture    = Photo.new(params[:picture])
-    render :json => { :html => render_to_string(:partial => '/job_seeker/event_form', :locale=>{ :job_seeker => @job_seeker }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/job_seeker/event_form', :locale => { :job_seeker => @job_seeker }) }.to_json
   end
 
 
@@ -44,7 +44,7 @@ class JobSeekerController < ApplicationController
       @picture.save
     end
     #if @new_event.save
-    render :json => { :html => render_to_string(:partial => '/job_seeker/event_job_seeker', :locale=>{ :job_seeker => @job_seeker }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/job_seeker/event_job_seeker', :locale => { :job_seeker => @job_seeker }) }.to_json
     #else
     #   render :json => { :html => render_to_string(:partial => '/employer/event_form', :locale=>{ :employer => @employer }) }.to_json
     #end
@@ -53,7 +53,7 @@ class JobSeekerController < ApplicationController
   def job_seeker_jobs
     @job_seeker   = User.find(params[:id])
     @applied_jobs = @job_seeker.applied_jobs
-    render :json => { :html => render_to_string(:partial => '/job_seeker/job_list', :locale=>{ :job_seeker => @job_seeker }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/job_seeker/job_list', :locale => { :job_seeker => @job_seeker }) }.to_json
   end
 
   def new_resume
@@ -71,9 +71,7 @@ class JobSeekerController < ApplicationController
   end
 
   def my_theses
-
-    @job_seeker  = User.find_by_id(params[:id])
-    @my_theses = Thesis.find_all_by_owner_id(@job_seeker, :conditions => { :is_deleted => false })
+    @my_theses = Thesis.find_all_by_owner_id(current_user.id, :conditions => { :is_deleted => false })
     render :json => { :html => render_to_string(:partial => '/job_seeker/my_theses') }.to_json
   end
 

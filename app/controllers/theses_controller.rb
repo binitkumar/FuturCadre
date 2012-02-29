@@ -44,7 +44,7 @@ class ThesesController < ApplicationController
       @thesis_pub.save
     end
     if @thesis.save
-      render :json => { :html => render_to_string(:partial => 'show_theses', :locale=>{ :thesis => @thesis }) }.to_json
+      render :json => { :html => render_to_string(:partial => 'show_theses', :locale => { :thesis => @thesis }) }.to_json
     else
       redirect_to(:action => "new", :notice => "Thesis was not created")
     end
@@ -63,7 +63,7 @@ class ThesesController < ApplicationController
     if @thesis.update_attributes(params[:thesis])
       redirect_to :action => "index"
     else
-      render :json => { :html => render_to_string(:partial => 'show_theses', :locale=>{ :thesis => @thesis }) }.to_json
+      render :json => { :html => render_to_string(:partial => 'show_theses', :locale => { :thesis => @thesis }) }.to_json
     end
   end
 
@@ -72,6 +72,7 @@ class ThesesController < ApplicationController
     @thesis     = Thesis.find_by_id(params[:id])
     @thesis_doc = @thesis.photo.image
     send_file @thesis_doc.path
+
   end
 
   def thesis_details
@@ -84,25 +85,25 @@ class ThesesController < ApplicationController
     @thesis   = Thesis.find(params[:id])
     @comment  = @thesis.comments.build
     @comments = @thesis.comments.all
-    render :json => { :html => render_to_string(:partial => '/theses/thesis_wall', :locale=>{ :thesis => @thesis }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/theses/thesis_wall', :locale => { :thesis => @thesis }) }.to_json
   end
 
   def add_comment
     @thesis = Thesis.find(params[:thesis_id])
     @thesis.comments.create(params[:comment])
     @comments = @thesis.comments.all
-    render :json => { :html => render_to_string(:partial => '/theses/thesis_wall', :locale=>{ :thesis => @thesis }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/theses/thesis_wall', :locale => { :thesis => @thesis }) }.to_json
   end
 
   def thesis_body
     @thesis = Thesis.find(params[:id])
-    render :json => { :html => render_to_string(:partial => '/theses/thesis_path', :locale=>{ :thesis => @thesis }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/theses/thesis_path', :locale => { :thesis => @thesis }) }.to_json
   end
 
   def thesis_category
     @category = Category.find_by_id(params[:id])
     @theses   = @category.theses
-    render :json => { :html => render_to_string(:partial => '/theses/thesis_categories', :locale=>{ :theses => @theses }) }.to_json
+    render :json => { :html => render_to_string(:partial => '/theses/thesis_categories', :locale => { :theses => @theses }) }.to_json
   end
 
 
@@ -112,14 +113,13 @@ class ThesesController < ApplicationController
   end
 
   def delete_thesis
-    @owner  = User.find(params[:own_id])
     @thesis = Thesis.find(params[:id])
     @thesis.update_attributes(:is_deleted => true)
-    @theses = Thesis.find_by_owner_id(@owner.id, :conditions => { :is_deleted => false })
+    @theses = Thesis.find_all_by_owner_id(current_user.id, :conditions => { :is_deleted => false })
     if current_user.job_seeker?
-      render :json => { :html => render_to_string(:partial => '/job_seeker/my_theses', :locale=>{ :employer => @owner }) }.to_json
+      render :json => { :html => render_to_string(:partial => '/job_seeker/my_theses', :locale => { :employer => current_user }) }.to_json
     else
-      render :json => { :html => render_to_string(:partial => '/employer/my_theses', :locale=>{ :job_seeker => @owner }) }.to_json
+      render :json => { :html => render_to_string(:partial => '/employer/my_theses', :locale => { :job_seeker => current_user }) }.to_json
     end
   end
 

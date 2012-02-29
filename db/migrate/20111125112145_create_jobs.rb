@@ -11,7 +11,7 @@ class CreateJobs < ActiveRecord::Migration
       t.string :publisher_email
       t.boolean :publish
      	t.references :category, :country, :region, :city, :contract, :period
-      t.string :is_deleted, :default => 'false'
+      t.boolean :is_deleted, :default => false
 
       t.timestamps
     end

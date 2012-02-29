@@ -36,9 +36,9 @@
 </div>
 <script type="text/javascript">
 
-    $("a.thesis_wall_link").click(function() {
+    $("a.thesis_wall_link").click(function () {
         $(this).removeClass("group-link-act");
-        $(this).parent(".listed").prevAll(".listed").each(function() {
+        $(this).parent(".listed").prevAll(".listed").each(function () {
             $(this).removeClass("group-link-act");
 
         });
@@ -47,47 +47,47 @@
 
 
         $.ajax({
-            context: this,
-            url: $(this).attr("href"),
-            type: "GET",
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function(response) {
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
                 return $(".mid-cont-holder").html(response.html);
             }
         });
         return false;
     });
-    $("a.thesis_body-link").click(function() {
+    $("a.thesis_body-link").click(function () {
         $(this).removeClass("group-link-act");
-        $(this).parent(".listed").prevAll(".listed").each(function() {
+        $(this).parent(".listed").prevAll(".listed").each(function () {
             $(this).removeClass("group-link-act");
 
         });
         $('.content-holder').find('.group-link-act').removeClass('group-link-act');
         $(this).parent(".listed").addClass("group-link-act");
         $.ajax({
-            context: this,
-            url: $(this).attr("href"),
-            type: "GET",
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function(response) {
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
                 return $(".mid-cont-holder").html(response.html);
             }
         });
         return false;
     });
-    $("a.download_link").click(function() {
+    $("a.download_link").click(function () {
         <% if user_signed_in? %>
         {
             $.ajax({
-                context: this,
-                url: $(this).attr("href"),
-                type: "GET",
-                data: $(this).serialize(),
-                dataType: "json",
-                success: function(response) {
+                context:this,
+                url:$(this).attr("href"),
+                type:"GET",
+                data:$(this).serialize(),
+                dataType:"json",
+                success:function (response) {
                     return $(".mid-cont-holder").html(response.html);
                 }
             });
@@ -96,7 +96,8 @@
         }
         <%else%>
         {
-            window.location.href = "/sign_in";
+            alert("You need to sign-in to access this");
+
             return false;
         }
         <%end%>

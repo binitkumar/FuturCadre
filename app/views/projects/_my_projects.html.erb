@@ -1,0 +1,82 @@
+<div class="dashboard-content-right">
+  <div class="w100">
+    <div class="dashboard-post-profile-btn">
+    </div>
+  </div>
+  <!--dashboard-post-profile-btn ends-->
+  <div class="dashboard-content">
+    <h1>Project</h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <div class="btn-mid-holder_new"><%= link_to "Create New Project", new_project_path(), :class => "create-event", :style => " color: #FFFFFF;text-decoration: none;" %></div>
+    <div class="btn-mid-holder"><%= link_to "View Project", projects_path(), :style => " color: #FFFFFF;text-decoration: none;" %></div>
+    <p><br/>
+    </p>
+
+    <h1>My<span class="red"> Projects</span></h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <% unless @projects.blank? %>
+        <p>Total Number of Projects <%= @projects.count %></p>
+        <table>
+          <tr>
+            <th> Project Name</th>
+            <th> Created at</th>
+            <th> Actions</th>
+            <th> Invite</th>
+
+
+          </tr>
+          <% @projects.each do |project| %>
+              <tr>
+                <td><%= link_to project.name, project_path(:id => project.id) %></td>
+                <td><%= project.created_at.strftime('%Y-%m-%d') %></td>
+                <td><%= link_to "Edit", edit_project_path(:id => project.id) %></td>
+                <td><%= link_to "Delete", delete_project_projects_path(:id => project.id, :own_id => @job_seeker), :class => "delete_project" %>
+
+              </tr>
+          <% end %>
+        </table>
+    <% else %>
+        <p><span>Currently No project!</span></p>
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+    $("a.delete_project").click(function () {
+        var x = window.confirm("Are you sure You want to Delete this project?")
+
+        if (x == true) {
+            $.ajax({
+                context:this,
+                url:$(this).attr("href"),
+                type:"GET",
+                data:$(this).serialize(),
+                dataType:"json",
+                success:function (response) {
+                    return $(".dashboard-content-right").html(response.html);
+                }
+
+            });
+
+            return false;
+        }
+        else {
+            return false;
+        }
+    });
+    $("a.invite_project").click(function () {
+        $.ajax({
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
+
+        });
+
+        return false;
+    });
+
+</script>
