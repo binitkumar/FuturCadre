@@ -14,14 +14,28 @@
 
     <div class="dashboard-content-right">
 
-      <% unless @messages.blank? %>
-          <% @messages.each do |msg| %>
-              <%= link_to msg.subject, message_path(:id => msg.id) %>
-              <%= User.find_by_id(msg.sender_id).name %>
-              <%= msg.created_at.strftime("%d-%m-%Y") %>
-              <br/><br/>
+      <div class="w100">
+        <div class="mail-content">
+          <div class="top-heading-detail">
+            <div class="c-from">From</div>
+            <div class="c-subject">Subject</div>
+            <div class="c-date">Date</div>
+
+
+          </div>
+          <% unless @messages.blank? %>
+              <% @messages.each do |msg| %>
+                  <!--top-heading-detail ends-->
+                  <div class="top-heading-detail-two">
+                    <div class="c-from-two"><%= User.find_by_id(msg.sender_id).name %></div>
+                    <div class="c-subject-two">  <%= link_to msg.subject, message_path(:id => msg.id) %></div>
+                    <div class="c-date-two"> <%= msg.created_at.strftime("%d-%m-%Y") %></div>
+                  </div>
+              <% end %>
           <% end %>
-      <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+

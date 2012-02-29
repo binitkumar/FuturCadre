@@ -8,10 +8,10 @@
   width: 200px;
 }
 
-.pic-project img{
+.pic-project img {
   height: 100px;
-    margin: 0;
-    width: 100px;
+  margin: 0;
+  width: 100px;
 }
 
 .text-of-pic-project {
@@ -30,11 +30,11 @@
 }
 
 .images img {
-    float: left;
-    height: 34px;
-    padding-left: 6px;
-    padding-top: 2px;
-    width: 40px;
+  float: left;
+  height: 34px;
+  padding-left: 6px;
+  padding-top: 2px;
+  width: 40px;
 }
 
 .result-contents-info {
@@ -139,38 +139,164 @@
 
 .img-info {
   border: 1px solid #CCCCCC;
-   float: left;
-   margin-right: 10px;
-   padding: 5px;
-   width: 101px;
+  float: left;
+  margin-right: 10px;
+  padding: 5px;
+  width: 101px;
 }
 
+/*************************CREATE PROJECT PAGE STYLING START*************************/
+.head-text {
+  margin-top: 10px;
+  float: left;
+  color: #991514;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+}
 
- /*************************CREATE PROJECT PAGE STYLING START*************************/
- .head-text { margin-top:10px; float:left;color: #991514; font-size: 20px; font-weight: bold; width:100%; text-align:center; }
- .project-inputs { float:left; width:100%; margin-top:20px;}
- .project-inputs label {color: #474747; float: left; font-size: 14px; margin-left: 22px; margin-right: 2%; width: 22%; margin-top:10px; }
- .project-inputs input {background: none repeat scroll 0 0 #F6F6F6; border-top: 1px solid #949494; float: left; height: 26px; margin-top: 6px; padding-left: 5px; width:425px; }
+.project-inputs {
+  float: left;
+  width: 100%;
+  margin-top: 20px;
+}
 
- .project-select {float:left; width:100%; margin-top:20px;}
- .project-select label { color: #474747; float: left; font-size: 14px; margin-left: 22px; margin-right: 2%; width: 22%; margin-top:10px; }
- .socialz {  float:right; width:500px; margin-bottom:10px; }
- .socialz img { margin-right:10px; float:left;}
- .socialz span { float:left; margin-top:15px; font-size:14px; font-weight:bold; margin-right:10px; width:50px;}
- .socialz input { background: none repeat scroll 0 0 #F6F6F6; border-top: 1px solid #949494; float: left; height: 26px; margin-top: 10px; padding-left: 5px; width:296px;;}
- .presentation { width:100%; float:left;  }
- .present-detail { float:left; margin-top:20px; width:100%;}
- .present-detail label { color: #474747; float: left; font-size: 14px; margin-left: 22px; margin-right: 2%; width: 22%; margin-top:10px; }
+.project-inputs label {
+  color: #474747;
+  float: left;
+  font-size: 14px;
+  margin-left: 22px;
+  margin-right: 2%;
+  width: 22%;
+  margin-top: 10px;
+}
 
- .present-box { float:left; width:425px; margin-left:4px;}
- .box-left { background:url(../assets/present-top.png) no-repeat; width:426px; height:11px; float:left;}
- .box-mid { background:url(../assets/present-mid.png) repeat-y; width:426px; float:left; padding:10px;}
- .box-mid p { width:395px; float:left;}
- .box-right { background:url(../assets/present-bot.png) no-repeat; width:426px; height:11px; float:left;}
+.project-inputs input {
+  background: none repeat scroll 0 0 #F6F6F6;
+  border-top: 1px solid #949494;
+  float: left;
+  height: 26px;
+  margin-top: 6px;
+  padding-left: 5px;
+  width: 425px;
+}
 
+.project-select {
+  float: left;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.project-select label {
+  color: #474747;
+  float: left;
+  font-size: 14px;
+  margin-left: 22px;
+  margin-right: 2%;
+  width: 22%;
+  margin-top: 10px;
+}
+
+.socialz {
+  float: right;
+  width: 500px;
+  margin-bottom: 10px;
+}
+
+.socialz img {
+  margin-right: 10px;
+  float: left;
+}
+
+.socialz span {
+  float: left;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px;
+  width: 50px;
+}
+
+.socialz input {
+  background: none repeat scroll 0 0 #F6F6F6;
+  border-top: 1px solid #949494;
+  float: left;
+  height: 26px;
+  margin-top: 10px;
+  padding-left: 5px;
+  width: 296px;;
+}
+
+.presentation {
+  width: 100%;
+  float: left;
+}
+
+.present-detail {
+  float: left;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.present-detail label {
+  color: #474747;
+  float: left;
+  font-size: 14px;
+  margin-left: 22px;
+  margin-right: 2%;
+  width: 22%;
+  margin-top: 10px;
+}
+
+.present-box {
+  float: left;
+  width: 425px;
+  margin-left: 4px;
+}
+
+.box-left {
+  background: url(../assets/present-top.png) no-repeat;
+  width: 426px;
+  height: 11px;
+  float: left;
+}
+
+.box-mid {
+  background: url(../assets/present-mid.png) repeat-y;
+  width: 426px;
+  float: left;
+  padding: 10px;
+}
+
+.box-mid p {
+  width: 395px;
+  float: left;
+}
+
+.box-right {
+  background: url(../assets/present-bot.png) no-repeat;
+  width: 426px;
+  height: 11px;
+  float: left;
+}
 
 .dashboard-info-image {
-	float: left;
-	width: 278px;
-	margin-right:10px;
+  float: left;
+  width: 278px;
+  margin-right: 10px;
+}
+
+.text-btn {
+  border: 1px solid #ccc;
+  background: #991514;
+  height: 20px;
+  float: right;
+/*margin-right: 50px;*/
+  color: #fff;
+  padding: 3px 10px;
+/*margin-top: 20px;*/
+  font-weight: bold;
+  margin-right: 90px;
+  margin-top: 69px;
 }

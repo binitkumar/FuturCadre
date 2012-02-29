@@ -9,12 +9,17 @@
 
       <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder"><%= link_to "My Jobs", employer_jobs_employer_index_path(:edi => @employer), :class =>"employer-jobs" %></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Jobs", employer_jobs_employer_index_path(:edi => @employer), :class => "employer-jobs" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
       <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder"><%= link_to "My Thesis ", my_theses_employer_index_path(:id => @employer), :class =>"thesis_link" %></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Thesis ", my_theses_employer_index_path(:id => @employer), :class => "thesis_link" %></div>
+        <div class="reg-right-tab-holder"></div>
+      </div>
+      <div class="reg-tab-holder-new">
+        <div class="reg-left-tab-holder"></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Projects", my_projects_projects_path(:id => @job_seeker), :class => "project_path" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
 
@@ -35,7 +40,7 @@
 
                 <% if profile_image != false %>
                     <%= image_tag profile_image.photo.url %>
-                  <% else %>
+                <% else %>
                     <%= image_tag asset_path "dashboard-img.png" %>
                 <% end %>
                 <h1> <%= @employer.profile.full_name %></h1>
@@ -48,7 +53,7 @@
           </div>
         </div>
         <!--dashboard-info-image ends-->
-        <div class="btn-mid-holder"><%= link_to "Events", event_employer_index_path(:eid => @employer.id), :class => "event-holder", :style =>" color: #FFFFFF;text-decoration: none;" %></div>
+        <div class="btn-mid-holder"><%= link_to "Events", event_employer_index_path(:eid => @employer.id), :class => "event-holder", :style => " color: #FFFFFF;text-decoration: none;" %></div>
       </div>
 
       <!--dashboard-info-image ends-->
@@ -56,8 +61,8 @@
         <div class="w100">
           <div class="dashboard-post-profile-btn">
 
-            <%= link_to image_tag(asset_path 'Post-An-Ad.png'), new_job_path(), :class =>"profile-check" %>
-            <%= link_to image_tag(asset_path 'search-profile.png'), search_job_seeker_employer_index_path(:id => @employer), :class=>"job_seeker_search" %>
+            <%= link_to image_tag(asset_path 'Post-An-Ad.png'), new_job_path(), :class => "profile-check" %>
+            <%= link_to image_tag(asset_path 'search-profile.png'), search_job_seeker_employer_index_path(:id => @employer), :class => "job_seeker_search" %>
 
           </div>
         </div>
@@ -177,6 +182,21 @@
             }
         });
         return false;
+    });
+    $("a.project_path").click(function () {
+
+        $.ajax({
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
+        });
+        return false;
+
     });
 
 

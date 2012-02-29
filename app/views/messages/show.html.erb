@@ -16,16 +16,30 @@
 
     <div class="dashboard-content-right">
 
-      <% unless @message.blank? %>
+      <div class="w100">
 
-          <%= @message.subject %>
-          <%= User.find_by_id(@message.sender_id).name %> <br/>
-          <%= raw(@message.body) %>
-          <br/>
-          <%= @message.created_at.strftime("%d-%m-%Y") %>
-          <br/><br/>
-      <% end %>
+        <% unless @message.blank? %>
 
-    </div>
+            <div class="check-mail">
+              <div class="sender">
+                <strong> <%= User.find_by_id(@message.sender_id).name %>  </strong>  <%= User.find_by_id(@message.sender_id).email %>
+              </div>
+              <div class="time-info"> <%= time_ago_in_words(@message.created_at) %></div>
+              <!--time info ends-->
+              <div class="subject"><strong>Subject:</strong>  <%= @message.subject %></div>
+              <div class="mail-body">
+                <br>
+                <%= raw(@message.body) %>
+
+              </div>
+              <!--mail body ends-->
+            </div>
+            <!--check mail ends-->
+
+            </div>
+        <% end %>
+
+        </div>
   </div>
 </div>
+

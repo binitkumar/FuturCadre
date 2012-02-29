@@ -16,7 +16,8 @@
           <ul class="groups-link-theses">
             <% @categories.each do |category| %>
                 <li>
-                  <div class="accountants"><%= link_to category.name + "[#{category.theses.count}]", thesis_category_theses_path(:id => category.id), :class => "category_link" %></div>
+                  <% @cat_thesis = category.theses(:conditions => { :is_deleted => false }) %>
+                  <div class="accountants"><%= link_to category.name + "[#{@cat_thesis.count}]", thesis_category_theses_path(:id => category.id), :class => "category_link" %></div>
                 </li>
             <% end %>
           </ul>

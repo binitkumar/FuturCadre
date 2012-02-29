@@ -4,13 +4,11 @@
 
 
   <div class="basic-info mtop10">
-    <h1>Project<span class="red"> Dashboard</span></h1>
+    <h1>Employer<span class="red"> Dashboard</span></h1>
     <img src="/assets/basic-info-bot-bar.png" alt=""/>
 
   </div>
   <!--9-1-2012 add touseef ahmad-->
-
-
   <div class="dashboard-info-image">
 
     <div class="pic-project">
@@ -21,14 +19,14 @@
       <% end %>
 
       <div class="text-of-pic-project"></div>
+
+
     </div>
     <!--pic-project ends-->
     <div class="due-projects">
-      <div class="h1" style="margin-top:10px; margin-left:5px; width:300px; "><%= @project.users.count %> Members(s) du
-        Projects
+      <div class="h1" style="margin-top:10px; margin-left:5px; width:300px; "><%= @project.users.count %>Members(s)
       </div>
       <div class="images-detail">
-
         <% unless @project_users.blank? %>
             <% @project_users.each do |pr_user| %>
                 <div class="images">
@@ -36,24 +34,19 @@
                       <%= image_tag user_image(pr_user.user).photo.url %>
                   <% else %>
                       <%= image_tag asset_path "dashboard-img.png" %>
-                      </div>
                   <% end %>
+                </div>
             <% end %>
         <% end %>
       </div>
-
     </div>
     <!--due projects ends-->
-    <% unless current_user.id == @project.owner_id %>
-        <div class="suggest-a-news" style="float: left; margin-top: 75px; width: 102px;  margin-left: -76px; cursor: pointer;" onclick="invite_user('<%= @project.id%>')">Invite
-          User(s)
-
-        </div>
+    <% if user_signed_in? && current_user.id == @project.owner_id %>
+        <div class="text-btn" onclick="invite_user('<%= @project.id%>')">Invite Members</div>
     <% end %>
   </div>
-
-  <!--dashboard-info-image ends--><!--Left image portion ends-->
-
+  <!--dashboard-info-image ends-->
+  <!--Left image portion ends-->
 
   <div class="dashboard-mid">
     <div class="result-contents-info">
@@ -67,34 +60,38 @@
     <div class="detail-info">
       <h1 style="margin-top:10px;">Description</h1>
 
-      <div class="detail-bg">
-        <div class="detail-left"></div>
-        <div class="detail-mid">
-          <p><%= @project.description %> </p>
-        </div>
-        <div class="detail-right"></div>
-      </div>
-      </br> </br></br>
-      <h1 style="margin-top:10px;">Research</h1>
+      <div class="present-box" style="margin-top:10px; margin-left:0;">
+        <div class="box-left"></div>
+        <div class="box-mid">
 
-      <div class="detail-bg-img">
-        <div class="detail-left-img"></div>
-        <div class="detail-mid-img">
+
+          <p><%= @project.description %> </p></div>
+        <div class="box-right"></div>
+      </div>
+      <!--present-box ends-->
+      </br> </br></br>
+      <div class="present-box" style="margin-top:10px; margin-left:0;">
+        <div class="box-left"></div>
+        <div class="box-mid">
+
           <p><%= @project.research %></p>
         </div>
-        <div class="detail-right-img"></div>
+        <div class="box-right"></div>
       </div>
-      <!--detail info ends-->
+      <!--present-box ends-->
+
 
     </div>
-    <!--dashboard mid ends-->
-
+    <!--detail info ends-->
 
   </div>
-</div><!--dashboard right info ends-->
+  <!--dashboard mid ends-->
 
+
+</div>
 
 <div id="popup_holder"></div>
+
 
 <script type="text/javascript">
 
