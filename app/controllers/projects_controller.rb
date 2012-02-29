@@ -3,6 +3,8 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+
+
   end
 
 
@@ -36,18 +38,19 @@ class ProjectsController < ApplicationController
           render :action => "new"
         end
       end
-      redirect_to @project
+      redirect_to @project, :notice => 'Project was successfully created.'
     else
-      render action: "new"
+
+      render :action => "new"
     end
   end
 
   def update
     @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
-      redirect_to @project
+      redirect_to @project, :notice => 'Project was successfully updated.'
     else
-      render action: "edit"
+      render :action => "edit"
     end
   end
 
@@ -95,7 +98,7 @@ class ProjectsController < ApplicationController
     if params[:cond]== "true"
       @project_user1 = ProjectUser.find_by_user_id_and_project_id(params[:user_id], params[:id])
       @project_user1.update_attributes(:is_approved => true)
-      redirect_to @project
+      redirect_to @project, :notice => 'Project was successfully joined.'
     else
       @projects = Project.all
       redirect_to projects_path()
