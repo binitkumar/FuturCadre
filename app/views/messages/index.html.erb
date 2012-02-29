@@ -1,13 +1,27 @@
-<%= render :partial => "employer/employer.html" %>
+<div class="content-holder">
+  <div class="w100">
+    <% if current_user.job_seeker? %>
+        <% @job_seeker = current_user %>
+        <div class="dashboard-content-left">
+          <%= render :partial => "job_seeker/job_seeker", :locals => { :job_seeker => @job_seeker } %>
+        </div>
+    <% else %>
+        <% @employer = current_user %>
+        <div class="dashboard-content-left">
+          <%= render :partial => "employer/employer", :locals => { :employer => @employer } %>
+        </div>
+    <% end %>
 
-<div class="dashboard-content-right">
+    <div class="dashboard-content-right">
 
-  <% unless @messages.blank? %>
-      <% @messages.each do |msg| %>
-      <%=link_to msg.subject, message_path(:id => msg.id) %>
-          <%= User.find_by_id(msg.sender_id).name %>
-          <%= msg.created_at.strftime("%d-%m-%Y") %>
-          <br/><br/>
+      <% unless @messages.blank? %>
+          <% @messages.each do |msg| %>
+              <%= link_to msg.subject, message_path(:id => msg.id) %>
+              <%= User.find_by_id(msg.sender_id).name %>
+              <%= msg.created_at.strftime("%d-%m-%Y") %>
+              <br/><br/>
+          <% end %>
       <% end %>
-  <% end %>
+    </div>
+  </div>
 </div>

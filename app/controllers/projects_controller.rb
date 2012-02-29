@@ -99,7 +99,8 @@ class ProjectsController < ApplicationController
       @project_user1.update_attributes(:is_approved => true)
       redirect_to @project, notice: 'Project was successfully joined.'
     else
-      render action: "index"
+      @projects = Project.all
+      redirect_to projects_path()
     end
 
   end

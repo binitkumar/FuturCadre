@@ -16,7 +16,7 @@
           <ul class="groups-link-theses">
             <% @categories.each do |category| %>
                 <li>
-                  <div class="accountants"><%= link_to category.name + "[#{category.theses.count}]", thesis_category_theses_path(:id => category.id), :class =>"category_link" %></div>
+                  <div class="accountants"><%= link_to category.name + "[#{category.theses.count}]", thesis_category_theses_path(:id => category.id), :class => "category_link" %></div>
                 </li>
             <% end %>
           </ul>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="dashboard-right_new">
-      <%= render :partial=> "search_theses" %>
+      <%= render :partial => "search_theses" %>
       <div class="w100 mtop10">
         <div class="search-field">
 
@@ -69,14 +69,14 @@
 <script type="text/javascript">
 
 
-    $("a.category_link").click(function() {
+    $("a.category_link").click(function () {
         $.ajax({
-            context: this,
-            url: $(this).attr("href"),
-            type: "GET",
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function(response) {
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
                 return $("#container_new").html(response.html);
             }
         });
