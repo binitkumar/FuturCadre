@@ -11,7 +11,7 @@ class JobSeekerController < ApplicationController
 
   def resume_index
     unless current_user.profile.blank?
-      @resumes = current_user.profile.assets.where(:content_type => 'cv')
+      @resumes = current_user.profile.assets.where(:content_type => 'cv', :is_deleted => false)
     end
     @cv = Asset.new(params[:cv])
     render :json => { :html => render_to_string(:partial => 'resume_list') }.to_json
@@ -63,7 +63,7 @@ class JobSeekerController < ApplicationController
       @cv.user_id      = current_user.id
       @cv.profile_id   = current_user.profile.id
     end
-    @resumes = current_user.profile.assets.where(:content_type => 'cv')
+    @resumes = current_user.profile.assets.where(:content_type => 'cv', :is_deleted => false)
     if @cv.save!
       render :json => { :html => render_to_string(:partial => 'resume_list') }.to_json
     end
@@ -73,6 +73,27 @@ class JobSeekerController < ApplicationController
   def my_theses
     @my_theses = Thesis.find_all_by_owner_id(current_user.id, :conditions => { :is_deleted => false })
     render :json => { :html => render_to_string(:partial => '/job_seeker/my_theses') }.to_json
+  end
+
+  def delete_cv
+    @cv = Asset.find_by_id(params[:id])
+    @cv.update_attributes(:is_deleted => true)
+    @resumes = current_user.profile.assets.where(:content_type => 'cv', :is_deleted => false)
+    render :json => { :html => render_to_string(:partial => 'resume_list') }.to_json
+  end
+
+  def make_cv_publishable
+    @cv  = Asset.find_by_id(params[:id])
+    @cvs = current_user.profile.assets.where(:content_type => 'cv', :is_publishable => true)
+    unless @cvs.blank?
+      @cvs.each do |cv|
+        cv.update_attributes(:is_publishable => false)
+
+      end
+    end
+    @cv.update_attributes(:is_publishable => true)
+    @resumes = current_user.profile.assets.where(:content_type => 'cv', :is_deleted => false)
+    render :json => { :html => render_to_string(:partial => 'resume_list') }.to_json
   end
 
 

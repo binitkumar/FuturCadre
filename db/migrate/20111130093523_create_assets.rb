@@ -9,6 +9,7 @@ class CreateAssets < ActiveRecord::Migration
       t.datetime :photo_updated_at
       t.string :content_type
       t.boolean :is_deleted, :default => false
+      t.boolean :is_publishable, :default => false
       t.timestamps
     end
   end

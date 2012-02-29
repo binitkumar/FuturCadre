@@ -127,6 +127,8 @@ FuturCadre::Application.routes.draw do
       post :new_resume
       get :my_theses
       get :event_mailer
+      get :delete_cv
+      get :make_cv_publishable
     end
   end
 

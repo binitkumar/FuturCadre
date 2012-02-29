@@ -12,7 +12,7 @@ class JobsController < ApplicationController
     @applied_job = AppliedJob.new
     if user_signed_in?
       if current_user.profile !nil
-        @cvs =current_user.profile.assets.where(:content_type => 'cv')
+        @cvs =current_user.profile.assets.where(:content_type => 'cv', :is_publishable => true, :is_deleted => false)
       end
     end
     if params[:sid]=="group"
@@ -187,7 +187,7 @@ class JobsController < ApplicationController
     @applied_job = AppliedJob.new
     if user_signed_in?
       if current_user.profile !nil
-        @cvs =current_user.profile.assets.where(:content_type => 'cv')
+        @cvs =current_user.profile.assets.where(:content_type => 'cv', :is_publishable => true, :is_deleted => false)
       end
     end
     render :json => { :html => render_to_string(:partial => 'application_form', :locale=>{ :job_new => @job_new }) }.to_json

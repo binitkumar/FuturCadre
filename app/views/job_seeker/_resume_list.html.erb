@@ -8,7 +8,7 @@
     <h1>Resumes</h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
 
-        <button id="upload-popup" class="question-button">Upload a New CV</button>
+    <button id="upload-popup" class="question-button">Upload a New CV</button>
 
     <p><br/>
     </p>
@@ -21,6 +21,8 @@
           <tr>
             <th>Resume Name</th>
             <th>File Type</th>
+            <th> Action |</th>
+            <th> Publish</th>
             <!--<th>Download</th>-->
           </tr>
 
@@ -28,6 +30,9 @@
               <tr>
                 <td><%= resume.photo_file_name %></td>
                 <td><%= resume.photo_content_type %></td>
+                <td><%= link_to "Delete", delete_cv_job_seeker_index_path(:id => resume.id), :class => "delete_cv" %></td>
+                <td> <%= radio_button_tag "cv_id", resume.id,resume.is_publishable , :onchange => "select_cv('#{resume.id}')" %></td>
+
               </tr>
           <% end %>
         </table>
@@ -35,9 +40,9 @@
         <p><span>Currently No Resume Present!</span></p>
     <% end %>
   </div>
-  <div id="upload-form" title="Upload a New Question">
+  <div id="upload-form" title="Upload a New CV ">
 
-    <%= form_for :cv, :url =>{ :action => 'new_resume' }, :html =>{ :id => 'add_cv_form' }, :remote => true do |f| %>
+    <%= form_for :cv, :url => { :action => 'new_resume' }, :html => { :id => 'add_cv_form' }, :remote => true do |f| %>
         <div class="select-holder">
           <%= f.file_field :photo %>
 
@@ -96,4 +101,36 @@
 
         <%end%>
     });
+
+
+    $("a.delete_cv").click(function () {
+        $.ajax({
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
+        });
+        return false;
+    });
+
+    function select_cv(resume_id) {
+
+        url = "/job_seeker/make_cv_publishable?id=" + resume_id;
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                $(".dashboard-content-right").html(response.html);
+            }
+        });
+    }
+
+
 </script>
