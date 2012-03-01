@@ -9,22 +9,24 @@
 
       <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder"><%= link_to "My Resumes", resume_index_job_seeker_index_path(:id => @job_seeker), :class =>"resume-index" %></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Resumes", resume_index_job_seeker_index_path(:id => @job_seeker), :class => "resume-index" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
       <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder"><%= link_to "My Jobs", job_seeker_jobs_job_seeker_index_path(:id => @job_seeker), :class =>"job-seeker-job" %></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Jobs", job_seeker_jobs_job_seeker_index_path(:id => @job_seeker), :class => "job-seeker-job" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
       <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder" id="thesis" onclick="my_thesis('<%= @job_seeker.id %>')"> My Theses</div>
+        <div class="reg-mid-tab-holder" style="color: #000000; text-decoration: underline;" id="thesis" onclick="my_thesis('<%= @job_seeker.id %>')">
+          My Theses
+        </div>
         <div class="reg-right-tab-holder"></div>
       </div>
       <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder"><%= link_to "My Projects", my_projects_projects_path(:id => @job_seeker), :class =>"project_path" %></div>
+        <div class="reg-mid-tab-holder"><%= link_to "My Projects", my_projects_projects_path(:id => @job_seeker), :class => "project_path" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
 
