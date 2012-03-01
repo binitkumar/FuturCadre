@@ -1,6 +1,7 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 @charset "utf-8";
 /* CSS Document */
 
@@ -125,21 +126,21 @@ a {
 
 .banner-left-holder {
   float: left;
-  background: url(asset_path('banner-left-bg.png',image))no-repeat;
+  background: url(asset_path('banner-left-bg.png' ,image)) no-repeat;
   width: 9px;
   min-height: 359px;
 }
 
 .banner-mid-holder {
   float: left;
-  background: url(asset_path('banner-mid-bg.png',image))repeat-x;
+  background: url(asset_path('banner-mid-bg.png' ,image)) repeat-x;
   width: 981px;
   min-height: 359px;
 }
 
 .banner-right-holder {
   float: left;
-  background: url(asset_path('banner-right-bg.png',image))no-repeat;
+  background: url(asset_path('banner-right-bg.png' ,image)) no-repeat;
   width: 9px;
   min-height: 359px;
 }
@@ -177,13 +178,13 @@ a {
   margin-top: 20px;
   width: auto;
   .post-left {
-    background: url(asset_path('btn-left.png',image))no-repeat;
+    background: url(asset_path('btn-left.png' ,image)) no-repeat;
     width: 14px;
     height: 47px;
     float: left;
   }
   .post-mid {
-    background: url(asset_path('btn-mid.png',image))repeat-x;
+    background: url(asset_path('btn-mid.png' ,image)) repeat-x;
     width: auto;
     line-height: 47px;
     font-size: 18px;
@@ -194,7 +195,7 @@ a {
     padding: 0 10px;
   }
   .post-right {
-    background: url(asset_path('btn-right.png',image))no-repeat;
+    background: url(asset_path('btn-right.png' ,image)) no-repeat;
     width: 14px;
     height: 47px;
     float: left;
@@ -209,7 +210,7 @@ a {
 }
 
 .job-search-top-holder {
-  background: url(asset_path('banner-right-top-bg.png',image))no-repeat scroll 0 0 transparent;
+  background: url(asset_path('banner-right-top-bg.png' ,image)) no-repeat scroll 0 0 transparent;
   color: #FFFFFF;
   float: left;
   font-size: 20px;
@@ -220,7 +221,7 @@ a {
 }
 
 .job-search-mid-holder {
-  background: url(asset_path('banner-right-mid-bg.png',image))repeat-y scroll 0 0 transparent;
+  background: url(asset_path('banner-right-mid-bg.png' ,image)) repeat-y scroll 0 0 transparent;
   float: left;
   height: auto;
   padding: 0 26px 48px;
@@ -231,7 +232,7 @@ a {
   float: left;
   width: 320px;
   height: 16px;
-  background: url(asset_path('banner-right-bot-bg.png',image))no-repeat;
+  background: url(asset_path('banner-right-bot-bg.png' ,image)) no-repeat;
 }
 
 .input-holder {
@@ -318,7 +319,7 @@ a {
   float: right;
   margin-top: 10px;
   a {
-    background: url(asset_path('findjob-bg.png',image))repeat-x scroll 0 0 transparent;
+    background: url(asset_path('findjob-bg.png' ,image)) repeat-x scroll 0 0 transparent;
     border: 1px solid #7B0C26;
     color: #FFFFFF;
     float: left;
@@ -368,14 +369,14 @@ a {
 }
 
 .tab-left-holder {
-  background: url(asset_path('tab-left.png',image))no-repeat;
+  background: url(asset_path('tab-left.png' ,image)) no-repeat;
   width: 4px;
   height: 30px;
   float: left;
 }
 
 .tab-mid-holder {
-  background: url(asset_path('tab-mid.png',image))repeat-x scroll 0 0 transparent;
+  background: url(asset_path('tab-mid.png' ,image)) repeat-x scroll 0 0 transparent;
   color: #9B9B9B;
   float: left;
   font-size: 16px;
@@ -390,7 +391,7 @@ a {
 }
 
 .tab-right-holder {
-  background: url(asset_path('tabs-right.png',image))no-repeat;
+  background: url(asset_path('tabs-right.png' ,image)) no-repeat;
   width: 4px;
   height: 30px;
   float: left;
@@ -398,10 +399,10 @@ a {
 
 .active {
   .tab-left-holder {
-    background: url(asset_path('tab-left-act.png',image))no-repeat;
+    background: url(asset_path('tab-left-act.png' ,image)) no-repeat;
   }
   .tab-mid-holder {
-    background: url(asset_path('tab-mid-act.png',image))repeat-x;
+    background: url(asset_path('tab-mid-act.png' ,image)) repeat-x;
     color: #fff !important;
     a {
       text-decoration: none;
@@ -409,12 +410,12 @@ a {
     }
   }
   .tab-right-holder {
-    background: url(asset_path('tabs-right-act.png',image))no-repeat;
+    background: url(asset_path('tabs-right-act.png' ,image)) no-repeat;
   }
 }
 
 .tabs-line {
-  background: url(asset_path('links-bot.png',image))no-repeat scroll 0 0 transparent;
+  background: url(asset_path('links-bot.png' ,image)) no-repeat scroll 0 0 transparent;
   float: left;
   height: 8px;
   margin-top: -1px;
@@ -429,7 +430,7 @@ a {
     float: left;
     width: 97%;
     a {
-      background: url(asset_path('red-arrow-icon.png',image))no-repeat scroll left center transparent;
+      background: url(asset_path('red-arrow-icon.png' ,image)) no-repeat scroll left center transparent;
       border-bottom: 1px solid #DDDDDD;
       color: #474747;
       float: left;
@@ -442,7 +443,7 @@ a {
     }
   }
   .selected {
-    background: url(asset_path('selected-bg.png',image))no-repeat scroll 0 0 transparent;
+    background: url(asset_path('selected-bg.png' ,image)) no-repeat scroll 0 0 transparent;
     margin-left: -8px;
     padding-left: 11px;
     a {
@@ -489,13 +490,13 @@ a {
   margin-top: 20px;
   list-style: none;
   li {
-    background: url(asset_path('fetur-project-bg.png',image))no-repeat scroll 0 0 transparent;
+    background: url(asset_path('fetur-project-bg.png' ,image)) no-repeat scroll 0 0 transparent;
     float: left;
     height: 20px;
     margin-bottom: 4px;
     width: 294px;
     a {
-      background: url(asset_path('white-arrow-icon.png',image))no-repeat scroll left center transparent;
+      background: url(asset_path('white-arrow-icon.png' ,image)) no-repeat scroll left center transparent;
       color: #FFFFFF;
       float: left;
       font-size: 12px;
@@ -546,21 +547,21 @@ a {
 }
 
 .gray-bot-bg {
-  background: url(asset_path('gray-bot-bg.png',image))no-repeat;
+  background: url(asset_path('gray-bot-bg.png' ,image)) no-repeat;
   float: left;
   width: 322px;
   height: 12px;
 }
 
 .post-left {
-  background: url(asset_path('btn-left.png',image))no-repeat;
+  background: url(asset_path('btn-left.png' ,image)) no-repeat;
   width: 14px;
   height: 47px;
   float: left;
 }
 
 .post-mid {
-  background: url(asset_path('btn-mid.png',image))repeat-x;
+  background: url(asset_path('btn-mid.png' ,image)) repeat-x;
   width: auto;
   line-height: 47px;
   font-size: 18px;
@@ -572,7 +573,7 @@ a {
 }
 
 .post-right {
-  background: url(asset_path('btn-right.png',image))no-repeat;
+  background: url(asset_path('btn-right.png' ,image)) no-repeat;
   width: 14px;
   height: 47px;
   float: left;
@@ -586,7 +587,7 @@ a {
 }
 
 .register-top-holder {
-  background: url(asset_path('reg-top-bg.png',image))no-repeat scroll 0 0 transparent;
+  background: url(asset_path('reg-top-bg.png' ,image)) no-repeat scroll 0 0 transparent;
   color: #FFFFFF;
   float: left;
   font-size: 20px;
@@ -597,7 +598,7 @@ a {
 }
 
 .register-mid-holder {
-  background: url(asset_path('reg-mid-bg.png',image))repeat-y scroll 0 0 transparent;
+  background: url(asset_path('reg-mid-bg.png' ,image)) repeat-y scroll 0 0 transparent;
   float: left;
   height: auto;
   padding: 0 26px 20px;
@@ -608,7 +609,7 @@ a {
   float: left;
   width: 960px;
   height: 16px;
-  background: url(asset_path('reg-bot-bg.png',image))no-repeat;
+  background: url(asset_path('reg-bot-bg.png' ,image)) no-repeat;
 }
 
 .reg-input-holder {
@@ -714,7 +715,7 @@ a {
   width: 89px;
   height: 27px;
   margin-right: 10px;
-  background: url(asset_path('loc-bg.png',image))no-repeat;
+  background: url(asset_path('loc-bg.png' ,image)) no-repeat;
   &:hover .reg-loc-cat-hold {
     display: block !important;
   }
@@ -756,7 +757,7 @@ a {
   float: left;
   margin-top: 6px;
   a {
-    background: url(asset_path('findjob-bg.png',image))repeat-x scroll 0 0 transparent;
+    background: url(asset_path('findjob-bg.png' ,image)) repeat-x scroll 0 0 transparent;
     border: 1px solid #7B0C26;
     color: #FFFFFF;
     float: left;
@@ -776,21 +777,21 @@ a {
 
 .reg-banner-left-holder {
   float: left;
-  background: url(asset_path('reg-left-banner.png',image))no-repeat;
+  background: url(asset_path('reg-left-banner.png' ,image)) no-repeat;
   width: 22px;
   min-height: 218px;
 }
 
 .reg-banner-mid-holder {
   float: left;
-  background: url(asset_path('reg-mid-banner.png',image))repeat-x;
+  background: url(asset_path('reg-mid-banner.png' ,image)) repeat-x;
   width: 956px;
   min-height: 218px;
 }
 
 .reg-banner-right-holder {
   float: left;
-  background: url(asset_path('reg-right-banner.png',image))no-repeat;
+  background: url(asset_path('reg-right-banner.png' ,image)) no-repeat;
   width: 22px;
   min-height: 218px;
 }
@@ -815,15 +816,15 @@ a {
 
 .tab-act {
   .reg-left-tab-holder {
-    background: url(asset_path('reg-tab-left.png',image))no-repeat;
+    background: url(asset_path('reg-tab-left.png' ,image)) no-repeat;
   }
   .reg-mid-tab-holder {
-    background: url(asset_path('reg-tab-mid.png',image))repeat-x;
+    background: url(asset_path('reg-tab-mid.png' ,image)) repeat-x;
     color: #991514;
     font-weight: bold;
   }
   .reg-right-tab-holder {
-    background: url(asset_path('reg-tab-right.png',image))no-repeat;
+    background: url(asset_path('reg-tab-right.png' ,image)) no-repeat;
   }
 }
 
@@ -831,7 +832,7 @@ a {
   float: left;
   width: 13px;
   height: 44px;
-  background: url(asset_path('gray-tab-left.png',image))no-repeat;
+  background: url(asset_path('gray-tab-left.png' ,image)) no-repeat;
 }
 
 .reg-mid-tab-holder {
@@ -844,14 +845,14 @@ a {
   text-align: center;
   font-weight: normal;
   padding: 0 36px;
-  background: url(asset_path('gray-tab-mid.png',image))repeat-x;
+  background: url(asset_path('gray-tab-mid.png' ,image)) repeat-x;
 }
 
 .reg-right-tab-holder {
   float: left;
   width: 13px;
   height: 44px;
-  background: url(asset_path('gray-tab-right.png',image))no-repeat;
+  background: url(asset_path('gray-tab-right.png' ,image)) no-repeat;
 }
 
 .basic-info {
@@ -954,7 +955,7 @@ a {
 }
 
 .reg-me {
-  background: url(asset_path('reg-me.png',image))repeat-x scroll 0 0 transparent;
+  background: url(asset_path('reg-me.png' ,image)) repeat-x scroll 0 0 transparent;
   border: 1px solid #7B0C26;
   float: left;
   height: 38px;
@@ -1032,7 +1033,7 @@ a {
   float: left;
   width: 237px;
   input {
-    background: url(asset_path('login-text-field.png',image))no-repeat scroll 0 0 transparent;
+    background: url(asset_path('login-text-field.png' ,image)) no-repeat scroll 0 0 transparent;
     color: #8C8C8C;
     float: left;
     font-size: 14px;
@@ -1048,7 +1049,7 @@ a {
   margin-top: 5px;
   input {
     &[type="text"], &[type="password"] {
-      background: url(asset_path('password-bg.png',image))no-repeat scroll 0 0 transparent;
+      background: url(asset_path('password-bg.png' ,image)) no-repeat scroll 0 0 transparent;
       color: #8C8C8C;
       float: left;
       font-size: 14px;
@@ -1057,7 +1058,7 @@ a {
       width: 166px;
     }
     &[type="submit"] {
-      background: url(asset_path('login-btn.png',image))no-repeat scroll 0 0 transparent;
+      background: url(asset_path('login-btn.png' ,image)) no-repeat scroll 0 0 transparent;
       color: #FFFFFF;
       float: left;
       font-size: 14px;
@@ -1303,18 +1304,18 @@ a {
     background-color: #F0A8A8;
     border: 1px solid #900;
   }
-   #error {
+  #error {
     width: 90%;
     margin: 0 auto 10px auto;
     padding: 5px;
   }
-   #error p {
+  #error p {
     margin-left: 20px;
     padding: 0;
     font-size: .75em;
     color: #000;
   }
-   #error a {
+  #error a {
     text-decoration: none;
     padding: 0 3px;
   }
@@ -1329,34 +1330,49 @@ a {
   }
 }
 
-
 /*.error {*/
-  /*width: 400px;*/
-  /*border: 2px solid #c00;*/
-  /*padding: 18px;*/
-  /*padding-bottom: 12px;*/
-  /*margin-bottom: 59px;*/
-  /*background-color: #f0f0f0;*/
+/*width: 400px;*/
+/*border: 2px solid #c00;*/
+/*padding: 18px;*/
+/*padding-bottom: 12px;*/
+/*margin-bottom: 59px;*/
+/*background-color: #f0f0f0;*/
 /*}*/
 
 /*.error h2 {*/
-  /*text-align: left;*/
-  /*font-weight: bold;*/
-  /*padding: 5px 5px 5px 15px;*/
-  /*font-size: 14px;*/
+/*text-align: left;*/
+/*font-weight: bold;*/
+/*padding: 5px 5px 5px 15px;*/
+/*font-size: 14px;*/
 /*margin: -7px;*/
-  /*margin: -16px 10px 4px;*/
-  /*background-color: #c00;*/
-  /*color: #fff;*/
+/*margin: -16px 10px 4px;*/
+/*background-color: #c00;*/
+/*color: #fff;*/
 /*}*/
 
 /*.error p {*/
-  /*color: #333;*/
-  /*margin-bottom: 0;*/
-  /*padding: 5px;*/
+/*color: #333;*/
+/*margin-bottom: 0;*/
+/*padding: 5px;*/
 /*}*/
 
 /*.error ul li {*/
-  /*font-size: 12px;*/
-  /*list-style: square;*/
+/*font-size: 12px;*/
+/*list-style: square;*/
 /*}*/
+
+.back-btn {
+  background: url(../assets/back-btn.png) no-repeat;
+  width: 50px;
+  height: 38px;
+  text-align: center;
+  float: left;
+}
+
+.back-btn a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 37px;
+  padding-left: 8px;
+}

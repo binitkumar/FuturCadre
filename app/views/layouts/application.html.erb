@@ -10,13 +10,13 @@
 <div class="topline"></div>
 <div class="wrapper">
   <%= render :partial => "/shared/header" %>
-  <div id="flash" >
+  <div id="flash">
     <%= render :partial => 'layouts/flash', :object => flash %>
   </div>
 
   <%= yield %>
   <% if params[:controller]!="home" %>
-      <div id="back_link" class="back_link"><%= link_to 'Back', :back %></div>
+      <div id="back_link" class="back-btn"><%= link_to 'Back', :back %></div>
   <% end %>
 </div>
 
