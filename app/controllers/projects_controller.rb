@@ -27,8 +27,8 @@ class ProjectsController < ApplicationController
 
 
   def create
-    @project          = Project.new(params[:project])
-    @project.owner_id = current_user.id
+    @project       = Project.new(params[:project])
+    @project.owner = current_user
     if @project.save
       unless params[:photo].blank?
         @picture              = Photo.new(params[:photo])

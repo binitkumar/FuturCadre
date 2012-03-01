@@ -35,8 +35,8 @@ class ThesesController < ApplicationController
 
 
   def create_thesis
-    @thesis = Thesis.new(params[:thesis])
-    @thesis.update_attributes(:owner => current_user)
+    @thesis       = Thesis.new(params[:thesis])
+    @thesis.owner = current_user
     unless params[:thesis_doc].blank?
       @thesis_pub              = Photo.new(params[:thesis_doc])
       @thesis_pub.content_type = "thesis_publication"

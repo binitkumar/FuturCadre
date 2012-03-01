@@ -11,6 +11,7 @@ class CreateProjects < ActiveRecord::Migration
       t.text :research
       t.text :skill
       t.integer :owner_id
+      t.string :owner_type
       t.boolean :is_deleted, :default => false
       t.references :country, :city, :region, :category
 

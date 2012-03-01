@@ -6,8 +6,8 @@ class Project < ActiveRecord::Base
   has_one :photo, :as => :imageable
   has_many :project_users
   has_many :users, :through => :project_users
-  belongs_to :owner, :class_name => "User"
-
+  #belongs_to :owner, :class_name => "User"
+  belongs_to :owner, :polymorphic => true
   validates_presence_of :city, :country, :region
 
 
