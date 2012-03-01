@@ -86,12 +86,23 @@
     <h1 style="float:right; margin-right:20px;"></h1>
 
     <div class="select-button">
-      <div class="left-holder"></div>
-      <div class="mid-holder"><%= link_to "Request to Join " %></div>
-      <div class="right-holder"></div>
-    </div>
-    <!--select button ends-->
+      <% if user_signed_in? %>
+          <% if current_user.projects.include?(@project) == false && current_user.id != @project.owner_id %>
 
+              <div class="left-holder"></div>
+              <div class="mid-holder" onclick="proj_invite('<%= @project.id%>')"><%= link_to "Request to Join", "javascript:void(0)" %></div>
+              <div class="right-holder"></div>
+
+          <% end %>
+      <% else %>
+          <div class="left-holder"></div>
+          <div class="mid-holder" onclick="proj_invite('<%= @project.id%>')"><%= link_to "Request to Join", "javascript:void(0)" %></div>
+          <div class="right-holder"></div>
+
+
+          <!--select button ends-->
+      <% end %>
+    </div>
   </div>
 
 
@@ -106,6 +117,35 @@
     <%if user_signed_in?%>
         {
             url = "/projects/invite_users?id=" + proj_id;
+            $.ajax({
+                context:this,
+                url:url,
+                type:"GET",
+                data:$(this).serialize(),
+                dataType:"json",
+                success:function (response) {
+                    $("#popup_holder").html(response.html);
+                }
+            });
+
+            return false;
+        }
+    <%else%>
+        {
+            alert("You need to sign-in");
+        }
+    <%end%>
+
+    }
+
+
+    function proj_invite(proj_id) {
+
+
+    <%if user_signed_in?%>
+        {
+
+            url = "/projects/project_request?id=" + proj_id;
             $.ajax({
                 context:this,
                 url:url,

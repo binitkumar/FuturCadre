@@ -126,4 +126,18 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def project_request
+    @project_user            = ProjectUser.new
+    @project_user.user_id    = current_user.id
+    @project_user.project_id = params[:id]
+    @project_user.save
+    @project       = Project.find_by_id(params[:id])
+    @project_owner = @project.owner
+    approve        = invitation_response_projects_url(:id => @project_user.project.id, :user_id => @project_user.user.id, :cond => true)
+    reject         = invitation_response_projects_url(:id => @project_user.project.id, :user_id => @project_user.user.id, :cond => false)
+    current_user.send_message("Request to join Project'#{@project.name}'", "'#{current_user.name}' has request to join project click to '<a href='#{approve}'> approve</a> or '<a href='#{reject}'> reject</a>", @project_owner)
+    render :nothing => true
+  end
+
+
 end

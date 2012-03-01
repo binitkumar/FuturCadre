@@ -234,6 +234,7 @@ FuturCadre::Application.routes.draw do
       get :project_invitation
       get :invite_users
       get :invitation_response
+      get :project_request
 
     end
   end
