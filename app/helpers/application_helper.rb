@@ -8,9 +8,9 @@ module ApplicationHelper
       current_user.profile.assets.each do |asset|
         if asset.content_type == "profile_image"
           return asset
-       end
+        end
       end
-        return false
+      return false
     end
   end
 
@@ -25,15 +25,14 @@ module ApplicationHelper
   end
 
   def user_image(user_image)
-    puts "user", user_image.inspect
-    user = User.find(user_image)
+    user = User.find_by_id(user_image.id)
     unless user.profile.blank?
       user.profile.assets.each do |asset|
-
         if asset.content_type == "profile_image"
           return asset
-       end
+        end
       end
+      return false
     end
 
   end
