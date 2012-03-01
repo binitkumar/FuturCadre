@@ -54,7 +54,7 @@
             <% else %>
                 <h1>  <%= @job_seeker.name %> </h1>
 
-                <p>Ajouter votre logo pour qu'il soit visible dans vos annonces.</p>
+                <p>.</p>
 
             <% end %>
           </div>
@@ -80,30 +80,23 @@
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
           <p><b>Welcome <%= @job_seeker.name %></b></p>
 
-          <p>Start now your recruitment: <br/>
+          <p><br/>
 
-            - Post an ad<br/>
-            Fill in the details of your position and the type of profile you are looking for. Your ad will be routed
-            to
-            the
-            right profiles.<br/>
-            - Chasing a Profile<br/>
-            Tell us what your ideal candidate and we will offer you the profiles that most closely match your
-            requirements.
+
           </p>
 
           <h1>My<span class="red"> Jobs</span></h1>
 
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
-          <p>0 advert (s) active (s) 0 ad (s).</p>
+          <p>.</p>
 
           <!--  <a href="#">see all</a>  -->
 
           <h1>My<span class="red"> Statistics</span></h1>
 
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
-          <p><label>Total Jobs Posted</label> <%= @job_seeker.jobs.count %><br/>
-            <label>last Created Job</label></p>
+          <p><label>Total Jobs Applied</label> <%= @job_seeker.applied_jobs.count %><br/>
+
 
           <div class="buttons w100">
 

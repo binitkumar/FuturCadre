@@ -14,7 +14,7 @@
 
     <div class="theses_result">
       <% unless  @theses.blank? %>
-          <% @theses.each do |thes| %> .
+          <% @theses.each do |thes| %>
               <div class="result">
                 <div class="dashboard-text-theses">
                   <div class="name-theses">
@@ -39,11 +39,12 @@
 
 </div>
 
+
 <script type="text/javascript">
     var pagination_options = {
-        num_edge_entries: 0,
-        num_display_entries: 0,
-        callback: pageselectCallback,
+        num_edge_entries:0,
+        num_display_entries:0,
+        callback:pageselectCallback,
         items_per_page:2
     }
     function pageselectCallback(page_index, jq) {
@@ -55,7 +56,7 @@
     }
 
     // When document is ready, initialize pagination and buttons
-    $(document).ready(function() {
+    $(document).ready(function () {
         var num_entries = $('#hiddenresult div.result').length;
 
         // Create pagination element, if more than 50 candidates
@@ -63,8 +64,8 @@
             var $pager = $("#Pagination");
             $pager.fadeIn(400);
             $pager.pagination(num_entries, pagination_options);
-            $("#select_all").click(function() {
-                $("#Searchresult").find('div').find('input[type=checkbox]').each(function() {
+            $("#select_all").click(function () {
+                $("#Searchresult").find('div').find('input[type=checkbox]').each(function () {
                     this.checked = true;
                 });
             });
@@ -72,8 +73,8 @@
         }
         else {
             $("#hiddenresult").fadeIn(200);
-            $("#select_all").click(function() {
-                $("input[type=checkbox]").each(function() {
+            $("#select_all").click(function () {
+                $("input[type=checkbox]").each(function () {
                     this.checked = true;
                 });
             });
