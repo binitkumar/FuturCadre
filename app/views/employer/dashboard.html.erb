@@ -72,7 +72,7 @@
 
           <p><br/>
 
-            -<br/>
+                <br/>
             <br/>
             <br/>
 
@@ -94,6 +94,19 @@
           <% else %>
               Currently there is no Job created by you!
           <% end %>
+          <% unless @employer.created_projects.blank? %>
+              <p><label>Total Project(s) Created </label> <%= @employer.created_projects.count %><br/>
+                <label>last Created
+                  Project</label> <%= @employer.created_projects.last.created_at.strftime("%d-%m-%Y") %>
+          <% else %>
+              Currently there is no project created by you!
+          <% end %>
+          <% unless @employer.created_theses.blank? %>
+              <p><label>Total Theses Created </label> <%= @employer.created_theses.count %><br/>
+                <label>last Created Thesis</label> <%= @employer.created_theses.last.created_at.strftime("%d-%m-%Y") %>
+          <% else %>
+              Currently there is no project created by you!
+          <% end %>
 
           <div class="buttons w100">
 
@@ -109,6 +122,10 @@
 
           <h1>My<span class="red"> Subscription</span></h1>
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
+          <p><label>Total No of Groups Joined</label> <%= @employer.groups.count %><br/>
+
+          <p><label>Total No of Projects Joined</label> <%= @employer.projects.count %><br/>
+
 
           <p>Future Cadre is free and without obligation until January 31, 2012. Enjoy!<br/>
         </div>
