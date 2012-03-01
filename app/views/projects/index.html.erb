@@ -13,7 +13,7 @@
   </div>
 
   <div class="dashboard-content-right">
-    <div class="dashboard-content" style="border-bottom:1px solid #ccc; min-height:50px;">
+    <div class="dashboard-content" style="border-bottom:1px solid #ccc; min-height:50px;width: 674px;">
 
       <div class="btn" style="float:right;">
         <div class="btn-left-holder"></div>
@@ -25,7 +25,7 @@
     <!--dashboard content ends-->
 
     <div class="buttons w100">
-      <h1>List of projects</h1>
+      <h1 style="margin-bottom: 4px;">List of projects</h1>
       <% unless @projects.blank? %>
           <% @projects.each do |project| %>
               <div class="left-holder-img"></div>
@@ -41,7 +41,7 @@
                 <h2><%= link_to project.name, project_path(:id => project.id) %></h2>
                 <div class="link"><%= project.category.name %></div>
                 <p style="width:550px;">  <%= project.description %></p>
-                <p style="margin-left:130px; line-height:60px; float:left; margin-right:20px;"><%= project.users.count %>
+                <p style="margin-left:1px; line-height:60px; float:left; margin-right:20px;"><%= project.users.count %>
                  Member(s)</p>
               </div>
               <!--mid holder img ends-->

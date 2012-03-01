@@ -1,5 +1,6 @@
 class EducationInformation < ActiveRecord::Base
   belongs_to :profile
+  belongs_to :institute
   validates_presence_of :profile
 
   def self.search params

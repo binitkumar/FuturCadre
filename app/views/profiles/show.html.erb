@@ -131,6 +131,57 @@
                 <% end %>
               </div>
           <% end %>
+          <% if current_user.employer? %>
+              <div class="profile_edu_info">
+                <div><h2> Company Information</h2></div>
+                <% unless @profile.company_information %>
+                    <div style="margin-top: 20px!important; float: left;">
+                      <div class="profile-cont">
+                        <div class="profile-name-heading-new"> <%= t('profile_company_nam') %></div>
+                        <div class="profile-name-content"><%= @profile.company_information.name %></div>
+                      </div>
+                      <div class="profile-cont">
+                        <div class="profile-name-heading-new"><%= t('category') %> </div>
+                        <div class="profile-name-content"><%= @profile.company_information.category.name %></div>
+                      </div>
+                      <div class="profile-cont">
+                        <div class="profile-name-heading-new"><%= t('profiles.phone') %></div>
+                        <div class="profile-name-content"><%= @profile.company_information.phone %></div>
+                      </div>
+                      <div class="profile-cont">
+                        <div class="profile-name-heading-new"><%= t('profiles.fax') %></div>
+                        <div class="profile-name-content"><%= @profile.company_information.fax %></div>
+                      </div>
+                      <div class="profile-cont">
+                        <div class="profile-name-heading-new"><%= t('profiles.website') %></div>
+                        <div class="profile-name-content"><%= @profile.company_information.website %></div>
+                      </div>
+                      <div class="profile-cont">
+                        <div class="profile-name-heading-new"><%= t('profile.email') %></div>
+                        <div class="profile-name-content"><%= @profile.company_information.email %></div>
+                      </div>
+                      <div class="profile-cont">
+                        <div class="profile-name-heading-new"><%= t('profiles.address') %></div>
+                        <div class="profile-name-content"><%= @profile.company_information.address %></div>
+                      </div>
+                      <div class="profile-cont">
+                        <div class="profile-name-heading-new"><%= t('companyinfo.country') %></div>
+                        <div class="profile-name-content"><%= @profile.company_information.country.name %></div>
+                      </div>
+                      <div class="profile-cont">
+                        <div class="profile-name-heading-new"><%= t('companyinfo.region') %></div>
+                        <div class="profile-name-content"><%= @profile.company_information.region.name %></div>
+                      </div>
+                      <div class="profile-cont">
+                        <div class="profile-name-heading-new"><%= t('companyinfo.city') %></div>
+                        <div class="profile-name-content"><%= @profile.company_information.city.name %></div>
+                      </div>
+
+                    </div>
+
+                <% end %>
+              </div>
+          <% end %>
 
           <div class="profile-cont">
             <div class="profile-name-content">
