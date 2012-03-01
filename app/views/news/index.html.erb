@@ -17,10 +17,10 @@
 
   <div class="right-content">
     <div class="basic-info mtop10">
-      <h1><span class="red">News</span></h1>
+      <h1><span class="red"></span></h1>
     </div>
-    <div class="suggest-a-news" onclick="suggest_news()">Suggest a news</div>
-    <div class="right-content-detail">
+    <div class="suggest-a-news" style="margin-bottom: 10px;  margin-right: 9px;" onclick="suggest_news()">Suggest a news</div>
+    <div class="right-content-detail" style="width: 710px;">
 
       <% unless @news.blank? %>
           <% @news.each do |new| %>

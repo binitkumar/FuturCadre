@@ -5,14 +5,14 @@
     <div class="popup-top-holder">Suggest a news</div>
     <div class="popup-mid-holder ">
 
-      <%= form_for :news, :url =>{ :action => 'submit_news' }, :html =>{ :id => 'answer_form' }, :remote => true do |f| %>
+      <%= form_for :news, :url => { :action => 'submit_news' }, :html => { :id => 'answer_form' }, :remote => true do |f| %>
           <div class="input-holder" style="width:59%;">
             <div class="input-holder">
               <label>Title</label>
               <%= f.text_field :title %>
             </div>
             <div class="form-input">
-              <label>Event Picture</label>
+              <label>News Picture</label>
               <%= fields_for :picture do |image| %>
                   <%= image.file_field :image %>
               <% end %>
@@ -42,12 +42,12 @@
 <script type="text/javascript">
 
 
-    $("#application_job").click(function() {
+    $("#application_job").click(function () {
         $('#answer_form').ajaxSubmit({
-            beforeSubmit: function(a, f, o) {
+            beforeSubmit:function (a, f, o) {
                 o.dataType = 'json';
             },
-            success: function(data) {
+            success:function (data) {
 
                 close_popup();
 //               $("#popup_holder").html(data.html);

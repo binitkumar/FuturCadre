@@ -17,29 +17,29 @@
 
   <div class="right-content">
     <div class="basic-info mtop10">
-      <h1><span class="red">News</span></h1>
+      <h1><span class="red"></span></h1>
     </div>
 
-    <div class="right-content-detail">
+    <div class="right-content-detail" style=" width: 712px;">
 
       <% unless @news.blank? %>
 
           <div class="content-detail">
-              <div class="img_detail">
-            <%if @news.photo != nil %>
-                <%= image_tag @news.photo.image.url %>
-            <% else %>
-                <%= image_tag "/assets/dashboard-img.png" %>
-            <% end %>
+            <div class="img_detail">
+              <% if @news.photo != nil %>
+                  <%= image_tag @news.photo.image.url %>
+              <% else %>
+                  <%= image_tag "/assets/dashboard-img.png" %>
+              <% end %>
 
-          </div>
-          <h1><%= @news.title %> </h1>
+            </div>
+            <h1><%= @news.title %> </h1>
 
-          <p><%= @news.created_at.strftime("%d-%m-%Y") %></p>
+            <p><%= @news.created_at.strftime("%d-%m-%Y") %></p>
 
-          <div class="p-style-detail">
-            <%= @news.body %>
-          </div>
+            <div class="p-style-detail">
+              <%= @news.body %>
+            </div>
 
 
           </div>
