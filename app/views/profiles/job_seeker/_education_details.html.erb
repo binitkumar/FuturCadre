@@ -1,70 +1,124 @@
+<script language="JavaScript">
+    $("#question-form").dialog({
+        autoOpen:false,
+        height:300,
+        width:350,
+        modal:true,
+        buttons:{
+
+            Cancel:function () {
+                $(this).dialog("close");
+            },
+            "Create a Institute":function () {
+                $.post($("form#add_question_form").attr("action"), $("form#add_question_form").serialize(), (function (response) {
+                    $("#institute").html(response.html);
+                }), "json");
+                $("#question-form").dialog("close");
+                return false;
+
+            }}
+    });
+
+
+</script>
+
 
 <div class="basic-info mtop10">
-	<h1>Education<span class="red"> Details</span></h1>
-	<%= image_tag asset_path 'basic-info-bot-bar.png' %>
+  <h1>Education<span class="red"> Details</span></h1>
+  <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 </div>
 <div id="education_informations">
-	<%= render :partial => "/profiles/job_seeker/education_informations" %>
+  <%= render :partial => "/profiles/job_seeker/education_informations" %>
 </div>
-<%= form_tag '/profiles/create_job_seeker_education_details', :id =>"profile-form" do |f| %>
-	<div id="form-errors"></div>
-	<%= hidden_field_tag :profile_id, @profile.id %>
-	<div class="w100">
-		<div class="profile-left-div">
-			<div class="profile-input mtop20">
-				<label><%= t('profile_degree_level') %></label>
-				<%= text_field_tag "education_info[degree_level]" %>
-			</div>
-			<div class="profile-input mtop20">
-				<label><%= t('profile_major_subject') %></label>
-				<%= text_field_tag "education_info[major_subject]" %>
-			</div>
-		</div>
-		<div class="profile-right-div">
-			<div class="profile-input mtop20">
-				<label><%= t('profile_institute') %></label>
-				<%= text_field_tag "education_info[institute]" %>
-			</div>
-			<div class="profile-input mtop20">
-				<label><%= t('profile_year') %></label>
-				<%= text_field_tag "education_info[year]" %>
-			</div>
-		</div>
-	</div>
-	<div class="add-button-new"><%= link_to "Add More Education Information","javascript:void(0);", :id => "next-link" %></div>
+<%= form_tag '/profiles/create_job_seeker_education_details', :id => "profile-form" do |f| %>
+    <div id="form-errors"></div>
+    <%= hidden_field_tag :profile_id, @profile.id %>
+    <div class="w100">
+      <div class="profile-left-div">
+        <div class="profile-input mtop20">
+          <label><%= t('profile_degree_level') %></label>
+          <%#= text_field_tag "education_info[degree_level]" %>
+          <%= select_tag "education_info[degree_level]", options_for_select([["Ecole D'ingénieur", "Ecole D'ingénieur"], ["Ecole D'ingénieur", "Ecole D'ingénieur"], ["Ecole De Commerce", "Ecole De Commerce"], ["Ecoles/Université", "Ecoles/Université"], [" Etrangères", " Etrangères"], ["IEP", "IEP"], ["IUT", "IUT"], ["Lycée", "Lycée"], ["Université", "Université"], ["x-Autre", "x-Autre"]]) %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profile_major_subject') %></label>
+          <%= text_field_tag "education_info[major_subject]" %>
 
-	<div class="save-button-new"><%= button_to "Save and Next","javascript:void(0);", :id => "save-next-link" %></div>
-<%end%>
+        </div>
+      </div>
+      <div class="profile-right-div">
+        <div class="profile-input mtop20" id="institute">
+          <label><%= t('profile_institute') %></label>
+          <%= render :partial => "profiles/job_seeker/institute_list", :locales => { :institutes => @institutes } %>
+
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profile_year') %></label>
+          <%= text_field_tag "education_info[year]" %>
+        </div>
+      </div>
+    </div>
+    <div class="add-button-new"><%= link_to "Add More Education Information", "javascript:void(0);", :id => "next-link" %></div>
+    <div class="add-button-new"><%= link_to "Add More Institute", "javascript:void(0);", :id => "add-institute-link" %></div>
+
+    <div class="save-button-new"><%= button_to "Save and Next", "javascript:void(0);", :id => "save-next-link" %></div>
+<% end %>
+
+<div id="question-form" title="Create a New Question">
+
+  <%= form_for :institute, :url => { :action => 'create_institute' }, :html => { :id => 'add_question_form' }, :remote => true do |f| %>
+      <div class="select-holder">
+
+        <label>Slug</label>
+        <%= f.text_field :slug %>
+      </div>
+      <div class="input-holder">
+        <label>Title</label>
+        <%= f.text_field :name %>
+      </div>
+
+
+  <% end %>
+
+
+</div>
+
 
 <script type="text/javascript">
 
-	  $(".tabs").each(function(){
-	    $(this).removeClass("active");
-		});
-		$("#education_details").addClass("active");
+    $(".tabs").each(function () {
+        $(this).removeClass("active");
+    });
+    $("#education_details").addClass("active");
 
-		$("#next-link").click(function(){
-			$.post($("form#profile-form").attr("action"), $("form#profile-form").serialize(), function(response){
-			  if(response.seccess == true){
-				  $("#profile-contents").html(response.html);
-	      }
-			  else{
-			    $("#form-errors").html(response.html);
-			  }
-	    }, "json");
-			return false;
-		});
+    $("#next-link").click(function () {
+        $.post($("form#profile-form").attr("action"), $("form#profile-form").serialize(), function (response) {
+            if (response.seccess == true) {
+                $("#profile-contents").html(response.html);
+            }
+            else {
+                $("#form-errors").html(response.html);
+            }
+        }, "json");
+        return false;
+    });
 
-		$("#save-next-link").click(function(){
-			$.post("/profiles/create_job_seeker_education_details_next?skip=true", $("form#profile-form").serialize(), function(response){
-			  if(response.seccess == true){
-				  $("#profile-contents").html(response.html);
-	      }
-			  else{
-			    $("#form-errors").html(response.html);
-			  }
-	    }, "json");
-			return false;
-		});
+    $("#save-next-link").click(function () {
+        $.post("/profiles/create_job_seeker_education_details_next?skip=true", $("form#profile-form").serialize(), function (response) {
+            if (response.seccess == true) {
+                $("#profile-contents").html(response.html);
+            }
+            else {
+                $("#form-errors").html(response.html);
+            }
+        }, "json");
+        return false;
+    });
+
+
+    $('#add-institute-link').click(function () {
+        $("#question-form").dialog("open");
+    });
+
 
 </script>

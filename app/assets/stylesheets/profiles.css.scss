@@ -360,6 +360,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
+
 }
 
 .profile_info_new {
@@ -396,9 +397,47 @@
 }
 
 .profile-name-heading-new {
-    color: #2A2924;
-    float: left;
+  color: #2A2924;
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+  width: 216px;
+}
+
+.add-button-new-butt {
+  float: right;
+
+  background: url(asset_path('reg-me.png' ,image)) repeat-x scroll 0 0 transparent;
+/*background:  url(asset_path('findjob-bg.png',image)) repeat-x scroll 0 0 transparent;*/
+/*background: url("/assets/findjob-bg.png") repeat-x scroll 0 0 transparent;*/
+  border: 1px solid #7B0C26;
+  color: #FFFFFF;
+  float: right;
+  font-size: 14px;
+  font-weight: bold;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 10px;
+  text-decoration: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+.button-add-new {
+
+  padding: 0 10px;
+  background: #991514;
+  float: left;
+  }
+
+.question-button-new {
+    background-color: #9C2C2A;
+    color: #FFFFFF;
+    float: right;
     font-size: 14px;
     font-weight: bold;
-    width: 216px;
+    height: 25px;
+    padding: 0 10px;
+    text-align: center;
+    width: 147px;
 }

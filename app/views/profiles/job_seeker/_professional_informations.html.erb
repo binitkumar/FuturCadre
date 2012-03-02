@@ -1,58 +1,58 @@
 <% if @professional_informations.present? %>
-	<div class="info-container">
-		<% @professional_informations.each do |info| %>
-			<div class="info-box">
-				<div class="info-detail">
-					<label>Job Title</label>
-					<div class="value"><%= info.job_title %></div>
-				</div>
+    <div class="info-container">
+      <% @professional_informations.each do |info| %>
+          <div class="info-box">
+            <div class="info-detail">
+              <label>Job Title</label>
 
-				<div class="info-detail">
-					<label>Company Name</label>
-					<div class="value"><%= info.company_name %></div>
-				</div>
+              <div class="value"><%= info.job_title %></div>
+            </div>
 
-				<div class="info-detail">
-					<label>Carear Level</label>
-					<div class="value"><%= info.career_level %></div>
-				</div>
+            <div class="info-detail">
+              <label>Company Name</label>
 
-				<div class="info-detail">
-					<label>Professional Experience</label>
-					<div class="value"><%= info.profession_experience %></div>
-				</div>
+              <div class="value"><%= info.company_name %></div>
+            </div>
 
-				<div class="info-detail">
-					<label>Professional Industry</label>
-					<div class="value"><%= info.profession_industry %></div>
-				</div>
+            <div class="info-detail">
+              <label>Professional Experience</label>
 
-				<div class="info-detail">
-					<label>Professional Category</label>
-					<div class="value"><%= info.category.name %></div>
-				</div>
+              <div class="value"><%= info.profession_experience %></div>
+            </div>
 
-				<div class="save-button-new">
-					<%= link_to "remove",remove_prof_info_profiles_path(:profile_id => @profile.id, :id => info.id), :class => "remove-profession"  %>
-				</div>
+            <div class="info-detail">
+              <label>Professional Industry</label>
 
-			</div>
-		<%end%>
-	</div>
-<%end%>
+              <div class="value"><%= info.profession_industry %></div>
+            </div>
+
+            <div class="info-detail">
+              <label>Professional Category</label>
+
+              <div class="value"><%= info.category.name %></div>
+            </div>
+
+            <div class="save-button-new">
+              <%= link_to "remove", remove_prof_info_profiles_path(:profile_id => @profile.id, :id => info.id), :class => "remove-profession" %>
+            </div>
+
+          </div>
+      <% end %>
+    </div>
+<% end %>
 <script type="text/javascript">
 
-	 $(".remove-profession").click(function(){
-	   $.ajax({
-		   context: $(this),
-	     url: $(this).attr('href'),
-	     type: 'GET',
-	     dataType: 'json',
-	     success: function(response){
-			   $("#professional_informations").html(response.html);
-	     }
-	   });
-	   return false;
-	 });
+    $(".remove-profession").click(function () {
+        $.ajax({
+            context:$(this),
+            url:$(this).attr('href'),
+            type:'GET',
+            dataType:'json',
+            success:function (response) {
+                $("#professional_informations").html(response.html);
+            }
+        });
+        return false;
+    });
 
 </script>

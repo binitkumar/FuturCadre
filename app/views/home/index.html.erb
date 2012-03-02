@@ -1,6 +1,6 @@
 <%= render :partial => "search_box" %>
 <div class="basic-info mtNone">
-  <h1><span class="red"><%= t('home_featured') %></span> <%= t('home_employers') %></h1>
+  <h1><span class="red"><%#= t('home_featured') %></span> <%#= t('home_employers') %></h1>
   <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 </div>
 <div class="featured-employers">
@@ -8,13 +8,13 @@
 
 </div>
 
-    <div class="data-post-div" style="display: none;">
-      <%= render :partial => "search/sorting_box" %>
-    </div>
+<div class="data-post-div" style="display: none;">
+  <%= render :partial => "search/sorting_box" %>
+</div>
 
 <div class="content-holder mtop40">
 
-  <div class="content-left-holder">
+  <div class="content-left-holder" id="search_div">
     <%= render :partial => "browse_jobs" %>
   </div>
   <div class="content-right-holder">

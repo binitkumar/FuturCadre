@@ -3,9 +3,9 @@ class CreateProfessionInformations < ActiveRecord::Migration
     create_table :profession_informations do |t|
       t.integer :profile_id
       t.string :profession_industry
-			t.integer :profession_experience
+			t.string :profession_experience
 			t.integer :category_id
-			t.string :career_level
+      #t.string :career_level
 			t.string :job_title
 			t.string :company_name
 			

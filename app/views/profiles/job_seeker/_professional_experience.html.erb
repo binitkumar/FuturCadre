@@ -1,81 +1,78 @@
-<%= form_tag '/profiles/create_job_seeker_professional_experience', :id =>"profile-form" do |f| %>
-	<div class="basic-info mtop10">
-		<h1>Professional<span class="red"> Experience</span></h1>
-		<%= image_tag asset_path 'basic-info-bot-bar.png' %>
-	</div>
-	<div id="professional_informations">
-		<%= render :partial => "/profiles/job_seeker/professional_informations" %>
-	</div>
-	<div id="form-errors"></div>
-	<%= hidden_field_tag :profile_id, @profile.id %>
+<%= form_tag '/profiles/create_job_seeker_professional_experience', :id => "profile-form" do |f| %>
+    <div class="basic-info mtop10">
+      <h1>Professional<span class="red"> Experience</span></h1>
+      <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+    </div>
+    <div id="professional_informations">
+      <%= render :partial => "/profiles/job_seeker/professional_informations" %>
+    </div>
+    <div id="form-errors"></div>
+    <%= hidden_field_tag :profile_id, @profile.id %>
 
-	<div class="w100">
-		<div class="profile-left-div">
-			<div class="profile-input mtop20">
-				<label><%= t('profile_industry') %></label>
-				<%= text_field_tag "prof_info[profession_industry]" %>
-			</div>
-			<div class="profile-input mtop20">
-				<label><%= t('category') %> </label>
-				<%= select_tag "prof_info[category_id]", options_from_collection_for_select(Category.all, "id", "name"), :class =>"reg-slt-div-new" %>
+    <div class="w100">
+      <div class="profile-left-div">
+        <div class="profile-input mtop20">
+          <label><%= t('profile_industry') %></label>
+          <%= text_field_tag "prof_info[profession_industry]" %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('category') %> </label>
+          <%= select_tag "prof_info[category_id]", options_from_collection_for_select(Category.all, "id", "name"), :class => "reg-slt-div-new" %>
 
-			</div>
-			<div class="profile-input mtop20">
-				<label><%= t('profile_job_title') %></label>
-				<%= text_field_tag "prof_info[job_title]" %>
-			</div>
-		</div>
-		<div class="profile-right-div">
-			<div class="profile-input mtop20">
-				<label><%= t('profile_experience') %></label>
-				<%= text_field_tag "prof_info[profession_experience]" %>
-			</div>
-			<div class="profile-input mtop20">
-				<label><%= t('profile_carrer_level') %></label>
-				<%= text_field_tag "prof_info[career_level]" %>
-			</div>
-			<div class="profile-input mtop20">
-				<label><%= t('profile_company_nam') %></label>
-				<%= text_field_tag "prof_info[company_name]" %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profile_job_title') %></label>
+          <%= text_field_tag "prof_info[job_title]" %>
+        </div>
+      </div>
+      <div class="profile-right-div">
+        <div class="profile-input mtop20">
+          <label><%= t('profile_experience') %></label>
+          <%= select_tag "prof_info[profession_experience]", options_for_select([["Etudiant", "Etudiant"], ["Jeune Diplômé", "Jeune Diplômé"], ["Junior", "Junior"], ["Confirmé/Senior", "Confirmé/Senior"], [" Responsable d'équipe", "Responsable d'équipe"], ["Responsable de Département", "Responsable de Département"], ["Dirigeant/Entrepreneur", "Dirigeant/Entrepreneur"]]) %>
+        </div>
 
-			</div>
-		</div>
-	</div>
-	<div class="add-button-new"><%= link_to "Add More Profession Experience","javascript:void(0);", :id => "next-link" %></div>
+        <div class="profile-input mtop20">
+          <label><%= t('profile_company_nam') %></label>
+          <%= text_field_tag "prof_info[company_name]" %>
 
-	<div class="save-button-new"><%= button_to "Save and Next","javascript:void(0);", :id => "save-next-link" %></div>
-<%end%>
+        </div>
+      </div>
+    </div>
+    <div class="add-button-new"><%= link_to "Add More Profession Experience", "javascript:void(0);", :id => "next-link" %></div>
+
+    <div class="save-button-new"><%= button_to "Save and Next", "javascript:void(0);", :id => "save-next-link" %></div>
+<% end %>
 
 <script type="text/javascript">
 
-	  $(".tabs").each(function(){
-				$(this).removeClass("active");
-			});
+    $(".tabs").each(function () {
+        $(this).removeClass("active");
+    });
 
-			$("#professional_experience").addClass("active");
+    $("#professional_experience").addClass("active");
 
-		$("#next-link").click(function(){
-			$.post($("form#profile-form").attr("action"), $("form#profile-form").serialize(), function(response){
-			  if(response.seccess == true){
-				  $("#profile-contents").html(response.html);
-	      }
-			  else{
-			    $("#form-errors").html(response.html);
-			  }
-	    }, "json");
-			return false;
-		});
+    $("#next-link").click(function () {
+        $.post($("form#profile-form").attr("action"), $("form#profile-form").serialize(), function (response) {
+            if (response.seccess == true) {
+                $("#profile-contents").html(response.html);
+            }
+            else {
+                $("#form-errors").html(response.html);
+            }
+        }, "json");
+        return false;
+    });
 
-		$("#save-next-link").click(function(){
-			$.post("/profiles/create_job_seeker_professional_experience_next?skip=true", $("form#profile-form").serialize(), function(response){
-			  if(response.seccess == true){
-				  $("#profile-contents").html(response.html);
-	      }
-			  else{
-			    $("#form-errors").html(response.html);
-			  }
-	    }, "json");
-			return false;
-		});
+    $("#save-next-link").click(function () {
+        $.post("/profiles/create_job_seeker_professional_experience_next?skip=true", $("form#profile-form").serialize(), function (response) {
+            if (response.seccess == true) {
+                $("#profile-contents").html(response.html);
+            }
+            else {
+                $("#form-errors").html(response.html);
+            }
+        }, "json");
+        return false;
+    });
 
 </script>

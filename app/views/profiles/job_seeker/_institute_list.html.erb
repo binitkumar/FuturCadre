@@ -1,0 +1,3 @@
+<div id="instiitute">
+  <%= select_tag "education_info[institute_id]", options_for_select(["Select from list"] + @institutes.map { |obj| [obj.slug, obj.id] } + ["others"]) %>
+</div>
