@@ -3,7 +3,7 @@
     <% if user_signed_in? %>
 
         <div class="post-right-hold">
-          <%= render :partial => "comment_form", :locals => { :comment => @comment, :thesis => @thesis } %>
+          <%= render :partial => "comment_form", :locals => {:comment => @comment, :thesis => @thesis} %>
         </div>
 
     <% end %>
@@ -13,7 +13,16 @@
         <% @comments.each do |comment| %>
 
             <div class="w100 mtop20">
-              <div class="post-left-hold" style="width: 84px;"> <%= image_tag comment_image(comment).photo.url, :style =>"border: medium solid !important;height: 96px;" %></div>
+              <div class="post-left-hold" style="width: 84px;">
+                <div class="user_image">
+                  <% unless comment.user.profile.blank? %>
+                      <%= image_tag comment_image(comment).photo.url %>
+                  <% else %>
+                     <%= image_tag asset_path "dashboard-img.png" %>
+                  <% end %>
+                </div>
+
+              </div>
               <div class="post-cont-hold">
                 <h1><%= comment.user.name %></h1>
 

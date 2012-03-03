@@ -17,7 +17,7 @@
 
           <div class="groups-mid-cont">
             <div class="join-request">
-              <%= render :partial => "thesis_description", :locals => { :thesis => @thesis } %>
+              <%= render :partial => "thesis_description", :locals => {:thesis => @thesis} %>
             </div>
             <ul class="group-links mtop20">
               <li class="group-link-act listed"><%= link_to "Description", thesis_body_theses_path(:id => @thesis.id), :class => "thesis_body-link" %></li>
@@ -27,7 +27,7 @@
 
             <div class="groups-line"></div>
             <div class="mid-cont-holder">
-
+              <%= render :partial => "thesis_path", :locals => {:thesis => @thesis} %>
             </div>
       <% end %>
       </div>
