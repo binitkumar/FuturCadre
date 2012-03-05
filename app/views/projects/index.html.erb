@@ -41,8 +41,7 @@
                 <h2><%= link_to project.name, project_path(:id => project.id) %></h2>
                 <div class="link"><%= project.category.name %></div>
                 <p style="width:550px;">  <%= project.description %></p>
-                <p style="margin-left:1px; line-height:60px; float:left; margin-right:20px;"><%= project.users.count %>
-                 Member(s)</p>
+                <p style="margin-left:1px; line-height:60px; float:left; margin-right:20px;"><%= project.project_users.find(:all, :conditions => {:is_approved => true }).count %>Member(s)</p>
               </div>
               <!--mid holder img ends-->
               <div class="right-holder-img"></div>

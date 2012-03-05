@@ -20,7 +20,7 @@
     </div>
     <!--pic-project ends-->
     <div class="due-projects">
-      <div class="h1" style="margin-top:10px; margin-left:5px; width:300px; "><%= @project.users.count %>Members(s)
+      <div class="h1" style="margin-top:10px; margin-left:5px; width:300px; "><%= @project.project_users.find(:all, :conditions => {:is_approved => true }).count %>Members(s)
       </div>
       <div class="images-detail">
         <% unless @project_users.blank? %>
@@ -139,13 +139,11 @@
     }
 
 
-    function proj_invite(proj_id) {
-
+   function proj_invite(proj_id) {
 
     <%if user_signed_in?%>
         {
-
-            url = "/projects/project_request?id=" + proj_id;
+           url = "/projects/project_request?id=" + proj_id;
             $.ajax({
                 context:this,
                 url:url,
@@ -159,7 +157,7 @@
 
             return false;
         }
-    <%else%>
+      <%else%>
         {
             alert("You need to sign-in");
         }
