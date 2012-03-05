@@ -318,5 +318,10 @@ class ProfilesController < ApplicationController
   end
 
 
+  def create_job_seeker_additional_information
+    @profile    = Profile.find_by_id(params[:profile_id])
+    redirect_to @profile, :notice => 'Profile was successfully updated.'
+  end
+
 end
 

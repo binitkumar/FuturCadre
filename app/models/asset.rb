@@ -6,7 +6,7 @@ class Asset < ActiveRecord::Base
 
   has_attached_file :photo, :path => ":rails_root/public/system/:attachment/:id/:style/:basename.:extension",
                     :url          => "/system/:attachment/:id/:style/:basename.:extension"
-  validates_attachment_content_type :photo, :content_type=>['image/jpeg', 'image/png', 'image/gif', 'application/msword', 'application/pdf', 'docx']
+  validates_attachment_content_type :photo, :content_type=>['image/jpeg', 'image/png', 'image/gif', 'application/msword', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
 
 
   validates_attachment_size :photo, :less_than => 1.megabytes, :message => "must be less than 2 Mb."
