@@ -21,6 +21,7 @@ module ApplicationHelper
           return asset
         end
       end
+      return false
     end
   end
 
@@ -36,5 +37,21 @@ module ApplicationHelper
     end
 
   end
+
+=begin
+  def collect_shared_error_messages(target)
+    targets        = []
+    error_messages = []
+    if target.kind_of?(Array)
+      target.collect { |t| targets << t }
+    else
+      targets << target
+    end
+    targets.each do |target|
+      target.errors.full_messages.collect { |msg| error_messages << msg } if target.errors.any?
+    end
+    error_messages
+  end
+=end
 
 end

@@ -13,8 +13,8 @@
             <div class="w100 mtop20">
               <div class="post-left-hold" style="width: 84px;">
                 <div class="user_image">
-                  <% unless comment.user.profile.blank? %>
-                      <%= image_tag comment_image(comment).photo.url %>
+                  <% if comment_image(comment) != false %>
+                                      <%= image_tag comment_image(comment).photo.url %>
                   <% else %>
 
                       <%= image_tag asset_path "dashboard-img.png" %>
@@ -57,21 +57,21 @@
         <% if user_signed_in? %>
         <% if current_user.is_member(@group.id) == true %>
         {
-        $.post($("form#add_comment_form").attr("action"), $("form#add_comment_form").serialize(), (function (response) {
-            return $(".mid-cont-holder").html(response.html);
-        }), "json");
-        return false;
+            $.post($("form#add_comment_form").attr("action"), $("form#add_comment_form").serialize(), (function (response) {
+                return $(".mid-cont-holder").html(response.html);
+            }), "json");
+            return false;
         }
-       <%else%>
+        <%else%>
         {
-           alert("You need to be a member first to post");
-           return false;
+            alert("You need to be a member first to post");
+            return false;
         }
-       <%end%>
-     <%else%>
+        <%end%>
+        <%else%>
         {
-           alert("Please sign up before posting");
+            alert("Please sign up before posting");
         }
-    <%end%>
+        <%end%>
     });
 </script>
