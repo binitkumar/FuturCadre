@@ -22,12 +22,16 @@
                     <div class="icon-text-two">
 
                       <%= link_to thes.name, thesis_details_theses_path(:id => thes.id) %>
-                      <p> <%= image_tag asset_path 'mem-icon.png' %>  <%= thes.theses_users.count %> Members</p>
+                     <!--<p> <#%= image_tag asset_path 'mem-icon.png' %>  <#%= thes.theses_users.count %> Members</p>-->
                     </div>
                   </div>
-                  <div class="description-hold-two"><%= thes.description %> </div>
+                  <div class="description-hold-two"> <%= thes.description %> </div>
                   <div class="salary-hold-two"><%= thes.no_of_pages %></div>
+                  <div class="salary-hold-two"><%= thes.date_of_publish %></div>
+
+
                 </div>
+
               </div>
           <% end %>
       <% end %>

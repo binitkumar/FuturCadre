@@ -3,9 +3,12 @@ class ThesesController < ApplicationController
 
   def index
 
-    @category   = Category.first
-    @theses     = @category.theses
+    #@category   = Category.first
+    #@theses     = @category.theses
     @categories = Category.all
+
+    @theses=Thesis.all
+
 
   end
 

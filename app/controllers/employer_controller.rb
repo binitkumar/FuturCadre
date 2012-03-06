@@ -91,9 +91,10 @@ class EmployerController < ApplicationController
   end
 
   def download
-    @asset = Asset.find(params[:id])
+
+    @asset = Asset.find_by_id(params[:id])
     @cv    = @asset.photo
-    send_file @cv.path
+     send_file @cv.path
 
   end
 
