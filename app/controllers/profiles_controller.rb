@@ -64,7 +64,7 @@ class ProfilesController < ApplicationController
     @institutes = Institute.all
     @profile    = Profile.find_by_id(params[:profile_id])
     @edu_info   = EducationInformation.new(params[:education_info])
-    if params[:education_info][:institute_id] =="Select from list"
+    if params[:education_info][:institute_id] =="Select from list" && params[:education_info][:institute_id] =="others"
       params[:education_info][:institute_id] = nil
     else
       @edu_info.institute_id = params[:education_info][:institute_id]
@@ -81,13 +81,20 @@ class ProfilesController < ApplicationController
 
   def create_job_seeker_education_details_next
     @profile = Profile.find_by_id(params[:profile_id])
-    unless params[:skip].present?
-      @edu_info         = EducationInformation.new(params[:education_info])
+    unless params[:skip].blank?
+      @edu_info = EducationInformation.new(params[:education_info])
+      if params[:education_info][:institute_id] =="Select from list" &&   params[:education_info][:institute_id] =="others"
+        params[:education_info][:institute_id] = nil
+      else
+        @edu_info.institute_id = params[:education_info][:institute_id]
+      end
       @edu_info.profile = @profile
       success           = @edu_info.save
     else
       success = true
     end
+
+
     if success
       @professional_informations = @profile.profession_informations
       render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_experience') }.to_json
@@ -119,7 +126,7 @@ class ProfilesController < ApplicationController
 
   def create_job_seeker_professional_experience_next
     @profile = Profile.find_by_id(params[:profile_id])
-    unless params[:skip].present?
+    unless params[:skip].blank?
       @prof_info         = ProfessionInformation.new(params[:prof_info])
       @prof_info.profile = @profile
       success            = @prof_info.save
@@ -313,13 +320,13 @@ class ProfilesController < ApplicationController
     @institute = Institute.new(params[:institute])
     if @institute.save
       @institutes = Institute.all
-      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/institute_list'), :locals =>{:institutes => @institutes} }.to_json
+      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/institute_list'), :locals => { :institutes => @institutes } }.to_json
     end
   end
 
 
   def create_job_seeker_additional_information
-    @profile    = Profile.find_by_id(params[:profile_id])
+    @profile = Profile.find_by_id(params[:profile_id])
     redirect_to @profile, :notice => 'Profile was successfully updated.'
   end
 

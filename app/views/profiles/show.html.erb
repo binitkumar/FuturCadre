@@ -92,7 +92,9 @@
                       </div>
                       <div class="profile-cont">
                         <div class="profile-name-heading-new"><%= t('profile_institute') %></div>
-                        <div class="profile-name-content"><%= ed.institute.name %></div>
+                        <% unless ed.institute.blank? %>
+                            <div class="profile-name-content"><%= ed.institute.name %></div>
+                        <% end %>
                       </div>
                       <div class="profile-cont">
                         <div class="profile-name-heading-new"><%= t('profile_year') %></div>
