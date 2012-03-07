@@ -194,7 +194,7 @@ class GroupsController < ApplicationController
       @event.user_id = current_user.id
     end
     if @event.save!
-      render :json => { :html => render_to_string(:partial => '/groups/group_events', :locale => { :group => @group }) }.to_json
+      #render :json => { :html => render_to_string(:partial => '/groups/group_events', :locale => { :group => @group }) }.to_json
       unless current_user.blank?
         @manager = @group.owner
         EventMailer.event_approval(current_user.email, @manager.email, @event, request.protocol, request.host_with_port, @group).deliver
@@ -203,6 +203,7 @@ class GroupsController < ApplicationController
 
         #EventMailer.event_notification(current_user, @manager, @event).deliver
       end
+      render :json => { :html => render_to_string(:partial => '/groups/group_create_event', :locale => { :group => @group }) }.to_json
     end
   end
 

@@ -16,7 +16,8 @@
             },
             "Create a Event":function () {
                 $.post($("form#add_event_form").attr("action"), $("form#add_event_form").serialize(), (function (response) {
-                    return $(".mid-cont-holder").html(response.html);
+
+                    return $(".right-content-detail-new").html(response.html);
                 }), "json");
                 $("#event-form").dialog("close");
                 return false;
@@ -29,39 +30,15 @@
     });
 
 </script>
+
 <div class="mid-cont-holder">
   <div id="question_answer">
-    <% unless current_user.blank? %>
+           <% unless current_user.blank? %>
         <button id="event-popup" class="question-button">Create Events</button>
     <% end %>
 
+        <%= render :partial => "groups/group_create_event" %>
 
-    <div class="right-content-detail-new">
-
-      <% unless @group.events.blank? %>
-          <% @group.events.each do |group_event| %>
-
-              <div class="content-detail">
-
-                <h1>
-                  <div id="group_event" onclick="event_page('<%= group_event.id%>','<%=@group.id %>')"><%= group_event.title %></div>
-                </h1>
-
-                <div><%= group_event.created_at.strftime("%d-%m-%Y") %></div>
-                <div><label> Time:</label> <%= group_event.time_of_start %></div>
-                <div><label> Time:</label> <%= group_event.time_of_end %></div>
-                <div><label>Descripton:</label></div>
-                <div id="text-detail">
-                  <p><%= group_event.description %></p>
-                </div>
-
-
-              </div>
-              <div id="answer_button" onclick="post_event('<%= group_event.id%>')"></div>
-          <% end %>
-
-          </div><!--right-content ends-->
-      <% end %>
       </div>
   <div id="event-form" title="Create a New Event">
 

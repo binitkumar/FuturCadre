@@ -291,9 +291,15 @@
     function hide_field() {
         if ($("#job_contract_id option:selected").text() == "Cdi") {
             $("#contract_period").hide();
+
+            $("#date-box").hide();
+             $("#enable").hide();
+
         }
         else {
             $("#contract_period").show();
+            $("#date-box").show();
+            $("#enable").show();
         }
 
     }
@@ -303,6 +309,7 @@
         if (type == 'disable') {
 
             $("#date-box").hide();
+
         }
         else if (type == 'enable') {
 
