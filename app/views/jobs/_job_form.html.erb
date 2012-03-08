@@ -219,7 +219,7 @@
 </div>
 <div class="publication-line">
   <div class="publication-line">
-    <%= check_box_tag 'email'  %>
+    <%= check_box_tag 'email' %>
     <p>Receive an email on this address</p>
 
     <div class="date-box" id="email-box" style="display: none;">
@@ -230,6 +230,7 @@
 
 
 </div>
+
 
 
 <div class="w100">
@@ -243,57 +244,22 @@
 <!--dashboard-right-left-->
 </div>
 <!--dashboard-content-right ends-->
-
+<% select_1 = "#{select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value")}" %>
+<% select_1 = select_1.gsub(/(\r\n|\n|\r)/, "") %>
+<% select_2 = "#{select_tag 'level[]', options_for_select([['Niveau', 'Niveau'], ['Notions', 'Notions'], ['Courant', 'Courant'], ['Bilingue', 'Bilingue'], ['Niveau', 'Bilingue']]) }" %>
+<% select_2 = select_2.gsub(/(\r\n|\n|\r)/, "") %>
+<% select_3= "#{select_tag "education_ids[]", options_from_collection_for_select(EducationLevel.all, "id", "name")}"%>
+<% select_3 = select_3.gsub(/(\r\n|\n|\r)/, "") %>
 
 <script type="text/javascript">
 
-
-    var count = 1;
-    $('.add-language').click(function () {
-        var scntDiv = $('#language-div');
-        var count = parseInt($('#count').attr('value'));
-        count = count + 1;
-        $('#count').attr('value', count);
-        var txt_field = '<div id="main_div_' + count + '"><div class="contract-field-new">' + <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value") %> +'</div><div class="contract-field-new">' + <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]], ["Niveau","Bilingue" ]) %> +'</div><div class="add-button" style="margin-top: 30px;><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_location_field(' + count + ')" /></a> <div> </div>';
-        scntDiv.append(txt_field);
-
-    });
-    function remove_location_field(obj) {
-        var field = $('#main_div_' + obj)
-        var count = parseInt($('#count').attr('value'));
-        var count_toatl = parseInt($('#count').attr('value'));
-        count = count - 1;
-        $('#count').attr('value', count);
-        field.remove();
-    }
-
-    $('.add-education').click(function () {
-
-        alert($('#counter').val());
-        var scntDiv = $('#contract-field-ed');
-        var counter = parseInt($('#counter').attr('value'));
-        counter = counter + 1;
-
-        $('#counter').attr('value', counter);
-        var txt_field = '<div id="new_div_' + counter + '"><div class="contract-field-ed">' + <%= select_tag "education_ids[]", options_from_collection_for_select(EducationLevel.all, "id", "name") %> +'</div><div class="add-button" style="margin-top: 30px;"><a href="javascript:;"><img src="/assets/minus.png" alt="Remove" onclick="remove_education_field(' + counter + ')" /></a> <div> </div>';
-        scntDiv.append(txt_field);
-
-    });
-    function remove_education_field(obj) {
-        var field = $('#new_div_' + obj)
-        var counter = parseInt($('#counter').attr('value'));
-        var count_toatl = parseInt($('#counter').attr('value'));
-        counter = counter - 1;
-        $('#counter').attr('value', counter);
-        field.remove();
-    }
 
     function hide_field() {
         if ($("#job_contract_id option:selected").text() == "Cdi") {
             $("#contract_period").hide();
 
             $("#date-box").hide();
-             $("#enable").hide();
+            $("#enable").hide();
 
         }
         else {
@@ -318,17 +284,53 @@
 
     }
 
-    $('#email').click(function(){
+    $('#email').click(function() {
 
-        if($('#email').is(':checked')==true)
-        {
+        if ($('#email').is(':checked') == true) {
 
-           $('#email-box').show();
+            $('#email-box').show();
         }
-        else
-        {
+        else {
             $('#email-box').hide();
         }
     });
+
+    var count = 1;
+    $('.add-language').click(function () {
+        var scntDiv = $('#language-div');
+        var count = parseInt($('#count').attr('value'));
+        count = count + 1;
+        $('#count').attr('value', count);
+        var txt_field = '<div id=main_div_' + count + '><div class=contract-field-new><%= raw(select_1)%></div><div class=contract-field-new><%= raw(select_2)%></div><div class=add-button style="margin-top: 30px;"><a href="javascript:" onclick="remove_location_field(count)"><img src="/assets/minus.png" /></a<div class=add-button style="margin-top: 30px;"><a href="javascript:" onclick="remove_location_field(count)"><img src="/assets/minus.png" /></a></div></div>';
+        scntDiv.append(txt_field);
+
+    });
+    function remove_location_field(obj) {
+        var field = $('#main_div_' + obj)
+        var count = parseInt($('#count').attr('value'));
+        var count_toatl = parseInt($('#count').attr('value'));
+        count = count - 1;
+        $('#count').attr('value', count);
+        field.remove();
+    }
+   var counter = 1;
+    $('.add-education').click(function () {
+        var scntDiv = $('#contract-field-ed');
+        var counter = parseInt($('#counter').attr('value'));
+        counter = counter + 1;
+        $('#counter').attr('value', counter);
+         var txt_field = '<div id=new_div_' + counter + '><div class=contract-field-ed><%= raw(select_3)%></div><div class=add-button style="margin-top: 30px;"><a href="javascript:" onclick="remove_location_field(count)"><img src="/assets/minus.png" /></a<div class=add-button style="margin-top: 30px;"><a href="javascript:" onclick="remove_education_field(counter)"><img src="/assets/minus.png" /></a></div></div>';
+        scntDiv.append(txt_field);
+
+    });
+    function remove_education_field(obj) {
+        var field = $('#new_div_' + obj)
+        var counter = parseInt($('#counter').attr('value'));
+        var count_toatl = parseInt($('#counter').attr('value'));
+        counter = counter - 1;
+        $('#counter').attr('value', counter);
+        field.remove();
+    }
+
 
 </script>
