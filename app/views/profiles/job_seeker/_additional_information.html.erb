@@ -1,22 +1,109 @@
-<%= form_tag '/profiles/create_job_seeker_additional_information', :id =>"profile-form" do |f| %>
-	<div class="basic-info mtop10">
-		<h1><span class="red">Make your Resume Searchable!</span></h1>
-		<%= image_tag asset_path 'basic-info-bot-bar.png' %>
-	</div>
-	<div id="form-errors"></div>
-	<%= hidden_field_tag :profile_id, @profile.id %>
+<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery-ui-timepicker-addon" %>
+<%= stylesheet_link_tag "jquery-ui-1.8.17.custom", "jquery.ui.datepicker" %>
 
-	<!--<div class="save-button-new"><%#= button_to "Skip It", "javascript:void(0);" %></div>-->
-	<div class="save-button-new"><%= button_to "Save","javascript:void(0);", :id => "next-link" %></div>
+<%= form_tag '/profiles/create_job_seeker_additional_information', :id =>"profile-form" do %>
+    <div class="basic-info mtop10">
+      <h1><span class="red">Make your Resume Searchable!</span></h1>
+      <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+    </div>
+    <div id="form-errors"></div>
+    <%= hidden_field_tag :profile_id, @profile.id %>
 
-<%end%>
+
+    <div class="w100">
+      <div class="profile-left-div">
+        <div class="new-profile-input mtop20">
+          <label><%= t('profiles.Desire_job_title') %></label>
+          <%= text_field_tag "job_title" %>
+
+        </div>
+
+
+        <div class="new-profile-input mtop20">
+          <label><%= t('profiles.desired_job_type') %></label>
+          <%#= text_field_tag "education_info[degree_level]" %>
+          <%= select_tag "desired_job_type", options_for_select([["Employee", "Employee"], ["Intern", "Intern"], ["Temporary/contract/Project", "Temporary/contract/Project"], ["Seasonal", "Seasonal"]]) %>
+        </div>
+
+        <div class="new-profile-input mtop20">
+          <label><%= t('profiles.desired_job_status') %></label>
+          <%#= text_field_tag "education_info[degree_level]" %>
+          <%= select_tag "desired_job_status", options_for_select([["Full-Time", "Full-Time"], ["Part-Time", "Part-Time"], ["Per Diem", "Per Diem"]]) %>
+        </div>
+
+        <div class="new-profile-input mtop20">
+          <label><%= t('profiles.work_authorization') %></label>
+          <div class="big-select"><%= select_tag "work_authorization", options_for_select([["I am authorize to work in this country for any employer", "I am authorize to work in this country for any employer"], ["I am not authorize to work in this country for any employer", "I am not authorize to work in this country for any employer"]]) %></div>
+        </div>
+
+        <div class="salary-info mtop20" style="width:715px;">
+          <label><%= t('profiles.desired_salary_range') %></label>
+          <%= text_field_tag "salary_to" %>
+          <p>to</p><%= text_field_tag "salary_from" %> <div class="money-type"><%= select_tag "currency", options_for_select([["Euro", "Euro"], ["Pkr", "pkr"]]) %></div><div class="money-type1"><%= select_tag "salary_period", options_for_select([["Per year", "per year"], ["Per month", "per month"]]) %>   </div>
+        </div>
+
+        <div class="condition-left mtop20">
+          <label><%= t('profiles.Are_you_willing_to_relocate ?') %></label>
+          <%= radio_button_tag 'willing', true %> <p style="width:40px; float:left; color: #474747;"> Yes</p>
+          <%= radio_button_tag 'willing', false %> <p style="width:40px; float:left; color: #474747;"> No </p>
+        </div>
+
+        <div class="new-profile-input mtop20">
+          <label><%= t('profiles.Are_you_willing_to_travel ?') %></label>
+          <%#= text_field_tag "education_info[degree_level]" %>
+
+          <div class="big-select"><%= select_tag "willing_to_travel", options_for_select([["Up to 25% travel", "Up to 25% travel"], ["Up to 50% travel", "Up to 50% travel"], ["Up to 75% travel", "Up to 75% travel"], ["Up to 100% travel", "Up to 100% travel"]]) %> </div>
+
+          </div>
+
+          <div class="new-profile-input mtop20">
+        <label><%= t('profiles.When_are_you _available_to_start ?') %></label>
+
+        <div class="radio-label-two" id="disable">
+          <%= radio_button_tag 'date_of_start', true,nil, :onclick =>"disable('disable')" %>
+          <label>Immediate</label>
+        </div>
+
+        <div class="radio-label-two" id="enable">
+           <%= radio_button_tag 'date_of_start', false,nil, :onclick =>"disable('enable')" %>
+          <label> Or on this date</label>
+        </div>
+        <div class="date-box" id="date-box">
+          <%= text_field_tag "date_of_start_text", nil, :class =>"date-pick", :id => "Date-Box" %>
+        </div>
+            </div>
+      </div>
+    </div>
+    <!--<div class="save-button-new"><%#= button_to "Skip It", "javascript:void(0);" %></div>-->
+    <div class="save-button-new"><%= button_to "Save", "javascript:void(0);", :id => "next-link" %></div>
+<% end %>
 
 <script type="text/javascript">
 
-	  $(".tabs").each(function(){
-	    $(this).removeClass("active");
-		});
 
-		$("#additional_information").addClass("active");
+    $(document).ready(function() {
+        $('.date-pick').datepicker({dateFormat: 'yy-mm-dd'});
+    });
+
+       function disable(type) {
+
+        if (type == 'disable') {
+
+            $("#date-box").hide();
+
+        }
+        else if (type == 'enable') {
+
+            $("#date-box").show();
+        }
+
+    }
+
+
+
+    $(".tabs").each(function() {
+        $(this).removeClass("active");
+    });
+    $("#additional_information").addClass("active");
 
 </script>

@@ -326,7 +326,15 @@ class ProfilesController < ApplicationController
 
 
   def create_job_seeker_additional_information
+
     @profile = Profile.find_by_id(params[:profile_id])
+    if params[:date_of_start]=="true"
+      date= Time.now
+    else
+      date= params[:date_of_start_text]
+    end
+    @profile.update_attributes(:job_title => params[:job_title],:date_of_start => date, :work_authorization => params[:work_authorization],  :desired_job_type => params[:desired_job_type], :desired_job_status => params[:desired_job_status], :salary_to => params[:salary_to], :salary_from => params[:salary_from], :currency => params[:currency], :salary_period => params[:salary_period], :willing => params[:willing], :willing_to_travel => params[:willing_to_travel])
+
     redirect_to @profile, :notice => 'Profile was successfully updated.'
   end
 

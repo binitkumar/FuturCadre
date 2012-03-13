@@ -441,3 +441,64 @@
     text-align: center;
     width: 147px;
 }
+
+.salary-info { float:left; width:100%; margin-left:22px;}
+.salary-info span { float:left; width:28%;   margin-top:14px; color: #474747; }
+.salary-info input { background: none repeat scroll 0 0 #F6F6F6; border-top: 1px solid #949494; float: left; height: 26px; margin-top: 6px; padding-left: 5px;width: 22%; margin-right:10px;}
+.salary-info p { float:left; padding:0; margin-top:10px; margin-right:10px; margin-left:0px;}
+ .money-type select { float:left; margin-right:10px; margin-top:10px; border:1px solid #ccc;}
+ .money-type1 select { float:left; margin-right:-1px; margin-top:10px; border:1px solid #ccc;}
+ .big-select {
+
+    float: left;
+    height: 27px;
+    margin-top: 5px;
+    padding-left: 5px;
+    width: 296px;
+}
+
+.new-profile-input {
+    float:left;
+     width:145%;
+     }
+.new-profile-input label{
+     color: #474747;
+  float: left;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-right:2%;
+  width: 25%;
+  margin-left:22px;
+   }
+.new-profile-input input {
+     background: none repeat scroll 0 0 #F6F6F6;
+     border-top: 1px solid #949494;
+     float: left;
+      height: 26px;
+      margin-top: 6px;
+       width: 60%;
+        padding-left:5px;
+         }
+
+  .condition-left { width:499px; float:left; }
+  .condition-left input  { float:left; margin-right:10px;  }
+  .condition-left span { margin-bottom:10px; float:left; width:44%; color: #474747;}
+
+  .radio-label-two { float: left;
+    margin-top: 6px;
+    width: 132px;
+
+  }
+  .radio-label-two input {
+    float: left;
+    margin-right: 7px;
+    width: 10px;
+}
+.radio-label-two label {
+    float: left;
+    margin-left: 0;
+    margin-top: 5px;
+    width: 73%;
+}
+
+
