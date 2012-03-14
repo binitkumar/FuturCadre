@@ -133,6 +133,14 @@ class ProfilesController < ApplicationController
     else
       success = true
     end
+
+       if params[:prof_info][:end_date]==""
+      date= Time.now
+    else
+      date= params[:prof_info][:end_date]
+       end
+           @prof_info.update_attributes(:end_date=> date)
+
     if success
       render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/additional_information') }.to_json
     else

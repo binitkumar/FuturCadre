@@ -1,3 +1,5 @@
+<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery-ui-timepicker-addon" %>
+<%= stylesheet_link_tag "jquery-ui-1.8.17.custom", "jquery.ui.datepicker" %>
 <script language="JavaScript">
     $("#question-form").dialog({
         autoOpen:false,
@@ -44,7 +46,29 @@
           <label><%= t('profile_major_subject') %></label>
           <%= text_field_tag "education_info[major_subject]" %>
 
+          </div>
+              <div class="profile-input mtop20">
+                <label><%= t('start_date') %></label>
+           <div class="date-box" id="date-box">
+
+          <%= text_field_tag "education_info[start_date]", nil, :class =>"date-pick", :id => "Date-Box" %>
         </div>
+           </div>
+
+          <div class="profile-input mtop20">
+             <label><%= t('end_date') %></label>
+           <div class="date-box" id="date-box1">
+
+          <%= text_field_tag "education_info[end_date]", nil, :class =>"date-pick", :id => "Date-Box1" %>
+        </div>
+           </div>
+
+
+
+
+
+
+
       </div>
       <div class="profile-right-div">
         <div class="profile-input mtop20" id="institute">
@@ -120,5 +144,8 @@
         $("#question-form").dialog("open");
     });
 
+        $(document).ready(function() {
+        $('.date-pick').datepicker({dateFormat: 'yy-mm-dd'});
+    });
 
 </script>

@@ -20,9 +20,9 @@
 
 
         <div class="new-profile-input mtop20">
-          <label><%= t('profiles.desired_job_type') %></label>
+          <label><%= t('profiles.desired_job_contract') %></label>
           <%#= text_field_tag "education_info[degree_level]" %>
-          <%= select_tag "desired_job_type", options_for_select([["Employee", "Employee"], ["Intern", "Intern"], ["Temporary/contract/Project", "Temporary/contract/Project"], ["Seasonal", "Seasonal"]]) %>
+          <%= select_tag "desired_job_type", options_for_select([["Cdd", "Cdd"], ["Cdi", "Cdi"], ["Freelance", "Freelance"], ["Interim", "Interim"], ["Vie", "Vie"], ["Job Etudiant", "Job Etudiant"]]) %>
         </div>
 
         <div class="new-profile-input mtop20">
@@ -71,7 +71,7 @@
         <div class="date-box" id="date-box">
           <%= text_field_tag "date_of_start_text", nil, :class =>"date-pick", :id => "Date-Box" %>
         </div>
-            </div>
+        </div>
       </div>
     </div>
     <!--<div class="save-button-new"><%#= button_to "Skip It", "javascript:void(0);" %></div>-->
