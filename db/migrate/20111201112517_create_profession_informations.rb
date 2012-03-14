@@ -1,5 +1,5 @@
 class CreateProfessionInformations < ActiveRecord::Migration
-  def change
+  def up
     create_table :profession_informations do |t|
       t.integer :profile_id
       t.string :profession_industry
@@ -16,5 +16,8 @@ class CreateProfessionInformations < ActiveRecord::Migration
 			
       t.timestamps
     end
+  end
+  def down
+    drop_table :profession_informations
   end
 end

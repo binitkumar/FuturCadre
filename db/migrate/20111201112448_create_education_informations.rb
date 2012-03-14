@@ -1,5 +1,5 @@
 class CreateEducationInformations < ActiveRecord::Migration
-  def change
+  def up
     create_table :education_informations do |t|
       t.references :institute
       t.integer :profile_id
@@ -11,5 +11,8 @@ class CreateEducationInformations < ActiveRecord::Migration
       t.text :year
       t.timestamps
     end
+  end
+  def down
+    drop_table :education_informations
   end
 end
