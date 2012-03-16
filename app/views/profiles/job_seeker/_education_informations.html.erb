@@ -15,17 +15,25 @@
             </div>
 
             <div class="info-detail">
-              <label>Major Subject </label>
-                 <% unless info.institute.blank? %>
-              <div class="value"><%= info.institute.name %></div>
-                  <%end%>
+              <label>Institute </label>
+              <% unless info.institute.blank? %>
+                  <div class="value"><%= info.institute.name %></div>
+              <% end %>
             </div>
-
             <div class="info-detail">
-              <label>Passing Year</label>
-
-              <div class="value"><%= info.year %></div>
+              <label>Start Year </label>
+              <% unless info.start_date.blank? %>
+                  <div class="value"><%= info.start_date.strftime("%d %b. %Y") %></div>
+              <% end %>
             </div>
+            <div class="info-detail">
+              <label>End Year </label>
+              <% unless info.end_date.blank? %>
+                  <div class="value"><%= info.end_date.strftime("%d %b. %Y") %></div>
+              <% end %>
+            </div>
+
+
             <div class="save-button-new">
               <%= link_to "Remove", remove_edu_info_profiles_path(:profile_id => @profile.id, :id => info.id), :class => "remove-edu" %>
             </div>

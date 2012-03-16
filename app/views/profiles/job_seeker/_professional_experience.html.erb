@@ -14,16 +14,11 @@
 
     <div class="w100">
       <div class="profile-left-div">
-        <div class="profile-input mtop20">
-          <label><%= t('profile_industry') %></label>
-          <%= text_field_tag "prof_info[profession_industry]" %>
-        </div>
 
-              <div class="profile-input mtop20">
+        <div class="profile-input mtop20">
           <label> Industry Sector</label>
           <%= select_tag "prof_info[sector_id]", options_from_collection_for_select(Sector.all, "id", "value") %>
         </div>
-
 
         <div class="profile-input mtop20">
           <label><%= t('category') %> </label>
@@ -35,24 +30,27 @@
           <%= text_field_tag "prof_info[job_title]" %>
         </div>
 
-             <div class="profile-input mtop20">
-                <label><%= t('start_date') %></label>
-           <div class="date-box" id="date-box">
-           <%= text_field_tag "prof_info[start_date]", nil, :class =>"date-pick", :id => "Date-Box" %>
+        <div class="profile-input mtop20">
+          <label><%= t('start_date') %></label>
+
+          <div class="date-box" id="date-box">
+            <%= text_field_tag "prof_info[start_date]", nil, :class => "date-pick", :id => "Date-Box" %>
+          </div>
         </div>
-           </div>
 
 
-            <div class="publication-line">
-    <%= check_box_tag 'email' %>
-    <p>Currently I am employed</p>
-               <div class="profile-input mtop20" id="date-box12">
-             <label><%= t('end_date') %></label>
-           <div class="date-box" id="date-box1">
-            <%= text_field_tag "prof_info[end_date]", nil, :class =>"date-pick", :id => "Date-Box1" %>
-        </div>
-           </div>
+        <div class="publication-line">
+          <%= check_box_tag 'email' %>
+          <p>Currently I am employed</p>
+
+          <div class="profile-input mtop20" id="date-box12">
+            <label><%= t('end_date') %></label>
+
+            <div class="date-box" id="date-box1">
+              <%= text_field_tag "prof_info[end_date]", nil, :class => "date-pick", :id => "Date-Box1" %>
             </div>
+          </div>
+        </div>
 
 
       </div>
@@ -106,12 +104,12 @@
         return false;
     });
 
-          $(document).ready(function() {
-        $('.date-pick').datepicker({dateFormat: 'yy-mm-dd'});
+    $(document).ready(function () {
+        $('.date-pick').datepicker({dateFormat:'yy-mm-dd'});
     });
 
 
-          $('#email').click(function() {
+    $('#email').click(function () {
 
         if ($('#email').is(':checked') == true) {
 

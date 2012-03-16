@@ -32,6 +32,19 @@
               <div class="value"><%= info.category.name %></div>
             </div>
 
+            <div class="info-detail">
+              <label>Date of Start</label>
+              <% unless info.start_date.blank? %>
+                  <div class="value"><%= info.start_date.strftime("%d %b. %Y") %></div>
+              <% end %>
+            </div>
+            <div class="info-detail">
+              <label>Date of End</label>
+              <% unless info.end_date.blank? %>
+                  <div class="value"><%= info.end_date.strftime("%d %b. %Y") %></div>
+              <% end %>
+            </div>
+
             <div class="save-button-new">
               <%= link_to "remove", remove_prof_info_profiles_path(:profile_id => @profile.id, :id => info.id), :class => "remove-profession" %>
             </div>
