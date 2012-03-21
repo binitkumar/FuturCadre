@@ -16,14 +16,16 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :work_authorization
       #t.string :recent_job_title
      # t.string:recent_employer
-      t.string:desired_job_type
-      t.string:desired_job_status
-     t.integer :salary_to
-      t.integer:salary_from
-      t.string:currency
-      t.string:salary_period
-      t.boolean:willing
-      t.string:willing_to_travel
+      t.string   :desired_job_type
+      t.string   :desired_job_status
+     t.integer   :salary_to
+      t.integer  :salary_from
+      t.string   :currency
+      t.string   :salary_period
+      t.boolean :willing
+      t.string    :willing_to_travel
+      t.string   :locations
+      t.string   :Sector_ids
      # t.string:languages
 
       t.date:date_of_start

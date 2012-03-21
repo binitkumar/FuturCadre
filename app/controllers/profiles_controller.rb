@@ -83,7 +83,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find_by_id(params[:profile_id])
     unless params[:skip].blank?
       @edu_info = EducationInformation.new(params[:education_info])
-      if params[:education_info][:institute_id] =="Select from list" &&   params[:education_info][:institute_id] =="others"
+      if params[:education_info][:institute_id] =="Select from list" && params[:education_info][:institute_id] =="others"
         params[:education_info][:institute_id] = nil
       else
         @edu_info.institute_id = params[:education_info][:institute_id]
@@ -134,12 +134,12 @@ class ProfilesController < ApplicationController
       success = true
     end
 
-       if params[:prof_info][:end_date]==""
+    if params[:prof_info][:end_date]==""
       date= Time.now
     else
       date= params[:prof_info][:end_date]
-       end
-           @prof_info.update_attributes(:end_date=> date)
+    end
+    @prof_info.update_attributes(:end_date=> date)
 
     if success
       render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/additional_information') }.to_json
@@ -246,7 +246,54 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
-    @image   =""
+   #puts"ppppppppppppppppp", @profile.last_name.inspect
+   # puts"pppppppppppppp",@profile.Sector_ids.inspect
+    #puts "AAAAAAAAAAAA", @profile.locations.inspect
+    #puts "BBBBBBBBBBBB", @country=Country.find_by_id(@x).inspect
+           unless @profile.locations.blank?
+   @ar = @profile.locations.split(",")
+
+     if (@ar.length<3)
+        @country1=Country.find_by_id(@ar[0].to_i)
+        @region1=Region.find_by_id(@ar[1].to_i)
+        @city1=City.find_by_id(@ar[2].to_i)
+
+  elsif(@ar.length>=3) and(@ar.length<6)
+
+        @country2=Country.find_by_id(@ar[3].to_i)
+        @region2=Region.find_by_id(@ar[4].to_i)
+        @city2=City.find_by_id(@ar[5].to_i)
+  elsif(@ar.length>=6) and(@ar.length<9)
+
+          @country3=Country.find_by_id(@ar[6].to_i)
+          @region3=Region.find_by_id(@ar[7].to_i)
+          @city3=City.find_by_id(@ar[8].to_i)
+  elsif(@ar.length>=9) and(@ar.length<12)
+
+          @country4=Country.find_by_id(@ar[9].to_i)
+          @region4=Region.find_by_id(@ar[10].to_i)
+          @city4=City.find_by_id(@ar[11].to_i)
+  elsif(@ar.length>12) and(@ar.length<6)
+
+          @country5=Country.find_by_id(@ar[12].to_i)
+          @region5=Region.find_by_id(@ar[13].to_i)
+          @city5=City.find_by_id(@ar[14].to_i)
+  end
+
+  end
+
+
+    # puts"aaaaaaaaaaaaaaaaaa",@country1.name.inspect
+   # puts"aaaaaaaaaaaaaaaaaa",@region1.name.inspect
+    #puts"aaaaaaaaaaaaaaaaaa",@city1.name.inspect
+     #puts"cccccccccccccccccc",@country2.name.inspect
+    #puts"cccccccccccc",@region2.name.inspect
+    #puts"cccccccccccc",@city2.name.inspect
+   # puts"aaaaaaaaaaaaaaaaa",@country1.country.name.inspect
+   # puts "aaaaaa", @ar[1].inspect
+    #puts"bbbbbbb",@ar.length.inspect
+    #puts "EEEEEEEEEEE", @profile.locations.length.inspect
+    @image =""
     @profile.assets.each do |asset|
       if asset.content_type == "profile_image"
         @image << asset.photo.url
@@ -336,12 +383,53 @@ class ProfilesController < ApplicationController
   def create_job_seeker_additional_information
 
     @profile = Profile.find_by_id(params[:profile_id])
+
     if params[:date_of_start]=="true"
       date= Time.now
     else
       date= params[:date_of_start_text]
     end
-    @profile.update_attributes(:job_title => params[:job_title],:date_of_start => date, :work_authorization => params[:work_authorization],  :desired_job_type => params[:desired_job_type], :desired_job_status => params[:desired_job_status], :salary_to => params[:salary_to], :salary_from => params[:salary_from], :currency => params[:currency], :salary_period => params[:salary_period], :willing => params[:willing], :willing_to_travel => params[:willing_to_travel])
+
+
+    unless params[:add_info][:country_id].blank?
+      location=params[:add_info][:country_id] +','+params[:add_info][:region_id]+','+params[:add_info][:city_id]
+    end
+
+    unless params[:add_info][:country_id_1].blank?
+      location1= params[:add_info][:country_id_1] +','+params[:add_info][:regions_add_1]+','+params[:add_info][:cities_add_1]
+      location =location+','+location1
+    else
+      location=location
+    end
+    unless params[:add_info][:country_id_2].blank?
+      location2= params[:add_info][:country_id_2] +','+params[:add_info][:regions_add_2]+','+params[:add_info][:cities_add_2]
+      location =location+','+location2
+    else
+      location=location
+    end
+
+    unless params[:add_info][:country_id_3].blank?
+      location3= params[:add_info][:country_id_3] +','+params[:add_info][:regions_add_3]+','+params[:add_info][:cities_add_3]
+      location =location+','+location3
+    else
+      location=location
+    end
+
+    unless params[:add_info][:country_id_4].blank?
+      location4= params[:add_info][:country_id_4] +','+params[:add_info][:regions_add_4]+','+params[:add_info][:cities_add_4]
+      location =location+','+location4
+    else
+      location=location
+    end
+
+
+
+
+
+
+
+
+    @profile.update_attributes(:job_title => params[:job_title], :locations => location, :date_of_start => date, :work_authorization => params[:work_authorization], :desired_job_type => params[:desired_job_type], :desired_job_status => params[:desired_job_status], :salary_to => params[:salary_to], :salary_from => params[:salary_from], :currency => params[:currency], :salary_period => params[:salary_period], :willing => params[:willing], :willing_to_travel => params[:willing_to_travel])
 
     redirect_to @profile, :notice => 'Profile was successfully updated.'
   end

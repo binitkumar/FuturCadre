@@ -1,6 +1,7 @@
 <script language="JavaScript">
-    function get_regions(th, obj) {
+    function get_regions(th, obj, id) {
         var cont = $(th).val();
+
         $.ajax({
             context: this,
             url: "/search/get_regions?country_id=" + cont + "&obj=" + obj,
@@ -23,22 +24,36 @@
 
                     $("#regions_main").html(response.html);
                 }
-                else if(obj== "project") {
-                   $("#regions_project").html(response.html);
+                else if (obj == "project") {
+                    $("#regions_project").html(response.html);
+                }
+                else if (obj == "add_info") {
+                    $("#regions_add").html(response.html);
+                }
+                else if (obj == "add_info1") {
+
+                    var region_parent_id = $(th).parent().next().attr('id');
+                    $(th).parent().next().html(response.html);
+                    $(th).parent().next().children(1).attr('id', 'add_info_'+region_parent_id).attr('name', 'add_info' + '['+region_parent_id+  ']');
+
+
                 }
                 else {
                     $("#regions_search").html(response.html);
                 }
+
+//                $(this).siblings('#regions').html(response.html);
             }
         });
     }
 </script>
- <%  @countries = Country.find([24, 82])%>
+<% @countries = Country.find([24, 82]) %>
 <% selected = @country ? @country.id : nil %>
+<% r = Random.new %>
 <% if object_collection.blank? %>
     <!--<%#= select_tag "country_id", options_from_collection_for_select(Country.find([24, 82]), "id", "name",:prompt => 'Select'), :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')" %>-->
-    <%= select_tag 'country_id' , options_for_select(["Select from list"] + @countries.map{ |obj| [obj.name , obj.id ]}) , :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')"  %>
+    <%= select_tag "country_id", options_for_select(["Select from list"] + @countries.map { |obj| [obj.name, obj.id] }), :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')" %>
 <% else %>
     <%#= select_tag "#{object_collection}[country_id]", options_from_collection_for_select(Country.find([24, 82]), "id", "name",:prompt => 'Select'), :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')" %>
-    <%= select_tag "#{object_collection}[country_id]" , options_for_select(["Select from list"] + @countries.map{ |obj| [obj.name , obj.id ]}, selected ) , :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')"  %>
+    <%= select_tag "#{object_collection}[country_id]", options_for_select(["Select from list"] + @countries.map { |obj| [obj.name, obj.id] }, selected), :class => "slt-div", :onChange => "get_regions(this, '#{object_collection}')" %>
 <% end %>

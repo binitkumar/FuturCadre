@@ -26,6 +26,14 @@
                  else if(obj== "project") {
                    $("#cities_project").html(response.html);
                 }
+                else if(obj== "add_info") {
+                   $("#cities_add").html(response.html);
+                }
+                else if(obj== "add_info1") {
+                  var city_parent_id = $(th).parent().next().attr('id');
+                  $(th).parent().next().html(response.html);
+                  $(th).parent().next().children(1).attr('id', 'add_info_'+city_parent_id).attr('name', 'add_info' + '['+city_parent_id+  ']');
+                }
                 else {
                     $("#cities_search").html(response.html);
                 }
