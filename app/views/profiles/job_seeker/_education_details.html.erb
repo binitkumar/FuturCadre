@@ -46,27 +46,24 @@
           <label><%= t('profile_major_subject') %></label>
           <%= text_field_tag "education_info[major_subject]" %>
 
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('start_date') %></label>
+
+          <div class="date-box" id="date-box">
+
+            <%= text_field_tag "education_info[start_date]", nil, :class => "date-pick", :id => "Date-Box" %>
           </div>
-              <div class="profile-input mtop20">
-                <label><%= t('start_date') %></label>
-           <div class="date-box" id="date-box">
-
-          <%= text_field_tag "education_info[start_date]", nil, :class =>"date-pick", :id => "Date-Box" %>
         </div>
-           </div>
 
-          <div class="profile-input mtop20">
-             <label><%= t('end_date') %></label>
-           <div class="date-box" id="date-box1">
+        <div class="profile-input mtop20">
+          <label><%= t('end_date') %></label>
 
-          <%= text_field_tag "education_info[end_date]", nil, :class =>"date-pick", :id => "Date-Box1" %>
+          <div class="date-box" id="date-box1">
+
+            <%= text_field_tag "education_info[end_date]", nil, :class => "date-pick", :id => "Date-Box1" %>
+          </div>
         </div>
-           </div>
-
-
-
-
-
 
 
       </div>
@@ -76,10 +73,7 @@
           <%= render :partial => "profiles/job_seeker/institute_list", :locales => { :institutes => @institutes } %>
 
         </div>
-        <div class="profile-input mtop20">
-          <label><%= t('profile_year') %></label>
-          <%= text_field_tag "education_info[year]" %>
-        </div>
+
       </div>
     </div>
     <div class="add-button-new"><%= link_to "Add More Education Information", "javascript:void(0);", :id => "next-link" %></div>
@@ -144,8 +138,8 @@
         $("#question-form").dialog("open");
     });
 
-        $(document).ready(function() {
-        $('.date-pick').datepicker({dateFormat: 'yy-mm-dd'});
+    $(document).ready(function () {
+        $('.date-pick').datepicker({dateFormat:'yy-mm-dd'});
     });
 
 </script>
