@@ -27,8 +27,9 @@
         <div class="profile-right">
 
           <h1><%= @profile.full_name %></h1>
-
-          <h2><%= @profile.full_address %> </h2>
+          <% unless @profile.full_address.blank? %>
+              <h2><%= @profile.full_address %> </h2>
+          <% end %>
 
           <h2>PH : <%= @profile.phone %></h2>
 
