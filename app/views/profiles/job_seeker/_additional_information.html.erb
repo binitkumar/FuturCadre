@@ -142,9 +142,9 @@
 
     }
     var counter = 1;
-    var count = 1;
+    var counts = 1;
     $('.add-education').click(function () {
-        if (count < 5) {
+        if (counts < 5) {
             var scntDiv = $('#abc');
             var counter = parseInt($('#counter').attr('value'));
             counter = counter + 1;
@@ -155,7 +155,7 @@
             $('#regions_add_' + counter).find('.slt-div').attr('id', 'add_info_region_id' + counter).attr('name', 'add_info[region_id' + counter + ']');
             $('#cities_add_' + counter).find('.slt-sub-div').attr('id', 'add_info_city_id' + counter).attr('name', 'add_info[city_id' + counter + ']');
         }
-        count = count + 1;
+        counts = counts + 1;
     });
 
     function remove_education_field(obj) {
@@ -167,15 +167,17 @@
         field.remove();
     }
     var count = 1;
+    var check=1;
     $('.add-education1').click(function () {
-        alert("aaa");
+        if (check < 5) {
         var scntDiv = $('#sector');
         var count = parseInt($('#count').attr('value'));
         count = count + 1;
         $('#count').attr('value', count);
         var txt_field = '<div id=main_div_' + count + '><div class="contratc_field_detail" ><div class="fields_with_label"><label> Industry Sector</label><%= raw(select_1)%><div class=add-button_three "><a href="javascript:" onclick="remove_sector_field(count)"><img src="/assets/minus.png" /></a></div></div></div></div>';
         scntDiv.append(txt_field);
-
+         }
+        check= check + 1;
     });
     function remove_sector_field(obj) {
         var field = $('#main_div_' + obj)

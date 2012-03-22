@@ -1,11 +1,15 @@
 class SearchController < ApplicationController
 
   def get_regions
+    unless params[:obj].blank?
     obj_region= params[:obj]
+    end
     @country  = Country.find_by_id(params[:country_id])
     @regions  = @country.regions
+    unless params[:obj].blank?
     render :json => { :html => render_to_string(:partial => '/shared/regions', :locals => { :object_collection => obj_region }) }.to_json
-  end
+    end
+    end
 
   def get_cities
     obj_city = params[:obj]
