@@ -12,7 +12,7 @@
     <%= hidden_field_tag 'count', '0' %>
 
     <div class="w100">
-      <div class="profile-left-div">
+      <div class="profile-left-div_detail">
         <div class="new-profile-input mtop20">
           <label><%= t('profiles.Desire_job_title') %></label>
           <%= text_field_tag "job_title" %>
@@ -33,7 +33,7 @@
         </div>
 
         <div id="abc">
-          <div class="reg-location-holder" id="reg-location-holder" style="margin-top: 0!important;">
+          <div class="reg-location-holder-two mtop20" id="reg-location-holder" >
             <label>Location</label>
 
             <div id="countries_add">
@@ -56,18 +56,18 @@
 
         <div id="sector">
 
-          <div class="contratc_field_detail">
 
-            <div class="fields_with_label">
+
+            <div class="new-profile-input mtop20">
               <label> Industry Sector</label>
               <%= select_tag "sector_ids[]", options_from_collection_for_select(Sector.all, "id", "value") %>
 
-            <div class="add-button_three">
-              <div class="add-education1" > <%= image_tag asset_path 'plus.png' %></div>
+              <div class="add-button_three" style="float:left; margin-left: 10px;">
+                <div class="add-education1"> <%= image_tag asset_path 'plus.png' %></div>
+              </div>
             </div>
-             </div>
           </div>
-        </div>
+
 
 
         <div class="new-profile-input mtop20">
@@ -76,7 +76,7 @@
           <div class="big-select"><%= select_tag "work_authorization", options_for_select([["I am authorize to work in this country for any employer", "I am authorize to work in this country for any employer"], ["I am not authorize to work in this country for any employer", "I am not authorize to work in this country for any employer"]]) %></div>
         </div>
 
-        <div class="salary-info mtop20" style="width:715px;">
+        <div class="salary-info_one mtop20">
           <label><%= t('profiles.desired_salary_range') %></label>
           <%= text_field_tag "salary_to" %>
           <p>to</p><%= text_field_tag "salary_from" %>
@@ -84,7 +84,7 @@
           <div class="money-type1"><%= select_tag "salary_period", options_for_select([["Per year", "per year"], ["Per month", "per month"]]) %>   </div>
         </div>
 
-        <div class="condition-left mtop20">
+        <div class="condition-left_one mtop20">
           <label><%= t('profiles.Are_you_willing_to_relocate ?') %></label>
           <%= radio_button_tag 'willing', true %> <p style="width:40px; float:left; color: #474747;"> Yes</p>
           <%= radio_button_tag 'willing', false %> <p style="width:40px; float:left; color: #474747;"> No </p>
@@ -97,6 +97,23 @@
           <div class="big-select"><%= select_tag "willing_to_travel", options_for_select([["Up to 25% travel", "Up to 25% travel"], ["Up to 50% travel", "Up to 50% travel"], ["Up to 75% travel", "Up to 75% travel"], ["Up to 100% travel", "Up to 100% travel"]]) %> </div>
 
         </div>
+
+        <div id="language-div" class="language-bar">
+
+          <div class="contract-field-new1 mtop20">
+            <label> Language </label>
+            <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value") %>
+          </div>
+          <div class="contract-field-new1 mtop20">
+            <label> Language Level </label>
+            <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]], ["Niveau", "Bilingue"]) %>
+            <div class="add-button1" style="margin-right: -28px!important;">
+              <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
+            </div>
+          </div>
+
+        </div>
+
 
         <div class="new-profile-input mtop20">
           <label><%= t('profiles.When_are_you _available_to_start ?') %></label>
@@ -121,6 +138,10 @@
 <% end %>
 <% select_1 = "#{select_tag "sector_ids[]", options_from_collection_for_select(Sector.all, "id", "value")}" %>
 <% select_1 = select_1.gsub(/(\r\n|\n|\r)/, "") %>
+<% select_2 = "#{select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value")}" %>
+<% select_2 = select_2.gsub(/(\r\n|\n|\r)/, "") %>
+<% select_3 = "#{select_tag 'level[]', options_for_select([['Niveau', 'Niveau'], ['Notions', 'Notions'], ['Courant', 'Courant'], ['Bilingue', 'Bilingue'], ['Niveau', 'Bilingue']]) }" %>
+<% select_3 = select_3.gsub(/(\r\n|\n|\r)/, "") %>
 
 <script type="text/javascript">
 
@@ -149,7 +170,7 @@
             var counter = parseInt($('#counter').attr('value'));
             counter = counter + 1;
             $('#counter').attr('value', counter);
-            var txt_field = '<div id=new_div_' + counter + '><div class="reg-location-holder" id="reg-location-holder" style="margin-top: 0!important;"> <label>Location</label><div id=countries_add_' + counter + ' > <%=escape_javascript( render :partial => "shared/countries", :locals => { :object_collection => "add_info1" }) %></div><div id=regions_add_' + counter + ' ><%=escape_javascript( render :partial => "shared/regions", :locals => { :object_collection => "add_info1" }) %></div> <div id=cities_add_' + counter + '><%=escape_javascript( render :partial => "shared/cities", :locals => { :object_collection => "add_info1" }) %></div><div class=add-button style="margin-top: 30px;"><a href="javascript:" onclick="remove_education_field(counter)"><img src="/assets/minus.png" /></a></div></div></div>';
+            var txt_field = '<div id=new_div_' + counter + '><div class="reg-location-holder-two mtop20" id="reg-location-holder" style="margin-top: 0!important;"> <label>Location</label><div id=countries_add_' + counter + ' > <%=escape_javascript( render :partial => "shared/countries", :locals => { :object_collection => "add_info1" }) %></div><div id=regions_add_' + counter + ' ><%=escape_javascript( render :partial => "shared/regions", :locals => { :object_collection => "add_info1" }) %></div> <div id=cities_add_' + counter + '><%=escape_javascript( render :partial => "shared/cities", :locals => { :object_collection => "add_info1" }) %></div><div class=add-button style="margin-top: 30px;"><a href="javascript:" onclick="remove_education_field(counter)"><img src="/assets/minus.png" /></a></div></div></div>';
             scntDiv.append(txt_field);
             $('#countries_add_' + counter).find('.slt-div').attr('id', 'add_info_country_id_' + counter).attr('name', 'add_info[country_id_' + counter + ']');
             $('#regions_add_' + counter).find('.slt-div').attr('id', 'add_info_region_id' + counter).attr('name', 'add_info[region_id' + counter + ']');
@@ -167,17 +188,17 @@
         field.remove();
     }
     var count = 1;
-    var check=1;
+    var check = 1;
     $('.add-education1').click(function () {
         if (check < 5) {
-        var scntDiv = $('#sector');
-        var count = parseInt($('#count').attr('value'));
-        count = count + 1;
-        $('#count').attr('value', count);
-        var txt_field = '<div id=main_div_' + count + '><div class="contratc_field_detail" ><div class="fields_with_label"><label> Industry Sector</label><%= raw(select_1)%><div class=add-button_three "><a href="javascript:" onclick="remove_sector_field(count)"><img src="/assets/minus.png" /></a></div></div></div></div>';
-        scntDiv.append(txt_field);
-         }
-        check= check + 1;
+            var scntDiv = $('#sector');
+            var count = parseInt($('#count').attr('value'));
+            count = count + 1;
+            $('#count').attr('value', count);
+            var txt_field = '<div id=main_div_' + count + '><div class="new-profile-input"><label> Industry Sector</label><%= raw(select_1)%><div class="add-button_three" style="float:left; margin-left: 10px;"><a href="javascript:" onclick="remove_sector_field(count)"><img src="/assets/minus.png" /></a></div></div></div>';
+            scntDiv.append(txt_field);
+        }
+        check = check + 1;
     });
     function remove_sector_field(obj) {
         var field = $('#main_div_' + obj)
@@ -187,6 +208,29 @@
         $('#count').attr('value', count);
         field.remove();
     }
+    var counter1 = 1;
+    var check1 = 1
+    $('.add-language').click(function () {
+        if (check1 < 3) {
+            var scntDiv = $('#language-div');
+            var counter1 = parseInt($('#count').attr('value'));
+            counter1 = counter1 + 1;
+            $('#counter1').attr('value', counter1);
+            var txt_field = '<div id=main_div_' + counter1 + '><div class="contract-field-new1 mtop20"><label> Language </label><%= raw(select_2)%></div><div class="contract-field-new1 mtop20"> <label> Language Level </label><%= raw(select_3)%></div><div class="add-button1"><a href="javascript:" onclick="remove_location_field(count)"><img src="/assets/minus.png" /></a></div></div>';
+            scntDiv.append(txt_field);
+        }
+        check1 = check1 + 1;
+    });
+
+    function remove_location_field(obj) {
+        var field = $('#main_div_' + obj)
+        var counter1 = parseInt($('#counter1').attr('value'));
+        var count_toatl = parseInt($('#counter1').attr('value'));
+        counter1 = counter1 - 1;
+        $('#counter1').attr('value', counter1);
+        field.remove();
+    }
+
 
     $(".tabs").each(function() {
         $(this).removeClass("active");

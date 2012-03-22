@@ -246,53 +246,29 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
-    #puts"ppppppppppppppppp", @profile.last_name.inspect
-    # puts"pppppppppppppp",@profile.Sector_ids.inspect
-    #puts "AAAAAAAAAAAA", @profile.locations.inspect
-    #puts "BBBBBBBBBBBB", @country=Country.find_by_id(@x).inspect
+
+    @countryy=[]
+    @regionn =[]
+    @cityy   =[]
     unless @profile.locations.blank?
       @ar = @profile.locations.split(",")
 
-      if (@ar.length<3)
-        @country1=Country.find_by_id(@ar[0].to_i)
-        @region1 =Region.find_by_id(@ar[1].to_i)
-        @city1   =City.find_by_id(@ar[2].to_i)
-
-      elsif (@ar.length>=3) and(@ar.length<6)
-
-        @country2=Country.find_by_id(@ar[3].to_i)
-        @region2 =Region.find_by_id(@ar[4].to_i)
-        @city2   =City.find_by_id(@ar[5].to_i)
-      elsif (@ar.length>=6) and(@ar.length<9)
-
-        @country3=Country.find_by_id(@ar[6].to_i)
-        @region3 =Region.find_by_id(@ar[7].to_i)
-        @city3   =City.find_by_id(@ar[8].to_i)
-      elsif (@ar.length>=9) and(@ar.length<12)
-
-        @country4=Country.find_by_id(@ar[9].to_i)
-        @region4 =Region.find_by_id(@ar[10].to_i)
-        @city4   =City.find_by_id(@ar[11].to_i)
-      elsif (@ar.length>12) and(@ar.length<6)
-
-        @country5=Country.find_by_id(@ar[12].to_i)
-        @region5 =Region.find_by_id(@ar[13].to_i)
-        @city5   =City.find_by_id(@ar[14].to_i)
+      i=0
+      j=0
+      while i<@ar.length
+        @countryy[i]=Country.find_by_id(@ar[j].to_i)
+        j           =j+1
+        @regionn[i] =Region.find_by_id(@ar[j].to_i)
+        j           =j+1
+        @cityy[i]   =City.find_by_id(@ar[j].to_i)
+        j           =j+1
+        i           =i+1
       end
+
 
     end
 
 
-    # puts"aaaaaaaaaaaaaaaaaa",@country1.name.inspect
-    # puts"aaaaaaaaaaaaaaaaaa",@region1.name.inspect
-    #puts"aaaaaaaaaaaaaaaaaa",@city1.name.inspect
-    #puts"cccccccccccccccccc",@country2.name.inspect
-    #puts"cccccccccccc",@region2.name.inspect
-    #puts"cccccccccccc",@city2.name.inspect
-    # puts"aaaaaaaaaaaaaaaaa",@country1.country.name.inspect
-    # puts "aaaaaa", @ar[1].inspect
-    #puts"bbbbbbb",@ar.length.inspect
-    #puts "EEEEEEEEEEE", @profile.locations.length.inspect
     @image =""
     @profile.assets.each do |asset|
       if asset.content_type == "profile_image"
@@ -389,74 +365,66 @@ class ProfilesController < ApplicationController
     else
       date= params[:date_of_start_text]
     end
+    if params[:add_info][:country_id]=="Select from list"
 
-
-    unless params[:add_info][:country_id].blank?
-      location=params[:add_info][:country_id] +','+params[:add_info][:region_id]+','+params[:add_info][:city_id]
-    end
-
-    unless params[:add_info][:country_id_1].blank?
-      location1= params[:add_info][:country_id_1] +','+params[:add_info][:regions_add_1]+','+params[:add_info][:cities_add_1]
-      location =location+','+location1
     else
-      location=location
+
+      unless params[:add_info][:country_id].blank?
+        location=params[:add_info][:country_id] +','+params[:add_info][:region_id]+','+params[:add_info][:city_id]
+      end
+      if params[:add_info][:country_id_1] !="Select from list"
+        unless params[:add_info][:country_id_1].blank?
+          location1= params[:add_info][:country_id_1] +','+params[:add_info][:regions_add_1]+','+params[:add_info][:cities_add_1]
+          location =location+','+location1
+        else
+          location=location
+        end
+      end
+      if params[:add_info][:country_id_2] !="Select from list"
+        unless params[:add_info][:country_id_2].blank?
+          location2= params[:add_info][:country_id_2] +','+params[:add_info][:regions_add_2]+','+params[:add_info][:cities_add_2]
+          location =location+','+location2
+        else
+          location=location
+        end
+      end
+      if params[:add_info][:country_id_3] !="Select from list"
+        unless params[:add_info][:country_id_3].blank?
+          location3= params[:add_info][:country_id_3] +','+params[:add_info][:regions_add_3]+','+params[:add_info][:cities_add_3]
+          location =location+','+location3
+        else
+          location=location
+        end
+      end
+      if params[:add_info][:country_id_4] !="Select from list"
+        unless params[:add_info][:country_id_4].blank?
+          location4= params[:add_info][:country_id_4] +','+params[:add_info][:regions_add_4]+','+params[:add_info][:cities_add_4]
+          location =location+','+location4
+        else
+          location=location
+        end
+      end
     end
-    unless params[:add_info][:country_id_2].blank?
-      location2= params[:add_info][:country_id_2] +','+params[:add_info][:regions_add_2]+','+params[:add_info][:cities_add_2]
-      location =location+','+location2
-    else
-      location=location
+    @ar   = params[:sector_ids]
+    sector=@ar[0]
+    j     =1
+    while j<@ar.length
+      sector=sector+','+@ar[j]
+      j     =j+1
     end
 
-    unless params[:add_info][:country_id_3].blank?
-      location3= params[:add_info][:country_id_3] +','+params[:add_info][:regions_add_3]+','+params[:add_info][:cities_add_3]
-      location =location+','+location3
-    else
-      location=location
+    unless params[:language_ids].blank? and params[:level].blank?
+      @language=params[:language_ids]
+      @level   =params[:level]
+      lang     = @language[0]+','+@level[0]
+      i        =1
+      while i<@language.length
+        lang= lang+','+@language[i]+','+@level[i]
+        i   =i+1
+      end
     end
 
-    unless params[:add_info][:country_id_4].blank?
-      location4= params[:add_info][:country_id_4] +','+params[:add_info][:regions_add_4]+','+params[:add_info][:cities_add_4]
-      location =location+','+location4
-    else
-      location=location
-    end
-
-    @ar = params[:sector_ids]
-
-    if (@ar.length==1)
-      sector=@ar[0]
-    end
-    if (@ar.length==2)
-      sector =@ar[0]
-      sector2=@ar[1]
-      sector =sector+','+sector2
-    end
-    if (@ar.length==3)
-      sector =@ar[0]
-      sector2=@ar[1]
-      sector3=@ar[2]
-      sector =sector+','+sector2+','+sector3
-    end
-    if (@ar.length==4)
-      sector =@ar[0]
-      sector2=@ar[1]
-      sector3=@ar[2]
-      sector4=@ar[3]
-      sector =sector+','+sector2+','+sector3+','+sector4
-    end
-    if (@ar.length==5)
-      sector =@ar[0]
-      sector2=@ar[1]
-      sector3=@ar[2]
-      sector4=@ar[3]
-      sector5=@ar[4]
-      sector =sector+','+sector2+','+sector3+','+sector4+','+sector5
-
-    end
-
-
-    @profile.update_attributes(:job_title => params[:job_title], :Sector_ids =>sector, :locations => location, :date_of_start => date, :work_authorization => params[:work_authorization], :desired_job_type => params[:desired_job_type], :desired_job_status => params[:desired_job_status], :salary_to => params[:salary_to], :salary_from => params[:salary_from], :currency => params[:currency], :salary_period => params[:salary_period], :willing => params[:willing], :willing_to_travel => params[:willing_to_travel])
+    @profile.update_attributes(:job_title => params[:job_title], :languages => lang, :Sector_ids =>sector, :locations => location, :date_of_start => date, :work_authorization => params[:work_authorization], :desired_job_type => params[:desired_job_type], :desired_job_status => params[:desired_job_status], :salary_to => params[:salary_to], :salary_from => params[:salary_from], :currency => params[:currency], :salary_period => params[:salary_period], :willing => params[:willing], :willing_to_travel => params[:willing_to_travel])
 
     redirect_to @profile, :notice => 'Profile was successfully updated.'
   end

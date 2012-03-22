@@ -26,6 +26,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.string    :willing_to_travel
       t.string   :locations
       t.string   :Sector_ids
+      t.string   :languages
      # t.string:languages
 
       t.date:date_of_start
