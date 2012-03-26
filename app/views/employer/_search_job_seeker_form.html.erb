@@ -25,35 +25,31 @@
     <%= form_tag "/search/profile_search", :id => "search-form" do %>
         <div class="dashboard-right-left">
 
-          <div class="job-input">
-            <label>First Name</label>
-            <%= text_field_tag "first_name" %>
+          <div class="contract-field-one">
+            <label>Contract</label>
+            <%= select_tag "contract_type", options_for_select([["Select from list","Select from list"],["Cdd", "Cdd"], ["Cdi", "Cdi"], ["Freelance", "Freelance"], ["Interim", "Interim"], ["Vie", "Vie"], ["Job Etudiant", "Job Etudiant"]]),:style => " width: 100%;" %>
           </div>
-          <div class="job-input">
-            <label>Last Name</label>
-            <%= text_field_tag "last_name" %>
-          </div>
+
+
           <div class="select-holder">
             <label> Country</label>
-            <%= render :partial => "shared/countries", :locals => { :object_collection => "job_seeker" } %>
+            <%= render :partial => "shared/countries", :locals => {:object_collection => "job_seeker"} %>
             <div id="regions_main">
-              <%= render :partial => "shared/regions", :locals => { :object_collection => "job_seeker" } %>
+              <%= render :partial => "shared/regions", :locals => {:object_collection => "job_seeker"} %>
             </div>
             <div id="cities_main">
-              <%= render :partial => "shared/cities", :locals => { :object_collection => "job_seeker" } %>
+              <%= render :partial => "shared/cities", :locals => {:object_collection => "job_seeker"} %>
             </div>
           </div>
           <div class="clear"></div>
           <h3>Education Information</h3>
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
-          <div class="skils-ful-length">
-            <label style="margin-top: 0!important;">Degree Level</label>
-            <%= text_field_tag "degree_level" %>
+
+          <div class="contract-field-ed-two_new">
+            <label style="width:100%; float:left;"> Education Level </label>
+            <%= select_tag "education_level", options_for_select([["Select from list","Select from list"],["Ecole D Ingénieur", "Ecole D Ingénieur"], ["Ecole De Commerce", "Ecole De Commerce"], ["Ecoles/Universités", "Ecoles/Universités"], ["Etrangères", "Etrangères"], ["Iep", "Iep"], ["Iut", "Iut"], ["Lycée", "Lycée"], ["Université", "Université"], ["X Autre", "X Autre"]]), :style => " width: 175%;" %>
           </div>
-          <div class="skils-ful-length">
-            <label style="margin-top: 0!important;">Major Subject</label>
-            <%= text_field_tag "major_subject" %>
-          </div>
+
 
           <div class="job-input">
             <label>Year</label>
@@ -62,23 +58,21 @@
 
           <div class="job-input">
             <label>Institute</label>
-            <%= text_field_tag "institute" %>
+            <%@institutes= Institute.all%>
+             <%= select_tag "institute", options_for_select(["Select from list"] + @institutes.map { |obj| [obj.name, obj.id] }), :style => "width: 87%;" %>
           </div>
           <div class="clear"></div>
           <h3>Professional Information</h3>
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
           <div class="skils-ful-length">
-            <label style="margin-top: 0!important;">Total Professional Experience</label>
-            <%= text_field_tag "profession_experience" %>
+            <label style="margin-top:10px;!important;">Total Professional Experience</label>
+            <%= select_tag "profession_experience", options_for_select([["Select from list","Select from list"],["Etudiant", "Etudiant"], ["Jeune Diplômé", "Jeune Diplômé"], ["Junior", "Junior"], ["Confirmé/Senior", "Confirmé/Senior"], ["Responsable d'équipe", "Responsable d'équipe"], ["Responsable de Département", "Responsable de Département"], [" Dirigeant/Entrepreneur", " Dirigeant/Entrepreneur"]]),:style => " width: 67%;" %>
           </div>
-          <div class="skils-ful-length">
-            <label style="margin-top: 0!important;">Recent Job Title</label>
-            <%= text_field_tag "job_title" %>
-          </div>
+
 
           <div class="job-input">
             <label>Category</label>
-            <%= select_tag "category_id", options_for_select(["Select from list"] + @categories.map{ |obj| [obj.name , obj.id ]}) %>
+            <%= select_tag "category_id", options_for_select(["Select from list"] + @categories.map { |obj| [obj.name, obj.id] }) %>
           </div>
 
 

@@ -19,20 +19,23 @@
 
                     $("#cities").html(response.html);
                 }
-                 else if (obj == "main") {
+                else if (obj == "main") {
 
                     $("#cities_main").html(response.html);
                 }
-                 else if(obj== "project") {
-                   $("#cities_project").html(response.html);
+                else if (obj == "job_seeker") {
+                    $("#cities_main").html(response.html);
                 }
-                else if(obj== "add_info") {
-                   $("#cities_add").html(response.html);
+                else if (obj == "project") {
+                    $("#cities_project").html(response.html);
                 }
-                else if(obj== "add_info1") {
-                  var city_parent_id = $(th).parent().next().attr('id');
-                  $(th).parent().next().html(response.html);
-                  $(th).parent().next().children(1).attr('id', 'add_info_'+city_parent_id).attr('name', 'add_info' + '['+city_parent_id+  ']');
+                else if (obj == "add_info") {
+                    $("#cities_add").html(response.html);
+                }
+                else if (obj == "add_info1") {
+                    var city_parent_id = $(th).parent().next().attr('id');
+                    $(th).parent().next().html(response.html);
+                    $(th).parent().next().children(1).attr('id', 'add_info_' + city_parent_id).attr('name', 'add_info' + '[' + city_parent_id + ']');
                 }
                 else {
                     $("#cities_search").html(response.html);
@@ -46,8 +49,8 @@
 <% selected = @region ? @region.id : nil %>
 <% if object_collection.blank? %>
     <%#= select_tag "region_id", options_from_collection_for_select(collect, "id", "name"), :class => "slt-sub-div", :onChange => "get_cities(this,'#{object_collection}')" %>
-    <%= select_tag 'region_id' , options_for_select(["Select from list"] + collect.map{ |obj| [obj.name , obj.id ]}) , :class => "slt-div", :onChange => "get_cities(this, '#{object_collection}')"  %>
+    <%= select_tag 'region_id', options_for_select(["Select from list"] + collect.map { |obj| [obj.name, obj.id] }), :class => "slt-div", :onChange => "get_cities(this, '#{object_collection}')" %>
 <% else %>
-    <%= select_tag "#{object_collection}[region_id]" , options_for_select(["Select from list"] + collect.map{ |obj| [obj.name , obj.id ]}, selected ) , :class => "slt-div", :onChange => "get_cities(this, '#{object_collection}')"  %>
+    <%= select_tag "#{object_collection}[region_id]", options_for_select(["Select from list"] + collect.map { |obj| [obj.name, obj.id] }, selected), :class => "slt-div", :onChange => "get_cities(this, '#{object_collection}')" %>
     <%#= select_tag "#{object_collection}[region_id]", options_from_collection_for_select(collect, "id", "name"), :class => "slt-sub-div", :onChange => "get_cities(this,'#{object_collection}')" %>
 <% end %>

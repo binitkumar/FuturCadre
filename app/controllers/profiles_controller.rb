@@ -7,11 +7,11 @@ class ProfilesController < ApplicationController
   #end
 
   def new
-    @profile             = Profile.new
+    @profile = Profile.new
     #    @education_info      = EducationInformation.new
     #    @job_info            = ProfessionInformation.new
     #    @resume              = Asset.new(params[:resume]) #created this for creating a resume object in the same table
-    @org_photo           = Asset.new(params[:org_photo])
+    @org_photo = Asset.new(params[:org_photo])
     @company_information = CompanyInformation.new(params[:company_information])
 
 
@@ -23,18 +23,18 @@ class ProfilesController < ApplicationController
       session[:photo_id] = @photo.id
       render :text => "Photo is successfuly uploaded."
     else
-      render :json => render_to_string(:partial => '/shared/error_messages', :locals => { :object => @photo })
+      render :json => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @photo})
     end
   end
 
   def create_job_seeker_basic_information
     if current_user.profile.present?
       @profile = current_user.profile
-      success  = @profile.update_attributes(params[:profile])
+      success = @profile.update_attributes(params[:profile])
     else
-      @profile      = Profile.new(params[:profile])
+      @profile = Profile.new(params[:profile])
       @profile.user = current_user
-      success       = @profile.save
+      success = @profile.save
     end
     if success
       if session[:photo_id].present?
@@ -44,38 +44,38 @@ class ProfilesController < ApplicationController
         session[:photo_id] = nil
       end
       @education_informations = @profile.education_informations
-      @institutes             = Institute.all
-      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/education_details') }.to_json
+      @institutes = Institute.all
+      render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/education_details')}.to_json
     else
-      render :json => { :seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => { :object => @profile }) }.to_json
+      render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @profile})}.to_json
     end
   end
 
   def remove_edu_info
-    @profile  = Profile.find_by_id(params[:profile_id])
+    @profile = Profile.find_by_id(params[:profile_id])
     @edu_info = EducationInformation.find_by_id(params[:id])
     @edu_info.destroy
     @education_informations = @profile.education_informations
-    render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/education_informations') }.to_json
+    render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/education_informations')}.to_json
   end
 
   def create_job_seeker_education_details
-    @institute  = Institute.new
+    @institute = Institute.new
     @institutes = Institute.all
-    @profile    = Profile.find_by_id(params[:profile_id])
-    @edu_info   = EducationInformation.new(params[:education_info])
+    @profile = Profile.find_by_id(params[:profile_id])
+    @edu_info = EducationInformation.new(params[:education_info])
     if params[:education_info][:institute_id] =="Select from list" && params[:education_info][:institute_id] =="others"
       params[:education_info][:institute_id] = nil
     else
       @edu_info.institute_id = params[:education_info][:institute_id]
     end
-    @edu_info.profile       = @profile
-    success                 = @edu_info.save
+    @edu_info.profile = @profile
+    success = @edu_info.save
     @education_informations = @profile.education_informations
     if success
-      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/education_details') }.to_json
+      render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/education_details')}.to_json
     else
-      render :json => { :seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => { :object => @edu_info }) }.to_json
+      render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @edu_info})}.to_json
     end
   end
 
@@ -89,7 +89,7 @@ class ProfilesController < ApplicationController
         @edu_info.institute_id = params[:education_info][:institute_id]
       end
       @edu_info.profile = @profile
-      success           = @edu_info.save
+      success = @edu_info.save
     else
       success = true
     end
@@ -97,39 +97,39 @@ class ProfilesController < ApplicationController
 
     if success
       @professional_informations = @profile.profession_informations
-      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_experience') }.to_json
+      render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_experience')}.to_json
     else
-      render :json => { :seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => { :object => @edu_info }) }.to_json
+      render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @edu_info})}.to_json
     end
   end
 
   def remove_prof_info
-    @profile   = Profile.find_by_id(params[:profile_id])
+    @profile = Profile.find_by_id(params[:profile_id])
     @prof_info = ProfessionInformation.find_by_id(params[:id])
     @prof_info.destroy
     @professional_informations = @profile.profession_informations
-    render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_informations') }.to_json
+    render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_informations')}.to_json
   end
 
   def create_job_seeker_professional_experience
-    @profile                   = Profile.find_by_id(params[:profile_id])
-    @prof_info                 = ProfessionInformation.new(params[:prof_info])
-    @prof_info.profile         = @profile
-    success                    = @prof_info.save
+    @profile = Profile.find_by_id(params[:profile_id])
+    @prof_info = ProfessionInformation.new(params[:prof_info])
+    @prof_info.profile = @profile
+    success = @prof_info.save
     @professional_informations = @profile.profession_informations
     if success
-      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_experience') }.to_json
+      render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_experience')}.to_json
     else
-      render :json => { :seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => { :object => @prof_info }) }.to_json
+      render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @prof_info})}.to_json
     end
   end
 
   def create_job_seeker_professional_experience_next
     @profile = Profile.find_by_id(params[:profile_id])
     unless params[:skip].blank?
-      @prof_info         = ProfessionInformation.new(params[:prof_info])
+      @prof_info = ProfessionInformation.new(params[:prof_info])
       @prof_info.profile = @profile
-      success            = @prof_info.save
+      success = @prof_info.save
     else
       success = true
     end
@@ -142,9 +142,9 @@ class ProfilesController < ApplicationController
     @prof_info.update_attributes(:end_date=> date)
 
     if success
-      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/additional_information') }.to_json
+      render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/additional_information')}.to_json
     else
-      render :json => { :seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => { :object => @prof_info }) }.to_json
+      render :json => {:seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => {:object => @prof_info})}.to_json
     end
   end
 
@@ -155,10 +155,10 @@ class ProfilesController < ApplicationController
 
     @photo = params[:asset]
     unless @photo.blank?
-      @asset              = Asset.new(params[:asset])
+      @asset = Asset.new(params[:asset])
       @asset.content_type =
           @asset.user_id = current_user.id
-      @asset.profile_id   = @profile.id
+      @asset.profile_id = @profile.id
 
       unless @asset.save
         render :action => "new"
@@ -168,22 +168,22 @@ class ProfilesController < ApplicationController
 
     #educational information
     unless @profile.blank?
-      @education_info            = EducationInformation.new(params[:education_info])
+      @education_info = EducationInformation.new(params[:education_info])
       @education_info.profile_id = @profile.id
       @education_info.save
     end
     #professional information
     unless @profile.blank?
-      @job_information            = ProfessionInformation.new(params[:job_info])
+      @job_information = ProfessionInformation.new(params[:job_info])
       @job_information.profile_id =@profile.id
       @job_information.save
 
       @resume = params[:resume]
       unless @resume.blank?
-        @cv              = Asset.new(params[:resume])
+        @cv = Asset.new(params[:resume])
         @cv.content_type = "cv"
-        @cv.user_id      = current_user.id
-        @cv.profile_id   = @profile.id
+        @cv.user_id = current_user.id
+        @cv.profile_id = @profile.id
         unless @cv.save
           render :action => "new"
           return
@@ -205,10 +205,10 @@ class ProfilesController < ApplicationController
     if @profile.save
       @photo = params[:asset]
       unless @photo.blank?
-        @asset              = Asset.new(params[:asset])
+        @asset = Asset.new(params[:asset])
         @asset.content_type = "profile_image"
-        @asset.user_id      = current_user.id
-        @asset.profile_id   = @profile.id
+        @asset.user_id = current_user.id
+        @asset.profile_id = @profile.id
         unless @asset.save
           render :action => "new"
           return
@@ -216,18 +216,18 @@ class ProfilesController < ApplicationController
       end
 
       unless @profile.blank?
-        @company_information            = CompanyInformation.new(params[:company_information])
+        @company_information = CompanyInformation.new(params[:company_information])
         @company_information.country_id = params[:company_information][:country_id]
-        @company_information.region_id  = params[:company_information][:region_id]
-        @company_information.city_id    = params[:company_information][:city_id]
+        @company_information.region_id = params[:company_information][:region_id]
+        @company_information.city_id = params[:company_information][:city_id]
         @company_information.save
 
         @photo = params[:org_photo]
         unless @photo.blank?
-          @image              = Asset.new(params[:org_photo])
+          @image = Asset.new(params[:org_photo])
           @image.content_type = "company_logo"
-          @image.user_id      = current_user.id
-          @image.profile_id   = @profile.id
+          @image.user_id = current_user.id
+          @image.profile_id = @profile.id
           unless @image.save
             render :action => "new"
             return
@@ -249,7 +249,7 @@ class ProfilesController < ApplicationController
 
     @countryy=[]
     @regionn =[]
-    @cityy   =[]
+    @cityy =[]
     unless @profile.locations.blank?
       @ar = @profile.locations.split(",")
 
@@ -257,18 +257,14 @@ class ProfilesController < ApplicationController
       j=0
       while i<@ar.length
         @countryy[i]=Country.find_by_id(@ar[j].to_i)
-        j           =j+1
+        j =j+1
         @regionn[i] =Region.find_by_id(@ar[j].to_i)
-        j           =j+1
-        @cityy[i]   =City.find_by_id(@ar[j].to_i)
-        j           =j+1
-        i           =i+1
+        j =j+1
+        @cityy[i] =City.find_by_id(@ar[j].to_i)
+        j =j+1
+        i =i+1
       end
-
-
     end
-
-
     @image =""
     @profile.assets.each do |asset|
       if asset.content_type == "profile_image"
@@ -278,22 +274,22 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @profile                 = Profile.find(params[:id])
-    @company_information     = @profile.company_information
-    @asset                   = @profile.assets.where("content_type =?", "profile_image")
+    @profile = Profile.find(params[:id])
+    @company_information = @profile.company_information
+    @asset = @profile.assets.where("content_type =?", "profile_image")
     @profession_informations = @profile.profession_informations
-    @resume                  = @profile.assets.where("content_type =?", "cv")
-    @org_photo               = @profile.assets.where("content_type =?", "logo")
-    @education_informations  = @profile.education_informations
-    @city                    = @profile.city
-    @regions                 = @city.country.regions
-    @region                  = @profile.region
-    @cities                  = @region.cities
-    @country                 = @city.country
+    @resume = @profile.assets.where("content_type =?", "cv")
+    @org_photo = @profile.assets.where("content_type =?", "logo")
+    @education_informations = @profile.education_informations
+    @city = @profile.city
+    @regions = @city.country.regions
+    @region = @profile.region
+    @cities = @region.cities
+    @country = @city.country
   end
 
   def update_employer
-    @profile             = Profile.find_by_id(params[:id])
+    @profile = Profile.find_by_id(params[:id])
     @company_information = CompanyInformation.find_by_id(params[:comp_id])
     #@asset = @profile.assets.where("content_type =?", "profile_image").first
     if @profile.update_attributes(params[:profile])
@@ -319,8 +315,8 @@ class ProfilesController < ApplicationController
   end
 
   def update_job_seeker
-    @profile        = Profile.find_by_id(params[:id])
-    @job_info       = ProfessionInformation.find_by_id(params[:job_id])
+    @profile = Profile.find_by_id(params[:id])
+    @job_info = ProfessionInformation.find_by_id(params[:job_id])
     @education_info = EducationInformation.find_by_id(params[:edu_id])
 
     if @profile.update_attributes(params[:profile])
@@ -351,15 +347,13 @@ class ProfilesController < ApplicationController
     @institute = Institute.new(params[:institute])
     if @institute.save
       @institutes = Institute.all
-      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/institute_list'), :locals => { :institutes => @institutes } }.to_json
+      render :json => {:seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/institute_list'), :locals => {:institutes => @institutes}}.to_json
     end
   end
-
 
   def create_job_seeker_additional_information
 
     @profile = Profile.find_by_id(params[:profile_id])
-
     if params[:date_of_start]=="true"
       date= Time.now
     else
@@ -405,27 +399,26 @@ class ProfilesController < ApplicationController
         end
       end
     end
-    @ar   = params[:sector_ids]
+    @ar = params[:sector_ids]
     sector=@ar[0]
-    j     =1
+    j =1
     while j<@ar.length
       sector=sector+','+@ar[j]
-      j     =j+1
+      j =j+1
     end
 
     unless params[:language_ids].blank? and params[:level].blank?
       @language=params[:language_ids]
-      @level   =params[:level]
-      lang     = @language[0]+','+@level[0]
-      i        =1
+      @level =params[:level]
+      lang = @language[0]+','+@level[0]
+      i =1
       while i<@language.length
         lang= lang+','+@language[i]+','+@level[i]
-        i   =i+1
+        i =i+1
       end
     end
 
     @profile.update_attributes(:job_title => params[:job_title], :languages => lang, :Sector_ids =>sector, :locations => location, :date_of_start => date, :work_authorization => params[:work_authorization], :desired_job_type => params[:desired_job_type], :desired_job_status => params[:desired_job_status], :salary_to => params[:salary_to], :salary_from => params[:salary_from], :currency => params[:currency], :salary_period => params[:salary_period], :willing => params[:willing], :willing_to_travel => params[:willing_to_travel])
-
     redirect_to @profile, :notice => 'Profile was successfully updated.'
   end
 
