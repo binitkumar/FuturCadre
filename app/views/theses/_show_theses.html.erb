@@ -9,7 +9,8 @@
       <p><label>Description:</label> <%= @thesis.description %></p>  <br/>
       <label>Date of Publication:</label>     <%= @thesis.date_of_publish.strftime("%d-%m-%Y") %>  <br/>
       <label>No of Pages:</label>        <%= @thesis.no_of_pages %>  <br/>
-      <label>Thesis File Name:</label>        <%= @thesis.photo.image_file_name %>  <br/>
+      <label>Thesis File Name:</label><%unless @thesis.photo.blank?%>        <%= @thesis.photo.image_file_name %>  <br/><%end%>
+
   <% end %>
 </div>
 
