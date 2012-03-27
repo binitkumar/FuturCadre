@@ -7,7 +7,7 @@ class ThesesController < ApplicationController
     #@theses     = @category.theses
     @categories = Category.all
 
-    @theses=Thesis.all
+    @theses=Thesis.find(:all, :conditions => {:is_deleted => false})
 
 
   end
