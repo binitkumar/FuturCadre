@@ -116,11 +116,11 @@ class ThesesController < ApplicationController
   def delete_thesis
     @thesis = Thesis.find(params[:id])
     @thesis.update_attributes(:is_deleted => true)
-    @theses = Thesis.find_all_by_owner_id(current_user.id, :conditions => {:is_deleted => false})
+    @my_theses = Thesis.find_all_by_owner_id(current_user.id, :conditions => {:is_deleted => false})
     if current_user.job_seeker?
-      render :json => {:html => render_to_string(:partial => '/job_seeker/my_theses', :locale => {:employer => current_user})}.to_json
+      render :json => {:html => render_to_string(:partial => '/job_seeker/my_theses', :locale => {:job_seeker => current_user, :my_theses => @my_theses})}.to_json
     else
-      render :json => {:html => render_to_string(:partial => '/employer/my_theses', :locale => {:job_seeker => current_user})}.to_json
+      render :json => {:html => render_to_string(:partial => '/employer/my_theses', :locale => {:employer => current_user, :my_theses => @my_theses})}.to_json
     end
   end
 
