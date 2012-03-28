@@ -15,10 +15,11 @@
             <div class="w100 mtop20">
               <div class="post-left-hold" style="width: 84px;">
                 <div class="user_image">
-                  <% unless comment.user.profile.blank? %>
+                  <% if comment_image(comment) != false %>
                       <%= image_tag comment_image(comment).photo.url %>
                   <% else %>
-                     <%= image_tag asset_path "dashboard-img.png" %>
+
+                      <%= image_tag asset_path "dashboard-img.png" %>
                   <% end %>
                 </div>
 

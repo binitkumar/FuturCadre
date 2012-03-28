@@ -37,6 +37,7 @@
 <script type="text/javascript">
 
     $("a.thesis_wall_link").click(function () {
+
         $(this).removeClass("group-link-act");
         $(this).parent(".listed").prevAll(".listed").each(function () {
             $(this).removeClass("group-link-act");
@@ -53,7 +54,7 @@
             data:$(this).serialize(),
             dataType:"json",
             success:function (response) {
-                return $(".mid-cont-holder").html(response.html);
+                $(".mid-cont-holder").html(response.html);
             }
         });
         return false;
