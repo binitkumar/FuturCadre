@@ -39,13 +39,20 @@
                 </div>
                 <!--img info ends-->
                 <h2><%= link_to project.name, project_path(:id => project.id) %></h2>
-                <div class="link"><%= project.category.name %></div>
+
+                <div class="link">
+                  <% unless project.category.blank? %>
+                      <%= project.category.name %>
+                  <% end %>
+                </div>
                 <p style="width:550px;">  <%= project.description %></p>
-                <p style="margin-left:1px; line-height:60px; float:left; margin-right:20px;"><%= project.project_users.find(:all, :conditions => {:is_approved => true }).count %>Member(s)</p>
+
+                <p style="margin-left:1px; line-height:60px; float:left; margin-right:20px;"><%= project.project_users.find(:all, :conditions => { :is_approved => true }).count %>
+                  Member(s)</p>
               </div>
               <!--mid holder img ends-->
               <div class="right-holder-img"></div>
-             <div class="clear"></div>
+              <div class="clear"></div>
           <% end %>
       <% end %>
     </div>
