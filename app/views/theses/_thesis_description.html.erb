@@ -9,7 +9,7 @@
       </p>
     </div>
            <%unless @thesis.photo.blank? %>
-    <div class="join-group-hold"><%= link_to "Download Thesis", download_thesis_theses_path(:id => @thesis), :class => "download_link" %></div>
+    <div class="join-group-hold"><%= link_to "Download Thesis", download_thesis_theses_path(:id => @thesis)%></div>
             <%end%>
   </div>
 
