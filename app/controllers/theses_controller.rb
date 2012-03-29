@@ -62,7 +62,7 @@ class ThesesController < ApplicationController
     end
 
     if @thesis.update_attributes(params[:thesis])
-      redirect_to :action => "index"
+      render :json => {:html => render_to_string(:partial => 'show_theses', :locale => {:thesis => @thesis})}.to_json
     else
       render :json => {:html => render_to_string(:partial => 'show_theses', :locale => {:thesis => @thesis})}.to_json
     end

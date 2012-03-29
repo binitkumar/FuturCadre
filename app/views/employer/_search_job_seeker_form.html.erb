@@ -27,7 +27,7 @@
 
           <div class="contract-field-one">
             <label>Contract</label>
-            <%= select_tag "contract_type", options_for_select([["Select from list","Select from list"],["Cdd", "Cdd"], ["Cdi", "Cdi"], ["Freelance", "Freelance"], ["Interim", "Interim"], ["Vie", "Vie"], ["Job Etudiant", "Job Etudiant"]]),:style => " width: 100%;" %>
+            <%= select_tag "contract_type", options_for_select([["Select from list", "Select from list"], ["Cdd", "Cdd"], ["Cdi", "Cdi"], ["Freelance", "Freelance"], ["Interim", "Interim"], ["Vie", "Vie"], ["Job Etudiant", "Job Etudiant"]]), :style => " width: 100%;" %>
           </div>
 
 
@@ -47,28 +47,21 @@
 
           <div class="contract-field-ed-two_new">
             <label style="width:100%; float:left;"> Education Level </label>
-            <%= select_tag "education_level", options_for_select([["Select from list","Select from list"],["Ecole D Ingénieur", "Ecole D Ingénieur"], ["Ecole De Commerce", "Ecole De Commerce"], ["Ecoles/Universités", "Ecoles/Universités"], ["Etrangères", "Etrangères"], ["Iep", "Iep"], ["Iut", "Iut"], ["Lycée", "Lycée"], ["Université", "Université"], ["X Autre", "X Autre"]]), :style => " width: 175%;" %>
-          </div>
-
-
-          <div class="job-input">
-            <label>Year</label>
-            <%= text_field_tag "year" %>
+            <%= select_tag "education_level", options_for_select([["Select from list", "Select from list"], ["Ecole D Ingénieur", "Ecole D Ingénieur"], ["Ecole De Commerce", "Ecole De Commerce"], ["Ecoles/Universités", "Ecoles/Universités"], ["Etrangères", "Etrangères"], ["Iep", "Iep"], ["Iut", "Iut"], ["Lycée", "Lycée"], ["Université", "Université"], ["X Autre", "X Autre"]]), :style => " width: 175%;" %>
           </div>
 
           <div class="job-input">
             <label>Institute</label>
-            <%@institutes= Institute.all%>
-             <%= select_tag "institute", options_for_select(["Select from list"] + @institutes.map { |obj| [obj.name, obj.id] }), :style => "width: 87%;" %>
+            <% @institutes= Institute.all %>
+            <%= select_tag "institute", options_for_select(["Select from list"] + @institutes.map { |obj| [obj.name, obj.id] }), :style => "width: 87%;" %>
           </div>
           <div class="clear"></div>
           <h3>Professional Information</h3>
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
           <div class="skils-ful-length">
             <label style="margin-top:10px;!important;">Total Professional Experience</label>
-            <%= select_tag "profession_experience", options_for_select([["Select from list","Select from list"],["Etudiant", "Etudiant"], ["Jeune Diplômé", "Jeune Diplômé"], ["Junior", "Junior"], ["Confirmé/Senior", "Confirmé/Senior"], ["Responsable d'équipe", "Responsable d'équipe"], ["Responsable de Département", "Responsable de Département"], [" Dirigeant/Entrepreneur", " Dirigeant/Entrepreneur"]]),:style => " width: 67%;" %>
+            <%= select_tag "profession_experience", options_for_select([["Select from list", "Select from list"], ["Etudiant", "Etudiant"], ["Jeune Diplômé", "Jeune Diplômé"], ["Junior", "Junior"], ["Confirmé/Senior", "Confirmé/Senior"], ["Responsable d'équipe", "Responsable d'équipe"], ["Responsable de Département", "Responsable de Département"], [" Dirigeant/Entrepreneur", " Dirigeant/Entrepreneur"]]), :style => " width: 67%;" %>
           </div>
-
 
           <div class="job-input">
             <label>Category</label>

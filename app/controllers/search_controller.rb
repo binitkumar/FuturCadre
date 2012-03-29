@@ -158,15 +158,7 @@ class SearchController < ApplicationController
         count = count + 1
       end
     end
-    unless params[:year].blank?
-      flag = true
-      if count == 0
-        @query = @query + " ei.year like '%#{params[:year]}%'"
-      else
-        @query = @query + "and ei.year like '%#{params[:year]}%'"
-      end
-      count = count + 1
-    end
+
     unless params[:category_id].blank?
       if params[:category_id] !="Select from list"
         flag = true
