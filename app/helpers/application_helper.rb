@@ -38,6 +38,18 @@ module ApplicationHelper
 
   end
 
+  def pro_image(user_image)
+    user = Profile.find_by_user_id(user_image.user_id)
+    unless user.blank?
+      user.assets.each do |asset|
+        if asset.content_type == "profile_image"
+          return asset
+        end
+      end
+      return false
+    end
+  end
+
 =begin
   def collect_shared_error_messages(target)
     targets        = []

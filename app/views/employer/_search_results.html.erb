@@ -11,10 +11,18 @@
         <!--result contents ends-->
         <div class="result-detail">
           <% @collections.each do |profile| %>
-              <% puts "avbvccccccccccccc ", profile.inspect %>
+              <%# puts "avbvccccccccccccc ", profile.inspect %>
               <div class="detail">
-                <div class="left-image"> <%= image_tag asset_path 'feed-img.png' %>
+
+              <div class="dashboard-image-new">
+                  <% unless pro_image(profile).blank? %>
+
+                      <%= image_tag pro_image(profile).photo.url %>
+                  <% else %>
+                      <%= image_tag asset_path "dashboard-img.png" %>
+                  <% end %>
                 </div>
+
                 <p style="font-weight:bold;"><%= profile.full_name %>
                   |<%= link_to "View CV", view_cv_employer_index_path(:id => profile.user_id), :class=>"view_cv" %> </p>
 
@@ -42,7 +50,7 @@
         <div class="dashboard-right-info" id="right_panel">
         </div>
         <div class="dashboard-right-info" id="check_panel">
-          <%= render :partial => "employer/right_panel", :locals => { :collections => @collections } %>
+          <%= render :partial => "employer/right_panel", :locals => {:collections => @collections} %>
         </div>
     <% else %>
         <div class="result-contents">

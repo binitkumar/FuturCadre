@@ -1187,3 +1187,31 @@ tabs_wrapper {
     margin-top: 20px;
     width: 49%;
     }
+
+
+
+ .dashboard-image-new {
+  background-color: #F1F1F1;
+    float: left;
+    height: 88px;
+    margin-top: 15px;
+    overflow: auto;
+    width: 121px;
+}
+
+.dashboard-image-new img {
+  float: left;
+  padding: 10px;
+  width: 77px;
+}
+
+.dashboard-image-new h1 {
+  color: #990000;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.dashboard-image-new p {
+  color: #474747;
+  font-size: 12px;
+}
