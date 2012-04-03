@@ -99,6 +99,8 @@ Profile.create!(:first_name => "Future",
                 :address    => "Kungshamra 42, LGH 4"
 
 )
+
+
 puts 'Creating Initial Company Information......'
 CompanyInformation.create!(:name     => "Future Cadre",
                            :profile  => Profile.first,
@@ -309,7 +311,7 @@ puts "creating news "
 end
 
 puts "updating picture of the news"
- news = News.all
+news = News.all
 news.each do |n_news|
   n_news              = Photo.new
   n_news.image        = File.open(Rails.root.join('app/assets/images/logo.png'))
@@ -318,6 +320,33 @@ news.each do |n_news|
   n_news.save
 end
 
+puts 'Deleting existing packages......'
+packages = Package.all
+
+packages.each { |package| package.destroy } if packages.present?
+puts 'Creating Initial Package......'
+ Package.create!( [{ :name        =>"Basic",
+                 :description     =>"this is basic package",
+                 :price           =>"30",
+                 :no_of_jobs      => "1",
+                 :no_of_searches  =>"1" ,
+                 :start_date      =>Time.now,
+                 :expiry_date     =>Time.now+30.days},
+                { :name            =>"Advance",
+                 :description     =>"this is advance package",
+                 :price           =>"60",
+                 :no_of_jobs      => "10",
+                 :no_of_searches  =>"10" ,
+                 :start_date      =>Time.now,
+                 :expiry_date     =>Time.now+60.days},
+                { :name            =>"FuLL",
+                 :description     =>"this is Full package",
+                 :price           =>"90",
+                 :no_of_jobs      => "30",
+                 :no_of_searches  => "30" ,
+                 :start_date      =>Time.now,
+                 :expiry_date     =>Time.now+90.days}]
+ )
 
 
 

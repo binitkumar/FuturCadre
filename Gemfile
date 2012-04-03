@@ -7,7 +7,7 @@ gem 'rails', '3.1.1'
 
 gem 'mysql2'
 #gem 'mysql'
-gem 'devise'
+gem 'devise','1.5.3'
 gem "cancan"
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'therubyracer'
@@ -37,6 +37,10 @@ gem "rmagick"
 gem 'parseexcel'
 
 gem "has_mailbox"
+gem 'active_utils'
+#gem 'active_merchant',:require => 'active_merchant'
+
+gem 'activemerchant', :require => 'active_merchant'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

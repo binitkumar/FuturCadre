@@ -1,6 +1,7 @@
 FuturCadre::Application.routes.draw do
 
   match 'admin' => 'admin/home#login'
+
   #match 'sannan' => 'application#check_url'
   # match 'translate' => 'translate#index', :as => :translate_list
   #match 'translate/translate' => 'translate#translate', :as => :translate
@@ -56,12 +57,12 @@ FuturCadre::Application.routes.draw do
 
 
   devise_for :users, :controllers => {
-      :sessions      => "users/sessions",
-      :confirmation  => "users/confirmations",
-      :passwords     => "users/passwords",
+      :sessions => "users/sessions",
+      :confirmation => "users/confirmations",
+      :passwords => "users/passwords",
       :registrations => "users/registrations",
-      :unlocks       => "users/unlocks",
-      :omniauth      => "users/omniauth_callbacks#create"
+      :unlocks => "users/unlocks",
+      :omniauth => "users/omniauth_callbacks#create"
   }
 
   devise_scope :user do
@@ -150,7 +151,10 @@ FuturCadre::Application.routes.draw do
       get :view_cv
       get :select_profile
       get :event_mailer
-
+      get :employer_packages
+      get :employer_billing_information
+      post :checkout
+      get  :transaction_success_show
     end
   end
 
