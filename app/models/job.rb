@@ -24,7 +24,7 @@ class Job < ActiveRecord::Base
   def self.search params
 
     conditions = []
-    #abc << "SELECT jobs.name FROM jobs where"
+    #transaction_success_show << "SELECT jobs.name FROM jobs where"
 
     if params[:company_id] == "Select from list"
       puts "a"

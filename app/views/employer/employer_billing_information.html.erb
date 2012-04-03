@@ -1,0 +1,58 @@
+<div class="w100">
+  <div class="page_bg">
+    <div class="page_holder">
+      <h1>Pay with Paypal</h1>
+
+
+        <%= form_tag :controller => 'employer', :action => 'checkout' ,:id=> @package.id do %>
+               <div class="a">
+                 <label> Billing Amount: </label>
+          <b>$ <%= @package.price%></b>
+                </div>
+          <h2>Credit Card Information</h2>
+                     <div class="billing-info">
+                   <label>   First Name:</label>
+          <%= text_field_tag 'first_name' %>
+                       </div>
+           <div class="billing-info">
+                     <label> Last Name:</label>
+          <%= text_field_tag 'last_name' %>   </div>
+           <div class="billing-info">
+                      <label>Credit Card Number:</label>
+          <%= text_field_tag 'cc_number' %>  </div>
+           <div class="billing-info">
+                     <label> Card Expiration Month:</label>
+          <%= text_field_tag 'cc_expire_month' %> </div>
+           <div class="billing-info">
+                      <label>Card Expiration Year:</label>
+          <%= text_field_tag 'cc_expire_year' %> </div>
+           <div class="billing-info">
+                      <label>Verification Code:</label>
+          <%= text_field_tag 'v_code' %>      </div>
+
+
+
+        <h2>Billing Information</h2>
+           <div class="billing-info">
+                    <label>  Address:</label>
+          <%= text_field_tag 'address' %></div>
+          <div class="billing-info">
+                  <label>    City: </label>
+          <%= text_field_tag 'city' %></div>
+              <div class="billing-info">
+                    <label>  State:    </label>
+          <%= text_field_tag 'state' %>  </div>
+                 <div class="billing-info">
+                   <label>   Country Code: </label>
+          <%= text_field_tag 'country' %>   </div>
+           <div class="billing-info">
+                    <label>  Zip Code: </label>
+          <%= text_field_tag 'zip' %></div>
+
+          <br/><br/><br/><br/>
+          <div class="save-button-new-one"><%= submit_tag 'Checkout' %> </div>
+        <% end %>
+      </div>
+
+  </div>
+</div>
