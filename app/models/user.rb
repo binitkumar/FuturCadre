@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
 
   has_many :manage_projects, :as => :manager, :class_name => "Group"
   has_many :events
+  belongs_to :package
 
   def role
     return "webmaster" if webmaster?
