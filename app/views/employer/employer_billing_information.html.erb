@@ -1,14 +1,14 @@
 <div class="w100">
   <div class="page_bg">
     <div class="page_holder">
-      <h1>Pay with Paypal</h1>
+      <h1>Pay with Paypal</h1>  <br/>
 
 
         <%= form_tag :controller => 'employer', :action => 'checkout' ,:id=> @package.id do %>
                <div class="a">
                  <label> Billing Amount: </label>
           <b>$ <%= @package.price%></b>
-                </div>
+                </div>    <br/>
           <h2>Credit Card Information</h2>
                      <div class="billing-info">
                    <label>   First Name:</label>

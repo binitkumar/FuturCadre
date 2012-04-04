@@ -1313,3 +1313,16 @@ tabs_wrapper {
    float:left;
 
   }
+
+ .packages-one { border:5px solid #936; width:290px; height:300px; float:left; margin-right:20px; padding-left:2px;}
+.package-name-one { height:40px; width:98%; background-color:#991514; text-align:center; border:2px solid #ccc; margin-top:1px;}
+.package-name-one p { color:#fff; font-weight:bold; font-family:Verdana, Geneva, sans-serif; font-size:18px; line-height:35px;}
+.packages-one ul { margin:10px; padding-top:10px;}
+.packages-one ul li { background:url(asset_path('marker.gif',image))no-repeat; height:13px; padding-left:25px; list-style-type:none; padding-bottom:10px;}
+.packages-one ul li a { text-decoration:none; font-size:14px;}
+.select-left-bg-one { background:url(asset_path('select-left-img.png',image))no-repeat; width:11px; height:38px; float:left; }
+.select-mid-bg-one { background:url(asset_path('select-mid-bg.png',image)) repeat-x; height:38px; float:left; color:#fff; font-weight:bold; line-height:35px; width:90px; text-align:center; font-size:18px;}
+.select-mid-bg-one a { color:#fff; font-weight:bold; font-size:18px; text-decoration:none;}
+.select-mid-bg-one a:hover { color:#600;}
+.select-right-bg-one { background:url(asset_path('select-right-bg.png',image)) no-repeat; width:11px; height:38px; float:left;}
+.select-btn-one { padding-left:80px; padding-top:30px;}

@@ -4,23 +4,47 @@
     <h1>Packages / Plans</h1>
 
     <div class="package-bottom-img"></div>
+
     <% @packages.each do |package| %>
-        <div class="packages">
-          <div class="package-name"><p><%= package.name %></p></div>
-          <ul>
-            <li><label><b>Description:</b></label><%= package.description %></li>
-            <li><label><b>Price :</b></label><%= package.price %><label>Usd</label></li>
-            <li><label><b>Jobs :</b></label><%= package.no_of_jobs %></li>
-            <li><label><b>Searches :</b></label><%= package.no_of_searches %></li>
-            <li><label><b>Start Date :</b></label><%= package.start_date %></li>
-            <li><label><b>End Date :</b></label><%= package.expiry_date %></li>
-          </ul>
-          <div class="select-btn">
-            <div class="select-left-bg"></div>
-            <div class="select-mid-bg"><%= link_to "Select",employer_billing_information_employer_index_path(:id =>package.id)%></div>
-            <div class="select-right-bg"></div>
-          </div>
-        </div>
+        <% if current_user.package_id==package.id %>
+            <div class="packages-one">
+              <div class="package-name-one"><p><%= package.name %></p></div>
+              <ul>
+                <li><label><b>Description:</b></label><%= package.description %></li>
+                <li><label><b>Price :</b></label><%= package.price %>
+                  <label>Usd</label></li>
+                <li><label><b>Jobs :</b></label><%= package.no_of_jobs %></li>
+                <li><label><b>Searches :</b></label><%= package.no_of_searches %></li>
+                <li><label><b>Start Date :</b></label><%= package.start_date.strftime("%d-%m-%Y") %></li>
+                <li><label><b>End Date :</b></label><%= package.expiry_date.strftime("%d-%m-%Y") %></li>
+              </ul>
+              <div class="select-btn-one">
+                <div class="select-left-bg-one"></div>
+                <div class="select-mid-bg-one"><%= link_to "Your plan", employer_billing_information_employer_index_path(:id =>package.id) %></div>
+                <div class="select-right-bg-one"></div>
+              </div>
+            </div>
+
+
+        <% else %>
+            <div class="packages">
+              <div class="package-name"><p><%= package.name %></p></div>
+              <ul>
+                <li><label><b>Description:</b></label><%= package.description %></li>
+                <li><label><b>Price :</b></label><%= package.price %>
+                  <label>Usd</label></li>
+                <li><label><b>Jobs :</b></label><%= package.no_of_jobs %></li>
+                <li><label><b>Searches :</b></label><%= package.no_of_searches %></li>
+                <li><label><b>Start Date :</b></label><%= package.start_date.strftime("%d-%m-%Y") %></li>
+                <li><label><b>End Date :</b></label><%= package.expiry_date.strftime("%d-%m-%Y") %></li>
+              </ul>
+              <div class="select-btn">
+                <div class="select-left-bg"></div>
+                <div class="select-mid-bg"><%= link_to "Select", employer_billing_information_employer_index_path(:id =>package.id) %></div>
+                <div class="select-right-bg"></div>
+              </div>
+            </div>
+        <% end %>
     <% end %>
   </div>
 </div>
