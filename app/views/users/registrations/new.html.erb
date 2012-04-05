@@ -1,17 +1,18 @@
+<%= javascript_include_tag "hoverIntent.js", "superfish.js" %>
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
 
 
-  <div class="reg-tab-holder-new-two tab-act-two">
+  <div class="reg-tab-holder-new-two tab-act-two" id="a">
     <div class="reg-left-tab-holder-two"></div>
     <div class="reg-mid-tab-holder-two" id="job_seeker" onclick="user_login('job_seeker', '<%=role=Role.find_by_name('job_seeker').id%>')"><%= t('user_register_as') %> <%= t('header.job_seeker') %></div>
 
     <div class="reg-right-tab-holder-two"></div>
   </div>
-  <div class="reg-tab-holder-new-two">
+  <div class="reg-tab-holder-new-two" id="b">
     <div class="reg-left-tab-holder-two"></div>
 
-    <div class="reg-mid-tab-holder-two" id="employer" onclick="user_login('employer', '<%=Role.find_by_name('employer').id%>')"><%= t('user_register_as') %> <%= t('header.employer') %></div>
+    <div class="reg-mid-tab-holder-two" id="employer" onclick="user_login('employer', '<%=role=Role.find_by_name('employer').id%>')"><%= t('user_register_as') %> <%= t('header.employer') %></div>
 
     <div class="reg-right-tab-holder-two"></div>
   </div>
@@ -30,7 +31,11 @@
         //change the value of hidden field
         $("#role_id").val(type);
 
+//        $(".sub-category-holder").hide();
+
         if (type_name == "job_seeker") {
+            $("#a").addClass('reg-tab-holder-new-two tab-act-two');
+            $("#b").removeClass('reg-tab-holder-new-two tab-act-two');
             url = "<%= new_user_path(:role_name => 'job_seeker')%>";
             $.ajax({
                 context:this,
@@ -45,17 +50,25 @@
             return false;
         }
         else {
+            $("#a").removeClass('reg-tab-holder-new-two tab-act-two');
+            $("#b").addClass('reg-tab-holder-new-two tab-act-two');
+            url = "<%= new_user_path(:role_name => 'employer')%>";
             $.ajax({
-                url: '<%= new_user_path(:role_name => 'employer')%>' ,type: 'get', dataType: 'json',
-                processData: false,
-                success: function(data) {
-
-                    $("#reg_div").html(data.html);
+                context:this,
+                url:url,
+                type:"GET",
+                data:$(this).serialize(),
+                dataType:"json",
+                success:function (response) {
+                    $("#reg_div").html(response.html);
                 }
-            })
+            });
+
+
         }
 
 
     }
+
 
 </script>
