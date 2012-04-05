@@ -39,7 +39,7 @@ FuturCadre::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = {:host => 'http://ilsainteractive.com:3001'}
+  config.action_mailer.default_url_options = {:host => 'ilsainteractive.com:3001'}
 
  #----------------- Active Merchant
  config.after_initialize do
