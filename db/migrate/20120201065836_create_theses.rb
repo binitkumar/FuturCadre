@@ -1,5 +1,5 @@
 class CreateTheses < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :theses do |t|
       t.string :name
       t.integer :owner_id
@@ -11,5 +11,8 @@ class CreateTheses < ActiveRecord::Migration
       t.boolean :is_deleted, :default => false
       t.timestamps
     end
+  end
+  def self.down
+    drop_table :theses
   end
 end

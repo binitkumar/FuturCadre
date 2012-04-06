@@ -1,5 +1,5 @@
 class CreateEventUsers < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :event_users do |t|
       t.references :event_mailer, :user
       t.integer :sender_id
@@ -9,5 +9,8 @@ class CreateEventUsers < ActiveRecord::Migration
 
       t.timestamps
     end
+  end
+  def self.down
+    drop_table :event_users
   end
 end

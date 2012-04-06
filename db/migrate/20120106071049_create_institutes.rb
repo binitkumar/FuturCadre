@@ -1,5 +1,5 @@
 class CreateInstitutes < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :institutes do |t|
 
       t.string :slug
@@ -8,5 +8,8 @@ class CreateInstitutes < ActiveRecord::Migration
     end
 
     execute("LOAD DATA LOCAL INFILE '#{Rails.root}/db/migrate/institutes.txt' INTO TABLE institutes FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES")
+  end
+  def self.down
+    drop_table :institutes
   end
 end

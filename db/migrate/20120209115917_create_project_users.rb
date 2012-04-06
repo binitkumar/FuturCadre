@@ -1,5 +1,5 @@
 class CreateProjectUsers < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :project_users do |t|
       t.references :user, :project
       #t.string :invitee_email
@@ -11,5 +11,8 @@ class CreateProjectUsers < ActiveRecord::Migration
       #t.integer :sender_id
        t.timestamps
     end
+  end
+  def self.down
+    drop_table :project_users
   end
 end

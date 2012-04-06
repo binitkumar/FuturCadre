@@ -1,5 +1,5 @@
 class CreateCompanyInformations < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :company_informations do |t|
       t.integer :profile_id
     	t.string :name
@@ -16,5 +16,8 @@ class CreateCompanyInformations < ActiveRecord::Migration
 
       t.timestamps
     end
+  end
+  def self.down
+    drop_table :company_informations
   end
 end

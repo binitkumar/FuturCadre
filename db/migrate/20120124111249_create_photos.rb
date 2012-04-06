@@ -1,5 +1,5 @@
 class CreatePhotos < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :photos do |t|
       t.string :name
       t.references :imageable, :polymorphic => true
@@ -10,5 +10,8 @@ class CreatePhotos < ActiveRecord::Migration
       t.datetime :image_updated_at
       t.timestamps
     end
+  end
+  def self.down
+    drop_table :photos
   end
 end

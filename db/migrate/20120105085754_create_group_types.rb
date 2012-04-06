@@ -1,10 +1,13 @@
 class CreateGroupTypes < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :group_types do |t|
       t.string :name
       t.text :description
 
       t.timestamps
     end
+  end
+  def self.down
+    drop_table :group_types
   end
 end

@@ -1,5 +1,5 @@
 class CreateAssets < ActiveRecord::Migration
-  def change
+def self.up
     create_table :assets do |t|
       t.references :user
       t.references :profile
@@ -12,5 +12,8 @@ class CreateAssets < ActiveRecord::Migration
       t.boolean :is_publishable, :default => false
       t.timestamps
     end
+end
+  def self.down
+    drop_table :assets
   end
 end

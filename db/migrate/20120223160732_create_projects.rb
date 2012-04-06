@@ -1,5 +1,5 @@
 class CreateProjects < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :projects do |t|
       t.string :name
       t.string :tag_line
@@ -17,5 +17,8 @@ class CreateProjects < ActiveRecord::Migration
 
       t.timestamps
     end
+  end
+  def self.down
+    drop_table :projects
   end
 end

@@ -1,8 +1,11 @@
 class CreateSectors < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :sectors do |t|
       t.string :value
       t.timestamps
     end
   end
+   def self.down
+     drop_table :sectors
+   end
 end

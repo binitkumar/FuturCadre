@@ -1,5 +1,5 @@
 class CreateJobs < ActiveRecord::Migration
-  def change
+def self.up
     create_table :jobs do |t|
       t.string :name
       t.integer :employer_id
@@ -13,6 +13,7 @@ class CreateJobs < ActiveRecord::Migration
      	t.references :category, :country, :region, :city, :contract, :period
       t.boolean :is_deleted, :default => false
 
+
       t.timestamps
     end
 		add_index :jobs, :name
@@ -20,5 +21,8 @@ class CreateJobs < ActiveRecord::Migration
 		add_index :jobs, :country_id
 		add_index :jobs, :region_id
 		add_index :jobs, :city_id
-	end
+end
+  def self.down
+    drop_table :jobs
+  end
 end

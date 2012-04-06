@@ -1,7 +1,10 @@
 class JobsResponsibilities < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :jobs_responsibilities, :id => false do |t|
       t.references :job, :responsibility
     end
-    end
+  end
+  def self.down
+    drop_table :jobs_responsibilities
+  end
 end

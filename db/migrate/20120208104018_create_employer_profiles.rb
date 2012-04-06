@@ -1,5 +1,5 @@
 class CreateEmployerProfiles < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :employer_profiles do |t|
       t.references :profile
       t.integer  :employer_id
@@ -7,5 +7,8 @@ class CreateEmployerProfiles < ActiveRecord::Migration
       t.boolean :is_deleted, :default => false
       t.timestamps
     end
+  end
+  def self.down
+    drop_table :employer_profiles
   end
 end

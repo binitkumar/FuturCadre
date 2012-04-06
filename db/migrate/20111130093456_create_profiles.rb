@@ -1,5 +1,5 @@
 class CreateProfiles < ActiveRecord::Migration
-  def change
+ def self.up
     create_table :profiles do |t|
       t.references :user, :country, :region, :city
 			t.string :first_name
@@ -32,5 +32,8 @@ class CreateProfiles < ActiveRecord::Migration
       t.date:date_of_start
       t.timestamps
     end
+ end
+  def self.down
+    drop_table :profiles
   end
 end
