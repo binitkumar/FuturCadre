@@ -23,13 +23,13 @@
             <div class="info-detail">
               <label>Start Year </label>
               <% unless info.start_date.blank? %>
-                  <div class="value"><%= info.start_date.strftime("%d %b. %Y") %></div>
+                  <div class="value"><%= info.start_date.strftime("%b. %Y") %></div>
               <% end %>
             </div>
             <div class="info-detail">
               <label>End Year </label>
               <% unless info.end_date.blank? %>
-                  <div class="value"><%= info.end_date.strftime("%d %b. %Y") %></div>
+                  <div class="value"><%= info.end_date.strftime("%b. %Y") %></div>
               <% end %>
             </div>
 

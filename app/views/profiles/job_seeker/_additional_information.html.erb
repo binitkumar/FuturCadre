@@ -105,7 +105,7 @@
           </div>
           <div class="contract-field-new1 mtop20">
             <label> Language Level </label>
-            <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]], ["Niveau", "Bilingue"]) %>
+            <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]]) %>
             <div class="add-button1" style="margin-right: -28px!important;">
               <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
             </div>
@@ -139,7 +139,7 @@
 <% select_1 = select_1.gsub(/(\r\n|\n|\r)/, "") %>
 <% select_2 = "#{select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value")}" %>
 <% select_2 = select_2.gsub(/(\r\n|\n|\r)/, "") %>
-<% select_3 = "#{select_tag 'level[]', options_for_select([['Niveau', 'Niveau'], ['Notions', 'Notions'], ['Courant', 'Courant'], ['Bilingue', 'Bilingue'], ['Niveau', 'Bilingue']]) }" %>
+<% select_3 = "#{select_tag 'level[]', options_for_select([['Niveau', 'Niveau'], ['Notions', 'Notions'], ['Courant', 'Courant'], ['Bilingue', 'Bilingue']]) }" %>
 <% select_3 = select_3.gsub(/(\r\n|\n|\r)/, "") %>
 
 <script type="text/javascript">
