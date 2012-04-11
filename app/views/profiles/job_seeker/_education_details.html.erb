@@ -70,36 +70,20 @@
       <div class="profile-right-div">
         <div class="profile-input mtop20" id="institute">
           <label><%= t('profile_institute') %></label>
-          <%= render :partial => "profiles/job_seeker/institute_list", :locales => { :institutes => @institutes } %>
-
+          <%#= render :partial => "profiles/job_seeker/institute_list", :locales => { :institutes => @institutes } %>
+          <%= select_tag "education_info[institute_id]", options_for_select(["Select from list"] + @institutes.map { |obj| [obj.slug, obj.id] } + ["others"]),:onchange =>"add_institute()" %>
+          <%= text_field_tag "education_info[institute_name]",nil, :style => "display: none;" %>
         </div>
 
       </div>
     </div>
     <div class="add-button-new"><%= link_to "Add More Education Information", "javascript:void(0);", :id => "next-link" %></div>
-    <div class="add-button-new"><%= link_to "Add More Institute", "javascript:void(0);", :id => "add-institute-link" %></div>
+
 
     <div class="save-button-new"><%= button_to "Save and Next", "javascript:void(0);", :id => "save-next-link" %></div>
 <% end %>
 
-<div id="question-form" title="Create a New Question">
 
-  <%= form_for :institute, :url => { :action => 'create_institute' }, :html => { :id => 'add_question_form' }, :remote => true do |f| %>
-      <div class="select-holder">
-
-        <label>Slug</label>
-        <%= f.text_field :slug %>
-      </div>
-      <div class="input-holder">
-        <label>Title</label>
-        <%= f.text_field :name %>
-      </div>
-
-
-  <% end %>
-
-
-</div>
 
 
 <script type="text/javascript">
@@ -134,12 +118,19 @@
     });
 
 
-    $('#add-institute-link').click(function () {
-        $("#question-form").dialog("open");
-    });
+//    $('#add-institute-link').click(function () {
+//        $("#question-form").dialog("open");
+//    });
 
     $(document).ready(function () {
         $('.date-pick').datepicker({dateFormat:'yy-mm-dd'});
     });
+
+        function add_institute(){
+         if($("#education_info_institute_id").val()=="others")
+            {
+               $("#education_info_institute_name").show();
+            }
+        }
 
 </script>

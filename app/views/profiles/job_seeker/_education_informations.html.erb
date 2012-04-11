@@ -15,11 +15,21 @@
             </div>
 
             <div class="info-detail">
-              <label>Institute </label>
+
               <% unless info.institute.blank? %>
+                  <label>Institute </label>
+
                   <div class="value"><%= info.institute.name %></div>
               <% end %>
             </div>
+            <div class="info-detail">
+              <% unless info.institute_name.blank? %>
+                  <label>Institute </label>
+
+                  <div class="value"><%= info.institute_name %></div>
+              <% end %>
+            </div>
+
             <div class="info-detail">
               <label>Start Year </label>
               <% unless info.start_date.blank? %>

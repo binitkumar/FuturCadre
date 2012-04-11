@@ -63,8 +63,10 @@ class ProfilesController < ApplicationController
     @institutes = Institute.all
     @profile    = Profile.find_by_id(params[:profile_id])
     @edu_info   = EducationInformation.new(params[:education_info])
-    if params[:education_info][:institute_id] =="Select from list" && params[:education_info][:institute_id] =="others"
+    if params[:education_info][:institute_id] =="Select from list"
       params[:education_info][:institute_id] = nil
+    elsif  params[:education_info][:institute_id] =="others"
+      @edu_info.institute_name = params[:education_info][:institute_name]
     else
       @edu_info.institute_id = params[:education_info][:institute_id]
     end
@@ -82,8 +84,10 @@ class ProfilesController < ApplicationController
     @profile = Profile.find_by_id(params[:profile_id])
     unless params[:skip].blank?
       @edu_info = EducationInformation.new(params[:education_info])
-      if params[:education_info][:institute_id] =="Select from list" && params[:education_info][:institute_id] =="others"
+      if params[:education_info][:institute_id] =="Select from list"
         params[:education_info][:institute_id] = nil
+      elsif  params[:education_info][:institute_id] =="others"
+        @edu_info.institute_name = params[:education_info][:institute_name]
       else
         @edu_info.institute_id = params[:education_info][:institute_id]
       end

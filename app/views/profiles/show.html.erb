@@ -96,18 +96,22 @@
                     <% unless ed.institute.blank? %>
                         <div class="profile-name-content"><%= ed.institute.name %></div>
                     <% end %>
+                    <% unless ed.institute_name.blank? %>
+                        <div class="profile-name-content"><%= ed.institute_name %></div>
+                    <% end %>
+
                   </div>
                   <div class="profile-cont">
                     <div class="profile-name-heading-new"><%= t('profile_start_year') %></div>
                     <% unless ed.start_date.blank? %>
-                        <div class="profile-name-content"><%= ed.start_date.strftime("%d %b. %Y") %></div>
+                        <div class="profile-name-content"><%= ed.start_date.strftime("%b. %Y") %></div>
                     <% end %>
                   </div>
 
                   <div class="profile-cont">
                     <div class="profile-name-heading-new"><%= t('profile_end_year') %></div>
                     <% unless ed.start_date.blank? %>
-                        <div class="profile-name-content"><%= ed.end_date.strftime("%d %b. %Y") %></div>
+                        <div class="profile-name-content"><%= ed.end_date.strftime("%b. %Y") %></div>
                     <% end %>
                   </div>
                 </div>
@@ -141,13 +145,13 @@
                   <div class="profile-cont">
                     <div class="profile-name-heading-new"><label>Date Of Start</label></div>
                     <% unless pr.start_date.blank? %>
-                        <div class="profile-name-content"><%= pr.start_date.strftime("%d %b. %Y") %></div>
+                        <div class="profile-name-content"><%= pr.start_date.strftime("%b. %Y") %></div>
                     <% end %>
                   </div>
                   <div class="profile-cont">
                     <div class="profile-name-heading-new"><label>Date of End</label></div>
                     <% unless pr.end_date.blank? %>
-                        <div class="profile-name-content"><%= pr.end_date.strftime("%d %b. %Y") %></div>
+                        <div class="profile-name-content"><%= pr.end_date.strftime("%b. %Y") %></div>
                     <% end %>
                   </div>
 
