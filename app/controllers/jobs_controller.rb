@@ -34,6 +34,7 @@ class JobsController < ApplicationController
       @skill          = Skill.new(params[:skills])
       @responsibility = Responsibility.new(params[:respon])
       @employer       = current_user
+      session[:return_to] ||= request.referer
       unless @employer.profile.blank?
         @company_information = @employer.profile.company_information
       else
