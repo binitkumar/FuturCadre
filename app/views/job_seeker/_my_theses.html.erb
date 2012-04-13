@@ -5,22 +5,22 @@
   </div>
   <!--dashboard-post-profile-btn ends-->
   <div class="dashboard-content">
-    <h1>Theses</h1>
+    <h1><%=t('Thesis.theses')%></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <div class="btn-mid-holder_new"><%= link_to "Create New Theses", new_thesis_path(), :class => "create-event", :style=>" color: #FFFFFF;text-decoration: none;" %></div>
-    <div class="btn-mid-holder"><%= link_to "View Theses", theses_path(), :style=>" color: #FFFFFF;text-decoration: none;" %></div>
+    <div class="btn-mid-holder_new"><%= link_to t("Job_Seeker.create_thesis"), new_thesis_path(), :class => "create-event", :style=>" color: #FFFFFF;text-decoration: none;" %></div>
+    <div class="btn-mid-holder"><%= link_to t('view'), theses_path(), :style=>" color: #FFFFFF;text-decoration: none;" %></div>
     <p><br/>
     </p>
 
-    <h1>My<span class="red"> Theses</span></h1>
+    <h1>My<span class="red"> <%=t('Thesis.theses')%></span></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @my_theses.blank? %>
-        <p>Total Number of thesis <%= @my_theses.count %></p>
+        <p><%=t('Thesis.')%> <%= @my_theses.count %></p>
         <table>
           <tr>
-            <th> Thesis Name</th>
-            <th> Created at</th>
-            <th> Actions</th>
+            <th> <%=t('name')%></th>
+            <th> <%=t('created_at')%></th>
+            <th> <%=t('Employer.employer_actions')%></th>
 
 
           </tr>
@@ -34,7 +34,7 @@
           <% end %>
         </table>
     <% else %>
-        <p><span>Currently No Thesis!</span></p>
+        <p><span><%=t('Employer.employer_no_thesis')%>!</span></p>
     <% end %>
   </div>
 </div>

@@ -77,6 +77,17 @@ fr:
   Job_Seeker: 
     my_application: ""
     status: ""
+    status: Status
+    resume: "My Resume"
+    jobs: "My Jobs"
+    projects: "My Projects"
+    total_jobs: "Total Jobs Applied"
+    upload_cv: "Upload a New CV"
+    total_resume: "Total Resume"
+    file_type: "File Type"
+    publish: "Publish"
+    create_thesis: "Create New Thesis"
+    no_resume: "Currently there is no resume"
   News: 
     news: News
     picture: "News Picture"

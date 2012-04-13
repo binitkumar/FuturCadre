@@ -74,9 +74,20 @@ en:
     start_time: "Start Time"
     update_salary: "Update Salary"
     view_all_members: "View all Members"
-  Job_Seeker: 
+  Job_Seeker:
+    job_seeker: "Job Seeker"
     my_application: "My Application"
     status: Status
+    resume: "My Resume"
+    jobs: "My Jobs"
+    projects: "My Projects"
+    total_jobs: "Total Jobs Applied"
+    upload_cv: "Upload a New CV"
+    total_resume: "Total Resume"
+    file_type: "File Type"
+    publish: "Publish"
+    create_thesis: "Create New Thesis"
+    no_resume: "Currently there is no resume"
   News: 
     news: News
     picture: "News Picture"
@@ -509,3 +520,4 @@ en:
     user_name: "User Name"
   view: View
   wall: Wall
+  my: "My"

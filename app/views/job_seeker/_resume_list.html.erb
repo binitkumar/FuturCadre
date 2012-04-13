@@ -5,24 +5,24 @@
   </div>
   <!--dashboard-post-profile-btn ends-->
   <div class="dashboard-content">
-    <h1>Resumes</h1>
+    <h1><%=t('Job_Seeker.resume')%></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
 
-    <button id="upload-popup" class="question-button">Upload a New CV</button>
+    <button id="upload-popup" class="question-button"><%=t('Job_Seeker.upload_cv')%></button>
 
     <p><br/>
     </p>
 
-    <h1>My<span class="red"> Resumes</span></h1>
+    <h1>My<span class="red"> <%=t('Job_Seeker.resume')%></span></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @resumes.blank? %>
-        <p>Total Number of resumes <%= @resumes.count %></p>
+        <p><%=t('Job_Seeker.total_resume')%> <%= @resumes.count %></p>
         <table>
           <tr>
-            <th>Resume Name</th>
-            <th>File Type</th>
-            <th> Action |</th>
-            <th> Publish</th>
+            <th><%=t('name')%>e</th>
+            <th><%=t('Job_Seeker.file_type')%></th>|
+            <th> <%=t('Employer.employer_actions')%>|</th>
+            <th> <%=t('Employer.employer_total_thesis')%></th>
             <!--<th>Download</th>-->
           </tr>
 
@@ -37,7 +37,7 @@
           <% end %>
         </table>
     <% else %>
-        <p><span>Currently No Resume Present!</span></p>
+        <p><span><%=t('Job_Seeker.no_resume')%>!</span></p>
     <% end %>
   </div>
   <div id="upload-form" title="Upload a New CV ">
