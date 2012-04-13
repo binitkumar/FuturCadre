@@ -5,11 +5,11 @@
     </h1>
 
 
-      <%= @profile.country.name %>
+    <%= @profile.country.name %>
 
   </div>
   <!--mid top info ends-->
-  <h2>RESUME</h2>
+  <h2><%= t('Employer.search_resume') %></h2>
 
   <p><%= @profile.full_name %> CV</p>
 
@@ -31,12 +31,12 @@
   <!--mid content detail ends-->
 </div><!--dashboard mid ends-->
 <div class="dashboard-right-info_new">
-  <h1>Result</h1>
+  <h1><%= t('Employer.search_result') %></h1>
 
   <div class="clear"></div>
   <div class="select-button" style="margin-top:10px;">
     <div class="left-holder"></div>
-    <div class="mid-holder"><a href="#">Select</a></div>
+    <div class="mid-holder"><a href="#"><%= t('Employer.search_select') %></a></div>
     <div class="right-holder"></div>
   </div>
   <!--select button ends-->

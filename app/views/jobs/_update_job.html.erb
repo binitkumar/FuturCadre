@@ -17,7 +17,7 @@
 <!--dashboard-post-profile-btn ends-->
 <div class="dashboard-right-content">
 
-  <h1><span>I Publish</span> an offer</h1>
+  <h1><span><%= t('jobs.publish')%></span> <%= t('jobs.offer')%></h1>
   <%= image_tag asset_path 'dashboard-botom-line.png' %>
   <div class="dashboard-right-left">
 
@@ -27,18 +27,18 @@
     </div>
 
     <div class="contract-field">
-      <label> Job Category</label>
+      <label> <%= t('jobs.category')%></label>
       <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", @job.category_id) %>
       <!-- <%#= options_for_select([['Lisbon', 1], ['Madrid', 2]], 2) %> -->
     </div>
 
     <div class="contract-label" id="contract_period">
-      <label>Contract</label>
+      <label><%= t('jobs.contract')%></label>
       <%= f.select :contract_id, options_from_collection_for_select(Contract.all, "id", "name", @job.contract_id), { }, :onchange => "hide_field()" %>
     </div>
 
     <div class="reg-location-holder" style="margin-top: 0!important;">
-      <label>Location</label>
+      <label><%= t('jobs.location')%></label>
       <%= render :partial => "shared/countries", :locals => { :object_collection => "job" } %>
       <div id="regions">
         <%= render :partial => "shared/regions", :locals => { :object_collection => "job" } %>
@@ -53,25 +53,25 @@
   <!--dashboard-right-left ends-->
   <div class="dashboard-right-right">
     <div class="job-input-description">
-      <label>Description</label>
+      <label><%= t('description')%></label>
       <%= f.text_area :description %>
     </div>
   </div>
 
   <div class="w100 mtop20">
     <div class="contract-label">
-      <label>Contract Duration</label>
+      <label><%= t('jobs.contract_duration')%></label>
       <%= f.select :period_id, options_from_collection_for_select(Period.all, "id", "name", @job.period_id) %>
     </div>
 
     <div class="radio-label" id="disable">
       <%= f.radio_button 'date_of_start', true, :checked => @job.date_of_start ==Time.now ? true : false, :class => "contract-radio", :onclick =>"disable('disable')" %>
-      <label>Immediate</label>
+      <label><%= t('immediate') %></label>
     </div>
 
     <div class="radio-label" id="enable">
       <%= f.radio_button 'date_of_start', false, :checked => @job.date_of_start ==Time.now ? false : true, :class => "contract-radio", :id =>"enable_datextbox", :onclick =>"disable('enable')" %>
-      <label> From Date</label>
+      <label><%= t('date_of_start') %></label>
     </div>
 
     <div class="date-box" id="date-box">
@@ -86,9 +86,9 @@
   <div class="job-input-remuneration">
 
     <div class="remu-input">
-      <label>Annual Salary</label>
+      <label><%= t('jobs.annual_salary')%></label>
       <%= f.radio_button 'annual_salary', 'Negotiable', :checked => @job.annual_salary == "Negotiable" ? true : false, :class => "checked-radio" %>
-      <label>Negotiable</label>
+      <label><%= t('jobs.negotiable')%></label>
     </div>
 
     <div class="remu-inputs-two">
@@ -117,11 +117,11 @@
 
       <div class="job-input">
 
-        <label>Add a Skills</label>
+        <label><%= t('jobs.add_skills')%></label>
         <input type="text" value=""/>
       </div>
       <div class="job-input-description">
-        <label>Description</label>
+        <label><%= t('jobs.description')%></label>
         <input type="text" value=""/>
       </div>
 
@@ -132,7 +132,7 @@
       <div class="skill-content">
 
         <div class="contract-field">
-          <label> Industry Sector</label>
+          <label><%= t('profile_industry') %></label>
           <%= select_tag :sector_id, options_from_collection_for_select(Sector.all, "id", "value") %>
         </div>
 
@@ -144,11 +144,11 @@
         <div class="dashboard-right-left">
 
           <div class="job-input-add">
-            <label>Company Name</label>
+            <label><%= t('profile_company_nam') %></label>
             <%= ed.text_field :name %>
           </div>
           <div class="job-input-description">
-            <label>Description</label>
+            <label><%= t('description') %></label>
             <%= ed.text_area :description %>
           </div>
 
@@ -159,7 +159,7 @@
           <div class="skill-content">
 
             <div class="contract-field">
-              <label style="margin-top: 0!important;"> Industry Sector</label>
+              <label style="margin-top: 0!important;"> <%= t('jobs.industry_sector') %>r</label>
               <%= ed.select :sector_id, options_from_collection_for_select(Sector.all, "id", "value", @company_information.sector_id) %>
             </div>
           </div>
@@ -172,12 +172,12 @@
 <%= hidden_field_tag 'count', '0' %>
 <%= hidden_field_tag 'counter', '0' %>
 <div class="job-skill">
-  <h1><span>Required</span> Profile </h1>
+  <h1><span><%= t('required') %></span> <%= t('profile_profile') %> </h1>
   <%= image_tag asset_path 'dashboard-botom-line.png' %>
 </div>
 <%= fields_for :skills do |skill| %>
     <div class="skils-ful-length">
-      <label style="margin-top: 0!important;">Skill</label>
+      <label style="margin-top: 0!important;"><%= t('Project.skills') %></label>
 
       <%= skill.text_field :name %>
 
@@ -187,11 +187,11 @@
   <% @job_languages.each_with_index do |job_lang, i| %>
       <div id="remove_lang_<%= i %>">
         <div class="contract-field-new">
-          <label style="margin-top: 0!important;"> Language </label>
+          <label style="margin-top: 0!important;"> <%= t('language') %> </label>
           <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value", job_lang.id) %>
         </div>
         <div class="contract-field-new">
-          <label style="margin-top: 0!important;"> Language Level </label>
+          <label style="margin-top: 0!important;"> <%= t('level') %> </label>
           <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]]) %>
 
          <div class="add-button" style="margin-right: -28px!important;">
@@ -214,7 +214,7 @@
       <% @job_educations.each_with_index do |job_ed, i| %>
           <div id="remove_edu_<%= i %>">
            <div class="contract-field-ed-two" id="contract-field-ed" >
-              <label style="width:100%; float:left;"> Education Level </label>
+              <label style="width:100%; float:left;"> <%= t('jobs.education_level') %> </label>
               <%= select_tag "education_ids[]", options_from_collection_for_select(EducationLevel.all, "id", "name", job_ed.id), :style => "height: 30px; margin-top: 5px; width: 85%;" %>
             </div>
             <div class="add-button-new-new">
@@ -231,7 +231,7 @@
       <% end %>
   <% else %>
       <div class="contract-field-ed-two">
-        <label style="width:100%; float:left;"> Education Level </label>
+        <label style="width:100%; float:left;"> <%= t('jobs.education_level') %> </label>
         <%= select_tag "education_ids[]", options_from_collection_for_select(EducationLevel.all, "id", "name"), :style => "height: 30px; margin-top: 5px; width: 85%;" %>
         <div class="add-button-new-new">
           <div class="add-education"> <%= image_tag asset_path 'plus.png' %></div>
@@ -244,10 +244,10 @@
 
 
 <div class="publication">
-  <h1>Publication</h1>
+  <h1><%= t('publication') %></h1>
   <%= image_tag asset_path 'dashboard-botom-line.png' %>
   <div class="w100 mtop20">
-    <p>Publish this job on Future Cadre</p>
+    <p><%= t('publish_on_futur_cadre') %></p>
 
     <div class="inputs-publication">
       <%= check_box_tag 'publication' %>
@@ -257,7 +257,7 @@
 <div class="publication-line">
   <div class="publication-line">
     <%= check_box_tag 'email' %>
-    <p>Receive an email on this address</p>
+    <p><%= t('receive_an_email')%></p>
 
     <div class="date-box" id="email-box" style="display: none;">
       <%= text_field_tag "employer_email", nil, :id => "email_box" %>
@@ -272,7 +272,7 @@
 <div class="w100">
   <div class="btn-save">
     <div class="apply-left"></div>
-    <div class="apply-mid">Update</div>
+    <div class="apply-mid"><%= t('update')%></div>
     <div class="apply-right"></div>
   </div>
 </div>

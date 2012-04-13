@@ -1,9 +1,9 @@
 <%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery-ui-timepicker-addon" %>
 <%= stylesheet_link_tag "jquery-ui-1.8.17.custom", "jquery.ui.datepicker" %>
 
-<%= form_tag '/profiles/create_job_seeker_additional_information', :id =>"profile-form" do %>
+<%= form_tag '/profiles/create_job_seeker_additional_information', :id => "profile-form" do %>
     <div class="basic-info mtop10">
-      <h1><span class="red">Make your Resume Searchable!</span></h1>
+      <h1><span class="red"><%= t('profile_search_resume') %>!</span></h1>
       <%= image_tag asset_path 'basic-info-bot-bar.png' %>
     </div>
     <div id="form-errors"></div>
@@ -15,37 +15,37 @@
     <div class="w100">
       <div class="profile-left-div_detail">
         <div class="new-profile-input mtop20">
-          <label><%= t('profiles.Desire_job_title') %></label>
+          <label><%= t('profile_job_title') %></label>
           <%= text_field_tag "job_title" %>
 
         </div>
 
 
         <div class="new-profile-input mtop20">
-          <label><%= t('profiles.desired_job_contract') %></label>
+          <label><%= t('profile_desired_job_contract') %></label>
           <%#= text_field_tag "education_info[degree_level]" %>
           <%= select_tag "desired_job_type", options_for_select([["Cdd", "Cdd"], ["Cdi", "Cdi"], ["Freelance", "Freelance"], ["Interim", "Interim"], ["Vie", "Vie"], ["Job Etudiant", "Job Etudiant"]]) %>
         </div>
 
         <div class="new-profile-input mtop20">
-          <label><%= t('profiles.desired_job_status') %></label>
+          <label><%= t('profile_desired_job_status') %></label>
           <%#= text_field_tag "education_info[degree_level]" %>
           <%= select_tag "desired_job_status", options_for_select([["Full-Time", "Full-Time"], ["Part-Time", "Part-Time"], ["Per Diem", "Per Diem"]]) %>
         </div>
 
         <div id="abc">
           <div class="reg-location-holder-two mtop20" id="reg-location-holder">
-            <label>Location</label>
+            <label><%= t('profile_location') %></label>
 
             <div id="countries_add">
-              <%= render :partial => "shared/countries", :locals => {:object_collection => "add_info"} %>
+              <%= render :partial => "shared/countries", :locals => { :object_collection => "add_info" } %>
             </div>
             <div id="regions_add">
-              <%= render :partial => "shared/regions", :locals => {:object_collection => "add_info"} %>
+              <%= render :partial => "shared/regions", :locals => { :object_collection => "add_info" } %>
             </div>
 
             <div id="cities_add">
-              <%= render :partial => "shared/cities", :locals => {:object_collection => "add_info"} %>
+              <%= render :partial => "shared/cities", :locals => { :object_collection => "add_info" } %>
             </div>
 
             <div class="add-button">
@@ -59,7 +59,7 @@
 
 
           <div class="new-profile-input mtop20">
-            <label> Industry Sector</label>
+            <label> <%= t('profile_industry') %></label>
             <%= select_tag "sector_ids[]", options_from_collection_for_select(Sector.all, "id", "value") %>
 
             <div class="add-button_three" style="float:left; margin-left: 10px;">
@@ -70,13 +70,13 @@
 
 
         <div class="new-profile-input mtop20">
-          <label><%= t('profiles.work_authorization') %></label>
+          <label><%= t('profile_work_authorization') %></label>
 
           <div class="big-select"><%= select_tag "work_authorization", options_for_select([["I am authorize to work in this country for any employer", "I am authorize to work in this country for any employer"], ["I am not authorize to work in this country for any employer", "I am not authorize to work in this country for any employer"]]) %></div>
         </div>
 
         <div class="salary-info_one mtop20">
-          <label><%= t('profiles.desired_salary_range') %></label>
+          <label><%= t('profile_desired_salary_range') %></label>
           <%= text_field_tag "salary_to" %>
           <p>to</p><%= text_field_tag "salary_from" %>
           <div class="money-type"><%= select_tag "currency", options_for_select([["Euro", "Euro"], ["Pkr", "pkr"]]) %></div>
@@ -84,13 +84,13 @@
         </div>
 
         <div class="condition-left_one mtop20">
-          <label><%= t('profiles.Are_you_willing_to_relocate ?') %></label>
+          <label><%= t('profile_Are_you_willing_to_relocate') %>?</label>
           <%= radio_button_tag 'willing', true %> <p style="width:40px; float:left; color: #474747;"> Yes</p>
           <%= radio_button_tag 'willing', false %> <p style="width:40px; float:left; color: #474747;"> No </p>
         </div>
 
         <div class="new-profile-input mtop20">
-          <label><%= t('profiles.Are_you_willing_to_travel ?') %></label>
+          <label><%= t('profile_Are_you_willing_to_travel') %>?</label>
           <%#= text_field_tag "education_info[degree_level]" %>
 
           <div class="big-select"><%= select_tag "willing_to_travel", options_for_select([["Up to 25% travel", "Up to 25% travel"], ["Up to 50% travel", "Up to 50% travel"], ["Up to 75% travel", "Up to 75% travel"], ["Up to 100% travel", "Up to 100% travel"]]) %> </div>
@@ -100,11 +100,11 @@
         <div id="language-div" class="language-bar">
 
           <div class="contract-field-new1 mtop20">
-            <label> Language </label>
+            <label> <%= t('language') %></label>
             <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value") %>
           </div>
           <div class="contract-field-new1 mtop20">
-            <label> Language Level </label>
+            <label> <%= t('level') %> </label>
             <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]]) %>
             <div class="add-button1" style="margin-right: -28px!important;">
               <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
@@ -115,25 +115,25 @@
 
 
         <div class="new-profile-input mtop20">
-          <label><%= t('profiles.When_are_you _available_to_start ?') %></label>
+          <label><%= t('profile_When_are_you _available_to_start') %>?</label>
 
           <div class="radio-label-two" id="disable">
-            <%= radio_button_tag 'date_of_start', true, nil, :onclick =>"disable('disable')" %>
-            <label>Immediate</label>
+            <%= radio_button_tag 'date_of_start', true, nil, :onclick => "disable('disable')" %>
+            <label><%= t('immediate') %></label>
           </div>
 
           <div class="radio-label-two" id="enable">
-            <%= radio_button_tag 'date_of_start', false, nil, :onclick =>"disable('enable')" %>
-            <label> Or on this date</label>
+            <%= radio_button_tag 'date_of_start', false, nil, :onclick => "disable('enable')" %>
+            <label> <%= t('on_this_date') %></label>
           </div>
           <div class="date-box" id="date-box">
-            <%= text_field_tag "date_of_start_text", nil, :class =>"date-pick", :id => "Date-Box" %>
+            <%= text_field_tag "date_of_start_text", nil, :class => "date-pick", :id => "Date-Box" %>
           </div>
         </div>
       </div>
     </div>
     <!--<div class="save-button-new"><%#= button_to "Skip It", "javascript:void(0);" %></div>-->
-    <div class="save-button-new"><%= button_to "Save", "javascript:void(0);", :id => "next-link" %></div>
+    <div class="save-button-new"><%= button_to t('button.save'), "javascript:void(0);", :id => "next-link" %></div>
 <% end %>
 <% select_1 = "#{select_tag "sector_ids[]", options_from_collection_for_select(Sector.all, "id", "value")}" %>
 <% select_1 = select_1.gsub(/(\r\n|\n|\r)/, "") %>
@@ -144,8 +144,8 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function() {
-        $('.date-pick').datepicker({dateFormat: 'yy-mm-dd'});
+    $(document).ready(function () {
+        $('.date-pick').datepicker({dateFormat:'yy-mm-dd'});
     });
 
     function disable(type) {
@@ -165,9 +165,9 @@
 
     $('.add-location').click(function () {
 
-            var scntDiv = $('#abc');
-            var counter = parseInt($('#counter').attr('value'));
-             if (counter < 4) {
+        var scntDiv = $('#abc');
+        var counter = parseInt($('#counter').attr('value'));
+        if (counter < 4) {
             counter = counter + 1;
             $('#counter').attr('value', counter);
             var txt_field = '<div id=new_div_' + counter + '><div class="reg-location-holder-two mtop20" id="reg-location-holder" style="margin-top: 0!important;"> <label>Location</label><div id=countries_add_' + counter + ' > <%=escape_javascript( render :partial => "shared/countries", :locals => { :object_collection => "add_info1" }) %></div><div id=regions_add_' + counter + ' ><%=escape_javascript( render :partial => "shared/regions", :locals => { :object_collection => "add_info1" }) %></div> <div id=cities_add_' + counter + '><%=escape_javascript( render :partial => "shared/cities", :locals => { :object_collection => "add_info1" }) %></div><div class=add-button style="margin-top: 30px;"><a href="javascript:" onclick="remove_education_field(counter)"><img src="/assets/minus.png" /></a></div></div></div>';
@@ -180,7 +180,7 @@
     });
 
     function remove_education_field(obj) {
-         var counter = parseInt($('#counter').attr('value'));
+        var counter = parseInt($('#counter').attr('value'));
         var field = $('#new_div_' + counter)
 //        var counter = parseInt($('#counter').attr('value'));
 //        var count_toatl = parseInt($('#counter').attr('value'));
@@ -192,9 +192,9 @@
 
     $('.add-sector').click(function () {
 
-            var scntDiv = $('#sector');
-            var count = parseInt($('#count').attr('value'));
-         if (count < 4) {
+        var scntDiv = $('#sector');
+        var count = parseInt($('#count').attr('value'));
+        if (count < 4) {
             count = count + 1;
 
             $('#count').attr('value', count);
@@ -217,9 +217,9 @@
 
     $('.add-language').click(function () {
 
-            var scntDiv = $('#language-div');
-            var counter1 = parseInt($('#counter1').attr('value'));
-          if (counter1 < 2) {
+        var scntDiv = $('#language-div');
+        var counter1 = parseInt($('#counter1').attr('value'));
+        if (counter1 < 2) {
             counter1 = counter1 + 1;
             $('#counter1').attr('value', counter1);
             var txt_field = '<div id=main_div_' + counter1 + '><div class="contract-field-new1 mtop20"><label> Language </label><%= raw(select_2)%></div><div class="contract-field-new1 mtop20"> <label> Language Level </label><%= raw(select_3)%></div><div class="add-button1"><a href="javascript:" onclick="remove_location_field(counter1)"><img src="/assets/minus.png" /></a></div></div>';
@@ -229,7 +229,7 @@
     });
 
     function remove_location_field(obj) {
-         var counter1 = parseInt($('#counter1').attr('value'));
+        var counter1 = parseInt($('#counter1').attr('value'));
         var field = $('#main_div_' + counter1)
 //        var counter1 = parseInt($('#counter1').attr('value'));
 //        var count_toatl = parseInt($('#counter1').attr('value'));
@@ -239,7 +239,7 @@
     }
 
 
-    $(".tabs").each(function() {
+    $(".tabs").each(function () {
         $(this).removeClass("active");
     });
 

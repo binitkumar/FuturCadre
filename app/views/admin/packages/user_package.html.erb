@@ -1,0 +1,35 @@
+<h1>Listing Users</h1>
+<%#= link_to 'New Category', new_admin_category_path %><br />
+<table>
+  <tr>
+    <th>Name</th>
+    <th> Current Package</th>
+    <th>Packages</th>
+  </tr>
+
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <% unless user.package.blank? %>
+            <td id="pack_ch"><%= user.package.name %></td>
+        <% end %>
+        <td> <%= select_tag "package_id", options_from_collection_for_select(@packages, "id", "name", user.package.id), :onchange => "set_package(#{user.id})" %></td>
+      </tr>
+  <% end %>
+</table>
+
+
+<script type="text/javascript">
+    function set_package(user) {
+        var pack = $("#package_id").val();
+        $.ajax({
+            url:'/admin/packages/set_package?id=' + pack + "&user_id=" + user, type:'get', dataType:'html',
+            processData:false,
+            success:function (data) {
+                $("#pack_ch").html(data);
+            }
+        })
+
+    }
+
+</script>

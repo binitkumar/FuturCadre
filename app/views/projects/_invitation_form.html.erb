@@ -2,7 +2,7 @@
   <div class="shadow"></div>
   <div class="popup-hold">
 
-    <div class="popup-top-holder">Invite User</div>
+    <div class="popup-top-holder"><%= t('Project.project_invite_user')%></div>
     <div class="popup-mid-holder ">
       <% unless @users.blank? %>
           <% @users.each do |user| %>
@@ -27,7 +27,7 @@
           <% end %>
       <% end %>
       <div class="pop-up-btn-new">
-        <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
+        <div id="exit_job" class="pop-up-btn" onclick="close_popup()"><%= t('exit')%></div>
       </div>
 
 

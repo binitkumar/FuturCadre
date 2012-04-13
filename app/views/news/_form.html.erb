@@ -2,23 +2,23 @@
   <div class="shadow"></div>
   <div class="popup-hold">
 
-    <div class="popup-top-holder">Suggest a news</div>
+    <div class="popup-top-holder"><%= t('News.suggest') %></div>
     <div class="popup-mid-holder ">
 
       <%= form_for :news, :url => { :action => 'submit_news' }, :html => { :id => 'answer_form' }, :remote => true do |f| %>
           <div class="input-holder" style="width:59%;">
             <div class="input-holder">
-              <label>Title</label>
+              <label><%= t('title') %></label>
               <%= f.text_field :title %>
             </div>
             <div class="form-input">
-              <label>News Picture</label>
+              <label><%= t('News.picture') %></label>
               <%= fields_for :picture do |image| %>
                   <%= image.file_field :image %>
               <% end %>
             </div>
             <div class="input-holder-new">
-              <label>Message</label>
+              <label><%= t('message') %></label>
               <%= f.text_area :body %>
 
             </div>
@@ -26,8 +26,8 @@
 
 
           <div class="pop-up-btn-new">
-            <div id="application_job" class="pop-up-btn">Suggest</div>
-            <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
+            <div id="application_job" class="pop-up-btn"><%= t('News.suggest') %></div>
+            <div id="exit_job" class="pop-up-btn" onclick="close_popup()"><%= t('exit') %></div>
           </div>
 
       <% end %>

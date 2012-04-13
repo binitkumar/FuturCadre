@@ -1,25 +1,25 @@
- <div class="right-content-detail-new" >
+<div class="right-content-detail-new">
 
-      <% unless @group.events.blank? %>
-          <% @group.events.each do |group_event| %>
+  <% unless @group.events.blank? %>
+      <% @group.events.each do |group_event| %>
 
-              <div class="content-detail">
+          <div class="content-detail">
 
-                <h1>
-                  <div id="group_event" onclick="event_page('<%= group_event.id%>','<%=@group.id %>')"><%= group_event.title %></div>
-                </h1>
+            <h1>
+              <div id="group_event" onclick="event_page('<%= group_event.id%>','<%=@group.id %>')"><%= group_event.title %></div>
+            </h1>
 
-                <div><%= group_event.created_at.strftime("%d-%m-%Y") %></div>
-                <div><label> Time:</label> <%= group_event.time_of_start %></div>
-                <div><label> Time:</label> <%= group_event.time_of_end %></div>
-                <div><label>Descripton:</label></div>
-                <div id="text-detail">
-                  <p><%= group_event.description %></p>
-                </div>
+            <div><%= group_event.created_at.strftime("%d-%m-%Y") %></div>
+            <div><label> <%= t('Groups.start_time') %>:</label> <%= group_event.time_of_start %></div>
+            <div><label> <%= t('Groups.end_time') %>:</label> <%= group_event.time_of_end %></div>
+            <div><label><%= t('description') %>:</label></div>
+            <div id="text-detail">
+              <p><%= group_event.description %></p>
+            </div>
 
 
-              </div>
-              <div id="answer_button" onclick="post_event('<%= group_event.id%>')"></div>
-          <% end %>
-            <%end%>
-          </div><!--right-content ends-->
+          </div>
+          <div id="answer_button" onclick="post_event('<%= group_event.id%>')"></div>
+      <% end %>
+  <% end %>
+</div><!--right-content ends-->

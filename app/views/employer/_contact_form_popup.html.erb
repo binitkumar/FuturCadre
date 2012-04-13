@@ -7,16 +7,16 @@
     <div class="popup-mid-holder ">
       <%= form_tag('contact_job_seeker', :id => 'contact_form') %>
       <div class="input-holder">
-        <label>Applicant Name</label>
+        <label><%= t("Employer.application_name ")%></label>
         <%= text_field_tag 'name', @job_application.user.name %>
       </div>
       <%= hidden_field_tag :job_application, @job_application.id %>
       <div class="input-holder">
-        <label>Message</label>
+        <label><%= t("Employer.application_message ")%></label>
         <%= text_area_tag 'body' %>
       </div>
       <div class="pop-up-btn-new">
-        <div id="find_job" class="pop-up-btn">Send</div>
+        <div id="find_job" class="pop-up-btn"><%= t("Employer.application_send_msg ")%></div>
         <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
       </div>
 

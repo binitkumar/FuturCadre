@@ -1,7 +1,7 @@
 <div class="tabs_wrapper mtop40">
 
   <div class="package-planes">
-    <h1>Packages / Plans</h1>
+    <h1><%= t('Employer.package_plans') %></h1>
 
     <div class="package-bottom-img"></div>
 
@@ -10,17 +10,19 @@
             <div class="packages-one">
               <div class="package-name-one"><p><%= package.name %></p></div>
               <ul>
-                <li><label><b>Description:</b></label><%= package.description %></li>
-                <li><label><b>Price :</b></label><%= package.price %>
-                  <label>Usd</label></li>
-                <li><label><b>Jobs :</b></label><%= package.no_of_jobs %></li>
-                <li><label><b>Search(es) :</b></label><%= package.no_of_searches %></li>
-                <li><label><b>Start Date :</b></label><%= package.start_date.strftime("%d-%m-%Y") %></li>
-                <li><label><b>End Date :</b></label><%= package.expiry_date.strftime("%d-%m-%Y") %></li>
+                <li><label><b><%= t('Employer.package_description') %>:</b></label><%= package.description %></li>
+                <li><label><b><%= t('Employer.package_price') %> :</b></label><%= package.price %>
+                  <label><%= t('Employer.package_currency') %></label></li>
+                <li><label><b><%= t('Employer.package_jobs') %> :</b></label><%= package.no_of_jobs %></li>
+                <li><label><b><%= t('Employer.package_searches') %>:</b></label><%= package.no_of_searches %></li>
+                <li><label><b><%= t('Employer.package_start_date') %>
+                  :</b></label><%= package.start_date.strftime("%d-%m-%Y") %></li>
+                <li><label><b><%= t('Employer.package_end_date') %>
+                  :</b></label><%= package.expiry_date.strftime("%d-%m-%Y") %></li>
               </ul>
               <div class="select-btn-one">
                 <div class="select-left-bg-one"></div>
-                <div class="select-mid-bg-one"><%= link_to "Your plan", employer_billing_information_employer_index_path(:id =>package.id) %></div>
+                <div class="select-mid-bg-one"><%= link_to t('Employer.package_your_plan'), employer_billing_information_employer_index_path(:id => package.id) %></div>
                 <div class="select-right-bg-one"></div>
               </div>
             </div>
@@ -40,7 +42,7 @@
               </ul>
               <div class="select-btn">
                 <div class="select-left-bg"></div>
-                <div class="select-mid-bg"><%= link_to "Select", employer_billing_information_employer_index_path(:id =>package.id) %></div>
+                <div class="select-mid-bg"><%= link_to "Select", employer_billing_information_employer_index_path(:id => package.id) %></div>
                 <div class="select-right-bg"></div>
               </div>
             </div>
@@ -51,11 +53,6 @@
 <div class="clear"></div>
 
 <div class="payment-methods">
-  <h1>We Recieve</h1>
-
-  <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by
-    the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are
-    bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will,</p>
 
   <div class="payment-icons">
     <ul>

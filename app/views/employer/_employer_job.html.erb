@@ -5,20 +5,20 @@
   </div>
   <!--dashboard-post-profile-btn ends-->
   <div class="dashboard-content">
-    <h1>Jobs</h1>
+    <h1><%= t('job') %></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <div class="btn-mid-holder"><%= link_to "Create New Job", new_job_path(:eid => @employer), :class => "create-event", :style=>" color: #FFFFFF;text-decoration: none;" %></div>
+    <div class="btn-mid-holder"><%= link_to t('Employer.employer_create_job'), new_job_path(:eid => @employer), :class => "create-event", :style=>" color: #FFFFFF;text-decoration: none;" %></div>
     <p><br/>
     </p>
 
-    <h1>My<span class="red"> Jobs</span></h1>
+    <h1><%= t('Employer.employer')%> <span class="red"> <%= t('job') %> </span></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @jobs.blank? %>
-        <p>Total Number of Jobs <%= @jobs.count %></p>
+        <p><%= t('Employer.employer_total_jobs')%> <%= @jobs.count %></p>
         <table>
           <tr>
-            <th>Job Name</th>
-            <th>Actions</th>
+            <th><%= t('Employer.employer_job_name')%></th>
+            <th><%= t('Employer.employer_actions')%></th>
           </tr>
 
         <% @jobs.each do |job| %>
@@ -33,7 +33,7 @@
              <%end%>
             </table>
         <% else %>
-           <p> Currently, You don't have any posted Job!</p>
+           <p> <%= t('Employer.employer_no_jobs')%></p>
         <% end %>
   </div>
 </div>

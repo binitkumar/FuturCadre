@@ -5,7 +5,7 @@
   </div>
   <!--dashboard-post-profile-btn ends-->
   <div class="dashboard-content">
-    <h1>My Job Details </h1>
+    <h1><%= t('Employer.employer_job_details') %> </h1>
 
     <p><%= @job.description %> </p>
 
@@ -14,19 +14,19 @@
     <p><br/>
     </p>
 
-    <h1>My<span class="red"> Jobs</span></h1>
+    <h1><%= t('Employer.employer_my')%> <span class="red"> <%= t('job')%></span></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @applied_jobs.blank? %>
-        <p>Total Number of Job Applications <%= @applied_jobs.count %></p>
+        <p><%= t('Employer.total_applications')%> <%= @applied_jobs.count %></p>
 
         <table>
           <tr>
-            <th>Applicant Name</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date of Application</th>
-            <th>Contact</th>
-            <th>Download</th>
+            <th><%= t('Employer.application_name')%></th>
+            <th><%= t('profiles.first_name')%></th>
+            <th><%= t('profiles.last_name')%></th>
+            <th><%= t('Employer.application_date')%></th>
+            <th><%= t('Employer.application_contact')%></th>
+            <th><%= t('Employer.application_download')%></th>
           </tr>
           <% @applied_jobs.each do |job_app| %>
               <tr>

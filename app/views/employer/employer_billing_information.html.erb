@@ -1,52 +1,52 @@
 <div class="w100">
   <div class="page_bg">
     <div class="page_holder">
-      <h1>Pay with Paypal</h1>  <br/>
+      <h1><%= t('Employer.billing_method')%></h1>  <br/>
 
 
         <%= form_tag :controller => 'employer', :action => 'checkout' ,:id=> @package.id do %>
                <div class="a">
-                 <label> Billing Amount: </label>
+                 <label><%= t('Employer.billing_amount')%>: </label>
           <b>$ <%= @package.price%></b>
                 </div>    <br/>
-          <h2>Credit Card Information</h2>
+          <h2><%= t('Employer.billing_card')%></h2>
                      <div class="billing-info">
-                   <label>   First Name:</label>
+                   <label>   <%= t('profiles.first_name')%>:</label>
           <%= text_field_tag 'first_name' %>
                        </div>
            <div class="billing-info">
-                     <label> Last Name:</label>
+                     <label><%= t('profiles.last_name')%>:</label>
           <%= text_field_tag 'last_name' %>   </div>
            <div class="billing-info">
-                      <label>Credit Card Number:</label>
+                      <label><%= t('Employer.billing_card_num')%>:</label>
           <%= text_field_tag 'cc_number' %>  </div>
            <div class="billing-info">
-                     <label> Card Expiration Month:</label>
+                     <label> <%= t('Employer.billing_card_exp')%>:</label>
           <%= text_field_tag 'cc_expire_month' %> </div>
            <div class="billing-info">
-                      <label>Card Expiration Year:</label>
+                      <label><%= t('Employer.billing_card_exp_year')%>:</label>
           <%= text_field_tag 'cc_expire_year' %> </div>
            <div class="billing-info">
-                      <label>Verification Code:</label>
+                      <label><%= t('Employer.billing_card_num')%>:</label>
           <%= text_field_tag 'v_code' %>      </div>
 
 
 
-        <h2>Billing Information</h2>
+        <h2><%= t('Employer.billing_info')%></h2>
            <div class="billing-info">
-                    <label>  Address:</label>
+                    <label>  <%= t('profiles.address')%>:</label>
           <%= text_field_tag 'address' %></div>
           <div class="billing-info">
-                  <label>    City: </label>
+                  <label>   <%= t('profiles.city')%>: </label>
           <%= text_field_tag 'city' %></div>
               <div class="billing-info">
-                    <label>  State:    </label>
+                    <label>  <%= t('profiles.region')%>:    </label>
           <%= text_field_tag 'state' %>  </div>
                  <div class="billing-info">
-                   <label>   Country Code: </label>
+                   <label>   <%= t('profiles.country')%> Code: </label>
           <%= text_field_tag 'country' %>   </div>
            <div class="billing-info">
-                    <label>  Zip Code: </label>
+                    <label>  <%= t('profiles.zip')%>: </label>
           <%= text_field_tag 'zip' %></div>
 
           <br/><br/><br/><br/>

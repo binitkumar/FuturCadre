@@ -1,9 +1,9 @@
 <div id="container">
   <div class="dashboard-heading-theses mtop10">
-    <div class="name-theses">Name</div>
-    <div class="description-theses">Description</div>
-    <div class="salary-theses">No of Pages</div>
-    <div class="rating-theses">Published</div>
+    <div class="name-theses"><%= t('name') %></div>
+    <div class="description-theses"><%= t('description') %></div>
+    <div class="salary-theses"><%= t('Thesis.no_of_pages') %></div>
+    <div class="rating-theses"><%= t('Published') %></div>
   </div>
   <div id="Pagination" class="pagaination-holder"></div>
   <br style="clear:both;"/>
@@ -22,7 +22,7 @@
                     <div class="icon-text-two">
 
                       <%= link_to thes.name, thesis_details_theses_path(:id => thes.id) %>
-                     <!--<p> <#%= image_tag asset_path 'mem-icon.png' %>  <#%= thes.theses_users.count %> Members</p>-->
+                      <!--<p> <#%= image_tag asset_path 'mem-icon.png' %>  <#%= thes.theses_users.count %> Members</p>-->
                     </div>
                   </div>
                   <div class="description-hold-two"> <%= thes.description %> </div>

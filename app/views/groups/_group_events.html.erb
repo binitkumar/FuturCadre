@@ -34,7 +34,7 @@
 <div class="mid-cont-holder">
   <div id="question_answer">
            <% unless current_user.blank? %>
-        <button id="event-popup" class="question-button">Create Events</button>
+        <button id="event-popup" class="question-button"><%= t('Groups.create_events')%></button>
     <% end %>
 
         <%= render :partial => "groups/group_create_event" %>
@@ -45,19 +45,19 @@
     <%= form_for :event, :url => { :action => 'create_event' }, :html => { :id => 'add_event_form' }, :remote => true do |f| %>
         <div class="input-holder">
           <%= hidden_field_tag :group_id, @group.id %>
-          <label>Title</label>
+          <label><%= t('title')%></label>
           <%= f.text_field :title %>
         </div>
         <div class="input-holder">
-          <label>Start Time</label>
+          <label><%= t('Groups.start_time')%></label>
           <%= f.text_field :time_of_start, :class => "date-pick" %>
         </div>
         <div class="input-holder">
-          <label>End Time</label>
+          <label><%= t('Groups.end_time')%></label>
           <%= f.text_field :time_of_end, :class => "date-pick" %>
         </div>
         <div class="input-holder">
-          <label>Message</label>
+          <label><%= t('message')%></label>
           <%= f.text_area :description %>
         </div>
 

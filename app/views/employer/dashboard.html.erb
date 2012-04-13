@@ -3,30 +3,30 @@
     <div class="reg-tab-holder">
       <div class="reg-tab-holder-new tab-act">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder"><%= link_to "Home" %></div>
+        <div class="reg-mid-tab-holder"><%= link_to t("Employer.application_home") %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
 
       <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder"><%= link_to "My Jobs", employer_jobs_employer_index_path(:edi => @employer), :class => "employer-jobs" %></div>
+        <div class="reg-mid-tab-holder"><%= link_to t("Employer.application_jobs"), employer_jobs_employer_index_path(:edi => @employer), :class => "employer-jobs" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
       <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder"><%= link_to "My Thesis ", my_theses_employer_index_path(:id => @employer), :class => "thesis_link" %></div>
+        <div class="reg-mid-tab-holder"><%= link_to t("Employer.application_theses"), my_theses_employer_index_path(:id => @employer), :class => "thesis_link" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
       <div class="reg-tab-holder-new">
         <div class="reg-left-tab-holder"></div>
-        <div class="reg-mid-tab-holder"><%= link_to "My Projects", my_projects_projects_path(:id => @job_seeker), :class => "project_path" %></div>
+        <div class="reg-mid-tab-holder"><%= link_to t("Employer.application_projects"), my_projects_projects_path(:id => @job_seeker), :class => "project_path" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
 
 
     </div>
 
-    <h1>Employer<span class="red"> Dashboard</span></h1>
+    <h1><%= t('Employer.employer') %><span class="red"> <%= t('Employer.dashboard') %></span></h1>
     <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 
   </div>
@@ -65,14 +65,14 @@
         </div>
         <!--dashboard-post-profile-btn ends-->
         <div class="dashboard-content">
-          <h1>Dashboard</h1>
+          <h1><%= t('Employer.dashboard') %></h1>
 
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
           <p><b>Welcome Future Cadre Businesses</b></p>
 
           <p><br/>
 
-                <br/>
+            <br/>
             <br/>
             <br/>
 
@@ -85,27 +85,26 @@
 
           <!--  <a href="#">see all</a>  -->
 
-          <h1>My<span class="red"> Statistics</span></h1>
+          <h1><%= t('Employer.employer_my') %><span class="red"> <%= t('Employer.employer_statistic') %></span></h1>
 
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
           <% unless @employer.created_jobs.blank? %>
-              <p><label>Total Jobs Posted</label> <%= @employer.created_jobs.count %><br/>
-                <label>last Created Job</label> <%= @employer.created_jobs.last.created_at.strftime("%d-%m-%Y") %>
+              <p><label><%= t('Employer.employer_total_jobs') %></label> <%= @employer.created_jobs.count %><br/>
+                <label><%= t('Employer.employer_last_job') %></label> <%= @employer.created_jobs.last.created_at.strftime("%d-%m-%Y") %>
           <% else %>
-              Currently there is no Job created by you!
+              <%= t('Employer.employer_no_jobs')%>
           <% end %>
           <% unless @employer.created_projects.blank? %>
-              <p><label>Total Project(s) Created </label> <%= @employer.created_projects.count %><br/>
-                <label>last Created
-                  Project</label> <%= @employer.created_projects.last.created_at.strftime("%d-%m-%Y") %>
+              <p><label><%= t('Employer.employer_total_projects') %> </label> <%= @employer.created_projects.count %><br/>
+                <label><%= t('Employer.employer_last_project') %></label> <%= @employer.created_projects.last.created_at.strftime("%d-%m-%Y") %>
           <% else %>
-              Currently there is no project created by you!
+              <%= t('Employer.employer_no_projects') %>
           <% end %>
           <% unless @employer.created_theses.blank? %>
-              <p><label>Total Theses Created </label> <%= @employer.created_theses.count %><br/>
-                <label>last Created Thesis</label> <%= @employer.created_theses.last.created_at.strftime("%d-%m-%Y") %>
+              <p><label><%= t('Employer.employer_total_thesis') %> </label> <%= @employer.created_theses.count %><br/>
+                <label><%= t('Employer.employer_last_thesis') %></label> <%= @employer.created_theses.last.created_at.strftime("%d-%m-%Y") %>
           <% else %>
-              Currently there is no project created by you!
+              <%= t('Employer.employer_no_thesis') %>
           <% end %>
 
           <div class="buttons w100">
@@ -120,11 +119,11 @@
           </div>
           <!--  <a href="#">see all</a> -->
 
-          <h1>My<span class="red"> Subscription</span></h1>
+          <h1><%= t('Employer.employer_my')%><span class="red"><%= t('Employer.employer_subscription')%></span></h1>
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
-          <p><label>Total No of Groups Joined</label> <%= @employer.groups.count %><br/>
+          <p><label><%= t('Employer.employer_joined_groups')%></label> <%= @employer.groups.count %><br/>
 
-          <p><label>Total No of Projects Joined</label> <%= @employer.projects.count %><br/>
+          <p><label><%= t('Employer.employer_joined_projects')%></label> <%= @employer.projects.count %><br/>
 
 
           <p>Future Cadre is free and without obligation until January 31, 2012. Enjoy!<br/>

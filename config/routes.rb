@@ -44,7 +44,6 @@ FuturCadre::Application.routes.draw do
         get :new_manager
         get :set_manager
       end
-
     end
 
     resources :news do
@@ -53,16 +52,25 @@ FuturCadre::Application.routes.draw do
 
       end
     end
+
+    resources :packages do
+      collection do
+        get :user_package
+        get :set_package
+      end
+    end
+
+
   end
 
 
   devise_for :users, :controllers => {
-      :sessions => "users/sessions",
-      :confirmation => "users/confirmations",
-      :passwords => "users/passwords",
+      :sessions      => "users/sessions",
+      :confirmation  => "users/confirmations",
+      :passwords     => "users/passwords",
       :registrations => "users/registrations",
-      :unlocks => "users/unlocks",
-      :omniauth => "users/omniauth_callbacks#create"
+      :unlocks       => "users/unlocks",
+      :omniauth      => "users/omniauth_callbacks#create"
   }
 
   devise_scope :user do
@@ -154,7 +162,7 @@ FuturCadre::Application.routes.draw do
       get :employer_packages
       get :employer_billing_information
       post :checkout
-      get  :transaction_success_show
+      get :transaction_success_show
     end
   end
 

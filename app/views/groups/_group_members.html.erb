@@ -10,18 +10,18 @@
                   <% if group_user.profile.blank? %>
                       <h1><%= group_user.name %> </h1>
 
-                      <p>sit amet, consectetur </p>
+
                   <% else %>
                       <h1><%= group_user.profile.full_name %> </h1>
 
-                      <p>sit amet, consectetur </p>
+
                   <% end %>
                 </div>
               </div>
           <% end %>
              <% else %>
          <div class="post-cont-hold">
-           <h1> Currently No Registered User! </h1>
+           <h1> <%= t('Groups.no_registered_user')%>! </h1>
              </div>
 
       <% end %>

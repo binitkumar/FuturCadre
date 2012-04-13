@@ -2,7 +2,7 @@
   <div class="shadow"></div>
   <div class="popup-hold">
 
-    <div class="popup-top-holder">Job Application</div>
+    <div class="popup-top-holder"><%= t('jobs.job_application') %></div>
     <div class="popup-mid-holder ">
       <%= form_tag('jobs/apply_job', :id => 'apply_job_form') %>
       <div class="input-holder" style="width:59%;">
@@ -12,18 +12,18 @@
       <%= hidden_field_tag :job_id, @job.id %>
       <div class="input-holder">
         <% unless @cvs.blank? %>
-            <label>CV</label>
+            <label><%= t('jobs.cv') %></label>
             <% @cvs.each do |cv| %>
                 <%= radio_button_tag :"cv_id", cv.id %>
-               <%= cv.photo_file_name %>
+                <%= cv.photo_file_name %>
             <% end %>
         <% end %>
 
       </div>
 
       <div class="pop-up-btn-new">
-        <div id="application_job" class="pop-up-btn">Send</div>
-        <div id="exit_job" class="pop-up-btn" onclick="close_popup()">Exit</div>
+        <div id="application_job" class="pop-up-btn"><%= t('send') %></div>
+        <div id="exit_job" class="pop-up-btn" onclick="close_popup()"><%= t('exit') %></div>
       </div>
 
 
@@ -40,9 +40,9 @@
 
 <script type="text/javascript">
 
-    $("#application_job").click(function() {
+    $("#application_job").click(function () {
         $('#apply_job_form').ajaxSubmit({
-            success: function(data) {
+            success:function (data) {
                 alert("Your application has been successfully submitted");
                 $(".content-holder").html(data.html);
                 close_popup();
@@ -56,9 +56,9 @@
         $(".popup-hold").hide();
         $(".shadow").hide();
         $.ajax({
-            url: '/jobs/details?id=' + '<%= @job.id%>' ,type: 'get', dataType: 'json',
-            processData: false,
-            success: function(data) {
+            url:'/jobs/details?id=' + '<%= @job.id%>', type:'get', dataType:'json',
+            processData:false,
+            success:function (data) {
 
                 $(".content-holder").html(data.html);
             }

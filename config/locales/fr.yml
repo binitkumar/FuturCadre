@@ -1,135 +1,430 @@
-# Sample localization file for French. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
-fr:
-  header:
-    language: "langage"
-    find_jobs: "Trouver des offres"
-    news: "Nouvelles"
-    job_seeker: "Demandeur d'emploi"
-    employer: "Employeur"
-    forgot_password:           "Mot de passe oublié?"
-  home_title: "Lorem ipsum dolor sit amet,"
-  home_sub_title: "consectetur adipisicing elit, sed do eiusmod tempor"
-  home_description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-  home_job_search: "Recherche d'emploi"
-  home_job_search_title: "Titre de l'emploi"
-  home_job_search_category: "Catégorie d'emploi"
-  home_job_search_location: "Lieu"
-  home_job_advance_search: "Recherche avance"
-  home_browse_jobs_by: "Parcourir les offres par"
-  home_browse_company: "Société"
-  home_browse_region: "Région"
-  home_browse_type: "Type"
-  home_browse_type: "Type"
-  home_popular: "Les plus populaires"
-  home_vacancies: "Offres"
-  home_featured: "En vedette"
-  home_groups: "Groupes"
-  home_projects: "Projets"
-  home_employers: "Employeurs"
-  home_hiring: "Commencer à Embaucher"
-  home_create_job: "Créer un nouveau profil d'emploi  "
-  home_account: "Compte"
-  home_logout: "Déconnexion"
-  home_my_account: "Mon Compte"
-
-  users:
-      user_name: "Nom d'utilisateur"
-      password: "Mot de passe"
-      conf_password: "Confirmer Mot de passe"
-  email: "Ce serait la messagerie principal utilisé par l'application"
-  password_helper: "Mot de passe devrait être d'au moins 6 caractères"
-  conf_password_helper: "Re-enter password pour éviter les erreurs typo"
-  privacy_policay: "J'ai lu la politique de confidentialité et de s'entendre sur les termes et conditions"
-  account: "Compete"
-  register: "Me S'enregistrer"
-  user_register_as: "Inscrivez-vous comme"
-
-  button:
+--- 
+fr: 
+  Employer: 
+    application_contact: Contact
+    application_date: "Date of Application"
+    application_download: Download
+    application_home: Homa
+    application_jobs: ""
+    application_message: ""
+    application_name: "Application Name"
+    application_projects: ""
+    application_send_msg: ""
+    application_theses: Theses
+    application_thesis_created_at: "Created at"
+    application_thesis_name: "Thesis Name"
+    biiling_card_ver_code: "Verification Code"
+    billing_amount: Amount
+    billing_card: "Credit Card Information"
+    billing_card_exp: "Card Expiration Month"
+    billing_card_exp_year: "Card Expiration Year"
+    billing_card_num: "Credit Card Number"
+    billing_info: "Billing Information"
+    billing_method: "Pay with Paypal"
+    dashboard: Dashboard
+    employer: Employer
+    employer_actions: Actions
+    employer_create_job: "Create New Job"
+    employer_job_details: "My Job Details"
+    employer_job_name: "Job Name"
+    employer_joined_groups: "Total No of Groups Joined"
+    employer_joined_projects: "Total No of Projects Joined"
+    employer_last_job: "last Created Job"
+    employer_last_project: "last Created Project"
+    employer_last_thesis: "last Created Thesis"
+    employer_my: My
+    employer_no_jobs: "Currently there is no Job created by you!"
+    employer_no_projects: "Currently there is no Project created by you!"
+    employer_no_thesis: "Currently there is no Thesis created by you!"
+    employer_statistic: Statistics
+    employer_subscription: Subscription
+    employer_total_jobs: "Total Jobs Posted"
+    employer_total_projects: "Total Projects Created"
+    employer_total_thesis: "Total Theses Created"
+    package_currency: USD
+    package_description: Description
+    package_end_date: "End Date"
+    package_jobs: Jobs
+    package_plans: "Packages / Plans"
+    package_price: Price
+    package_searches: Search(es)
+    package_start_date: "Start Date"
+    package_your_plan: "Your Plan"
+    search_profile_result: "No of Profiles"
+    search_result: "Number of Results"
+    search_resume: Resume
+    search_select: Select
+    total_applications: "Total Number of Job Application"
+  Groups: 
+    ask_question: ""
+    create_events: ""
+    end_time: ""
+    enter_salary: ""
+    event: ""
+    group: ""
+    member: ""
+    no_group: ""
+    no_registered_user: ""
+    offers: ""
+    post_answer: ""
+    question: ""
+    question_type: ""
+    rating: ""
+    salary: ""
+    start_time: ""
+    update_salary: ""
+    view_all_members: ""
+  Job_Seeker: 
+    my_application: ""
+    status: ""
+  News: 
+    news: News
+    picture: "News Picture"
+    suggest: Suggest
+  Project: 
+    field_search: "Field Search"
+    industry: "Choice Industry"
+    list_project: "List of Projects"
+    name: "Name of the Project"
+    page: Page
+    picture: "Project Picture"
+    presentation: Presentation
+    project: Project
+    project_invite: Invite
+    project_invite_user: "Invite User"
+    project_members: "Project Member(s)"
+    project_numbers: "Total Number of Projects"
+    skills: Skill
+    small_description: "Small Description"
+    social_links: "Social Links"
+  Thesis: 
+    categories: Categories
+    download_thesis: "Download Thesis"
+    file_name: "File Name"
+    no_of_pages: "No of Pages"
+    no_thesis: " No Thesis found Found!"
+    published: "Published Date"
+    theses: Theses
+    thesis: Thesis
+    thesis_category: "Thesis Category"
+    thesis_document: "Thesis Document"
+  account: Compete
+  activerecord: 
+    errors: 
+      messages: 
+        record_invalid: ""
+        taken: ""
+  administrator: Administrator
+  basic: Base
+  button: 
+    edit: Edit
     find_job: "Trouvez d'emploi"
     post_resume: "Affichez votre"
-    save: "Save"
-    edit: "Edit"
-
-  search:
-    search_results: "Résultats de la recherche"
-    apply: "Appliquer"
-    not_found: "Désolé! Aucune offre d'empl"
-
-  profiles:
-      user_name:  "Nom d'utilisateur"
-      password:  "Pass"
-      confirm_password: "Confirmer Mot de passe"
-      first_name:  "Prénom"
-      last_name: "Nom"
-      name: "Nom"
-      address: "Adresse"
-      country: "État"
-      region: "Région"
-      city: "Ville"
-      zip: "Code Postal"
-      phone: "Téléphone"
-      company_name: "Nom de l'entreprise"
-      fax: "Télécopieur"
-      website: "Site Web"
-      picture: "Décrire"
-      profile_picture: "Image Profil"
-  company: "Compagnie"
-  basic: "Base"
-  information: "Information"
-  education: "l'éducation"
-  profession: "Professionnel"
-  resume: "Publiez votre CV"
-  category: "Catégorie"
-  profile_degree_level: "Niveau Licence"
-  profile_major_subject: "Sujet Majeur"
-  profile_institute: "Institut"
-  profile_year: "Année"
-  profile_industry: "Professionnel de l'industrie"
-  profile_job_title: "Titre de l'emploi Récentes"
-  profile_experience: "Expérience professionnelle totale"
-  profile_company_nam: "Nom de l'entreprise"
-  profile_carrer_level: "Niveau de Carrière"
-  profile_upload: "Mise à jour le profil "
-  profile_my: "Mon"
-  profile_profile: "Profil"
-
-  link_to:
-         edit:  "Editer"
-         done:  "Fait"
-
-
-  jobs:
-        name: "Titre de l'emploi"
-        description: "Sorte"
-        comp_annual: "Salaire Annuel"
-        bonus: "Bonus Annuel"
-        commission: "Mandat"
-        employer_type: "Type d'Employeur"
+    save: Save
+  category: Catégorie
+  company: Compagnie
+  companyinfo: 
+    city: Ville
+    country: État
+    region: Région
+  conf_password_helper: "Re-enter password pour éviter les erreurs typo"
+  contact_administrator: "Contact Administrator"
   create_job: "Créer un travail"
-  job_detail: "S'il vous plaît entrer les informations pour le travail que vous souhaitez créer "
-  job:   "Job"
-  responsibilities: "Responsabilités"
-  skills: "Compétences"
-  job_responsibility: "Ajouter une Responsabilité"
-  job_skill: "Ajouter une compétence"
-  job_descripton: "Description du Poste"
-  job_skill_require: "Compétences Requises"
+  create_new: "Create New"
+  created_at: "Created At"
+  dashboard: Dashboard
+  date: Date
+  date_of_start: "Date of Start"
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        one: ""
+        other: ""
+      about_x_months: 
+        one: ""
+        other: ""
+      about_x_years: 
+        one: ""
+        other: ""
+      almost_x_years: 
+        one: ""
+        other: ""
+      half_a_minute: ""
+      less_than_x_minutes: 
+        one: ""
+        other: ""
+      less_than_x_seconds: 
+        one: ""
+        other: ""
+      over_x_years: 
+        one: ""
+        other: ""
+      x_days: 
+        one: ""
+        other: ""
+      x_minutes: 
+        one: ""
+        other: ""
+      x_months: 
+        one: ""
+        other: ""
+      x_seconds: 
+        one: ""
+        other: ""
+  description: Description
+  devise: 
+    confirmations: 
+      confirmed: "Votre compte a été validé, vous êtes maintenant connecté"
+      resend_instructions: "Ré-envoyer les instructions de confirmation"
+      send_instructions: "Vous allez recevoir les instructions nécessaires à la confirmation de votre compte dans quelques minutes"
+    failure: 
+      already_authenticated: "Vous êtes déjà connecté !"
+      inactive: "Votre compte n'est pas encore activé."
+      invalid: "Email ou mot de passe incorrect."
+      invalid_token: "Jeton d'authentification incorrect."
+      locked: "Votre compte est verrouillé."
+      timeout: "Votre session est expirée, veuillez vous reconnecter pour continuer."
+      unauthenticated: "Vous devez vous connecter ou vous inscrire pour continuer."
+      unconfirmed: "Vous devez valider votre compte pour continuer."
+    mailer: 
+      change: "Changer mon mot de passe"
+      click_to_unlock: "Cliquez sur le lien ci-dessous pour déverrouiller votre compte"
+      confirm: "Valider mon compte"
+      confirmation_instructions: 
+        subject: "Instructions de confirmation"
+      hello: "Bienvenu %{email} !"
+      locked: "Votre compte a été bloqué à cause d'un nombre excessif de tentatives de connexion."
+      password_wont_change: "Votre mot de passe ne sera pas changé tant que vous n'aurez pas accédé au lien ci-dessus pour en créer un nouveau."
+      please_ignore: "Si vous n'avez pas fait cette demande, veuillez ignorer cet email."
+      reset_password_instructions: 
+        subject: "Instructions pour changer le mot de passe"
+      someone_requested: "Un changement de mot de passe a été demandé. Vous pouvez le faire en cliquant sur le lien ci-dessous."
+      unlock: "Déverrouiller mon compte"
+      unlock_instructions: 
+        subject: "Instructions pour déverrouiller le compte"
+      welcome: "Bienvenu %{email} !"
+    omniauth_callbacks: 
+      failure: "Nous n'avons pas pu vous authentifier via %{kind} : '%{reason}'."
+      success: "Authentifié avec succès via %{kind}."
+    passwords: 
+      change_my_password: "Changer mon mot de passe"
+      change_your_password: "Changez votre mot de passe"
+      confirm_new_password: "Confirmer le nouveau mot de passe"
+      new_password: "Nouveau mot de passe"
+      send_instructions: "Vous allez recevoir les instructions de réinitialisation du mot de passe dans quelques instants"
+      send_reset_password_instructions: "Envoyez-moi les instructions de réinitialisation"
+      updated: "Votre mot de passe a été édité avec succès, vous êtes maintenant connecté"
+    registrations: 
+      back: Retour
+      cancel_my_account: "Supprimer mon compte"
+      confirm: "Êtes-vous sûr ?"
+      current_password_label: "Nous avons besoin de votre mot de passe actuel pour confirmer les changements"
+      destroyed: "Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt."
+      edit: "Editer %{resourcename}"
+      inactive_signed_up: "Votre compte a été trouvé. Cependant, nous n'avons pas pu vous connecter car votre compte est %{reason}."
+      leave_blank: "laissez vide si vous ne désirez pas le changer"
+      missing_captcha: "Captcha manquantes, S'il vous plaît entrer dans le champ donné à nouveau."
+      missing_privacy: "S'il vous plaît accepter le terme"
+      signed_up: "Bienvenu, vous êtes connecté"
+      unhappy: Mécontent
+      update: Modifier
+      updated: "Votre compte a été modifié avec succès."
+    sessions: 
+      signed_in: Connecté.
+      signed_out: Déconnecté.
+    shared: 
+      didnt_receive_confirmation_instructions?: "Email de validation non reçu ?"
+      didnt_receive_unlock_instructions?: "Email de déverrouillage non reçu ?"
+      forgot_password: "Mot de passe oublié ?"
+      sign_in: "Se connecter"
+      sign_in_with_omniauth: "Se connecter via %{provider}"
+      sign_up: S'enregistrer
+    unlocks: 
+      resend_instructions: "Ré-envoyer les instructions de déblocage"
+      send_instructions: "Vous allez recevoir les instructions nécessaires au déblocage de votre compte dans quelques instants"
+      unlocked: "Votre compte a été débloqué avec succès, vous êtes maintenant connecté."
+  education: l'éducation
+  email: "Ce serait la messagerie principal utilisé par l'application"
+  errors: 
+    messages: 
+      already_confirmed: "a déjà été validé(e)"
+      not_found: "n'a pas été trouvé(e)"
+      not_locked: "n'était pas verrouillé(e)"
+      not_saved: 
+        one: "1 erreur a empêché ce(tte) %{resource} d'être sauvegardé(e) :"
+        other: "%{count} erreurs ont empêché ce(tte) %{resource} d'être sauvegardé(e) :"
+  exit: Exit
+  experience: Experience
+  from: From
+  header: 
+    employer: Employeur
+    find_jobs: "Trouver des offres"
+    forgot_password: "Mot de passe oublié?"
+    group: Groups
+    group_job: "Job Group"
+    group_school: "School Group"
+    home: Home
+    job_seeker: "Demandeur d'emploi"
+    language: langage
+    messages: Messages
+    news: Nouvelles
+    order: Order
+    project: Projects
+    thesis: Thesis
+  home_account: Compte
+  home_browse_company: Société
+  home_browse_jobs_by: "Parcourir les offres par"
+  home_browse_region: Région
+  home_browse_type: Type
+  home_create_job: "Créer un nouveau profil d'emploi  "
+  home_description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  home_employers: Employeurs
+  home_featured: "En vedette"
+  home_groups: Groupes
+  home_hiring: "Commencer à Embaucher"
+  home_job_advance_search: "Recherche avance"
+  home_job_search: "Recherche d'emploi"
+  home_job_search_category: "Catégorie d'emploi"
+  home_job_search_location: Lieu
+  home_job_search_title: "Titre de l'emploi"
+  home_logout: Déconnexion
+  home_my_account: "Mon Compte"
+  home_popular: "Les plus populaires"
+  home_projects: Projets
+  home_sub_title: "consectetur adipisicing elit, sed do eiusmod tempor"
+  home_title: "Lorem ipsum dolor sit amet,"
+  home_vacancies: Offres
+  immediate: Immediate
+  information: Information
+  job: Job
   job_apply: "Postuler pour cet emploi"
-  job_similar: "Davantage d'emplois similaires"
+  job_descripton: "Description du Poste"
+  job_detail: "S'il vous plaît entrer les informations pour le travail que vous souhaitez créer "
   job_industry: "Industrie "
-
+  job_responsibility: "Ajouter une Responsabilité"
+  job_similar: "Davantage d'emplois similaires"
+  job_skill: "Ajouter une compétence"
+  job_skill_require: "Compétences Requises"
+  jobs: 
+    Date_of_start: "Contract Start Date"
+    Duration: "Duration of Job"
+    add_skills: "Add Skills"
+    and_requirement: "and Requirements"
+    annual_salary: "Annual Salary"
+    bonus: "Annual Bonus"
+    category: "Job Category"
+    commission: Commission
+    comp_annual: "Annual Salary"
+    contract: Contract
+    contract_duration: "Contract Duration"
+    cv: CV
+    description: Description
+    education: Education
+    education_level: "Education Level"
+    employer_type: "Employer Type"
+    industry_sector: "Industry Sector"
+    job_application: "Job Application"
+    job_stat: "Job Stats"
+    languages: Languages
+    location: Location
+    name: "Job Title"
+    negotiable: Negotiable
+    offer: "an Offer"
+    profile: "Required Profile"
+    publish: "I publish"
+  language: Language
+  level: Level
+  link_to: 
+    done: Fait
+    edit: Editer
+  message: Message
+  missing_privacy: "S'il vous plaît accepter le terme."
   missiong_captch: "Captcha manquantes, S'il vous plaît entrer dans le champ donné à nouveau."
-  missing_privacy:  "S'il vous plaît accepter le terme."
-
-  simple_captcha:
-    message:
-        default: "Code secret ne correspond pas à l'image"
-        user: "L'image et le code secret, étaient différents"
-        label: "Tapez le code de l'image"
-  companyinfo:
-      country: "État"
-      region:  "Région"
-      city:    "Ville"
-
+  name: Name
+  no_comments: "Currently No Comments"
+  on_this_date: "Or on this date"
+  password_helper: "Mot de passe devrait être d'au moins 6 caractères"
+  personalize: "Personalize this offer"
+  privacy_policay: "J'ai lu la politique de confidentialité et de s'entendre sur les termes et conditions"
+  profession: Professionnel
+  profile_Are_you_willing_to_relocate: "Are you willing to relocate"
+  profile_Are_you_willing_to_travel: "Are you willing to relocate"
+  ? "profile_When_are_you _available_to_start"
+  : "When are you available to start"
+  profile_add_more_education: "Add More Education Information"
+  profile_add_more_profession: "Add More Profession Experience"
+  profile_basic_information: "Basic Information"
+  profile_carrer_level: "Niveau de Carrière"
+  profile_category: "Professional Category"
+  profile_company_information: "Company Information"
+  profile_company_nam: "Nom de l'entreprise"
+  profile_currently_employed: "Currently I am Employed Here"
+  profile_date_of_end: "Date of End"
+  profile_date_of_start: "Date of Start"
+  profile_degree_level: "Niveau Licence"
+  profile_desired_job_contract: "Desired Job Contract"
+  profile_desired_job_status: "Job Status"
+  profile_desired_salary_range: "Desired Salary"
+  profile_edu_information: "Education Information"
+  profile_experience: "Expérience professionnelle totale"
+  profile_industry: "Professionnel de l'industrie"
+  profile_institute: Institut
+  profile_job_title: "Job Title"
+  profile_location: Location
+  profile_major_subject: "Sujet Majeur"
+  profile_my: Mon
+  profile_my_account: "My account"
+  profile_profession_category: "Profession Category"
+  profile_profession_experience: "Profession Experience"
+  profile_profession_industry: "Profession Industry"
+  profile_profession_information: "Profession Information"
+  profile_profile: Profil
+  profile_search_resume: "Make Your Resume Searchable"
+  profile_upload: "Update Profile"
+  profile_work_authorization: "Work Authorization"
+  profile_year: Year
+  profiles: 
+    address: Adresse
+    city: Ville
+    company_name: "Nom de l'entreprise"
+    confirm_password: "Confirmer Mot de passe"
+    country: État
+    fax: Télécopieur
+    first_name: Prénom
+    last_name: Nom
+    name: Nom
+    password: Pass
+    phone: Téléphone
+    picture: Décrire
+    profile_picture: "Image Profil"
+    region: Région
+    user_name: "Nom d'utilisateur"
+    website: "Site Web"
+    zip: "Code Postal"
+  publication: Publication
+  publish_on_futur_cadre: "Publish this job on Future Cadre"
+  receive_an_email: "Receive an email on this address"
+  register: "Me S'enregistrer"
+  remove: remove
+  required: Required
+  responsibilities: Responsabilités
+  resume: "Publiez votre CV"
+  save_and_next: "Save and Next"
+  search: Search
+  send: Send
+  simple_captcha: 
+    message: 
+      default: "Code secret ne correspond pas à l'image"
+      label: "Tapez le code de l'image"
+      user: "L'image et le code secret, étaient différents"
+  skills: Compétences
+  subject: Subject
+  title: Title
+  update: Update
+  user_register_as: "Inscrivez-vous comme"
+  users: 
+    conf_password: "Confirmer Mot de passe"
+    password: "Mot de passe"
+    user_name: "Nom d'utilisateur"
+  view: View
+  wall: Wall

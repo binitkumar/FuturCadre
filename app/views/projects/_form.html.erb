@@ -10,19 +10,19 @@
             </ul>
           </div>
       <% end %>
-      <div class="head-text">CREATE YOUR PROJECT</div>
+      <div class="head-text"></div>
       <div class="project-inputs">
-        <label>Name of the Project</label>
+        <label><%= t('Project.name')%></label>
         <%= f.text_field :name %>
       </div>
       <!--projects input ends-->
       <div class="project-inputs">
-        <label>Small Descrition</label>
+        <label><%= t('Project.small_description')%></label>
         <%= f.text_field :tag_line %>
       </div>
       <!--projects input ends-->
       <div class="project-inputs">
-        <label>Project Picture</label>
+        <label><%= t('Project.picture')%></label>
         <%= fields_for :photo do |image| %>
             <%= image.file_field :image %>
         <% end %>
@@ -30,7 +30,7 @@
 
       <div class="project-inputs">
 
-        <label>Country</label>
+        <label><%= t('profiles.country')  %></label>
 
         <div id="country_project">
           <%= render :partial => "shared/countries", :locals => { :object_collection => "project" } %>
@@ -38,7 +38,7 @@
       </div>
       <!--projects input ends-->
       <div class="project-inputs">
-        <label>Region</label>
+        <label><%= t('profiles.region')  %></label>
 
         <div id="regions_project">
           <%= render :partial => "shared/regions", :locals => { :object_collection => "project" } %>
@@ -46,7 +46,7 @@
       </div>
       <!--projects input ends-->
       <div class="project-inputs">
-        <label>City</label>
+        <label><%= t('profiles.city')  %></label>
 
         <div id="cities_project">
           <%= render :partial => "shared/cities", :locals => { :object_collection => "project" } %>
@@ -61,7 +61,7 @@
       <!--project-select ends-->
 
       <div class="project-select">
-        <label>Social Links</label>
+        <label><%= t('Project.social_links')  %></label>
 
         <div class="socialz">
           <img src="/assets/twitter.png"/>
@@ -81,12 +81,12 @@
       </div>
       <!--project-select ends-->
       <div class="project-inputs">
-        <label>Skill</label>
+        <label><%= t('Project.skills')  %></label>
         <%= f.text_field :skill %>
       </div>
       <div class="presentation">
         <div class="present-detail">
-          <label>Presentation</label>
+          <label><%= t('Project.presentation')  %></label>
 
           <div class="present-box">
             <div class="box-left"></div>
@@ -101,7 +101,7 @@
       <!--presentation ends-->
       <div class="presentation">
         <div class="present-detail">
-          <label>Field of Search</label>
+          <label><%= t('Project.field_search')  %></label>
 
           <div class="present-box">
             <div class="box-left"></div>

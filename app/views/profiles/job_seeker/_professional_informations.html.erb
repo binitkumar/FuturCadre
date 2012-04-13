@@ -3,50 +3,50 @@
       <% @professional_informations.each do |info| %>
           <div class="info-box">
             <div class="info-detail">
-              <label>Job Title</label>
+              <label><%= t('profile_job_title') %></label>
 
               <div class="value"><%= info.job_title %></div>
             </div>
 
             <div class="info-detail">
-              <label>Company Name</label>
+              <label><%= t('profile_company_nam') %></label>
 
               <div class="value"><%= info.company_name %></div>
             </div>
 
             <div class="info-detail">
-              <label>Professional Experience</label>
+              <label><%= t('profile_profession_experience') %></label>
 
               <div class="value"><%= info.profession_experience %></div>
             </div>
 
             <div class="info-detail">
-              <label>Professional Industry</label>
+              <label><%= t('profile_profession_industry') %></label>
 
               <div class="value"><%= info.sector.value %></div>
             </div>
 
             <div class="info-detail">
-              <label>Professional Category</label>
+              <label><%= t('profile_profession_category') %></label>
 
               <div class="value"><%= info.category.name %></div>
             </div>
 
             <div class="info-detail">
-              <label>Date of Start</label>
+              <label><%= t('profile_date_of_start') %></label>
               <% unless info.start_date.blank? %>
                   <div class="value"><%= info.start_date.strftime("%b. %Y") %></div>
               <% end %>
             </div>
             <div class="info-detail">
-              <label>Date of End</label>
+              <label><%= t('profile_date_of_end') %></label>
               <% unless info.end_date.blank? %>
                   <div class="value"><%= info.end_date.strftime("%b. %Y") %></div>
               <% end %>
             </div>
 
             <div class="save-button-new">
-              <%= link_to "remove", remove_prof_info_profiles_path(:profile_id => @profile.id, :id => info.id), :class => "remove-profession" %>
+              <%= link_to t('remove'), remove_prof_info_profiles_path(:profile_id => @profile.id, :id => info.id), :class => "remove-profession" %>
             </div>
 
           </div>

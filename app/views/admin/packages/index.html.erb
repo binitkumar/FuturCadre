@@ -1,0 +1,18 @@
+<h1>Listing Packages</h1>
+<%#= link_to 'New Category', new_admin_category_path %><br />
+<table>
+  <tr>
+    <th>Name</th>
+    <th> Description</th>
+    <th>Price</th>
+  </tr>
+
+  <% @packages.each do |pack| %>
+      <tr>
+        <td><%= link_to pack.name %></td>
+        <td><%= pack.description %></td>
+        <td><%= link_to pack.price %></td>
+      </tr>
+  <% end %>
+  <%= link_to "Set Packages", user_package_admin_packages_path %>
+</table>

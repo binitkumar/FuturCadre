@@ -1,7 +1,7 @@
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
   <div class="basic-info mtop10">
-    <h1>Project<span class="red"> Dashboard</span></h1>
+    <h1><%= t('Project.project')%><span class="red">  <%= t('dashboard')  %></span></h1>
     <img src="/assets/basic-info-bot-bar.png" alt=""/>
   </div>
 
@@ -38,7 +38,7 @@
     </div>
     <!--due projects ends-->
     <% if user_signed_in? && current_user.id == @project.owner_id %>
-        <div class="text-btn" onclick="invite_user('<%= @project.id%>')">Invite Members</div>
+        <div class="text-btn" onclick="invite_user('<%= @project.id%>')"><%= t('invite_member')%></div>
     <% end %>
   </div>
   <!--dashboard-info-image ends-->
@@ -54,7 +54,7 @@
     </div>
     <!--result contents ends-->
     <div class="detail-info">
-      <h1 style="margin-top:10px;">Description</h1>
+      <h1 style="margin-top:10px;"><%= t('Project.small_description')  %></h1>
 
       <div class="present-box" style="margin-top:10px; margin-left:0;">
         <div class="box-left"></div>
@@ -90,13 +90,13 @@
           <% if current_user.projects.include?(@project) == false && current_user.id != @project.owner_id %>
 
               <div class="left-holder"></div>
-              <div class="mid-holder" onclick="proj_invite('<%= @project.id%>')"><%= link_to "Request to Join", "javascript:void(0)" %></div>
+              <div class="mid-holder" onclick="proj_invite('<%= @project.id%>')"><%= link_to t('request_to_join'), "javascript:void(0)" %></div>
               <div class="right-holder"></div>
 
           <% end %>
       <% else %>
           <div class="left-holder"></div>
-          <div class="mid-holder" onclick="proj_invite('<%= @project.id%>')"><%= link_to "Request to Join", "javascript:void(0)" %></div>
+          <div class="mid-holder" onclick="proj_invite('<%= @project.id%>')"><%= link_to t('request_to_join'), "javascript:void(0)" %></div>
           <div class="right-holder"></div>
 
 

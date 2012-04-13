@@ -1,15 +1,15 @@
 <div class="dashboard-content-right">
   <div style="width: 97%;border-bottom: 4px solid #991514;margin-bottom: 20px;">
-    <h1 style="margin-top: 28px;">Thesis <span class="red"> Information</span></h1>
+    <h1 style="margin-top: 28px;"> <%= t('Thesis.thesis') %> <span class="red"> <%= t('information') %></span></h1>
   </div>
 
   <% unless @thesis.blank? %>
-      <p><label>Name:</label>        <%= @thesis.name %> <br/>
+      <p><label><%= t('name') %>:</label>        <%= @thesis.name %> <br/>
 
-      <p><label>Description:</label> <%= @thesis.description %></p>  <br/>
-      <label>Date of Publication:</label>     <%= @thesis.date_of_publish.strftime("%d-%m-%Y") %>  <br/>
-      <label>No of Pages:</label>        <%= @thesis.no_of_pages %>  <br/>
-      <label>Thesis File Name:</label>
+      <p><label><%= t('description') %>:</label> <%= @thesis.description %></p>  <br/>
+      <label><%= t('Thesis.published') %>:</label>     <%= @thesis.date_of_publish.strftime("%d-%m-%Y") %>  <br/>
+      <label><%= t('Thesis.no_of_pages') %>:</label>        <%= @thesis.no_of_pages %>  <br/>
+      <label><%= t('Thesis.file_name') %>:</label>
       <% unless @thesis.photo.blank? %>        <%= @thesis.photo.image_file_name %>  <br/>
       <% end %>
 

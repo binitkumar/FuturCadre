@@ -2,16 +2,16 @@
 <div class="dashboard-right">
   <div class="w100 mtop10">
     <div class="search-field">
-      <%= render :partial=> "search_theses" %>
+      <%= render :partial => "search_theses" %>
     </div>
   </div>
 
   <div class="w100">
     <div class="dashboard-heading mtop10">
-      <div class="name">Name</div>
-      <div class="description">Description</div>
-      <div class="salary">No of Pages</div>
-      <div class="rating">Published</div>
+      <div class="name"><%= t('name') %></div>
+      <div class="description"><%= t('description') %></div>
+      <div class="salary"><%= t('Thesis.no_of_pages') %></div>
+      <div class="rating"><%= t('Thesis.published') %></div>
     </div>
     <% unless @thesis_result.blank? %>
         <% @thesis_result.each do |thesis| %>
@@ -32,7 +32,7 @@
         <% end %>
     <% else %>
 
-        <h1> No Thesis found Found!!</h1>
+        <h1> <%= t('Thesis.no_thesis') %></h1>
         <%= link_to 'Back', theses_path %>
 
 

@@ -5,7 +5,7 @@
 	<% elsif current_user.employer? %>
 		<%= form_for @profile, :url =>{ :action => 'update_employer', :controller => 'profiles', :id => @profile.id, :a_id => @asset, :comp_id =>@company_information.id, :org_id => @org_photo}, :html =>{ :id => "create_profile_form", :onsubmit =>true, :multipart => true } do |f| %>
 			<%= render :partial => "employer_form", :locals => { :f => f } %>
-			<div class="save-button-new basic-save"> <%= f.submit "Save" %></div>
+			<div class="save-button-new basic-save"> <%= f.submit t('button.save') %></div>
 		<% end %>
 	<% end %>
 </div>

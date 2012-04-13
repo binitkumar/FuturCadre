@@ -32,10 +32,10 @@
       <div class="w100 mtop20">
         <div class="job-cont-hold">
           <div class="accountants"><label>
-            Title:</label><%= @question.name %>
+            <%= t('title')%>:</label><%= @question.name %>
           </div>
-          <div class="result-text"><label> Category:</label> <%= @question.question_category.name %></div>
-          <div class="result-text"><label>Descripton:</label><%= @question.body %> </div>
+          <div class="result-text"><label> <%= t('category')%>:</label> <%= @question.question_category.name %></div>
+          <div class="result-text"><label><%= t('description')%>:</label><%= @question.body %> </div>
           <div class="date-text"> <%= @question.created_at.strftime("%d-%m-%Y") %>
 
           </div>
@@ -49,7 +49,7 @@
           <div class="w100 mtop20">
             <div class="job-cont-hold">
               <div class="accountants"><label>
-                Title:</label><%= qa.body %>
+                <%= t('title')%>:</label><%= qa.body %>
               </div>
 
               <div class="date-text"> <%= qa.created_at.strftime("%d-%m-%Y") %>
@@ -60,14 +60,14 @@
           </div>
       <% end %>
   <% end %>
-  <button id="answer-popup" class="question-button">Post an Answer</button>
+  <button id="answer-popup" class="question-button"><%= t('Groups.post_answer')%></button>
   <div id="answer_form" title="Post an Answer">
 
     <%= form_for :answer, :url =>{ :action => 'create_answer' }, :html =>{ :id => 'answer_form' }, :remote => true do |f| %>
         <div class="select-holder">
           <%= hidden_field_tag :quest_id, @question.id %>
           <div class="input-holder">
-            <label>Message</label>
+            <label><%= t('message')%></label>
             <%= f.text_area :body %>
 
           </div>

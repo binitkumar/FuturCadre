@@ -5,23 +5,23 @@
   </div>
   <!--dashboard-post-profile-btn ends-->
   <div class="dashboard-content">
-    <h1>Project</h1>
+    <h1><%= t('Project.project')%></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <div class="btn-mid-holder_new"><%= link_to "Create New Project", new_project_path(), :class => "create-event", :style => " color: #FFFFFF;text-decoration: none;" %></div>
-    <div class="btn-mid-holder"><%= link_to "View Project", projects_path(), :style => " color: #FFFFFF;text-decoration: none;" %></div>
+    <div class="btn-mid-holder_new"><%= link_to t('create_new'), new_project_path(), :class => "create-event", :style => " color: #FFFFFF;text-decoration: none;" %></div>
+    <div class="btn-mid-holder"><%= link_to t('view'), projects_path(), :style => " color: #FFFFFF;text-decoration: none;" %></div>
     <p><br/>
     </p>
 
-    <h1>My<span class="red"> Projects</span></h1>
+    <h1><%= t('Employer.employer_my') %><span class="red"> <%= t('Project.project')%></span></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @projects.blank? %>
-        <p>Total Number of Projects <%= @projects.count %></p>
+        <p><%= t('Project.project_numbers')%> <%= @projects.count %></p>
         <table>
           <tr>
-            <th> Project Name</th>
-            <th> Created at</th>
-            <th> Actions</th>
-            <th> Invite</th>
+            <th> <%= t('Project.name')%></th>
+            <th> <%= t('created_at')%></th>
+            <th> <%= t('Employer.employer_actions')%></th>
+            <th> <%= t('Project.project_invite')%></th>
 
 
           </tr>
@@ -36,7 +36,7 @@
           <% end %>
         </table>
     <% else %>
-        <p><span>Currently No project!</span></p>
+        <p><span><%=t('Employer.employer_no_projects')%>!</span></p>
     <% end %>
   </div>
 </div>

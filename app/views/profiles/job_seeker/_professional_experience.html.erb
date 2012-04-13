@@ -3,7 +3,7 @@
 
 <%= form_tag '/profiles/create_job_seeker_professional_experience', :id => "profile-form" do |f| %>
     <div class="basic-info mtop10">
-      <h1>Professional<span class="red"> Experience</span></h1>
+      <h1><%= t('profession') %><span class="red"> <%= t('experience') %></span></h1>
       <%= image_tag asset_path 'basic-info-bot-bar.png' %>
     </div>
     <div id="professional_informations">
@@ -16,7 +16,7 @@
       <div class="profile-left-div">
 
         <div class="profile-input mtop20">
-          <label> Industry Sector</label>
+          <label> <%= t('profile_industry') %></label>
           <%= select_tag "prof_info[sector_id]", options_from_collection_for_select(Sector.all, "id", "value") %>
         </div>
 
@@ -41,7 +41,7 @@
 
         <div class="publication-line">
           <%= check_box_tag 'email' %>
-          <p>Currently I am employed</p>
+          <p><%= t('profile_currently_employed') %></p>
 
           <div class="profile-input mtop20" id="date-box12">
             <label><%= t('end_date') %></label>
@@ -67,9 +67,9 @@
         </div>
       </div>
     </div>
-    <div class="add-button-new"><%= link_to "Add More Profession Experience", "javascript:void(0);", :id => "next-link" %></div>
+    <div class="add-button-new"><%= link_to t('profile_add_more_profession'), "javascript:void(0);", :id => "next-link" %></div>
 
-    <div class="save-button-new"><%= button_to "Save and Next", "javascript:void(0);", :id => "save-next-link" %></div>
+    <div class="save-button-new"><%= button_to t('save_and_next'), "javascript:void(0);", :id => "save-next-link" %></div>
 <% end %>
 
 <script type="text/javascript">

@@ -26,7 +26,7 @@
               </div>
               <div class="time-info"> <%= time_ago_in_words(@message.created_at) %></div>
               <!--time info ends-->
-              <div class="subject"><strong>Subject:</strong>  <%= @message.subject %></div>
+              <div class="subject"><strong><%= t('subject')%>:</strong>  <%= @message.subject %></div>
               <div class="mail-body">
                 <br>
                 <%= raw(@message.body) %>

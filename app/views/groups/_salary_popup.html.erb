@@ -2,18 +2,18 @@
   <div class="shadow"></div>
   <div class="popup-hold">
 
-    <div class="job-search-top-holder-two">Update Salary</div>
+    <div class="job-search-top-holder-two"><%= t('Groups.update_salary')%></div>
     <div class="job-search-mid-holder-two ">
       <%= form_tag('groups/update_salary', :id => 'set_salary_form') %>
       <div class="input-holder" style="width:59%;">
-        <label>Enter the salary</label>
+        <label><%= t('Groups.enter_salary')%></label>
         <%= text_field_tag 'group_salary' %>
       </div>
       <%= hidden_field_tag :group_id, @group.id %>
       <%= hidden_field_tag :group_type, @group.group_type_id %>
       <div class="buttons_pop">
-        <div id="application_job" class="update">Update</div>
-        <div id="exit_job" class="exit" onclick="close_popup()">Exit</div>
+        <div id="application_job" class="update"><%= t('update')%></div>
+        <div id="exit_job" class="exit" onclick="close_popup()"><%= t('exit')%></div>
       </div>
     </div>
     <div class="job-search-bot-holder-two"></div>

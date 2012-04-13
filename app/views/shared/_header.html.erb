@@ -13,7 +13,7 @@
 
   <% if user_signed_in? %>
       <li id="find" class="<%= params[:action] == "dashboard" ? 'active' : '' %>">
-        <%= link_to "Home", "/#{current_user.role}/dashboard" %>
+        <%= link_to t('header.home'), "/#{current_user.role}/dashboard" %>
       </li>
   <% end %>
   <li id="home" class="<%= params[:controller] == "home" && params[:action] == "index" ? 'active' : '' %>">
@@ -24,15 +24,15 @@
   <li id="group" class="<%= params[:controller] == "groups" ? 'active' : '' %>">
     <%= link_to t('header.group'), "javascript:void(0)" %>
     <ul>
-      <li>  <%= link_to "School Group", groups_path(:locale => "school") %> </li>
-      <li>  <%= link_to "Job Group", groups_path(:locale => "job") %> </li>
+      <li>  <%= link_to t('header.group_school'), groups_path(:locale => "school") %> </li>
+      <li>  <%= link_to t('header.group_job'), groups_path(:locale => "job") %> </li>
     </ul>
   </li>
   <li id="theses" class="<%= params[:controller] == "theses" ? 'active' : '' %>">
-    <%= link_to "Thesis", theses_path() %>
+    <%= link_to t('header.thesis'), theses_path() %>
   </li>
   <li id="project" class="<%= params[:controller] == "projects" ? 'active' : '' %>">
-    <%= link_to "Projects", projects_path() %>
+    <%= link_to t('header.project'), projects_path() %>
   </li>
 
   <% unless user_signed_in? %>
@@ -43,7 +43,7 @@
   <% end %>
 
   <li id="news" class="<%= params[:controller] == "news" && params[:action] == "index" ? 'active' : '' %>">
-    <%= link_to "News", news_index_path() %>
+    <%= link_to t('header.news'), news_index_path() %>
   </li>
 </ul>
 
@@ -53,9 +53,9 @@
       <ul class="setting">
         <% profile_url = current_user.profile.present? ? profile_path(current_user.profile) : new_profile_path %>
         <% if current_user.role =="employer" %>
-            <li><%= link_to "Order", employer_packages_employer_index_path() %> |</li>
+            <li><%= link_to t('header.order'), employer_packages_employer_index_path() %> |</li>
         <% end %>
-        <li><%= link_to "Message "+"[#{current_user.inbox.find_all_by_opened(:false).count}]", messages_path(), :class =>"messages_path" %>
+        <li><%= link_to t('header.messages')+"[#{current_user.inbox.find_all_by_opened(:false).count}]", messages_path(), :class => "messages_path" %>
           |
         </li>
         <li><%= link_to t('home_account'), profile_url %> |</li>
@@ -94,7 +94,7 @@
 
             function () {
 
-                $(".active").each(function() {
+                $(".active").each(function () {
                     $(this).removeClass("active");
                 });
                 $(this).addClass("active");
@@ -114,7 +114,7 @@
 //                }
             },
             function () {
-                $(".active").each(function() {
+                $(".active").each(function () {
                     $(this).removeClass("active");
                 });
                 $("#" + selected_tab).addClass("active");

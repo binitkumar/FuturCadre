@@ -5,16 +5,16 @@
     <div class="groups-jobs-left">
       <% if @group.present? %>
           <div class="admin-hold">
-            <div class="admin-top-hold"><h1><%= @group.name %> Administrator </h1></div>
+            <div class="admin-top-hold"><h1><%= @group.name %> <%= t('administrator') %> </h1></div>
             <div class="admin-mid-hold">
               <div class="admin-name"><%= @group.owner.name %></div>
-              <div class="admin-link"><%= link_to "Contact administrator #{@group.owner.email}" %></div>
+              <div class="admin-link"><%= link_to "Contact administrator #{@group.owner.email}", "javascript:void(0)" %></div>
             </div>
             <div class="admin-bot-hold"></div>
           </div>
 
           <div class="admin-hold">
-            <div class="admin-top-hold"><h1>featured members </h1></div>
+            <div class="admin-top-hold"><h1><%= t('featured_member') %> </h1></div>
             <div class="admin-mid-hold">
 
               <% unless @group.users.blank? %>
@@ -47,14 +47,14 @@
                           </div>
                       <% end %>
                   <% end %>
-                  <div class="admin-link"><%= link_to "View All Members", group_members_groups_path(:id => @group.id), :class => "members_link" %></div>
+                  <div class="admin-link"><%= link_to t('Groups.view_all_members'), group_members_groups_path(:id => @group.id), :class => "members_link" %></div>
               <% else %>
                   <div class="admin-profile">
                     <div class="admin-profile-left"></div>
                     <div class="admin-profile-right">
 
 
-                      <h1>Currently no registered user </h1>
+                      <h1><%= t('Groups.no_registered_user') %> </h1>
 
 
                     </div>
@@ -74,12 +74,12 @@
               <%= render :partial => "group_description", :locals => { :group => @group } %>
             </div>
             <ul class="group-links mtop20">
-              <li class="group-link-act listed"><%= link_to "Wall", group_wall_groups_path(:id => @group.id), :class => "wall_link" %></li>
-              <li class="listed"><%= link_to "Description", group_body_groups_path(:id => @group.id), :class => "body-link" %></li>
-              <li class="listed"><%= link_to "Members", group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link" %></li>
-              <li class="listed"><%= link_to "Offers", group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link" %></li>
-              <li class="listed"><%= link_to "Questions", group_question_groups_path(:id => @group.id, :sid => "questions"), :class => "questions-link" %></li>
-              <li class="listed"><%= link_to "Events", group_event_groups_path(:id => @group.id), :class => "questions-link" %></li>
+              <li class="group-link-act listed"><%= link_to t('wall'), group_wall_groups_path(:id => @group.id), :class => "wall_link" %></li>
+              <li class="listed"><%= link_to t('description'), group_body_groups_path(:id => @group.id), :class => "body-link" %></li>
+              <li class="listed"><%= link_to t('Groups.member'), group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link" %></li>
+              <li class="listed"><%= link_to t('Groups.offers'), group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link" %></li>
+              <li class="listed"><%= link_to t('Groups.question'), group_question_groups_path(:id => @group.id, :sid => "questions"), :class => "questions-link" %></li>
+              <li class="listed"><%= link_to t('Groups.event'), group_event_groups_path(:id => @group.id), :class => "questions-link" %></li>
             </ul>
 
             <div class="groups-line"></div>
@@ -96,7 +96,7 @@
       <% end %>
       </div>
       <div class="post-right-cont-hold">
-        <h3><span class="red">Group Index</span></h3>
+        <h3> <%= t('Groups.group') %> <span class="red"> <%= t('index') %></span></h3>
         <% unless @groups.blank? %>
             <ul class="groups-link">
               <% @groups.each do |group| %>

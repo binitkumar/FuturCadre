@@ -1,11 +1,120 @@
 --- 
 en: 
+  Employer: 
+    application_contact: Contact
+    application_date: "Date of Application"
+    application_download: Downl
+    application_home: Home
+    application_jobs: "My Jobs"
+    application_message: Message
+    application_name: "Application Name"
+    application_projects: "My Projects"
+    application_send_msg: Send
+    application_theses: Theses
+    application_thesis_created_at: "Created at"
+    application_thesis_name: "Thesis Name"
+    biiling_card_ver_code: "Verification Code"
+    billing_amount: Amount
+    billing_card: "Credit Card Information"
+    billing_card_exp: "Card Expiration Month"
+    billing_card_exp_year: "Card Expiration Year"
+    billing_card_num: "Credit Card Number"
+    billing_info: "Billing Information"
+    billing_method: "Pay with Paypal"
+    dashboard: Dashboard
+    employer: Employer
+    employer_actions: Actions
+    employer_create_job: "Create New Job"
+    employer_job_details: "My Job Details"
+    employer_job_name: "Job Name"
+    employer_joined_groups: "Total No of Groups Joined"
+    employer_joined_projects: "Total No of Projects Joined"
+    employer_last_job: "last Created Job"
+    employer_last_project: "last Created Project"
+    employer_last_thesis: "last Created Thesis"
+    employer_my: My
+    employer_no_jobs: "Currently there is no Job created by you!"
+    employer_no_projects: "Currently there is no Project created by you!"
+    employer_no_thesis: "Currently there is no Thesis created by you!"
+    employer_statistic: Statistics
+    employer_subscription: Subscription
+    employer_total_jobs: "Total Jobs Posted"
+    employer_total_projects: "Total Projects Created"
+    employer_total_thesis: "Total Theses Created"
+    package_currency: USD
+    package_description: Description
+    package_end_date: "End Date"
+    package_jobs: Jobs
+    package_plans: "Packages / Plans"
+    package_price: Price
+    package_searches: Search(es)
+    package_start_date: "Start Date"
+    package_your_plan: Planatoo
+    search_profile_result: "No of Profiles"
+    search_result: "Number of Results"
+    search_resume: Resume
+    search_select: Select
+    total_applications: "Total Number of Job Application"
+  Groups: 
+    ask_question: "Ask a Question"
+    create_events: "Create Events"
+    end_time: "End Time"
+    enter_salary: "Enter the Salary"
+    event: Events
+    group: Group
+    member: Members
+    no_group: "No Group Found"
+    no_registered_user: "Currently there is no registered user"
+    offers: Offers
+    post_answer: "Post an Answer"
+    question: Question
+    question_type: "Question Type"
+    rating: Rating
+    salary: Salary
+    start_time: "Start Time"
+    update_salary: "Update Salary"
+    view_all_members: "View all Members"
+  Job_Seeker: 
+    my_application: "My Application"
+    status: Status
+  News: 
+    news: News
+    picture: "News Picture"
+    suggest: "Suggest a News"
+  Project: 
+    field_search: "Field Search"
+    industry: "Choice Industry"
+    list_project: "List of Projects"
+    name: "Name of the Project"
+    page: Page
+    picture: "Project Picture"
+    presentation: Presentation
+    project: Project
+    project_invite: Invite
+    project_invite_user: "Invite User"
+    project_members: "Project Member(s)"
+    project_numbers: "Total Number of Projects"
+    skills: Skill
+    small_description: "Small Description"
+    social_links: "Social Links"
+  Thesis: 
+    categories: Categories
+    download_thesis: "Download Thesis"
+    file_name: "File Name"
+    no_of_pages: "No of Pages"
+    no_thesis: " No Thesis found Found!"
+    published: "Published Date"
+    theses: Theses
+    thesis: Thesis
+    thesis_category: "Thesis Category"
+    thesis_document: "Thesis Document"
   account: Account
   activerecord: 
     errors: 
       messages: 
         record_invalid: "Validation failed: %{errors}"
         taken: "has already been taken"
+  administrator: Administrator
   basic: Basic
   button: 
     edit: Edit
@@ -14,8 +123,109 @@ en:
     save: Save
   category: Category
   company: Company
+  companyinfo: 
+    city: City
+    country: Country
+    region: Region
   conf_password_helper: "Re-enter password for avoiding typo mistakes"
+  contact_administrator: "Contact Administrator"
   create_job: "Create Job"
+  create_new: "Create New"
+  created_at: "Created At"
+  dashboard: Dashboard
+  date: Date
+  date_of_start: "Date of Start"
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        one: "about 1 hour"
+        other: "about %{count} hours"
+      about_x_months: 
+        one: "about 1 month"
+        other: "about %{count} months"
+      about_x_years: 
+        one: "about 1 year"
+        other: "about %{count} years"
+      almost_x_years: 
+        one: "almost 1 year"
+        other: "almost %{count} years"
+      half_a_minute: "half a minute"
+      less_than_x_minutes: 
+        one: "less than a minute"
+        other: "less than %{count} minutes"
+      less_than_x_seconds: 
+        one: "less than 1 second"
+        other: "less than %{count} seconds"
+      over_x_years: 
+        one: "over 1 year"
+        other: "over %{count} years"
+      x_days: 
+        one: "1 day"
+        other: "%{count} days"
+      x_minutes: 
+        one: "1 minute"
+        other: "%{count} minutes"
+      x_months: 
+        one: "1 month"
+        other: "%{count} months"
+      x_seconds: 
+        one: "1 second"
+        other: "%{count} seconds"
+    prompts: 
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Seconds
+      year: Year
+  description: Description
+  devise: 
+    confirmations: 
+      confirmed: "Your account was successfully confirmed. You are now signed in."
+      send_instructions: "You will receive an email with instructions about how to confirm your account in a few minutes."
+      send_paranoid_instructions: "If your e-mail exists on our database, you will receive an email with instructions about how to confirm your account in a few minutes."
+    failure: 
+      already_authenticated: "You are already signed in."
+      inactive: "Your account was not activated yet."
+      invalid: "Invalid email or password."
+      invalid_token: "Invalid authentication token."
+      locked: "Your account is locked."
+      timeout: "Your session expired, please sign in again to continue."
+      unauthenticated: "You need to sign in or sign up before continuing."
+      unconfirmed: "You have to confirm your account before continuing."
+    mailer: 
+      confirmation_instructions: 
+        subject: "Confirmation instructions"
+      reset_password_instructions: 
+        subject: "Reset password instructions"
+      unlock_instructions: 
+        subject: "Unlock Instructions"
+    omniauth_callbacks: 
+      failure: "Could not authorize you from %{kind} because \"%{reason}\"."
+      success: "Successfully authorized from %{kind} account."
+    passwords: 
+      send_instructions: "You will receive an email with instructions about how to reset your password in a few minutes."
+      send_paranoid_instructions: "If your e-mail exists on our database, you will receive a password recovery link on your e-mail"
+      updated: "Your password was changed successfully. You are now signed in."
+      updated_not_active: "Your password was changed successfully."
+    registrations: 
+      destroyed: "Bye! Your account was successfully cancelled. We hope to see you again soon."
+      inactive_signed_up: "You have signed up successfully. However, we could not sign you in because your account is %{reason}."
+      missing_captcha: "Missing Captcha, Please enter the given field again"
+      missing_privacy: "Please Accept the term"
+      reasons: 
+        inactive: inactive
+        locked: locked
+        unconfirmed: unconfirmed
+      signed_up: "Welcome! You have signed up successfully."
+      updated: "You updated your account successfully."
+    sessions: 
+      signed_in: "Signed in successfully."
+      signed_out: "Signed out successfully."
+    unlocks: 
+      send_instructions: "You will receive an email with instructions about how to unlock your account in a few minutes."
+      send_paranoid_instructions: "If your account exists, you will receive an email with instructions about how to unlock it in a few minutes."
+      unlocked: "Your account was successfully unlocked. You are now signed in."
   education: Educational
   email: "This would be the primaray email used by the application"
   errors: 
@@ -47,14 +257,30 @@ en:
       too_long: "is too long (maximum is %{count} characters)"
       too_short: "is too short (minimum is %{count} characters)"
       wrong_length: "is the wrong length (should be %{count} characters)"
+  euro: Euro
+  exit: Exit
+  experience: Experience
+  featured_member: "Featured Member"
+  from: From
+  groups: Groups
   header: 
     employer: Employer
     find_jobs: "Find Jobs"
     forgot_password: "Forgot Your Password?"
+    group: Groups
+    group_job: "Job Group"
+    group_school: "School Group"
+    home: Home
+    job_search: "Job Search"
     job_seeker: "Job Seeker"
-    group:       "Groups"
     language: language
+    messages: Messages
     news: News
+    order: Order
+    project: Projects
+    search_category: "No Sub Category present yet"
+    search_region: "No Jobs in this region present yet"
+    thesis: Thesis
   helpers: 
     select: 
       prompt: "Please select"
@@ -76,9 +302,9 @@ en:
   home_job_advance_search: "Advance Search"
   home_job_search: "Job Search"
   home_job_search_category: "Job Category"
+  home_job_search_company: "Company Name"
   home_job_search_location: Location
   home_job_search_title: "Job Title"
-  home_job_search_company: "Company Name"
   home_logout: Logout
   home_my_account: "My Account"
   home_popular: "Most Popular"
@@ -86,7 +312,10 @@ en:
   home_sub_title: "consectetur adipisicing elit, sed do eiusmod tempor"
   home_title: "Lorem ipsum dolor sit amet,"
   home_vacancies: Vacancies
+  immediate: Immediate
+  index: Index
   information: Information
+  invite_member: "Invite Member"
   job: Job
   job_apply: "Apply for this job"
   job_descripton: "Job Description"
@@ -96,25 +325,43 @@ en:
   job_similar: "more similar jobs"
   job_skill: "Add a Skill"
   job_skill_require: "Skills Required"
-
-
-
   jobs: 
+    Date_of_start: "Contract Start Date"
+    Duration: "Duration of Job"
+    add_skills: "Add Skills"
+    and_requirement: "and Requirements"
+    annual_salary: "Annual Salary"
     bonus: "Annual Bonus"
+    category: "Job Category"
     commission: Commission
     comp_annual: "Annual Salary"
+    contract: Contract
+    contract_duration: "Contract Duration"
+    cv: CV
     description: Description
+    education: Education
+    education_level: "Education Level"
     employer_type: "Employer Type"
+    industry_sector: "Industry Sector"
+    job_application: "Job Application"
+    job_stat: "Job Stats"
+    languages: Languages
+    location: Location
     name: "Job Title"
+    negotiable: Negotiable
+    offer: "an Offer"
     profile: "Required Profile"
-    languages: "Languages"
-    education: "Education"
-    contract: "Contract Period"
-    Duration: "Duration of Job"
-    Date_of_start: "Contract Start Date"
+    publish: "I publish"
+  language: Language
+  level: Level
   link_to: 
     done: Done
     edit: Edit
+  message: Message
+  missing_privacy: "Please accept the term."
+  missiong_captch: "Missing Captcha, Please enter the given field again."
+  name: Name
+  no_comments: "Currently No Comments"
   number: 
     currency: 
       format: 
@@ -162,20 +409,47 @@ en:
     precision: 
       format: 
         delimiter: ""
+  on_this_date: "Or on this date"
   password_helper: "Password should be at least 6 characters long"
+  personalize: "Personalize this offer"
+  post: Post
   privacy_policay: "I have read the privacy policy and agreeing on the terms and conditions"
   profession: Professional
+  profile_Are_you_willing_to_relocate: "Are you willing to relocate"
+  profile_Are_you_willing_to_travel: "Are you willing to relocate"
+  ? "profile_When_are_you _available_to_start"
+  : "When are you available to start"
+  profile_add_more_education: "Add More Education Information"
+  profile_add_more_profession: "Add More Profession Experience"
+  profile_basic_information: "Basic Information"
   profile_carrer_level: "Career Level"
+  profile_category: "Professional Category"
+  profile_company_information: "Company Information"
   profile_company_nam: "Company Name"
+  profile_currently_employed: "Currently I am Employed Here"
+  profile_date_of_end: "Date of End"
+  profile_date_of_start: "Date of Start"
   profile_degree_level: "Degree Level"
+  profile_desired_job_contract: "Desired Job Contract"
+  profile_desired_job_status: "Job Status"
+  profile_desired_salary_range: "Desired Salary"
+  profile_edu_information: "Education Information"
   profile_experience: "Total Profession Experience"
   profile_industry: "Professional Industry"
   profile_institute: Institution
-  profile_job_title: "Recent Job Title"
+  profile_job_title: "Job Title"
+  profile_location: Location
   profile_major_subject: "Major Subject"
   profile_my: My
+  profile_my_account: "My account"
+  profile_profession_category: "Profession Category"
+  profile_profession_experience: "Profession Experience"
+  profile_profession_industry: "Profession Industry"
+  profile_profession_information: "Profession Information"
   profile_profile: Profile
+  profile_search_resume: "Make Your Resume Searchable"
   profile_upload: "Update Profile"
+  profile_work_authorization: "Work Authorization"
   profile_year: Year
   profiles: 
     address: Address
@@ -195,14 +469,25 @@ en:
     user_name: "User Name"
     website: Website
     zip: "Zip Code"
+  publication: Publication
+  publish_on_futur_cadre: "Publish this job on Future Cadre"
+  receive_an_email: "Receive an email on this address"
   register: "Register Me"
+  remove: remove
+  request_to_join: "Request to Join"
+  required: Required
   responsibilities: Responsibilities
   resume: "Upload Your CV"
-  search: 
-    apply: Apply
-    not_found: "Sorry! No Job Found."
-    search_results: "Search Results"
+  save_and_next: "Save and Next"
+  search: Search
+  send: Send
+  simple_captcha: 
+    message: 
+      default: "Secret Code did not match with the Image"
+      label: "Type the code from the image"
+      user: "The secret Image and code were different"
   skills: Skills
+  subject: Subject
   support: 
     array: 
       last_word_connector: ", and "
@@ -215,25 +500,12 @@ en:
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
     pm: pm
+  title: Title
+  update: Update
   user_register_as: "Register as"
   users: 
     conf_password: "Confirm Password"
     password: Password
     user_name: "User Name"
-
-  groups: Groups
-
-  missiong_captch: "Missing Captcha, Please enter the given field again."
-  missing_privacy:  "Please accept the term."
-
-  simple_captcha:
-    message:
-      default: "Secret Code did not match with the Image"
-      user: "The secret Image and code were different"
-      label: "Type the code from the image"
-  companyinfo:
-      country: "Country"
-      region:  "Region"
-      city:    "City"
-
-
+  view: View
+  wall: Wall

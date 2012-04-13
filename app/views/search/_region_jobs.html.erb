@@ -20,7 +20,7 @@
 				<li><%= link_to job.name,  details_jobs_path(:id => job.id ), :class => "sub-category-link" %></li>
 			<%end%>
 		<%else%>
-			<li><a>No Jobs in this region present yet.</a></li>
+			<li><a><%= t('header.search_region')%>.</a></li>
 		<%end%>
 	</ul>
 	<div class="gray-bot-bg"></div>

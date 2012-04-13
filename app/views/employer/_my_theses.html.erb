@@ -5,51 +5,51 @@
   </div>
   <!--dashboard-post-profile-btn ends-->
   <div class="dashboard-content">
-    <h1>Theses</h1>
+    <h1><%= t('Employer.application_theses') %></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
-    <div class="btn-mid-holder_new"><%= link_to "Create New Theses", new_thesis_path(), :class => "create-event", :style=>" color: #FFFFFF;text-decoration: none;" %></div>
-    <div class="btn-mid-holder"><%= link_to "View Theses", theses_path(), :style=>" color: #FFFFFF;text-decoration: none;" %></div>
+    <div class="btn-mid-holder_new"><%= link_to "Create New Theses", new_thesis_path(), :class => "create-event", :style => " color: #FFFFFF;text-decoration: none;" %></div>
+    <div class="btn-mid-holder"><%= link_to "View Theses", theses_path(), :style => " color: #FFFFFF;text-decoration: none;" %></div>
     <p><br/>
     </p>
 
-    <h1>My<span class="red"> Theses</span></h1>
+    <h1><%= t('Employer.employer_my') %><span class="red"> <%= t('Employer.application_theses') %> </span></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @my_theses.blank? %>
-        <p>Total Number of thesis <%= @my_theses.count %></p>
+        <p><%= t('Employer.employer_total_thesis') %> <%= @my_theses.count %></p>
         <table>
           <tr>
-            <th> Thesis Name</th>
-            <th> Created at</th>
-            <th> Actions</th>
+            <th> <%= t('Employer.application_thesis_name') %></th>
+            <th> <%= t('Employer.application_thesis_created_at') %></th>
+            <th> <%= t('Employer.employer_actions') %></th>
 
 
           </tr>
           <% @my_theses.each do |thesis| %>
               <tr>
-                <td><%= link_to thesis.name,thesis_details_theses_path(:id => thesis.id) %></td>
+                <td><%= link_to thesis.name, thesis_details_theses_path(:id => thesis.id) %></td>
                 <td><%= thesis.created_at.strftime('%Y-%m-%d') %></td>
-                <td><%= link_to "Job Edit", edit_thesis_path(:id =>thesis.id) %></td>
-                <td><%= link_to "Delete", delete_thesis_theses_path(:id => thesis.id, :own_id => @employer), :class =>"delete_thesis" %>
+                <td><%= link_to "Thesis Edit", edit_thesis_path(:id => thesis.id) %></td>
+                <td><%= link_to "Delete", delete_thesis_theses_path(:id => thesis.id, :own_id => @employer), :class => "delete_thesis" %>
               </tr>
           <% end %>
         </table>
     <% else %>
-        <p><span>Currently No Thesis!</span></p>
+        <p><span><%= t('Employer.employer_no_thesis') %></span></p>
     <% end %>
   </div>
 </div>
 <script type="text/javascript">
-    $("a.delete_thesis").click(function() {
+    $("a.delete_thesis").click(function () {
         var x = window.confirm("Are you sure You want to Delete this Thesis?")
 
         if (x == true) {
             $.ajax({
-                context: this,
-                url: $(this).attr("href"),
-                type: "GET",
-                data: $(this).serialize(),
-                dataType: "json",
-                success: function(response) {
+                context:this,
+                url:$(this).attr("href"),
+                type:"GET",
+                data:$(this).serialize(),
+                dataType:"json",
+                success:function (response) {
                     return $(".dashboard-content-right").html(response.html);
                 }
 
