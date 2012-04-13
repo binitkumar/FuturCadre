@@ -13,7 +13,7 @@
         <% unless user.package.blank? %>
             <td id="pack_ch"><%= user.package.name %></td>
         <% end %>
-        <td> <%= select_tag "package_id", options_from_collection_for_select(@packages, "id", "name", user.package.id), :onchange => "set_package(#{user.id})" %></td>
+        <td> <%= select_tag "package_id", options_from_collection_for_select(@packages, "id", "name",user.package.present? ? user.package.id: '' ), :onchange => "set_package(#{user.id})" %></td>
       </tr>
   <% end %>
 </table>
