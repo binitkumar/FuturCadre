@@ -1,5 +1,5 @@
 <div class="basic-info mtop10">
-  <h1><%= t('Employer.employer')%><span class="red"><%= t('Employer.dashboard')%></span></h1>
+  <h1><%= t('Employer.employer') %><span class="red"><%= t('Employer.dashboard') %></span></h1>
   <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 
 </div>
@@ -20,10 +20,13 @@
           <h1>  <%= @employer.name %> </h1>
 
 
-
       <% end %>
+
     </div>
   </div>
   <!--dashboard-info-image ends-->
+  <div class="search-btn">
+    <%= link_to t('header.order'), employer_packages_employer_index_path() %>
+  </div>
 
 </div>

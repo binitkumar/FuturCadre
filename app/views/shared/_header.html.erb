@@ -52,9 +52,9 @@
       <div class="welcome">welcome, <span class="bold"><%= current_user.name %></span></div>
       <ul class="setting">
         <% profile_url = current_user.profile.present? ? profile_path(current_user.profile) : new_profile_path %>
-        <% if current_user.role =="employer" %>
-            <li><%= link_to t('header.order'), employer_packages_employer_index_path() %> |</li>
-        <% end %>
+        <% #if current_user.role =="employer" %>
+            <!--<li><%#= link_to t('header.order'), employer_packages_employer_index_path() %> |</li>-->
+        <%# end %>
         <li><%= link_to t('header.messages')+"[#{current_user.inbox.find_all_by_opened(:false).count}]", messages_path(), :class => "messages_path" %>
           |
         </li>

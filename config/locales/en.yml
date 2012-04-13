@@ -346,7 +346,7 @@ en:
     category: "Job Category"
     commission: Commission
     comp_annual: "Annual Salary"
-    contract: Contract
+    contract: "Contract"
     contract_duration: "Contract Duration"
     cv: CV
     description: Description
@@ -521,3 +521,5 @@ en:
   view: View
   wall: Wall
   my: "My"
+  profile_result: "Profile Result"
+  final: "Final"

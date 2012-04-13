@@ -7,26 +7,26 @@ class SearchController < ApplicationController
     @country = Country.find_by_id(params[:country_id])
     @regions = @country.regions
     unless params[:obj].blank?
-      render :json => {:html => render_to_string(:partial => '/shared/regions', :locals => {:object_collection => obj_region})}.to_json
+      render :json => { :html => render_to_string(:partial => '/shared/regions', :locals => { :object_collection => obj_region }) }.to_json
     end
   end
 
   def get_cities
     obj_city = params[:obj]
-    @region = Region.find_by_id(params[:region_id])
-    @cities = @region.cities
-    render :json => {:html => render_to_string(:partial => '/shared/cities', :locals => {:object_collection => obj_city})}.to_json
+    @region  = Region.find_by_id(params[:region_id])
+    @cities  = @region.cities
+    render :json => { :html => render_to_string(:partial => '/shared/cities', :locals => { :object_collection => obj_city }) }.to_json
   end
 
   def search
 
     array_new = ""
-    @jobs = Job.search(params)
+    @jobs     = Job.search(params)
     @jobs.each do |job|
       array_new << job.id.to_s + ","
     end
     session[:job] = array_new
-    render :json => {:html => render_to_string(:partial => '/search/search_results')}.to_json
+    render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
   end
 
   def get_sub_categories
@@ -40,20 +40,20 @@ class SearchController < ApplicationController
       #@sub_categories = @category.children.jobs
       @sub_categories = @category.children
     end
-    render :json => {:html => render_to_string(:partial => '/search/sub_categories')}.to_json
+    render :json => { :html => render_to_string(:partial => '/search/sub_categories') }.to_json
   end
 
   def categories_jobs_list
     #		@sub_category = Category.find(params[:id])
     #		@jobs = @sub_category.jobs
     @jobs = Job.all
-    render :json => {:html => render_to_string(:partial => '/search/search_results')}.to_json
+    render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
   end
 
   def get_browse_by
     @categories = Category.main_categories
-    @companies = CompanyInformation.all
-    @regions = Region.find_all_by_country_id([24, 82])
+    @companies  = CompanyInformation.all
+    @regions    = Region.find_all_by_country_id([24, 82])
 
     case params[:by].to_s
       when "category"
@@ -63,45 +63,45 @@ class SearchController < ApplicationController
       when "company"
         html = render_to_string(:partial => '/search/by_company')
     end
-    render :json => {:html => html}.to_json
+    render :json => { :html => html }.to_json
   end
 
   def check_user_name
     @user = User.find_by_name(params[:name])
     if @user.present?
-      render :json => {:success => false}.to_json
+      render :json => { :success => false }.to_json
     else
-      render :json => {:success => true}.to_json
+      render :json => { :success => true }.to_json
     end
   end
 
   def get_jobs_by_company
     @company = CompanyInformation.find(params[:id])
-    @jobs = @company.profile.user.created_jobs
-    render :json => {:html => render_to_string(:partial => '/search/company_jobs')}.to_json
+    @jobs    = @company.profile.user.created_jobs
+    render :json => { :html => render_to_string(:partial => '/search/company_jobs') }.to_json
   end
 
   def jobs_list
     @sub_category = Category.find(params[:id])
-    @jobs = @sub_category.jobs
+    @jobs         = @sub_category.jobs
     # @jobs = Job.all      (closed during debugginh)
-    render :json => {:html => render_to_string(:partial => '/search/search_results')}.to_json
+    render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
   end
 
   def get_jobs_by_region
     @region = Region.find(params[:id])
-    @jobs = Job.find_all_by_region_id(@region.id)
-    render :json => {:html => render_to_string(:partial => '/search/region_jobs')}.to_json
+    @jobs   = Job.find_all_by_region_id(@region.id)
+    render :json => { :html => render_to_string(:partial => '/search/region_jobs') }.to_json
   end
 
   def profile_search
-    flag = false
-    count = 0
-    @query = "SELECT * FROM profiles p INNER JOIN education_informations ei ON p.id = ei.profile_id INNER JOIN profession_informations ON p.id = profession_informations.profile_id where"
+    flag   = false
+    count  = 0
+    @query = "SELECT  DISTINCT p.* FROM profiles p RIGHT OUTER JOIN education_informations ei ON p.id = ei.profile_id LEFT OUTER JOIN profession_informations ON p.id = profession_informations.profile_id where"
     unless params[:contract_type].blank?
       if params[:contract_type] !="Select from list"
-        flag = true
-        count = count + 1
+        flag   = true
+        count  = count + 1
         @query = @query + " p.desired_job_type like '%#{params[:contract_type]}%'"
       end
     end
@@ -135,6 +135,20 @@ class SearchController < ApplicationController
         @query = @query + "and p.city_id like '%#{params[:city_id]}%'"
       end
       count = count + 1
+    end
+    unless params[:languages].blank?
+      puts "aaaaaaaaaaaaaaaaaaaaaaaaa", params[:languages].inspect
+      if params[:languages] !="Select from list"
+        flag = true
+        if count == 0
+          @query = @query + " p.languages like '%#{params[:languages]  }%'"
+          puts "aaaaaaatrtttttttttttttttttttttttttttt", @query.inspect
+        else
+          @query = @query + "and p.languages like  '%#{params[:languages]}%'"
+          puts "aaaaaaatrtttttttttttttttttttttttttttt", @query.inspect
+        end
+        count = count + 1
+      end
     end
     unless params[:education_level].blank?
       if params[:education_level] !="Select from list"
@@ -176,15 +190,19 @@ class SearchController < ApplicationController
         flag = true
         if count == 0
           @query = @query + " profession_informations.profession_experience   like '%#{params[:profession_experience]}%'"
+
         else
           @query = @query + "and profession_informations.profession_experience   like '%#{params[:profession_experience]}%'"
+
         end
         count = count + 1
       end
     end
 
+
     if flag == true
       @collections = Profile.find_by_sql(@query)
+      puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaa", @collections.inspect
     else
       @collections = nil
     end
@@ -203,12 +221,12 @@ class SearchController < ApplicationController
     #AND profession_informations.profession_industry like  '%#{params[:profession_industry]}%'"
     #)
 
-    render :json => {:html => render_to_string(:partial => '/employer/search_results'), :locals => {:collections => @collections}}.to_json
+    render :json => { :html => render_to_string(:partial => '/employer/search_results'), :locals => { :collections => @collections } }.to_json
   end
 
   def sort_result
 
-    jobs = []
+    jobs    = []
     new_job = session[:job].split(",")
     new_job.each do |job|
       unless job.blank?
@@ -220,7 +238,7 @@ class SearchController < ApplicationController
     else
       @jobs = jobs.sort_by { |e| e[:created_at] }
     end
-    render :json => {:html => render_to_string(:partial => '/search/search_results')}.to_json
+    render :json => { :html => render_to_string(:partial => '/search/search_results') }.to_json
   end
 
   def sorting_box

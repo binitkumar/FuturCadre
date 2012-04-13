@@ -50,7 +50,12 @@
           </div>
         </div>
         <!--dashboard-info-image ends-->
+        <% if current_user.role =="employer" %>
+            <div class="search-btn">
+              <%= link_to t('header.order'), employer_packages_employer_index_path() %>
+            </div>
 
+        <% end %>
       </div>
 
       <!--dashboard-info-image ends-->
@@ -92,10 +97,11 @@
               <p><label><%= t('Employer.employer_total_jobs') %></label> <%= @employer.created_jobs.count %><br/>
                 <label><%= t('Employer.employer_last_job') %></label> <%= @employer.created_jobs.last.created_at.strftime("%d-%m-%Y") %>
           <% else %>
-              <%= t('Employer.employer_no_jobs')%>
+              <%= t('Employer.employer_no_jobs') %>
           <% end %>
           <% unless @employer.created_projects.blank? %>
-              <p><label><%= t('Employer.employer_total_projects') %> </label> <%= @employer.created_projects.count %><br/>
+              <p><label><%= t('Employer.employer_total_projects') %> </label> <%= @employer.created_projects.count %>
+                <br/>
                 <label><%= t('Employer.employer_last_project') %></label> <%= @employer.created_projects.last.created_at.strftime("%d-%m-%Y") %>
           <% else %>
               <%= t('Employer.employer_no_projects') %>
@@ -119,11 +125,11 @@
           </div>
           <!--  <a href="#">see all</a> -->
 
-          <h1><%= t('Employer.employer_my')%><span class="red"><%= t('Employer.employer_subscription')%></span></h1>
+          <h1><%= t('Employer.employer_my') %><span class="red"><%= t('Employer.employer_subscription') %></span></h1>
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
-          <p><label><%= t('Employer.employer_joined_groups')%></label> <%= @employer.groups.count %><br/>
+          <p><label><%= t('Employer.employer_joined_groups') %></label> <%= @employer.groups.count %><br/>
 
-          <p><label><%= t('Employer.employer_joined_projects')%></label> <%= @employer.projects.count %><br/>
+          <p><label><%= t('Employer.employer_joined_projects') %></label> <%= @employer.projects.count %><br/>
 
 
           <p>Future Cadre is free and without obligation until January 31, 2012. Enjoy!<br/>

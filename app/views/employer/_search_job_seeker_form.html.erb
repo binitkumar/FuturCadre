@@ -4,17 +4,17 @@
   <div class="tabs_wrapper">
     <div class="tabs active" id="tabs_1">
       <div class="tabs_left"></div>
-      <div class="tabs_center"><p>Profile</p></div>
+      <div class="tabs_center"><p><%= t('profile_profile') %></p></div>
       <div class="tabs_right"></div>
     </div>
     <div class="tabs" id="tabs_2">
       <div class="tabs_left"></div>
-      <div class="tabs_center"><p>Profile Results</p></div>
+      <div class="tabs_center"><p><%= t('profile_result') %></p></div>
       <div class="tabs_right"></div>
     </div>
     <div class="tabs" id="tabs_3">
       <div class="tabs_left"></div>
-      <div class="tabs_center"><p>Final</p></div>
+      <div class="tabs_center"><p><%= t('final') %></p></div>
       <div class="tabs_right"></div>
     </div>
   </div>
@@ -26,46 +26,50 @@
         <div class="dashboard-right-left">
 
           <div class="contract-field-one">
-            <label>Contract</label>
+            <label><%= t('jobs.contract') %></label>
             <%= select_tag "contract_type", options_for_select([["Select from list", "Select from list"], ["Cdd", "Cdd"], ["Cdi", "Cdi"], ["Freelance", "Freelance"], ["Interim", "Interim"], ["Vie", "Vie"], ["Job Etudiant", "Job Etudiant"]]), :style => " width: 100%;" %>
           </div>
 
 
           <div class="select-holder">
-            <label> Country</label>
-            <%= render :partial => "shared/countries", :locals => {:object_collection => "job_seeker"} %>
+            <label> <%= t('profile_location') %></label>
+            <%= render :partial => "shared/countries", :locals => { :object_collection => "job_seeker" } %>
             <div id="regions_main">
-              <%= render :partial => "shared/regions", :locals => {:object_collection => "job_seeker"} %>
+              <%= render :partial => "shared/regions", :locals => { :object_collection => "job_seeker" } %>
             </div>
             <div id="cities_main">
-              <%= render :partial => "shared/cities", :locals => {:object_collection => "job_seeker"} %>
+              <%= render :partial => "shared/cities", :locals => { :object_collection => "job_seeker" } %>
             </div>
           </div>
           <div class="clear"></div>
-          <h3>Education Information</h3>
+          <h3><%= t('profile_edu_information') %></h3>
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
 
           <div class="contract-field-ed-two_new">
-            <label style="width:100%; float:left;"> Education Level </label>
+            <label style="width:100%; float:left;"> <%= t('jobs.education_level') %> </label>
             <%= select_tag "education_level", options_for_select([["Select from list", "Select from list"], ["Ecole D Ingénieur", "Ecole D Ingénieur"], ["Ecole De Commerce", "Ecole De Commerce"], ["Ecoles/Universités", "Ecoles/Universités"], ["Etrangères", "Etrangères"], ["Iep", "Iep"], ["Iut", "Iut"], ["Lycée", "Lycée"], ["Université", "Université"], ["X Autre", "X Autre"]]), :style => " width: 175%;" %>
           </div>
 
           <div class="job-input">
-            <label>Institute</label>
+            <label><%= t('profile_institute') %></label>
             <% @institutes= Institute.all %>
             <%= select_tag "institute", options_for_select(["Select from list"] + @institutes.map { |obj| [obj.name, obj.id] }), :style => "width: 87%;" %>
           </div>
           <div class="clear"></div>
-          <h3>Professional Information</h3>
+          <h3><%= t('profile_profession_information') %></h3>
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
           <div class="skils-ful-length">
-            <label style="margin-top:10px;!important;">Total Professional Experience</label>
+            <label style="margin-top:10px;!important;"><%= t('profile_profession_experience') %></label>
             <%= select_tag "profession_experience", options_for_select([["Select from list", "Select from list"], ["Etudiant", "Etudiant"], ["Jeune Diplômé", "Jeune Diplômé"], ["Junior", "Junior"], ["Confirmé/Senior", "Confirmé/Senior"], ["Responsable d'équipe", "Responsable d'équipe"], ["Responsable de Département", "Responsable de Département"], [" Dirigeant/Entrepreneur", " Dirigeant/Entrepreneur"]]), :style => " width: 67%;" %>
           </div>
 
           <div class="job-input">
-            <label>Category</label>
+            <label><%= t('profile_category') %></label>
             <%= select_tag "category_id", options_for_select(["Select from list"] + @categories.map { |obj| [obj.name, obj.id] }) %>
+          </div>
+          <div class="job-input">
+            <label> <%= t('language') %></label>
+            <%= select_tag "languages", options_for_select(["Select from list"]+ Language.all.map{|lang|[lang.value,lang.id]}) %>
           </div>
 
 
