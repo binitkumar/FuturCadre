@@ -22,7 +22,7 @@
                   </div>
                   <div class="news_date">
                     <%= new.news_category.nil? ? "" :link_to(new.news_category.name)+ " >> " + " Posted on " + new.created_at.strftime('%e %b %Y') + " by " %>
-                    <%= new.user.nil? ? "" : new.user.profile.first_name %>
+                    <%= new.user.nil? ? "" : new.user.email %>
                   </div>
                   <div class="p-style-detail-new">
                     <%= new.body %>

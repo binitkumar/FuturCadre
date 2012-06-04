@@ -1,6 +1,7 @@
 class NewsController < ApplicationController
 
   def index
+
     @news = News.all(:conditions => { :is_approved => true })
     news_attr
   end
@@ -81,8 +82,9 @@ class NewsController < ApplicationController
       render :json => { :html => render_to_string(:partial => '/news/news_index', :locale => { :news => @news }) }.to_json
     else
       unless params[:news_id].blank?
-        @category = NewsCategory.find_by_id(params[:news_id])
-        @news     = @category.news(:conditions => { :is_approved => true })
+        #@category = NewsCategory.find_by_id(params[:news_id])
+        #@news     = @category.news(:is_approved => true )
+        @news = News.find_all_by_news_category_id(params[:news_id])
       end
       render :json => { :html => render_to_string(:partial => '/news/news_index', :locale => { :news => @news }) }.to_json
     end
