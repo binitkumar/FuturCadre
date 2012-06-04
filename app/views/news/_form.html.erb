@@ -11,6 +11,11 @@
               <label><%= t('title') %></label>
               <%= f.text_field :title %>
             </div>
+            <div class="input-holder">
+              <label><%= t('news_category') %></label>
+              <%= f.select :news_category_id, options_for_select([["Select", ""]] + @news_categories.map { |news_category| [news_category.name, news_category.id] }, @news.news_category_id) %>
+            </div>
+
             <div class="form-input">
               <label><%= t('News.picture') %></label>
               <%= fields_for :picture do |image| %>
@@ -19,8 +24,8 @@
             </div>
             <div class="input-holder-new">
               <label><%= t('message') %></label>
-              <%= f.text_area :body %>
 
+              <%= f.text_area :body %>
             </div>
           </div>
 

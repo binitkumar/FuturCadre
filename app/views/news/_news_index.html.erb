@@ -1,0 +1,52 @@
+<div id="main_news_page">
+  <% unless @news.blank? %>
+      <div id="news_index_div">
+        <div id="select_page">
+          <%= select_tag "pagination", options_for_select([["5", "5"], ['10', "10"], ["20", "20"]]), :onchange => "set_page()" %>
+          Result Per Page
+        </div>
+        <div class="page_navigation"></div>
+        <div class="right-content-detail" style="width: 710px;">
+          <% @news.each do |new| %>
+              <div class="news_content">
+                <div class="content-detail">
+                  <div class="img_detail">
+                    <% if new.photo != nil %>
+                        <%= image_tag new.photo.image.url %>
+                    <% else %>
+                        <%= image_tag "/assets/dashboard-img.png" %>
+                    <% end %>
+                  </div>
+                  <div class="news_details">
+                    <h1><%= link_to new.title, news_path(:id => new.id) %> </h1>
+                  </div>
+                  <div class="news_date">
+                    <%= new.news_category.nil? ? "" :link_to(new.news_category.name)+ " >> " + " Posted on " + new.created_at.strftime('%e %b %Y') + " by " %>
+                    <%= new.user.nil? ? "" : new.user.profile.first_name %>
+                  </div>
+                  <div class="p-style-detail-new">
+                    <%= new.body %>
+                  </div>
+                  <%= link_to "See the news", news_path(:id => new.id) %>
+                </div>
+              </div>
+          <% end %>
+
+        </div>
+      </div>
+  <% else %>
+      No News in this Category
+  <% end %>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#news_index_div').pajinate();
+    })
+    function set_page() {
+        var items = $('#pagination').val();
+        $('#news_index_div').pajinate({
+            items_per_page:items
+        });
+
+    }
+</script>

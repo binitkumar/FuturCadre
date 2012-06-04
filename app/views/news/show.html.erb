@@ -1,7 +1,7 @@
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
   <div class="basic-info mtop10">
-    <h1><span class="red"><%= t('News.news')  %></span></h1>
+    <h1><span class="red"><%= t('News.news') %></span></h1>
     <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 
   </div>
@@ -22,32 +22,48 @@
 
     <div class="right-content-detail" style=" width: 712px;">
 
-      <% unless @news.blank? %>
 
-          <div class="content-detail">
-            <div class="img_detail">
-              <% if @news.photo != nil %>
-                  <%= image_tag @news.photo.image.url %>
-              <% else %>
-                  <%= image_tag "/assets/dashboard-img.png" %>
-              <% end %>
+      <div class="content-detail">
+        <div class="img_detail">
+          <% if @news.photo != nil %>
+              <%= image_tag @news.photo.image.url %>
+          <% else %>
+              <%= image_tag "/assets/dashboard-img.png" %>
+          <% end %>
 
-            </div>
-            <h1><%= @news.title %> </h1>
+        </div>
+        <h1><%= @news.title %> </h1>
 
-            <p><%= @news.created_at.strftime("%d-%m-%Y") %></p>
+        <p><%= @news.created_at.strftime("%d-%m-%Y") %></p>
 
-            <div class="p-style-detail">
-              <%= @news.body %>
-            </div>
-
-
-          </div>
-
-
-          </div><!--right-content ends-->
-      <% end %>
-
-
+        <div class="p-style-detail">
+          <%= @news.body %>
+        </div>
       </div>
+    </div>
+    <!--right-content ends-->
+    <div id="news_com_wall">
+      <%= render :partial => "news_wall", :locals => { :news => @news } %>
+    </div>
+  </div>
 </div>
+
+<script type="text/javascript">
+
+    $("#add_comment_button").click(function () {
+        <% if user_signed_in? %>
+        {
+            $.post($("form#add_news_comment_form").attr("action"), $("form#add_news_comment_form").serialize(), (function (response) {
+                return $("#news_com_wall").html(response.html);
+            }), "json");
+            return false;
+        }
+
+        <%else%>
+        {
+            alert("Please sign up before posting");
+        }
+        <%end%>
+    });
+</script>
+

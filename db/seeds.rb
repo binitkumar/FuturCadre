@@ -131,9 +131,9 @@ groups = Group.all
 
 groups.each { |group| group.destroy } if groups.present?
 puts "creating Groups"
-groups = Group.create!([{ :name => 'Software Developers', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :featured => true, :owner => User.first, :group_type => GroupType.first, :mean_salary =>24000 },
-                        { :name => 'Electrical Engineers', :description => "Group for EE Engineers e.g. electro, power, hydro, control ", :featured => true, :owner => User.first, :group_type => GroupType.first, :mean_salary =>22000 },
-                        { :name => 'Social Responsibility', :description => "Discussion place for Social responsibility ", :featured => true, :owner => User.first, :group_type => GroupType.first, :mean_salary =>32000 },
+groups = Group.create!([{ :name => 'Software Developers', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :featured => true, :owner => User.first, :group_type => GroupType.first, :mean_salary => 24000 },
+                        { :name => 'Electrical Engineers', :description => "Group for EE Engineers e.g. electro, power, hydro, control ", :featured => true, :owner => User.first, :group_type => GroupType.first, :mean_salary => 22000 },
+                        { :name => 'Social Responsibility', :description => "Discussion place for Social responsibility ", :featured => true, :owner => User.first, :group_type => GroupType.first, :mean_salary => 32000 },
                        ])
 groups.each do |group|
   group.jobs << Job.find_by_name("testJob0")
@@ -267,9 +267,9 @@ theses = Thesis.all
 
 theses.each { |thesis| thesis.destroy } if theses.present?
 puts "creating Thesis"
-theses = Thesis.create!([{ :name => 'Software Development Life Cycle', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category=> Category.find_by_id(32), :no_of_pages =>150, :date_of_publish =>Time.now },
-                         { :name => 'Software Development Life Cycle', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category=> Category.find_by_id(32), :no_of_pages =>150, :date_of_publish =>Time.now },
-                         { :name => 'Software Development Life Cycle', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category=> Category.find_by_id(32), :no_of_pages =>150, :date_of_publish =>Time.now },
+theses = Thesis.create!([{ :name => 'Software Development Life Cycle', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category => Category.find_by_id(32), :no_of_pages => 150, :date_of_publish => Time.now },
+                         { :name => 'Software Development Life Cycle', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category => Category.find_by_id(32), :no_of_pages => 150, :date_of_publish => Time.now },
+                         { :name => 'Software Development Life Cycle', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category => Category.find_by_id(32), :no_of_pages => 150, :date_of_publish => Time.now },
                         ])
 
 puts "updating document of thesis"
@@ -298,6 +298,15 @@ groups.each do |group|
   rating.save!
 end
 
+puts "Deleting existing News Categories ..."
+news_categories = NewsCategory.all
+news_categories.each { |news_category| news_category.destroy } if news_categories.present?
+
+puts "Creating News Categories..."
+%w(Stock_exchange Economy Interviews Job Advising).each do |name|
+  NewsCategory.create!(:name => name.humanize.titleize)
+end
+
 
 puts "deleting existing news"
 news = News.all
@@ -306,7 +315,8 @@ puts "creating news "
 (0 .. 4).each do |i|
   News.create!(:title       => "Big Bang#{i}",
                :body        => "As we look to expand, JPP is seeking a well-organized, extremely self-motivated individual to help with the office management and day-to-day running of the office. The successful candidate will be someone who takes initiative, identifies problems and provides solutions and is able to work well under pressure. He or she will be able to multi-task and work with a team of investigators and lawyers to drive forward JPP's challenging, but rewarding, mission.",
-               :is_approved => false
+               :is_approved => false,
+               :news_category_id => NewsCategory.first
   )
 end
 
@@ -325,28 +335,28 @@ packages = Package.all
 
 packages.each { |package| package.destroy } if packages.present?
 puts 'Creating Initial Package......'
- Package.create!( [{ :name        =>"Basic",
-                 :description     =>"this is basic package",
-                 :price           =>"30",
-                 :no_of_jobs      => "1",
-                 :no_of_searches  =>"1" ,
-                 :start_date      =>Time.now,
-                 :expiry_date     =>Time.now+30.days},
-                { :name            =>"Advance",
-                 :description     =>"this is advance package",
-                 :price           =>"60",
-                 :no_of_jobs      => "10",
-                 :no_of_searches  =>"10" ,
-                 :start_date      =>Time.now,
-                 :expiry_date     =>Time.now+60.days},
-                { :name            =>"FuLL",
-                 :description     =>"this is Full package",
-                 :price           =>"90",
-                 :no_of_jobs      => "30",
-                 :no_of_searches  => "30" ,
-                 :start_date      =>Time.now,
-                 :expiry_date     =>Time.now+90.days}]
- )
+Package.create!([{ :name           => "Basic",
+                   :description    => "this is basic package",
+                   :price          => "30",
+                   :no_of_jobs     => "1",
+                   :no_of_searches => "1",
+                   :start_date     => Time.now,
+                   :expiry_date    => Time.now+30.days },
+                 { :name           => "Advance",
+                   :description    => "this is advance package",
+                   :price          => "60",
+                   :no_of_jobs     => "10",
+                   :no_of_searches => "10",
+                   :start_date     => Time.now,
+                   :expiry_date    => Time.now+60.days },
+                 { :name           => "FuLL",
+                   :description    => "this is Full package",
+                   :price          => "90",
+                   :no_of_jobs     => "30",
+                   :no_of_searches => "30",
+                   :start_date     => Time.now,
+                   :expiry_date    => Time.now+90.days }]
+)
 
 
 

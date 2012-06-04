@@ -2,163 +2,214 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 .left-content {
-    width: 250px;
-    height: auto;
-    float: left;
+  width: 250px;
+  height: auto;
+  float: left;
 }
 
 .left-detail {
-    float: left;
-    padding-left: 10px;
-    padding-top: 21px;
+  float: left;
+  padding-left: 10px;
+  padding-top: 21px;
 }
 
 .left-content p {
-    width: 100%;
-    float: left;
-    text-align: center;
+  width: 100%;
+  float: left;
+  text-align: center;
 }
 
 .right-content {
-    float: left;
-    width: 720px;
-    margin-left: 10px;
-    padding: 5px;
+  float: left;
+  width: 720px;
+  margin-left: 10px;
+  padding: 5px;
 }
 
 .right-content-detail {
-    float: left;
-    width: 720px;
-    border: 1px solid #991514;
+  float: left;
+  width: 720px;
+  border: 1px solid #991514;
 }
 
 /*.suggest-a-news {*/
-    /*border: 1px solid #ccc;*/
-    /*height: 40px;*/
-    /*width: 150px;*/
-    /*float: right;*/
-    /*background-color: #991514;*/
-    /*margin-top: 5px;*/
-    /*margin-right: 5px;*/
+/*border: 1px solid #ccc;*/
+/*height: 40px;*/
+/*width: 150px;*/
+/*float: right;*/
+/*background-color: #991514;*/
+/*margin-top: 5px;*/
+/*margin-right: 5px;*/
 /*}*/
- .suggest-a-news {
+.suggest-a-news {
   background-color: #991514;
-    border: 1px solid #CCCCCC;
-    color: #FFFFFF;
-    float: right;
-    font-size: 16px;
-    height: 40px;
-    line-height: 35px;
-    margin-right: 5px;
-    margin-top: 5px;
-    padding-left: 8px;
-    width: 126px;
- }
+  border: 1px solid #CCCCCC;
+  color: #FFFFFF;
+  float: right;
+  font-size: 16px;
+  height: 40px;
+  line-height: 35px;
+  margin-right: 5px;
+  margin-top: 5px;
+  padding-left: 8px;
+  width: 126px;
+}
+
 .suggest-a-news a {
-    text-align: center;
-    font-weight: bold;
-    line-height: 40px;
-    text-decoration: none;
-    color: #fff;
-    padding-left: 20px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 40px;
+  text-decoration: none;
+  color: #fff;
+  padding-left: 20px;
 }
 
 .content-detail {
-    width: 100%;
-    float: left;
-    border-bottom: 3px solid #ccc;
-    margin-bottom: 20px;
+  width: 100%;
+  float: left;
+  border-bottom: 3px solid #ccc;
+  margin-bottom: 20px;
 }
 
 .content-detail img {
-    float: left;
-    margin-right: 10px;
-    margin-left: 10px;
+  float: left;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .content-detail p {
-    float: left;
-    width: 75%;
-    margin-top: 5px;
+  float: left;
+  width: 75%;
+  margin-top: 5px;
 }
 
 .rating-style img {
-    margin: 0;
+  margin: 0;
 }
 
 .rating-style h3 {
-    float: left;
-    font-size: 13px;
-    margin-top: 5px;
-    margin-right: 10px;
+  float: left;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-right: 10px;
 }
 
 .content-detail h1 {
-    color: #991514;
+  color: #991514;
 }
 
 .content-detail a {
-    float: right;
-    margin-right: 10px;
-    color: #991514;
+  float: right;
+  margin-right: 10px;
+  color: #991514;
 }
 
 .content-detail ul li {
-    float: left;
-    list-style-type: none;
-    margin-top: 5px;
+  float: left;
+  list-style-type: none;
+  margin-top: 5px;
 }
 
 .content-detail-two {
-    float: left;
+  float: left;
 }
 
 .content-detail-two img {
-    float: left;
-    margin: 10px;
+  float: left;
+  margin: 10px;
 }
 
 .content-detail-two h1 {
-    margin-top: 10px;
+  margin-top: 10px;
 }
- .input-holder-new {
-    float: left;
-    width: 100%;
+
+.input-holder-new {
+  float: left;
+  width: 100%;
 }
 
 .input-holder-new label {
-    color: #474747;
-    float: left;
-    font-size: 14px;
-    margin-top: 10px;
-    width: 100%;
+  color: #474747;
+  float: left;
+  font-size: 14px;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .input-holder-new textarea {
-    background: none repeat scroll 0 0 #F6F6F6;
-    border-top: 1px solid #949494;
-    float: left;
-    margin-top: 6px;
-    min-height: 250px;
-    width: 150%;
+  background: none repeat scroll 0 0 #F6F6F6;
+  border-top: 1px solid #949494;
+  float: left;
+  margin-top: 6px;
+  min-height: 250px;
+  width: 150%;
 }
-.image-area {width:100px; height: 100px; border: 2px solid #ccc; float: left}
-.p-style-detail {
-    margin-bottom: 30px;
-    margin-top: 5px;
-    width: 680px;
-    text-align: justify;}
 
-    .img_detail { width: 100px; height: 100px; float:left; margin:10px; border:2px solid #ccc; margin-right:20px;}
-    .img_detail img { width: 100px; height:100px; margin:0;}
-.content-detail h1 { margin-top:10px;}
+.image-area {
+  width: 100px;
+  height: 100px;
+  border: 2px solid #ccc;
+  float: left
+}
+
+.p-style-detail {
+  margin-bottom: 30px;
+  margin-top: 5px;
+  width: 680px;
+  text-align: justify;
+}
+
+.img_detail {
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin: 10px;
+  border: 2px solid #ccc;
+  margin-right: 20px;
+}
+
+.img_detail img {
+  width: 100px;
+  height: 100px;
+  margin: 0;
+}
+
+.content-detail h1 {
+  margin-top: 10px;
+}
 
 .invitee {
 
 }
-.invitee img{
+
+.invitee img {
   height: 50px;
-  width :50px;
+  width: 50px;
+}
+
+.news_details {
+  float: left;
+}
+
+.news_details h1 {
+
+}
+
+.news_date {
+  float: left;
+  margin-top: 40px;
+}
+
+.news_date a {
+  float: left;
+  margin-right: 10px;
+  color: #991514;
+}
+
+.p-style-detail-new {
+  margin-bottom: 30px;
+  margin-top: 67px;
+  text-align: justify;
+  width: 680px;
 }

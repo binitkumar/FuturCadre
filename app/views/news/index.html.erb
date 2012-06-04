@@ -1,7 +1,8 @@
+<%= javascript_include_tag "jquery.pajinate" %>
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
   <div class="basic-info mtop10">
-    <h1><span class="red"><%= t('News.news')%></span></h1>
+    <h1><span class="red"><%= t('News.news') %></span></h1>
     <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 
   </div>
@@ -17,40 +18,21 @@
 
   <div class="right-content">
     <div class="basic-info mtop10">
-      <h1><span class="red"></span></h1>
+      <ul class="group-links mtop20">
+        <li class="group-link-act listed" onclick="fetch_news(0,'all',this)"><%= link_to t('all'), "javascript:void(0);" %></li>
+        <% @news_categories.each do |new_category| %>
+            <li class="listed" onclick="fetch_news(<%= new_category.id %>, 'category',this)"><%= link_to new_category.name, "javascript:void(0);" %></li>
+        <% end %>
+      </ul>
     </div>
-    <div class="suggest-a-news" style="margin-bottom: 10px;  margin-right: 9px;" onclick="suggest_news()"><%= t('News.suggest')%></div>
-    <div class="right-content-detail" style="width: 710px;">
 
-      <% unless @news.blank? %>
-          <% @news.each do |new| %>
-
-              <div class="content-detail">
-                <div class="img_detail">
-                  <% if new.photo != nil %>
-
-                      <%= image_tag new.photo.image.url %>
-                  <% else %>
-                      <%= image_tag "/assets/dashboard-img.png" %>
-                  <% end %>
-                </div>
-                <h1><%= new.title %> </h1>
-
-                <p><%= new.created_at %></p>
-
-                <div class="p-style-detail">
-                  <%= new.body %>
-                </div>
-                <%= link_to "See the news", news_path(:id => new.id) %>
-
-              </div>
-          <% end %>
-
-          </div><!--right-content ends-->
-      <% end %>
+    <div class="suggest-a-news" style="margin-bottom: 10px;  margin-right: 9px;" onclick="suggest_news()"><%= t('News.suggest') %></div>
 
 
-      </div>
+    <%= render :partial => "news/news_index", :locals => { :news => @news } %>
+
+
+  </div>
 </div>
 <div id="popup_holder"></div>
 
@@ -71,6 +53,24 @@
         return false;
 
 
+    }
+
+    function fetch_news(news_id, type, obj) {
+        $('.basic-info').find('.group-link-act').removeClass('group-link-act');
+        $(obj).addClass('group-link-act');
+        $.ajax({
+            context:obj,
+            url:"news/fetch_news?news_id=" + news_id + "&type=" + type,
+            type:"GET",
+            data:$(obj).serialize(),
+            dataType:"json",
+            success:function (response) {
+                $("#group-link-act").removeClass("group-link-act");
+                $("#main_news_page").html(response.html);
+
+            }
+        });
+        return false;
     }
 
 

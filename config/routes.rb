@@ -256,6 +256,8 @@ FuturCadre::Application.routes.draw do
     collection do
       get :suggest_news
       post :submit_news
+      post :news_comment
+      get :fetch_news
 
     end
   end

@@ -92,6 +92,7 @@ en:
     news: News
     picture: "News Picture"
     suggest: "Suggest a News"
+    news_category: "New Category"
   Project: 
     field_search: "Field Search"
     industry: "Choice Industry"
