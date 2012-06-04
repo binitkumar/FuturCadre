@@ -27,7 +27,6 @@
     </div>
 
     <div class="suggest-a-news" style="margin-bottom: 10px;  margin-right: 9px;" onclick="suggest_news()"><%= t('News.suggest') %></div>
-       <%= @news %>
 
     <%= render :partial => "news/news_index", :locals => { :news => @news } %>
 
