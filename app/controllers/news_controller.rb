@@ -77,11 +77,12 @@ class NewsController < ApplicationController
 
   def fetch_news
     if params[:type] == "all"
-      @news = News.all
+      @news = News.all(:conditions => { :is_approved => true })
       render :json => { :html => render_to_string(:partial => '/news/news_index', :locale => { :news => @news }) }.to_json
     else
       unless params[:news_id].blank?
-        @news = News.find_all_by_news_category_id(params[:news_id])
+        @category = NewsCategory.find_by_id(params[:news_id])
+        @news     = @category.news(:conditions => { :is_approved => true })
       end
       render :json => { :html => render_to_string(:partial => '/news/news_index', :locale => { :news => @news }) }.to_json
     end
