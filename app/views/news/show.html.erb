@@ -106,11 +106,15 @@
           <%= @news.body %>
         </div>
       </div>
+
+
+      <div id="news_com_wall">
+        <%= render :partial => "news_wall", :locals => { :news => @news } %>
+      </div>
+
+
     </div>
     <!--right-content ends-->
-    <div id="news_com_wall">
-      <%= render :partial => "news_wall", :locals => { :news => @news } %>
-    </div>
   </div>
 </div>
 
