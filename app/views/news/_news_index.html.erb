@@ -1,4 +1,4 @@
-<%= javascript_include_tag "jquery-1.4.4.min","jquery.rating", "jquery.pajinate", "superfish.js"%>
+<%= javascript_include_tag "jquery-1.4.4.min", "jquery.rating", "jquery.pajinate", "superfish.js" %>
 <%= stylesheet_link_tag "jquery.rating" %>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="news_date">
-                      <%= new.news_category.nil? ? "" :link_to(new.news_category.name, "javascript:void(0);")+ " >> " + " Posted on " + new.created_at.strftime('%a, %m/%d/%Y') +  " AT " + new.created_at.strftime('%HH%M') + " by " %>
+                      <%= new.news_category.nil? ? "" :link_to(new.news_category.name, "javascript:void(0);")+ " >> " + " Posted on " + new.created_at.strftime('%a, %m/%d/%Y') + " AT " + new.created_at.strftime('%HH%M') + " by " %>
                       <%= new.user.nil? ? "" : new.user.email %>
                     </div>
 
@@ -56,6 +56,7 @@
                           </option>
                         </select>
                       </p>
+                      <%= new.comments.count %>  Comments
 
 
                       <script type="text/javascript">
