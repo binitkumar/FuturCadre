@@ -84,7 +84,7 @@ class NewsController < ApplicationController
       unless params[:news_id].blank?
         #@category = NewsCategory.find_by_id(params[:news_id])
         #@news     = @category.news(:is_approved => true )
-        @news = News.find_all_by_news_category_id(params[:news_id])
+        @news = News.where(:news_category_id => params[:news_id], :is_approved => true)
       end
       render :json => { :html => render_to_string(:partial => '/news/news_index', :locale => { :news => @news }) }.to_json
     end
