@@ -1,37 +1,38 @@
+
 <%= render :partial => "shared/top_search_ box" %>
-<div class="content-holder">
-  <div class="basic-info mtop10">
-    <h1><span class="red"><%= t('News.news') %></span></h1>
-    <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 
-  </div>
-  <div class="left-content">
-    <div class="left-detail">
-      <%= image_tag asset_path 'adds-holder-img.png' %>
-    </div>
-    <p></p>
-  </div>
+<div class="basic-info mtop10">
+  <h1><span class="red"><%= t('News.news') %></span></h1>
+  <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 
-
-  <!--left-content ends-->
-
-  <div class="right-content">
-    <div class="basic-info mtop10">
-      <ul class="group-links mtop20">
-        <li class="group-link-act listed" onclick="fetch_news(0,'all',this)"><%= link_to t('all'), "javascript:void(0);" %></li>
-        <% @news_categories.each do |new_category| %>
-            <li class="listed" onclick="fetch_news(<%= new_category.id %>, 'category',this)"><%= link_to new_category.name, "javascript:void(0);" %></li>
-        <% end %>
-      </ul>
-    </div>
-    <div style="float:left; width: 100%;">
-      <div class="suggest-a-news" style="margin-bottom: 10px;  margin-right: 9px;" onclick="suggest_news()"><%= t('News.suggest') %></div>
-    </div>
-    <%= render :partial => "news/news_index", :locals => { :news => @news } %>
-
-
-  </div>
 </div>
+<div class="left-content">
+  <div class="left-detail">
+    <%= image_tag asset_path 'adds-holder-img.png' %>
+  </div>
+  <p></p>
+</div>
+
+
+<!--left-content ends-->
+
+<div class="right-content">
+  <div class="basic-info mtop10">
+    <ul class="group-links mtop20">
+      <li class="group-link-act listed" onclick="fetch_news(0,'all',this)"><%= link_to t('all'), "javascript:void(0);" %></li>
+      <% @news_categories.each do |new_category| %>
+          <li class="listed" onclick="fetch_news(<%= new_category.id %>, 'category',this)"><%= link_to new_category.name, "javascript:void(0);" %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div style="float:left; width: 100%;">
+    <div class="suggest-a-news" style="margin-bottom: 10px;  margin-right: 9px;" onclick="suggest_news()"><%= t('News.suggest') %></div>
+  </div>
+  <%= render :partial => "news/news_index", :locals => { :news => @news } %>
+
+
+</div>
+
 <div id="popup_holder"></div>
 
 <script language="JavaScript">
@@ -71,5 +72,11 @@
         return false;
     }
 
+    //    $("#application_job").click(function () {
+
+
+    function close_popup() {
+        $(".content-left-holder").hide();
+    }
 
 </script>

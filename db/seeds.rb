@@ -313,11 +313,19 @@ news = News.all
 news.each { |new| new.destroy } if news.present?
 puts "creating news "
 (0 .. 4).each do |i|
-  News.create!(:title       => "Big Bang#{i}",
-               :body        => "As we look to expand, JPP is seeking a well-organized, extremely self-motivated individual to help with the office management and day-to-day running of the office. The successful candidate will be someone who takes initiative, identifies problems and provides solutions and is able to work well under pressure. He or she will be able to multi-task and work with a team of investigators and lawyers to drive forward JPP's challenging, but rewarding, mission.",
-               :is_approved => true,
+  News.create!(:title            => "Big Bang#{i}",
+               :body             => "As we look to expand, JPP is seeking a well-organized, extremely self-motivated individual to help with the office management and day-to-day running of the office. The successful candidate will be someone who takes initiative, identifies problems and provides solutions and is able to work well under pressure. He or she will be able to multi-task and work with a team of investigators and lawyers to drive forward JPP's challenging, but rewarding, mission.",
+               :is_approved      => true,
                :news_category_id => NewsCategory.first
   )
+end
+puts "updating news ratings"
+news = News.all
+news.each do |new|
+  rating          = Rating.new
+  rating.rate     = '2'
+  rating.rateable = new
+  rating.save!
 end
 
 puts "updating picture of the news"

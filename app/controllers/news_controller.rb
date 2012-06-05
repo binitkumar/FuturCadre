@@ -53,6 +53,11 @@ class NewsController < ApplicationController
       @news.update_attributes(:user_id => nil)
     end
     if @news.save
+      @rating          = Rating.new
+      @rating.rateable = @news
+      @rating.rate     = 0
+      @rating.save
+
       unless params[:picture].blank?
         @picture                = Photo.new(params[:picture])
         @picture.content_type   = "news_image"
