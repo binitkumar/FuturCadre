@@ -20,10 +20,18 @@ class Group < ActiveRecord::Base
     return sal
   end
 
+
   def is_manager(member)
-    puts "aaaaaa", member.inspect
     if self.manager_id == member.id
       return true
     end
+  end
+
+  protected
+  def set_user_rating(rate)
+    new_rating = self.rating.rate
+    new_rating = (new_rating.to_i + rate.to_i)/2
+    set_rating = self.rating.update_attributes(:rate => new_rating)
+    return set_rating
   end
 end

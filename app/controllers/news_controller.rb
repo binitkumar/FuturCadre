@@ -91,6 +91,12 @@ class NewsController < ApplicationController
 
   end
 
+  def set_news_rating
+    @news = News.find_by_id(params[:news_id])
+    @news = @news.set_rating(params[:rate])
+    render :text => "Ok"
+  end
+
   private
   def news_attr
     @news_categories = NewsCategory.all

@@ -133,7 +133,7 @@ class GroupsController < ApplicationController
 
   def set_rating
     @group = Group.find(params[:group_id])
-    @group.rating.update_attributes(:rate => params[:rate])
+    @group = @group.set_user_rating(params[:rate])
     render :text => "Ok"
   end
 
@@ -198,8 +198,8 @@ class GroupsController < ApplicationController
       unless current_user.blank?
         @manager = @group.owner
         EventMailer.event_approval(current_user.email, @manager.email, @event, request.protocol, request.host_with_port, @group).deliver
-         approve = group_details_groups_url(:id => @group.id, :event_id => @event.id)
-       current_user.send_message("Request for Approval", "I have created this event '#{@event.title}'. Kindly '<a href='#{approve}'> approve</a>  ",@manager)
+        approve = group_details_groups_url(:id => @group.id, :event_id => @event.id)
+        current_user.send_message("Request for Approval", "I have created this event '#{@event.title}'. Kindly '<a href='#{approve}'> approve</a>  ", @manager)
 
         #EventMailer.event_notification(current_user, @manager, @event).deliver
       end

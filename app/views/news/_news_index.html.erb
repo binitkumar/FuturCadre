@@ -1,11 +1,25 @@
+<%= javascript_include_tag "jquery-1.4.4.min", "jquery.rating", "jquery-ui-1.8.17.custom.min", "superfish.js", "jquery.pajinate" %>
+<%= stylesheet_link_tag "jquery.rating" %>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+
+</script>
 <div id="main_news_page">
   <% unless @news.blank? %>
       <div id="news_index_div">
-        <div id="select_page">
+
+        <div id="select_page" style=" border: 1px solid #CCCCCC;
+                float: left;
+                margin-top: 35px;
+                width: 200px;">
           <%= select_tag "pagination", options_for_select([["5", "5"], ['10', "10"], ["20", "20"]]), :onchange => "set_page()" %>
           Result Per Page
         </div>
+
         <div class="page_navigation"></div>
+
         <div class="right-content-detail" style="width: 710px;">
           <% @news.each do |new| %>
               <div class="news_content">
@@ -17,17 +31,74 @@
                         <%= image_tag "/assets/dashboard-img.png" %>
                     <% end %>
                   </div>
-                  <div class="news_details">
-                    <h1><%= link_to new.title, news_path(:id => new.id) %> </h1>
+                  <div class="news_right_det" style="float: left; width: 573px;">
+                    <div class="news_details">
+                      <h1><%= link_to new.title, news_path(:id => new.id) %> </h1>
+                    </div>
+
+                    <div class="news_date">
+                      <%= new.news_category.nil? ? "" :link_to(new.news_category.name)+ " >> " + " Posted on " + new.created_at.strftime('%e %b %Y') + " by " %>
+                      <%= new.user.nil? ? "" : new.user.email %>
+                    </div>
+
+                    <div class="rating-hold" id="rating_hold" style="width: 100%;">
+
+                      <p style="margin:5px 0px 0px 5px; color:#656565; width: 150px;">
+
+                        <select name="myRating" class="active_rating" id="serialStar_group_<%= new.id %>">
+
+                          <option value="1" <%= new.rating.rate.to_i == 1 ? "selected='yes'" :"" %>>very weak
+                          </option>
+                          <option value="2" <%= new.rating.rate.to_i == 2 ? "selected='yes'" :"" %>>weak</option>
+                          <option value="3" <%= new.rating.rate.to_i == 3 ? "selected='yes'" :"" %>>average</option>
+                          <option value="4" <%= new.rating.rate.to_i == 4 ? "selected='yes'" :"" %>>strong</option>
+                          <option value="5" <%= new.rating.rate.to_i == 5 ? "selected='yes'" :"" %>>very
+                            strong
+                          </option>
+                        </select>
+                      </p>
+
+
+                      <script type="text/javascript">
+
+                          $("#serialStar_group_<%= new.id %>").rating();
+                          var counter = 0;
+                          $("#serialStar_group_<%= new.id %>").siblings(".ui-rating").each(function () {
+                              if (counter != 0) {
+                                  $(this).remove();
+                              }
+                              counter = counter + 1;
+                          });
+                          $("#serialStar_group_<%= new.id %>").bind("change", function () {
+                              var rate = $('#serialStar_group_<%= new.id %>').serialize().split("=");
+
+                              var i = 1;
+                              for (i; i <= 5; i++) {
+                                  if (i <= parseInt(rate[1])) {
+                                      $("#changer_group_<%= new.id %>_" + i).attr("src", "/assets/star_icon_golden.png");
+                                  }
+                                  else {
+                                      $("#changer_group_<%= new.id %>_" + i).attr("src", "/assets/star_icon_black.png");
+                                  }
+                              }
+                              $.ajax({
+                                  url:'/news/set_news_rating?news_id=<%= new.id %>&rate=' + rate[1], type:'get', dataType:'html',
+                                  processData:false,
+                                  success:function (data) {
+
+                                  }
+                              });
+                          });
+                      </script>
+
+                    </div>
+
+
+                    <div class="p-style-detail-new">
+                      <%= new.body %>
+                    </div>
+                    <%= link_to "See the news", news_path(:id => new.id) %>
                   </div>
-                  <div class="news_date">
-                    <%= new.news_category.nil? ? "" :link_to(new.news_category.name)+ " >> " + " Posted on " + new.created_at.strftime('%e %b %Y') + " by " %>
-                    <%= new.user.nil? ? "" : new.user.email %>
-                  </div>
-                  <div class="p-style-detail-new">
-                    <%= new.body %>
-                  </div>
-                  <%= link_to "See the news", news_path(:id => new.id) %>
                 </div>
               </div>
           <% end %>

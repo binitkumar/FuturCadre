@@ -258,6 +258,7 @@ FuturCadre::Application.routes.draw do
       post :submit_news
       post :news_comment
       get :fetch_news
+      get :set_news_rating
 
     end
   end

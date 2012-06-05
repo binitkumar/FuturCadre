@@ -27,10 +27,10 @@ class Job < ActiveRecord::Base
     #transaction_success_show << "SELECT jobs.name FROM jobs where"
 
     if params[:company_id] == "Select from list"
-      puts "a"
+
       conditions << "SELECT jobs.name , jobs.id FROM jobs where jobs.name LIKE '%#{params[:name]}%'"
     else
-      puts "bcc"
+
       conditions << "SELECT jobs.name , jobs.id FROM jobs"
       abc = []
       abc << "LEFT OUTER JOIN company_informations co ON jobs.employer_id = co.profile_id
@@ -51,7 +51,7 @@ class Job < ActiveRecord::Base
     end
 
     #conditions = conditions.join(" AND ")
-   if params[:company_id] == "Select from list"
+    if params[:company_id] == "Select from list"
       conditions = conditions.join(" AND ")
       @job       = find_by_sql(conditions)
     else
