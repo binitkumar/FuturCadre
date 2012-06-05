@@ -36,6 +36,25 @@ user.roles << Role.find_by_name("webmaster")
 user.skip_confirmation!
 user.save!
 
+puts "Creating a JobSeeker user....."
+user1 = User.new(:name                  => "JobSeeker",
+                 :email                 => "jobseeker@futurcadre.com",
+                 :password              => "123456",
+                 :password_confirmation => "123456"
+)
+user1.roles << Role.find_by_name("job_seeker")
+user1.skip_confirmation!
+user1.save!
+
+user2 = User.new(:name                  => "Employer",
+                 :email                 => "employer@futurcadre.com",
+                 :password              => "123456",
+                 :password_confirmation => "123456"
+)
+user2.roles << Role.find_by_name("employer")
+user2.skip_confirmation!
+user2.save!
+
 puts "Deleting existing categorties..."
 categories = Category.all
 categories.each { |category| category.destroy } if categories.present?
