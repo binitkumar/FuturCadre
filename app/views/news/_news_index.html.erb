@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="news_date">
-                      <%= new.news_category.nil? ? "" :link_to(new.news_category.name)+ " >> " + " Posted on " + new.created_at.strftime('%e %b %Y') + " by " %>
+                      <%= new.news_category.nil? ? "" :link_to(new.news_category.name, "javascript:void(0);")+ " >> " + " Posted on " + new.created_at.strftime('%a, %m/%d/%Y') +  " AT " + new.created_at.strftime('%HH%M') + " by " %>
                       <%= new.user.nil? ? "" : new.user.email %>
                     </div>
 
