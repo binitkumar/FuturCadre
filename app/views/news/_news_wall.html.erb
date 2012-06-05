@@ -13,7 +13,7 @@
             <div class="w100 mtop20">
               <div class="post-left-hold" style="width: 84px;">
                 <div class="user_image">
-                  <% if comment_image(comment) != false %>
+                  <% if comment_image(comment) %>
                       <%= image_tag comment_image(comment).photo.url %>
                   <% else %>
 
