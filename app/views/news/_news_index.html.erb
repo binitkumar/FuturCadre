@@ -36,7 +36,9 @@
                     </div>
 
                     <div class="news_date">
-                      <%= new.news_category.nil? ? "" :link_to(new.news_category.name, "javascript:void(0);")+ " >> " + " Posted on " + new.created_at.strftime('%a, %m/%d/%Y') + " AT " + new.created_at.strftime('%HH%M') + " by " %>
+                      <a onclick="fetch_news(<%= new.news_category_id %>,'category',this)"><%= new.news_category.name %> </a>
+                      >> Posted on
+                      <% new.created_at.strftime('%a, %m/%d/%Y') + " AT " + new.created_at.strftime('%HH%M') + " by " %>
                       <%= new.user.nil? ? "" : new.user.email %>
                     </div>
 
@@ -57,7 +59,8 @@
                         </select>
                       </p>
                       <div>
-                        (<%= new.comments.count %>) Comments|(<%= new.impressionist_count(:filter=>:ip_address) %>) Views
+                        (<%= new.comments.count %>) Comments|(<%= new.impressionist_count(:filter => :ip_address) %>)
+                        Views
                       </div>
 
                       <script type="text/javascript">

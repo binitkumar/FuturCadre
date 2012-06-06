@@ -1,4 +1,4 @@
-<%= javascript_include_tag "jquery-1.4.4.min", "jquery.rating", "jquery.pajinate", "superfish.js" %>
+<%= javascript_include_tag "jquery-1.4.4.min", "jquery.rating", "jquery.pajinate", "superfish.js", "news" %>
 <%= stylesheet_link_tag "jquery.rating" %>
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
@@ -16,108 +16,111 @@
 
 
   <!--left-content ends-->
-
-  <div class="right-content">
-    <div class="basic-info mtop10">
-      <h1><span class="red"></span></h1>
-      <%= url_for(:only_path => false) %> <br/>
-      <%= @news.news_category.name %>|<%= @news.title %>
-    </div>
-
-
-    <div class="news_date">
-      <%= @news.news_category.nil? ? "" :link_to(@news.news_category.name, "javascript:void(0);")+ " >> " + " Posted on " + @news.created_at.strftime('%a, %m/%d/%Y') + " AT " + @news.created_at.strftime('%HH%M') + " by " %>
-      <%= @news.user.nil? ? "" : @news.user.email %>
-    </div>
-
-    <div class="rating-hold" id="rating_hold" style="width: 30%;">
-
-      <p style="margin:5px 0px 0px 5px; color:#656565; width: 150px;">
-
-        <select name="myRating" class="active_rating" id="serialStar_group_<%= @news.id %>">
-
-          <option value="1" <%= @news.rating.rate.to_i == 1 ? "selected='yes'" :"" %>>very weak
-          </option>
-          <option value="2" <%= @news.rating.rate.to_i == 2 ? "selected='yes'" :"" %>>weak</option>
-          <option value="3" <%= @news.rating.rate.to_i == 3 ? "selected='yes'" :"" %>>average</option>
-          <option value="4" <%= @news.rating.rate.to_i == 4 ? "selected='yes'" :"" %>>strong</option>
-          <option value="5" <%= @news.rating.rate.to_i == 5 ? "selected='yes'" :"" %>>very
-            strong
-          </option>
-        </select>
-      </p>
-      <%= @news.comments.count %>  Comments
-
-
-      <script type="text/javascript">
-
-          $("#serialStar_group_<%= @news.id %>").rating();
-          var counter = 0;
-          $("#serialStar_group_<%= @news.id %>").siblings(".ui-rating").each(function () {
-              if (counter != 0) {
-                  $(this).remove();
-              }
-              counter = counter + 1;
-          });
-          $("#serialStar_group_<%= @news.id %>").bind("change", function () {
-              var rate = $('#serialStar_group_<%= @news.id %>').serialize().split("=");
-
-              var i = 1;
-              for (i; i <= 5; i++) {
-                  if (i <= parseInt(rate[1])) {
-                      $("#changer_group_<%= @news.id %>_" + i).attr("src", "/assets/star_icon_golden.png");
-                  }
-                  else {
-                      $("#changer_group_<%= @news.id %>_" + i).attr("src", "/assets/star_icon_black.png");
-                  }
-              }
-              $.ajax({
-                  url:'/news/set_news_rating?news_id=<%= @news.id %>&rate=' + rate[1], type:'get', dataType:'html',
-                  processData:false,
-                  success:function (data) {
-
-                  }
-              });
-          });
-      </script>
-
-    </div>
-    <div class="right-content-detail" style=" width: 712px;">
-      <% current_url_without_uri = request.protocol+request.host_with_port %>
-      <% shorten_url = ("#{current_url_without_uri}/news/#{@news.id}") %>
-
-      <div class="network-holder" id="network-holder">
+  <div id="main_news_page">
+    <div class="right-content">
+      <div class="basic-info mtop10">
+        <h1><span class="red"></span></h1>
+        <%=link_to "Home", root_path  %>|<%= @news.news_category.name %>|<%= @news.title %>
       </div>
 
-      <div class="content-detail">
-        <div class="img_detail">
-          <% if @news.photo != nil %>
-              <%= image_tag @news.photo.image.url %>
-          <% else %>
-              <%= image_tag "/assets/dashboard-img.png" %>
-          <% end %>
 
+      <div class="news_date">
+        <a onclick="fetch_news(<%= @news.news_category_id %>,'category',this)"><%= @news.news_category.name %> </a>
+        >> Posted on
+        <% @news.created_at.strftime('%a, %m/%d/%Y') + " AT " + @news.created_at.strftime('%HH%M') + " by " %>
+        <%= @news.user.nil? ? "" : @news.user.email %>
+      </div>
+
+
+      <div class="rating-hold" id="rating_hold" style="width: 30%;">
+
+        <p style="margin:5px 0px 0px 5px; color:#656565; width: 150px;">
+
+          <select name="myRating" class="active_rating" id="serialStar_group_<%= @news.id %>">
+
+            <option value="1" <%= @news.rating.rate.to_i == 1 ? "selected='yes'" :"" %>>very weak
+            </option>
+            <option value="2" <%= @news.rating.rate.to_i == 2 ? "selected='yes'" :"" %>>weak</option>
+            <option value="3" <%= @news.rating.rate.to_i == 3 ? "selected='yes'" :"" %>>average</option>
+            <option value="4" <%= @news.rating.rate.to_i == 4 ? "selected='yes'" :"" %>>strong</option>
+            <option value="5" <%= @news.rating.rate.to_i == 5 ? "selected='yes'" :"" %>>very
+              strong
+            </option>
+          </select>
+        </p>
+        <div>
+          (<%= @news.comments.count %>) Comments|(<%= @news.impressionist_count(:filter => :ip_address) %>)
+          Views
         </div>
-        <h1><%= @news.title %> </h1>
 
-        <p><%= @news.created_at.strftime("%d-%m-%Y") %></p>
 
-        <div class="p-style-detail">
-          <%= @news.body %>
+        <script type="text/javascript">
+
+            $("#serialStar_group_<%= @news.id %>").rating();
+            var counter = 0;
+            $("#serialStar_group_<%= @news.id %>").siblings(".ui-rating").each(function () {
+                if (counter != 0) {
+                    $(this).remove();
+                }
+                counter = counter + 1;
+            });
+            $("#serialStar_group_<%= @news.id %>").bind("change", function () {
+                var rate = $('#serialStar_group_<%= @news.id %>').serialize().split("=");
+
+                var i = 1;
+                for (i; i <= 5; i++) {
+                    if (i <= parseInt(rate[1])) {
+                        $("#changer_group_<%= @news.id %>_" + i).attr("src", "/assets/star_icon_golden.png");
+                    }
+                    else {
+                        $("#changer_group_<%= @news.id %>_" + i).attr("src", "/assets/star_icon_black.png");
+                    }
+                }
+                $.ajax({
+                    url:'/news/set_news_rating?news_id=<%= @news.id %>&rate=' + rate[1], type:'get', dataType:'html',
+                    processData:false,
+                    success:function (data) {
+
+                    }
+                });
+            });
+        </script>
+
+      </div>
+      <div class="right-content-detail" style=" width: 712px;">
+        <% current_url_without_uri = request.protocol+request.host_with_port %>
+        <% shorten_url = ("#{current_url_without_uri}/news/#{@news.id}") %>
+
+        <div class="network-holder" id="network-holder">
         </div>
+
+        <div class="content-detail">
+          <div class="img_detail">
+            <% if @news.photo != nil %>
+                <%= image_tag @news.photo.image.url %>
+            <% else %>
+                <%= image_tag "/assets/dashboard-img.png" %>
+            <% end %>
+
+          </div>
+          <h1><%= @news.title %> </h1>
+
+          <div class="p-style-detail">
+            <%= @news.body %>
+          </div>
+        </div>
+
+
+        <div id="news_com_wall">
+          <%= render :partial => "news_wall", :locals => { :news => @news } %>
+        </div>
+
+
       </div>
-
-
-      <div id="news_com_wall">
-        <%= render :partial => "news_wall", :locals => { :news => @news } %>
-      </div>
-
-
+      <!--right-content ends-->
     </div>
-    <!--right-content ends-->
   </div>
 </div>
-
 <script type="text/javascript">
 
     $("#add_comment_button").click(function () {
