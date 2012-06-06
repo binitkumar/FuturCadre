@@ -8,6 +8,8 @@ class NewsController < ApplicationController
 
   def show
     @news = News.find(params[:id])
+    impressionist(@news)
+
   end
 
   def new

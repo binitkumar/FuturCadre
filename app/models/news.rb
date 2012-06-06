@@ -1,4 +1,5 @@
 class News < ActiveRecord::Base
+  is_impressionable
   acts_as_commentable
   belongs_to :user
   belongs_to :news_category

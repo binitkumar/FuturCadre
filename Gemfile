@@ -1,4 +1,4 @@
-source 'http://rubygems.org'	
+source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
 
@@ -7,7 +7,7 @@ gem 'rails', '3.1.1'
 
 gem 'mysql2'
 #gem 'mysql'
-gem 'devise','1.5.3'
+gem 'devise', '1.5.3'
 gem "cancan"
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'therubyracer'
@@ -15,13 +15,13 @@ gem "paperclip", "~> 2.4"
 gem 'acts_as_commentable'
 #gem 'thinking-sphinx', '2.0.10'
 #gem 'dynamic_form'
-
+gem 'impressionist'
 
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
+  gem 'sass-rails', '~> 3.1.4'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
