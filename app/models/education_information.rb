@@ -1,7 +1,7 @@
 class EducationInformation < ActiveRecord::Base
   belongs_to :profile
   belongs_to :institute
-  validates_presence_of :profile
+  validates_presence_of :profile_id, :start_date, :end_date, :degree_level, :major_subject
 
   def self.search params
 

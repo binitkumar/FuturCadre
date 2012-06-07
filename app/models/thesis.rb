@@ -6,6 +6,11 @@ class Thesis < ActiveRecord::Base
   belongs_to :owner, :polymorphic => true
   has_many :theses_users
   has_many :users, :through => :theses_users
+  validates_presence_of :name, :description, :date_of_publish, :category_id, :no_of_pages
+  validates_uniqueness_of :name
+  validates_numericality_of :no_of_pages
+
+
 end
 
 

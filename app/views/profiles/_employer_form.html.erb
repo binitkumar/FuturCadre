@@ -1,3 +1,25 @@
+<% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this Profile from being saved:</h2>
+
+      <ul>
+        <% @profile.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<% if @company_information.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@company_information.errors.count, "error") %> prohibited this Profile from being saved:</h2>
+
+      <ul>
+        <% @company_information.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
 
 <div class="reg-tab-holder">
   <div class="reg-tab-holder-new tab-act">
@@ -79,6 +101,7 @@
 <div class="w100">
 
   <%= fields_for :company_information do |ed| %>
+
       <div class="profile-left-div">
         <div class="profile-input mtop20">
           <label><%= t('profile_company_nam') %></label>
@@ -95,7 +118,7 @@
         <div class="profile-input mtop20">
           <label><%= t('category') %> </label>
 
-          <div style=" margin-top:5px !important;">  <%= ed.select :sector_id, options_from_collection_for_select(Sector.all, "id", "value"), :class =>"reg-slt-div-new" %>
+          <div style=" margin-top:5px !important;">  <%= ed.select :sector_id, options_from_collection_for_select(Sector.all, "id", "value"), :class => "reg-slt-div-new" %>
           </div>
         </div>
         <div class="profile-input mtop20">

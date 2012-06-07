@@ -16,7 +16,7 @@
     <div class="dashboard-content-right">
       <%#= form_for(:thesis, :url =>{ :controller => 'theses', :action =>'create_thesis' }, :html =>{ :id => "theses_form", :onsubmit =>false, :multipart => true }) do |f| %>
       <%#= form_for :thesis, :url =>{ :action => 'update', :controller =>"theses" }, :html =>{ :id => 'theses_form' }, :remote => true do |f| %>
-          <%= form_for :thesis, :url =>{ :action => 'update_thesis', :controller => 'theses', :id => @thesis.id}, :html =>{ :id => "theses_form", :onsubmit =>true, :multipart => true } do |f| %>
+      <%= form_for :thesis, :url => { :action => 'update_thesis', :controller => 'theses', :id => @thesis.id }, :html => { :id => "theses_form", :onsubmit => true, :multipart => true } do |f| %>
           <%= render :partial => "theses/form", :locals => { :f => f } %>
           <div class="save-button">
 
@@ -32,15 +32,28 @@
     });
 
 
+    //    $(".btn-save").click(function () {
+    //        $('#theses_form').ajaxSubmit({
+    //            beforeSubmit:function (a, f, o) {
+    //                o.dataType = 'json';
+    //            },
+    //            success:function (data) {
+    //
+    //                $(".dashboard-content-right").html(data.html);
+    //
+    //
+    //            }
+    //        });
+    //        return false;
+    //    });
+
     $(".btn-save").click(function () {
-        $('#theses_form').ajaxSubmit({
-            beforeSubmit:function (a, f, o) {
-                o.dataType = 'json';
-            },
-            success:function (data) {
-
-                $(".dashboard-content-right").html(data.html);
-
+        $("#form-errors").html("");
+        $('#theses_form').ajaxSubmit(function (data) {
+            if (data.substring(9, 18) == "error_div") {
+                $("#form-errors").html(data);
+            } else {
+                $(".dashboard-content-right").html(data);
 
             }
         });

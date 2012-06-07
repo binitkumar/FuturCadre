@@ -2,7 +2,7 @@ class ProfessionInformation < ActiveRecord::Base
   belongs_to :profile
 	belongs_to :category
   belongs_to :sector
-  validates_presence_of :profile
+  validates_presence_of :profile_id, :start_date, :sector_id,:profession_experience, :job_title
 
   def self.search params
 

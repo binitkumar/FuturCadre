@@ -6,6 +6,7 @@
         <% @job_seeker = current_user %>
         <div class="dashboard-content-left">
           <%= render :partial => "job_seeker/job_seeker", :locals => { :job_seeker => @job_seeker } %>
+
         </div>
     <% else %>
         <% @employer = current_user %>
@@ -15,7 +16,7 @@
     <% end %>
     <div class="dashboard-content-right">
       <%#= form_for(:thesis, :url =>{ :controller => 'theses', :action =>'create_thesis' }, :html =>{ :id => "theses_form", :onsubmit =>false, :multipart => true }) do |f| %>
-        <%= form_for :thesis, :url =>{ :action => 'create_thesis', :controller =>"theses" }, :html =>{ :id => 'theses_form' }, :remote => true do |f| %>
+      <%= form_for :thesis, :url => { :action => 'create_thesis', :controller => "theses" }, :html => { :id => 'theses_form' }, :remote => true do |f| %>
           <%= render :partial => "theses/form", :locals => { :f => f } %>
           <div class="save-button">
 
@@ -26,25 +27,23 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('.date-pick').datepicker({dateFormat: 'yy-mm-dd'});
+    $(document).ready(function () {
+        $('.date-pick').datepicker({dateFormat:'yy-mm-dd'});
     });
 
 
-        $(".btn-save").click(function() {
-            $('#theses_form').ajaxSubmit({
-                beforeSubmit: function(a, f, o) {
-                    o.dataType = 'json';
-                },
-                success: function(data) {
+    $(".btn-save").click(function () {
+        $("#form-errors").html("");
+        $('#theses_form').ajaxSubmit(function (data) {
+            if (data.substring(9, 18) == "error_div") {
+                $("#form-errors").html(data);
+            } else {
+                $(".dashboard-content-right").html(data);
 
-                    $(".dashboard-content-right").html(data.html);
-
-
-                }
-            });
-            return false;
+            }
         });
+        return false;
+    });
 
 
 </script>

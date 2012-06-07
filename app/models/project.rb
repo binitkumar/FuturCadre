@@ -8,7 +8,8 @@ class Project < ActiveRecord::Base
   has_many :users, :through => :project_users
   #belongs_to :owner, :class_name => "User"
   belongs_to :owner, :polymorphic => true
-  validates_presence_of :city, :country, :region
+  validates_presence_of :city, :country, :region, :name, :category_id, :skill, :description, :research, :tag_line
+  validates_uniqueness_of :name
 
 
 end

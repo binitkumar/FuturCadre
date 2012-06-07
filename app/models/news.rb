@@ -6,7 +6,8 @@ class News < ActiveRecord::Base
   has_one :photo, :as => :imageable
   has_one :rating, :as => :rateable
 
-  validates_presence_of :title
+  validates_presence_of :title, :body, :news_category_id
+  validates_uniqueness_of :title
 
   protected
   def set_rating(rate)

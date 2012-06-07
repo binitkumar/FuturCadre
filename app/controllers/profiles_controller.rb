@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
     @photo = Asset.new(params[:asset])
     if @photo.save && @photo.errors.empty?
       session[:photo_id] = @photo.id
-      render :text => "Photo is successfuly uploaded."
+      render :text => "Photo is successfully uploaded."
     else
       render :json => render_to_string(:partial => '/shared/error_messages', :locals => { :object => @photo })
     end
@@ -96,8 +96,6 @@ class ProfilesController < ApplicationController
     else
       success = true
     end
-
-
     if success
       @professional_informations = @profile.profession_informations
       render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_experience') }.to_json
@@ -202,8 +200,10 @@ class ProfilesController < ApplicationController
   end
 
   def create_employer
-    @profile = Profile.new(params[:profile])
-    @profile.update_attributes(:user_id => current_user.id, :country_id => params[:profile][:country_id], :city_id => params[:profile][:city_id], :region_id => params[:profile][:region_id])
+    @profile             = Profile.new(params[:profile])
+    #@profile.update_attributes(:user_id => current_user.id, :country_id => params[:profile][:country_id], :city_id => params[:profile][:city_id], :region_id => params[:profile][:region_id])
+    @profile.user_id     = current_user.id
+    @company_information = CompanyInformation.new(params[:company_information])
 
     if @profile.save
       @photo = params[:asset]
@@ -218,12 +218,12 @@ class ProfilesController < ApplicationController
         end
       end
 
-      unless @profile.blank?
-        @company_information            = CompanyInformation.new(params[:company_information])
-        @company_information.country_id = params[:company_information][:country_id]
-        @company_information.region_id  = params[:company_information][:region_id]
-        @company_information.city_id    = params[:company_information][:city_id]
-        @company_information.save
+      @company_information.country_id = params[:company_information][:country_id]
+      @company_information.region_id  = params[:company_information][:region_id]
+      @company_information.city_id    = params[:company_information][:city_id]
+      @company_information.profile_id = @profile.id
+
+      if @company_information.save
 
         @photo = params[:org_photo]
         unless @photo.blank?
@@ -236,16 +236,20 @@ class ProfilesController < ApplicationController
             return
           end
         end
-
+      else
+        render :action => "new"
+        #@company_information.errors
+        return
       end
-
-      @company_information.update_attributes(:profile_id => @profile.id)
+      #@company_information.update_attributes(:profile_id => @profile.id)
       redirect_to session[:return_to]
+
       #redirect_to(@profile, :notice => 'Profile was successfully created.')
     else
-      render :action => "new"
 
+      render :action => "new"
     end
+
   end
 
   def show
@@ -424,6 +428,11 @@ class ProfilesController < ApplicationController
 
     @profile.update_attributes(:job_title => params[:job_title], :languages => lang, :Sector_ids => sector, :locations => location, :date_of_start => date, :work_authorization => params[:work_authorization], :desired_job_type => params[:desired_job_type], :desired_job_status => params[:desired_job_status], :salary_to => params[:salary_to], :salary_from => params[:salary_from], :currency => params[:currency], :salary_period => params[:salary_period], :willing => params[:willing], :willing_to_travel => params[:willing_to_travel])
     redirect_to @profile, :notice => 'Profile was successfully updated.'
+  end
+
+  private
+  def profile_att
+
   end
 
 end

@@ -10,7 +10,7 @@
       <label><%= t('Thesis.published') %>:</label>     <%= @thesis.date_of_publish.strftime("%d-%m-%Y") %>  <br/>
       <label><%= t('Thesis.no_of_pages') %>:</label>        <%= @thesis.no_of_pages %>  <br/>
       <label><%= t('Thesis.file_name') %>:</label>
-      <% unless @thesis.photo.blank? %>        <%= @thesis.photo.image_file_name %>  <br/>
+      <% unless @thesis.photo.blank? %>   <%= @thesis.photo.image_file_name %>  <br/>
       <% end %>
 
   <% end %>

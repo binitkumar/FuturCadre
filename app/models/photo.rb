@@ -9,6 +9,6 @@ class Photo < ActiveRecord::Base
   validates_attachment_size :image, :less_than => 2.megabytes,
                             :unless            => Proc.new { |model| model.image }
 
-  #:styles => { :small => "100x100>" },
+
 
 end
