@@ -1,6 +1,8 @@
 <div class="dashboard-right-content">
 
 <div class="dashboard-content-right">
+  <div id="form-errors"></div>
+
   <div class="basic-new-info-writting-img">
     <a href="#">
       <%= image_tag asset_path 'basic-new-info-writting-img.png' %>
@@ -37,7 +39,7 @@
     </div>
 
     <div class="reg-location-holder" style="margin-top: 0!important;">
-      <label><%= t('jobs.location')%></label>
+      <label><%= t('jobs.location') %></label>
       <%= render :partial => "shared/countries", :locals => { :object_collection => "job" } %>
       <div id="regions">
         <%= render :partial => "shared/regions", :locals => { :object_collection => "job" } %>
@@ -52,25 +54,25 @@
   <!--dashboard-right-left ends-->
   <div class="dashboard-right-right">
     <div class="job-input-description">
-      <label><%= t('description')%></label>
+      <label><%= t('description') %></label>
       <%= f.text_area :description %>
     </div>
   </div>
 
   <div class="w100 mtop20">
     <div class="contract-label" id="contract_period">
-      <label><%= t('jobs.contract_duration')%></label>
+      <label><%= t('jobs.contract_duration') %></label>
       <%= f.select :period_id, options_from_collection_for_select(Period.all, "id", "name") %>
     </div>
 
     <div class="radio-label" id="disable">
       <%= f.radio_button 'date_of_start', true, :class => "contract-radio", :onclick => "disable('disable')" %>
-      <label><%= t('immediate')%></label>
+      <label><%= t('immediate') %></label>
     </div>
 
     <div class="radio-label" id="enable">
       <%= f.radio_button 'date_of_start', false, :class => "contract-radio", :onclick => "disable('enable')" %>
-      <label> <%= t('jobs.Date_of_start')%></label>
+      <label> <%= t('jobs.Date_of_start') %></label>
     </div>
 
     <div class="date-box" id="date-box">
@@ -84,9 +86,9 @@
   <div class="job-input-remuneration">
 
     <div class="remu-input">
-      <label><%= t('jobs.annual_salary')%></label>
+      <label><%= t('jobs.annual_salary') %></label>
       <%= f.radio_button 'annual_salary', 'Negotiable', :class => "checked-radio" %>
-      <label><%= t('jobs.negotiable')%></label>
+      <label><%= t('jobs.negotiable') %></label>
     </div>
 
     <div class="remu-inputs-two">
@@ -108,7 +110,7 @@
 </div>
 
 <div class="job-skill">
-  <h1><span><%= t('company')%></span> <%= t('information')%></h1>
+  <h1><span><%= t('company') %></span> <%= t('information') %></h1>
   <%= image_tag asset_path 'dashboard-botom-line.png' %>
 </div>
 <% if @company_informationn.present? %>
@@ -116,11 +118,11 @@
 
       <div class="job-input">
 
-        <label><%= t('jobs.add_skills')%></label>
+        <label><%= t('jobs.add_skills') %></label>
         <input type="text" value=""/>
       </div>
       <div class="job-input-description">
-        <label><%= t('description')%></label>
+        <label><%= t('description') %></label>
         <input type="text" value=""/>
       </div>
 
@@ -131,7 +133,7 @@
       <div class="skill-content">
 
         <div class="contract-field">
-          <label> <%= t('jobs.industry_sector')%></label>
+          <label> <%= t('jobs.industry_sector') %></label>
           <%= select_tag :sector_id, options_from_collection_for_select(Sector.all, "id", "value") %>
         </div>
 
@@ -143,11 +145,11 @@
         <div class="dashboard-right-left">
 
           <div class="job-input-add">
-            <label><%= t('profiles.company_name')%></label>
+            <label><%= t('profiles.company_name') %></label>
             <%= ed.text_field :name %>
           </div>
           <div class="job-input-description">
-            <label><%= t('description')%></label>
+            <label><%= t('description') %></label>
             <%= ed.text_area :description %>
           </div>
 
@@ -171,23 +173,23 @@
 <%= hidden_field_tag 'count', '0' %>
 <%= hidden_field_tag 'counter', '0' %>
 <div class="job-skill">
-  <h1><span><%= t('required')%></span> <%= t('profile_profile')%></h1>
+  <h1><span><%= t('required') %></span> <%= t('profile_profile') %></h1>
   <%= image_tag asset_path 'dashboard-botom-line.png' %>
 </div>
 <%= fields_for :skill do |skill| %>
     <div class="skils-ful-length">
-      <label style="margin-top: 0!important;"><%= t('skills')%></label>
+      <label style="margin-top: 0!important;"><%= t('skills') %></label>
       <%= skill.text_field :name %>
     </div>
 <% end %>
 <div id="language-div" class="language-bar">
 
   <div class="contract-field-new">
-    <label style="margin-top: 0!important;"> <%= t('jobs.languages')%> </label>
+    <label style="margin-top: 0!important;"> <%= t('jobs.languages') %> </label>
     <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value") %>
   </div>
   <div class="contract-field-new">
-    <label style="margin-top: 0!important;"> <%= t('level')%> </label>
+    <label style="margin-top: 0!important;"> <%= t('level') %> </label>
     <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]], ["Niveau", "Bilingue"]) %>
     <div class="add-button" style="margin-right: -28px!important;">
       <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
@@ -198,7 +200,7 @@
 <div class="clear" style="clear: both;"></div>
 <div id="education-div" style="width: 100%; float: left; margin-top: 30px;">
   <div class="contract-field-ed-two" id="contract-field-ed">
-    <label style="width:100%; float:left;"> <%= t('jobs.education_level')%> </label>
+    <label style="width:100%; float:left;"> <%= t('jobs.education_level') %> </label>
     <%= select_tag "education_ids[]", options_from_collection_for_select(EducationLevel.all, "id", "name"), :style => "height: 30px; margin-top: 5px; width: 85%;" %>
     <div class="add-button">
       <div class="add-education"> <%= image_tag asset_path 'plus.png' %></div>
@@ -209,10 +211,10 @@
 
 
 <div class="publication">
-  <h1><%= t('publication')%></h1>
+  <h1><%= t('publication') %></h1>
   <%= image_tag asset_path 'dashboard-botom-line.png' %>
   <div class="w100 mtop20">
-    <p><%= t('publish_on_futur_cadre')%></p>
+    <p><%= t('publish_on_futur_cadre') %></p>
 
     <div class="inputs-publication">
       <%= check_box_tag 'publication' %>
@@ -222,7 +224,7 @@
 <div class="publication-line">
   <div class="publication-line">
     <%= check_box_tag 'email' %>
-    <p><%= t('receive_an_email')%></p>
+    <p><%= t('receive_an_email') %></p>
 
     <div class="date-box" id="email-box" style="display: none;">
       <%= text_field_tag "employer_email", nil, :id => "email_box" %>
@@ -237,7 +239,7 @@
 <div class="w100">
   <div class="btn-save">
     <div class="apply-left"></div>
-    <div class="apply-mid"><%= t('button.save')%></div>
+    <div class="apply-mid"><%= t('button.save') %></div>
     <div class="apply-right"></div>
   </div>
 </div>

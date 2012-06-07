@@ -8,7 +8,7 @@
     </div>
 
     <div class="dashboard-content-right">
-      <%= form_for @job, :url =>{ :action => 'create_job', :controller => 'jobs' }, :html =>{ :id => "job_form", :onsubmit =>false, :multipart => true }, :remote => true do |f| %>
+      <%= form_for @job, :url => { :action => 'create_job', :controller => 'jobs' }, :html => { :id => "job_form", :onsubmit => false, :multipart => true }, :remote => true do |f| %>
           <%= render :partial => "job_form", :locals => { :f => f, :employer => @employer } %>
           <div class="save-button">
             <%#= f.submit "Save" %>
@@ -18,33 +18,36 @@
   </div>
 </div>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('.date-pick').datepicker({dateFormat: 'yy-mm-dd'});
+    $(document).ready(function () {
+        $('.date-pick').datepicker({dateFormat:'yy-mm-dd'});
     });
 
-    $('.checked-radio').click(function() {
-//        $("#textBox").attr("disabled", "disabled");
+    $('.checked-radio').click(function () {
         if ($(this).attr('id') == 'enable_textbox') {
             $("#textBox").removeAttr("disabled");
             document.getElementById("textBox").value = null;
         }
 
     });
-
-//    $('.contract-radio').click(function() {
-////          $("#Date-Box").attr("disabled", "disabled");
-//        if ($(this).attr('id') == 'enable_datextbox') {
-//            $("#textBox").removeAttr("disabled");
-//            document.getElementById("Date-Box").value = null;
-//        }
+//    $('.btn-save').click(function () {
+//        $.post($("form#job_form").attr("action"), $("form#job_form").serialize(), (function (response) {
+//
+//            return $(".dashboard-right-content").html(response);
+//        }), "html");
+//        return false;
 //    });
 
 
+    $(".btn-save").click(function () {
+        $("#form-errors").html("");
+        $('#job_form').ajaxSubmit(function (data) {
+            if (data.substring(9, 18) == "error_div") {
+                $("#form-errors").html(data);
+            } else {
+                $(".dashboard-right-content").html(data);
 
-    $('.btn-save').click(function() {
-        $.post($("form#job_form").attr("action"), $("form#job_form").serialize(), (function(response) {
-            return $(".dashboard-right-content").html(response.html);
-        }), "json");
+            }
+        });
         return false;
     });
 

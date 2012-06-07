@@ -7,7 +7,7 @@
       <%= render :partial => "employer/employer", :locals => { :employer => @employer } %>
     </div>
     <div class="dashboard-content-right">
-      <%= form_for @job, :url =>{ :action => 'update', :controller => 'jobs', :id => @job.id, :cid => @company_information.id }, :html =>{ :id => "update_job", :onsubmit =>false, :multipart => true }, :remote => true do |f| %>
+      <%= form_for @job, :url => { :action => 'update', :controller => 'jobs', :id => @job.id, :cid => @company_information.id }, :html => { :id => "update_job", :onsubmit => false, :multipart => true }, :remote => true do |f| %>
           <%= render :partial => "update_job", :locals => { :f => f, :employer => @employer } %>
           <div class="save-button">
             <%#= f.submit "Save" %>
@@ -21,25 +21,24 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('.date-pick').datepicker({dateFormat: 'yy-mm-dd'});
+    $(document).ready(function () {
+        $('.date-pick').datepicker({dateFormat:'yy-mm-dd'});
     });
 
-    $('.checked-radio').click(function() {
+    $('.checked-radio').click(function () {
 //        $("#textBox").attr("disabled", "disabled");
         if ($(this).attr('id') == 'enable_textbox') {
             $("#textBox").removeAttr("disabled");
             document.getElementById("textBox").value = null;
         }
-        else
-        {
-          document.getElementById("textBox").value = null;
+        else {
+            document.getElementById("textBox").value = null;
 
         }
 
     });
 
-    $('.contract-radio').click(function() {
+    $('.contract-radio').click(function () {
         //          $("#Date-Box").attr("disabled", "disabled");
         if ($(this).attr('id') == 'enable_datextbox') {
             $("#textBox").removeAttr("disabled");
@@ -50,10 +49,23 @@
         }
     });
 
-    $('.btn-save').click(function() {
-        $.post($("form#update_job").attr("action"), $("form#update_job").serialize(), (function(response) {
-            return $(".dashboard-right-content").html(response.html);
-        }), "json");
+    //    $('.btn-save').click(function() {
+    //        $.post($("form#update_job").attr("action"), $("form#update_job").serialize(), (function(response) {
+    //            return $(".dashboard-right-content").html(response.html);
+    //        }), "json");
+    //        return false;
+    //    });
+
+    $(".btn-save").click(function () {
+        $("#form-errors").html("");
+        $('#update_job').ajaxSubmit(function (data) {
+            if (data.substring(9, 18) == "error_div") {
+                $("#form-errors").html(data);
+            } else {
+                $(".dashboard-right-content").html(data);
+
+            }
+        });
         return false;
     });
 </script>
