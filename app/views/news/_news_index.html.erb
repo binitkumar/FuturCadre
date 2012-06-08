@@ -58,10 +58,6 @@
                           </option>
                         </select>
                       </p>
-                      <div>
-                        (<%= new.comments.count %>) Comments|(<%= new.impressionist_count(:filter => :ip_address) %>)
-                        Views
-                      </div>
 
                       <script type="text/javascript">
 
@@ -75,26 +71,19 @@
                           });
                           $("#serialStar_group_<%= new.id %>").bind("change", function () {
                               var rate = $('#serialStar_group_<%= new.id %>').serialize().split("=");
-
-                              var i = 1;
-                              for (i; i <= 5; i++) {
-                                  if (i <= parseInt(rate[1])) {
-                                      $("#changer_group_<%= new.id %>_" + i).attr("src", "/assets/star_icon_golden.png");
-                                  }
-                                  else {
-                                      $("#changer_group_<%= new.id %>_" + i).attr("src", "/assets/star_icon_black.png");
-                                  }
-                              }
                               $.ajax({
                                   url:'/news/set_news_rating?news_id=<%= new.id %>&rate=' + rate[1], type:'get', dataType:'html',
                                   processData:false,
                                   success:function (data) {
-
                                   }
                               });
                           });
                       </script>
 
+                    </div>
+                    <div id="news_stats" style="float:left;">
+                      (<%= new.comments.count %>) Comments|(<%= new.impressionist_count(:filter => :ip_address) %>)
+                      Views
                     </div>
 
 

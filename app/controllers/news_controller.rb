@@ -1,7 +1,6 @@
 class NewsController < ApplicationController
 
   def index
-
     @news = News.all(:conditions => { :is_approved => true })
     news_attr
   end
@@ -9,7 +8,6 @@ class NewsController < ApplicationController
   def show
     @news = News.find(params[:id])
     impressionist(@news)
-
   end
 
   def new
@@ -65,13 +63,17 @@ class NewsController < ApplicationController
         @picture.content_type   = "news_image"
         @picture.imageable_id   = @news.id
         @picture.imageable_type ="News"
-        unless  @picture.save
+        if !@picture.save
           news_attr
-          render :action => "new"
+          render :partial => '/news/form', :locale => { :news => @news }
         end
+
       end
-      render :json => { :html => render_to_string(:partial => '/news/form', :locale => { :news => @news }) }.to_json
+      render :partial => '/news/form', :locale => { :news => @news }
+    else
+      render :partial => '/shared/error_messages', :locals => { :object => @news }
     end
+
   end
 
   def news_comment
@@ -100,12 +102,13 @@ class NewsController < ApplicationController
 
   def set_news_rating
     @news = News.find_by_id(params[:news_id])
-    @news = @news.set_rating(params[:rate])
-    render :text => "Ok"
+    @news.set_rating(params[:rate])
+    render :text => @news.rating.rate
   end
 
   private
   def news_attr
     @news_categories = NewsCategory.all
   end
+
 end
