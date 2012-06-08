@@ -5,10 +5,8 @@
   <% if current_user.job_seeker? %>
       <%= render :partial => "job_seeker_form" %>
   <% elsif current_user.employer? %>
-      <%= form_for @profile, :url => { :action => 'create_employer', :controller => 'profiles' }, :html => { :id => "create_profile_form", :onsubmit => true, :multipart => true } do |f| %>
+      <%= render :partial => "employer_form" %>
 
-          <%= render :partial => "employer_form", :locals => { :f => f } %>
-          <div class="save-button-new"> <%= f.submit "Save" %></div>
-      <% end %>
+
   <% end %>
 </div>

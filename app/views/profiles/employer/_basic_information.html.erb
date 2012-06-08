@@ -1,0 +1,104 @@
+<%= javascript_include_tag "jquery-ui-1.8.17.custom.min" %>
+<%= form_tag '/profiles/create_employer_basic_information', :id => "profile-form" do %>
+    <div class="basic-info mtop10">
+      <h1><%= t('basic') %><span class="red"> <%= t('information') %></span></h1>
+      <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+    </div>
+
+    <div id="form-errors"></div>
+
+    <div class="w100">
+      <div class="profile-left-div">
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.first_name') %><em>*</em></label>
+          <%= text_field_tag "profile[first_name]", @profile ? @profile.first_name : "" %>
+        </div>
+        <div class="profile-input mtop20">
+          <label> <%= t('profiles.phone') %><em>*</em> </label>
+          <%= text_field_tag "profile[phone]", @profile ? @profile.phone : "" %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.zip') %><em>*</em></label>
+          <%= text_field_tag "profile[zip_code]", @profile ? @profile.zip_code : "" %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.region') %><em>*</em></label>
+
+          <div id="regions">
+            <%= render :partial => "shared/regions", :locals => { :object_collection => "profile" } %>
+          </div>
+        </div>
+
+      </div>
+      <div class="profile-right-div">
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.last_name') %><em>*</em></label>
+          <%= text_field_tag "profile[last_name]", @profile ? @profile.last_name : "" %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.address') %><em>*</em></label>
+          <%= text_field_tag "profile[address]", @profile ? @profile.address : "" %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.country') %><em>*</em></label>
+
+          <div id="country">
+            <%= render :partial => "shared/countries", :locals => { :object_collection => "profile" } %>
+          </div>
+        </div>
+
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.city') %><em>*</em></label>
+
+          <div id="cities">
+            <%= render :partial => "shared/cities", :locals => { :object_collection => "profile" } %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="save-button-new basic-save"><%= button_to t('save_and_next'), "javascript:void(0);", :id => "next-link" %></div>
+<% end %>
+<div class="profile-left-div">
+  <div class="profile-input mtop20">
+    <label><%= t('profiles.profile_picture') %></label>
+    <%= form_for :asset, :url => upload_photo_profiles_path, :html => { :id => "photoForm", :multipart => true } do |form| %>
+        <%= hidden_field_tag "asset[user_id]", current_user.id %>
+        <%= hidden_field_tag "asset[content_type]", "profile_image" %>
+        <%= file_field_tag "asset[photo]", :class => "photo" %>
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+
+    $(".tabs").each(function () {
+        $(this).removeClass("active");
+    });
+
+    $("#basic_information").addClass("active");
+
+    $('.photo').change(function () {
+        $('#photoForm').ajaxSubmit({
+            beforeSubmit:function (a, f, o) {
+                o.dataType = 'json';
+            },
+            complete:function (XMLHttpRequest, textStatus) {
+                $("#form-errors").html(XMLHttpRequest.responseText);
+            }
+        });
+    });
+
+    $("#next-link").click(function () {
+        $.post($("form#profile-form").attr("action"), $("form#profile-form").serialize(), function (response) {
+            if (response.seccess == true) {
+                $("#profile-contents").html(response.html);
+            }
+            else {
+                $("#form-errors").html(response.html);
+            }
+        }, "json");
+        return false;
+    });
+
+
+</script>

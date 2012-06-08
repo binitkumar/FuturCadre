@@ -1,0 +1,127 @@
+<%= javascript_include_tag "jquery-ui-1.8.17.custom.min" %>
+<div class="basic-info mtop10">
+  <h1>Company <span class="red"> Information</span></h1>
+  <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+</div>
+<%= form_tag '/profiles/create_employer_company_details', :id => "profile-form" do |f| %>
+    <div id="form-errors"></div>
+    <%= hidden_field_tag :profile_id, @profile.id %>
+    <div class="w100">
+      <div class="profile-left-div">
+        <div class="profile-input mtop20">
+          <label><%= t('profile_company_nam') %><em>*</em></label>
+          <%= text_field_tag "company_information[name]", @company_information ? @company_information.name : "" %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.phone') %></label>
+          <%= text_field_tag "company_information[phone]", @company_information ? @company_information.phone : "" %>
+
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('category') %><em>*</em></label>
+
+          <%= select_tag "company_information[sector_id]", options_for_select(["Select from list"] + @sectors.map { |sector| [sector.value, sector.id] }, @company_information.blank? ? @company_information.sector_id : "") %>
+        </div>
+
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.fax') %></label>
+          <%= text_field_tag "company_information[fax]", @company_information ? @company_information.fax : "" %>
+        </div>
+
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.website') %><em>*</em></label>
+          <%= text_field_tag "company_information[web_site]", @company_information ? @company_information.web_site : "" %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.email') %><em>*</em></label>
+          <%= text_field_tag "company_information[email]", @company_information ? @company_information.email : "" %>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.address') %><em>*</em></label>
+          <%= text_field_tag "company_information[address]", @company_information ? @company_information.address : "" %>
+        </div>
+
+
+      </div>
+      <div class="profile-right-div">
+
+        <div class="profile-input mtop20">
+          <label><%= t('companyinfo.country') %></label>
+
+          <div id="country_org">
+            <%= render :partial => "shared/countries", :locals => { :object_collection => "company_information" } %>
+          </div>
+        </div>
+
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.region') %><em>*</em></label>
+
+          <div id="regions_org">
+            <%= render :partial => "shared/regions", :locals => { :object_collection => "company_information" } %>
+          </div>
+        </div>
+        <div class="profile-input mtop20">
+          <label><%= t('companyinfo.city') %></label>
+
+          <div id="cities_org">
+            <%= render :partial => "shared/cities", :locals => { :object_collection => "company_information" } %>
+          </div>
+        </div>
+
+      </div>
+      <div class="profile-left-div">
+        <div class="profile-input mtop20">
+          <label><%= t('profile_company_description') %></label>
+          <%= text_area_tag "company_information[description]", @company_information ? @company_information.description : "" %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="save-button-new"><%= button_to t('save_and_next'), "javascript:void(0);", :id => "save-next-link" %></div>
+<% end %>
+<
+<div class="profile-left-div">
+  <div class="profile-input mtop20">
+    <label><%= t('profiles.profile_picture') %></label>
+    <%= form_for :asset, :url => upload_photo_profiles_path, :html => { :id => "photo_form", :multipart => true } do |form| %>
+        <%= hidden_field_tag "asset[user_id]", current_user.id %>
+        <%= hidden_field_tag "asset[profile_id]", @profile.id %>
+        <%= hidden_field_tag "asset[content_type]", "company_logo" %>
+        <%= file_field_tag "asset[photo]", :class => "company_photo" %>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+    $(".tabs").each(function () {
+        $(this).removeClass("active");
+    });
+    $("#education_details").addClass("active");
+
+    $('.company_photo').change(function () {
+        $('#photo_form').ajaxSubmit({
+            beforeSubmit:function (a, f, o) {
+                o.dataType = 'json';
+            },
+            complete:function (XMLHttpRequest, textStatus) {
+                $("#form-errors").html(XMLHttpRequest.responseText);
+            }
+        });
+    });
+
+    $("#save-next-link").click(function () {
+        $.post("/profiles/create_employer_company_details?skip=true", $("form#profile-form").serialize(), function (response) {
+            if (response.seccess == true) {
+                $("#profile-contents").html(response.html);
+            }
+            else {
+                $("#form-errors").html(response.html);
+            }
+        }, "json");
+        return false;
+    });
+
+
+</script>

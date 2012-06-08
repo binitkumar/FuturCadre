@@ -1,10 +1,7 @@
 class ProfilesController < ApplicationController
-
+  before_filter :authenticate_user!
   before_filter :authorize_user
 
-  #def show
-  #	@profile = Profile.find(params[:id])
-  #end
 
   def new
     @profile             = Profile.new
@@ -17,7 +14,7 @@ class ProfilesController < ApplicationController
   end
 
   def upload_photo
-    @photo = Asset.new(params[:asset])
+   @photo = Asset.new(params[:asset])
     if @photo.save && @photo.errors.empty?
       session[:photo_id] = @photo.id
       render :text => "Photo is successfully uploaded."
@@ -149,108 +146,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-
-  def create_job_seeker
-    @profile = Profile.new(params[:profile])
-    @profile.update_attributes(:user_id => current_user.id, :country_id => params[:profile][:country_id], :city_id => params[:profile][:city_id], :region_id => params[:profile][:region_id])
-
-    @photo = params[:asset]
-    unless @photo.blank?
-      @asset              = Asset.new(params[:asset])
-      @asset.content_type =
-          @asset.user_id = current_user.id
-      @asset.profile_id   = @profile.id
-
-      unless @asset.save
-        render :action => "new"
-        return
-      end
-    end
-
-    #educational information
-    unless @profile.blank?
-      @education_info            = EducationInformation.new(params[:education_info])
-      @education_info.profile_id = @profile.id
-      @education_info.save
-    end
-    #professional information
-    unless @profile.blank?
-      @job_information            = ProfessionInformation.new(params[:job_info])
-      @job_information.profile_id =@profile.id
-      @job_information.save
-
-      @resume = params[:resume]
-      unless @resume.blank?
-        @cv              = Asset.new(params[:resume])
-        @cv.content_type = "cv"
-        @cv.user_id      = current_user.id
-        @cv.profile_id   = @profile.id
-        unless @cv.save
-          render :action => "new"
-          return
-        end
-      end
-
-    end
-    if @profile.save
-      redirect_to(@profile, :notice => 'Profile was successfully created.')
-    else
-      render :action => "new"
-    end
-  end
-
-  def create_employer
-    @profile             = Profile.new(params[:profile])
-    #@profile.update_attributes(:user_id => current_user.id, :country_id => params[:profile][:country_id], :city_id => params[:profile][:city_id], :region_id => params[:profile][:region_id])
-    @profile.user_id     = current_user.id
-    @company_information = CompanyInformation.new(params[:company_information])
-
-    if @profile.save
-      @photo = params[:asset]
-      unless @photo.blank?
-        @asset              = Asset.new(params[:asset])
-        @asset.content_type = "profile_image"
-        @asset.user_id      = current_user.id
-        @asset.profile_id   = @profile.id
-        unless @asset.save
-          render :action => "new"
-          return
-        end
-      end
-
-      @company_information.country_id = params[:company_information][:country_id]
-      @company_information.region_id  = params[:company_information][:region_id]
-      @company_information.city_id    = params[:company_information][:city_id]
-      @company_information.profile_id = @profile.id
-
-      if @company_information.save
-
-        @photo = params[:org_photo]
-        unless @photo.blank?
-          @image              = Asset.new(params[:org_photo])
-          @image.content_type = "company_logo"
-          @image.user_id      = current_user.id
-          @image.profile_id   = @profile.id
-          unless @image.save
-            render :action => "new"
-            return
-          end
-        end
-      else
-        render :action => "new"
-        #@company_information.errors
-        return
-      end
-      #@company_information.update_attributes(:profile_id => @profile.id)
-      redirect_to session[:return_to]
-
-      #redirect_to(@profile, :notice => 'Profile was successfully created.')
-    else
-
-      render :action => "new"
-    end
-
-  end
 
   def show
     @profile = Profile.find(params[:id])
@@ -430,10 +325,47 @@ class ProfilesController < ApplicationController
     redirect_to @profile, :notice => 'Profile was successfully updated.'
   end
 
-  private
-  def profile_att
 
+  def create_employer_basic_information
+    if current_user.profile.present?
+      @profile = current_user.profile
+      success  = @profile.update_attributes(params[:profile])
+    else
+      @profile      = Profile.new(params[:profile])
+      @profile.user = current_user
+      success       = @profile.save
+    end
+    if success
+      if session[:photo_id].present?
+        @profile.photo.destroy if @profile.photo.present?
+        photo = Asset.find_by_id(session[:photo_id])
+        photo.update_attributes(:profile_id => @profile.id) if photo.present?
+        session[:photo_id] = nil
+      end
+      @company_information = CompanyInformation.new(params[:company_information])
+      @sectors = Sector.all
+      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/employer/company_details') }.to_json
+    else
+      render :json => { :seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => { :object => @profile }) }.to_json
+    end
   end
 
+  def create_employer_company_details
+    @sectors = Sector.all
+    @profile = Profile.find_by_id(params[:profile_id])
+    if @profile.company_information.present?
+      @company_info = @profile.company_information
+      success       = @company_info.update_attributes(params[:company_information])
+    else
+      @company_info         = CompanyInformation.new(params[:company_information])
+      @company_info.profile = @profile
+      success               = @company_info.save
+    end
+    if success
+      redirect_to @profile, :notice => 'Profile was successfully created.'
+    else
+      render :json => { :seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => { :object => @company_info }) }.to_json
+    end
+  end
 end
 
