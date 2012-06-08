@@ -98,13 +98,13 @@
           <p><label><%=t('Job_Seeker.total_jobs')%></label> <%= @job_seeker.applied_jobs.count %><br/>
             <% unless @job_seeker.created_projects.blank? %>
               <p><label><%=t('Employer.employer_total_projects')%> </label> <%= @job_seeker.created_projects.count %><br/>
-                <label><%=t('Employer.employer_last_project')%></label> <%= @job_seeker.created_projects.last.created_at.strftime("%d-%m-%Y") %>
+                <label><%=t('Employer.employer_last_project')%></label> <%= @job_seeker.created_projects.last.created_at.strftime('%m/%d/%Y') %>
           <% else %>
               <%=t('Employer.employer_no_projects')%>!
           <% end %>
           <% unless @job_seeker.created_theses.blank? %>
               <p><label><%=t('Employer.employer_total_thesis')%> </label> <%= @job_seeker.created_theses.count %><br/>
-                <label><%=t('Employer.employer_last_thesis')%></label> <%= @job_seeker.created_theses.last.created_at.strftime("%d-%m-%Y") %>
+                <label><%=t('Employer.employer_last_thesis')%></label> <%= @job_seeker.created_theses.last.created_at.strftime('%m/%d/%Y') %>
           <% else %>
               <%=t('Employer.employer_no_thesis')%>!
           <% end %>

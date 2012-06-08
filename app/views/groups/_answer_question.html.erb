@@ -36,7 +36,7 @@
           </div>
           <div class="result-text"><label> <%= t('category')%>:</label> <%= @question.question_category.name %></div>
           <div class="result-text"><label><%= t('description')%>:</label><%= @question.body %> </div>
-          <div class="date-text"> <%= @question.created_at.strftime("%d-%m-%Y") %>
+          <div class="date-text"> <%= @question.created_at.strftime('%m/%d/%Y') %>
 
           </div>
         </div>
@@ -52,7 +52,7 @@
                 <%= t('title')%>:</label><%= qa.body %>
               </div>
 
-              <div class="date-text"> <%= qa.created_at.strftime("%d-%m-%Y") %>
+              <div class="date-text"> <%= qa.created_at.strftime('%m/%d/%Y') %>
 
               </div>
             </div>

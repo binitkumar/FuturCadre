@@ -4,7 +4,7 @@
 
       <h1><%= @group.name %></h1>
 
-      <p> <%= @group.created_at.strftime("%d-%m-%Y") %>  -
+      <p> <%= @group.created_at.strftime('%m/%d/%Y') %>  -
         <span class="red"><%= @group.users.count %></span><%= link_to t('Groups.member'), group_members_groups_path(:id => @group.id, :sid => "members"), :class => "members_link", :style => "text-decoration: none;" %>
         -
         <span class="red"> <%= @group.jobs.count %> </span> <%= link_to t('Groups.offers'), group_jobs_groups_path(:id => @group.id, :sid => "jobs"), :class => "offers-link", :style => "text-decoration: none;" %>

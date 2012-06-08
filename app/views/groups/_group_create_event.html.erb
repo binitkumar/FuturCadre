@@ -9,7 +9,7 @@
               <div id="group_event" onclick="event_page('<%= group_event.id%>','<%=@group.id %>')"><%= group_event.title %></div>
             </h1>
 
-            <div><%= group_event.created_at.strftime("%d-%m-%Y") %></div>
+            <div><%= group_event.created_at.strftime('%m/%d/%Y') %></div>
             <div><label> <%= t('Groups.start_time') %>:</label> <%= group_event.time_of_start %></div>
             <div><label> <%= t('Groups.end_time') %>:</label> <%= group_event.time_of_end %></div>
             <div><label><%= t('description') %>:</label></div>

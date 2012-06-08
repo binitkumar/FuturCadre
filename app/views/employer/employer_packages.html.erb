@@ -16,9 +16,9 @@
                 <li><label><b><%= t('Employer.package_jobs') %> :</b></label><%= package.no_of_jobs %></li>
                 <li><label><b><%= t('Employer.package_searches') %>:</b></label><%= package.no_of_searches %></li>
                 <li><label><b><%= t('Employer.package_start_date') %>
-                  :</b></label><%= package.start_date.strftime("%d-%m-%Y") %></li>
+                  :</b></label><%= package.start_date.strftime('%m/%d/%Y')%></li>
                 <li><label><b><%= t('Employer.package_end_date') %>
-                  :</b></label><%= package.expiry_date.strftime("%d-%m-%Y") %></li>
+                  :</b></label><%= package.expiry_date.strftime('%m/%d/%Y') %></li>
               </ul>
               <div class="select-btn-one">
                 <div class="select-left-bg-one"></div>
@@ -37,8 +37,8 @@
                   <label>Usd</label></li>
                 <li><label><b>Jobs :</b></label><%= package.no_of_jobs %></li>
                 <li><label><b>Search(es) :</b></label><%= package.no_of_searches %></li>
-                <li><label><b>Start Date :</b></label><%= package.start_date.strftime("%d-%m-%Y") %></li>
-                <li><label><b>End Date :</b></label><%= package.expiry_date.strftime("%d-%m-%Y") %></li>
+                <li><label><b>Start Date :</b></label><%= package.start_date.strftime('%m/%d/%Y') %></li>
+                <li><label><b>End Date :</b></label><%= package.expiry_date.strftime('%m/%d/%Y') %></li>
               </ul>
               <div class="select-btn">
                 <div class="select-left-bg"></div>

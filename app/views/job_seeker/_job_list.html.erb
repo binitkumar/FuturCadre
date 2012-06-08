@@ -19,7 +19,7 @@
           <% @applied_jobs.each do |app_job| %>
               <tr>
                 <td><%= link_to app_job.job.name, details_jobs_path(:id => app_job.id), :class => "job_description" %></td>
-                <td><%= app_job.created_at.strftime('%Y-%m-%d') %></td>
+                <td><%= app_job.created_at.strftime('%m/%d/%Y') %></td>
               </tr>
           <% end %>
         </table>

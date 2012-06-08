@@ -21,7 +21,7 @@
               <div class="accountants"><%= link_to group_job.name, details_jobs_path(:id => group_job.id, :sid=> "group"), :class => "group-job-link" %> </div>
               <div class="result-text">  <%= group_job.employer.name %>,<%= group_job.location %></div>
               <div class="result-text"><%= group_job.description %> </div>
-              <div class="date-text"> <%= group_job.created_at.strftime("%d-%m-%Y") %>
+              <div class="date-text"> <%= group_job.created_at.strftime('%m/%d/%Y') %>
               </div>
 
 

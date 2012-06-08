@@ -27,7 +27,7 @@
           <% @my_theses.each do |thesis| %>
               <tr>
                 <td><%= link_to thesis.name, thesis_details_theses_path(:id => thesis.id) %></td>
-                <td><%= thesis.created_at.strftime('%Y-%m-%d') %></td>
+                <td><%= thesis.created_at.strftime('%m/%d/%Y') %></td>
                 <td><%= link_to "Edit", edit_thesis_path(:id =>thesis.id) %></td>
                 <td><%= link_to "Delete", delete_thesis_theses_path(:id => thesis.id, :own_id => @job_seeker), :class =>"delete_thesis" %>
               </tr>

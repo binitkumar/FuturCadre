@@ -95,20 +95,20 @@
           <%= image_tag asset_path 'dashboard-botom-line.png' %>
           <% unless @employer.created_jobs.blank? %>
               <p><label><%= t('Employer.employer_total_jobs') %></label> <%= @employer.created_jobs.count %><br/>
-                <label><%= t('Employer.employer_last_job') %></label> <%= @employer.created_jobs.last.created_at.strftime("%d-%m-%Y") %>
+                <label><%= t('Employer.employer_last_job') %></label> <%= @employer.created_jobs.last.created_at.strftime('%m/%d/%Y') %>
           <% else %>
               <%= t('Employer.employer_no_jobs') %>
           <% end %>
           <% unless @employer.created_projects.blank? %>
               <p><label><%= t('Employer.employer_total_projects') %> </label> <%= @employer.created_projects.count %>
                 <br/>
-                <label><%= t('Employer.employer_last_project') %></label> <%= @employer.created_projects.last.created_at.strftime("%d-%m-%Y") %>
+                <label><%= t('Employer.employer_last_project') %></label> <%= @employer.created_projects.last.strftime('%m/%d/%Y') %>
           <% else %>
               <%= t('Employer.employer_no_projects') %>
           <% end %>
           <% unless @employer.created_theses.blank? %>
               <p><label><%= t('Employer.employer_total_thesis') %> </label> <%= @employer.created_theses.count %><br/>
-                <label><%= t('Employer.employer_last_thesis') %></label> <%= @employer.created_theses.last.created_at.strftime("%d-%m-%Y") %>
+                <label><%= t('Employer.employer_last_thesis') %></label> <%= @employer.created_theses.last.created_at.strftime('%m/%d/%Y') %>
           <% else %>
               <%= t('Employer.employer_no_thesis') %>
           <% end %>

@@ -29,7 +29,7 @@
                   <div class="top-heading-detail-two">
                     <div class="c-from-two"><%= User.find_by_id(msg.sender_id).name %></div>
                     <div class="c-subject-two">  <%= link_to msg.subject, message_path(:id => msg.id) %></div>
-                    <div class="c-date-two"> <%= msg.created_at.strftime("%d-%m-%Y") %></div>
+                    <div class="c-date-two"> <%= msg.created_at.strftime('%m/%d/%Y') %></div>
                   </div>
               <% end %>
           <% end %>

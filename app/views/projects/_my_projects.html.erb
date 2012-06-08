@@ -28,7 +28,7 @@
           <% @projects.each do |project| %>
               <tr>
                 <td><%= link_to project.name, project_path(:id => project.id) %></td>
-                <td><%= project.created_at.strftime('%Y-%m-%d') %></td>
+                <td><%= project.created_at.strftime('%m/%d/%Y')%></td>
                 <td><%= link_to "Edit", edit_project_path(:id => project.id) %></td>
                 <td><%= link_to "Delete", delete_project_projects_path(:id => project.id, :own_id => @job_seeker), :class => "delete_project" %>
 
