@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
   end
 
   def upload_photo
-   @photo = Asset.new(params[:asset])
+    @photo = Asset.new(params[:asset])
     if @photo.save && @photo.errors.empty?
       session[:photo_id] = @photo.id
       render :text => "Photo is successfully uploaded."
@@ -178,7 +178,7 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile                 = Profile.find(params[:id])
-    @company_information     = @profile.company_information
+    #@company_information     = @profile.company_information
     @asset                   = @profile.assets.where("content_type =?", "profile_image")
     @profession_informations = @profile.profession_informations
     @resume                  = @profile.assets.where("content_type =?", "cv")
@@ -330,10 +330,21 @@ class ProfilesController < ApplicationController
     if current_user.profile.present?
       @profile = current_user.profile
       success  = @profile.update_attributes(params[:profile])
+      if @profile.company_information.present?
+        @company_information = @profile.company_information
+        @city                = @company_information.city
+        @regions             = @city.country.regions
+        @region              = @company_information.region
+        @cities              = @region.cities
+        @country             = @city.country
+        @sector              = @company_information.sector_id
+
+      end
     else
-      @profile      = Profile.new(params[:profile])
-      @profile.user = current_user
-      success       = @profile.save
+      @profile             = Profile.new(params[:profile])
+      @profile.user        = current_user
+      success              = @profile.save
+      @company_information = CompanyInformation.new(params[:company_information])
     end
     if success
       if session[:photo_id].present?
@@ -342,7 +353,6 @@ class ProfilesController < ApplicationController
         photo.update_attributes(:profile_id => @profile.id) if photo.present?
         session[:photo_id] = nil
       end
-      @company_information = CompanyInformation.new(params[:company_information])
       @sectors = Sector.all
       render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/employer/company_details') }.to_json
     else
@@ -351,18 +361,18 @@ class ProfilesController < ApplicationController
   end
 
   def create_employer_company_details
-    @sectors = Sector.all
+    #@sectors = Sector.all
     @profile = Profile.find_by_id(params[:profile_id])
     if @profile.company_information.present?
-      @company_info = @profile.company_information
-      success       = @company_info.update_attributes(params[:company_information])
+      @company_information = @profile.company_information
+      success              = @company_information.update_attributes(params[:company_information])
     else
-      @company_info         = CompanyInformation.new(params[:company_information])
-      @company_info.profile = @profile
-      success               = @company_info.save
+      @company_information         = CompanyInformation.new(params[:company_information])
+      @company_information.profile = @profile
+      success                      = @company_information.save
     end
     if success
-      redirect_to @profile, :notice => 'Profile was successfully created.'
+      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/account', :locals => { :profile => @profile }) }.to_json
     else
       render :json => { :seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => { :object => @company_info }) }.to_json
     end

@@ -6,6 +6,7 @@
 <%= form_tag '/profiles/create_employer_company_details', :id => "profile-form" do |f| %>
     <div id="form-errors"></div>
     <%= hidden_field_tag :profile_id, @profile.id %>
+
     <div class="w100">
       <div class="profile-left-div">
         <div class="profile-input mtop20">
@@ -20,7 +21,7 @@
         <div class="profile-input mtop20">
           <label><%= t('category') %><em>*</em></label>
 
-          <%= select_tag "company_information[sector_id]", options_for_select(["Select from list"] + @sectors.map { |sector| [sector.value, sector.id] }, @company_information.blank? ? @company_information.sector_id : "") %>
+          <%= select_tag "company_information[sector_id]", options_for_select(["Select from list"] + @sectors.map { |sector| [sector.value, sector.id] }, @company_information.blank? ? "" :@company_information.sector_id) %>
         </div>
 
         <div class="profile-input mtop20">
