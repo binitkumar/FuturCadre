@@ -125,23 +125,6 @@ Profile.create!(:first_name => "Future",
 
 )
 
-
-puts 'Creating Initial Company Information......'
-CompanyInformation.create!(:name        => "Future Cadre",
-                           :profile     => Profile.first,
-                           :email       => "webmaster@futurcadre.com",
-                           :country     => Country.first,
-                           :region      => Region.first,
-                           :city        => City.first,
-                           :phone       => "0456782144",
-                           :address     => "France",
-                           :web_site    => "www.futurecadre.com",
-                           :sector      => Sector.first,
-                           :description => "This is a test profile for a future cadre"
-
-)
-
-
 puts 'Deleting existing groups_type......'
 group_types = GroupType.all
 
@@ -174,37 +157,6 @@ groups.each do |group|
   group_photo.save
 end
 
-
-#
-#def seed_institute
-##  puts 'Deleting existing institute................'
-##  institutes = Institute.all
-##
-##  institutes.each { |ins| ins.destroy } if institutes.present?
-##
-##  workbook = Spreadsheet::ParseExcel.parse("#{Dir.getwd}/db/listschool.xls")
-##
-##  workbook.worksheet(0).each(1) { |row|
-##    next if row == nil;
-##    col = row.at(0);
-##    next if col == nil;
-##    id = col.to_s('latin9').strip;
-##    next if id == "";
-##
-##    slug = row.at(0).to_s('latin9').strip;
-##    name= row.at(1).to_s('latin9').strip;
-##
-##    list = Institute.new(:slug=> slug, :name => name)
-##
-##    unless list.save
-##      list.errors.each { |e| puts "Database Error: ", e }
-##    end
-##  }
-##
-##
-##end
-#
-##seed_institute()
 
 puts "Deleting existing school categorties..."
 school_categories = SchoolCategory.all
@@ -394,6 +346,20 @@ Package.create!([{ :name           => "Basic",
 )
 
 
+puts 'Creating Initial Company Information......'
+CompanyInformation.create!(:name        => "Future Cadre",
+                           :profile     => Profile.first,
+                           :email       => "webmaster@futurcadre.com",
+                           :country     => Country.first,
+                           :region      => Region.first,
+                           :city        => City.first,
+                           :phone       => "0456782144",
+                           :address     => "France",
+                           :web_site    => "www.futurecadre.com",
+                           :sector      => Sector.first,
+                           :description => "This is a test profile for a future cadre"
+
+)
 
 
 
