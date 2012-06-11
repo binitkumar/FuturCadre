@@ -177,6 +177,7 @@ FuturCadre::Application.routes.draw do
       put :update_job_seeker
       put :update_employer
       post :create_institute
+      get :show_profile, :show_account
     end
   end
 

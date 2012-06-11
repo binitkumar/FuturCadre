@@ -380,6 +380,19 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def show_profile
+    @profile = Profile.find_by_id(params[:id])
+    if current_user.job_seeker?
+      render :partial => "profiles/job_seeker_profile", :locals => { :profile => @profile }
+    else
+      render :partial => "profiles/employer_profile", :locals => { :profile => @profile }
+    end
+  end
+
+  def show_account
+    @profile = Profile.find_by_id(params[:id])
+    render :partial => "profiles/account", :locals => { :profile => @profile }
+  end
 
 end
 

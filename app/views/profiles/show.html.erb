@@ -1,235 +1,86 @@
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
 
-<div class="reg-tab-holder">
-  <div class="reg-tab-holder-new tab-act">
-    <div class="reg-left-tab-holder"></div>
-    <div class="reg-mid-tab-holder"><%= t('home_my_account') %></div>
-    <div class="reg-right-tab-holder"></div>
-  </div>
-</div>
-
-<div class="basic-info mtop10">
-  <h1><%= t('profile_my') %> <span class="red"> <%= t('profile_profile') %></span></h1>
-  <% unless @profile.blank? %>
-      <%= image_tag asset_path 'basic-info-bot-bar.png' %>
-      </div>
-
-      <div class="w100">
-      <div class="p-holder mtop30">
-        <div class="profile-left">
-          <% if profile_image != false %>
-              <%= image_tag profile_image.photo.url %>
-          <% else %>
-              <%= image_tag asset_path "dashboard-img.png" %>
-          <% end %>
-        </div>
-        <div class="profile-right">
-
-          <h1><%= @profile.full_name %></h1>
-          <% unless @profile.full_address.blank? %>
-              <h2><%= @profile.full_address %> </h2>
-          <% end %>
-
-          <h2>PH : <%= @profile.phone %></h2>
-
-          <h3>Email: <a href="#"><%= @profile.user.email %></a></h3>
-
-        </div>
-      </div>
-
-      <div class="profile_info_new">
-        <div class="profile-holder p-bot">
-
-          <div class="profile-name-heading-new"><%= t('profiles.name') %></div>
-          <div class="profile-name-content"><strong><%= @profile.full_name %></strong></div>
-
-        </div>
-        <div class="profile-cont">
-          <div class="profile-name-heading-new"><%= t('profiles.address') %></div>
-          <div class="profile-name-content"><%= @profile.address %></div>
-
-
-        </div>
-        <div class="profile-cont">
-          <div class="profile-name-heading-new"><%= t('profiles.city') %></div>
-          <div class="profile-name-content"><%= @profile.city.name %></div>
-
-        </div>
-
-        <div class="profile-cont">
-          <div class="profile-name-heading-new"><%= t('profiles.region') %></div>
-          <div class="profile-name-content"><%= @profile.region.name %></div>
-
-        </div>
-        <div class="profile-cont">
-          <div class="profile-name-heading-new"><%= t('profiles.country') %></div>
-          <div class="profile-name-content"><%= @profile.country.name %></div>
-
-        </div>
-        <div class="profile-cont">
-          <div class="profile-name-heading-new"><%= t('profiles.zip') %></div>
-          <div class="profile-name-content"><%= @profile.zip_code %></div>
-
-        </div>
-        <div class="profile-cont">
-          <div class="profile-name-heading-new"><%= t('profiles.phone') %></div>
-          <div class="profile-name-content"><%= @profile.phone %></div>
-        </div>
-      </div>
-
-      <% if current_user.job_seeker? %>
-          <div class="profile_edu_info">
-            <div><h2> <%= t('profile_edu_information')%></h2></div>
-            <% @profile.education_informations.each do |ed| %>
-                <div style="margin-top: 20px!important; float: left;">
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('profile_degree_level') %></div>
-                    <div class="profile-name-content"><%= ed.degree_level %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('profile_major_subject') %></div>
-                    <div class="profile-name-content"><%= ed.major_subject %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('profile_institute') %></div>
-                    <% unless ed.institute.blank? %>
-                        <div class="profile-name-content"><%= ed.institute.name %></div>
-                    <% end %>
-                    <% unless ed.institute_name.blank? %>
-                        <div class="profile-name-content"><%= ed.institute_name %></div>
-                    <% end %>
-
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('profile_start_year') %></div>
-                    <% unless ed.start_date.blank? %>
-                        <div class="profile-name-content"><%= ed.start_date.strftime("%b. %Y") %></div>
-                    <% end %>
-                  </div>
-
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('profile_end_year') %></div>
-                    <% unless ed.start_date.blank? %>
-                        <div class="profile-name-content"><%= ed.end_date.strftime("%b. %Y") %></div>
-                    <% end %>
-                  </div>
-                </div>
-            <% end %>
-
-          </div>
-          <div class="profile_prof_info">
-            <h2> <%= t('profile_profession_information')%></h2>
-            <% @profile.profession_informations.each do |pr| %>
-                <div style="margin-top: 20px!important; float: left;">
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><label><%= t('profile_job_title')%></label></div>
-                    <div class="profile-name-content"><%= pr.job_title %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><label><%= t('profile_company_nam')%></label></div>
-                    <div class="profile-name-content"><%= pr.company_name %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><label><%= t('profile_industry')%></label></div>
-                    <div class="profile-name-content"><%= pr.sector.value %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><label><%= t('profile_experience')%></label></div>
-                    <div class="profile-name-content"><%= pr.profession_experience %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><label><%= t('profile_category')%></label></div>
-                    <div class="profile-name-content"><<%= pr.category.name %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><label><%= t('profile_date_of_start')%></label></div>
-                    <% unless pr.start_date.blank? %>
-                        <div class="profile-name-content"><%= pr.start_date.strftime("%b. %Y") %></div>
-                    <% end %>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><label><%= t('profile_date_of_end')%></label></div>
-                    <% unless pr.end_date.blank? %>
-                        <div class="profile-name-content"><%= pr.end_date.strftime("%b. %Y") %></div>
-                    <% end %>
-                  </div>
-
-                </div>
-            <% end %>
-          </div>
-      <% end %>
-      <% if current_user.employer? %>
-          <div class="profile_edu_info">
-            <div><h2> <%= t('profile_company_information')%></h2></div>
-            <% unless @profile.company_information %>
-                <div style="margin-top: 20px!important; float: left;">
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"> <%= t('profile_company_nam') %></div>
-                    <div class="profile-name-content"><%= @profile.company_information.name %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('category') %> </div>
-                    <div class="profile-name-content"><%= @profile.company_information.category.name %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('profiles.phone') %></div>
-                    <div class="profile-name-content"><%= @profile.company_information.phone %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('profiles.fax') %></div>
-                    <div class="profile-name-content"><%= @profile.company_information.fax %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('profiles.website') %></div>
-                    <div class="profile-name-content"><%= @profile.company_information.website %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('profile.email') %></div>
-                    <div class="profile-name-content"><%= @profile.company_information.email %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('profiles.address') %></div>
-                    <div class="profile-name-content"><%= @profile.company_information.address %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('companyinfo.country') %></div>
-                    <div class="profile-name-content"><%= @profile.company_information.country.name %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('companyinfo.region') %></div>
-                    <div class="profile-name-content"><%= @profile.company_information.region.name %></div>
-                  </div>
-                  <div class="profile-cont">
-                    <div class="profile-name-heading-new"><%= t('companyinfo.city') %></div>
-                    <div class="profile-name-content"><%= @profile.company_information.city.name %></div>
-                  </div>
-
-                </div>
-
-            <% end %>
-          </div>
-      <% end %>
-
-      <div class="profile-cont">
-        <div class="profile-name-content">
-        </div>
-        <div class="profile-edit"><%= link_to t('link_to.edit'), edit_profile_path(@profile) %> </div>
-        <% if current_user.job_seeker? %>
-            <div class="profile-edit"><%= link_to t('link_to.done'), :controller => "job_seeker", :action => "dashboard", :id => current_user.id %> </div>
-        <% elsif current_user.employer? %>
-            <div class="profile-edit"><%= link_to t('link_to.done'), :controller => "employer", :action => "dashboard", :id => current_user.id %> </div>
-        <% end %>
-      </div>
-
-      <div class="red-btn-new"><a href="#"><%= t('profile_upload') %></a></div>
-  <% end %>
+  <div class="reg-tab-holder">
+    <div class="reg-tab-holder-new tab-act-two" id="account">
+      <div class="reg-left-tab-holder"></div>
+      <div class="reg-mid-tab-holder" onclick='show_account("<%=@profile.id %>",this)'><%= t('home_my_account') %></div>
+      <div class="reg-right-tab-holder"></div>
+    </div>
+    <div class="reg-tab-holder-new tab-act" id="profile">
+      <div class="reg-left-tab-holder"></div>
+      <div class="reg-mid-tab-holder" onclick='show_profile("<%=@profile.id %>", this)'><%= t('profile_profile') %></div>
+      <div class="reg-right-tab-holder"></div>
+    </div>
   </div>
 
+  <div class="basic-info mtop10">
+    <h1><%= t('profile_my') %> <span class="red"> <%= t('profile_profile') %></span></h1>
+    <% unless @profile.blank? %>
+        <%= image_tag asset_path 'basic-info-bot-bar.png' %>
+        </div>
 
-  </div>
+        <div class="w100">
+          <div class="profile_details">
+            <div class="account_details">
+              <%= render :partial => "profiles/account", :locals => { :profile => @profile } %>
+            </div>
 
 
+          </div>
+
+          <div class="profile-cont">
+            <div class="profile-name-content">
+            </div>
+            <div class="profile-edit"><%= link_to t('link_to.edit'), edit_profile_path(@profile) %> </div>
+            <% if current_user.job_seeker? %>
+                <div class="profile-edit"><%= link_to t('link_to.done'), :controller => "job_seeker", :action => "dashboard", :id => current_user.id %> </div>
+            <% elsif current_user.employer? %>
+                <div class="profile-edit"><%= link_to t('link_to.done'), :controller => "employer", :action => "dashboard", :id => current_user.id %> </div>
+            <% end %>
+          </div>
+
+          <div class="red-btn-new"><a href="#"><%= t('profile_upload') %></a></div>
+    <% end %>
+    </div>
+
+
+    </div>
+
+<script type="text/javascript">
+    function show_profile(profile_id, obj) {
+
+
+        $.ajax({
+            context:this,
+            url:'/profiles/show_profile?id=' + profile_id,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"html",
+            success:function (response) {
+                $(".profile_details").html(response);
+
+            }
+        });
+        return false;
+    }
+    function show_account(profile_id, obj) {
+        $.ajax({
+            context:this,
+            url:'/profiles/show_account?id=' + profile_id,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"html",
+            success:function (response) {
+                $(".profile_details").html(response);
+
+            }
+        });
+        return false;
+
+    }
+
+</script>
 
 
 

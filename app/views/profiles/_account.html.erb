@@ -1,0 +1,63 @@
+<div>
+  <div class="p-holder mtop30">
+    <div class="profile-left">
+      <% if profile_image != false %>
+          <%= image_tag profile_image.photo.url %>
+      <% else %>
+          <%= image_tag asset_path "dashboard-img.png" %>
+      <% end %>
+    </div>
+    <div class="profile-right">
+
+      <h1><%= @profile.full_name %></h1>
+      <% unless @profile.full_address.blank? %>
+          <h2><%= @profile.full_address %> </h2>
+      <% end %>
+
+      <h2>PH : <%= @profile.phone %></h2>
+
+      <h3>Email: <a href="#"><%= @profile.user.email %></a></h3>
+
+    </div>
+  </div>
+
+  <div class="profile_info_new">
+    <div class="profile-holder p-bot">
+
+      <div class="profile-name-heading-new"><%= t('profiles.name') %></div>
+      <div class="profile-name-content"><strong><%= @profile.full_name %></strong></div>
+
+    </div>
+    <div class="profile-cont">
+      <div class="profile-name-heading-new"><%= t('profiles.address') %></div>
+      <div class="profile-name-content"><%= @profile.address %></div>
+
+
+    </div>
+    <div class="profile-cont">
+      <div class="profile-name-heading-new"><%= t('profiles.city') %></div>
+      <div class="profile-name-content"><%= @profile.city.name %></div>
+
+    </div>
+
+    <div class="profile-cont">
+      <div class="profile-name-heading-new"><%= t('profiles.region') %></div>
+      <div class="profile-name-content"><%= @profile.region.name %></div>
+
+    </div>
+    <div class="profile-cont">
+      <div class="profile-name-heading-new"><%= t('profiles.country') %></div>
+      <div class="profile-name-content"><%= @profile.country.name %></div>
+
+    </div>
+    <div class="profile-cont">
+      <div class="profile-name-heading-new"><%= t('profiles.zip') %></div>
+      <div class="profile-name-content"><%= @profile.zip_code %></div>
+
+    </div>
+    <div class="profile-cont">
+      <div class="profile-name-heading-new"><%= t('profiles.phone') %></div>
+      <div class="profile-name-content"><%= @profile.phone %></div>
+    </div>
+  </div>
+</div>

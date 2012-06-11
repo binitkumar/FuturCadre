@@ -1,0 +1,81 @@
+<div>
+  <div class="profile_edu_info">
+    <div><h2> <%= t('profile_edu_information') %></h2></div>
+    <% @profile.education_informations.each do |ed| %>
+        <div style="margin-top: 20px!important; float: left;">
+          <div class="profile-cont">
+            <div class="profile-name-heading-new"><%= t('profile_degree_level') %></div>
+            <div class="profile-name-content"><%= ed.degree_level %></div>
+          </div>
+          <div class="profile-cont">
+            <div class="profile-name-heading-new"><%= t('profile_major_subject') %></div>
+            <div class="profile-name-content"><%= ed.major_subject %></div>
+          </div>
+          <div class="profile-cont">
+            <div class="profile-name-heading-new"><%= t('profile_institute') %></div>
+            <% unless ed.institute.blank? %>
+                <div class="profile-name-content"><%= ed.institute.name %></div>
+            <% end %>
+            <% unless ed.institute_name.blank? %>
+                <div class="profile-name-content"><%= ed.institute_name %></div>
+            <% end %>
+
+          </div>
+          <div class="profile-cont">
+            <div class="profile-name-heading-new"><%= t('profile_start_year') %></div>
+            <% unless ed.start_date.blank? %>
+                <div class="profile-name-content"><%= ed.start_date.strftime("%b. %Y") %></div>
+            <% end %>
+          </div>
+
+          <div class="profile-cont">
+            <div class="profile-name-heading-new"><%= t('profile_end_year') %></div>
+            <% unless ed.start_date.blank? %>
+                <div class="profile-name-content"><%= ed.end_date.strftime("%b. %Y") %></div>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+
+  </div>
+  <div class="profile_prof_info">
+    <h2> <%= t('profile_profession_information') %></h2>
+    <% @profile.profession_informations.each do |pr| %>
+        <div style="margin-top: 20px!important; float: left;">
+          <div class="profile-cont">
+            <div class="profile-name-heading-new"><label><%= t('profile_job_title') %></label></div>
+            <div class="profile-name-content"><%= pr.job_title %></div>
+          </div>
+          <div class="profile-cont">
+            <div class="profile-name-heading-new"><label><%= t('profile_company_nam') %></label></div>
+            <div class="profile-name-content"><%= pr.company_name %></div>
+          </div>
+          <div class="profile-cont">
+            <div class="profile-name-heading-new"><label><%= t('profile_industry') %></label></div>
+            <div class="profile-name-content"><%= pr.sector.value %></div>
+          </div>
+          <div class="profile-cont">
+            <div class="profile-name-heading-new"><label><%= t('profile_experience') %></label></div>
+            <div class="profile-name-content"><%= pr.profession_experience %></div>
+          </div>
+          <div class="profile-cont">
+            <div class="profile-name-heading-new"><label><%= t('profile_category') %></label></div>
+            <div class="profile-name-content"><<%= pr.category.name %></div>
+          </div>
+          <div class="profile-cont">
+            <div class="profile-name-heading-new"><label><%= t('profile_date_of_start') %></label></div>
+            <% unless pr.start_date.blank? %>
+                <div class="profile-name-content"><%= pr.start_date.strftime("%b. %Y") %></div>
+            <% end %>
+          </div>
+          <div class="profile-cont">
+            <div class="profile-name-heading-new"><label><%= t('profile_date_of_end') %></label></div>
+            <% unless pr.end_date.blank? %>
+                <div class="profile-name-content"><%= pr.end_date.strftime("%b. %Y") %></div>
+            <% end %>
+          </div>
+
+        </div>
+    <% end %>
+  </div>
+</div>
