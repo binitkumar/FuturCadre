@@ -174,8 +174,6 @@ FuturCadre::Application.routes.draw do
       post :create_employer, :upload_photo, :upload_company_photo
       post :create_employer_basic_information, :create_employer_company_details
       get :update, :remove_edu_info, :remove_prof_info
-      get :show
-      get :edit
       put :update_job_seeker
       put :update_employer
       post :create_institute

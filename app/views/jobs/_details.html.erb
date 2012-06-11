@@ -18,9 +18,6 @@
             <h1><%= @job.name %></h1>
 
             <p><%= @job.location %> </p>
-            <label><%= t('jobs.employer_type') %></label>
-
-            <p><%= @job.employer_type %> </p>
             </div>
             <% current_url_without_uri = request.protocol+request.host_with_port %>
             <% shorten_url = ("#{current_url_without_uri}/jobs/#{@job.id}") %>
@@ -40,57 +37,63 @@
             </div>
 
             <div class="result-holder">
-              <div class="description-heading"><%= t('job_descripton') %>:</div>
-              <div class="description-text"> <%= @job.description %></div>
-              <div class="description-text mtop30">
-              </div>
-              <div class="description-heading mtop30"><%= t('job_profile') %>:</div>
-              <div class="description-text"><br>
-              </div>
+              <div class="description-heading"><%= t('job_comapny_descripton') %>:</div>
+              <div class="description-text"> <%= @job.employer.profile.company_information.description %></div>
+            </div>
+            <div class="description-text mtop30">
+            </div>
 
-              <div class="description-heading mtop30"><%= t('jobs.languages') %>:</div>
-              <% @job.job_languages.each_with_index do |lang, i| %>
-                  <div class="description-text"><%= lang.language.value %>, <%= lang.level %>
-                  </div>
-              <% end %>
-              <div class="description-heading mtop30"><%= t('jobs.education') %>:</div>
-              <% unless @job.education_levels.blank? %>
-                  <% @job.education_levels.each do |education| %>
-                      <div class="description-text"><%= education.name %>
-                      </div>
-                  <% end %>
-              <% end %>
-              <div class="description-heading mtop30"><%= t('job_skill_require') %>:</div>
-              <% @job.skills.each do |skill| %>
-                  <div class="description-text"> <%= skill.name %>
-                  </div>
-              <% end %>
-              <div class="description-heading mtop30"><%= t('jobs.comp_annual') %></div>
-              <div class="description-text"><%= @job.annual_salary %></div>
-              <% unless @job.contract.blank? %>
-                  <div class="description-heading mtop30"><%= t('jobs.contract') %></div>
-                  <div class="description-text"><%= @job.contract.name %></div>
-              <% end %>
-              <% unless @job.period.blank? %>
-                  <div class="description-heading mtop30"><%= t('jobs.duration') %></div>
-                  <div class="description-text"><%= @job.period.name %></div>
-              <% end %>
-              <div class="description-heading mtop30"><%= t('jobs.date_of_start') %></div>
-              <div class="description-text"><%= @job.date_of_start.strftime('%m/%d/%Y') %></div>
+            <div class="description-heading"><%= t('job_descripton') %>:</div>
+            <div class="description-text"> <%= @job.description %></div>
+            <div class="description-text mtop30">
+            </div>
+            <div class="description-heading mtop30"><%= t('job_profile') %>:</div>
+            <div class="description-text"><br>
+            </div>
 
-              <!-- <div class="job-btn-holder">
+            <div class="description-heading mtop30"><%= t('jobs.languages') %>:</div>
+            <% @job.job_languages.each_with_index do |lang, i| %>
+                <div class="description-text"><%= lang.language.value %>, <%= lang.level %>
+                </div>
+            <% end %>
+            <div class="description-heading mtop30"><%= t('jobs.education') %>:</div>
+            <% unless @job.education_levels.blank? %>
+                <% @job.education_levels.each do |education| %>
+                    <div class="description-text"><%= education.name %>
+                    </div>
+                <% end %>
+            <% end %>
+            <div class="description-heading mtop30"><%= t('job_skill_require') %>:</div>
+            <% @job.skills.each do |skill| %>
+                <div class="description-text"> <%= skill.name %>
+                </div>
+            <% end %>
+            <div class="description-heading mtop30"><%= t('jobs.comp_annual') %></div>
+            <div class="description-text"><%= @job.annual_salary %></div>
+            <% unless @job.contract.blank? %>
+                <div class="description-heading mtop30"><%= t('jobs.contract') %></div>
+                <div class="description-text"><%= @job.contract.name %></div>
+            <% end %>
+            <% unless @job.period.blank? %>
+                <div class="description-heading mtop30"><%= t('jobs.duration') %></div>
+                <div class="description-text"><%= @job.period.name %></div>
+            <% end %>
+            <div class="description-heading mtop30"><%= t('jobs.date_of_start') %></div>
+            <div class="description-text"><%= @job.date_of_start.strftime('%m/%d/%Y') %></div>
+
+            <!-- <div class="job-btn-holder">
                  <div class="job-btn-left"></div>
               <div class="job-btn-mid"><%#= t('job_apply') %></div>
                 <div class="job-btn-right"></div>
               </div>-->
 
-              <!--  <div class="more-similar-jobs"><a href="#"><%#= t('job_similar') %></a></div>-->
+            <!--  <div class="more-similar-jobs"><a href="#"><%#= t('job_similar') %></a></div>-->
             </div>
             </div>
 
             <div class="content-right-holder">
               <div class="popular-vacancies">
-                <h1><span class="red"><%=t('jobs.job_stat')%> </span> <%=t('jobs.and_requirement')%></h1>
+                <h1><span class="red"><%= t('jobs.job_stat') %> </span> <%= t('jobs.and_requirement') %></h1>
 
                 <div class="small-line"></div>
               </div>

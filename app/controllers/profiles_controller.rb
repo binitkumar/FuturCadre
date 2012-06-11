@@ -371,11 +371,15 @@ class ProfilesController < ApplicationController
       @company_information.profile = @profile
       success                      = @company_information.save
     end
+
     if success
-      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/account', :locals => { :profile => @profile }) }.to_json
+      #redirect_to "/profiles/#{@profile.id}"
+      render :text => "ok"
     else
-      render :json => { :seccess => false, :html => render_to_string(:partial => '/shared/error_messages', :locals => { :object => @company_info }) }.to_json
+      render :partial => '/shared/error_messages', :locals => { :object => @company_information }
     end
   end
+
+
 end
 

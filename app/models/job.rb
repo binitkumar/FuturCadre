@@ -17,7 +17,7 @@ class Job < ActiveRecord::Base
   has_and_belongs_to_many :education_levels
 
 
-  validates_presence_of :name, :category_id, :skills, :description, :annual_salary
+  validates_presence_of :name, :category_id, :description, :annual_salary
   validates_presence_of :country, :region, :city
 
 

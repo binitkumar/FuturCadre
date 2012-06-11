@@ -114,13 +114,16 @@
 
     $("#save-next-link").click(function () {
         $.post("/profiles/create_employer_company_details?skip=true", $("form#profile-form").serialize(), function (response) {
-            if (response.seccess == true) {
-                $("#profile-contents").html(response.html);
+
+            if (response == "ok") {
+//                $("#profile-contents").html(response.html);
+                document.location.href ="/profiles/<%=@profile.id%>"
             }
             else {
-                $("#form-errors").html(response.html);
+
+                $("#form-errors").html(response);
             }
-        }, "json");
+        }, "html");
         return false;
     });
 

@@ -331,6 +331,7 @@ en:
   job: Job
   job_apply: "Apply for this job"
   job_descripton: "Job Description"
+  job_comapny_descripton: "Company Information"
   job_detail: "Please enter the details for the job you wish to create "
   job_industry: "Industry "
   job_responsibility: "Add a Responsibility"

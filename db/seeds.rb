@@ -68,20 +68,6 @@ puts "Creating categories..."
 end
 
 
-(0 .. 10).each do |i|
-  Job.create!(:name          => "testJob#{i}",
-              :description   => "As we look to expand, JPP is seeking a well-organized, extremely self-motivated individual to help with the office management and day-to-day running of the office. The successful candidate will be someone who takes initiative, identifies problems and provides solutions and is able to work well under pressure. He or she will be able to multi-task and work with a team of investigators and lawyers to drive forward JPP's challenging, but rewarding, mission.",
-              :country       => Country.find(24),
-              :region        => Region.find_by_country_id(24),
-              :city          => City.first,
-              :employer      => User.first,
-              :category      => Category.first,
-              :date_of_start => Time.now,
-              :annual_salary => 1345
-
-  )
-end
-
 puts "Deleting existing skills..."
 skills = Skill.all
 skills.each { |skill| skill.destroy } if skills.present?
@@ -92,6 +78,26 @@ skills = Skill.create!([{ :name => 'Self Motivated' },
                         { :name => 'Excellent Communication Skills' },
                         { :name => 'Self Driven' },
                         { :name => 'Leadership' }])
+
+puts "Deleting existing Jobs"
+jobs = Job.all
+jobs.each { |job| job.destroy } if jobs.present?
+puts "creating Jobs"
+(0 .. 10).each do |i|
+  job = Job.create!(:name          => "testJob#{i}",
+                    :description   => "As we look to expand, JPP is seeking a well-organized, extremely self-motivated individual to help with the office management and day-to-day running of the office. The successful candidate will be someone who takes initiative, identifies problems and provides solutions and is able to work well under pressure. He or she will be able to multi-task and work with a team of investigators and lawyers to drive forward JPP's challenging, but rewarding, mission.",
+                    :country       => Country.find(24),
+                    :region        => Region.find_by_country_id(24),
+                    :city          => City.first,
+                    :employer      => User.first,
+                    :category      => Category.first,
+                    :date_of_start => Time.now,
+                    :annual_salary => 1345
+
+  )
+
+
+end
 
 
 puts "Deleting existing responsibilities..."
@@ -121,15 +127,17 @@ Profile.create!(:first_name => "Future",
 
 
 puts 'Creating Initial Company Information......'
-CompanyInformation.create!(:name     => "Future Cadre",
-                           :profile  => Profile.first,
-                           :email    => "webmaster@futurcadre.com",
-                           :country  => Country.first,
-                           :region   => Region.first,
-                           :city     => City.first,
-                           :phone    => "0456782144",
-                           :address  => "France",
-                           :web_site => "www.futurecadre.com"
+CompanyInformation.create!(:name        => "Future Cadre",
+                           :profile     => Profile.first,
+                           :email       => "webmaster@futurcadre.com",
+                           :country     => Country.first,
+                           :region      => Region.first,
+                           :city        => City.first,
+                           :phone       => "0456782144",
+                           :address     => "France",
+                           :web_site    => "www.futurecadre.com",
+                           :sector      => Sector.first,
+                           :description => "This is a test profile for a future cadre"
 
 )
 
@@ -286,9 +294,9 @@ theses = Thesis.all
 
 theses.each { |thesis| thesis.destroy } if theses.present?
 puts "creating Thesis"
-theses = Thesis.create!([{ :name => 'Software Development Life Cycle', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category => Category.find_by_id(32), :no_of_pages => 150, :date_of_publish => Time.now },
-                         { :name => 'Software Development Life Cycle', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category => Category.find_by_id(32), :no_of_pages => 150, :date_of_publish => Time.now },
-                         { :name => 'Software Development Life Cycle', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category => Category.find_by_id(32), :no_of_pages => 150, :date_of_publish => Time.now },
+theses = Thesis.create!([{ :name => 'Software Development Life Cycle1', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category => Category.find_by_id(32), :no_of_pages => 150, :date_of_publish => Time.now, :category => Category.first, :no_of_pages => 123 },
+                         { :name => 'Software Development Life Cycle2', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category => Category.find_by_id(32), :no_of_pages => 150, :date_of_publish => Time.now, :category => Category.first, :no_of_pages => 123 },
+                         { :name => 'Software Development Life Cycle3', :description => "Group for Software Developers e.g. C#, .Net, ROR and Java", :owner => User.first, :category => Category.find_by_id(32), :no_of_pages => 150, :date_of_publish => Time.now, :category => Category.first, :no_of_pages => 123 },
                         ])
 
 puts "updating document of thesis"
