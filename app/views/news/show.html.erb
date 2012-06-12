@@ -106,7 +106,7 @@
           <h1><%= @news.title %> </h1>
 
           <div class="p-style-detail">
-            <%= @news.body %>
+            <%= simple_format(@news.body)%>
           </div>
         </div>
 
