@@ -38,7 +38,7 @@
                     <div class="news_date">
                       <a onclick="fetch_news(<%= new.news_category_id %>,'category',this)"><%= new.news_category.name %> </a>
                       >> Posted on
-                      <% new.created_at.strftime('%a, %m/%d/%Y') + " AT " + new.created_at.strftime('%HH%M') + " by " %>
+                      <%= new.created_at.strftime('%a, %m/%d/%Y') + " AT " + new.created_at.strftime('%HH%M') + " by " %>
                       <%= new.user.nil? ? "" : new.user.email %>
                     </div>
 
@@ -88,7 +88,7 @@
 
 
                     <div class="p-style-detail-new">
-                      <%= new.body %>
+                      <%= simple_format(new.body )%>
                     </div>
                     <%= link_to "See the news", news_path(:id => new.id) %>
                   </div>

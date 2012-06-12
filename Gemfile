@@ -16,6 +16,7 @@ gem 'acts_as_commentable'
 #gem 'thinking-sphinx', '2.0.10'
 #gem 'dynamic_form'
 gem 'impressionist'
+gem 'tinymce-rails'
 
 
 # Gems used only for assets and not required

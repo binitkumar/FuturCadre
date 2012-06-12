@@ -27,7 +27,7 @@
       <div class="news_date">
         <a onclick="fetch_news(<%= @news.news_category_id %>,'category',this)"><%= @news.news_category.name %> </a>
         >> Posted on
-        <% @news.created_at.strftime('%a, %m/%d/%Y') + " AT " + @news.created_at.strftime('%HH%M') + " by " %>
+        <%= @news.created_at.strftime('%a, %m/%d/%Y') + " AT " + @news.created_at.strftime('%HH%M') + " by " %>
         <%= @news.user.nil? ? "" : @news.user.email %>
       </div>
 

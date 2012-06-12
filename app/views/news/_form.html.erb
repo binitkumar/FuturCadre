@@ -1,4 +1,5 @@
 <%= javascript_include_tag "jquery.form-new" %>
+
 <div class="content-left-holder">
   <div class="shadow"></div>
   <div class="popup-hold">
@@ -24,8 +25,9 @@
             </div>
             <div class="input-holder-new">
               <label><%= t('message') %></label>
-
-              <%= f.text_area :body %>
+              <span style="float: left;">
+              <%= f.text_area :body, :rows => 10, :cols => 20 %>
+              </span>
             </div>
           </div>
 
@@ -83,5 +85,13 @@
     //        return false;
     //    });
 
+    tinyMCE.init({
+        mode:'textareas',
+        theme:'advanced',
+        theme_advanced_toolbar_location:"top",
+        theme_advanced_statusbar_location:"bottom",
+        plugins:"contextmenu",
+        theme_advanced_disable:"image"
+    });
 
 </script>
