@@ -41,7 +41,7 @@ class NewsController < ApplicationController
     @news    = News.new
     @picture = Photo.new
     news_attr
-    render :json => { :html => render_to_string(:partial => '/news/form', :locale => { :news => @news }) }.to_json
+    render :partial => '/news/form', :locale => { :news => @news }
   end
 
   def submit_news
@@ -65,7 +65,8 @@ class NewsController < ApplicationController
         @picture.imageable_type ="News"
         if !@picture.save
           news_attr
-          render :partial => '/news/form', :locale => { :news => @news }
+          #render :partial => '/news/form', :locale => { :news => @news }
+          render :partial => '/shared/error_messages', :locals => { :object => @news }
         end
 
       end

@@ -44,9 +44,9 @@
             url:url,
             type:"GET",
             data:$(this).serialize(),
-            dataType:"json",
+            dataType:"html",
             success:function (response) {
-                $("#popup_holder").html(response.html);
+                $("#popup_holder").html(response);
             }
         });
         return false;

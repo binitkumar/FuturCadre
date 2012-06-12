@@ -61,6 +61,7 @@
 //        });
 
     $("#application_job").click(function () {
+        alert("Hello");
         $("#form-errors").html("");
         $('#answer_form').ajaxSubmit(function (data) {
             if (data.substring(9, 18) == "error_div") {
