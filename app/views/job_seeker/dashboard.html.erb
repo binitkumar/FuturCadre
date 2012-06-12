@@ -157,9 +157,9 @@
             url:$(this).attr("href"),
             type:"GET",
             data:$(this).serialize(),
-            dataType:"json",
+            dataType:"html",
             success:function (response) {
-                return $(".dashboard-content-right").html(response.html);
+                return $(".dashboard-content-right").html(response);
             }
         });
         return false;

@@ -5,24 +5,24 @@
   </div>
   <!--dashboard-post-profile-btn ends-->
   <div class="dashboard-content">
-    <h1><%=t('Job_Seeker.resume')%></h1>
+    <h1><%= t('Job_Seeker.resume') %></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
 
-    <button id="upload-popup" class="question-button"><%=t('Job_Seeker.upload_cv')%></button>
-
+    <div class="question-button" style="margin-bottom: 10px;  margin-right: 9px;" onclick="add_cv()"><%= t('Job_Seeker.upload_cv') %></div>
     <p><br/>
     </p>
 
-    <h1>My<span class="red"> <%=t('Job_Seeker.resume')%></span></h1>
+    <h1>My<span class="red"> <%= t('Job_Seeker.resume') %></span></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @resumes.blank? %>
-        <p><%=t('Job_Seeker.total_resume')%> <%= @resumes.count %></p>
+        <p><%= t('Job_Seeker.total_resume') %> <%= @resumes.count %></p>
         <table>
           <tr>
-            <th><%=t('name')%>e</th>
-            <th><%=t('Job_Seeker.file_type')%></th>|
-            <th> <%=t('Employer.employer_actions')%>|</th>
-            <th> <%=t('Employer.employer_total_thesis')%></th>
+            <th><%= t('name') %>e</th>
+            <th><%= t('Job_Seeker.file_type') %></th>
+            |
+            <th> <%= t('Employer.employer_actions') %>|</th>
+            <th> <%= t('Employer.employer_total_resume') %></th>
             <!--<th>Download</th>-->
           </tr>
 
@@ -31,61 +31,37 @@
                 <td><%= resume.photo_file_name %></td>
                 <td><%= resume.photo_content_type %></td>
                 <td><%= link_to "Delete", delete_cv_job_seeker_index_path(:id => resume.id), :class => "delete_cv" %></td>
-                <td> <%= radio_button_tag "cv_id", resume.id,resume.is_publishable , :onchange => "select_cv('#{resume.id}')" %></td>
+                <td> <%= radio_button_tag "cv_id", resume.id, resume.is_publishable, :onchange => "select_cv('#{resume.id}')" %></td>
 
               </tr>
           <% end %>
         </table>
     <% else %>
-        <p><span><%=t('Job_Seeker.no_resume')%>!</span></p>
+        <p><span><%= t('Job_Seeker.no_resume') %>!</span></p>
     <% end %>
   </div>
-  <div id="upload-form" title="Upload a New CV ">
 
-    <%= form_for :cv, :url => { :action => 'new_resume' }, :html => { :id => 'add_cv_form' }, :remote => true do |f| %>
-        <div class="select-holder">
-          <%= f.file_field :photo %>
-
-        </div>
-    <% end %>
-  </div>
 </div>
 
-
+<div id="popup_holder"></div>
 
 <script language="JavaScript">
-    $("#upload-form").dialog({
-        autoOpen:false,
-        height:300,
-        width:350,
-        modal:true,
-        buttons:{
 
-            Cancel:function () {
-                $(this).dialog("close");
-            },
-            "Upload a New Cv":function () {
-                $('#add_cv_form').ajaxSubmit({
-                    beforeSubmit:function (a, f, o) {
-                        o.dataType = 'json';
-                    },
-                    success:function (data) {
+    function add_cv() {
+    <%unless current_user.profile.blank?%>
+        {
+            <%if @resumes.count != 3%>{
+                $.ajax({
+                    context:this,
+                    url:"/job_seeker/add_cv",
+                    type:"GET",
+                    data:$(this).serialize(),
+                    dataType:"html",
+                    success:function (response) {
 
-                        $(".dashboard-content-right").html(data.html);
+                        $("#popup_holder").html(response);
                     }
                 });
-
-                $("#upload-form").dialog("close");
-
-            }}
-    });
-
-    $("#upload-popup").click(function () {
-        <%unless current_user.profile.blank?%>
-        {
-        <%if @resumes.count != 3%>
-            {
-                $("#upload-form").dialog("open");
             }
         <%else%>
             {
@@ -93,15 +69,14 @@
             }
         <%end%>
         }
-        <%else%>
+    <%else%>
         {
             alert("Please first create a profile!");
-
         }
 
-        <%end%>
-    });
-
+    <%end%>
+        return false;
+    }
 
     $("a.delete_cv").click(function () {
         $.ajax({

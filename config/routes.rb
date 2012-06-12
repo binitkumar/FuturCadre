@@ -138,6 +138,7 @@ FuturCadre::Application.routes.draw do
       get :event_mailer
       get :delete_cv
       get :make_cv_publishable
+      get :add_cv
     end
   end
 
@@ -327,6 +328,7 @@ FuturCadre::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => "home#index"
+
 
   # See how all your routes lay out with "rake routes"
 

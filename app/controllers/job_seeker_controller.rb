@@ -13,8 +13,12 @@ class JobSeekerController < ApplicationController
     unless current_user.profile.blank?
       @resumes = current_user.profile.assets.where(:content_type => 'cv', :is_deleted => false)
     end
-    @cv = Asset.new(params[:cv])
-    render :json => { :html => render_to_string(:partial => 'resume_list') }.to_json
+    render :partial => 'resume_list'
+  end
+
+  def add_cv
+    @cv = Asset.new
+    render :partial => "job_seeker/new_resume_form", :locals => { :cv => @cv }
   end
 
   def event
@@ -57,16 +61,18 @@ class JobSeekerController < ApplicationController
   end
 
   def new_resume
-    unless params[:cv].blank?
-      @cv              = Asset.new(params[:cv])
-      @cv.content_type = "cv"
-      @cv.user_id      = current_user.id
-      @cv.profile_id   = current_user.profile.id
+
+    @cv              = Asset.new(params[:cv])
+    @cv.content_type = "cv"
+    @cv.user_id      = current_user.id
+    @cv.profile_id   = current_user.profile.id
+    if @cv.save
+      @resumes = current_user.profile.assets.where(:content_type => 'cv', :is_deleted => false)
+      render :partial => 'resume_list'
+    else
+      render :partial => '/shared/error_messages', :locals => { :object => @cv }
     end
-    @resumes = current_user.profile.assets.where(:content_type => 'cv', :is_deleted => false)
-    if @cv.save!
-      render :json => { :html => render_to_string(:partial => 'resume_list') }.to_json
-    end
+
 
   end
 

@@ -1,51 +1,105 @@
-<div class="dashboard-content-right">
-  <div class="w100">
-    <div class="dashboard-post-profile-btn">
-    </div>
-  </div>
-  <!--dashboard-post-profile-btn ends-->
-  <div class="dashboard-content">
-    <h1><%= t('Employer.employer_job_details') %> </h1>
+<div class="dashboard-right-content">
 
-    <p><%= @job.description %> </p>
+  <h1><%= t('Employer.employer_job_details') %> </h1>
 
-    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+  <p><%= @job.description %> </p>
 
-    <p><br/>
-    </p>
+  <%= image_tag asset_path 'dashboard-botom-line.png' %>
 
-    <h1><%= t('Employer.employer_my')%> <span class="red"> <%= t('job')%></span></h1>
-    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+  <p><br/>
+  </p>
+
+  <h1><%= t('Employer.employer_my') %> <span class="red"> <%= t('job') %></span></h1>
+  <%= image_tag asset_path 'dashboard-botom-line.png' %>
+  <div class="dashboard-mid">
+    <h1>Results Information</h1>
     <% unless @applied_jobs.blank? %>
-        <p><%= t('Employer.total_applications')%> <%= @applied_jobs.count %></p>
+        <div class="result-contents">
+          <p><%= t('Employer.total_applications') %> <%= @applied_jobs.count %></p>
 
-        <table>
-          <tr>
-            <th><%= t('Employer.application_name')%></th>
-            <th><%= t('profiles.first_name')%></th>
-            <th><%= t('profiles.last_name')%></th>
-            <th><%= t('Employer.application_date')%></th>
-            <th><%= t('Employer.application_contact')%></th>
-            <th><%= t('Employer.application_download')%></th>
-          </tr>
+
+        </div>
+        <!--result contents ends-->
+        <div class="result-detail">
           <% @applied_jobs.each do |job_app| %>
-              <tr>
-                <td><%= job_app.user.profile.full_name %></td>
-                <td><%= job_app.user.profile.first_name %></td>
-                <td><%= job_app.user.profile.last_name %></td>
-                <td><%= job_app.created_at.strftime('%m/%d/%Y')%></td>
-                <td id="contact" onclick="contact_user('<%=job_app.id %>')" style="color: blue;">Contact</td>
-                                     <%unless job_app.cv_id.blank?%>
-                <td id="Download"><%= link_to "Download", download_employer_index_path(:id => job_app.cv_id) %></td>
-                      <%end%>
-              </tr>
+
+              <div class="detail">
+                <div class="dashboard-image-new">
+                  <% unless pro_image(job_app).blank? %>
+
+                      <%= image_tag pro_image(job_app).photo.url %>
+                  <% else %>
+                      <%= image_tag asset_path "dashboard-img.png" %>
+                  <% end %>
+                </div>
+
+                <p style="font-weight:bold;"><%= job_app.user.profile.full_name %>
+                  |<%= link_to "View CV", view_cv_employer_index_path(:id => job_app.user_id), :class => "view_cv" %>
+                  | <%= link_to "Download", download_employer_index_path(:id => job_app.cv_id) %>
+                </p>
+
+                <div class="select-button">
+                  <div class="left-holder"></div>
+                  <div class="mid-holder" id="select_cv" onclick="select_cv('<%=job_app.user_id%>')">
+                    <label style="color:#ffffff;  line-height: 34px;">Keep Candidate</label>
+                  </div>
+
+                  <div class="right-holder"></div>
+                </div>
+                <div class="select-button">
+                  <div class="left-holder"></div>
+                  <div class="mid-holder" id="decline_cv" onclick="decline_cv('<%=job_app.user_id%>')">
+                    <label style="color:#ffffff;  line-height: 34px;">Decline Candidate</label>
+                  </div>
+
+                  <div class="right-holder"></div>
+                </div>
+                <div class="select-button">
+                  <div class="left-holder"></div>
+                  <div class="mid-holder" id="contact" onclick="contact_user('<%=job_app.id %>')"   >
+                    <label style="color:#ffffff;  line-height: 34px;">Contact</label>
+                  </div>
+
+                  <div class="right-holder"></div>
+                </div>
+
+
+                <!--select button ends-->
+                <% job_app.user.profile.education_informations.each do |ed| %>
+                    <label>Education Information</label>
+
+                    <p> <%= ed.institute.blank? ? ed.institute_name : ed.institute.name %>, <%= ed.major_subject %></p>
+                <% end %>
+                <div id="applicant_profession">
+                  <label>Professional Information</label>
+                  <%= job_app.user.profile.profession_informations.first.job_title %>
+                </div>
+                <div id="applicant_skills">
+                  <label>Skills Information</label>
+                  <%= job_app.user.profile.profession_informations.first.job_title %>
+                </div>
+
+              </div>
           <% end %>
-        </table>
+
+        </div>
+        <!--results ends-->
+        </div>
+        <!--dashboard mid ends-->
+        <div class="dashboard-right-info" id="right_panel">
+        </div>
+        <div class="dashboard-right-info" id="check_panel">
+          <%#= render :partial => "employer/right_panel", :locals => { :collections => @collections } %>
+        </div>
+    <% else %>
+        <div class="result-contents">
+          <h1> Currently None Applicant</h1>
 
 
+        </div>
     <% end %>
-  </div>
-</div>
+    </div>
+
 
 
 <script language="JavaScript">
@@ -54,12 +108,12 @@
 
         url = "/employer/contact_information?id=" + job_application;
         $.ajax({
-            context: this,
-            url: url,
-            type: "GET",
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function(response) {
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
                 $(".dashboard-content-right").html(response.html);
             }
         });
@@ -67,5 +121,24 @@
 
 
     }
+
+
+        $('a.view_cv').click(function () {
+            $.ajax({
+                context:this,
+                url:$(this).attr("href"),
+                type:"GET",
+                data:$(this).serialize(),
+                dataType:"json",
+                success:function (response) {
+                    return $(".dashboard-content-right").html(response.html);
+                }
+
+            });
+
+            return false;
+
+
+        });
 
 </script>
