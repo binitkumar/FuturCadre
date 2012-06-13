@@ -11,10 +11,8 @@
         <!--result contents ends-->
         <div class="result-detail">
           <% @collections.each do |profile| %>
-              <%# puts "avbvccccccccccccc ", profile.inspect %>
               <div class="detail">
-
-              <div class="dashboard-image-new">
+                <div class="dashboard-image-new-one">
                   <% unless pro_image(profile).blank? %>
 
                       <%= image_tag pro_image(profile).photo.url %>
@@ -24,21 +22,34 @@
                 </div>
 
                 <p style="font-weight:bold;"><%= profile.full_name %>
-                  |<%= link_to "View CV", view_cv_employer_index_path(:id => profile.user_id), :class=>"view_cv" %> </p>
+                  |<%= link_to "View CV", view_cv_employer_index_path(:id => profile.user_id), :class => "view_cv" %> </p>
 
                 <div class="select-button">
                   <div class="left-holder"></div>
+                  <% @emp= profile.employer_profiles.find_all_by_employer_id_and_is_deleted(current_user.id, true) %>
+                  <%# if emp != nil %>
                   <div class="mid-holder" id="select_cv" onclick="select_cv('<%=profile.user_id%>','<%= @collections.count%>')">
                     <label style="color:#ffffff;  line-height: 34px;">Select</label>
                   </div>
+                  <% #end   %>
                   <div class="right-holder"></div>
                 </div>
                 <!--select button ends-->
-                <% profile.education_informations.each do |ed| %>
-                    <label>Education Information</label>
+                <div class="detail-info">
+                  <div id="applicant_education">
+                    <label>Education Information:</label>
+                    <%= profile.education_informations.first.institute.blank? ? profile.education_informations.first.institute_name : profile.education_informations.first.institute.name %>
+                  </div>
 
-                    <p> <%= ed.institute %>, <%= ed.major_subject %></p>
-                <% end %>
+                  <div id="applicant_profession">
+                    <label>Professional Information:</label>
+                    <%= profile.profession_informations.first.job_title %>
+                  </div>
+                  <div id="applicant_skills">
+                    <label>Skills:</label>
+                    <%= profile.skill %>
+                  </div>
+                </div>
 
               </div>
           <% end %>
@@ -50,7 +61,7 @@
         <div class="dashboard-right-info" id="right_panel">
         </div>
         <div class="dashboard-right-info" id="check_panel">
-          <%= render :partial => "employer/right_panel", :locals => {:collections => @collections} %>
+          <%= render :partial => "employer/right_panel", :locals => { :collections => @collections } %>
         </div>
     <% else %>
         <div class="result-contents">
@@ -80,6 +91,7 @@
 
     });
     function select_cv(profile_id, col) {
+    <%if @emp.blank?%>
         url = "/employer/select_profile?id=" + profile_id + "&col=" + col;
         $.ajax({
             context:this,
@@ -92,6 +104,7 @@
                 $("#right_panel").html(response.html);
             }
         });
+    <%end%>
         return false;
     }
 

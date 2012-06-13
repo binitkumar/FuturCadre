@@ -137,15 +137,12 @@ class SearchController < ApplicationController
       count = count + 1
     end
     unless params[:languages].blank?
-      puts "aaaaaaaaaaaaaaaaaaaaaaaaa", params[:languages].inspect
       if params[:languages] !="Select from list"
         flag = true
         if count == 0
           @query = @query + " p.languages like '%#{params[:languages]  }%'"
-          puts "aaaaaaatrtttttttttttttttttttttttttttt", @query.inspect
         else
           @query = @query + "and p.languages like  '%#{params[:languages]}%'"
-          puts "aaaaaaatrtttttttttttttttttttttttttttt", @query.inspect
         end
         count = count + 1
       end
@@ -199,10 +196,9 @@ class SearchController < ApplicationController
       end
     end
 
-
     if flag == true
       @collections = Profile.find_by_sql(@query)
-      puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaa", @collections.inspect
+
     else
       @collections = nil
     end

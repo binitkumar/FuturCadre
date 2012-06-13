@@ -23,8 +23,8 @@
         <div class="result-detail">
           <% @applied_jobs.each do |job_app| %>
 
-              <div class="detail">
-                <div class="dashboard-image-new">
+              <div class="detail-new">
+                <div class="dashboard-image-new-one">
                   <% unless pro_image(job_app).blank? %>
 
                       <%= image_tag pro_image(job_app).photo.url %>
@@ -33,50 +33,46 @@
                   <% end %>
                 </div>
 
-                <p style="font-weight:bold;"><%= job_app.user.profile.full_name %>
-                  |<%= link_to "View CV", view_cv_employer_index_path(:id => job_app.user_id), :class => "view_cv" %>
-                  | <%= link_to "Download", download_employer_index_path(:id => job_app.cv_id) %>
-                </p>
-
-                <div class="select-button">
-                  <div class="left-holder"></div>
-                  <div class="mid-holder" id="select_cv" onclick="select_cv('<%=job_app.user_id%>')">
-                    <label style="color:#ffffff;  line-height: 34px;">Keep Candidate</label>
-                  </div>
-
-                  <div class="right-holder"></div>
+                <div class="detail-head"><%= job_app.user.profile.full_name %>
+                  <%= link_to "View CV", view_cv_employer_index_path(:id => job_app.user_id), :class => "view_cv" %>
+                  | <%= link_to "Download", download_employer_index_path(:id => job_app.cv_id) %>|
+                  <%= link_to "Contact", "javascript:void(0)", :onclick => "contact_user('#{job_app.id}')" %>
                 </div>
-                <div class="select-button">
-                  <div class="left-holder"></div>
-                  <div class="mid-holder" id="decline_cv" onclick="decline_cv('<%=job_app.user_id%>')">
-                    <label style="color:#ffffff;  line-height: 34px;">Decline Candidate</label>
-                  </div>
+                <div class="detail-buttons" style="float: right; width: 200px;">
+                  <div class="select-button">
+                    <div class="left-holder"></div>
+                    <div class="mid-holder" id="select_cv" onclick="select_cv('<%=job_app.user_id%>')">
+                      <label style="color:#ffffff;  line-height: 34px;">Keep Candidate</label>
+                    </div>
 
-                  <div class="right-holder"></div>
-                </div>
-                <div class="select-button">
-                  <div class="left-holder"></div>
-                  <div class="mid-holder" id="contact" onclick="contact_user('<%=job_app.id %>')"   >
-                    <label style="color:#ffffff;  line-height: 34px;">Contact</label>
+                    <div class="right-holder"></div>
                   </div>
+                  <div class="select-button">
+                    <div class="left-holder"></div>
+                    <div class="mid-holder" id="decline_cv" onclick="decline_cv('<%=job_app.id%>')">
+                      <label style="color:#ffffff;  line-height: 34px;">Decline Candidate</label>
+                    </div>
 
-                  <div class="right-holder"></div>
+                    <div class="right-holder"></div>
+                  </div>
                 </div>
 
 
                 <!--select button ends-->
-                <% job_app.user.profile.education_informations.each do |ed| %>
-                    <label>Education Information</label>
+                <div class="detail-info">
+                  <div id="applicant_education">
+                    <label>Education Information:</label>
+                    <%= job_app.user.profile.education_informations.first.institute.blank? ? job_app.user.profile.education_informations.first.institute_name : job_app.user.profile.education_informations.first.institute.name %>
+                  </div>
 
-                    <p> <%= ed.institute.blank? ? ed.institute_name : ed.institute.name %>, <%= ed.major_subject %></p>
-                <% end %>
-                <div id="applicant_profession">
-                  <label>Professional Information</label>
-                  <%= job_app.user.profile.profession_informations.first.job_title %>
-                </div>
-                <div id="applicant_skills">
-                  <label>Skills Information</label>
-                  <%= job_app.user.profile.profession_informations.first.job_title %>
+                  <div id="applicant_profession">
+                    <label>Professional Information:</label>
+                    <%= job_app.user.profile.profession_informations.first.job_title %>
+                  </div>
+                  <div id="applicant_skills">
+                    <label>Skills:</label>
+                    <%= job_app.user.profile.skill %>
+                  </div>
                 </div>
 
               </div>
@@ -101,7 +97,6 @@
     </div>
 
 
-
 <script language="JavaScript">
 
     function contact_user(job_application) {
@@ -123,22 +118,41 @@
     }
 
 
-        $('a.view_cv').click(function () {
-            $.ajax({
-                context:this,
-                url:$(this).attr("href"),
-                type:"GET",
-                data:$(this).serialize(),
-                dataType:"json",
-                success:function (response) {
-                    return $(".dashboard-content-right").html(response.html);
-                }
-
-            });
-
-            return false;
-
+    $('a.view_cv').click(function () {
+        $.ajax({
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                return $(".dashboard-content-right").html(response.html);
+            }
 
         });
+
+        return false;
+
+
+    });
+
+    function decline_cv(job_applicant_id) {
+        alert(job_applicant_id);
+        url = "/employer/decline_applicant?id=" + job_applicant_id;
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"html",
+            success:function (response) {
+//                $(".dashboard-content-right").html(response.html);
+                alert("The candidate has been removed");
+
+            }
+        });
+        return false;
+
+    }
 
 </script>

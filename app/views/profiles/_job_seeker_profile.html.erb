@@ -1,5 +1,11 @@
 <div>
   <div class="profile_edu_info">
+    <div class="profile-cont">
+      <div class="profile-name-heading-new"><%= t('profiles.skills') %></div>
+      <div class="profile-name-content"><%= @profile.skill %></div>
+    </div>
+
+
     <div><h2> <%= t('profile_edu_information') %></h2></div>
     <% @profile.education_informations.each do |ed| %>
         <div style="margin-top: 20px!important; float: left;">

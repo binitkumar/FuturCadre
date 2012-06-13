@@ -1,4 +1,5 @@
-<%= javascript_include_tag "jquery-ui-1.8.17.custom.min" %>
+<%#= javascript_include_tag "jquery-ui-1.8.17.custom.min" %>
+<%= javascript_include_tag "jquery.form-new" %>
 <%= form_tag '/profiles/create_job_seeker_basic_information', :id => "profile-form" do %>
     <div class="basic-info mtop10">
       <h1><%= t('basic') %><span class="red"> <%= t('information') %></span></h1>
@@ -27,6 +28,11 @@
           <div id="regions">
             <%= render :partial => "shared/regions", :locals => { :object_collection => "profile" } %>
           </div>
+        </div>
+
+        <div class="profile-input mtop20">
+          <label><%= t('profiles.skills') %><em>*</em></label>
+          <%= text_field_tag "profile[skill]", @profile ? @profile.skill : "" %>
         </div>
 
       </div>

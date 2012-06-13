@@ -1,13 +1,6 @@
 <div class="dashboard-mid_new">
   <div class="mid-top-info">
-    <h1>
-      <% @profile.full_name %>
-    </h1>
-
-
-    <%= @profile.country.name %>
-
-  </div>
+    </div>
   <!--mid top info ends-->
   <h2><%= t('Employer.search_resume') %></h2>
 
@@ -15,19 +8,38 @@
 
   <div class="exp-detail">
     <% unless @profile.profession_informations.blank? %>
-        <h2>EXPERIENCES</h2>
+        <h2><%= t('profile_profession_information') %></h2>
         <% @profile.profession_informations.each do |pr| %>
             <div class="mid-content-detail">
               <div class="left-2"></div>
               <div class="mid-2">
                 <%= pr.job_title %>
                 <%= pr.profession_experience %>
+                <%= pr.category.name %>
+
               </div>
               <div class="right-2"></div>
             </div>
         <% end %>
     <% end %>
   </div>
+  <div class="exp-detail">
+    <% unless @profile.education_informations.blank? %>
+        <h2><%= t('profile_edu_information') %></h2>
+        <% @profile.education_informations.each do |ed| %>
+            <div class="mid-content-detail">
+              <div class="left-2"></div>
+              <div class="mid-2">
+                <%= ed.major_subject %>
+                <%= ed.institute.blank? ? ed.institute_name : ed.institute.name %>
+              </div>
+              <div class="right-2"></div>
+            </div>
+        <% end %>
+    <% end %>
+  </div>
+
+
   <!--mid content detail ends-->
 </div><!--dashboard mid ends-->
 <div class="dashboard-right-info_new">

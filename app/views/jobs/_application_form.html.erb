@@ -14,7 +14,7 @@
         <% unless @cvs.blank? %>
             <label><%= t('jobs.cv') %></label>
             <% @cvs.each do |cv| %>
-                <%= radio_button_tag :"cv_id", cv.id %>
+                <%= radio_button_tag :"cv_id", cv.id, true %>
                 <%= cv.photo_file_name %>
             <% end %>
         <% end %>
@@ -41,18 +41,22 @@
 <script type="text/javascript">
 
     $("#application_job").click(function () {
-        <%if current_user.profile.assets.include?(:content_type == "cv")%>
-        $('#apply_job_form').ajaxSubmit({
-            success:function (data) {
-                alert("Your application has been successfully submitted");
-                $(".content-holder").html(data.html);
-                close_popup();
-            }
-        });
+        <% unless @cvs.blank? %>
+        {
+            $('#apply_job_form').ajaxSubmit({
+                success:function (data) {
+                    alert("Your application has been successfully submitted");
+                    $(".content-holder").html(data.html);
+                    close_popup();
+                }
+            });
 
-        return false;
+            return false;
+        }
         <%else%>
-          alert("You need to first upload a CV");
+        {
+            alert("You need to first upload a CV");
+        }
         <%end%>
     });
 
