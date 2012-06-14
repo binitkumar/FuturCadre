@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   has_many :applied_jobs
   has_many :jobs, :through => :applied_jobs
 
+  has_many :stored_jobs, :as => :employer, :class_name => "AppliedJob"
+
   #belongs_to :event_user
 
   has_many :theses_users
@@ -46,8 +48,13 @@ class User < ActiveRecord::Base
 
   has_many :manage_projects, :as => :manager, :class_name => "Group"
   has_many :events
+
   belongs_to :package
   attr_accessible :package_id
+
+  has_many :package_users
+
+  #has_many :packages, :through => :packages_users
 
   def role
     return "webmaster" if webmaster?

@@ -3,14 +3,16 @@ class EmployerController < ApplicationController
   require 'active_merchant'
   include ActiveMerchant::Billing
 
-
+  before_filter :authenticate_user!
   before_filter :authorize_user
   before_filter :check_employer
 
 
   def dashboard
-    @employer = current_user
-
+    @employer           = current_user
+    @available_jobs     = current_user.avail_jobs - current_user.created_jobs.count
+    @applied_jobs       = AppliedJob.find_all_by_employer_id(current_user.id)
+    @available_searches = current_user.avail_search - @applied_jobs.count
 
   end
 
@@ -141,7 +143,6 @@ class EmployerController < ApplicationController
       @selected_profile.employer_id   = current_user.id
       @selected_profile.employer_type = "User"
       @selected_profile.save!
-
     end
     @selected_profiles = EmployerProfile.find_all_by_employer_id(current_user.id, :conditions => { :is_deleted => false })
     render :json => { :html => render_to_string(:partial => '/employer/right_panel', :locals => { :collections => @collections, :selected_profiles => @selected_profiles }) }.to_json
@@ -189,8 +190,13 @@ class EmployerController < ApplicationController
       })
       if response.success?
         @user=current_user
+        #to insert into package_user table
+        @package_user.create(:user_id => current_user.id, :package_id => @package.id)
 
-        @user.update_attribute('package_id', @package.id)
+        #update user available jobs and searches
+        @avail_jobs    = @user.avail_jobs + @package.no_of_jobs
+        @avail_searches= @user.avail_search + @package.no_of_searches
+        @user.update_attributes(:package_id => @package.id, :avail_jobs => @avail_job, :avail_search => @avail_searches)
 
         flash[:notice] = 'transaction has been successful'
         #redirect_to '/employer/transaction_success_show'
@@ -230,16 +236,27 @@ class EmployerController < ApplicationController
       @applied_job.is_system_applied= true
       @profile.assets.each do |asset|
         if asset.content_type =="cv" and asset.is_publishable == true
-              @applied_job.cv_id = asset.id
+          @applied_job.cv_id = asset.id
         end
       end
       @applied_job.is_downloaded = true
       @applied_job.save
+
       render :text => 'ok'
     else
-      #redirect_to :controller => "employer", :action => "employer_packages", :notice => "Please buy a package"
       render :text => 'fail'
     end
+  end
+
+  def get_my_orders
+    @my_orders = current_user.package_users
+    respond_to do |format|
+      format.pdf do
+        format.html
+        format.pdf { prawnto filename: "Invoice #{@my_orders}", :inline => false }
+      end
+    end
+
   end
 
 end

@@ -22,7 +22,11 @@
         <div class="reg-mid-tab-holder"><%= link_to t("Employer.application_projects"), my_projects_projects_path(:id => @job_seeker), :class => "project_path" %></div>
         <div class="reg-right-tab-holder"></div>
       </div>
-
+      <div class="reg-tab-holder-new">
+        <div class="reg-left-tab-holder"></div>
+        <div class="reg-mid-tab-holder"><%= link_to t("header.my_order"), get_my_orders_employer_index_path(), :class => "order_path" %></div>
+        <div class="reg-right-tab-holder"></div>
+      </div>
 
     </div>
 
@@ -49,12 +53,27 @@
             <% end %>
           </div>
         </div>
+        <div class="dashboard-info-image">
+          <div class="dashboard-image">
+            <h2>Balance:</h2>
+
+            <div>
+              <h4>No of Jobs Available:</h4> <%= @available_jobs %>
+            </div>
+            <div>
+              <h4>No of Searches Available:</h4><%= @available_searches %>
+            </div>
+          </div>
+        </div>
         <!--dashboard-info-image ends-->
         <% if current_user.role =="employer" %>
             <div class="search-btn">
               <%= link_to t('header.order'), employer_packages_employer_index_path() %>
             </div>
 
+            <div class="search-btn">
+              <%= link_to t('header.my_order'), employer_packages_employer_index_path() %>
+            </div>
         <% end %>
       </div>
 
@@ -217,6 +236,22 @@
         return false;
 
     });
+
+//    $("a.order_path").click(function () {
+//
+//        $.ajax({
+//            context:this,
+//            url:$(this).attr("href"),
+//            type:"GET",
+//            data:$(this).serialize(),
+//            dataType:"json",
+//            success:function (response) {
+//                return $(".dashboard-content-right").html(response.html);
+//            }
+//        });
+//        return false;
+//
+//    });
 
 
 </script>

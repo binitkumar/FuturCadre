@@ -69,6 +69,8 @@ class JobsController < ApplicationController
     @job.employer      = current_user
     @job.date_of_start = date
     @job.annual_salary = salary
+    @job.package_id = current_user.package_id
+
 
     unless params[:company_information].blank?
       @comp = current_user.profile.company_information
