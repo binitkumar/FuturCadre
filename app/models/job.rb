@@ -13,7 +13,11 @@ class Job < ActiveRecord::Base
   has_and_belongs_to_many :groups
   has_many :job_languages
   has_many :languages, :through => :job_languages
+  #has_many :applied_jobs
+
   has_many :applied_jobs
+  has_many :users, :through => :applied_jobs
+
   has_and_belongs_to_many :education_levels
 
 

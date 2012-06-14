@@ -473,6 +473,7 @@ en:
     fax: Fax
     first_name: "First Name"
     last_name: "Last Name"
+    skills: "Skills"
     name: Name
     password: Password
     phone: Phone

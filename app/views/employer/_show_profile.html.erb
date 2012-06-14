@@ -1,6 +1,6 @@
 <div class="dashboard-mid_new">
   <div class="mid-top-info">
-    </div>
+  </div>
   <!--mid top info ends-->
   <h2><%= t('Employer.search_resume') %></h2>
 
@@ -48,7 +48,7 @@
   <div class="clear"></div>
   <div class="select-button" style="margin-top:10px;">
     <div class="left-holder"></div>
-    <div class="mid-holder"><a href="#"><%= t('Employer.search_select') %></a></div>
+    <div class="mid-holder" onclick="insert_user('<%= @profile.id %>')"><%= t('Employer.search_select') %></div>
     <div class="right-holder"></div>
   </div>
   <!--select button ends-->
@@ -56,7 +56,33 @@
 </div>
 
 
+<script type="text/javascript">
 
+    function insert_user(profile_id) {
+        url = "/employer/add_search_result?id=" + profile_id;
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"html",
+            success:function (response) {
+                //                $(".dashboard-content-right").html(response.html);
+                if (response == "ok") {
+
+                }
+                else {
+                    document.location.href = "/employer/employer_packages"
+                }
+
+            }
+        });
+        return false;
+
+
+    }
+
+</script>
 
 
 

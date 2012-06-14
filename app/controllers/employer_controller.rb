@@ -73,7 +73,7 @@ class EmployerController < ApplicationController
 
   def my_job_detail
     @job          = Job.find(params[:id])
-    @applied_jobs = @job.applied_jobs
+    @applied_jobs = @job.applied_jobs.where('is_declined = false')
     render :json => { :html => render_to_string(:partial => '/employer/my_job_details', :locale => { :employer => @employer }) }.to_json
   end
 
@@ -96,11 +96,16 @@ class EmployerController < ApplicationController
   end
 
   def download
-
-    @asset = Asset.find_by_id(params[:id])
-    @cv    = @asset.photo
-    send_file @cv.path
-
+    @applied_jobs = AppliedJob.find_all_by_employer_id(current_user.id, :conditions => { :is_downloaded => true })
+    if @applied_jobs.count <= current_user.package.no_of_searches
+      @applied_job = AppliedJob.find(params[:id])
+      @applied_job.update_attributes(:is_downloaded => true)
+      @asset = Asset.find_by_id(params[:cv_id])
+      @cv    = @asset.photo
+      send_file @cv.path
+    else
+      redirect_to :controller => "employer", :action => "employer_packages", :notice => "Please buy a package"
+    end
   end
 
   def my_theses
@@ -208,9 +213,33 @@ class EmployerController < ApplicationController
 
   def decline_applicant
     @job_applied = AppliedJob.find_by_id(params[:id])
+    @user        = @job_applied.user
+    @job         = @job_applied.job
     @job_applied.update_attributes(:is_declined => true)
+    current_user.send_message("Rejection Letter", "Dear #{@user.profile.first_name} You have applied for the '#{@job.name}' at '#{@job_applied.created_at.strftime('%a, %m/%d/%Y')}'. However due to large number of applicants the competition was higher and unfortunately you didn't meet our criteria. We wish you a very successful career ahead' ", @user)
     render :text => "ok"
+  end
 
+  def add_search_result
+    @profile      = Profile.find_by_id(params[:id])
+    @applied_jobs = AppliedJob.find_all_by_employer_id(current_user.id, :conditions => { :is_downloaded => true })
+    if @applied_jobs.count <= current_user.package.no_of_searches
+      @applied_job                  = AppliedJob.new
+      @applied_job.user_id          = @profile.user_id
+      @applied_job.employer_id      = current_user.id
+      @applied_job.is_system_applied= true
+      @profile.assets.each do |asset|
+        if asset.content_type =="cv" and asset.is_publishable == true
+              @applied_job.cv_id = asset.id
+        end
+      end
+      @applied_job.is_downloaded = true
+      @applied_job.save
+      render :text => 'ok'
+    else
+      #redirect_to :controller => "employer", :action => "employer_packages", :notice => "Please buy a package"
+      render :text => 'fail'
+    end
   end
 
 end

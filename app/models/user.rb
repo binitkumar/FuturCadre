@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
- has_mailbox
+  has_mailbox
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -26,7 +26,11 @@ class User < ActiveRecord::Base
   has_many :events, :through => :event_users
   has_many :created_events, :as => :owner, :class_name => "Event"
   has_many :sent_invitations, :class_name => 'EventUser', :foreign_key => 'sender_id'
+
+  #has_many :applied_jobs
   has_many :applied_jobs
+  has_many :jobs, :through => :applied_jobs
+
   #belongs_to :event_user
 
   has_many :theses_users
@@ -43,7 +47,7 @@ class User < ActiveRecord::Base
   has_many :manage_projects, :as => :manager, :class_name => "Group"
   has_many :events
   belongs_to :package
- attr_accessible :package_id
+  attr_accessible :package_id
 
   def role
     return "webmaster" if webmaster?

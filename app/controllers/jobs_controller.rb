@@ -214,24 +214,21 @@ class JobsController < ApplicationController
   end
 
   def apply_job
-
     @job = Job.find(params[:job_id])
     unless params[:cv_id].blank?
       @cv = Asset.find(params[:cv_id])
     end
-    @job_application         = AppliedJob.new
-    @job_application.user_id = current_user.id
-    @job_application.job_id  = @job.id
-    unless params[:cv_id].blank?
-      @cv                    = Asset.find(params[:cv_id])
-      @job_application.cv_id = @cv.id
-    end
-
-
+    @job_application             = AppliedJob.new
+    @job_application.user_id     = current_user.id
+    @job_application.job_id      = @job.id
+    #unless params[:cv_id].blank?
+    #  @cv                    = Asset.find(params[:cv_id])
+    @job_application.cv_id       = @cv.id
+    @job_application.employer_id = @job.employer_id
+    #end
     if @job_application.save
       #render :json => {:html => render_to_string(:partial => '/job_seeker/job_list', :locale=>{:job_seeker => @job_seeker})}.to_json
       render :json => { :html => render_to_string(:partial => '/job_seeker/job_list', :locale => { :job_seeker => @job_seeker }) }.to_json
-
     else
       redirect_to profiles_path(), :notice => "Please creater a profile"
     end

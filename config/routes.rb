@@ -164,7 +164,7 @@ FuturCadre::Application.routes.draw do
       get :employer_billing_information
       post :checkout
       get :transaction_success_show
-      get :decline_applicant
+      get :decline_applicant, :add_search_result
     end
   end
 
