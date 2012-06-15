@@ -9,7 +9,7 @@ class Job < ActiveRecord::Base
   belongs_to :contract
   belongs_to :period
   has_and_belongs_to_many :responsibilities
-  has_and_belongs_to_many :skills
+  #has_and_belongs_to_many :skills
   has_and_belongs_to_many :groups
   has_many :job_languages
   has_many :languages, :through => :job_languages

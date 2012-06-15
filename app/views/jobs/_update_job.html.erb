@@ -176,14 +176,12 @@
   <h1><span><%= t('required') %></span> <%= t('profile_profile') %> </h1>
   <%= image_tag asset_path 'dashboard-botom-line.png' %>
 </div>
-<%= fields_for :skills do |skill| %>
-    <div class="skils-ful-length">
-      <label style="margin-top: 0!important;"><%= t('Project.skills') %></label>
 
-      <%= skill.text_field :name %>
+<div class="skils-ful-length">
+  <label style="margin-top: 0!important;"><%= t('Project.skills') %></label>
+  <%= f.text_field :skills %>
+</div>
 
-    </div>
-<% end %>
 <div id="language-div" class="language-bar">
   <% @job_languages.each_with_index do |job_lang, i| %>
       <div id="remove_lang_<%= i %>">

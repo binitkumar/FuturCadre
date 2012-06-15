@@ -64,8 +64,8 @@
                 <% end %>
             <% end %>
             <div class="description-heading mtop30"><%= t('job_skill_require') %>:</div>
-            <% @job.skills.each do |skill| %>
-                <div class="description-text"> <%= skill.name %>
+            <% @job.skills.split(",").each do |skill| %>
+                <div class="description-text">  <%= skill %>
                 </div>
             <% end %>
             <div class="description-heading mtop30"><%= t('jobs.comp_annual') %></div>
@@ -89,7 +89,7 @@
 
             <!--  <div class="more-similar-jobs"><a href="#"><%#= t('job_similar') %></a></div>-->
             </div>
-            </div>
+
 
             <div class="content-right-holder">
               <div class="popular-vacancies">

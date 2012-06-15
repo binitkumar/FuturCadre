@@ -69,7 +69,7 @@ class JobsController < ApplicationController
     @job.employer      = current_user
     @job.date_of_start = date
     @job.annual_salary = salary
-    @job.package_id = current_user.package_id
+    @job.package_id    = current_user.package_id
 
 
     unless params[:company_information].blank?
@@ -77,15 +77,6 @@ class JobsController < ApplicationController
       @comp.update_attributes(params[:company_information])
     end
 
-    unless params[:skill][:name].blank?
-      skills = params[:skill][:name].split(',')
-      skills.each do |skill|
-        @skill_new = Skill.create(:name => skill)
-        @job.skills << Skill.find_by_id(@skill_new.id)
-      end
-    else
-      puts "None skill added"
-    end
     unless params[:language_ids].blank?
       params[:language_ids].each_with_index do |language, i|
         @language = Language.find_by_id(language)
@@ -127,11 +118,14 @@ class JobsController < ApplicationController
     @skills              = @job.skills
     @job_languages       = @job.languages
     @job_educations      = @job.education_levels
-
+    @city                = @job.city
+    @regions             = @city.country.regions
+    @region              = @job.region
+    @cities              = @region.cities
+    @country             = @city.country
   end
 
   def update
-
     @job      = Job.find(params[:id])
     @job_comp = CompanyInformation.find(params[:cid])
 
@@ -155,27 +149,30 @@ class JobsController < ApplicationController
         unless params[:company_information].blank?
           @job_comp.update_attributes(params[:company_information])
         end
-
-        unless params[:skills][:name].blank?
-          skills = params[:skills][:name].split(',')
-          skills.each do |skill|
-            @skill_new = Skill.create(:name => skill)
-            @job.skills << Skill.find_by_id(@skill_new.id)
-          end
-        else
-          puts "None skill added"
-        end
-
+        # To edit language and levels
         unless params[:language_ids].blank?
           params[:language_ids].each_with_index do |language, i|
             @language = Language.find_by_id(language)
-            @job.languages << Language.find_by_id(@language.id)
+            if @job.languages.include?(@language)
+              @job_language = JobLanguage.find_by_job_id_and_language_id(@job.id, @language.id)
+              @job_language.update_attributes(:level_id => params[:level][i])
+            else
+              @job.languages << Language.find_by_id(@language.id)
+            end
           end
         end
+        # To edit Education Level
         unless params[:education_ids].blank?
+          @cds = @job.education_levels
+          if @cds != nil
+            @cds.destroy_all
+          end
           params[:education_ids].each do |education|
             @education = EducationLevel.find_by_id(education)
-            @job.education_levels << EducationLevel.find_by_id(@education.id)
+            if @job.education_levels.include?(@education)
+            else
+              @job.education_levels << EducationLevel.find_by_id(@education.id)
+            end
           end
         end
 
@@ -206,13 +203,10 @@ class JobsController < ApplicationController
   def new_application
     @job         = Job.find(params[:id])
     @applied_job = AppliedJob.new
-
     if current_user.profile !nil
       @cvs =current_user.profile.assets.where(:content_type => 'cv', :is_publishable => true, :is_deleted => false)
     end
-
     render :json => { :html => render_to_string(:partial => 'application_form', :locale => { :job_new => @job_new }) }.to_json
-
   end
 
   def apply_job

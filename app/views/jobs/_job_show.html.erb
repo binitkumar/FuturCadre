@@ -1,42 +1,45 @@
 <div class="dashboard-content-right">
 
   <div style="width: 97%;border-bottom: 4px solid #991514;margin-bottom: 20px;">
-    <h1 style="margin-top: 28px;"> <%= t('job') %> <span class="red"> <%= t('information')%></span></h1>
+    <h1 style="margin-top: 28px;"> <%= t('job') %> <span class="red"> <%= t('information') %></span></h1>
   </div>
   <% unless @job.blank? %>
-      <p><label><%= t('name')%>:</label>        <%= @job.name %> <br/>
+      <p><label><%= t('name') %>:</label>        <%= @job.name %> <br/>
 
-      <p><label><%= t('description')%>:</label> <%= @job.description %></p>  <br/>
-      <label><%= t('jobs.contract')%>:</label>     <%= @job.contract.name %>  <br/>
-      <label><%= t('jobs.contract_duration')%>:</label>        <%= @job.period.name %>  <br/>
-      <label><%= t('jobs.Date_of_start')%>:</label><%= @job.date_of_start %>  <br/>
-      <label><%= t('jobs.category')%>:</label><%= @job.category.name %>  <br/>
+      <p><label><%= t('description') %>:</label> <%= @job.description %></p>  <br/>
+      <label><%= t('jobs.contract') %>:</label>     <%= @job.contract.name %>  <br/>
+      <label><%= t('jobs.contract_duration') %>:</label>        <%= @job.period.name %>  <br/>
+      <label><%= t('jobs.Date_of_start') %>:</label><%= @job.date_of_start %>  <br/>
+      <label><%= t('jobs.category') %>:</label><%= @job.category.name %>  <br/>
       </p>
-      <h1><%= t('company')%> <span class="red"> <%= t('information')%> </span></h1>
+      <h1><%= t('company') %> <span class="red"> <%= t('information') %> </span></h1>
       <%= image_tag asset_path 'dashboard-botom-line.png' %>
-      <p><label><%= t('profile_company_nam')%>:</label>        <%= @job.employer.profile.company_information.name %> <br/>
+      <p><label><%= t('profile_company_nam') %>:</label>        <%= @job.employer.profile.company_information.name %>
+        <br/>
 
-      <p><label><%= t('description')%>:</label>  <%= @job.employer.profile.company_information.description %></p>  <br/>
-      <label><%= t('profile_industry')%>:</label>     <%= @job.employer.profile.company_information.sector.value %>  <br/>
+      <p><label><%= t('description') %>:</label>  <%= @job.employer.profile.company_information.description %></p>
+      <br/>
+      <label><%= t('profile_industry') %>:</label>     <%= @job.employer.profile.company_information.sector.value %>
+      <br/>
       </p>
 
-      <h1> <%= t('required')%> <span class="red"> <%= t('profile_profile')%></span></h1>
+      <h1> <%= t('required') %> <span class="red"> <%= t('profile_profile') %></span></h1>
       <%= image_tag asset_path 'dashboard-botom-line.png' %>
       <label>Skills:</label>
       <% unless @job.skills.blank? %>
-          <% @job.skills.each do |skill| %>
-              <%= skill.name %>,
-          <% end %>
+
+          <%= @job.skills %>
+
       <% end %>
       <br/>
 
-      <p><label><%= t('education')%>:</label>
+      <p><label><%= t('education') %>:</label>
         <% unless @job.education_levels.blank? %>
             <% @job.education_levels.each do |job_edu| %>
                 <%= job_edu.name %>,
             <% end %>
         <% end %></p>  <br/>
-      <label><%= t('language')%>:</label>
+      <label><%= t('language') %>:</label>
       <% unless @job.languages.blank? %>
           <% @job.languages.each do |job_lang| %>
               <%= job_lang.value %>,

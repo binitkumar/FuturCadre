@@ -176,12 +176,12 @@
   <h1><span><%= t('required') %></span> <%= t('profile_profile') %></h1>
   <%= image_tag asset_path 'dashboard-botom-line.png' %>
 </div>
-<%= fields_for :skill do |skill| %>
+
     <div class="skils-ful-length">
       <label style="margin-top: 0!important;"><%= t('skills') %></label>
-      <%= skill.text_field :name %>
+      <%= f.text_field :skills %>
     </div>
-<% end %>
+
 <div id="language-div" class="language-bar">
 
   <div class="contract-field-new">
