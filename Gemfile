@@ -17,6 +17,9 @@ gem 'acts_as_commentable'
 #gem 'dynamic_form'
 gem 'impressionist'
 gem 'tinymce-rails'
+gem 'prawn'
+
+gem 'prawn-rails'
 
 
 # Gems used only for assets and not required

@@ -1,0 +1,49 @@
+<div class="dashboard-content-right">
+  <div class="w100">
+    <div class="dashboard-post-profile-btn">
+    </div>
+  </div>
+  <!--dashboard-post-profile-btn ends-->
+  <div class="dashboard-content">
+    <h1><%= t('header.my_order') %></h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+
+    <p><br/>
+    </p>
+
+    <h1><%= t('Employer.employer') %> <span class="red"> <%= t('header.my_order') %> </span></h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <% unless @my_orders.blank? %>
+        <p><%= t('Employer.employer_total_jobs') %> <%= @my_orders.count %></p>
+        <table>
+          <tr>
+            <th><%= t('Employer.package_name') %></th>
+            <th><%= t('Employer.package_price') %>  $</th>
+            <th><%= t('Employer.package_jobs') %></th>
+            <th><%= t('Employer.package_searches') %></th>
+            <th><%= t('Employer.package_start_date') %></th>
+            <th><%= t('Employer.package_end_date') %></th>
+            <th><%= t('Employer.package_created_at') %></th>
+          </tr>
+
+          <% @my_orders.each do |order| %>
+
+              <%#= image_tag  %>
+              <tr>
+                <td><%= order.package.name %></td>
+
+                <td><%= order.package.price %></td>
+                <td><%= order.package.no_of_jobs %></td>
+                <td><%= order.package.no_of_searches %></td>
+                <td><%= order.package.start_date.strftime('%a, %m/%d/%Y') %></td>
+                <td><%= order.package.expiry_date.strftime('%a, %m/%d/%Y') %></td>
+                <td><%= order.package.created_at.strftime('%a, %m/%d/%Y') %></td>
+              </tr>
+          <% end %>
+        </table>
+    <% else %>
+        <p> <%= t('Employer.employer_no_jobs') %></p>
+    <% end %>
+  </div>
+  <p><%= link_to "Printable Invoice (PDF)", get_my_orders_employer_index_path(@my_orders, :format => 'pdf') %></p>
+</div>

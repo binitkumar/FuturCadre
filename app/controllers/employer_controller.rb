@@ -250,14 +250,8 @@ class EmployerController < ApplicationController
 
   def get_my_orders
     @my_orders = current_user.package_users
-    respond_to do |format|
-      format.pdf do
-        format.html
-        format.pdf { prawnto filename: "Invoice #{@my_orders}", :inline => false }
-      end
-    end
+
 
   end
-
 end
 
