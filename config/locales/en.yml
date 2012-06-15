@@ -494,6 +494,8 @@ en:
   responsibilities: Responsibilities
   resume: "Upload Your CV"
   save_and_next: "Save and Next"
+  skip_and_next: "Skip to Next"
+  skip: "Skip"
   search: Search
   send: Send
   simple_captcha: 

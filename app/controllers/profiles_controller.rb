@@ -394,5 +394,35 @@ class ProfilesController < ApplicationController
     render :partial => "profiles/account", :locals => { :profile => @profile }
   end
 
+
+  def skip_action
+    @profile = Profile.find_by_id(params[:id])
+    if params[:obj]=="education_information"
+      @professional_informations = @profile.profession_informations
+      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_experience') }.to_json
+    elsif params[:obj]=="profession_information"
+      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/additional_information') }.to_json
+    else
+      render :text => "ok"
+    end
+  end
+
+  def move_to_action
+    @profile = Profile.find_by_id(params[:id])
+    if params[:obj] =="basic"
+      render :json => { :html => render_to_string(:partial => '/profiles/job_seeker/basic_information') }.to_json
+    elsif params[:obj]=="education"
+      @education_informations = @profile.education_informations
+      @institutes             = Institute.all
+      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/education_details') }.to_json
+    elsif params[:obj]=="professional"
+      @professional_informations = @profile.profession_informations
+      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/professional_experience') }.to_json
+    else
+      render :json => { :seccess => true, :html => render_to_string(:partial => '/profiles/job_seeker/additional_information') }.to_json
+    end
+
+  end
+
 end
 

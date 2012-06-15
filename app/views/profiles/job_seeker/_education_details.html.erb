@@ -40,7 +40,7 @@
         <div class="profile-input mtop20">
           <label><%= t('profile_degree_level') %></label>
           <%#= text_field_tag "education_info[degree_level]" %>
-          <%= select_tag "education_info[degree_level]", options_for_select([["Ecole D'ingénieur", "Ecole D'ingénieur"],["Ecole De Commerce", "Ecole De Commerce"], ["Ecoles/Universités", "Ecoles/Universités"], [" Etrangères", " Etrangères"], ["IEP", "IEP"], ["IUT", "IUT"], ["Lycée", "Lycée"], ["Université", "Université"], ["x-Autre", "x-Autre"]]) %>
+          <%= select_tag "education_info[degree_level]", options_for_select([["Ecole D'ingénieur", "Ecole D'ingénieur"], ["Ecole De Commerce", "Ecole De Commerce"], ["Ecoles/Universités", "Ecoles/Universités"], [" Etrangères", " Etrangères"], ["IEP", "IEP"], ["IUT", "IUT"], ["Lycée", "Lycée"], ["Université", "Université"], ["x-Autre", "x-Autre"]]) %>
         </div>
         <div class="profile-input mtop20">
           <label><%= t('profile_major_subject') %></label>
@@ -71,8 +71,8 @@
         <div class="profile-input mtop20" id="institute">
           <label><%= t('profile_institute') %></label>
           <%#= render :partial => "profiles/job_seeker/institute_list", :locales => { :institutes => @institutes } %>
-          <%= select_tag "education_info[institute_id]", options_for_select(["Select from list"] + @institutes.map { |obj| [obj.slug, obj.id] } + ["others"]),:onchange =>"add_institute()" %>
-          <%= text_field_tag "education_info[institute_name]",nil, :style => "display: none;" %>
+          <%= select_tag "education_info[institute_id]", options_for_select(["Select from list"] + @institutes.map { |obj| [obj.slug, obj.id] } + ["others"]), :onchange => "add_institute()" %>
+          <%= text_field_tag "education_info[institute_name]", nil, :style => "display: none;" %>
         </div>
 
       </div>
@@ -81,6 +81,10 @@
 
 
     <div class="save-button-new"><%= button_to t('save_and_next'), "javascript:void(0);", :id => "save-next-link" %></div>
+
+
+    <div class="save-button-new" onclick="skip_to('<%= @profile.id%>', 'education_information')"><%= button_to t('skip_and_next'), "javascript:void(0);", :id => "skip-to-next-link" %></div>
+
 <% end %>
 
 
@@ -118,23 +122,37 @@
     });
 
 
-//    $('#add-institute-link').click(function () {
-//        $("#question-form").dialog("open");
-//    });
+    //    $('#add-institute-link').click(function () {
+    //        $("#question-form").dialog("open");
+    //    });
 
     $(document).ready(function () {
         $('.date-pick').datepicker({dateFormat:'yy-mm-dd'});
     });
 
-        function add_institute(){
-         if($("#education_info_institute_id").val()=="others")
-            {
-               $("#education_info_institute_name").show();
-            }
-          else{
-             $("#education_info_institute_name").hide();
-
-         }
+    function add_institute() {
+        if ($("#education_info_institute_id").val() == "others") {
+            $("#education_info_institute_name").show();
         }
+        else {
+            $("#education_info_institute_name").hide();
 
+        }
+    }
+
+    function skip_to(profile_id, obj) {
+        url = "/profiles/skip_action?id=" + profile_id +"&obj="+obj;
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                $("#profile-contents").html(response.html);
+        }
+        });
+        return false;
+
+    }
 </script>

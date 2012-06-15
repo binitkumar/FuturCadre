@@ -69,7 +69,9 @@
     </div>
     <div class="add-button-new"><%= link_to t('profile_add_more_profession'), "javascript:void(0);", :id => "next-link" %></div>
 
+
     <div class="save-button-new"><%= button_to t('save_and_next'), "javascript:void(0);", :id => "save-next-link" %></div>
+    <div class="save-button-new" onclick="skip_to('<%= @profile.id%>', 'profession_information')"><%= button_to t('skip_and_next'), "javascript:void(0);", :id => "skip-to-next-link" %></div>
 <% end %>
 
 <script type="text/javascript">
@@ -119,5 +121,21 @@
             $('#date-box12').show();
         }
     });
+
+    function skip_to(profile_id, obj) {
+        url = "/profiles/skip_action?id=" + profile_id + "&obj=" + obj;
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                $("#profile-contents").html(response.html);
+            }
+        });
+        return false;
+
+    }
 
 </script>

@@ -134,6 +134,7 @@
     </div>
     <!--<div class="save-button-new"><%#= button_to "Skip It", "javascript:void(0);" %></div>-->
     <div class="save-button-new"><%= button_to t('button.save'), "javascript:void(0);", :id => "next-link" %></div>
+    <div class="save-button-new" onclick="skip_to('<%= @profile.id%>', 'skip')"><%= button_to t('skip'), "javascript:void(0);", :id => "skip-to-next-link" %></div>
 <% end %>
 <% select_1 = "#{select_tag "sector_ids[]", options_from_collection_for_select(Sector.all, "id", "value")}" %>
 <% select_1 = select_1.gsub(/(\r\n|\n|\r)/, "") %>
@@ -244,6 +245,22 @@
     });
 
     $("#additional_information").addClass("active");
+
+    function skip_to(profile_id, obj) {
+        url = "/profiles/skip_action?id=" + profile_id + "&obj=" + obj;
+        $.ajax({
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"html",
+            success:function (response) {
+                document.location.href ="/profiles/<%=@profile.id%>";
+            }
+        });
+        return false;
+
+    }
 
 
 </script>
