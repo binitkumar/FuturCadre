@@ -22,10 +22,12 @@
 <script type="text/javascript">
     $('.tabs_center').click(function () {
         var elem = $(this).attr('id');
-     //            url ="/profiles/move_to_action?id=" + <#%@profile.id%> + "&obj=" + elem ;
+        //            url ="/profiles/move_to_action?id=" + <#%@profile.id%> + "&obj=" + elem ;
+        <% if @profile.id != nil%>
+        {
             $.ajax({
                 context:this,
-                url:"/profiles/move_to_action?id=" + <%=@profile.id%> + "&obj=" + elem,
+                url:"/profiles/move_to_action?id=" + <%=@profile.id%> +"&obj=" + elem,
                 type:"GET",
                 data:$(this).serialize(),
                 dataType:"json",
@@ -33,9 +35,13 @@
                     $("#profile-contents").html(response.html);
                 }
             });
-            return false;
-
-
+        }
+        return false;
+        <%else%>
+        {
+            alert("Please first complete the profile basic information");
+        }
+        <%end%>
 
     });
 
