@@ -183,26 +183,41 @@
 </div>
 
 <div id="language-div" class="language-bar">
-  <% @job_languages.each_with_index do |job_lang, i| %>
-      <div id="remove_lang_<%= i %>">
-        <div class="contract-field-new">
-          <label style="margin-top: 0!important;"> <%= t('language') %> </label>
-          <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value", job_lang.id) %>
-        </div>
-        <div class="contract-field-new">
-          <label style="margin-top: 0!important;"> <%= t('level') %> </label>
-          <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]]) %>
+  <% unless @job_languages.blank? %>
+      <% @job_languages.each_with_index do |job_lang, i| %>
+          <div id="remove_lang_<%= i %>">
+            <div class="contract-field-new">
+              <label style="margin-top: 0!important;"> <%= t('language') %> </label>
+              <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value", job_lang.id) %>
+            </div>
+            <div class="contract-field-new">
+              <label style="margin-top: 0!important;"> <%= t('level') %> </label>
+              <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]]) %>
 
-          <div class="add-button" style="margin-right: -28px!important;">
-            <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
-            <% if i > 0 %>
-                <a href="javascript:;">
-                  <%= link_to_function image_tag(asset_path 'minus.png'), "remove_language(#{i},#{job_lang.id},#{@job.id} );" %>
-                  <!--<img src="/assets/minus.png" alt="Remove" onclick="remove_location_field_new(<%= i %>)"/>-->
-                </a>
-            <% end %>
+              <div class="add-button" style="margin-right: -28px!important;">
+                <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
+                <% if i > 0 %>
+                    <a href="javascript:;">
+                      <%= link_to_function image_tag(asset_path 'minus.png'), "remove_language(#{i},#{job_lang.id},#{@job.id} );" %>
+                      <!--<img src="/assets/minus.png" alt="Remove" onclick="remove_location_field_new(<%= i %>)"/>-->
+                    </a>
+                <% end %>
+              </div>
+
+            </div>
           </div>
+      <% end %>
+  <% else %>
+      <div class="contract-field-new">
+        <label style="margin-top: 0!important;"> <%= t('language') %> </label>
+        <%= select_tag "language_ids[]", options_from_collection_for_select(Language.all, "id", "value") %>
+      </div>
+      <div class="contract-field-new">
+        <label style="margin-top: 0!important;"> <%= t('level') %> </label>
+        <%= select_tag 'level[]', options_for_select([["Niveau", "Niveau"], ["Notions", "Notions"], ["Courant", "Courant"], ["Bilingue", "Bilingue"]]) %>
 
+        <div class="add-button" style="margin-right: -28px!important;">
+          <div class="add-language"> <%= image_tag asset_path 'plus.png' %></div>
         </div>
       </div>
   <% end %>
