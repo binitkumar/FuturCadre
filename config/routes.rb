@@ -173,7 +173,7 @@ FuturCadre::Application.routes.draw do
     collection do
       get :new
       post :create_job_seeker_basic_information, :create_job_seeker_education_details, :create_job_seeker_education_details_next, :create_job_seeker_professional_experience, :create_job_seeker_professional_experience_next, :create_job_seeker_additional_information
-      post :create_employer, :upload_photo, :upload_company_photo
+      post :create_employer, :upload_photo, :upload_company_photo, :upload_cover_letter
       post :create_employer_basic_information, :create_employer_company_details
       get :update, :remove_edu_info, :remove_prof_info
       put :update_job_seeker

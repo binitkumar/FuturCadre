@@ -27,8 +27,8 @@ class JobsController < ApplicationController
     unless current_user.package_id.blank?
       @jobs   =Job.find_all_by_employer_id(current_user.id)
       @package=Package.find_by_id(current_user.package_id)
-      if (@jobs.count < @package.no_of_jobs)
-
+      #if (@jobs.count < @package.no_of_jobs)
+      if  current_user.created_jobs.count <= current_user.avail_jobs
         if current_user.profile!=nil
           @job                = Job.new
           @skill              = Skill.new(params[:skills])

@@ -1,5 +1,5 @@
-<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery-ui-timepicker-addon" %>
-<%= stylesheet_link_tag "jquery-ui-1.8.17.custom", "jquery.ui.datepicker" %>
+<%= javascript_include_tag "jquery-ui-1.8.17.custom.min" %>
+<%= stylesheet_link_tag "jquery-ui-1.8.17.custom" %>
 <script language="JavaScript">
     $("#question-form").dialog({
         autoOpen:false,
@@ -48,20 +48,22 @@
 
         </div>
         <div class="profile-input mtop20">
-          <label><%= t('start_date') %></label>
+          <label><%= t('start_date') %> (Month:Year)</label>
 
           <div class="date-box" id="date-box">
+            <%#= date_select(:education_information, :start_date) %>
+            <%= date_select("education_info", "start_date", :start_year => 1975, :use_month_numbers => true,:discard_day=> true,:order => [:month, :year]) %>
 
-            <%= text_field_tag "education_info[start_date]", nil, :class => "date-pick", :id => "Date-Box" %>
           </div>
         </div>
 
         <div class="profile-input mtop20">
-          <label><%= t('end_date') %></label>
+          <label><%= t('end_date') %>(Month:Year)</label>
 
           <div class="date-box" id="date-box1">
 
-            <%= text_field_tag "education_info[end_date]", nil, :class => "date-pick", :id => "Date-Box1" %>
+            <%= date_select("education_info", "end_date", :start_year => 1975, :use_month_numbers => true,:discard_day => true,:order => [:month, :year]) %>
+
           </div>
         </div>
 
@@ -71,7 +73,7 @@
         <div class="profile-input mtop20" id="institute">
           <label><%= t('profile_institute') %></label>
           <%#= render :partial => "profiles/job_seeker/institute_list", :locales => { :institutes => @institutes } %>
-          <%= select_tag "education_info[institute_id]", options_for_select(["Select from list"] + @institutes.map { |obj| [obj.slug, obj.id] } + ["others"]), :onchange => "add_institute()" %>
+          <%= select_tag "education_info[institute_id]", options_for_select(["Select from list"] + @institutes.map { |obj| [obj.slug, obj.id] }), :onchange => "add_institute()" %>
           <%= text_field_tag "education_info[institute_name]", nil, :style => "display: none;" %>
         </div>
 
@@ -126,12 +128,14 @@
     //        $("#question-form").dialog("open");
     //    });
 
-    $(document).ready(function () {
-        $('.date-pick').datepicker({dateFormat:'yy-mm-dd'});
-    });
+    //    $(document).ready(function () {
+    //        $('.date-pick').datepicker({dateFormat:'yy-mm'});
+    //    });
 
     function add_institute() {
-        if ($("#education_info_institute_id").val() == "others") {
+        var e = document.getElementById("education_info_institute_id");
+        var strUser = e.options[e.selectedIndex].text;
+        if (strUser == "Others") {
             $("#education_info_institute_name").show();
         }
         else {
@@ -141,7 +145,7 @@
     }
 
     function skip_to(profile_id, obj) {
-        url = "/profiles/skip_action?id=" + profile_id +"&obj="+obj;
+        url = "/profiles/skip_action?id=" + profile_id + "&obj=" + obj;
         $.ajax({
             context:this,
             url:url,
@@ -150,7 +154,7 @@
             dataType:"json",
             success:function (response) {
                 $("#profile-contents").html(response.html);
-        }
+            }
         });
         return false;
 

@@ -198,3 +198,4 @@
 199,"HEC Lausanne","HEC Lausanne"
 200,"HEC Montréal" , "HEC Montréal"
 201,"Solvay" , "SOLVAY Brussels School"
+202, "Others", "Others"

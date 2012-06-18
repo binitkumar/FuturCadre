@@ -1,5 +1,5 @@
-<%= javascript_include_tag "jquery-ui-1.8.17.custom.min", "jquery-ui-timepicker-addon" %>
-<%= stylesheet_link_tag "jquery-ui-1.8.17.custom", "jquery.ui.datepicker" %>
+<%= javascript_include_tag "jquery-ui-1.8.17.custom.min" %>
+<%= stylesheet_link_tag "jquery-ui-1.8.17.custom" %>
 
 <%= form_tag '/profiles/create_job_seeker_professional_experience', :id => "profile-form" do |f| %>
     <div class="basic-info mtop10">
@@ -34,7 +34,7 @@
           <label><%= t('start_date') %></label>
 
           <div class="date-box" id="date-box">
-            <%= text_field_tag "prof_info[start_date]", nil, :class => "date-pick", :id => "Date-Box" %>
+            <%= date_select("prof_info", "start_date", :start_year => 1975, :use_month_numbers => true, :discard_day => true, :order => [:month, :year]) %>
           </div>
         </div>
 
@@ -47,7 +47,7 @@
             <label><%= t('end_date') %></label>
 
             <div class="date-box" id="date-box1">
-              <%= text_field_tag "prof_info[end_date]", nil, :class => "date-pick", :id => "Date-Box1" %>
+              <%= date_select("prof_info", "end_date", :start_year => 1975, :use_month_numbers => true, :discard_day => true, :order => [:month, :year]) %>
             </div>
           </div>
         </div>
@@ -104,10 +104,6 @@
             }
         }, "json");
         return false;
-    });
-
-    $(document).ready(function () {
-        $('.date-pick').datepicker({dateFormat:'yy-mm-dd'});
     });
 
 

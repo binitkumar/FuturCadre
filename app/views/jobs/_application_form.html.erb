@@ -1,25 +1,40 @@
+<%= javascript_include_tag "jquery.form-new" %>
 <div class="content-left-holder">
   <div class="shadow"></div>
   <div class="popup-hold">
 
     <div class="popup-top-holder"><%= t('jobs.job_application') %></div>
     <div class="popup-mid-holder ">
-      <%= form_tag('jobs/apply_job', :id => 'apply_job_form') %>
-      <div class="input-holder" style="width:59%;">
-        <label>Job Name</label>
-        <%= text_field_tag 'name', @job.name, :disabled => true %>
-      </div>
-      <%= hidden_field_tag :job_id, @job.id %>
-      <div class="input-holder">
-        <% unless @cvs.blank? %>
-            <label><%= t('jobs.cv') %></label>
-            <% @cvs.each do |cv| %>
-                <%= radio_button_tag :"cv_id", cv.id, true %>
-                <%= cv.photo_file_name %>
+      <%= form_tag('jobs/apply_job', :id => 'apply_job_form') do %>
+          <div id="form-errors"></div>
+          <div class="input-holder" style="width:59%;">
+            <label>Job Name</label>
+            <%= text_field_tag 'name', @job.name, :disabled => true %>
+          </div>
+          <%= hidden_field_tag :job_id, @job.id %>
+          <div class="input-holder">
+            <% unless @cvs.blank? %>
+                <label><%= t('jobs.cv') %></label>
+                <% @cvs.each do |cv| %>
+                    <%= radio_button_tag :"cv_id", cv.id, true %>
+                    <%= cv.photo_file_name %>
+                <% end %>
             <% end %>
-        <% end %>
 
+          </div>
+      <% end %>
+
+
+      <div class="input-holder">
+        <label><%= t('profiles.profile_picture') %></label>
+        <%= form_for :asset, :url => upload_cover_letter_profiles_path, :html => { :id => "CoverForm", :multipart => true } do |form| %>
+            <%= hidden_field_tag "asset[user_id]", current_user.id %>
+            <%= hidden_field_tag "asset[profile_id]", current_user.profile.id %>
+            <%= hidden_field_tag "asset[content_type]", "Cover_Letter" %>
+            <%= file_field_tag "asset[photo]", :class => "photo" %>
+        <% end %>
       </div>
+
 
       <div class="pop-up-btn-new">
         <div id="application_job" class="pop-up-btn"><%= t('send') %></div>
@@ -31,6 +46,7 @@
 
     <div class="popup-bot-holder"></div>
   </div>
+
 
 </div>
 
@@ -73,5 +89,17 @@
             }
         })
     }
+
+    $('.photo').change(function () {
+        $('#CoverForm').ajaxSubmit({
+            beforeSubmit:function (a, f, o) {
+                o.dataType = 'json';
+            },
+            complete:function (XMLHttpRequest, textStatus) {
+                $("#form-errors").html(XMLHttpRequest.responseText);
+            }
+        });
+    });
+
 
 </script>

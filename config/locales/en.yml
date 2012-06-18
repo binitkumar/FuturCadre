@@ -480,6 +480,7 @@ en:
     phone: Phone
     picture: Picture
     profile_picture: "Profile Picture"
+    profile_cover_letter: "Cover Letter"
     region: Region
     user_name: "User Name"
     website: Website
