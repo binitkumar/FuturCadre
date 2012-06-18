@@ -5,7 +5,8 @@
 
     <div class="popup-top-holder"><%= t('jobs.job_application') %></div>
     <div class="popup-mid-holder ">
-      <%= form_tag('jobs/apply_job', :id => 'apply_job_form') do %>
+      <%= form_for :abc, :url => { :controller => "jobs", :action => 'apply_job' }, :html => { :id => 'apply_job_form', :onsubmit => "return false;" } do |f| %>
+          <%#= form_for(:abc,:controller => "jobs", :action=>'apply_job', :id => 'apply_job_form', :html => { :onsubmit => "check_document()" }) do %>
           <div id="form-errors"></div>
           <div class="input-holder" style="width:59%;">
             <label>Job Name</label>
@@ -22,26 +23,23 @@
             <% end %>
 
           </div>
-      <% end %>
+          <div class="input-holder">
+            <label><%= t('profiles.cover_letter') %></label>
 
-
-      <div class="input-holder">
-        <label><%= t('profiles.profile_picture') %></label>
-        <%= form_for :asset, :url => upload_cover_letter_profiles_path, :html => { :id => "CoverForm", :multipart => true } do |form| %>
             <%= hidden_field_tag "asset[user_id]", current_user.id %>
             <%= hidden_field_tag "asset[profile_id]", current_user.profile.id %>
-            <%= hidden_field_tag "asset[content_type]", "Cover_Letter" %>
-            <%= file_field_tag "asset[photo]", :class => "photo" %>
-        <% end %>
-      </div>
+            <%= hidden_field_tag "asset[content_type]", "cover_letter" %>
+            <%= file_field_tag "asset[photo]", :class => "photo", :id => "cover_letter" %>
+
+          </div>
 
 
-      <div class="pop-up-btn-new">
-        <div id="application_job" class="pop-up-btn"><%= t('send') %></div>
-        <div id="exit_job" class="pop-up-btn" onclick="close_popup()"><%= t('exit') %></div>
-      </div>
+          <div class="pop-up-btn-new">
+            <div id="application_job" class="pop-up-btn"><%= t('send') %></div>
+            <div id="exit_job" class="pop-up-btn" onclick="close_popup()"><%= t('exit') %></div>
+          </div>
 
-
+      <% end %>
     </div>
 
     <div class="popup-bot-holder"></div>
@@ -56,27 +54,6 @@
 
 <script type="text/javascript">
 
-    $("#application_job").click(function () {
-        <% unless @cvs.blank? %>
-        {
-            $('#apply_job_form').ajaxSubmit({
-                success:function (data) {
-                    alert("Your application has been successfully submitted");
-                    $(".content-holder").html(data.html);
-                    close_popup();
-                }
-            });
-
-            return false;
-        }
-        <%else%>
-        {
-            alert("You need to first upload a CV");
-        }
-        <%end%>
-    });
-
-
     function close_popup() {
         $(".popup-hold").hide();
         $(".shadow").hide();
@@ -90,16 +67,38 @@
         })
     }
 
-    $('.photo').change(function () {
-        $('#CoverForm').ajaxSubmit({
-            beforeSubmit:function (a, f, o) {
-                o.dataType = 'json';
-            },
-            complete:function (XMLHttpRequest, textStatus) {
-                $("#form-errors").html(XMLHttpRequest.responseText);
-            }
-        });
-    });
+    $("#application_job").click(function () {
+        <% unless @cvs.blank? %>
+        {
+            $('#apply_job_form').ajaxSubmit({
+                beforeSubmit:function (a, f, o) {
+                    if ($("#cover_letter").val() == "") {
+                        alert("Please first select a cover letter");
+                        return false
+                    }
+                    else {
 
+                        o.dataType = 'html';
+                    }
+
+                },
+                success:function (data) {
+                    if (data.substring(9, 18) == "error_div") {
+                        $("#form-errors").html(data);
+                    } else {
+                        alert("Your application has been successfully submitted");
+                        close_popup();
+
+                    }
+                }
+            });
+            return false;
+        }
+        <%else%>
+        {
+            alert("You need to first upload a CV");
+        }
+        <%end%>
+    });
 
 </script>

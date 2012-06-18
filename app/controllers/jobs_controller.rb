@@ -201,12 +201,12 @@ class JobsController < ApplicationController
   end
 
   def new_application
-    @job         = Job.find(params[:id])
-    @applied_job = AppliedJob.new
+    @job = Job.find(params[:id])
+    #@applied_job = AppliedJob.new
     if current_user.profile !nil
       @cvs =current_user.profile.assets.where(:content_type => 'cv', :is_publishable => true, :is_deleted => false)
     end
-    render :json => { :html => render_to_string(:partial => 'application_form', :locale => { :job_new => @job_new }) }.to_json
+    render :partial => 'application_form', :locale => { :job => @job }
   end
 
   def apply_job
@@ -214,19 +214,25 @@ class JobsController < ApplicationController
     unless params[:cv_id].blank?
       @cv = Asset.find(params[:cv_id])
     end
-    @job_application             = AppliedJob.new
-    @job_application.user_id     = current_user.id
-    @job_application.job_id      = @job.id
-    #unless params[:cv_id].blank?
-    #  @cv                    = Asset.find(params[:cv_id])
-    @job_application.cv_id       = @cv.id
-    @job_application.employer_id = @job.employer_id
-    #end
+    unless params[:asset].blank?
+      @cover_letter =Asset.new(params[:asset])
+      if @cover_letter.save && @cover_letter.errors.empty?
+        render :text => "Photo is successfully uploaded."
+      else
+        render :partial => '/shared/error_messages', :locals => { :object => @cover_letter }
+      end
+    end
+    @job_application                 = AppliedJob.new
+    @job_application.user_id         = current_user.id
+    @job_application.job_id          = @job.id
+    @job_application.cv_id           = @cv.id
+    @job_application.employer_id     = @job.employer_id
+    @job_application.cover_letter_id = @cover_letter.id
     if @job_application.save
-      #render :json => {:html => render_to_string(:partial => '/job_seeker/job_list', :locale=>{:job_seeker => @job_seeker})}.to_json
-      render :json => { :html => render_to_string(:partial => '/job_seeker/job_list', :locale => { :job_seeker => @job_seeker }) }.to_json
+      render :text => "ok"
     else
-      redirect_to profiles_path(), :notice => "Please creater a profile"
+      render :partial => '/shared/error_messages', :locals => { :object => @job_application }
+
     end
   end
 

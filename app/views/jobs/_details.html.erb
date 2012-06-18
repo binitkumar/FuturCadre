@@ -135,7 +135,7 @@
 
         <% end %>
         </div>
-
+        <div id="popup_holder"></div>
 
         <script type="text/javascript">
 
@@ -153,9 +153,9 @@
                                 url:url,
                                 type:"GET",
                                 data:$(this).serialize(),
-                                dataType:"json",
+                                dataType:"html",
                                 success:function (response) {
-                                    $(".content-holder").html(response.html);
+                                    $("#popup_holder").html(response);
                                 }
                             });
                             return false;
@@ -178,26 +178,6 @@
                 window.location.href = "/sign_in";
                 return false;
                 <%end%>
-            });
-
-            $("#application-form").dialog({
-                autoOpen:false,
-                height:300,
-                width:350,
-                modal:true,
-                buttons:{
-
-                    Cancel:function () {
-                        $(this).dialog("close");
-                    },
-                    "Apply for a Job":function () {
-
-                        $.post($("form#apply_job_form").attr("action"), $("form#add_question_for").serialize(), (function (response) {
-                            return $(".mid-cont-holder").html(response.html);
-                        }), "json");
-                        return false;
-
-                    }}
             });
 
 
