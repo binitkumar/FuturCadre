@@ -81,7 +81,7 @@ class ProjectsController < ApplicationController
       approve = invitation_response_projects_url(:id => @project_user.project.id, :user_id => @project_user.user.id, :cond => true)
       reject = invitation_response_projects_url(:id => @project_user.project.id, :user_id => @project_user.user.id, :cond => false)
 
-      current_user.send_message("Invited to Project", "Welcome to my project click to join Project'  #{@project.name}'  '#{@project.tag_line}'  '<a href='#{approve}'> approve</a> or '<a href='#{reject}'> reject</a>", @project_user.user)
+      current_user.send_message("Invited to Project", "Welcome to my project click to join Project'  #{@project.name}' <br/> '#{@project.tag_line}' <br/> '#{@project.description}'  '<a href='#{approve}'> approve</a> or '<a href='#{reject}'> reject</a>", @project_user.user)
       render :nothing => true
 
     else
@@ -98,6 +98,7 @@ class ProjectsController < ApplicationController
     if params[:cond]== "true"
       @project_user1 = ProjectUser.find_by_user_id_and_project_id(params[:user_id], params[:id])
       @project_user1.update_attributes(:is_approved => true)
+      current_user.send_message("Request to join Project", "You request to join project' #{@project.name}' is accepted. Welcome to  <br/> '#{@project.tag_line}' <br/> '#{@project.description}'", @project_user1.user)
       redirect_to @project, :notice => 'Project was successfully joined.'
     else
       @projects = Project.all

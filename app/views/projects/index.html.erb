@@ -45,7 +45,7 @@
                       <%= project.category.name %>
                   <% end %>
                 </div>
-                <p style="width:550px;">  <%= project.description %></p>
+                <p style="width:550px;">  <%=simple_format( project.description) %></p>
 
                 <p style="margin-left:1px; line-height:60px; float:left; margin-right:20px;"><%= project.project_users.find(:all, :conditions => { :is_approved => true }).count %>
                   <%= t('Project.project_members')%></p>

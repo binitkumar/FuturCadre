@@ -5,30 +5,30 @@
   </div>
   <!--dashboard-post-profile-btn ends-->
   <div class="dashboard-content">
-    <h1><%= t('Project.project')%></h1>
+    <h1><%= t('Project.project') %></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <div class="btn-mid-holder_new"><%= link_to t('create_new'), new_project_path(), :class => "create-event", :style => " color: #FFFFFF;text-decoration: none;" %></div>
     <div class="btn-mid-holder"><%= link_to t('view'), projects_path(), :style => " color: #FFFFFF;text-decoration: none;" %></div>
     <p><br/>
     </p>
 
-    <h1><%= t('Employer.employer_my') %><span class="red"> <%= t('Project.project')%></span></h1>
+    <h1><%= t('Employer.employer_my') %><span class="red"> <%= t('Project.project') %></span></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @projects.blank? %>
-        <p><%= t('Project.project_numbers')%> <%= @projects.count %></p>
+        <p><%= t('Project.project_numbers') %> <%= @projects.count %></p>
         <table>
           <tr>
-            <th> <%= t('Project.name')%></th>
-            <th> <%= t('created_at')%></th>
-            <th> <%= t('Employer.employer_actions')%></th>
-            <th> <%= t('Project.project_invite')%></th>
+            <th> <%= t('Project.name') %></th>
+            <th> <%= t('created_at') %></th>
+            <th> <%= t('Employer.employer_actions') %></th>
+            <th> <%= t('Project.project_invite') %></th>
 
 
           </tr>
           <% @projects.each do |project| %>
               <tr>
                 <td><%= link_to project.name, project_path(:id => project.id) %></td>
-                <td><%= project.created_at.strftime('%m/%d/%Y')%></td>
+                <td><%= project.created_at.strftime('%m/%d/%Y') %></td>
                 <td><%= link_to "Edit", edit_project_path(:id => project.id) %></td>
                 <td><%= link_to "Delete", delete_project_projects_path(:id => project.id, :own_id => @job_seeker), :class => "delete_project" %>
 
@@ -36,7 +36,27 @@
           <% end %>
         </table>
     <% else %>
-        <p><span><%=t('Employer.employer_no_projects')%>!</span></p>
+        <p><span><%= t('Employer.employer_no_projects') %>!</span></p>
+    <% end %>
+
+    <h1><%= t('Employer.employer_my') %><span class="red"> <%= t('Project.project') %></span></h1>
+    <%= image_tag asset_path 'dashboard-botom-line.png' %>
+    <% unless current_user.projects.blank? %>
+        <p><%= t('Project.project_numbers') %> <%= current_user.project_users.count %></p>
+        <table>
+          <tr>
+            <th> <%= t('Project.name') %></th>
+            <th> <%= t('Project.joined_at') %></th>
+          </tr>
+          <% current_user.project_users.each do |project| %>
+              <tr>
+                <td><%= link_to project.project.name, project_path(:id => project.project_id) %></td>
+                <td><%= project.created_at.strftime('%m/%d/%Y') %></td>
+              </tr>
+          <% end %>
+        </table>
+    <% else %>
+        <p><span><%= t('Employer.employer_no_projects') %>!</span></p>
     <% end %>
   </div>
 </div>

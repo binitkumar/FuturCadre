@@ -1,7 +1,7 @@
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
   <div class="basic-info mtop10">
-    <h1><%= t('Project.project')%><span class="red">  <%= t('dashboard')  %></span></h1>
+    <h1><%= t('Project.project') %><span class="red">  <%= t('dashboard') %></span></h1>
     <img src="/assets/basic-info-bot-bar.png" alt=""/>
   </div>
 
@@ -20,7 +20,8 @@
     </div>
     <!--pic-project ends-->
     <div class="due-projects">
-      <div class="h1" style="margin-top:10px; margin-left:5px; width:300px; "><%= @project.project_users.find(:all, :conditions => {:is_approved => true }).count %>Members(s)
+      <div class="h1" style="margin-top:10px; margin-left:5px; width:300px; "><%= @project.project_users.find(:all, :conditions => { :is_approved => true }).count %>
+        Members(s)
       </div>
       <div class="images-detail">
         <% unless @project_users.blank? %>
@@ -38,7 +39,7 @@
     </div>
     <!--due projects ends-->
     <% if user_signed_in? && current_user.id == @project.owner_id %>
-        <div class="text-btn" onclick="invite_user('<%= @project.id%>')"><%= t('invite_member')%></div>
+        <div class="text-btn" onclick="invite_user('<%= @project.id%>')"><%= t('invite_member') %></div>
     <% end %>
   </div>
   <!--dashboard-info-image ends-->
@@ -48,29 +49,34 @@
     <div class="result-contents-info">
       <h1><%= @project.name %></h1>
 
-      <h3 style="margin-top:5px;"><%= @project.tag_line %></h3>
-      <h4> <%= @project.city.name %> |<%= @project.created_at.strftime('%m/%d/%Y') %>
-        |<%= @project.category.name %></h4>
+      <h3 style="margin-top:5px;"><%= t('Project.tag_line ') %>: </h3><%= @project.tag_line %>
+      <h4><%= t('Project.information')%>:</h4><%= @project.city.name %> |<%= @project.created_at.strftime('%m/%d/%Y') %>
+        |<%= @project.category.name %>
+    </div>
+    <div class="result-contents-info">
+      <h3><%= t('Project.skills')%>:</h3>
+      <%= @project.skill %>
     </div>
     <!--result contents ends-->
     <div class="detail-info">
-      <h1 style="margin-top:10px;"><%= t('Project.small_description')  %></h1>
+      <h1 style="margin-top:10px;"><%= t('Project.description') %></h1>
 
       <div class="present-box" style="margin-top:10px; margin-left:0;">
         <div class="box-left"></div>
         <div class="box-mid">
 
 
-          <p><%= @project.description %> </p></div>
+          <p><%= simple_format(@project.description) %> </p></div>
         <div class="box-right"></div>
       </div>
       <!--present-box ends-->
-      </br> </br></br>
+      <br/> <br/>
+
       <div class="present-box" style="margin-top:10px; margin-left:0;">
         <div class="box-left"></div>
         <div class="box-mid">
 
-          <p><%= @project.research %></p>
+          <p><%= simple_format(@project.research) %></p>
         </div>
         <div class="box-right"></div>
       </div>
@@ -139,11 +145,11 @@
     }
 
 
-   function proj_invite(proj_id) {
+    function proj_invite(proj_id) {
 
     <%if user_signed_in?%>
         {
-           url = "/projects/project_request?id=" + proj_id;
+            url = "/projects/project_request?id=" + proj_id;
             $.ajax({
                 context:this,
                 url:url,
@@ -157,7 +163,7 @@
 
             return false;
         }
-      <%else%>
+    <%else%>
         {
             alert("You need to sign-in");
         }

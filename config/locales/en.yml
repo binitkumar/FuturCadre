@@ -106,9 +106,13 @@ en:
     project_invite_user: "Invite User"
     project_members: "Project Member(s)"
     project_numbers: "Total Number of Projects"
-    skills: Skill
+    skills: 'Skills'
     small_description: "Small Description"
     social_links: "Social Links"
+    description: "Description"
+    tag_line : "Tag Line"
+    location: "Location"
+    information: "Information"
   Thesis: 
     categories: Categories
     download_thesis: "Download Thesis"
