@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  acts_as_commentable
   belongs_to :country
   belongs_to :region
   belongs_to :city

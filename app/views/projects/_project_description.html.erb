@@ -1,0 +1,42 @@
+<div id="project_description">
+  <div class="result-contents-info">
+        <h1><%= @project.name %></h1>
+
+        <h3 style="margin-top:5px;"><%= t('Project.tag_line ') %>: </h3><%= @project.tag_line %>
+        <h4><%= t('Project.information')%>:</h4><%= @project.city.name %> |<%= @project.created_at.strftime('%m/%d/%Y') %>
+          |<%= @project.category.name %>
+      </div>
+      <div class="result-contents-info">
+        <h3><%= t('Project.skills')%>:</h3>
+        <%= @project.skill %>
+      </div>
+      <!--result contents ends-->
+      <div class="detail-info">
+        <h1 style="margin-top:10px;"><%= t('Project.description') %></h1>
+
+        <div class="present-box" style="margin-top:10px; margin-left:0;">
+          <div class="box-left"></div>
+          <div class="box-mid">
+
+
+            <p><%= simple_format(@project.description) %> </p></div>
+          <div class="box-right"></div>
+        </div>
+        <!--present-box ends-->
+        <br/> <br/>
+
+        <div class="present-box" style="margin-top:10px; margin-left:0;">
+          <div class="box-left"></div>
+          <div class="box-mid">
+
+            <p><%= simple_format(@project.research) %></p>
+          </div>
+          <div class="box-right"></div>
+        </div>
+        <!--present-box ends-->
+
+
+      </div>
+      <!--detail info ends-->
+
+</div>

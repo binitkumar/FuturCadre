@@ -46,45 +46,18 @@
   <!--Left image portion ends-->
 
   <div class="dashboard-mid">
-    <div class="result-contents-info">
-      <h1><%= @project.name %></h1>
+    <ul class="group-links mtop20">
+      <li class="group-link-act listed"><%= link_to t('description'), project_description_projects_path(:id => @project.id), :class => "body-link" %></li>
+      <% if user_signed_in? %>
+          <% if current_user.is_member(@project.id, "project") %>
 
-      <h3 style="margin-top:5px;"><%= t('Project.tag_line ') %>: </h3><%= @project.tag_line %>
-      <h4><%= t('Project.information')%>:</h4><%= @project.city.name %> |<%= @project.created_at.strftime('%m/%d/%Y') %>
-        |<%= @project.category.name %>
+              <li class="listed"><%= link_to t('wall'), project_wall_projects_path(:id => @project.id), :class => "wall_link" %></li>
+          <% end %>
+      <% end %>
+    </ul>
+    <div id="project_dash">
+      <%= render :partial => "project_description", :locals => { :project => @project } %>
     </div>
-    <div class="result-contents-info">
-      <h3><%= t('Project.skills')%>:</h3>
-      <%= @project.skill %>
-    </div>
-    <!--result contents ends-->
-    <div class="detail-info">
-      <h1 style="margin-top:10px;"><%= t('Project.description') %></h1>
-
-      <div class="present-box" style="margin-top:10px; margin-left:0;">
-        <div class="box-left"></div>
-        <div class="box-mid">
-
-
-          <p><%= simple_format(@project.description) %> </p></div>
-        <div class="box-right"></div>
-      </div>
-      <!--present-box ends-->
-      <br/> <br/>
-
-      <div class="present-box" style="margin-top:10px; margin-left:0;">
-        <div class="box-left"></div>
-        <div class="box-mid">
-
-          <p><%= simple_format(@project.research) %></p>
-        </div>
-        <div class="box-right"></div>
-      </div>
-      <!--present-box ends-->
-
-
-    </div>
-    <!--detail info ends-->
 
   </div>
   <!--dashboard mid ends-->
@@ -170,6 +143,51 @@
     <%end%>
 
     }
+
+    $("a.body-link").click(function () {
+        $(this).removeClass("group-link-act");
+        $(this).parent(".listed").prevAll(".listed").each(function () {
+            $(this).removeClass("group-link-act");
+
+        });
+        $('.content-holder').find('.group-link-act').removeClass('group-link-act');
+        $(this).parent(".listed").addClass("group-link-act");
+        $.ajax({
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                return $("#project_dash").html(response.html);
+            }
+        });
+        return false;
+    });
+
+    $("a.wall_link").click(function () {
+        $(this).removeClass("group-link-act");
+        $(this).parent(".listed").prevAll(".listed").each(function () {
+            $(this).removeClass("group-link-act");
+
+        });
+        $('.content-holder').find('.group-link-act').removeClass('group-link-act');
+        $(this).parent(".listed").addClass("group-link-act");
+
+
+        $.ajax({
+            context:this,
+            url:$(this).attr("href"),
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"json",
+            success:function (response) {
+                return $("#project_dash").html(response.html);
+            }
+        });
+        return false;
+    });
+
 </script>
 
 

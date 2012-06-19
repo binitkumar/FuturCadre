@@ -1,0 +1,7 @@
+<%= form_for :comment, :url => { :action => 'add_comment' }, :html => { :id => 'add_comment_form', :onsubmit => "return false;" } do |f| %>
+    <%= f.text_area :comment %>
+    <%= hidden_field_tag :project_id, @project.id %>
+    <%= link_to t('post'), "javascript:void(0)", :id => "add_comment_button" %>
+
+<% end %>
+

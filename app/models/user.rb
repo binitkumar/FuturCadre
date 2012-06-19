@@ -79,8 +79,12 @@ class User < ActiveRecord::Base
     roles.include?(Role.find_all_by_name("group_manager"))
   end
 
-  def is_member(group_id)
-    self.groups.include?(Group.find_by_id(group_id))
+  def is_member(id, type)
+    if type == "group"
+      self.groups.include?(Group.find_by_id(id))
+    else
+      self.projects.include?(Project.find_by_id(id))
+    end
   end
 
   def has_applied(job_id)

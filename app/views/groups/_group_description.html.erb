@@ -12,7 +12,7 @@
     </div>
     <% if !user_signed_in? %>
         <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
-    <% elsif current_user.is_member(@group.id)== false && current_user %>
+    <% elsif current_user.is_member(@group.id, "group")== false && current_user %>
         <div class="join-group-hold"><%= link_to_function "Join Group", "join_request(#{@group.id});" %></div>
     <% end %>
   </div>
