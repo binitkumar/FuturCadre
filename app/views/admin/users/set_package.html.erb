@@ -1,0 +1,34 @@
+<h2> Set Package</h2>
+<%= form_tag '/admin/users/change_package', :id => "package-form" do %>
+    <div id="form-errors"></div>
+
+    <div class="w100">
+      <div class="profile-left-div">
+        <div class="profile-input mtop20">
+          <label> User Name:</label>
+          <%= text_field_tag "user[name]", @user.name, :disabled => true %>
+        </div>
+        <div class="profile-input mtop20">
+          <label> User Name:</label>
+          <%= select_tag "package_id", options_for_select(["Select from list"] + @packages.map { |pack| [pack.name, pack.id] }, @user.package_id) %>
+        </div>
+      </div>
+    </div>
+    <%= hidden_field_tag "user_id", @user.id %>
+    <div class="save-button-new basic-save"><%= button_to "Create Package", "javascript:void(0);", :id => "next-link" %></div>
+<% end %>
+
+<script type="text/javascript">
+    $("#next-link").click(function () {
+        $.post($("form#package-form").attr("action"), $("form#package-form").serialize(), function (response) {
+            if (response == "ok") {
+                   alert("Package successfully assigned to user");
+            }
+            else {
+                $("#form-errors").html(response);
+            }
+        }, "html");
+        return false;
+    });
+
+</script>

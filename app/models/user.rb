@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   has_many :events
 
   belongs_to :package
-  attr_accessible :package_id
+  attr_accessible :package_id, :avail_jobs, :avail_search
 
   has_many :package_users
 

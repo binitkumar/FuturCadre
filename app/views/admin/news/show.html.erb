@@ -3,17 +3,16 @@
 <table>
   <tr>
     <th>Title</th>
-    <th> Body</th>
-    <th> Status</th>
+    <th> Approve News</th>
     <th>Actions</th>
   </tr>
 
   <% unless @new.blank? %>
       <tr>
-        <th> <%= text_area_tag "body", @new.body %></th>
-        <th><%= @new.is_approved %></th>
-        <td id="approve" onclick="change_status('<%= @new.id%>')"><%= link_to 'Approve', "javascript:void(0)" %> |
-          <%= link_to 'Reject', "#", :confirm => 'Are you sure?', :method => :delete %>
+        <th> <%= @new.title %></th>
+        <td><%= check_box_tag "news_status", @new.id, @new.is_approved? ? true : false, :onclick => "change_status('#{@new.id}',this)" %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_news_path(@new) %> |
           <%= link_to 'Back', admin_news_index_path %>
         </td>
       </tr>
@@ -22,16 +21,17 @@
 
 
 <script type="text/javascript">
-    function change_status(news_id) {
-        url = "/admin/news/approve_news?id=" + news_id;
+    function change_status(news_id, obj) {
+        var status = $(obj).is(":checked");
+        url = "/admin/news/approve_news?id=" + news_id + "&status=" + status;
         $.ajax({
-            context: this,
-            url: url,
-            type: "GET",
-            data: $(this).serialize(),
-            dataType: "html",
-            success: function(response) {
-                $("#approve").html(response.html);
+            context:this,
+            url:url,
+            type:"GET",
+            data:$(this).serialize(),
+            dataType:"html",
+            success:function (response) {
+                alert("Status has Changed");
             }
         });
         return false;

@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Created At</th>
+    <th> Package Name</th>
+    <th>Total Package</th>
+  </tr>
+
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, admin_user_path(:id => user.id) %></td>
+        <td><%= user.email %></td>
+        <td><%= user.created_at.strftime('%m/%d/%Y') %></td>
+        <td><%= user.package.blank? ? user.package_id : " " %></td>
+        <td><%= user.package_users.blank? ? user.package_users.count : "" %></td>
+      </tr>
+  <% end %>
+</table>

@@ -60,6 +60,14 @@ FuturCadre::Application.routes.draw do
       end
     end
 
+    resources :users do
+      collection do
+        get :get_users
+        get :set_package
+        post :change_package
+      end
+    end
+
 
   end
 

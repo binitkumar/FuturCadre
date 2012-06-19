@@ -1,0 +1,21 @@
+<h1>Listing Users</h1>
+<%#= link_to 'New Category', new_admin_category_path %><br />
+
+<%= link_to " Show Employer", get_users_admin_users_path(:type => "employer") %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email </th>
+    <th>Created At</th>
+  </tr>
+
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, admin_user_path(:id => user.id) %></td>
+        <td><%= user.email %></td>
+        <td><%= user.created_at.strftime('%m/%d/%Y') %></td>
+
+      </tr>
+  <% end %>
+</table>

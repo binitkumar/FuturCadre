@@ -1,0 +1,29 @@
+<h2> <%= @user.name %></h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Created At</th>
+    <th> Package Name</th>
+    <th>Total No of Packages</th>
+  </tr>
+
+
+  <tr>
+    <td><%= @user.name %></td>
+    <td><%= @user.email %></td>
+    <td><%= @user.created_at.strftime('%m/%d/%Y') %></td>
+    <% if @user.roles.include?(Role.find_by_name('employer')) %>
+
+        <td>
+          <%= @user.package.blank? ? "" : @user.package.name %>
+
+        </td>
+        <td><%= @user.package_users.blank? ? @user.package_users.count : "" %></td>
+        <td><%= link_to "Change/Add Package", set_package_admin_users_path(:id => @user.id) %> </td>
+    <% end %>
+
+  </tr>
+
+</table>
+

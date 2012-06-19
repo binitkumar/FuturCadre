@@ -1,0 +1,8 @@
+<h1> Editing <%= @news.title %></h1>
+<%= form_for @news, :url => { :action => 'update' }, :html => { :id => 'answer_form', } do |f| %>
+    <%= render :partial => "form" , :locals => {:f => f}%>
+    <div class="field" style="float:left;">
+      <%= f.submit "Save" %>
+    </div>
+
+<% end %>
