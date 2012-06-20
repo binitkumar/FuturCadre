@@ -1,5 +1,5 @@
 <%= form_for :comment, :url =>{ :action => 'add_comment' }, :html =>{ :id => 'add_comment_form', :onsubmit =>"return false;" } do |f| %>
-    <%= f.text_area :comment %>
+    <%= f.text_area :comment,:rows => 10, :cols => 20 %>
     <%= hidden_field_tag :group_id, @group.id %>
     <%= link_to t('post'), "javascript:void(0)", :id => "add_comment_button" %>
 
