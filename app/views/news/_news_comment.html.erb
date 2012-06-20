@@ -1,6 +1,28 @@
 <%= form_for :comment, :url => { :action => 'news_comment' }, :html => { :id => 'add_news_comment_form', :onsubmit => "return false;" } do |f| %>
-    <%= f.text_area :comment %>
+    <%#= f.text_area :comment,:rows => 8 %>
+    <%= f.text_area(:comment, :size => "10x30") %>
     <%= hidden_field_tag :news_id, @news.id %>
     <%= link_to t('post'), "javascript:void(0)", :id => "add_comment_button" %>
 
 <% end %>
+
+
+<script type="text/javascript">
+
+    $("#add_comment_button").click(function () {
+
+        <% if user_signed_in? %>
+        {
+            $.post($("form#add_news_comment_form").attr("action"), $("form#add_news_comment_form").serialize(), (function (response) {
+                return $("#news_com_wall").html(response.html);
+            }), "json");
+            return false;
+        }
+
+        <%else%>
+        {
+            alert("Please sign up before posting");
+        }
+        <%end%>
+    });
+</script>

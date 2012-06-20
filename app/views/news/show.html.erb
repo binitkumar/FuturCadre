@@ -123,21 +123,6 @@
 </div>
 <script type="text/javascript">
 
-    $("#add_comment_button").click(function () {
-        <% if user_signed_in? %>
-        {
-            $.post($("form#add_news_comment_form").attr("action"), $("form#add_news_comment_form").serialize(), (function (response) {
-                return $("#news_com_wall").html(response.html);
-            }), "json");
-            return false;
-        }
-
-        <%else%>
-        {
-            alert("Please sign up before posting");
-        }
-        <%end%>
-    });
 
     $(document).ready(function () {
         var menuPlaceholder = document.getElementById('network-holder');

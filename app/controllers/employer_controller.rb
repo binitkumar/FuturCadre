@@ -102,9 +102,15 @@ class EmployerController < ApplicationController
     if @applied_jobs.count <= current_user.package.no_of_searches
       @applied_job = AppliedJob.find(params[:id])
       @applied_job.update_attributes(:is_downloaded => true)
-      @asset = Asset.find_by_id(params[:cv_id])
-      @cv    = @asset.photo
-      send_file @cv.path
+      if params[:type]=="cv"
+        @asset = Asset.find_by_id(params[:cv_id])
+        @cv    = @asset.photo
+        send_file @cv.path
+      else
+        @asset        = Asset.find_by_id(params[:cover_id])
+        @cover_letter = @asset.photo
+        send_file @cover_letter.path
+      end
     else
       redirect_to :controller => "employer", :action => "employer_packages", :notice => "Please buy a package"
     end
@@ -189,9 +195,9 @@ class EmployerController < ApplicationController
           :billing_address => billing_info
       })
       if response.success?
-        @user=current_user
+        @user          =current_user
         #to insert into package_user table
-        @package_user.create(:user_id => current_user.id, :package_id => @package.id)
+        @package_user  = PackageUser.create(:user_id => current_user.id, :package_id => @package.id)
 
         #update user available jobs and searches
         @avail_jobs    = @user.avail_jobs + @package.no_of_jobs
@@ -250,8 +256,6 @@ class EmployerController < ApplicationController
 
   def get_my_orders
     @my_orders = current_user.package_users
-
-
   end
 end
 

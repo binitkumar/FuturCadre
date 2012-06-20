@@ -35,7 +35,16 @@
 
                 <div class="detail-head"><%= job_app.user.profile.full_name %>
                   <%= link_to "View CV", view_cv_employer_index_path(:id => job_app.user_id), :class => "view_cv" %>
-                  | <%= link_to "Download", download_employer_index_path(:id => job_app.id, :cv_id => job_app.cv_id) %>|
+
+                  |
+                  <% unless job_app.cv_id.blank? %>
+                      <%= link_to "Download Cv", download_employer_index_path(:id => job_app.id, :cv_id => job_app.cv_id, :type => "cv") %>
+                  <% end %>
+                  |
+                  <% unless job_app.cover_letter_id.blank? %>
+                      <%= link_to "Download Cover Letter", download_employer_index_path(:id => job_app.id, :cover_id => job_app.cover_letter_id, :type => "cover_letter") %>
+                  <% end %>
+                  |
                   <%= link_to "Contact", "javascript:void(0)", :onclick => "contact_user('#{job_app.id}')" %>
                 </div>
                 <div class="detail-buttons" style="float: right; width: 200px;">
