@@ -1,7 +1,7 @@
 <%= render :partial => "shared/top_search_ box" %>
 <div class="content-holder">
   <div class="basic-info mtop10">
-    <h1><span class="red"><%= t('Project.project')%></span></h1>
+    <h1><span class="red"><%= t('Project.project') %></span></h1>
     <%= image_tag asset_path 'basic-info-bot-bar.png' %>
 
   </div>
@@ -25,7 +25,7 @@
     <!--dashboard content ends-->
 
     <div class="buttons w100">
-      <h1 style="margin-bottom: 4px;"><%= t('Project.list_project')%></h1>
+      <h1 style="margin-bottom: 4px;"><%= t('Project.list_project') %></h1>
       <% unless @projects.blank? %>
           <% @projects.each do |project| %>
               <div class="left-holder-img"></div>
@@ -42,13 +42,15 @@
 
                 <div class="link">
                   <% unless project.category.blank? %>
-                      <%= project.category.name %>
+                      <% unless project.category.blank? %>
+                          <%= project.category.name %>
+                      <% end %>
                   <% end %>
                 </div>
-                <p style="width:550px;">  <%=simple_format( project.description) %></p>
+                <p style="width:550px;">  <%= simple_format(project.description) %></p>
 
                 <p style="margin-left:1px; line-height:60px; float:left; margin-right:20px;"><%= project.project_users.find(:all, :conditions => { :is_approved => true }).count %>
-                  <%= t('Project.project_members')%></p>
+                  <%= t('Project.project_members') %></p>
               </div>
               <!--mid holder img ends-->
               <div class="right-holder-img"></div>
