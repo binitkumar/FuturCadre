@@ -1,0 +1,21 @@
+<h1>Listing invoices</h1>
+
+<table>
+  <tr>
+    <th>User Id</th>
+    <th>User Name</th>
+    <th> Package Name</th>
+    <th>Package Price</th>
+    <th> Package Order Date</th>
+  </tr>
+
+  <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.user.blank? ? "" : invoice.user_id%></td>
+        <td><%= invoice.user.blank? ? "" : invoice.user.name%></td>
+        <td><%= invoice.package.blank? ?  "" : invoice.package.name  %></td>
+        <td>$<%= invoice.package.blank? ? "" : invoice.package.price %></td>
+        <td><%= invoice.created_at.strftime('%a, %m/%d/%Y')  %></td>
+      </tr>
+  <% end %>
+</table>
