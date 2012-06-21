@@ -1565,3 +1565,113 @@ tabs_wrapper {
   float: left;
   margin-top: 10px;
 }
+
+//New css for search profile
+
+.profile_contents {
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.content_left {
+  float: left;
+  width: 200px;
+}
+
+.user_img {
+  float: left;
+  width: 101px;
+  height: 90px;
+}
+
+.user-img img {
+  width: 101px;
+  height: 90px;
+}
+
+.user-text {
+  float: left;
+  width: 100%;
+}
+
+.user-text h1 {
+  color: #999;
+}
+
+.content_mid {
+  float: left;
+  width: 550px;
+  border: 1px solid #c4c4c4;
+  margin: 0 15px;
+  background: #f3f3f3;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+}
+
+.content_right {
+  float: left;
+  width: 180px;
+}
+
+.head_text {
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.head_text h2 {
+  margin-bottom: 20px;
+}
+
+.head_text p {
+  margin-bottom: 15px;
+}
+
+.text_area {
+  float: left;
+  width: 98%;
+  padding: 10px 0 10px 10px;
+  border: 1px solid #cccccc;
+  background: #fff;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.select_btn {
+  float: left;
+  width: 100%;
+  margin: 10px 0 0 10px;
+}
+
+.select_left_img {
+  background: url(/assets/select-left-img.png) no-repeat;
+  width: 11px;
+  height: 38px;
+  float: left;
+}
+
+.select_mid_img {
+  background: url(/assets/select-mid-bg.png) repeat-x;
+  height: 38px;
+  float: left;
+  text-align: center;
+}
+
+.select_mid_img a {
+  text-decoration: none;
+  padding: 0 30px;
+  color: #fff;
+  line-height: 38px;
+}
+
+.select_right_img {
+  background: url(/assets/select-right-bg.png) no-repeat;
+  width: 11px;
+  height: 38px;
+  float: left;
+}

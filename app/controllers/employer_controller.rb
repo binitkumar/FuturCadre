@@ -134,8 +134,9 @@ class EmployerController < ApplicationController
   end
 
   def view_cv
-    @profile = Profile.find_by_user_id(params[:id])
-    render :json => { :html => render_to_string(:partial => '/employer/show_profile', :locals => { :profile => @profile }) }.to_json
+    @profile      = Profile.find_by_user_id(params[:id])
+    @applied_jobs = AppliedJob.find_all_by_employer_id(current_user.id)
+    render :json => { :html => render_to_string(:partial => '/employer/show_profile', :locals => { :profile => @profile, :applied_jobs => @applied_jobs }) }.to_json
   end
 
   def select_profile
@@ -235,22 +236,26 @@ class EmployerController < ApplicationController
   def add_search_result
     @profile      = Profile.find_by_id(params[:id])
     @applied_jobs = AppliedJob.find_all_by_employer_id(current_user.id, :conditions => { :is_downloaded => true })
-    if @applied_jobs.count <= current_user.package.no_of_searches
-      @applied_job                  = AppliedJob.new
-      @applied_job.user_id          = @profile.user_id
-      @applied_job.employer_id      = current_user.id
-      @applied_job.is_system_applied= true
-      @profile.assets.each do |asset|
-        if asset.content_type =="cv" and asset.is_publishable == true
-          @applied_job.cv_id = asset.id
-        end
-      end
-      @applied_job.is_downloaded = true
-      @applied_job.save
-
+    if @applied_jobs.select { |f| f["user_id"] > @profile.user_id }
       render :text => 'ok'
     else
-      render :text => 'fail'
+      if @applied_jobs.count <= current_user.package.no_of_searches
+        @applied_job                  = AppliedJob.new
+        @applied_job.user_id          = @profile.user_id
+        @applied_job.employer_id      = current_user.id
+        @applied_job.is_system_applied= true
+        @profile.assets.each do |asset|
+          if asset.content_type =="cv" and asset.is_publishable == true
+            @applied_job.cv_id = asset.id
+          end
+        end
+        @applied_job.is_downloaded = true
+        @applied_job.save
+
+        render :text => 'ok'
+      else
+        render :text => 'fail'
+      end
     end
   end
 

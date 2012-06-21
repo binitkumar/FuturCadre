@@ -1,64 +1,77 @@
-<div class="dashboard-mid_new">
-  <div class="mid-top-info">
-  </div>
-  <!--mid top info ends-->
-  <h2><%= t('Employer.search_resume') %></h2>
+<div class="profile_contents" style="width: 795px;">
+  <div class="content_mid">
+    <div class="dashboard-image-new-one">
+      <% if pro_image(@profile) %>
+          <%= image_tag pro_image(@profile).photo.url %>
+      <% else %>
+          <%= image_tag asset_path "dashboard-img.png" %>
+      <% end %>
+    </div>
+    <!--user_img ends-->
+    <div class="head_text">
+      <h2><%= @profile.full_name %></h2>
 
-  <p><%= @profile.full_name %> CV</p>
-
-  <div class="exp-detail">
-    <% unless @profile.profession_informations.blank? %>
-        <h2><%= t('profile_profession_information') %></h2>
-        <% @profile.profession_informations.each do |pr| %>
-            <div class="mid-content-detail">
-              <div class="left-2"></div>
-              <div class="mid-2">
-                <%= pr.job_title %>
-                <%= pr.profession_experience %>
-                <%= pr.category.name %>
-
+      <p><%= @profile.full_address %></p>
+    </div>
+    <!--head_text ends-->
+    <div class="head_text">
+      <% unless @profile.profession_informations.blank? %>
+          <h2><%= t('profile_profession_information') %></h2>
+          <% @profile.profession_informations.each do |pr| %>
+              <div class="text_area">
+                <div id="job">
+                  <%= t('profile_job_title') %> :
+                  <%= pr.job_title %>
+                </div>
+                <div id="profession">
+                  <%= t('profile_profession_experience') %>:
+                  <%= pr.profession_experience %>
+                </div>
+                <div id="category">
+                  <%= t('profile_category') %>:
+                  <%= pr.category.name %>
+                </div>
               </div>
-              <div class="right-2"></div>
-            </div>
-        <% end %>
-    <% end %>
-  </div>
-  <div class="exp-detail">
-    <% unless @profile.education_informations.blank? %>
-        <h2><%= t('profile_edu_information') %></h2>
-        <% @profile.education_informations.each do |ed| %>
-            <div class="mid-content-detail">
-              <div class="left-2"></div>
-              <div class="mid-2">
-                <%= ed.major_subject %>
-                <%= ed.institute.blank? ? ed.institute_name : ed.institute.name %>
+          <% end %>
+      <% end %>
+      <!--text_area ends-->
+      <% unless @profile.education_informations.blank? %>
+          <h2><%= t('profile_edu_information') %></h2>
+          <% @profile.education_informations.each do |ed| %>
+              <div class="text_area">
+                <div id="major">
+                  <%= t('profile_major_subject') %>:
+                  <%= ed.major_subject %>
+                </div>
+                <div id="institute">
+                  <%= t('profile_institute') %>:
+                  <%= ed.institute.blank? ? ed.institute_name : ed.institute.name %>
+                </div>
               </div>
-              <div class="right-2"></div>
-            </div>
-        <% end %>
-    <% end %>
+          <% end %>
+      <% end %>
+      <!--text_area ends-->
+    </div>
+    <!--head_text ends-->
   </div>
+  <!--content_mid ends-->
+  <div class="content_right">
+    <div class="select_btn">
+      <div class="select_left_img"></div>
+      <div class="select_mid_img" onclick="insert_user('<%= @profile.id %>')">
+        <a href="#"><%= t('Employer.search_select') %></a></div>
+      <div class="select_right_img"></div>
+    </div>
 
-
-  <!--mid content detail ends-->
-</div><!--dashboard mid ends-->
-<div class="dashboard-right-info_new">
-  <h1><%= t('Employer.search_result') %></h1>
-
-  <div class="clear"></div>
-  <div class="select-button" style="margin-top:10px;">
-    <div class="left-holder"></div>
-    <div class="mid-holder" onclick="insert_user('<%= @profile.id %>')"><%= t('Employer.search_select') %></div>
-    <div class="right-holder"></div>
   </div>
-  <!--select button ends-->
-
-</div>
+  <!--content_right ends-->
+</div><!--profile_contents ends-->
 
 
 <script type="text/javascript">
 
     function insert_user(profile_id) {
+    <%  if !@applied_jobs.select {|f| f["user_id"] > @profile.user_id }%>
         url = "/employer/add_search_result?id=" + profile_id;
         $.ajax({
             context:this,
@@ -78,7 +91,7 @@
             }
         });
         return false;
-
+    <%end%>
 
     }
 
