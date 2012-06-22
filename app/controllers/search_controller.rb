@@ -240,5 +240,66 @@ class SearchController < ApplicationController
   def sorting_box
     render :partial => '/search/sorting_box'
   end
+
+  def advance_job_search
+    @country         = Country.find_by_name('France')
+    @regions         = @country.regions
+    @country_foreign = Country.find_by_name('Belgium')
+    @regions_foreign = @country_foreign.regions
+    @contracts       = Contract.all
+    @sectors         = Sector.all
+    @categories      = Category.all
+  end
+
+  def advance_search
+
+    flag   = false
+    count  = 0
+    @query = "SELECT  DISTINCT * FROM jobs where"
+    unless params[:contract_ids].blank?
+      flag       = true
+      count      = count + 1
+      @contracts = params[:contract_ids].collect { |i| i.to_i }
+      @query     = @query + " contract_id in (#{@contracts.to_s.gsub("[", "").gsub("]", "")})"
+    end
+    unless params[:job_category_ids].blank?
+      flag = true
+      if count == 0
+        @query = @query + " category_id in (#{params[:job_category_ids].collect { |i| i.to_i }.to_s.gsub("[", "").gsub("]", "")})"
+      else
+        @query = @query + " and category_id in (#{params[:job_category_ids].collect { |i| i.to_i }.to_s.gsub("[", "").gsub("]", "")})"
+      end
+      count = count +1
+    end
+    unless params[:job_sector_ids].blank?
+      flag = true
+      if count == 0
+        @query = @query + " sector_id in (#{params[:job_sector_ids].collect { |i| i.to_i }.to_s.gsub("[", "").gsub("]", "")})"
+      else
+        @query = @query + " and sector_id in (#{params[:job_sector_ids].collect { |i| i.to_i }.to_s.gsub("[", "").gsub("]", "")})"
+      end
+      count = count +1
+
+    end
+    unless params[:job_region_ids].blank?
+      flag = true
+      if count == 0
+        @query = @query + " region_id in (#{params[:job_region_ids].collect { |i| i.to_i }.to_s.gsub("[", "").gsub("]", "")})"
+      else
+        @query = @query + " and region_id in (#{params[:job_region_ids].collect { |i| i.to_i }.to_s.gsub("[", "").gsub("]", "")})"
+      end
+      count = count +1
+    end
+
+    if flag == true
+
+      @jobs = Job.find_by_sql(@query)
+
+    else
+      @jobs = nil
+    end
+    render :json => { :html => render_to_string(:partial => '/search/search_results', :locals => { :jobs => @jobs }) }.to_json
+
+  end
 end
 

@@ -117,6 +117,8 @@ FuturCadre::Application.routes.draw do
       get :sort_result
       get :sort_result_asc
       get :sorting_box
+      get :advance_job_search
+      get :advance_search
 
     end
   end

@@ -8,7 +8,7 @@
         </div>
         <div class="select-holder">
           <label><%= t('home_job_search_category') %></label>
-          <%= select_tag "category_id", options_from_collection_for_select(@categories, "id", "name"), :class =>"slt-div" %>
+          <%= select_tag "category_id", options_from_collection_for_select(@categories, "id", "name"), :class => "slt-div" %>
         </div>
 
         <div class="select-holder">
@@ -25,12 +25,12 @@
         <div id="advance_criteria" style="display: none">
           <div class="select-holder">
             <label><%= t('home_job_search_company') %></label>
-            <%= select_tag "company_id",  options_for_select(["Select from list"] + @companies.map{ |obj| [obj.name , obj.id ]}), :class => "slt-div" %>
+            <%= select_tag "company_id", options_for_select(["Select from list"] + @companies.map { |obj| [obj.name, obj.id] }), :class => "slt-div" %>
           </div>
 
 
         </div>
-        <div class="advanced-search" id="advance_search"><%= link_to t('home_job_advance_search'), "javascript:void(0)", :id => "advance_search_button" %></div>
+        <div class="advanced-search" id="advance_search"><%= link_to t('home_job_advance_search'), advance_job_search_search_index_path(), :id => "advance_search_button" %></div>
         <div class="findjob"><%= link_to t('button.find_job'), "javascript:void(0)", :id => "find_job_button" %></div>
     <% end %>
   </div>
@@ -38,10 +38,20 @@
 </div>
 
 <script type="text/javascript">
-       $('#advance_search_button').click(function(){
-              $('#advance_criteria').show();
-              $('#advance_search').hide();
-
-       });
+//    $('#advance_search_button').click(function () {
+//        url = "search/new_advance_job_search";
+//        $.ajax({
+//            context:this,
+//            url:url,
+//            type:"GET",
+//            data:$(this).serialize(),
+//            dataType:"html",
+//            success:function (response) {
+//                $(".banner_holder").html(response);
+//            }
+//        });
+//        return false;
+//
+//    });
 
 </script>

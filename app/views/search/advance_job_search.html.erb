@@ -1,0 +1,110 @@
+<div class="banner-holder">
+  <div id="dashboard-mid">
+    <div class="dashboard-content-right" style="float: left;">
+      <%= form_tag "/search/advance_search", :id => "advance-form" do %>
+          <div class="head-text"></div>
+          <div class="header_search">
+            <label><%= t('jobs.contract') %></label>
+
+            <div class="search-input-new">
+              <% @contracts.each do |c| %>
+                  <div class="contracts">
+                    <%= check_box_tag "contract_ids[]", c.id %>
+                    <%= c.name %>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+          <!--projects input ends-->
+          <div class="header_search">
+            <label>Category</label>
+
+            <div class="search-input-new">
+              <% @categories.each do |category| %>
+                  <div class="contracts">
+                    <%= check_box_tag "job_category_ids[]", category.id %>
+                    <%= category.name %>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="header_search">
+            <label><%= t('Sector') %></label>
+
+            <div class="search-input-new">
+              <% @sectors.each do |sector| %>
+                  <div class="contracts">
+                    <%= check_box_tag "job_sector_ids[]", sector.id %>
+                    <%= sector.value %>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+          <!--projects input ends-->
+          <div class="header_search">
+            <label><%= t('profiles.region') %></label>
+
+            <div class="search-input-new">
+              <% @regions.each do |region| %>
+                  <div class="contracts">
+                    <%= check_box_tag "job_region_ids[]", region.id %>
+                    <%= region.name %>
+                  </div>
+              <% end %>
+              Etranger <%= check_box_tag "Others", "others", false, :onclick => "show_foreign(this)" %>
+              <div class="foreign" style="display: none;">
+                <% @regions_foreign.each do |region| %>
+                    <div class="contracts">
+                      <%= check_box_tag "job_region_ids[]", region.id %>
+                      <%= region.name %>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="findjob"><%= link_to 'Search a Job', "javascript:void(0)", :id => "search_a_job" %></div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+<script type="text/javascript">
+    $("#search_a_job").click(function () {
+        $.get($("form#advance-form").attr("action"), $("form#advance-form").serialize(), (function (response) {
+            return $("#dashboard-mid").html(response.html);
+        }), "json");
+        return false;
+    });
+
+    function setMaximumSelected(amount, element) {
+        var itemsSelected = [];
+        for (var i = 0; i < element.options.length; i++) {
+            if (element.options[i].selected) itemsSelected[itemsSelected.length] = i;
+        }
+        if (itemsSelected.length > 3) {
+            itemsSelected = element.itemsSelected.split(",");
+            for (i = 0; i < element.options.length; i++) {
+                element.options[i].selected = false;
+            }
+            for (i = 0; i < itemsSelected.length; i++) {
+                element.options[itemsSelected[i]].selected = true;
+            }
+        } else {
+            element.itemsSelected = itemsSelected.toString();
+        }
+    }
+    function show_foreign(obj) {
+        if ($(obj).is(":checked") == false) {
+            $(".foreign").hide();
+        }
+        else {
+
+            $(".foreign").show();
+        }
+
+    }
+</script>
