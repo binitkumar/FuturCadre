@@ -1,5 +1,5 @@
 # MySQL.  Versions 4.1 and 5.0 are recommended.
-# 
+#
 # Install the MYSQL driver
 #   gem install mysql2
 #
@@ -15,7 +15,7 @@ development:
   database: futur_cadre_development
   pool: 5
   username: root
-  password: root
+  password: Test1234
   # JRuby doesn't support # JRuby doesn't support socket:
                           #socket:
   #host: 127.0.0.1
@@ -32,7 +32,7 @@ test:
   database: futur_cadre_test
   pool: 5
   username: root
-  password: root
+  password: Test1234
   # JRuby doesn't support # JRuby doesn't support socket:
                           #socket:
   #host: 127.0.0.1
@@ -46,9 +46,21 @@ production:
   database: futur_cadre_production
   pool: 5
   username: root
-  password: root
+  password: Test1234
   # JRuby doesn't support # JRuby doesn't support socket:
                           #socket:
   #host: 127.0.0.1
   ## JRuby doesn't support socket:
-   #socket: /var/run/mysqld/mysqld.sock
+#   #socket: /var/run/mysqld/mysqld.sock
+#
+#
+#common: &common
+#  adapter: postgresql
+#  username: postgres
+#  password: root # from psql setup, see Postgresql
+#  host: 127.0.0.1
+#  port: 5432
+#
+#development:
+#  <<: *common
+#  database: futur_cadre_development
