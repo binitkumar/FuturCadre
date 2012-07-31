@@ -5,8 +5,8 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
-#gem 'mysql'
+#gem 'mysql2'
+gem 'mysql'
 gem 'devise', '1.5.3'
 gem "cancan"
 gem 'recaptcha', :require => 'recaptcha/rails'
@@ -18,22 +18,23 @@ gem 'acts_as_commentable'
 gem 'impressionist'
 gem 'tinymce-rails'
 gem 'prawn'
-
 gem 'prawn-rails'
 
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', '~> 3.1.4'
+ # gem 'sass-rails', '~> 3.1.4'
+  gem 'sprockets'
+  gem 'sass-rails', '3.1.4'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
 
-gem 'translate-rails3', :require => 'translate', :group => :development
-
+#gem 'translate-rails3', :require => 'translate', :group => :development
+gem 'translate-rails3', :require => 'translate'
 gem "galetahub-simple_captcha", :require => "simple_captcha"
 
 gem "rmagick"

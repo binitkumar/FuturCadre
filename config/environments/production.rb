@@ -9,13 +9,13 @@ FuturCadre::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -57,4 +57,39 @@ FuturCadre::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  ActionMailer::Base.smtp_settings = {
+        :address => "smtp.gmail.com",
+        :port => "587",
+        :domain => "gmail.com",
+        :enable_starttls_auto => true,
+        :authentication => :login,
+        :user_name => "test.account.rac@gmail.com",
+        :password => "racpakistan22"
+    }
+
+
+
+
+
+  config.action_mailer.default_url_options = {:host => 'vps11105.ovh.net:3001'}
+
+   #----------------- Active Merchant
+   config.after_initialize do
+
+      ActiveMerchant::Billing::Base.mode = :test
+      ActiveMerchant::Billing::PaypalExpressGateway.default_currency = 'USD'
+   end
+
+   paypal_options = {
+        :login => "ilsain_1291126914_biz_api1.ilsainteractive.com",
+        :password => "1291126937",
+        :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31AomsT22PGelbX17SMnveQXTK8WAT"
+   }
+
+   ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+   ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+
+  #-------------------------------------------------------------------------
+
 end
