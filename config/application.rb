@@ -49,9 +49,9 @@ module FuturCadre
     config.assets.version = '1.0'
     config.assets.precompile += %w(application.css)
     #config.assets.precompile += %w(application.js)
-    config.assets.precompile += %w(jquery.rating.js)
-    config.assets.precompile += %w(jquery.pajinate.js)
-    config.assets.precompile += %w(jquery-1.4.4.min.js)
+    #config.assets.precompile += %w(jquery.rating.js)
+    #config.assets.precompile += %w(jquery.pajinate.js)
+    #config.assets.precompile += %w(jquery-1.4.4.min.js)
 
   end
 end
