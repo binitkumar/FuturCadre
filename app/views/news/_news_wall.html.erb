@@ -2,7 +2,7 @@
   <div class="post-hold">
 
     <div class="post-right-hold">
-      <%= form_for :comment, :url => { :action => 'news_comment' }, :html => { :id => 'add_news_comment_form', :onsubmit => "return false;" } do |f| %>
+      <%= form_for :comment, :url => {:action => 'news_comment'}, :html => {:id => 'add_news_comment_form', :onsubmit => "return false;"} do |f| %>
           <%#= f.text_area :comment,:rows => 8 %>
           <%= f.text_area :comment, :rows => 10, :cols => 20 %>
           <%= hidden_field_tag :news_id, @news.id %>
@@ -13,6 +13,8 @@
 
   </div>
   <div class="comment-holder" style="clear: both;padding-top: 25px;">
+    <% current_url_without_uri = request.protocol+request.host_with_port %>
+    <% shorten_url = ("#{current_url_without_uri}/news/#{@news.id}") %>
     <% if @news.comments.present? %>
         <% @news.comments.each do |comment| %>
 
@@ -30,12 +32,24 @@
               <div class="post-cont-hold" style="overflow: hidden;">
                 <h1><%= comment.user.name %></h1>
                <span style="width:200px; ">
-                <%=raw sanitize(simple_format(comment.comment), :tags => %w(br p)) %>
+                <%= raw sanitize(simple_format(comment.comment), :tags => %w(br p)) %>
 
                </span>
+
                 <div class="like-hold"><!--<a href="#">Like</a> -->
                   <%= time_ago_in_words(comment.created_at) %> ago
                 </div>
+                <!--<div class="network-holder1" id=<%#=comment.id%>>-->
+                <!--</div>-->
+                <!-- AddThis Button BEGIN -->
+                <div class="addthis_toolbox addthis_default_style ">
+                  <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                  <a class="addthis_button_tweet"></a>
+                  <!--<a class="addthis_button_pinterest_pinit"></a>-->
+                  <!--<a class="addthis_counter addthis_pill_style"></a>-->
+                </div>
+                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-5023759659ebbcd5"></script>
+                <!-- AddThis Button END -->
               </div>
             </div>
 
@@ -66,5 +80,27 @@
         <%end%>
     });
 
+//    $(document).ready(function () {
+//
+////        alert("sdfgdaf");
+//        $(".network-holder1").each(function () {
+//            alert("inside");
+//            var menuPlaceholder
+//            menuPlaceholder = document.getElementById($(this).attr("id"));
+//            newNode = document.createElement('div');
+//            newNode.id = 'social_media_toolbox1';
+//            newNode.innerHTML = ' <div class="addthis_toolbox addthis_default_style " addthis:description="<%= @news.title %> Discusses the issue <%= @news.title %>. Please click on the links to view the details." addthis:title="<%= @news.title %>" addthis:url="<%= shorten_url %>"> <a class="addthis_button_facebook"></a> <a class="addthis_button_twitter"></a><div>';
+//           // alert(menuPlaceholder );
+//            menuPlaceholder.parentNode.insertBefore(newNode, menuPlaceholder.nextSibling);
+//
+////            addthisScript = document.createElement('script');
+////            addthisScript.src = 'http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f0dccb34198a7b3&domready=1';
+////            document.body.appendChild(addthisScript);
+//        })
+//    });
+
+
+
 
 </script>
+

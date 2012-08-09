@@ -15,6 +15,7 @@ class ProfilesController < ApplicationController
 
   def upload_photo
     @photo = Asset.new(params[:asset])
+    #puts @photo.inspect
     if @photo.save && @photo.errors.empty?
       session[:photo_id] = @photo.id
       render :text => "Photo is successfully uploaded."
@@ -180,6 +181,7 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile                 = Profile.find(params[:id])
+    #puts @profile.inspect
     #@company_information     = @profile.company_information
     @asset                   = @profile.assets.where("content_type =?", "profile_image")
     @profession_informations = @profile.profession_informations
@@ -412,6 +414,12 @@ class ProfilesController < ApplicationController
   def move_to_action
     @profile = Profile.find_by_id(params[:id])
     if params[:obj] =="basic"
+      @city                    = @profile.city
+      @regions                 = @city.country.regions
+      @region                  = @profile.region
+      @cities                  = @region.cities
+      @country                 = @city.country
+      @asset                   = @profile.assets.where("content_type =?", "profile_image")
       render :json => { :html => render_to_string(:partial => '/profiles/job_seeker/basic_information') }.to_json
     elsif params[:obj]=="education"
       @education_informations = @profile.education_informations

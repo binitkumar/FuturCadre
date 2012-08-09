@@ -49,7 +49,12 @@ user1.save!
 user2 = User.new(:name                  => "Employer",
                  :email                 => "employer@futurcadre.com",
                  :password              => "123456",
-                 :password_confirmation => "123456"
+                 :password_confirmation => "123456",
+                 :package_id            => "3",
+                 :avail_jobs            => "30",
+                 :avail_search          => "30",
+                 :used_searches         => "0",
+                 :used_jobs             => "0"
 )
 user2.roles << Role.find_by_name("employer")
 user2.skip_confirmation!
@@ -93,6 +98,8 @@ puts "creating Jobs"
                     :category      => Category.first,
                     :date_of_start => Time.now,
                     :annual_salary => 1345
+                    :skill         => "IT Management, "
+
 
   )
 
