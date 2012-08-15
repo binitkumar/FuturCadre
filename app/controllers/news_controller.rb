@@ -84,6 +84,7 @@ class NewsController < ApplicationController
     @new_comment.save!
     @news_comments = @news.comments.all
     render :json => { :html => render_to_string(:partial => '/news/news_wall', :locale => { :news => @news }) }.to_json
+
   end
 
   def fetch_news

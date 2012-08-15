@@ -37,12 +37,12 @@
           <div class="reg-location-holder-two mtop20" id="reg-location-holder">
             <label><%= t('profile_location') %></label>
 
-            <div id="countries_add">
-              <%= render :partial => "shared/countries", :locals => { :object_collection => "add_info" } %>
-            </div>
-            <div id="regions_add">
-              <%= render :partial => "shared/regions", :locals => { :object_collection => "add_info" } %>
-            </div>
+            <!--<div id="countries_add">-->
+              <%#= render :partial => "shared/countries", :locals => { :object_collection => "add_info" } %>
+            <!--</div>-->
+            <!--<div id="regions_add">-->
+              <%#= render :partial => "shared/regions", :locals => { :object_collection => "add_info" } %>
+            <!--</div>-->
 
             <div id="cities_add">
               <%= render :partial => "shared/cities", :locals => { :object_collection => "add_info" } %>
@@ -171,14 +171,32 @@
         if (counter < 4) {
             counter = counter + 1;
             $('#counter').attr('value', counter);
-            var txt_field = '<div id=new_div_' + counter + '><div class="reg-location-holder-two mtop20" id="reg-location-holder" style="margin-top: 0!important;"> <label>Location</label><div id=countries_add_' + counter + ' > <%=escape_javascript( render :partial => "shared/countries", :locals => { :object_collection => "add_info1" }) %></div><div id=regions_add_' + counter + ' ><%=escape_javascript( render :partial => "shared/regions", :locals => { :object_collection => "add_info1" }) %></div> <div id=cities_add_' + counter + '><%=escape_javascript( render :partial => "shared/cities", :locals => { :object_collection => "add_info1" }) %></div><div class=add-button style="margin-top: 30px;"><a href="javascript:" onclick="remove_education_field(counter)"><img src="/assets/minus.png" /></a></div></div></div>';
+            var txt_field = '<div id=new_div_' + counter + '><div class="reg-location-holder-two mtop20" id="reg-location-holder" style="margin-top: 0!important;"> <label>Location</label><div id=cities_add_' + counter + '><%=escape_javascript( render :partial => "shared/cities", :locals => { :object_collection => "add_info1" }) %></div><div class=add-button style="margin-top: 30px;"><a href="javascript:" onclick="remove_education_field(counter)"><img src="/assets/minus.png" /></a></div></div></div>';
             scntDiv.append(txt_field);
-            $('#countries_add_' + counter).find('.slt-div').attr('id', 'add_info_country_id_' + counter).attr('name', 'add_info[country_id_' + counter + ']');
-            $('#regions_add_' + counter).find('.slt-div').attr('id', 'add_info_region_id' + counter).attr('name', 'add_info[region_id' + counter + ']');
             $('#cities_add_' + counter).find('.slt-sub-div').attr('id', 'add_info_city_id' + counter).attr('name', 'add_info[city_id' + counter + ']');
         }
 
     });
+
+    /*
+    *
+    * $('.add-location').click(function () {
+
+     var scntDiv = $('#abc');
+     var counter = parseInt($('#counter').attr('value'));
+     if (counter < 4) {
+     counter = counter + 1;
+     $('#counter').attr('value', counter);
+     var txt_field = '<div id=new_div_' + counter + '><div class="reg-location-holder-two mtop20" id="reg-location-holder" style="margin-top: 0!important;"> <label>Location</label><div id=countries_add_' + counter + ' > <%=escape_javascript( render :partial => "shared/countries", :locals => { :object_collection => "add_info1" }) %></div><div id=regions_add_' + counter + ' ><%=escape_javascript( render :partial => "shared/regions", :locals => { :object_collection => "add_info1" }) %></div> <div id=cities_add_' + counter + '><%=escape_javascript( render :partial => "shared/cities", :locals => { :object_collection => "add_info1" }) %></div><div class=add-button style="margin-top: 30px;"><a href="javascript:" onclick="remove_education_field(counter)"><img src="/assets/minus.png" /></a></div></div></div>';
+     scntDiv.append(txt_field);
+     $('#countries_add_' + counter).find('.slt-div').attr('id', 'add_info_country_id_' + counter).attr('name', 'add_info[country_id_' + counter + ']');
+     $('#regions_add_' + counter).find('.slt-div').attr('id', 'add_info_region_id' + counter).attr('name', 'add_info[region_id' + counter + ']');
+     $('#cities_add_' + counter).find('.slt-sub-div').attr('id', 'add_info_city_id' + counter).attr('name', 'add_info[city_id' + counter + ']');
+     }
+
+     });
+    *
+    * */
 
     function remove_education_field(obj) {
         var counter = parseInt($('#counter').attr('value'));

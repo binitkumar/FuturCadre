@@ -22,13 +22,13 @@
           <label><%= t('profiles.zip') %><em>*</em></label>
           <%= text_field_tag "profile[zip_code]", @profile ? @profile.zip_code : "" %>
         </div>
-        <div class="profile-input mtop20">
-          <label><%= t('profiles.region') %><em>*</em></label>
+        <!--<div class="profile-input mtop20">-->
+          <!--<label><%#= t('profiles.region') %><em>*</em></label>-->
 
-          <div id="regions">
-            <%= render :partial => "shared/regions", :locals => { :object_collection => "profile" } %>
-          </div>
-        </div>
+          <!--<div id="regions">-->
+            <%#= render :partial => "shared/regions", :locals => { :object_collection => "profile" } %>
+          <!--</div>-->
+        <!--</div>-->
 
         <div class="profile-input mtop20">
           <label><%= t('profiles.skills') %><em>*</em></label>
@@ -45,13 +45,13 @@
           <label><%= t('profiles.address') %><em>*</em></label>
           <%= text_field_tag "profile[address]", @profile ? @profile.address : "" %>
         </div>
-        <div class="profile-input mtop20">
-          <label><%= t('profiles.country') %><em>*</em></label>
+        <!--<div class="profile-input mtop20">-->
+          <!--<label><%#= t('profiles.country') %><em>*</em></label>-->
 
-          <div id="country">
-            <%= render :partial => "shared/countries", :locals => { :object_collection => "profile" } %>
-          </div>
-        </div>
+          <!--<div id="country">-->
+            <%#= render :partial => "shared/countries", :locals => { :object_collection => "profile" } %>
+          <!--</div>-->
+        <!--</div>-->
 
         <div class="profile-input mtop20">
           <label><%= t('profiles.city') %><em>*</em></label>

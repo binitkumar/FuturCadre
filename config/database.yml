@@ -15,7 +15,7 @@ development:
   database: futur_cadre_development
   pool: 5
   username: root
-  password: Test1234
+  password: root
   # JRuby doesn't support # JRuby doesn't support socket:
                           #socket:
   #host: 127.0.0.1
@@ -32,7 +32,7 @@ test:
   database: futur_cadre_test
   pool: 5
   username: root
-  password: Test1234
+  password: root
   # JRuby doesn't support # JRuby doesn't support socket:
                           #socket:
   #host: 127.0.0.1
@@ -46,7 +46,7 @@ production:
   database: futur_cadre_production
   pool: 5
   username: root
-  password: Test1234
+  password: root
   # JRuby doesn't support # JRuby doesn't support socket:
                           #socket:
   #host: 127.0.0.1

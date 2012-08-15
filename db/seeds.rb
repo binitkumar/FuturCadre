@@ -97,8 +97,8 @@ puts "creating Jobs"
                     :employer      => User.first,
                     :category      => Category.first,
                     :date_of_start => Time.now,
-                    :annual_salary => 1345
-                    :skill         => "IT Management, "
+                    :annual_salary => 1345,
+                    :skills         => "IT Management"
 
 
   )

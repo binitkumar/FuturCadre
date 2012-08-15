@@ -31,7 +31,7 @@
         </div>
 
         <div class="profile-input mtop20">
-          <label><%= t('profiles.website') %><em>*</em></label>
+          <label><%= t('profiles.website') %></label>
           <%= text_field_tag "company_information[web_site]", @company_information ? @company_information.web_site : "" %>
         </div>
         <div class="profile-input mtop20">
@@ -47,21 +47,21 @@
       </div>
       <div class="profile-right-div">
 
-        <div class="profile-input mtop20">
-          <label><%= t('companyinfo.country') %></label>
+        <!--<div class="profile-input mtop20">-->
+          <!--<label><%#= t('companyinfo.country') %></label>-->
 
-          <div id="country_org">
-            <%= render :partial => "shared/countries", :locals => { :object_collection => "company_information" } %>
-          </div>
-        </div>
+          <!--<div id="country_org">-->
+            <!--<%#= render :partial => "shared/countries", :locals => { :object_collection => "company_information" } %>-->
+          <!--</div>-->
+        <!--</div>-->
 
-        <div class="profile-input mtop20">
-          <label><%= t('profiles.region') %><em>*</em></label>
+        <!--<div class="profile-input mtop20">-->
+          <!--<label><%#= t('profiles.region') %><em>*</em></label>-->
 
-          <div id="regions_org">
-            <%= render :partial => "shared/regions", :locals => { :object_collection => "company_information" } %>
-          </div>
-        </div>
+          <!--<div id="regions_org">-->
+            <%#= render :partial => "shared/regions", :locals => { :object_collection => "company_information" } %>
+          <!--</div>-->
+        <!--</div>-->
         <div class="profile-input mtop20">
           <label><%= t('companyinfo.city') %></label>
 

@@ -14,7 +14,8 @@ class Profile < ActiveRecord::Base
 
 
   validates_presence_of :first_name, :last_name, :zip_code, :address
-  validates_presence_of :country_id, :city_id, :region_id
+  #validates_presence_of :country_id, :city_id, :region_id
+  validates_presence_of :city_id
   #validates_format_of :phone,:message => "must be a valid telephone number.", :with => /^[\(\)0-9\- \+\.]{10,20}$/
   validates_format_of :phone, :message => "must be a valid telephone number e.g. 000-0000000.", :with => /^(((\+|00)( |)\d{1,2}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/
 
@@ -33,7 +34,8 @@ class Profile < ActiveRecord::Base
     if ad && ad.length > 0
       ad +=""
     end
-    ad += "," + self.city.name + "," + self.region.name + ","+ self.country.name
+    #ad += "," + self.city.name + "," + self.region.name + ","+ self.country.name
+    ad += "," + self.city.name
     return ad
   end
 
@@ -47,8 +49,8 @@ class Profile < ActiveRecord::Base
     conditions = []
     conditions << "profiles.first_name LIKE '%#{params[:first_name]}%'"
     conditions << "profiles.last_name = '%#{params[:last_name]}%'"
-    conditions << "profiles.country_id = '%#{params[:country_id]}%'"
-    conditions << "profiles.region_id = '%#{params[:region_id]}%'"
+    #conditions << "profiles.country_id = '%#{params[:country_id]}%'"
+    #conditions << "profiles.region_id = '%#{params[:region_id]}%'"
     conditions << "profiles.city_id = '%#{params[:city_id]}%'"
     conditions = conditions.join(" OR ")
     find(:all, :conditions => conditions)
