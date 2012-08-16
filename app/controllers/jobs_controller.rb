@@ -26,7 +26,7 @@ class JobsController < ApplicationController
   def new
     unless current_user.package_id.blank?
       @jobs   =Job.find_all_by_employer_id(current_user.id)
-      @package=Package.find_by_id(current_user.package_id)
+      @package = Package.find_by_id(current_user.package_id)
       #if (@jobs.count < @package.no_of_jobs)
       if  current_user.created_jobs.count <= current_user.avail_jobs
         if current_user.profile!=nil
@@ -70,6 +70,7 @@ class JobsController < ApplicationController
     @job.date_of_start = date
     @job.annual_salary = salary
     @job.package_id    = current_user.package_id
+    @job.sector_id     = current_user.profile.company_information.sector_id
 
 
     unless params[:company_information].blank?
@@ -150,8 +151,11 @@ class JobsController < ApplicationController
           @job_comp.update_attributes(params[:company_information])
         end
         # To edit language and levels
+        #updating sector id
+        @job.update_attributes(:sector_id => current_user.profile.company_information.sector_id)
         unless params[:language_ids].blank?
           params[:language_ids].each_with_index do |language, i|
+
             @language = Language.find_by_id(language)
             if @job.languages.include?(@language)
               @job_language = JobLanguage.find_by_job_id_and_language_id(@job.id, @language.id)
@@ -159,6 +163,7 @@ class JobsController < ApplicationController
             else
               @job.languages << Language.find_by_id(@language.id)
             end
+
           end
         end
         # To edit Education Level

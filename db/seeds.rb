@@ -72,6 +72,14 @@ puts "Creating categories..."
   Category.create!(:name => name.humanize.titleize, :category_type => 1)
 end
 
+puts "Deleting existing company sectors ..."
+sectors = Sector.all
+sectors.each { |sectors| sectors.destroy } if sectors.present?
+
+puts "Creating sectors..."
+%w(Banque/Assurance BTP Distribution Immobilier Industries Info/Télécom/Internet Public/Collectivités Services).each do |name|
+  Sector.create!(:value => name.humanize.titleize)
+end
 
 puts "Deleting existing skills..."
 skills = Skill.all
@@ -98,8 +106,8 @@ puts "creating Jobs"
                     :category      => Category.first,
                     :date_of_start => Time.now,
                     :annual_salary => 1345,
-                    :skills         => "IT Management"
-
+                    :skills         => "IT Management",
+                    :sector         => Sector.first
 
   )
 
@@ -212,15 +220,6 @@ puts "Creating languages..."
   Language.create!(:value => name.humanize.titleize)
 end
 #
-
-puts "Deleting existing company sectors ..."
-sectors = Sector.all
-sectors.each { |sectors| sectors.destroy } if sectors.present?
-
-puts "Creating sectors..."
-%w(Banque/Assurance BTP Distribution Immobilier Industries Info/Télécom/Internet Public/Collectivités Services).each do |name|
-  Sector.create!(:value => name.humanize.titleize)
-end
 
 
 puts "updating Job contact and Period"

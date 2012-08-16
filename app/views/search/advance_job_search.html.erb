@@ -41,29 +41,49 @@
               <% end %>
             </div>
           </div>
-          <!--projects input ends-->
-          <div class="header_search">
-            <label><%= t('profiles.region') %></label>
 
+          <!--projects input ends-->
+          <!--<div class="header_search">-->
+            <!--<label><%#= t('profiles.region') %></label>-->
+
+            <!--<div class="search-input-new">-->
+              <%# @regions.each do |region| %>
+                  <!--<div class="contracts">-->
+                    <%#= check_box_tag "job_region_ids[]", region.id %>
+                    <%#= region.name %>
+                  <!--</div>-->
+              <%# end %>
+              <!--Etranger --><%#= check_box_tag "Others", "others", false, :onclick => "show_foreign(this)" %>
+              <!--<div class="foreign" style="display: none;">-->
+                <%# @regions_foreign.each do |region| %>
+                    <!--<div class="contracts">-->
+                      <%#= check_box_tag "job_region_ids[]", region.id %>
+                      <%#= region.name %>
+                    <!--</div>-->
+                <%# end %>
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <div class="header_search">
+            <label><%= t('profiles.cities') %></label>
             <div class="search-input-new">
-              <% @regions.each do |region| %>
+              <% @cities.each do |city| %>
                   <div class="contracts">
-                    <%= check_box_tag "job_region_ids[]", region.id %>
-                    <%= region.name %>
+                    <%= check_box_tag "job_cities_ids[]", city.id %>
+                    <%= city.name %>
                   </div>
               <% end %>
-              Etranger <%= check_box_tag "Others", "others", false, :onclick => "show_foreign(this)" %>
-              <div class="foreign" style="display: none;">
-                <% @regions_foreign.each do |region| %>
-                    <div class="contracts">
-                      <%= check_box_tag "job_region_ids[]", region.id %>
-                      <%= region.name %>
-                    </div>
-                <% end %>
-              </div>
+              <!-- Etranger --> <%#= check_box_tag "Others", "others", false, :onclick => "show_foreign(this)" %>
+              <!--<div class="foreign" style="display: none;">-->
+                <%# @regions_foreign.each do |region| %>
+                    <!--<div class="contracts">-->
+                      <%#= check_box_tag "job_region_ids[]", region.id %>
+                      <%#= region.name %>
+                    <!--</div>-->
+                <%# end %>
+              <!--</div>-->
             </div>
-
-
           </div>
 
           <div class="findjob"><%= link_to 'Search a Job', "javascript:void(0)", :id => "search_a_job" %></div>
@@ -81,6 +101,7 @@
     });
 
     function setMaximumSelected(amount, element) {
+        alert("HHHHHHH");
         var itemsSelected = [];
         for (var i = 0; i < element.options.length; i++) {
             if (element.options[i].selected) itemsSelected[itemsSelected.length] = i;

@@ -14,7 +14,7 @@ class Job < ActiveRecord::Base
   has_many :job_languages
   has_many :languages, :through => :job_languages
   #has_many :applied_jobs
-
+  belongs_to :sector
   has_many :applied_jobs
   has_many :users, :through => :applied_jobs
 

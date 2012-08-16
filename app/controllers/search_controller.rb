@@ -242,10 +242,11 @@ class SearchController < ApplicationController
   end
 
   def advance_job_search
-    @country         = Country.find_by_name('France')
-    @regions         = @country.regions
-    @country_foreign = Country.find_by_name('Belgium')
-    @regions_foreign = @country_foreign.regions
+    #@country         = Country.find_by_name('France')
+    #@regions         = @country.regions
+    #@country_foreign = Country.find_by_name('Belgium')
+    #@regions_foreign = @country_foreign.regions
+    @cities          = City.find_all_by_country_id(168,:group => "name")
     @contracts       = Contract.all
     @sectors         = Sector.all
     @categories      = Category.all
@@ -281,15 +282,27 @@ class SearchController < ApplicationController
       count = count +1
 
     end
-    unless params[:job_region_ids].blank?
+    #unless params[:job_region_ids].blank?
+    #  flag = true
+    #  if count == 0
+    #    @query = @query + " region_id in (#{params[:job_region_ids].collect { |i| i.to_i }.to_s.gsub("[", "").gsub("]", "")})"
+    #  else
+    #    @query = @query + " and region_id in (#{params[:job_region_ids].collect { |i| i.to_i }.to_s.gsub("[", "").gsub("]", "")})"
+    #  end
+    #  count = count +1
+    #end
+
+    unless params[:job_cities_ids].blank?
       flag = true
       if count == 0
-        @query = @query + " region_id in (#{params[:job_region_ids].collect { |i| i.to_i }.to_s.gsub("[", "").gsub("]", "")})"
+        @query = @query + " city_id in (#{params[:job_cities_ids].collect { |i| i.to_i }.to_s.gsub("[", "").gsub("]", "")})"
       else
-        @query = @query + " and region_id in (#{params[:job_region_ids].collect { |i| i.to_i }.to_s.gsub("[", "").gsub("]", "")})"
+        @query = @query + " and city_id in (#{params[:job_cities_ids].collect { |i| i.to_i }.to_s.gsub("[", "").gsub("]", "")})"
       end
       count = count +1
     end
+
+
 
     if flag == true
 
