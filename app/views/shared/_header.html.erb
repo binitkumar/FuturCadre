@@ -65,12 +65,12 @@
       </ul>
   <% else %>
       <% @user = User.new %>
-      <%= form_for(@user, :as => @user, :url => session_path(@user)) do |f| %>
+      <%= form_for(@user, :url => session_path(@user),:id=>'custom_form' ) do |f| %>
           <div class="login-input">
-            <%= f.email_field :email,:class=>'validate[required]' %>
+            <%= f.email_field :email,:class=>'validate[required]',:id=>'custom_email'  %>
           </div>
           <div class="login-password">
-            <%= f.password_field :password ,:class=>'validate[required]' %>
+            <%= f.password_field :password ,:class=>'validate[required]',:id=>'custom_password' %>
             <%= f.submit "Login" %>
           </div>
       <% end %>
