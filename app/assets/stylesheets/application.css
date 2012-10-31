@@ -6,5 +6,6 @@
  *= require home
  *= require search
  *= require profiles
+ *= require validationEngine.jquery
  *= require_tree .
 */

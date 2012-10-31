@@ -3,29 +3,29 @@
     <h1><span class="red"> <%= t('account') %></span> <%= t('information') %> </h1>
     <%= image_tag asset_path 'basic-info-bot-bar.png' %>
   </div>
-  <%= form_for(resource, :url => registration_path(resource), :html => { :id => "sign-up-form" }) do |f| %>
+  <%= form_for(resource, :url => registration_path(resource), :html => { :id => "sign-up-form" } ) do |f| %>
 
       <%= devise_error_messages! %>
 
       <div class="sign-in-input-holder mtop60">
         <label><%= t('users.user_name') %> </label>
-        <%= f.text_field :name %>
+        <%= f.text_field :name,:class=>'validate[required]' %>
         <!--<div id="check_user_name"></div>-->
 
       </div>
       <div class="sign-in-input-holder">
         <label>Email</label>
-        <%= f.email_field :email %>
+        <%= f.email_field :email,:class=>'validate[required,custom[email]]' %>
         <p><%= t('email') %></p>
       </div>
       <div class="sign-in-input-holder">
         <label><%= t('users.password') %></label>
-        <%= f.password_field :password %>
+        <%= f.password_field :password,:class=>'validate[required]' %>
         <p><%= t('password_helper') %></p>
       </div>
       <div class="sign-in-input-holder">
         <label><%= t('users.conf_password') %></label>
-        <%= f.password_field :password_confirmation %>
+        <%= f.password_field :password_confirmation,:class=>'validate[required]' %>
         <p><%= t('conf_password_helper') %></p>
       </div>
 

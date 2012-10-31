@@ -67,10 +67,10 @@
       <% @user = User.new %>
       <%= form_for(@user, :as => @user, :url => session_path(@user)) do |f| %>
           <div class="login-input">
-            <%= f.email_field :email %>
+            <%= f.email_field :email,:class=>'validate[required]' %>
           </div>
           <div class="login-password">
-            <%= f.password_field :password %>
+            <%= f.password_field :password ,:class=>'validate[required]' %>
             <%= f.submit "Login" %>
           </div>
       <% end %>

@@ -8,6 +8,8 @@
 //= require jquery_ujs
 //= require_tree .
 //= require tinymce-jquery
+//= require jquery.validationEngine
+//= require jquery.validationEngine-en
 
 
 //
@@ -46,6 +48,7 @@ $(document).ready(function() {
     });
     return false;
   });
+  $("form").validationEngine('attach');
 
 });
 

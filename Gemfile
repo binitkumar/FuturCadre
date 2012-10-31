@@ -5,12 +5,12 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
-#gem 'mysql'
+#gem 'mysql2'
+gem 'mysql'
 gem 'devise', '1.5.3'
 gem "cancan"
 gem 'recaptcha', :require => 'recaptcha/rails'
-gem 'therubyracer'
+#gem 'therubyracer'
 gem "paperclip", "~> 2.4"
 gem 'acts_as_commentable'
 #gem 'thinking-sphinx', '2.0.10'
@@ -35,9 +35,9 @@ gem 'jquery-rails'
 
 #gem 'translate-rails3', :require => 'translate', :group => :development
 gem 'translate-rails3', :require => 'translate'
-gem "galetahub-simple_captcha", :require => "simple_captcha"
+gem "galetahub-simple_captcha", :require => "simple_captcha" ,:git=>"git@github.com:binitkumar/simple-captcha.git"
 
-gem "rmagick"
+gem "rmagick", '2.12.0' , :platforms =>'ruby'
 
 gem 'parseexcel'
 
