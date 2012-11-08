@@ -9,7 +9,7 @@
 <% @cities = City.find_all_by_country_id(168,:group => "name")  %>
 <% selected = @city ? @city.id : nil %>
 <% if object_collection == "search"  %>
-    <%= select_tag "city_id", options_from_collection_for_select(@cities, "id", "name" ), :class => "slt-sub-div" %>
+    <%= select_tag "city_id", options_from_collection_for_select(@cities, "id", "name" ), :class => "slt-sub-div",:class=>'validate[required]' %>
 <% else %>
-    <%= select_tag "city_id", options_from_collection_for_select(@cities, "id", "name" , selected), :class => "slt-sub-div" %>
+    <%= select_tag "city_id", options_from_collection_for_select(@cities, "id", "name" , selected), :class => "slt-sub-div",:class=>'validate[required]' %>
 <% end %>

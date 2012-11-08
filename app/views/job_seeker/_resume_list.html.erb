@@ -12,7 +12,7 @@
     <p><br/>
     </p>
 
-    <h1>My<span class="red"> <%= t('Job_Seeker.resume') %></span></h1>
+    <h1><span class="red"> <%= t('Job_Seeker.resume') %></span></h1>
     <%= image_tag asset_path 'dashboard-botom-line.png' %>
     <% unless @resumes.blank? %>
         <p><%= t('Job_Seeker.total_resume') %> <%= @resumes.count %></p>
