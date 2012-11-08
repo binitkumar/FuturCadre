@@ -5,8 +5,8 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-#gem 'mysql2'
-gem 'mysql'
+gem 'mysql2'
+#gem 'mysql'
 gem 'devise', '1.5.3'
 gem "cancan"
 gem 'recaptcha', :require => 'recaptcha/rails'

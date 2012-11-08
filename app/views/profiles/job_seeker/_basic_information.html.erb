@@ -12,15 +12,15 @@
       <div class="profile-left-div">
         <div class="profile-input mtop20">
           <label><%= t('profiles.first_name') %></label>
-          <%= text_field_tag "profile[first_name]", @profile ? @profile.first_name : "" %>
+          <%= text_field_tag "profile[first_name]", @profile ? @profile.first_name : "", :class=>'validate[required]' %>
         </div>
         <div class="profile-input mtop20">
           <label> <%= t('profiles.phone') %><em>*</em> </label>
-          <%= text_field_tag "profile[phone]", @profile ? @profile.phone : "" %>
+          <%= text_field_tag "profile[phone]", @profile ? @profile.phone : "", :class=>'validate[required]' %>
         </div>
         <div class="profile-input mtop20">
           <label><%= t('profiles.zip') %><em>*</em></label>
-          <%= text_field_tag "profile[zip_code]", @profile ? @profile.zip_code : "" %>
+          <%= text_field_tag "profile[zip_code]", @profile ? @profile.zip_code : "", :class=>'validate[required]' %>
         </div>
         <!--<div class="profile-input mtop20">-->
           <!--<label><%#= t('profiles.region') %><em>*</em></label>-->
@@ -32,18 +32,18 @@
 
         <div class="profile-input mtop20">
           <label><%= t('profiles.skills') %><em>*</em></label>
-          <%= text_field_tag "profile[skill]", @profile ? @profile.skill : "" %>
+          <%= text_field_tag "profile[skill]", @profile ? @profile.skill : "", :class=>'validate[required]' %>
         </div>
 
       </div>
       <div class="profile-right-div">
         <div class="profile-input mtop20">
           <label><%= t('profiles.last_name') %></label>
-          <%= text_field_tag "profile[last_name]", @profile ? @profile.last_name : "" %>
+          <%= text_field_tag "profile[last_name]", @profile ? @profile.last_name : "", :class=>'validate[required]' %>
         </div>
         <div class="profile-input mtop20">
           <label><%= t('profiles.address') %><em>*</em></label>
-          <%= text_field_tag "profile[address]", @profile ? @profile.address : "" %>
+          <%= text_field_tag "profile[address]", @profile ? @profile.address : "", :class=>'validate[required]' %>
         </div>
         <!--<div class="profile-input mtop20">-->
           <!--<label><%#= t('profiles.country') %><em>*</em></label>-->
@@ -95,6 +95,11 @@
     });
 
     $("#next-link").click(function () {
+
+        if( ! $('form').validationEngine('validate') ){
+            return false;
+        }
+
         $.post($("form#profile-form").attr("action"), $("form#profile-form").serialize(), function (response) {
             if (response.seccess == true) {
                 $("#profile-contents").html(response.html);
