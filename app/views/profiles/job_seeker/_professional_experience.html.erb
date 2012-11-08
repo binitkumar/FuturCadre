@@ -27,7 +27,7 @@
         </div>
         <div class="profile-input mtop20">
           <label><%= t('profile_job_title') %></label>
-          <%= text_field_tag "prof_info[job_title]" %>
+          <%= text_field_tag "prof_info[job_title]",'',:class=>'validate[required]' %>
         </div>
 
         <div class="profile-input mtop20">
@@ -62,7 +62,7 @@
 
         <div class="profile-input mtop20">
           <label><%= t('profile_company_nam') %></label>
-          <%= text_field_tag "prof_info[company_name]" %>
+          <%= text_field_tag "prof_info[company_name]",'',:class=>'validate[required]' %>
 
         </div>
       </div>
@@ -75,6 +75,10 @@
 <% end %>
 
 <script type="text/javascript">
+    $(document).ready(function(){
+        $("form").validationEngine('detach');
+        $("form").validationEngine('attach');
+    });
 
     $(".tabs").each(function () {
         $(this).removeClass("active");
@@ -96,6 +100,10 @@
 
     $("#save-next-link").click(function () {
         $.post("/profiles/create_job_seeker_professional_experience_next?skip=true", $("form#profile-form").serialize(), function (response) {
+            if( ! $('form').validationEngine('validate') ){
+                return false;
+            }
+
             if (response.seccess == true) {
                 $("#profile-contents").html(response.html);
             }

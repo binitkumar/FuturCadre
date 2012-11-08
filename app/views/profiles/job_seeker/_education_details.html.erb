@@ -116,6 +116,9 @@
 
     $("#save-next-link").click(function () {
         $.post("/profiles/create_job_seeker_education_details_next?skip=true", $("form#profile-form").serialize(), function (response) {
+            if( ! $('form').validationEngine('validate') ){
+                return false;
+            }
             if (response.seccess == true) {
                 $("#profile-contents").html(response.html);
             }
